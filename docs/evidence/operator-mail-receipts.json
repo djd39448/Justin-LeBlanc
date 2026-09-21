@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-09-21T14:53:33.189Z",
+  "checkedAt": "2026-09-21T15:02:00.485Z",
   "status": "verified",
   "verificationMethod": "read-only Gmail Inbox search in a dedicated Chrome tab",
   "mailbox": "authenticated Dave account",
@@ -30,6 +30,17 @@
       "inInbox": true,
       "targetShowId": "0ff01042-c7fe-4805-bd01-35132bc6d43c",
       "pdfAttachmentPresent": true
+    },
+    "invoiceBccReceipt": {
+      "count": 1,
+      "category": "demo invoice marked not a payment request",
+      "inInbox": true,
+      "deliveryRole": "BCC receipt; the visible To header named another recipient",
+      "targetShowId": "jlm-demo-rehearsal-v1",
+      "invoiceReference": "JLM-DEMO-2026-0001",
+      "amountDueCents": 70000,
+      "currency": "USD",
+      "pdfAttachmentPresent": true
     }
   },
   "privacy": {
@@ -40,6 +51,6 @@
   },
   "limitations": [
     "This verifies recipient mailbox delivery and visible attachment presence, not attachment contents.",
-    "Invoice BCC receipt was outside this check and remains pending issuance."
+    "Direct client Inbox receipt is tracked separately by the primary verification owner."
   ]
 }
