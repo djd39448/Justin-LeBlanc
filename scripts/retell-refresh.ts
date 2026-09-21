@@ -55,6 +55,46 @@ export function retellPlanFingerprint(plan: RetellProvisionPlan): string {
   return createHash('sha256').update(stable(plan.llm)).digest('hex');
 }
 
+/**
+ * Mirrors Retell's read-back projection for accepted custom-tool JSON Schema fields.
+ * Runtime handlers still validate the original bounded schemas before any business operation.
+ */
+export function normalizeRetellExpectedLlm(
+  expected: RetellProvisionPlan['llm'],
+): RetellProvisionPlan['llm'] {
+  return {
+    ...expected,
+    general_tools: expected.general_tools.map((tool) => {
+      const properties = { ...tool.parameters.properties };
+      if (tool.name === 'upsert_inquiry' || tool.name === 'estimate_event') {
+        properties['durationMinutes'] = omitSchemaKeys(properties['durationMinutes'], [
+          'minimum',
+          'maximum',
+        ]);
+      }
+      if (tool.name === 'estimate_event') {
+        properties['oneWayMiles'] = omitSchemaKeys(properties['oneWayMiles'], ['minimum']);
+        const travelSchema = z
+          .record(z.string(), z.unknown())
+          .parse(properties['travelMeasuredBy']);
+        properties['travelMeasuredBy'] = {
+          ...travelSchema,
+          enum: z
+            .array(z.unknown())
+            .parse(travelSchema['enum'])
+            .filter((value) => value !== null),
+        };
+      }
+      return { ...tool, parameters: { ...tool.parameters, properties } };
+    }),
+  };
+}
+
+function omitSchemaKeys(value: unknown, keys: string[]): Record<string, unknown> {
+  const schema = z.record(z.string(), z.unknown()).parse(value);
+  return Object.fromEntries(Object.entries(schema).filter(([key]) => !keys.includes(key)));
+}
+
 /** Compares every expected nested value while allowing provider-added default fields. */
 export function matchesExpectedSubset(actual: unknown, expected: unknown): boolean {
   if (Array.isArray(expected)) {
@@ -140,6 +180,7 @@ async function run(): Promise<void> {
   }
   const plan = buildRetellProvisionPlan(environment.API_URL, identity.voiceId);
   const fingerprint = retellPlanFingerprint(plan);
+  const expectedReadback = normalizeRetellExpectedLlm(plan.llm);
   const client = new Retell({
     apiKey: environment.RETELL_API_KEY,
     maxRetries: 0,
@@ -263,7 +304,7 @@ async function run(): Promise<void> {
     throw new Error('Release manifest and provider LLM versions differ.');
   }
   let llm = await client.llm.retrieve(identity.llmId, { version: targetLlmVersion });
-  if (!matchesExpectedSubset(llm, plan.llm)) {
+  if (!matchesExpectedSubset(llm, expectedReadback)) {
     if (options.execute !== true) {
       process.stdout.write(
         `${JSON.stringify({ dryRun: true, action: 'update_and_publish_existing_draft' })}\n`,
@@ -274,7 +315,7 @@ async function run(): Promise<void> {
     saveRefresh(options.releaseManifest, release);
     await client.llm.update(identity.llmId, { version: targetLlmVersion, ...plan.llm });
     llm = await client.llm.retrieve(identity.llmId, { version: targetLlmVersion });
-    if (!matchesExpectedSubset(llm, plan.llm)) {
+    if (!matchesExpectedSubset(llm, expectedReadback)) {
       throw new Error('LLM read-back differs from the complete expected prompt and tool subset.');
     }
     release = { ...release, stage: 'llm_updated' };
@@ -311,7 +352,7 @@ async function run(): Promise<void> {
   if (
     published.version !== targetAgentVersion ||
     published.is_published !== true ||
-    !matchesExpectedSubset(llm, plan.llm)
+    !matchesExpectedSubset(llm, expectedReadback)
   ) {
     throw new Error('Published agent or LLM verification failed.');
   }

@@ -1,6 +1,7 @@
 /** Verifies Retell admission, raw-body auth, replay behavior, and new-resource plans. */
 import { Hono } from 'hono';
 import { describe, expect, it } from 'vitest';
+import { z } from 'zod';
 
 import { buildRetellAgentConfig } from '../apps/api/assistants/retell.js';
 import { ConfigSchema } from '../apps/api/config.js';
@@ -12,7 +13,11 @@ import {
   type ProvisionManifest,
   protectedProvisionDisposition,
 } from '../scripts/retell-provision.js';
-import { matchesExpectedSubset, retellPlanFingerprint } from '../scripts/retell-refresh.js';
+import {
+  matchesExpectedSubset,
+  normalizeRetellExpectedLlm,
+  retellPlanFingerprint,
+} from '../scripts/retell-refresh.js';
 
 const config = ConfigSchema.parse({
   NODE_ENV: 'test',
@@ -189,6 +194,29 @@ describe('Retell provisioning plan', () => {
     }
     delete providerFirstTool.parameters.properties[requiredParameter];
     expect(matchesExpectedSubset(providerMissingParameter, plan.llm)).toBe(false);
+  });
+
+  it('accepts only the observed Retell numeric and nullable-enum read-back projection', () => {
+    const plan = buildRetellProvisionPlan('https://demo.example.test', 'voice_approved');
+    const providerReadback = normalizeRetellExpectedLlm(plan.llm);
+    expect(matchesExpectedSubset(providerReadback, plan.llm)).toBe(false);
+    expect(matchesExpectedSubset(providerReadback, normalizeRetellExpectedLlm(plan.llm))).toBe(
+      true,
+    );
+
+    const missingSupportedField = structuredClone(providerReadback);
+    const searchTool = missingSupportedField.general_tools.find(
+      (tool) => tool.name === 'search_knowledge',
+    );
+    if (searchTool === undefined) throw new Error('Expected search_knowledge tool.');
+    const question = z
+      .record(z.string(), z.unknown())
+      .parse(searchTool.parameters.properties['question']);
+    delete question['maxLength'];
+    searchTool.parameters.properties['question'] = question;
+    expect(matchesExpectedSubset(missingSupportedField, normalizeRetellExpectedLlm(plan.llm))).toBe(
+      false,
+    );
   });
 
   it('rejects loopback and non-TLS callback URLs', () => {
