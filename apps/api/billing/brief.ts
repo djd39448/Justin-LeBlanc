@@ -80,7 +80,7 @@ export class EventBriefService {
       headers: { 'X-JLM-Show-ID': show.id, 'X-JLM-Document': 'event-brief' },
       attachments: [
         {
-          filename: `event-brief-${safeId(show.id)}.pdf`,
+          filename: `event-brief-${safeId(show.id)}-r${show.revision}.pdf`,
           path: preview.pdfPath,
           contentType: 'application/pdf',
         },
@@ -124,7 +124,10 @@ export class EventBriefService {
     const rendered = renderEventBrief(model);
     let pdfPath: string | null = null;
     if (options.renderPdf === true) {
-      pdfPath = join(this.options.privateStoragePath, `event-brief-${safeId(show.id)}.pdf`);
+      pdfPath = join(
+        this.options.privateStoragePath,
+        `event-brief-${safeId(show.id)}-r${show.revision}.pdf`,
+      );
       await (this.options.renderPdf ?? renderHtmlPdf)(rendered.html, pdfPath);
     }
     return { ...rendered, pdfPath, revision: show.revision };

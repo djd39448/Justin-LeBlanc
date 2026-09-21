@@ -195,6 +195,8 @@ describe('document templates', () => {
       const mail = MailEffectSchema.parse(JSON.parse(effect?.payload ?? '{}'));
       expect(mail.to).toEqual(['operator@example.test']);
       expect(mail.attachments[0]?.path).toBe(prepared.pdfPath);
+      expect(prepared.pdfPath).toMatch(/event-brief-show-1-r1\.pdf$/);
+      expect(mail.attachments[0]?.filename).toBe('event-brief-show-1-r1.pdf');
       expect(mail.text).toContain('To confirm');
     } finally {
       store.close();

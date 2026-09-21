@@ -63,12 +63,18 @@ describe('billing service', () => {
     });
     expect(morning.queued).toBe(1);
     expect(morning.localDates).toHaveLength(7);
-    expect(
-      await fixture.service.runMorningCheck({
-        now: new Date('2026-09-21T14:00:00Z'),
-        force: true,
-      }),
-    ).toEqual({ localDates: [], checked: 0, queued: 0, review: 0, skipped: 0 });
+    const checkCount = fixture.store.all('performance_checks', PerformanceCheckSchema).length;
+    const effectCount = fixture.store.effects().length;
+    const replay = await fixture.service.runMorningCheck({
+      now: new Date('2026-09-21T14:00:00Z'),
+      force: true,
+    });
+    expect(replay.localDates).toHaveLength(7);
+    expect(replay.queued).toBe(0);
+    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(
+      checkCount,
+    );
+    expect(fixture.store.effects()).toHaveLength(effectCount);
 
     const check = fixture.store.all('performance_checks', PerformanceCheckSchema)[0];
     expect(check).toBeDefined();
@@ -107,6 +113,52 @@ describe('billing service', () => {
     expect(invoiceMail.to).toEqual(['client@example.test']);
     expect(invoiceMail.bcc).toEqual(['operator@example.test']);
     expect(invoiceMail.html).not.toContain('operator@example.test');
+  });
+
+  it('finds a show added after a completed date scan only on an explicit forced rescan', async () => {
+    const fixture = await createFixture();
+    const now = new Date('2026-09-21T14:00:00Z');
+    await fixture.service.runMorningCheck({ now, force: false });
+
+    const lateShow: Show = {
+      ...fixture.show,
+      inquiryId: 'inquiry-2',
+      quoteId: 'quote-2',
+      status: 'confirmed',
+    };
+    const lateQuote = QuoteSchema.parse({
+      ...fixture.quote,
+      showId: 'show-2',
+    });
+    const metadata = fixture.event.metadata;
+    if (metadata === null) throw new Error('Expected synthetic calendar metadata.');
+    fixture.store.insert('shows', 'show-2', lateShow);
+    fixture.store.insert('quotes', 'quote-2', lateQuote);
+    fixture.events.push({
+      ...fixture.event,
+      eventId: 'event-2',
+      metadata: {
+        ...metadata,
+        showId: 'show-2',
+      },
+    });
+
+    expect(await fixture.service.runMorningCheck({ now, force: false })).toEqual({
+      localDates: [],
+      checked: 0,
+      queued: 0,
+      review: 0,
+      skipped: 0,
+    });
+    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(1);
+
+    const forced = await fixture.service.runMorningCheck({ now, force: true });
+    expect(forced.localDates).toHaveLength(7);
+    expect(forced.queued).toBe(1);
+    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(2);
+    expect(
+      fixture.store.effects().filter((effect) => effect.kind === 'email.performance_check'),
+    ).toHaveLength(2);
   });
 
   it('requires visible revised total approval before an amendment becomes billable', async () => {
@@ -220,6 +272,9 @@ async function createFixture(): Promise<{
   store: Store;
   service: BillingService;
   event: CalendarShowEvent;
+  events: CalendarShowEvent[];
+  show: Show;
+  quote: Quote;
 }> {
   const store = new Store(':memory:');
   stores.push(store);
@@ -286,7 +341,8 @@ async function createFixture(): Promise<{
       agreedTotalCents: 70_000,
     },
   };
-  const calendar: PerformanceCalendarReader = { listShowEvents: async () => [event] };
+  const events = [event];
+  const calendar: PerformanceCalendarReader = { listShowEvents: async () => events };
   const options: BillingOptions = {
     operatorEmail: 'operator@example.test',
     performerEmail: 'operator@example.test',
@@ -299,7 +355,14 @@ async function createFixture(): Promise<{
     hostname: 'example.test',
     renderPdf: async (_html, outputPath) => writeFile(outputPath, '%PDF-1.4 synthetic fixture'),
   };
-  return { store, service: new BillingService(store, calendar, options), event };
+  return {
+    store,
+    service: new BillingService(store, calendar, options),
+    event,
+    events,
+    show,
+    quote,
+  };
 }
 
 function reply(

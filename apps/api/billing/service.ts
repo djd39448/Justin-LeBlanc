@@ -131,9 +131,13 @@ export class BillingService {
         'Morning scan is not due before 08:00 America/Chicago; use force only from authenticated demo controls.',
       );
     }
-    const dates = priorDates(today, 7).filter(
-      (date) => this.store.find('job_runs', morningRunId(date), JobRunSchema) === undefined,
-    );
+    const candidateDates = priorDates(today, 7);
+    const dates =
+      input.force === true
+        ? candidateDates
+        : candidateDates.filter(
+            (date) => this.store.find('job_runs', morningRunId(date), JobRunSchema) === undefined,
+          );
     if (dates.length === 0) return { localDates: [], checked: 0, queued: 0, review: 0, skipped: 0 };
 
     const scanAnchor = new Date(`${today}T12:00:00.000Z`);
