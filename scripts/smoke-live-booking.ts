@@ -279,6 +279,8 @@ async function hold(
     `calendar:upsert:${scheduled.showId}:consultation:initial_schedule`,
     `calendar:upsert:${scheduled.showId}:performance:initial_hold`,
     `email:booking:${scheduled.showId}:tentative_hold_created:1`,
+    `document:event-brief:${scheduled.showId}:1`,
+    `mail:event-brief:${scheduled.showId}:r1`,
   ]);
 }
 
@@ -332,12 +334,9 @@ async function confirm(
           requestKey: `live-confirm-${manifest.runKey}`,
         });
   save();
-  const briefId = `document:event-brief:${confirmed.id}:1`;
   await dispatchExact(runtime, confirmed.id, [
-    briefId,
     `calendar:upsert:${confirmed.id}:performance:operator_confirmation`,
     `email:booking:${confirmed.id}:operator_confirmation:${confirmed.revision}`,
-    `mail:event-brief:${confirmed.id}:r${confirmed.revision}`,
   ]);
 }
 
