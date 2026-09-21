@@ -24,6 +24,10 @@ import {
 import type { Config } from './config.js';
 import type { Runtime } from './runtime.js';
 
+// Retell includes the growing transcript and call analysis in signed envelopes.
+// Keep this finite and shared with the HTTP limiter; tool arguments stay independently bounded.
+export const RETELL_MAX_BODY_BYTES = 1024 * 1024;
+
 const RetellToolEnvelopeSchema = z.object({
   name: z.enum(PUBLIC_ASSISTANT_TOOL_NAMES),
   call: z
@@ -183,7 +187,9 @@ export function mountVoiceRoutes(
   });
 }
 
-type VerifiedBody = { ok: true; text: string } | { ok: false; error: string; status: 400 | 401 };
+type VerifiedBody =
+  | { ok: true; text: string }
+  | { ok: false; error: string; status: 400 | 401 | 413 };
 
 async function readVerifiedRetellBody(
   request: Request,
@@ -195,8 +201,8 @@ async function readVerifiedRetellBody(
     return { ok: false, error: 'missing_retell_signature', status: 401 };
   }
   const rawBody = new Uint8Array(await request.arrayBuffer());
-  if (rawBody.byteLength > 32_000) {
-    return { ok: false, error: 'retell_body_too_large', status: 400 };
+  if (rawBody.byteLength > RETELL_MAX_BODY_BYTES) {
+    return { ok: false, error: 'retell_body_too_large', status: 413 };
   }
   let valid = false;
   try {

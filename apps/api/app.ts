@@ -15,17 +15,23 @@ import { operatorAction } from './operator-actions.js';
 import { mountOperatorRoutes } from './operator-routes.js';
 import type { Runtime } from './runtime.js';
 import { boundary, rateLimit, resumeToken, requireToken } from './security.js';
-import { mountVoiceRoutes } from './voice-routes.js';
+import { mountVoiceRoutes, RETELL_MAX_BODY_BYTES } from './voice-routes.js';
 
 const e164Pattern = /^\+[1-9]\d{7,14}$/;
+const PUBLIC_MAX_BODY_BYTES = 32 * 1024;
 
 /** Builds routes against injected persistent services; does not start a network listener. */
 export function createApp(runtime: Runtime): Hono {
   const app = new Hono();
   app.use('*', boundary(runtime.config));
-  app.use(
-    '*',
-    bodyLimit({ maxSize: 32768, onError: (c) => c.json({ error: 'body_too_large' }, 413) }),
+  app.use('*', (c, next) =>
+    bodyLimit({
+      maxSize:
+        c.req.path === '/api/retell/tools' || c.req.path === '/api/webhooks/retell'
+          ? RETELL_MAX_BODY_BYTES
+          : PUBLIC_MAX_BODY_BYTES,
+      onError: (context) => context.json({ error: 'body_too_large' }, 413),
+    })(c, next),
   );
   app.get('/api/health', (c) =>
     c.json({
