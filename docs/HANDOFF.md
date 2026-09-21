@@ -3,14 +3,16 @@
 - Status date: 2026-09-21
 - Delivery code baseline verified by final checks: `8b8a4c954cde7a8d8f61cff1fd7a852ab0676f4c`
 - Billing/document correction commit: `8e1ce48`
+- Public API smoke evidence commit: `6331d2b`
 
 ## What is running
 
 - The Cloudflare Pages website at `https://justinleblancmusic.50by50.dev` returned HTTP 200 on the exact hostname. The verified deployment ID is `ae47bbfd`.
 - Public pages return `noindex, nofollow, noarchive`, frame denial, and a `frame-ancestors 'none'` CSP. The admin page also returns `Cache-Control: no-store`.
 - The API is healthy on `127.0.0.1:4318`. Its checked capability result was `chat: true`, with booking, voice, and billing false under the current gates.
-- The public API proxy fails closed with structured HTTP 503 `api_unavailable` while the named tunnel is absent.
-- `jlm-demo-api` and `jlm-demo-worker` are installed and running as InteractiveOnly Windows tasks.
+- The isolated Cloudflare tunnel `jlm-demo-api` (`e692323b-f1d0-494b-8529-113bd188104b`) routes `jlm-demo-api.50by50.dev` to loopback port 4318. Its protected token stays outside Git, and the running tunnel task reported four QUIC connections.
+- Public API and exact website-proxy health returned HTTP 200 with the same KB identity. Synthetic public inquiry intake/resume and two grounded chat turns passed; unauthenticated admin returned HTTP 401 and no Calendar, email, or voice business write occurred.
+- `jlm-demo-api` and `jlm-demo-worker` are installed and running as InteractiveOnly Windows tasks. `jlm-demo-tunnel` is also running.
 - The final `stop-services.ps1 -Restart` check returned both owned tasks to `Running` and local health to HTTP 200 with the same knowledge-base identity and capability gates.
 - The SQLite-backed demo has canonical booking and billing state, durable outbox processing, document generation, operator actions, backups, exports, and restore checking.
 - One real, clearly labeled synthetic email diagnostic passed SMTP submission, To plus BCC delivery handling, deterministic Message-ID Sent-copy reconciliation, and a bounded IMAP scan.
@@ -24,13 +26,12 @@ Private configuration and operational data remain outside the repository. No cre
 
 | Area               | Current limit                                                                                                         | Required next action                                                                                                                            |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Public API         | The named Cloudflare tunnel is not approved or running                                                                | User-action-time approval for the isolated named tunnel and protected token, then an exact-host health check                                    |
-| Google Calendar    | Limited-use consent is pending                                                                                        | User completes consent for the isolated demo account; operator verifies the dedicated calendar and scopes                                       |
+| Google Calendar    | Grant identity and both limited scopes passed; calendar create returns HTTP 403 `SERVICE_DISABLED`                    | Owner enables the Calendar API/accepts its terms, then operator runs provision-only recovery and verifies calendar/invitations                  |
 | Invoice acceptance | Only the synthetic provider diagnostic is complete                                                                    | Run one end-to-end synthetic show through morning authorization, authenticated reply, immutable invoice, SMTP delivery, and Sent reconciliation |
 | Retell             | An isolated agent and LLM exist, but no managed number was purchased; the number API returned HTTP 403 `No valid KYC` | Owner completes Retell KYC, then provisions an isolated demo number and completes inbound-call acceptance                                       |
 | Unattended uptime  | S4U startup task registration returned `AccessDenied`                                                                 | Approve and install a supported startup service/task mode; until then a user must remain signed in                                              |
 
-The public website can load while API-backed discovery, booking, chat, and operator flows remain unavailable from the internet. Do not present the demo as continuously available until the public API and unattended service mode are verified.
+Public inquiry and chat paths now reach the backend through the isolated tunnel. Scheduling, voice, billing, and provider-backed operator outcomes remain gated. Do not present the demo as continuously available because the API and worker still depend on InteractiveOnly tasks.
 
 ## Implemented boundaries
 
@@ -60,16 +61,17 @@ Do not put the admin token in a URL. Operator actions should be stored briefly i
 
 ## Evidence and acceptance state
 
-Repository evidence includes the sanitized email provider diagnostic, [hosting verification](evidence/hosting-verification.json), and [document visual QA](evidence/documents/README.md). These artifacts intentionally omit addresses, credentials, message bodies with private data, and provider secrets.
+Repository evidence includes the sanitized email provider diagnostic, [hosting verification](evidence/hosting-verification.json), [public API smoke](evidence/public-api-smoke.json), [Google setup status](evidence/google-setup-status.json), and [document visual QA](evidence/documents/README.md). These artifacts intentionally omit addresses, credentials, message bodies with private data, and provider secrets.
 
-The sanitized Retell provisioning evidence records the isolated agent, LLM, knowledge-base version, and reconciliation result. It records no phone number because none was purchased. The public API tunnel and owner KYC remain prerequisites for live voice acceptance.
+The sanitized Retell provisioning evidence records the isolated agent, LLM, knowledge-base version, and reconciliation result. It records no phone number because none was purchased. Owner KYC and a managed number remain prerequisites for live voice acceptance.
 
 The following statements are supported now:
 
 - local API health: verified;
 - exact-host website HTTP 200: verified;
 - noindex, frame denial, CSP, and admin no-store headers: verified;
-- public API structured fail-closed HTTP 503: verified;
+- public and website-proxy API health HTTP 200 with the expected KB identity: verified;
+- public synthetic inquiry intake/resume and two grounded chat turns: verified with no provider business writes;
 - unauthorized admin HTTP 401 and authenticated seeded brief PDF HTTP 200: verified;
 - InteractiveOnly API and worker tasks running: verified;
 - SMTP and IMAP provider access with deterministic Sent reconciliation: verified by a synthetic diagnostic;
@@ -80,7 +82,6 @@ The final `npm run verify` completed at 12:37:27 UTC: ESLint passed, TypeScript 
 
 The following statements must remain pending:
 
-- public API tunnel health;
 - live Google Calendar read/write acceptance;
 - reply-driven invoice approval and delivery;
 - Retell managed-number call handling;
@@ -88,13 +89,12 @@ The following statements must remain pending:
 
 ## Next controlled session
 
-1. Restart `scripts/google-authorize.ts` while the user is present, then complete Google limited-use consent. The previous authorization window expired without approval and exited 1 with `Authorization window expired; restart setup`.
-2. Verify the public API health endpoint through the approved hostname. Confirm no secret or token appears in the URL or response.
-3. Verify the dedicated calendar and run the isolated synthetic booking/calendar flow.
-4. Run the pending invoice acceptance exactly once. Reconcile any uncertain SMTP result by deterministic Message-ID; do not resend it blindly.
-5. The owner completes Retell KYC. Provision and test an isolated Retell number only after that prerequisite and explicit resource approval.
-6. Replace InteractiveOnly tasks with an approved unattended startup method, then test reboot and sign-out recovery.
-7. Record final test totals and the integration commit in this handoff without copying private configuration.
+1. The owner enables the Google Calendar API in the Alex project and accepts any required terms. Do not repeat OAuth; run `scripts/google-authorize.ts --env <protected-env> --provision-only` and inspect the private provisioning manifest.
+2. Verify the dedicated calendar and run the isolated synthetic booking/calendar flow.
+3. Run the pending invoice acceptance exactly once. Reconcile any uncertain SMTP result by deterministic Message-ID; do not resend it blindly.
+4. The owner completes Retell KYC. Provision and test an isolated Retell number only after that prerequisite and explicit resource approval.
+5. Replace InteractiveOnly API and worker tasks with an approved unattended startup method, then test reboot and sign-out recovery.
+6. Record final test totals and the integration commit in this handoff without copying private configuration.
 
 The shared account usage snapshot supplied during final review was 17% used, leaving the required reserve intact.
 

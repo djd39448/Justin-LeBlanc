@@ -2,7 +2,7 @@
 
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
-The website and application are implemented. The complete live demonstration is **not complete**: the public API tunnel and Google Calendar consent await owner approval, and Retell number provisioning returned `403 No valid KYC`. Until those dependencies are resolved, the public site loads but form submission, chat, scheduling, and the operator workspace cannot reach the backend.
+The website and application are implemented. The complete live demonstration is **not complete**: public health, inquiry intake/resume, and chat now pass through the isolated Cloudflare tunnel, while Calendar booking, voice calling, and reply-driven billing remain disabled or pending. The Google grant identity and both limited Calendar scopes are verified, but calendar creation returns HTTP 403 `SERVICE_DISABLED` until the owner enables the Calendar API and accepts any required terms in the Alex project. Retell number provisioning returned `403 No valid KYC`.
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Billing reads completed performances by Houston end date, requires an authenticated correlated reply, snapshots the approved invoice, and delivers through a durable outbox. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
@@ -10,6 +10,7 @@ The local API and worker run against persistent SQLite. Booking uses a consultat
 
 - `npm run verify`: lint and type checking passed, **69 tests in 15 files**, nine static pages built.
 - Exact HTTPS hostname, noindex/security headers, five responsive viewport captures, keyboard navigation, semantic initial HTML.
+- Public API health, unauthenticated admin rejection, synthetic inquiry intake/resume, and two grounded OpenAI chat turns passed through `jlm-demo-api.50by50.dev`; no Calendar, email, or voice business write occurred.
 - Four real OpenAI qualification cases passed using `gpt-4.1-mini` (6,911 tokens); both assistant configurations share KB `2026-09-21.1`.
 - One real synthetic SMTP diagnostic, bounded IMAP read, and Sent-copy reconciliation. This is **not** proof of actual reply-driven invoicing.
 - Visually inspected synthetic PDF brief and invoices; authenticated local brief PDF served successfully.

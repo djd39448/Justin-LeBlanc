@@ -1,22 +1,23 @@
 # Demo Operations Runbook
 
-Last verified: 2026-09-21 at 12:37:27 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
+Last verified: 2026-09-21 at 14:16:25 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
 
 ## Current service state
 
 | Component       | State                                                                               | Operator note                                                                                                     |
 | --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Cloudflare Pages deployment `ae47bbfd`; noindex and security headers verified                                     |
-| API             | Healthy on `127.0.0.1:4318`; public proxy returns structured HTTP 503               | The named Cloudflare tunnel is awaiting user-action-time approval, so the proxy reports `api_unavailable`         |
+| API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Public inquiry intake/resume and two grounded chat turns passed; booking, voice, and billing capabilities are off |
 | Worker          | Running as the InteractiveOnly scheduled task `jlm-demo-worker`                     | Runs only while the Windows user is signed in                                                                     |
 | API task        | Running as the InteractiveOnly scheduled task `jlm-demo-api`                        | Runs only while the Windows user is signed in                                                                     |
+| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                       |
 | Windows startup | S4U startup task registration returned `AccessDenied`                               | InteractiveOnly tasks are the temporary operating mode; uptime does not survive sign-out as an unattended service |
 | Email           | Real SMTP and IMAP diagnostic verified                                              | The diagnostic was synthetic and did not send an invoice or prove reply-driven billing acceptance                 |
-| Google Calendar | Adapter implemented; live authorization pending                                     | Limited-use consent requires user-action-time approval                                                            |
+| Google Calendar | Grant identity and both limited scopes verified; calendar create returned HTTP 403  | `SERVICE_DISABLED`: owner must enable Calendar API/terms, then run provision-only recovery                        |
 | Retell          | Isolated agent and LLM created; no managed number provisioned                       | Number API returned HTTP 403 `No valid KYC`; the owner must complete Retell KYC before any number purchase        |
 | Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking    | This proves the checked backup was readable and internally consistent; retain the source backup privately         |
 
-The website is available, but API-backed actions remain limited until the named tunnel is approved and running. The current API and worker uptime also depends on the Windows user remaining signed in.
+Public inquiry and chat now reach the backend. Scheduling, voice, and billing remain disabled. API and worker uptime still depends on the Windows user remaining signed in.
 
 ## Protected configuration
 
@@ -48,11 +49,12 @@ node "--env-file=$configPath" --import tsx scripts/worker.ts
 For the installed InteractiveOnly tasks:
 
 ```powershell
-Get-ScheduledTask -TaskName 'jlm-demo-api','jlm-demo-worker' |
+Get-ScheduledTask -TaskName 'jlm-demo-api','jlm-demo-worker','jlm-demo-tunnel' |
   Select-Object TaskName, State
 
 Start-ScheduledTask -TaskName 'jlm-demo-api'
 Start-ScheduledTask -TaskName 'jlm-demo-worker'
+Start-ScheduledTask -TaskName 'jlm-demo-tunnel'
 ```
 
 The task installer is intended for a clean or deliberately repaired host and refuses to overwrite tasks it does not own:
@@ -61,21 +63,20 @@ The task installer is intended for a clean or deliberately repaired host and ref
 pwsh -File scripts/install-services.ps1 -ConfigPath $configPath -InteractiveOnly
 ```
 
-Do not add `-IncludeTunnel` until the named Cloudflare tunnel and its protected token have been approved. S4U startup registration is not currently usable on this host because task registration returned `AccessDenied`.
-
-When API/worker tasks already exist, use `-TunnelOnly -InteractiveOnly` after approval to install just the new tunnel task; `-IncludeTunnel` is for a fresh installation and refuses existing task names.
+The named tunnel has been installed from the protected token file. Do not recreate it, move its token to a command line, or change any unrelated tunnel or DNS record. S4U startup registration is not currently usable on this host because task registration returned `AccessDenied`.
 
 Check API health and recent private logs without exposing configuration:
 
 ```powershell
 Invoke-RestMethod 'http://127.0.0.1:4318/api/health'
+Invoke-RestMethod 'https://justinleblancmusic.50by50.dev/api/health'
 Get-Content (Join-Path $privateRoot 'logs\api.log') -Tail 100
 Get-Content (Join-Path $privateRoot 'logs\worker.log') -Tail 100
 ```
 
-The API binds to loopback. A local health result does not prove the public tunnel, Google, Retell, or invoice workflow is live.
+The API binds to loopback. Check both URLs: local health alone does not prove the public tunnel, and public health does not prove Google, Retell, or invoice workflows.
 
-The last local check returned HTTP 200 with demo mode enabled and capabilities `chat: true`, `booking: false`, `voice: false`, and `billing: false`. An unauthenticated admin request returned HTTP 401. A seeded authenticated event-brief PDF preview returned HTTP 200, `application/pdf`, `Cache-Control: no-store`, and 66,125 bytes. The public `/api/health` proxy returned HTTP 503 JSON with `api_unavailable`, which is the expected fail-closed response while the tunnel is absent.
+Local, direct-tunnel, and exact website-proxy health returned HTTP 200 with demo mode enabled, the same KB hash, and capabilities `chat: true`, `booking: false`, `voice: false`, and `billing: false`. Public smoke also proved HTTP 401 for unauthenticated admin, synthetic inquiry intake/resume, and two grounded chat turns without Calendar, email, or voice business writes. A seeded authenticated event-brief PDF preview returned HTTP 200, `application/pdf`, `Cache-Control: no-store`, and 66,125 bytes.
 
 ## Stop or restart installed services
 
@@ -90,16 +91,15 @@ The helper stops only `jlm-demo-api`, `jlm-demo-worker`, and `jlm-demo-tunnel` t
 
 The final operational check ran the helper with `-Restart`, confirmed both owned API and worker tasks returned to `Running`, and confirmed local health HTTP 200 with the same knowledge-base identity and capability gates.
 
-## Resume Google authorization
+## Complete Google Calendar authorization
 
-The last Google OAuth setup window expired without user approval and exited 1 with `Authorization window expired; restart setup`. Restart the flow while the user is present; do not treat the expired process as consent:
+The isolated refresh-grant identity matches the configured account and both required limited scopes passed validation. Calendar creation reached Google and returned definitive HTTP 403 `SERVICE_DISABLED`. The owner must enable the Google Calendar API in the Alex project and accept any required terms. Do not repeat OAuth; after enablement use the saved grant with provision-only recovery:
 
 ```powershell
-$clientPath = 'C:\path\outside-repo\google-oauth-client.json'
-npx tsx scripts/google-authorize.ts --client $clientPath --env $configPath
+npx tsx scripts/google-authorize.ts --env $configPath --provision-only
 ```
 
-Complete only the isolated demo-account consent shown by the script, then verify the configured dedicated calendar. Never substitute credentials or calendars from existing TrustCore resources.
+The helper records sanitized retry state in the private `google-calendar-provisioning.json` manifest beside the protected environment file. Inspect that definitive-failure manifest before retrying. Verify the dedicated calendar after recovery. Never substitute credentials or calendars from existing TrustCore resources, and keep booking writes disabled until live Calendar acceptance passes.
 
 ## Operator CLI
 

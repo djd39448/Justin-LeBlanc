@@ -1,5 +1,6 @@
 {
-  "at": "2026-09-21T12:38:28.783Z",
+  "at": "2026-09-21T14:16:25.077Z",
+  "websiteCheckedAt": "2026-09-21T12:38:28.783Z",
   "deployment": "ae47bbfd",
   "public": {
     "/": {
@@ -22,17 +23,47 @@
       "followupControl": true
     },
     "/api/health": {
-      "status": 503,
+      "status": 200,
       "noindex": "noindex",
       "cacheControl": "no-store",
       "frame": null,
       "csp": null,
       "contentType": "application/json",
       "h1": false,
-      "apiError": "api_unavailable"
+      "ok": true,
+      "demo": true,
+      "kbVersion": "2026-09-21.1",
+      "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+      "capabilities": {
+        "booking": false,
+        "chat": true,
+        "voice": false,
+        "billing": false
+      }
+    }
+  },
+  "publicApi": {
+    "checkedAt": "2026-09-21T14:16:25.077Z",
+    "host": "jlm-demo-api.50by50.dev",
+    "tunnelName": "jlm-demo-api",
+    "tunnelId": "e692323b-f1d0-494b-8529-113bd188104b",
+    "origin": "http://127.0.0.1:4318",
+    "taskState": "Running",
+    "quicConnections": 4,
+    "smokeEvidence": "public-api-smoke.json",
+    "smokeEvidenceRevision": "6331d2b",
+    "unauthorizedAdmin": 401,
+    "inquiryIntake": 201,
+    "inquiryResume": 200,
+    "actualOpenAiTurns": 2,
+    "providerBusinessWrites": {
+      "calendar": false,
+      "email": false,
+      "voiceCall": false
     }
   },
   "local": {
+    "checkedAt": "2026-09-21T12:38:28.783Z",
     "health": {
       "ok": true,
       "demo": true,
@@ -59,5 +90,6 @@
     },
     "disabledFollowupStatus": 400
   },
-  "codeRevision": "8b8a4c9"
+  "codeRevision": "8b8a4c9",
+  "publicApiEvidenceRevision": "6331d2b"
 }
