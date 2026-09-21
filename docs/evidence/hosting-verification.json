@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-21T12:38:28.783Z",
+  "deployment": "ae47bbfd",
+  "public": {
+    "/": {
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive",
+      "cacheControl": "public, max-age=0, must-revalidate",
+      "frame": "DENY",
+      "csp": "frame-ancestors 'none'",
+      "contentType": "text/html; charset=utf-8",
+      "h1": true
+    },
+    "/admin/": {
+      "status": 200,
+      "noindex": "noindex, nofollow, noarchive",
+      "cacheControl": "no-store, max-age=0",
+      "frame": "DENY",
+      "csp": "frame-ancestors 'none'",
+      "contentType": "text/html; charset=utf-8",
+      "h1": true,
+      "followupControl": true
+    },
+    "/api/health": {
+      "status": 503,
+      "noindex": "noindex",
+      "cacheControl": "no-store",
+      "frame": null,
+      "csp": null,
+      "contentType": "application/json",
+      "h1": false,
+      "apiError": "api_unavailable"
+    }
+  },
+  "local": {
+    "health": {
+      "ok": true,
+      "demo": true,
+      "kbVersion": "2026-09-21.1",
+      "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+      "capabilities": {
+        "booking": false,
+        "chat": true,
+        "voice": false,
+        "billing": false
+      }
+    },
+    "unauthorized": 401,
+    "counts": {
+      "customers": 1,
+      "shows": 1,
+      "invoices": 0
+    },
+    "brief": {
+      "status": 200,
+      "bytes": 66125,
+      "cacheControl": "no-store",
+      "contentType": "application/pdf"
+    },
+    "disabledFollowupStatus": 400
+  },
+  "codeRevision": "8b8a4c9"
+}

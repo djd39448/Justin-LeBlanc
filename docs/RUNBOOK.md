@@ -1,12 +1,12 @@
 # Demo Operations Runbook
 
-Last verified: 2026-09-21 at 12:24:53 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
+Last verified: 2026-09-21 at 12:37:27 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
 
 ## Current service state
 
 | Component       | State                                                                               | Operator note                                                                                                     |
 | --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Cloudflare Pages deployment `34f95034`; noindex and security headers verified                                     |
+| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Cloudflare Pages deployment `ae47bbfd`; noindex and security headers verified                                     |
 | API             | Healthy on `127.0.0.1:4318`; public proxy returns structured HTTP 503               | The named Cloudflare tunnel is awaiting user-action-time approval, so the proxy reports `api_unavailable`         |
 | Worker          | Running as the InteractiveOnly scheduled task `jlm-demo-worker`                     | Runs only while the Windows user is signed in                                                                     |
 | API task        | Running as the InteractiveOnly scheduled task `jlm-demo-api`                        | Runs only while the Windows user is signed in                                                                     |
@@ -62,6 +62,8 @@ pwsh -File scripts/install-services.ps1 -ConfigPath $configPath -InteractiveOnly
 ```
 
 Do not add `-IncludeTunnel` until the named Cloudflare tunnel and its protected token have been approved. S4U startup registration is not currently usable on this host because task registration returned `AccessDenied`.
+
+When API/worker tasks already exist, use `-TunnelOnly -InteractiveOnly` after approval to install just the new tunnel task; `-IncludeTunnel` is for a fresh installation and refuses existing task names.
 
 Check API health and recent private logs without exposing configuration:
 
@@ -181,6 +183,8 @@ A separate manual retry is allowed only for an effect already classified `failed
 The final dispatcher enforces `INVOICE_SEND_ENABLED` and the exact demo recipient allowlist. Turning a switch on is not permission to add recipients.
 
 ## Reply polling safety
+
+The worker also invokes the authenticated `billing-followups` action every two minutes after its reply poll. Operators can use **Review unanswered checks** or a private action file containing `{"action":"billing-followups"}`. It requires `INVOICE_SEND_ENABLED`. Initial unanswered performance checks receive one queued reminder after 24 hours from definitive original SMTP acceptance or Sent reconciliation, then enter the operator review queue after 72 hours without a reply. Pending or uncertain original sends do not start the clock. Amendment approval threads remain visible for operator review and do not use this initial-check reminder policy.
 
 Reply polling requires the email gate and a configured IMAP account. It uses a durable mailbox UIDVALIDITY/UID cursor, a worker lock, bounded scans, and per-message processing before cursor advancement. It ignores sent echoes, automatic responses, and bounce-like traffic.
 

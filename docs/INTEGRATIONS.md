@@ -1,5 +1,7 @@
 # Integration inventory and isolation plan
 
+Current implementation status and exact resource IDs are maintained in [resource-inventory.md](resource-inventory.md) and [acceptance results](evidence/acceptance-results.md). The source observations below are the original planning baseline, not the final live-readiness result.
+
 Inspected local source on 2026-09-21. This proves code exists, not deployed/account readiness.
 Do not use old README statements as live status. No secrets were read in the docs session.
 

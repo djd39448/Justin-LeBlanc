@@ -1,5 +1,7 @@
 # Live web verification
 
+Update: the later deployment `ae47bbfd` passed the security-header and admin no-store recheck; its public API returns structured HTTP 503 while the tunnel remains pending. See [hosting verification](hosting-verification.json). The observations below retain their original deployment scope and date.
+
 Verified 2026-09-21 against Cloudflare Pages deployment `63cfd5c3` at
 `https://justinleblancmusic.50by50.dev`.
 

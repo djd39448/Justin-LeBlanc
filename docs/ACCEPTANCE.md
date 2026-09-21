@@ -1,6 +1,6 @@
 # Acceptance and evidence matrix
 
-Implementation status: all pending. Do not mark a row passed without linked evidence.
+Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). The complete live demonstration remains pending. Requirements below are unchanged; do not mark a row passed without linked evidence.
 
 | ID | Scenario | Required result |
 |---|---|---|

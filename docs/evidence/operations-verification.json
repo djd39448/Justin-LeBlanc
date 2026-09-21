@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-09-21T12:38:59.714Z",
+  "verifiedCode": "8b8a4c954cde7a8d8f61cff1fd7a852ab0676f4c",
+  "checks": {
+    "staticPages": 9,
+    "typecheck": "pass",
+    "astroDiagnostics": 0,
+    "testsPassed": 69,
+    "lint": "pass",
+    "testFiles": 15,
+    "completedAt": "2026-09-21T12:37:27Z",
+    "powerShellSyntax": "pass"
+  },
+  "restart": {
+    "tasks": [
+      {
+        "TaskName": "jlm-demo-api",
+        "State": "Running"
+      },
+      {
+        "TaskName": "jlm-demo-worker",
+        "State": "Running"
+      }
+    ],
+    "localHealthStatus": 200,
+    "startupMode": "InteractiveOnly",
+    "command": "scripts/stop-services.ps1 -ConfigPath <private-config> -Restart",
+    "unattendedStartup": "blocked: S4U AccessDenied",
+    "recheckedAt": "2026-09-21T12:38:28.783Z"
+  },
+  "backup": {
+    "documentHashes": [
+      "A3F3514B1B849BA6A869A73D0A81668FDED19865837245E114EB659253ABD81E"
+    ],
+    "liveDatabaseOverwritten": false,
+    "documentFiles": 1,
+    "integrity": [
+      {
+        "integrity_check": "ok"
+      }
+    ],
+    "tables": {
+      "customers": 1,
+      "inquiries": 1,
+      "shows": 1,
+      "consultations": 1,
+      "quotes": 1,
+      "calendar_links": 0,
+      "conversations": 0,
+      "performance_checks": 0,
+      "invoices": 0,
+      "processed_events": 0,
+      "job_runs": 0,
+      "audit_events": 2
+    },
+    "restoredToNewDirectory": true,
+    "strategy": "fresh timestamped directory, consistent SQLite backup and documents copy",
+    "checkedAt": "2026-09-21T12:25:26.8177959Z"
+  },
+  "githubVerifiedRun": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538"
+}
