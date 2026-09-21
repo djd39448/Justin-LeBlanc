@@ -10,6 +10,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ChatPanel from "../components/ChatPanel.astro";
 import EventPlanner from "../components/EventPlanner.astro";
 import FaqList from "../components/FaqList.astro";
+import VoicePanel from "../components/VoicePanel.astro";
 import { demoPackages, site } from "../content";
 
 const structuredData = [
@@ -181,7 +182,10 @@ const structuredData = [
           without AI, JavaScript, or a conversation.
         </p>
       </div>
-      <ChatPanel />
+      <div>
+        <ChatPanel />
+        <VoicePanel />
+      </div>
     </div>
   </section>
 

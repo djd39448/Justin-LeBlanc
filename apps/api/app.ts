@@ -17,6 +17,8 @@ import type { Runtime } from './runtime.js';
 import { boundary, rateLimit, resumeToken, requireToken } from './security.js';
 import { mountVoiceRoutes } from './voice-routes.js';
 
+const e164Pattern = /^\+[1-9]\d{7,14}$/;
+
 /** Builds routes against injected persistent services; does not start a network listener. */
 export function createApp(runtime: Runtime): Hono {
   const app = new Hono();
@@ -37,6 +39,9 @@ export function createApp(runtime: Runtime): Hono {
         voice: runtime.config.VOICE_ENABLED,
         billing: runtime.config.INVOICE_SEND_ENABLED,
       },
+      ...(runtime.config.VOICE_ENABLED && e164Pattern.test(runtime.config.RETELL_JLM_PHONE_NUMBER)
+        ? { demoVoicePhoneNumber: runtime.config.RETELL_JLM_PHONE_NUMBER }
+        : {}),
     }),
   );
   app.use('/api/inquiries*', rateLimit(runtime.store));

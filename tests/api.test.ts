@@ -8,7 +8,7 @@ import { ConfigSchema } from '../apps/api/config.js';
 import { createRuntime, type Runtime } from '../apps/api/runtime.js';
 
 const active: Runtime[] = [];
-function fixture() {
+function fixture(overrides: Record<string, string> = {}) {
   const runtime = createRuntime(
     ConfigSchema.parse({
       ADMIN_TOKEN: 'a'.repeat(40),
@@ -20,6 +20,7 @@ function fixture() {
       OPENAI_API_KEY: 'test-only',
       DATABASE_URL: ':memory:',
       PRIVATE_STORAGE_PATH: 'private/test-documents',
+      ...overrides,
     }),
   );
   active.push(runtime);
@@ -59,6 +60,27 @@ describe('HTTP boundaries', () => {
     const health = await app.request('/api/health');
     expect(health.headers.get('Cache-Control')).toBe('no-store');
     expect(await health.text()).not.toContain('test-only');
+  });
+  it('publishes only the gated E.164 demo voice number', async () => {
+    const caller = '+12025550199';
+    const readHealth = async (overrides: Record<string, string>) => {
+      const { app } = fixture({ DEMO_CALLER_ALLOWLIST: caller, ...overrides });
+      const response = await app.request('/api/health');
+      expect(response.status).toBe(200);
+      const text = await response.text();
+      expect(text).not.toContain(caller);
+      return JSON.parse(text) as Record<string, unknown>;
+    };
+
+    expect(
+      await readHealth({ VOICE_ENABLED: 'false', RETELL_JLM_PHONE_NUMBER: '+12025550100' }),
+    ).not.toHaveProperty('demoVoicePhoneNumber');
+    expect(
+      await readHealth({ VOICE_ENABLED: 'true', RETELL_JLM_PHONE_NUMBER: '202-555-0100' }),
+    ).not.toHaveProperty('demoVoicePhoneNumber');
+    expect(
+      await readHealth({ VOICE_ENABLED: 'true', RETELL_JLM_PHONE_NUMBER: '+12025550100' }),
+    ).toHaveProperty('demoVoicePhoneNumber', '+12025550100');
   });
   it('persists form intake and requires its own resume credential', async () => {
     const { app } = fixture();

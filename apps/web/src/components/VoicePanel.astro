@@ -1,0 +1,150 @@
+---
+/**
+ * Renders the public voice-demo entrypoint without embedding a phone number in static HTML.
+ *
+ * Dependencies: The public GET /api/health contract.
+ * Depended on by: The homepage optional-assistance section.
+ * Why this exists: Approved demo callers need a clear call path that fails closed with the voice gate.
+ */
+---
+
+<section class="voice-card" aria-labelledby="voice-demo-title">
+  <div class="voice-card-heading">
+    <span class="voice-mark" aria-hidden="true">♪</span>
+    <div>
+      <p class="eyebrow">Optional voice demo</p>
+      <h3 id="voice-demo-title">Talk through the event.</h3>
+    </div>
+  </div>
+  <p>
+    The voice assistant uses the same reviewed booking facts and confirmation boundaries as chat.
+  </p>
+  <p class="voice-limit">Available to approved demo callers.</p>
+  <a class="button button-small" id="voice-call-action" hidden>Try the voice demo</a>
+  <p class="voice-status" id="voice-status" role="status" aria-live="polite">
+    Checking demo-line availability…
+  </p>
+  <noscript><p class="voice-status">Voice availability requires JavaScript. The inquiry form remains available.</p></noscript>
+</section>
+
+<script>
+  const voiceAction = document.querySelector<HTMLAnchorElement>("#voice-call-action");
+  const voiceStatus = document.querySelector<HTMLParagraphElement>("#voice-status");
+  const e164Pattern = /^\+[1-9]\d{7,14}$/;
+
+  function unavailableVoiceMessage(): void {
+    if (!voiceStatus) return;
+    if (voiceAction) {
+      voiceAction.hidden = true;
+      voiceAction.removeAttribute("href");
+    }
+    voiceStatus.textContent = "The voice demo is not available right now. The inquiry form and chat remain available.";
+  }
+
+  async function loadVoiceAvailability(): Promise<void> {
+    if (!voiceAction || !voiceStatus) return;
+    try {
+      const response = await fetch("/api/health", {
+        headers: { Accept: "application/json" },
+        cache: "no-store"
+      });
+      const body: unknown = await response.json();
+      if (!response.ok || typeof body !== "object" || body === null) {
+        unavailableVoiceMessage();
+        return;
+      }
+      const record = body as Record<string, unknown>;
+      const capabilities = record.capabilities;
+      const phoneNumber = record.demoVoicePhoneNumber;
+      if (
+        typeof capabilities !== "object" ||
+        capabilities === null ||
+        (capabilities as Record<string, unknown>).voice !== true ||
+        typeof phoneNumber !== "string" ||
+        !e164Pattern.test(phoneNumber)
+      ) {
+        unavailableVoiceMessage();
+        return;
+      }
+      voiceAction.href = `tel:${phoneNumber}`;
+      voiceAction.hidden = false;
+      voiceStatus.textContent = "The voice demo line is available.";
+    } catch (error) {
+      console.error("Voice availability could not be checked at /api/health.", error);
+      unavailableVoiceMessage();
+    }
+  }
+
+  void loadVoiceAvailability();
+</script>
+
+<style>
+  .voice-card {
+    margin-top: 1rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--navy-900);
+    color: #fff;
+    box-shadow: var(--shadow);
+  }
+
+  .voice-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+
+  .voice-card-heading h3,
+  .voice-card-heading .eyebrow,
+  .voice-card p {
+    margin: 0;
+  }
+
+  .voice-card-heading h3 {
+    color: #fff;
+  }
+
+  .voice-card-heading .eyebrow {
+    color: var(--blue-100);
+  }
+
+  .voice-mark {
+    display: grid;
+    width: 2.65rem;
+    height: 2.65rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 0.42rem solid rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    background: var(--blue-700);
+    font-size: 1.05rem;
+  }
+
+  .voice-card > p:not(.voice-limit, .voice-status) {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.92rem;
+  }
+
+  .voice-limit {
+    margin-top: 0.85rem !important;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .voice-card .button {
+    margin-top: 1rem;
+  }
+
+  .voice-card .button[hidden] {
+    display: none;
+  }
+
+  .voice-status {
+    margin-top: 0.85rem !important;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.8rem;
+  }
+</style>
