@@ -472,6 +472,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     for (const item of state.outbox) {
       const actionCell = document.createElement("td");
       if (item.error) { const error = document.createElement("p"); error.className = "admin-error-text"; error.textContent = item.error; actionCell.append(error); }
+      if (item.status === "failed") actionCell.append(actionButton("Retry rejected effect", () => void runAction("outbox-retry-failed", { id: item.id })));
       if (["failed", "uncertain", "accepted"].includes(item.status)) actionCell.append(actionButton("Reconcile", () => void runAction("outbox-reconcile", { id: item.id })));
       const tr = document.createElement("tr");
       tr.append(tableCell(`${item.kind} · ${item.id}`), tableCell(item.entityId), statusCell(item.status), actionCell);
