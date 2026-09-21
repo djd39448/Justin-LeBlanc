@@ -29,6 +29,7 @@ export const ConfigSchema = z.object({
   FREE_BUSY_CALENDAR_IDS: z.string().default(''),
   OPENAI_API_KEY: z.string().default(''),
   OPENAI_CHAT_MODEL: z.string().default('gpt-4.1-mini'),
+  CHAT_DAILY_TURN_LIMIT: z.coerce.number().int().min(1).max(1000).default(100),
   RETELL_API_KEY: z.string().default(''),
   RETELL_JLM_AGENT_ID: z.string().default(''),
   RETELL_JLM_PHONE_NUMBER: z.string().default(''),

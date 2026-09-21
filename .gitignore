@@ -23,3 +23,5 @@ customer-exports/
 recordings/
 transcripts/
 generated-invoices/
+output/
+tmp/

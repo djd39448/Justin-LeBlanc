@@ -97,6 +97,17 @@ export class Store {
       .all(TENANT)
       .map((row) => this.decode(row, schema));
   }
+
+  /** Reads one explicit record kind from shared ledgers without parsing unrelated record shapes. */
+  allKind<T>(table: Table, kind: string, schema: z.ZodType<T>): Entity<T>[] {
+    TableSchema.parse(table);
+    return this.db
+      .prepare(
+        `SELECT * FROM ${table} WHERE tenant_id=? AND json_extract(data,'$.kind')=? ORDER BY created_at,id`,
+      )
+      .all(TENANT, kind)
+      .map((row) => this.decode(row, schema));
+  }
   /** Replaces data only at expected revision. Concurrent changes require an operator refresh. */
   update<T>(table: Table, id: string, revision: number, data: T): Entity<T> {
     TableSchema.parse(table);
