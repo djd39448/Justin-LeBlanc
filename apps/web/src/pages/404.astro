@@ -1,0 +1,24 @@
+---
+/**
+ * Renders a useful not-found route with a path back to booking.
+ *
+ * Dependencies: BaseLayout.
+ * Depended on by: Static hosting for unknown routes.
+ * Why this exists: Broken links need a clear recovery action instead of a dead end.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page Not Found | Justin LeBlanc" canonicalPath="/404">
+  <section class="page-intro">
+    <div class="page-shell">
+      <p class="eyebrow">404 · Page not found</p>
+      <h1>That page missed the cue.</h1>
+      <p>Return to the main site or start a private-event inquiry with the details you know.</p>
+      <div class="hero-actions">
+        <a class="button button-light" href="/">Go home</a>
+        <a class="button" href="/plan-your-event">Plan your event</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,32 @@
+---
+/**
+ * Publishes booking answers in initial HTML for visitors and agents.
+ *
+ * Dependencies: BaseLayout and the shared FAQ list.
+ * Depended on by: Primary navigation and reference links.
+ * Why this exists: Verified answers should not be locked inside an assistant interface.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqList from "../components/FaqList.astro";
+---
+
+<BaseLayout title="Booking FAQs | Justin LeBlanc" canonicalPath="/faq">
+  <section class="page-intro">
+    <div class="page-shell">
+      <p class="eyebrow">Private-event booking</p>
+      <h1>What the demo can answer today.</h1>
+      <p>
+        These answers describe the booking process and clearly mark unapproved business terms. If a
+        fact is missing, the inquiry captures the question for personal follow-up.
+      </p>
+    </div>
+  </section>
+  <section class="section reading-shell">
+    <FaqList />
+    <div class="callout-card" style="margin-top: 3rem">
+      <h3>Still deciding?</h3>
+      <p>You can start an inquiry with a flexible date and unknown venue or production details.</p>
+      <a class="button button-light" href="/plan-your-event">Start with what you know</a>
+    </div>
+  </section>
+</BaseLayout>

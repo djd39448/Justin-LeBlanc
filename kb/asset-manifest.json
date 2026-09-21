@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-09-21",
+  "assets": [
+    {
+      "id": "asset-justin-hero-blue-guitar",
+      "type": "image",
+      "title": "Justin LeBlanc blue guitar hero",
+      "sourceUrl": "https://img1.wsimg.com/isteam/ip/1f0321c5-a636-4c34-aef3-cc4637de009d/jlsmf-43-structural-blue-responsive-hero.png/:/rs=w:1535,m",
+      "sourcePage": "https://justinleblancmusic.com/",
+      "localPath": "apps/web/public/images/justin-blue-guitar-hero.jpg",
+      "contentType": "image/jpeg",
+      "width": 1535,
+      "height": 1023,
+      "bytes": 198388,
+      "sha256": "e9f0096f81b45df39c831434564c8b5bdbe8be1374d0b8f095e0bb530927a344",
+      "observedAt": "2026-09-21",
+      "temporalStatus": "current",
+      "identity": "Justin LeBlanc",
+      "attribution": "Existing Justin LeBlanc Music website asset",
+      "reuseNotes": "Retained in the isolated private demo to preserve the approved visual identity. Justin must confirm final production reuse rights before launch.",
+      "status": "demo-use-pending-owner-approval",
+      "usedOn": ["/", "/about", "/plan-your-event"],
+      "kbInclusion": false,
+      "reviewDue": "2026-10-21"
+    }
+  ],
+  "facts": [
+    {
+      "id": "fact-private-events-houston-beyond",
+      "sourceUrl": "https://justinleblancmusic.com/",
+      "observedAt": "2026-09-21",
+      "temporalStatus": "current",
+      "identity": "Justin LeBlanc",
+      "text": "Justin's current website says he is booking private events in Houston and beyond.",
+      "status": "verified-public",
+      "usedOn": ["/", "/reference"],
+      "kbInclusion": true,
+      "reviewDue": "2026-10-21"
+    },
+    {
+      "id": "fact-instagram-profile",
+      "sourceUrl": "https://instagram.com/jus10sense",
+      "observedAt": "2026-09-21",
+      "temporalStatus": "current",
+      "identity": "Justin LeBlanc / @jus10sense",
+      "text": "The linked public Instagram profile identifies Justin LeBlanc and links to his website.",
+      "status": "verified-public",
+      "usedOn": ["/about", "/reference"],
+      "kbInclusion": true,
+      "reviewDue": "2026-10-21"
+    },
+    {
+      "id": "fact-youtube-profile",
+      "sourceUrl": "https://youtube.com/@jus10sense",
+      "observedAt": "2026-09-21",
+      "temporalStatus": "current",
+      "identity": "Justin LeBlanc / @jus10sense",
+      "text": "The linked public YouTube channel is @jus10sense; no individual video is approved here as a current booking sample.",
+      "status": "verified-public",
+      "usedOn": ["/", "/hear-live", "/reference"],
+      "kbInclusion": true,
+      "reviewDue": "2026-10-21"
+    }
+  ]
+}

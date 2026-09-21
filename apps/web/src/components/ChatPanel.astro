@@ -1,0 +1,182 @@
+---
+/**
+ * Renders the public booking-assistant surface with an explicit AI and connection boundary.
+ *
+ * Dependencies: The shared POST /api/chat contract.
+ * Depended on by: Home and plan-your-event pages.
+ * Why this exists: Visitors need a grounded optional question path that never blocks the form.
+ */
+---
+
+<section class="chat-card" aria-labelledby="chat-title">
+  <div class="chat-card-heading">
+    <div class="assistant-dot" aria-hidden="true"></div>
+    <div>
+      <p class="eyebrow">Optional help</p>
+      <h3 id="chat-title">Ask the booking assistant</h3>
+    </div>
+  </div>
+  <p>
+    This AI assistant uses the same reviewed booking facts as the voice flow. It can explain the
+    process or help structure an inquiry; it cannot confirm a date, set a final price, or book a show.
+  </p>
+  <div class="chat-transcript" id="chat-transcript" aria-live="polite">
+    <p class="chat-message assistant-message">
+      <span>AI assistant</span>
+      What would help you plan the event?
+    </p>
+  </div>
+  <form class="chat-form" id="chat-form" action="/api/chat" method="post">
+    <label for="chat-question">Your question</label>
+    <div class="chat-input-row">
+      <input id="chat-question" name="question" maxlength="500" autocomplete="off" required />
+      <button class="button button-small" type="submit">Ask</button>
+    </div>
+    <p class="form-hint">Do not include payment information or sensitive personal details.</p>
+    <p class="form-status" id="chat-status"></p>
+  </form>
+</section>
+
+<script>
+  /** Sends a bounded question to the shared-KB chat endpoint and renders plain-text replies. */
+  const chatForm = document.querySelector<HTMLFormElement>("#chat-form");
+  const chatInput = document.querySelector<HTMLInputElement>("#chat-question");
+  const chatStatus = document.querySelector<HTMLParagraphElement>("#chat-status");
+  const chatTranscript = document.querySelector<HTMLDivElement>("#chat-transcript");
+
+  type ChatResponse = {
+    reply: string;
+    kbVersion: string;
+    kbHash: string;
+    conversationId: string;
+    conversationToken: string;
+    inquiryId?: string | null;
+    token?: string | null;
+  };
+
+  type ChatSession = { conversationId: string; conversationToken: string };
+  const CHAT_KEY = "justin-demo-chat-v1";
+  const INQUIRY_KEY = "justin-demo-inquiry-resume-v1";
+
+  function isChatResponse(value: unknown): value is ChatResponse {
+    if (typeof value !== "object" || value === null) return false;
+    const record = value as Record<string, unknown>;
+    return (
+      typeof record.reply === "string" &&
+      typeof record.kbVersion === "string" &&
+      typeof record.kbHash === "string" &&
+      typeof record.conversationId === "string" &&
+      typeof record.conversationToken === "string" &&
+      (record.inquiryId === undefined || record.inquiryId === null || typeof record.inquiryId === "string") &&
+      (record.token === undefined || record.token === null || typeof record.token === "string")
+    );
+  }
+
+  function readChatSession(): ChatSession | null {
+    try {
+      const raw = sessionStorage.getItem(CHAT_KEY);
+      if (!raw) return null;
+      const value: unknown = JSON.parse(raw);
+      if (typeof value !== "object" || value === null) return null;
+      const record = value as Record<string, unknown>;
+      if (typeof record.conversationId !== "string" || typeof record.conversationToken !== "string") return null;
+      return { conversationId: record.conversationId, conversationToken: record.conversationToken };
+    } catch (error) {
+      console.error("Saved chat session could not be read. Start a new booking chat.", error);
+      return null;
+    }
+  }
+
+  function saveChatSession(response: ChatResponse): void {
+    sessionStorage.setItem(
+      CHAT_KEY,
+      JSON.stringify({ conversationId: response.conversationId, conversationToken: response.conversationToken })
+    );
+  }
+
+  function saveInquiryLink(response: ChatResponse): void {
+    if (!response.inquiryId || !response.token) return;
+    sessionStorage.setItem(
+      INQUIRY_KEY,
+      JSON.stringify({
+        id: response.inquiryId,
+        token: response.token,
+        status: "new",
+        requestKey: typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `chat-${Date.now()}`
+      })
+    );
+    const link = document.createElement("a");
+    link.className = "text-link";
+    link.href = "/plan-your-event";
+    link.textContent = "Continue this inquiry in the event planner →";
+    if (chatTranscript) chatTranscript.append(link);
+  }
+
+  function readInquiryLink(): { inquiryId: string; token: string } | null {
+    try {
+      const raw = sessionStorage.getItem(INQUIRY_KEY);
+      if (!raw) return null;
+      const value: unknown = JSON.parse(raw);
+      if (typeof value !== "object" || value === null) return null;
+      const record = value as Record<string, unknown>;
+      if (typeof record.id !== "string" || typeof record.token !== "string") return null;
+      return { inquiryId: record.id, token: record.token };
+    } catch (error) {
+      console.error("Saved inquiry could not be linked to chat. Continue without private inquiry context.", error);
+      return null;
+    }
+  }
+
+  function appendMessage(role: "You" | "AI assistant", message: string): void {
+    if (!chatTranscript) return;
+    const paragraph = document.createElement("p");
+    paragraph.className = `chat-message ${role === "You" ? "user-message" : "assistant-message"}`;
+    const label = document.createElement("span");
+    label.textContent = role;
+    paragraph.append(label, document.createTextNode(message));
+    chatTranscript.append(paragraph);
+    paragraph.scrollIntoView({ block: "nearest" });
+  }
+
+  if (chatForm && chatInput && chatStatus && chatTranscript) {
+    chatForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!chatForm.reportValidity()) return;
+      const message = chatInput.value.trim();
+      appendMessage("You", message);
+      chatInput.value = "";
+      chatInput.disabled = true;
+      chatStatus.textContent = "Checking the reviewed booking knowledge…";
+      try {
+        const chatSession = readChatSession();
+        const inquiryLink = readInquiryLink();
+        const response = await fetch(chatForm.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message,
+            conversationId: chatSession ? chatSession.conversationId : undefined,
+            conversationToken: chatSession ? chatSession.conversationToken : undefined,
+            inquiryId: inquiryLink ? inquiryLink.inquiryId : undefined,
+            token: inquiryLink ? inquiryLink.token : undefined
+          })
+        });
+        const body: unknown = await response.json();
+        if (!response.ok || !isChatResponse(body)) {
+          throw new Error(`Chat API returned HTTP ${response.status} without a valid KB response.`);
+        }
+        appendMessage("AI assistant", body.reply);
+        saveChatSession(body);
+        saveInquiryLink(body);
+        chatStatus.textContent = `Answer source: knowledge release ${body.kbVersion} · ${body.kbHash.slice(0, 12)}`;
+      } catch (error) {
+        console.error("Booking chat failed at /api/chat. Verify API health and KB release.", error);
+        chatStatus.textContent =
+          "The booking assistant is unavailable. Your event form still works, and no booking action was taken.";
+      } finally {
+        chatInput.disabled = false;
+        chatInput.focus();
+      }
+    });
+  }
+</script>

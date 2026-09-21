@@ -1,0 +1,63 @@
+---
+/**
+ * Supplies shared metadata, navigation, footer, and global styles for public pages.
+ *
+ * Dependencies: Shared site content, Header, Footer, and global CSS.
+ * Depended on by: Every public and operator Astro page.
+ * Why this exists: One shell keeps metadata, noindex behavior, and navigation consistent.
+ */
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../content";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath: string;
+  bodyClass?: string;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+  preloadHero?: boolean;
+}
+
+const {
+  title = site.title,
+  description = site.description,
+  canonicalPath,
+  bodyClass = "",
+  structuredData,
+  preloadHero = false
+} = Astro.props;
+const canonical = new URL(canonicalPath, site.canonicalOrigin);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta name="theme-color" content="#061744" />
+    {preloadHero && <link rel="preload" as="image" href="/images/justin-blue-guitar-hero.jpg" fetchpriority="high" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site.canonicalOrigin}/images/justin-blue-guitar-hero.jpg`} />
+    <title>{title}</title>
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

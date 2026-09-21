@@ -1,0 +1,41 @@
+---
+/**
+ * Renders source links, privacy routes, and the demo boundary.
+ *
+ * Dependencies: Shared reviewed site content.
+ * Depended on by: BaseLayout.
+ * Why this exists: Visitors and agents need clear provenance and limitations on every page.
+ */
+import { site } from "../content";
+---
+
+<footer class="site-footer">
+  <div class="footer-grid page-shell">
+    <div>
+      <a class="wordmark footer-mark" href="/"><span>Justin</span> LeBlanc</a>
+      <p>Private-event planning for Houston and beyond.</p>
+      <p class="source-note">
+        This isolated demo is not Justin's current production website. Availability, format, and
+        final pricing require personal confirmation.
+      </p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="/about">About</a>
+      <a href="/hear-live">Hear Justin</a>
+      <a href="/faq">FAQs</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/reference">Agent reference</a>
+    </nav>
+    <div>
+      <p class="footer-label">Public sources</p>
+      <a href={site.currentSite} rel="external">Current website</a>
+      <a href={site.instagram} rel="external">Instagram</a>
+      <a href={site.youtube} rel="external">YouTube</a>
+      <a href={site.facebook} rel="external">Facebook</a>
+    </div>
+  </div>
+  <div class="footer-bottom page-shell">
+    <span>Demo reviewed {site.reviewedAt}</span>
+    <span>© 2026 Justin LeBlanc</span>
+  </div>
+</footer>

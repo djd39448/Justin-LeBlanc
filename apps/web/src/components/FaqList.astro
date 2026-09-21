@@ -1,0 +1,19 @@
+---
+/**
+ * Renders the reviewed FAQ set as semantic disclosure controls.
+ *
+ * Dependencies: Shared FAQ content.
+ * Depended on by: Home and FAQ pages.
+ * Why this exists: Answers must remain accessible in initial HTML without chat or JavaScript.
+ */
+import { faqs } from "../content";
+---
+
+<div class="faq-list">
+  {faqs.map((faq, index) => (
+    <details open={index === 0}>
+      <summary>{faq.question}</summary>
+      <p>{faq.answer}</p>
+    </details>
+  ))}
+</div>

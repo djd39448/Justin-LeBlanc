@@ -1,0 +1,640 @@
+---
+/**
+ * Renders the authenticated operator workspace and deterministic lifecycle controls.
+ *
+ * Dependencies: BaseLayout and the bearer-protected /api/admin endpoints.
+ * Depended on by: Demo operators managing inquiries, shows, outbox work, and invoices.
+ * Why this exists: Operators need current revisions, explicit next actions, and visible failures.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Operator Workspace | Justin Demo" canonicalPath="/admin" bodyClass="admin-body">
+  <section class="admin-shell" aria-labelledby="admin-title">
+    <div class="admin-banner">
+      <span>Isolated Justin demo · operator-only actions</span>
+      <span>Every change is audited by the API</span>
+    </div>
+
+    <section class="admin-auth" id="admin-auth" aria-labelledby="admin-auth-title">
+      <p class="eyebrow">Protected workspace</p>
+      <h1 id="admin-auth-title">Enter the operator token</h1>
+      <p>The token stays in this browser tab's session storage. It is never placed in a URL.</p>
+      <form id="admin-auth-form">
+        <label for="admin-token">Operator bearer token</label>
+        <div class="admin-auth-row">
+          <input id="admin-token" name="adminToken" type="password" autocomplete="off" spellcheck="false" required />
+          <button class="button" type="submit">Open workspace</button>
+        </div>
+      </form>
+      <p class="form-status" id="auth-status" role="alert"></p>
+    </section>
+
+    <div id="admin-workspace" hidden>
+      <header class="admin-header">
+        <div>
+          <p class="eyebrow">Justin booking operations</p>
+          <h1 id="admin-title">Current demo state</h1>
+        </div>
+        <div class="admin-header-actions">
+          <button class="button button-secondary" id="refresh-admin" type="button">Refresh state</button>
+          <button class="text-button" id="admin-logout" type="button">Lock workspace</button>
+        </div>
+      </header>
+
+      <div class="form-alert" id="admin-status" role="status" tabindex="-1" hidden></div>
+
+      <div class="admin-metrics" aria-label="Current lifecycle totals">
+        <div class="admin-card"><span>Inquiries</span><strong id="metric-inquiries">0</strong></div>
+        <div class="admin-card"><span>Active holds</span><strong id="metric-holds">0</strong></div>
+        <div class="admin-card"><span>Confirmed shows</span><strong id="metric-shows">0</strong></div>
+        <div class="admin-card"><span>Outbox attention</span><strong id="metric-outbox">0</strong></div>
+      </div>
+
+      <section class="admin-panel" aria-labelledby="jobs-title">
+        <div class="admin-panel-heading">
+          <div><p class="eyebrow">Deterministic jobs</p><h2 id="jobs-title">Run and reconcile</h2></div>
+          <div class="field admin-date-field">
+            <label for="morning-date">Morning check as-of date (optional)</label>
+            <input id="morning-date" type="date" />
+          </div>
+        </div>
+        <div class="admin-action-grid">
+          <button class="button button-secondary" type="button" data-quick-action="demo-seed">Seed synthetic demo</button>
+          <button class="button button-secondary" type="button" data-quick-action="morning">Run morning check</button>
+          <button class="button button-secondary" type="button" data-quick-action="replies-poll">Poll replies</button>
+          <button class="button button-secondary" type="button" data-quick-action="outbox-dispatch">Dispatch outbox</button>
+          <button class="button button-secondary" type="button" data-quick-action="holds-expire">Expire due holds</button>
+        </div>
+      </section>
+
+      <section class="admin-panel" aria-labelledby="inquiries-title">
+        <div class="admin-panel-heading"><div><p class="eyebrow">Intake</p><h2 id="inquiries-title">Inquiries</h2></div></div>
+        <div class="admin-table-wrap"><table class="admin-table">
+          <caption class="visually-hidden">Current inquiries</caption>
+          <thead><tr><th>Reference</th><th>Event</th><th>Contact</th><th>Status</th><th>Revision</th></tr></thead>
+          <tbody id="inquiries-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="admin-grid-two">
+        <div class="admin-panel">
+          <div class="admin-panel-heading"><div><p class="eyebrow">Next conversations</p><h2>Consultations</h2></div></div>
+          <div class="admin-table-wrap"><table class="admin-table">
+            <caption class="visually-hidden">Current consultations</caption>
+            <thead><tr><th>Reference</th><th>Start</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="consultations-body"></tbody>
+          </table></div>
+        </div>
+        <div class="admin-panel">
+          <div class="admin-panel-heading"><div><p class="eyebrow">Post-show</p><h2>Performance checks</h2></div></div>
+          <div class="admin-table-wrap"><table class="admin-table">
+            <caption class="visually-hidden">Current post-performance checks</caption>
+            <thead><tr><th>Reference</th><th>Show</th><th>Decision</th><th>Updated</th></tr></thead>
+            <tbody id="checks-body"></tbody>
+          </table></div>
+        </div>
+      </section>
+
+      <section class="admin-panel" aria-labelledby="shows-title">
+        <div class="admin-panel-heading"><div><p class="eyebrow">Calendar lifecycle</p><h2 id="shows-title">Shows</h2></div></div>
+        <div class="admin-table-wrap"><table class="admin-table">
+          <caption class="visually-hidden">Current show records and actions</caption>
+          <thead><tr><th>Reference</th><th>Event</th><th>When</th><th>Status</th><th>Revision</th><th>Actions</th></tr></thead>
+          <tbody id="shows-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="admin-grid-two">
+        <form class="admin-panel admin-form" id="quote-form">
+          <div class="admin-panel-heading"><div><p class="eyebrow">Agreed price</p><h2>Approve quote</h2></div></div>
+          <div class="field"><label for="quote-show">Show</label><select id="quote-show" required></select></div>
+          <div class="field"><label for="quote-lines">Line items (JSON)</label><textarea id="quote-lines" rows="6" spellcheck="false" required>{JSON.stringify([{ description: "Agreed performance", quantity: 1, unitCents: 70000 }])}</textarea><p class="form-hint">Amounts are integer cents. Review the visible total in the Quotes table after saving.</p></div>
+          <div class="field"><label for="quote-deposit">Deposit already paid (cents)</label><input id="quote-deposit" type="number" min="0" value="0" required /></div>
+          <button class="button" type="submit">Approve agreed quote</button>
+        </form>
+
+        <form class="admin-panel admin-form" id="confirm-form">
+          <div class="admin-panel-heading"><div><p class="eyebrow">After consultation</p><h2>Confirm show</h2></div></div>
+          <div class="field"><label for="confirm-show">Tentative show with agreed quote</label><select id="confirm-show" required></select></div>
+          <p class="form-hint">The current show and quote revisions are loaded immediately before confirmation.</p>
+          <button class="button" type="submit">Confirm selected show</button>
+        </form>
+      </section>
+
+      <section class="admin-grid-two">
+        <form class="admin-panel admin-form" id="reschedule-form">
+          <div class="admin-panel-heading"><div><p class="eyebrow">Conflict-checked change</p><h2>Reschedule show</h2></div></div>
+          <div class="field"><label for="reschedule-show">Show</label><select id="reschedule-show" required></select></div>
+          <div class="field"><label for="reschedule-start">New performance start</label><input id="reschedule-start" type="datetime-local" required /></div>
+          <div class="field"><label for="reschedule-end">New performance end</label><input id="reschedule-end" type="datetime-local" required /></div>
+          <div class="field"><label for="reschedule-consultation">New consultation start (optional)</label><input id="reschedule-consultation" type="datetime-local" /></div>
+          <button class="button" type="submit">Check and reschedule</button>
+        </form>
+
+        <form class="admin-panel admin-form" id="customer-form">
+          <div class="admin-panel-heading"><div><p class="eyebrow">Billing readiness</p><h2>Update customer</h2></div></div>
+          <div class="field"><label for="customer-select">Customer</label><select id="customer-select" required></select></div>
+          <div class="field"><label for="customer-json">Complete customer record (JSON)</label><textarea id="customer-json" rows="10" spellcheck="false" required></textarea><p class="form-hint">The API validates the complete typed record. Missing billing fields remain visible before invoice issue.</p></div>
+          <button class="button" type="submit">Validate and update</button>
+        </form>
+      </section>
+
+      <section class="admin-panel" aria-labelledby="quotes-title">
+        <div class="admin-panel-heading"><div><p class="eyebrow">Money snapshots</p><h2 id="quotes-title">Quotes and invoices</h2></div></div>
+        <div class="admin-table-wrap"><table class="admin-table">
+          <caption class="visually-hidden">Current quotes</caption>
+          <thead><tr><th>Quote</th><th>Show</th><th>Kind</th><th>Total</th><th>Revision</th></tr></thead>
+          <tbody id="quotes-body"></tbody>
+        </table></div>
+        <div class="admin-table-wrap admin-table-spaced"><table class="admin-table">
+          <caption class="visually-hidden">Current invoices and private document actions</caption>
+          <thead><tr><th>Invoice</th><th>Show</th><th>Status</th><th>Total</th><th>Actions</th></tr></thead>
+          <tbody id="invoices-body"></tbody>
+        </table></div>
+      </section>
+
+      <section class="admin-grid-two">
+        <div class="admin-panel">
+          <div class="admin-panel-heading"><div><p class="eyebrow">External effects</p><h2>Outbox</h2></div></div>
+          <div class="admin-table-wrap"><table class="admin-table">
+            <caption class="visually-hidden">External effect delivery states</caption>
+            <thead><tr><th>Operation</th><th>Entity</th><th>Status</th><th>Error / action</th></tr></thead>
+            <tbody id="outbox-body"></tbody>
+          </table></div>
+        </div>
+        <div class="admin-panel">
+          <div class="admin-panel-heading"><div><p class="eyebrow">Accountability</p><h2>Recent audit events</h2></div></div>
+          <div class="admin-table-wrap"><table class="admin-table">
+            <caption class="visually-hidden">Recent audit events</caption>
+            <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Entity</th></tr></thead>
+            <tbody id="audit-body"></tbody>
+          </table></div>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  /** Authenticates one operator tab, renders revisions, and dispatches typed admin actions. */
+  type DataRecord = Record<string, unknown>;
+  type AdminEntity = { id: string; revision: number; createdAt: string; updatedAt: string; data: DataRecord };
+  type OutboxItem = { id: string; kind: string; entityId: string; status: string; error?: string | null };
+  type AdminState = {
+    inquiries: AdminEntity[];
+    customers: AdminEntity[];
+    shows: AdminEntity[];
+    consultations: AdminEntity[];
+    quotes: AdminEntity[];
+    invoices: AdminEntity[];
+    checks: AdminEntity[];
+    outbox: OutboxItem[];
+    audit: AdminEntity[];
+  };
+
+  const TOKEN_KEY = "justin-demo-admin-token-v1";
+  const authSection = document.querySelector<HTMLElement>("#admin-auth");
+  const authForm = document.querySelector<HTMLFormElement>("#admin-auth-form");
+  const tokenInput = document.querySelector<HTMLInputElement>("#admin-token");
+  const authStatus = document.querySelector<HTMLParagraphElement>("#auth-status");
+  const workspace = document.querySelector<HTMLDivElement>("#admin-workspace");
+  const adminStatus = document.querySelector<HTMLDivElement>("#admin-status");
+  const refreshButton = document.querySelector<HTMLButtonElement>("#refresh-admin");
+  const logoutButton = document.querySelector<HTMLButtonElement>("#admin-logout");
+  let currentState: AdminState | null = null;
+
+  function adminToken(): string {
+    return sessionStorage.getItem(TOKEN_KEY) || "";
+  }
+
+  function recordText(data: DataRecord, key: string, fallback = "—"): string {
+    const value = data[key];
+    if (typeof value === "string" && value.length > 0) return value;
+    if (typeof value === "number" || typeof value === "boolean") return String(value);
+    return fallback;
+  }
+
+  function nestedRecord(data: DataRecord, key: string): DataRecord {
+    const value = data[key];
+    return typeof value === "object" && value !== null && !Array.isArray(value) ? (value as DataRecord) : {};
+  }
+
+  function formatDate(value: string): string {
+    const instant = Date.parse(value);
+    if (!Number.isFinite(instant)) return value || "—";
+    return new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeStyle: "short" }).format(new Date(instant));
+  }
+
+  function money(cents: unknown, currency: unknown): string {
+    if (typeof cents !== "number" || !Number.isInteger(cents)) return "—";
+    const code = typeof currency === "string" ? currency : "USD";
+    return new Intl.NumberFormat("en-US", { style: "currency", currency: code }).format(cents / 100);
+  }
+
+  function isEntity(value: unknown): value is AdminEntity {
+    if (typeof value !== "object" || value === null) return false;
+    const row = value as DataRecord;
+    return typeof row.id === "string" && typeof row.revision === "number" && typeof row.createdAt === "string" &&
+      typeof row.updatedAt === "string" && typeof row.data === "object" && row.data !== null;
+  }
+
+  function isOutboxItem(value: unknown): value is OutboxItem {
+    if (typeof value !== "object" || value === null) return false;
+    const row = value as DataRecord;
+    return typeof row.id === "string" && typeof row.kind === "string" && typeof row.entityId === "string" && typeof row.status === "string";
+  }
+
+  function isAdminState(value: unknown): value is AdminState {
+    if (typeof value !== "object" || value === null) return false;
+    const state = value as DataRecord;
+    const entityKeys = ["inquiries", "customers", "shows", "consultations", "quotes", "invoices", "checks", "audit"];
+    for (const key of entityKeys) {
+      const rows = state[key];
+      if (!Array.isArray(rows) || !rows.every(isEntity)) return false;
+    }
+    return Array.isArray(state.outbox) && state.outbox.every(isOutboxItem);
+  }
+
+  async function parseJson(response: Response, context: string): Promise<unknown> {
+    try { return await response.json(); }
+    catch (error) { throw new Error(`${context} returned HTTP ${response.status} without JSON.`, { cause: error }); }
+  }
+
+  async function adminFetch(path: string, init: RequestInit = {}): Promise<Response> {
+    const token = adminToken();
+    if (!token) throw new Error("Operator token is missing. Lock and reopen the workspace.");
+    const headers = new Headers(init.headers);
+    headers.set("Authorization", `Bearer ${token}`);
+    if (init.body) headers.set("Content-Type", "application/json");
+    return fetch(path, { ...init, headers });
+  }
+
+  function showStatus(message: string, kind: "error" | "success" | "pending"): void {
+    if (!adminStatus) return;
+    adminStatus.hidden = false;
+    adminStatus.className = `form-alert ${kind === "error" ? "form-alert-error" : "form-alert-success"}`;
+    adminStatus.textContent = message;
+    adminStatus.focus();
+  }
+
+  function tableCell(value: string, className = ""): HTMLTableCellElement {
+    const td = document.createElement("td");
+    td.textContent = value;
+    if (className) td.className = className;
+    return td;
+  }
+
+  function statusCell(value: string): HTMLTableCellElement {
+    const td = document.createElement("td");
+    const span = document.createElement("span");
+    span.className = "status-pill";
+    span.textContent = value;
+    td.append(span);
+    return td;
+  }
+
+  function actionButton(label: string, handler: () => void): HTMLButtonElement {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "text-button";
+    button.textContent = label;
+    button.addEventListener("click", handler);
+    return button;
+  }
+
+  function appendEmpty(tbody: HTMLTableSectionElement | null, columns: number, label: string): void {
+    if (!tbody) return;
+    const tr = document.createElement("tr");
+    const td = tableCell(label, "admin-empty");
+    td.colSpan = columns;
+    tr.append(td);
+    tbody.append(tr);
+  }
+
+  function replaceSelect(selectId: string, rows: AdminEntity[], label: (row: AdminEntity) => string): void {
+    const select = document.querySelector<HTMLSelectElement>(`#${selectId}`);
+    if (!select) return;
+    select.replaceChildren();
+    const prompt = document.createElement("option");
+    prompt.value = "";
+    prompt.textContent = rows.length > 0 ? "Choose a record" : "No eligible records";
+    select.append(prompt);
+    for (const row of rows) {
+      const option = document.createElement("option");
+      option.value = row.id;
+      option.textContent = label(row);
+      select.append(option);
+    }
+  }
+
+  async function runAction(action: string, args: DataRecord = {}): Promise<void> {
+    showStatus(`Running ${action}…`, "pending");
+    try {
+      const response = await adminFetch("/api/admin/action", { method: "POST", body: JSON.stringify({ action, ...args }) });
+      const body = await parseJson(response, `Admin action ${action}`);
+      if (!response.ok) {
+        const detail = typeof body === "object" && body !== null ? recordText(body as DataRecord, "error", "") : "";
+        throw new Error(`HTTP ${response.status}${detail ? `: ${detail}` : ""}`);
+      }
+      showStatus(`${action} completed. Reloading current revisions…`, "success");
+      await loadState(false);
+    } catch (error) {
+      console.error(`Admin action ${action} failed. Inspect the server audit and retry guidance.`, error);
+      showStatus(`${action} failed. ${error instanceof Error ? error.message : "Inspect the API log and retry."}`, "error");
+    }
+  }
+
+  function renderInquiries(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#inquiries-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const inquiry of state.inquiries) {
+      const input = nestedRecord(inquiry.data, "input");
+      const tr = document.createElement("tr");
+      tr.append(tableCell(inquiry.id), tableCell(`${recordText(input, "eventType")} · ${recordText(input, "city")}`),
+        tableCell(`${recordText(input, "name")} · ${recordText(input, "email")}`), statusCell(recordText(inquiry.data, "status")), tableCell(String(inquiry.revision)));
+      tbody.append(tr);
+    }
+    if (state.inquiries.length === 0) appendEmpty(tbody, 5, "No inquiries in this demo tenant.");
+  }
+
+  function renderConsultations(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#consultations-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const consultation of state.consultations) {
+      const status = recordText(consultation.data, "status");
+      const actions = document.createElement("td");
+      if (status === "scheduled") actions.append(actionButton("Mark complete", () => void runAction("consultation-complete", { id: consultation.id, revision: consultation.revision })));
+      else actions.textContent = "—";
+      const tr = document.createElement("tr");
+      tr.append(tableCell(consultation.id), tableCell(formatDate(recordText(consultation.data, "start", ""))), statusCell(status), actions);
+      tbody.append(tr);
+    }
+    if (state.consultations.length === 0) appendEmpty(tbody, 4, "No consultations yet.");
+  }
+
+  function renderChecks(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#checks-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const check of state.checks) {
+      const tr = document.createElement("tr");
+      tr.append(tableCell(check.id), tableCell(recordText(check.data, "showId")), statusCell(recordText(check.data, "decision", "pending")), tableCell(formatDate(check.updatedAt)));
+      tbody.append(tr);
+    }
+    if (state.checks.length === 0) appendEmpty(tbody, 4, "No performance checks yet.");
+  }
+
+  async function fetchDocument(path: string, fileName: string, openPreview: boolean): Promise<void> {
+    showStatus(`Preparing ${fileName}…`, "pending");
+    try {
+      const response = await adminFetch(path);
+      if (!response.ok) throw new Error(`Document endpoint returned HTTP ${response.status}.`);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.target = openPreview ? "_blank" : "_self";
+      if (!openPreview) anchor.download = fileName;
+      anchor.rel = "noopener";
+      anchor.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+      showStatus(`${fileName} is ready.`, "success");
+    } catch (error) {
+      console.error(`Protected document ${path} failed. Verify the document snapshot and operator token.`, error);
+      showStatus(`Could not prepare ${fileName}. ${error instanceof Error ? error.message : "Try again."}`, "error");
+    }
+  }
+
+  function renderShows(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#shows-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const show of state.shows) {
+      const status = recordText(show.data, "status");
+      const actions = document.createElement("td");
+      const wrap = document.createElement("div");
+      wrap.className = "admin-row-actions";
+      wrap.append(actionButton("Brief HTML", () => void fetchDocument(`/api/admin/shows/${encodeURIComponent(show.id)}/brief/html`, `${show.id}-brief.html`, true)),
+        actionButton("Brief PDF", () => void fetchDocument(`/api/admin/shows/${encodeURIComponent(show.id)}/brief/pdf`, `${show.id}-brief.pdf`, false)));
+      if (status === "tentative" || status === "confirmed") wrap.append(actionButton("Cancel", () => void runAction("show-cancel", { id: show.id, revision: show.revision })));
+      actions.append(wrap);
+      const tr = document.createElement("tr");
+      tr.append(tableCell(show.id), tableCell(`${recordText(show.data, "eventType")} · ${recordText(show.data, "city")}`),
+        tableCell(formatDate(recordText(show.data, "start", ""))), statusCell(status), tableCell(String(show.revision)), actions);
+      tbody.append(tr);
+    }
+    if (state.shows.length === 0) appendEmpty(tbody, 6, "No show records yet.");
+  }
+
+  function renderQuotes(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#quotes-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const quote of state.quotes) {
+      const tr = document.createElement("tr");
+      tr.append(tableCell(quote.id), tableCell(recordText(quote.data, "showId")), statusCell(recordText(quote.data, "kind")),
+        tableCell(money(quote.data.totalCents, quote.data.currency)), tableCell(String(quote.revision)));
+      tbody.append(tr);
+    }
+    if (state.quotes.length === 0) appendEmpty(tbody, 5, "No quote snapshots yet.");
+  }
+
+  function renderInvoices(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#invoices-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const invoice of state.invoices) {
+      const actions = document.createElement("td");
+      const wrap = document.createElement("div");
+      wrap.className = "admin-row-actions";
+      wrap.append(actionButton("Prepare", () => void runAction("invoice-prepare", { id: invoice.id })),
+        actionButton("HTML", () => void fetchDocument(`/api/admin/invoices/${encodeURIComponent(invoice.id)}/html`, `${invoice.id}.html`, true)),
+        actionButton("PDF", () => void fetchDocument(`/api/admin/invoices/${encodeURIComponent(invoice.id)}/pdf`, `${invoice.id}.pdf`, false)));
+      actions.append(wrap);
+      const snapshot = nestedRecord(invoice.data, "snapshot");
+      const total = typeof invoice.data.totalCents === "number" ? invoice.data.totalCents : snapshot.totalCents;
+      const currency = typeof invoice.data.currency === "string" ? invoice.data.currency : snapshot.currency;
+      const tr = document.createElement("tr");
+      tr.append(tableCell(recordText(invoice.data, "number", invoice.id)), tableCell(recordText(invoice.data, "showId")),
+        statusCell(recordText(invoice.data, "status")), tableCell(money(total, currency)), actions);
+      tbody.append(tr);
+    }
+    if (state.invoices.length === 0) appendEmpty(tbody, 5, "No existing invoices. Preparation is never started from an arbitrary show.");
+  }
+
+  function renderOutbox(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#outbox-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const item of state.outbox) {
+      const actionCell = document.createElement("td");
+      if (item.error) { const error = document.createElement("p"); error.className = "admin-error-text"; error.textContent = item.error; actionCell.append(error); }
+      if (["failed", "uncertain", "accepted"].includes(item.status)) actionCell.append(actionButton("Reconcile", () => void runAction("outbox-reconcile", { id: item.id })));
+      const tr = document.createElement("tr");
+      tr.append(tableCell(`${item.kind} · ${item.id}`), tableCell(item.entityId), statusCell(item.status), actionCell);
+      tbody.append(tr);
+    }
+    if (state.outbox.length === 0) appendEmpty(tbody, 4, "No external effects queued.");
+  }
+
+  function renderAudit(state: AdminState): void {
+    const tbody = document.querySelector<HTMLTableSectionElement>("#audit-body");
+    if (!tbody) return;
+    tbody.replaceChildren();
+    for (const event of state.audit.slice(-25).reverse()) {
+      const tr = document.createElement("tr");
+      tr.append(tableCell(formatDate(event.createdAt)), tableCell(recordText(event.data, "actor")), tableCell(recordText(event.data, "action")),
+        tableCell(`${recordText(event.data, "entityType")} · ${recordText(event.data, "entityId")}`));
+      tbody.append(tr);
+    }
+    if (state.audit.length === 0) appendEmpty(tbody, 4, "No audit events yet.");
+  }
+
+  function renderSelectors(state: AdminState): void {
+    replaceSelect("quote-show", state.shows, (row) => `${row.id} · ${recordText(row.data, "status")}`);
+    const confirmable = state.shows.filter((row) => recordText(row.data, "status") === "tentative" &&
+      state.quotes.some((quote) => recordText(quote.data, "showId") === row.id && recordText(quote.data, "kind") === "agreed"));
+    replaceSelect("confirm-show", confirmable, (row) => `${row.id} · revision ${row.revision}`);
+    replaceSelect("reschedule-show", state.shows, (row) => `${row.id} · ${recordText(row.data, "status")}`);
+    replaceSelect("customer-select", state.customers, (row) => `${row.id} · ${recordText(row.data, "name")}`);
+  }
+
+  function renderState(state: AdminState): void {
+    currentState = state;
+    const metrics: Array<[string, number]> = [
+      ["metric-inquiries", state.inquiries.length],
+      ["metric-holds", state.shows.filter((row) => recordText(row.data, "status") === "tentative").length],
+      ["metric-shows", state.shows.filter((row) => recordText(row.data, "status") === "confirmed").length],
+      ["metric-outbox", state.outbox.filter((row) => ["failed", "uncertain"].includes(row.status)).length]
+    ];
+    for (const [id, value] of metrics) { const element = document.querySelector<HTMLElement>(`#${id}`); if (element) element.textContent = String(value); }
+    renderInquiries(state); renderConsultations(state); renderChecks(state); renderShows(state); renderQuotes(state);
+    renderInvoices(state); renderOutbox(state); renderAudit(state); renderSelectors(state);
+  }
+
+  async function loadState(showProgress = true): Promise<void> {
+    if (showProgress) showStatus("Loading current operator state…", "pending");
+    const response = await adminFetch("/api/admin/state");
+    const body = await parseJson(response, "Admin state API");
+    if (!response.ok || !isAdminState(body)) throw new Error(`Admin state API returned HTTP ${response.status} without the expected entity envelope.`);
+    renderState(body);
+    if (authSection) authSection.hidden = true;
+    if (workspace) workspace.hidden = false;
+    showStatus("Workspace is current.", "success");
+  }
+
+  function lockWorkspace(message = ""): void {
+    sessionStorage.removeItem(TOKEN_KEY);
+    currentState = null;
+    if (workspace) workspace.hidden = true;
+    if (authSection) authSection.hidden = false;
+    if (tokenInput) tokenInput.value = "";
+    if (authStatus) authStatus.textContent = message;
+  }
+
+  async function convertAdminLocal(local: string, timezone: string): Promise<string> {
+    const response = await fetch("/api/time", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ local, timezone }) });
+    const body = await parseJson(response, "Admin time conversion");
+    if (!response.ok || typeof body !== "object" || body === null || typeof (body as DataRecord).instant !== "string") throw new Error(`Time conversion failed with HTTP ${response.status}.`);
+    return (body as { instant: string }).instant;
+  }
+
+  if (authForm && tokenInput && authStatus) authForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!authForm.reportValidity()) return;
+    sessionStorage.setItem(TOKEN_KEY, tokenInput.value);
+    authStatus.textContent = "Verifying operator access…";
+    try { await loadState(); tokenInput.value = ""; authStatus.textContent = ""; }
+    catch (error) { console.error("Operator authentication failed at /api/admin/state.", error); lockWorkspace("Access was not verified. Check the operator token and API availability."); }
+  });
+
+  if (refreshButton) refreshButton.addEventListener("click", () => void loadState().catch((error) => showStatus(String(error), "error")));
+  if (logoutButton) logoutButton.addEventListener("click", () => lockWorkspace("Workspace locked. Token removed from this tab."));
+
+  document.querySelectorAll<HTMLButtonElement>("[data-quick-action]").forEach((button) => button.addEventListener("click", () => {
+    const action = button.dataset.quickAction;
+    if (!action) return;
+    if (action === "morning") {
+      const dateInput = document.querySelector<HTMLInputElement>("#morning-date");
+      const asOfLocalDate = dateInput && dateInput.value ? dateInput.value : undefined;
+      void runAction(action, { asOfLocalDate, force: true });
+    } else void runAction(action);
+  }));
+
+  const quoteForm = document.querySelector<HTMLFormElement>("#quote-form");
+  if (quoteForm) quoteForm.addEventListener("submit", (event) => {
+    event.preventDefault(); if (!quoteForm.reportValidity()) return;
+    const showSelect = document.querySelector<HTMLSelectElement>("#quote-show");
+    const linesInput = document.querySelector<HTMLTextAreaElement>("#quote-lines");
+    const depositInput = document.querySelector<HTMLInputElement>("#quote-deposit");
+    if (!showSelect || !linesInput || !depositInput) return;
+    try {
+      const lines: unknown = JSON.parse(linesInput.value);
+      if (!Array.isArray(lines)) throw new Error("Line items must be a JSON array.");
+      void runAction("quote-approve", { showId: showSelect.value, lines, depositCents: Number.parseInt(depositInput.value, 10), requestKey: crypto.randomUUID() });
+    } catch (error) { showStatus(error instanceof Error ? error.message : "Line-item JSON is invalid.", "error"); }
+  });
+
+  const confirmForm = document.querySelector<HTMLFormElement>("#confirm-form");
+  if (confirmForm) confirmForm.addEventListener("submit", (event) => {
+    event.preventDefault(); if (!confirmForm.reportValidity() || !currentState) return;
+    const select = document.querySelector<HTMLSelectElement>("#confirm-show"); if (!select) return;
+    const show = currentState.shows.find((row) => row.id === select.value);
+    const matchingQuotes = currentState.quotes.filter(
+      (row) => recordText(row.data, "showId") === select.value && recordText(row.data, "kind") === "agreed"
+    );
+    const quote = matchingQuotes.reduce<AdminEntity | undefined>(
+      (latest, row) => (!latest || row.revision > latest.revision ? row : latest),
+      undefined
+    );
+    if (!show || !quote) { showStatus("The selected show no longer has a current agreed quote. Refresh state and review the quote.", "error"); return; }
+    void runAction("show-confirm", { showId: show.id, showRevision: show.revision, quoteId: quote.id, quoteRevision: quote.revision, requestKey: crypto.randomUUID() });
+  });
+
+  const rescheduleForm = document.querySelector<HTMLFormElement>("#reschedule-form");
+  if (rescheduleForm) rescheduleForm.addEventListener("submit", async (event) => {
+    event.preventDefault(); if (!rescheduleForm.reportValidity() || !currentState) return;
+    const showSelect = document.querySelector<HTMLSelectElement>("#reschedule-show");
+    const startInput = document.querySelector<HTMLInputElement>("#reschedule-start");
+    const endInput = document.querySelector<HTMLInputElement>("#reschedule-end");
+    const consultationInput = document.querySelector<HTMLInputElement>("#reschedule-consultation");
+    if (!showSelect || !startInput || !endInput || !consultationInput) return;
+    const show = currentState.shows.find((row) => row.id === showSelect.value); if (!show) return;
+    if (endInput.value <= startInput.value) { showStatus("New performance end must be later than the start.", "error"); return; }
+    const timezone = recordText(show.data, "timezone", "America/Chicago");
+    try {
+      const [performanceStart, performanceEnd, consultationStart] = await Promise.all([
+        convertAdminLocal(startInput.value, timezone), convertAdminLocal(endInput.value, timezone),
+        consultationInput.value ? convertAdminLocal(consultationInput.value, timezone) : Promise.resolve(undefined)
+      ]);
+      void runAction("show-reschedule", { showId: show.id, showRevision: show.revision, performanceStart, performanceEnd, consultationStart });
+    } catch (error) { showStatus(error instanceof Error ? error.message : "Time conversion failed.", "error"); }
+  });
+
+  const customerSelect = document.querySelector<HTMLSelectElement>("#customer-select");
+  const customerJson = document.querySelector<HTMLTextAreaElement>("#customer-json");
+  if (customerSelect && customerJson) customerSelect.addEventListener("change", () => {
+    if (!currentState) return;
+    const customer = currentState.customers.find((row) => row.id === customerSelect.value);
+    customerJson.value = customer ? JSON.stringify(customer.data, null, 2) : "";
+  });
+
+  const customerForm = document.querySelector<HTMLFormElement>("#customer-form");
+  if (customerForm) customerForm.addEventListener("submit", (event) => {
+    event.preventDefault(); if (!customerForm.reportValidity() || !currentState || !customerSelect || !customerJson) return;
+    const customer = currentState.customers.find((row) => row.id === customerSelect.value); if (!customer) return;
+    try {
+      const data: unknown = JSON.parse(customerJson.value);
+      if (typeof data !== "object" || data === null || Array.isArray(data)) throw new Error("Customer JSON must be an object.");
+      void runAction("customer-update", { id: customer.id, revision: customer.revision, data });
+    } catch (error) { showStatus(error instanceof Error ? error.message : "Customer JSON is invalid.", "error"); }
+  });
+
+  if (adminToken()) void loadState().catch((error) => {
+    console.error("Saved operator session could not reload current state.", error);
+    lockWorkspace("Saved access is no longer valid. Enter the current operator token.");
+  });
+</script>

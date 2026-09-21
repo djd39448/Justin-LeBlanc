@@ -1,0 +1,66 @@
+---
+/**
+ * Explains demo data handling and the current limits of the inquiry workflow.
+ *
+ * Dependencies: BaseLayout.
+ * Depended on by: Form consent context and the footer.
+ * Why this exists: Visitors need plain-language privacy expectations before submitting details.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Privacy | Justin LeBlanc Booking Demo" canonicalPath="/privacy">
+  <section class="page-intro">
+    <div class="page-shell">
+      <p class="eyebrow">Demo privacy notice</p>
+      <h1>Only share what the event needs.</h1>
+      <p>
+        This page describes the intended isolated demo behavior. Final production retention,
+        recording, and contact policies require owner approval before launch.
+      </p>
+    </div>
+  </section>
+  <article class="section reading-shell prose">
+    <h2>Information the inquiry uses</h2>
+    <p>
+      The form asks for contact information, event details, requested atmosphere, known timing,
+      production and access notes, and consent to follow up. Billing details are not required to
+      capture an inquiry. Do not submit payment-card data or sensitive personal records.
+    </p>
+
+    <h2>Why it is used</h2>
+    <p>
+      Submitted details are used to review the event, respond to the inquiry, prepare a consultation,
+      and demonstrate the booking workflow. Marketing consent is separate, optional, and unchecked.
+    </p>
+
+    <h2>AI chat and voice</h2>
+    <p>
+      The chat and voice assistants identify themselves as AI. They can explain reviewed booking
+      information and help structure an inquiry. They cannot confirm a date or final price. Voice
+      recording and transcript behavior must be explicitly configured and disclosed before live use.
+    </p>
+
+    <h2>Storage and retention</h2>
+    <p>
+      The intended demo retention default is 30 days, subject to final configuration. The event form
+      keeps an unsent draft in this browser session so a visitor can move between steps. The server
+      stores a submitted record only after it returns a persisted inquiry reference.
+    </p>
+
+    <h2>Analytics</h2>
+    <p>
+      Intended funnel events are inquiry submitted, consultation scheduled, hold created, and show
+      confirmed. Names, email addresses, phone numbers, event dates, venue notes, free text, and
+      invoice contents must not be sent in analytics payloads.
+    </p>
+
+    <h2>Questions and final policy</h2>
+    <p>
+      This demo is not the final production privacy policy. Use Justin's
+      <a href="https://justinleblancmusic.com/contact" rel="external">current contact page</a> for
+      existing-site questions. The owner must approve production recipients, retention, deletion,
+      and any recording policy before launch.
+    </p>
+  </article>
+</BaseLayout>

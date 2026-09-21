@@ -1,0 +1,48 @@
+---
+/**
+ * Presents a source-limited artist introduction and the retained visual identity.
+ *
+ * Dependencies: BaseLayout and reviewed public links.
+ * Depended on by: Footer and reference routes.
+ * Why this exists: Visitors need artist context without fabricated biography or credentials.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../content";
+---
+
+<BaseLayout title="About Justin LeBlanc" canonicalPath="/about">
+  <section class="page-intro">
+    <div class="page-shell">
+      <p class="eyebrow">Singer · guitarist · event inquiry</p>
+      <h1>Justin LeBlanc, in his own blue.</h1>
+      <p>
+        This redesign keeps the electric-blue guitar portrait and direct personal tone of Justin's
+        current site while making private-event planning easier to understand.
+      </p>
+    </div>
+  </section>
+  <section class="section page-shell split-section">
+    <div class="prose">
+      <h2>What is verified here</h2>
+      <p>
+        Justin's current website says he is booking private events in Houston and beyond. His public
+        Instagram and YouTube identities use the handle <strong>@jus10sense</strong> and are linked
+        from that site.
+      </p>
+      <p>
+        The demo does not add a repertoire, client list, award, current package, review, or technical
+        capability without an approved source. Historical profiles and social posts are not treated
+        as proof of today's booking offer.
+      </p>
+      <a class="button" href="/plan-your-event">Tell Justin about your event</a>
+    </div>
+    <aside class="source-card">
+      <p class="eyebrow">Explore the public identity</p>
+      <h3>Sources, not invented biography.</h3>
+      <p>Use Justin's own public pages for music and current updates.</p>
+      <a class="text-link" href={site.currentSite} rel="external">Current website →</a><br />
+      <a class="text-link" href={site.instagram} rel="external">Instagram →</a><br />
+      <a class="text-link" href={site.youtube} rel="external">YouTube →</a>
+    </aside>
+  </section>
+</BaseLayout>

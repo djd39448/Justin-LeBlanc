@@ -1,0 +1,40 @@
+---
+/**
+ * Renders the compact, high-contrast primary navigation.
+ *
+ * Dependencies: None.
+ * Depended on by: BaseLayout.
+ * Why this exists: The current public site's low-contrast navigation needs an accessible replacement.
+ */
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: "/#private-events", label: "Private events" },
+  { href: "/hear-live", label: "Hear Justin" },
+  { href: "/faq", label: "FAQs" }
+];
+---
+
+<header class="site-header">
+  <div class="notice-bar">Private-event demo · Houston & beyond</div>
+  <div class="nav-shell">
+    <a class="wordmark" href="/" aria-label="Justin LeBlanc home">
+      <span>Justin</span> LeBlanc
+    </a>
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      {navItems.map((item) => (
+        <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+          {item.label}
+        </a>
+      ))}
+      <a class="button button-small" href="/plan-your-event">Plan your event</a>
+    </nav>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation">Menu</summary>
+      <nav aria-label="Mobile navigation">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+        <a href="/about">About Justin</a>
+        <a class="button button-small" href="/plan-your-event">Plan your event</a>
+      </nav>
+    </details>
+  </div>
+</header>

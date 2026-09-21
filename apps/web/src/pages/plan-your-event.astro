@@ -1,0 +1,40 @@
+---
+/**
+ * Renders the focused campaign and navigation destination for event discovery.
+ *
+ * Dependencies: BaseLayout, EventPlanner, and ChatPanel.
+ * Depended on by: Primary calls to action and campaign URLs.
+ * Why this exists: Visitors need a low-distraction route to qualify an inquiry.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ChatPanel from "../components/ChatPanel.astro";
+import EventPlanner from "../components/EventPlanner.astro";
+---
+
+<BaseLayout
+  title="Plan Your Event | Justin LeBlanc"
+  description="Share your private-event date, city, atmosphere, and known details with Justin LeBlanc's booking demo."
+  canonicalPath="/plan-your-event"
+>
+  <section class="page-intro">
+    <div class="page-shell">
+      <p class="eyebrow">Private-event inquiry</p>
+      <h1>Start with the details you know.</h1>
+      <p>
+        It takes three short steps. Mark details as flexible or unknown, review everything, and send
+        an inquiry for personal follow-up. A date is not held or confirmed by submitting this form.
+      </p>
+    </div>
+  </section>
+  <EventPlanner />
+  <section class="section section-paper">
+    <div class="page-shell split-section">
+      <div>
+        <p class="eyebrow">A question before you send?</p>
+        <h2>Ask without starting over.</h2>
+        <p>Your form draft stays in this browser while you use the optional AI assistant.</p>
+      </div>
+      <ChatPanel />
+    </div>
+  </section>
+</BaseLayout>
