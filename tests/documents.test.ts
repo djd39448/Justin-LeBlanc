@@ -154,7 +154,7 @@ describe('document templates', () => {
         showId: 'show-1',
         start: '2026-09-01T14:00:00.000Z',
         end: '2026-09-01T14:20:00.000Z',
-        timezone: 'America/New_York',
+        timezone: 'America/Chicago',
         status: 'scheduled',
       });
       store.insert('shows', 'show-1', {

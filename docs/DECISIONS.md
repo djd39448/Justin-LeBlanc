@@ -10,8 +10,8 @@ These defaults let the build proceed. Justin must approve real business terms be
 | Voice | Existing Retell account, separate managed number and agent | Agent provisioned; number blocked by owner KYC |
 | Calendar/email | Dave's verified TrustCore accounts, isolated records | SMTP/IMAP diagnostic verified; limited Calendar consent pending |
 | Chat credential | Reuse existing OpenAI API key securely | Reuse configured; four real qualification cases passed |
-| Consultation | 20 minutes, Mon–Fri 10am–4pm America/New_York, 24h notice | Provisional; respect existing actual free/busy |
-| Event timezone | America/Chicago unless venue indicates otherwise | Provisional |
+| Consultation | 20 minutes, Mon–Fri 10am–4pm Central Time (`America/Chicago`), 24h notice | User approved; respect existing actual free/busy |
+| Booking timezone | Customer-facing consultation and event inputs/displays use Central Time (`America/Chicago`) | User approved; DST-aware IANA conversion |
 | Buffers | 60 min setup + 30 min breakdown + 60 min each-side travel placeholder | Provisional, operator adjustable |
 | Event hold | Expires 48h after consultation end; requires scheduled consultation | Provisional |
 | Confirmation | Authenticated operator confirms after consultation and agreed quote | User approved |

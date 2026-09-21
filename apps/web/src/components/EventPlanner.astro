@@ -157,13 +157,12 @@ const { compact = false } = Astro.props;
           </select>
         </div>
         <div class="field">
-          <label for="timezone">Event timezone</label>
-          <select id="timezone" name="timezone" required>
-            <option value="America/Chicago" selected>Central time</option>
-            <option value="America/New_York">Eastern time</option>
-            <option value="America/Denver">Mountain time</option>
-            <option value="America/Los_Angeles">Pacific time</option>
-          </select>
+          <span class="field-label" id="timezone-label">Booking time zone</span>
+          <input id="timezone" name="timezone" type="hidden" value="America/Chicago" />
+          <p class="fixed-field-value" aria-labelledby="timezone-label">
+            <strong>Central Time</strong>
+            <span>America/Chicago · daylight-saving aware</span>
+          </p>
         </div>
         <div class="field field-wide">
           <label for="musicRequests">Music or event-moment requests (optional)</label>
@@ -251,16 +250,17 @@ const { compact = false } = Astro.props;
         <div class="field">
           <label for="consultationLocal">Consultation date and time</label>
           <input id="consultationLocal" name="consultationLocal" type="datetime-local" required />
-          <p class="form-hint">Demo consultation length: 20 minutes.</p>
+          <p class="form-hint">
+            20 minutes · Monday–Friday · 10:00 a.m.–4:00 p.m. Central Time.
+          </p>
         </div>
         <div class="field">
-          <label for="scheduleTimezone">Event timezone</label>
-          <select id="scheduleTimezone" name="scheduleTimezone" required>
-            <option value="America/Chicago">Central time</option>
-            <option value="America/New_York">Eastern time</option>
-            <option value="America/Denver">Mountain time</option>
-            <option value="America/Los_Angeles">Pacific time</option>
-          </select>
+          <span class="field-label" id="schedule-timezone-label">Booking time zone</span>
+          <input id="scheduleTimezone" name="scheduleTimezone" type="hidden" value="America/Chicago" />
+          <p class="fixed-field-value" aria-labelledby="schedule-timezone-label">
+            <strong>Central Time</strong>
+            <span>Consultation and performance times</span>
+          </p>
         </div>
         <div class="field">
           <label for="performanceStartLocal">Tentative performance start</label>
@@ -336,6 +336,8 @@ const { compact = false } = Astro.props;
 
   const STORAGE_KEY = "justin-demo-inquiry-draft-v1";
   const RESUME_KEY = "justin-demo-inquiry-resume-v1";
+  const CENTRAL_TIME_ZONE = "America/Chicago";
+  const CENTRAL_TIME_LABEL = "Central Time (America/Chicago)";
   const planner = document.querySelector<HTMLFormElement>("#event-planner");
   const alertBox = document.querySelector<HTMLDivElement>("#form-alert");
   const progressLabel = document.querySelector<HTMLSpanElement>("#progress-label");
@@ -351,7 +353,8 @@ const { compact = false } = Astro.props;
   const scheduleReference = document.querySelector<HTMLParagraphElement>("#schedule-reference");
   const scheduleAlert = document.querySelector<HTMLDivElement>("#schedule-alert");
   const scheduleForm = document.querySelector<HTMLFormElement>("#schedule-form");
-  const scheduleTimezone = document.querySelector<HTMLSelectElement>("#scheduleTimezone");
+  const inquiryTimezone = document.querySelector<HTMLInputElement>("#timezone");
+  const scheduleTimezone = document.querySelector<HTMLInputElement>("#scheduleTimezone");
   const checkAvailabilityButton = document.querySelector<HTMLButtonElement>("#check-availability");
   const availabilityResult = document.querySelector<HTMLDivElement>("#availability-result");
   const scheduleSummary = document.querySelector<HTMLDListElement>("#schedule-summary");
@@ -421,6 +424,7 @@ const { compact = false } = Astro.props;
       ["Date", dateFlexible.checked ? "Flexible / not chosen" : controlValue("eventDate")],
       ["Place", [controlValue("venue"), controlValue("city")].filter(Boolean).join(", ")],
       ["Setting", setting && setting.selectedOptions[0] ? setting.selectedOptions[0].text : "Not sure yet"],
+      ["Time zone", CENTRAL_TIME_LABEL],
       ["Atmosphere", controlValue("atmosphere") || "Add below"]
     ];
     summary.replaceChildren();
@@ -542,7 +546,7 @@ const { compact = false } = Astro.props;
       startLocal: "",
       endLocal: "",
       durationMinutes: Number.parseInt(controlValue("durationMinutes"), 10),
-      timezone: controlValue("timezone"),
+      timezone: CENTRAL_TIME_ZONE,
       atmosphere: controlValue("atmosphere"),
       musicRequests: controlValue("musicRequests"),
       scheduleNotes: controlValue("scheduleNotes"),
@@ -643,7 +647,7 @@ const { compact = false } = Astro.props;
     persistResumeRecord(record);
     scheduleCard.hidden = false;
     scheduleReference.textContent = `Inquiry ${record.id}`;
-    if (scheduleTimezone && controlValue("timezone")) scheduleTimezone.value = controlValue("timezone");
+    if (scheduleTimezone) scheduleTimezone.value = CENTRAL_TIME_ZONE;
     if (focusCard) {
       scheduleCard.scrollIntoView({ behavior: "smooth", block: "start" });
       scheduleCard.focus();
@@ -678,11 +682,11 @@ const { compact = false } = Astro.props;
     return "";
   }
 
-  function renderScheduleSummary(schedule: CheckedSchedule): void {
+  function renderScheduleSummary(): void {
     if (!scheduleSummary) return;
     const rows = [
-      ["Consultation", `${scheduleValue("consultationLocal")} · ${schedule.timezone}`],
-      ["Tentative event", `${scheduleValue("performanceStartLocal")} to ${scheduleValue("performanceEndLocal")} · ${schedule.timezone}`],
+      ["Consultation", `${scheduleValue("consultationLocal")} · ${CENTRAL_TIME_LABEL}`],
+      ["Tentative event", `${scheduleValue("performanceStartLocal")} to ${scheduleValue("performanceEndLocal")} · ${CENTRAL_TIME_LABEL}`],
       ["Status", "Consultation request + tentative performance hold"]
     ];
     scheduleSummary.replaceChildren();
@@ -708,7 +712,7 @@ const { compact = false } = Astro.props;
   async function checkScheduleAvailability(): Promise<void> {
     if (!scheduleForm || !checkAvailabilityButton || !availabilityResult || !reviewConsent || !createBookingButton) return;
     if (!scheduleForm.reportValidity()) return;
-    const timezone = scheduleValue("scheduleTimezone");
+    const timezone = CENTRAL_TIME_ZONE;
     const consultationLocal = scheduleValue("consultationLocal");
     const performanceStartLocal = scheduleValue("performanceStartLocal");
     const performanceEndLocal = scheduleValue("performanceEndLocal");
@@ -741,7 +745,7 @@ const { compact = false } = Astro.props;
         return;
       }
       checkedSchedule = candidate;
-      renderScheduleSummary(candidate);
+      renderScheduleSummary();
       availabilityResult.hidden = false;
       reviewConsent.checked = false;
       createBookingButton.disabled = true;
@@ -861,6 +865,8 @@ const { compact = false } = Astro.props;
       throw new Error("Event planner form is missing after initialization checks.");
     }
     restoreDraft();
+    if (inquiryTimezone) inquiryTimezone.value = CENTRAL_TIME_ZONE;
+    if (scheduleTimezone) scheduleTimezone.value = CENTRAL_TIME_ZONE;
     updateConditionalFields();
     showStep(1, false);
     const existingResume = readResumeRecord();

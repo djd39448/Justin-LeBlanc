@@ -124,7 +124,8 @@ Never invent scarcity, satisfied clients, credentials, song repertoire, prices o
 
 Implement `docs/WORKFLOWS.md`: consultation and separate tentative show hold, invited attendees,
 manual post-consultation confirmation, status changes, reschedule/cancel, expiry, conflict checks,
-and retry-safe email/calendar writes. Show Houston event time and Dave's Eastern time where useful.
+and retry-safe email/calendar writes. Show customer-facing consultation and event times in Central
+Time (`America/Chicago`) with daylight-saving-aware conversion.
 Reuse existing TrustCore behavior after inspecting current source; old docs aren't live proof.
 Never call the family-only calendar function or weaken its protections for public visitors.
 

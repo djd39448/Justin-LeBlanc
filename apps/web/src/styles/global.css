@@ -679,12 +679,31 @@ h3 {
 }
 
 .field label,
+.field-label,
 .chat-form label {
   display: block;
   margin-bottom: 0.45rem;
   color: var(--navy-900);
   font-size: 0.88rem;
   font-weight: 700;
+}
+
+.fixed-field-value {
+  display: flex;
+  min-height: 3.25rem;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--paper-blue);
+  color: var(--navy-900);
+}
+
+.fixed-field-value span {
+  color: var(--muted);
+  font-size: 0.78rem;
 }
 
 input,

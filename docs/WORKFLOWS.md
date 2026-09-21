@@ -7,8 +7,10 @@ actor, timestamp, source channel, prior/new state, request ID, and policy/versio
 transitions. External effects use a transactional outbox and provider IDs. Retries reconcile
 uncertain outcomes before sending again; never promise universal exactly-once delivery.
 
-Store UTC instants plus IANA timezone and original local input. Calendar event IDs are not customer
-IDs. Never treat subject text as authorization or calendar creation time as performance time.
+All customer-facing consultation and event inputs and displays use Central Time
+(`America/Chicago`), including daylight-saving transitions. Store UTC instants plus the IANA
+timezone and original local input. Calendar event IDs are not customer IDs. Never treat subject
+text as authorization or calendar creation time as performance time.
 
 ## Inquiry -> consultation -> hold -> booking
 

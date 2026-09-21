@@ -271,7 +271,7 @@ node --no-warnings --import tsx scripts/smoke-booking-billing.ts `
   --env $configPath --manifest $billingManifest --stage inspect
 ```
 
-After the prior pending effect is cleared, use `scripts/smoke-live-booking.ts` for the future consultation/hold lifecycle. Its `hold` stage takes `--consultation-start`, `--performance-start`, and `--performance-end` as ISO instants, plus `--timezone` if different from Houston. Choose a real available future consultation respecting the configured notice and weekday hours. The stage sends both invitations, the client hold notice, and the operator PDF brief. Inspect receipt before `confirm --quote-cents <approved-demo-total>`; that stage records the explicitly simulated completed consultation and confirms the same hold. Optional `reschedule` and `cancel` stages exercise cleanup. See `--help` for their date options.
+After the prior pending effect is cleared, use `scripts/smoke-live-booking.ts` for the future consultation/hold lifecycle. Its `hold` stage takes `--consultation-start`, `--performance-start`, and `--performance-end` as ISO instants and uses `--timezone America/Chicago`. Choose a real available future consultation respecting the configured 10:00–16:00 Central Time weekday hours and notice period. The stage sends both invitations, the client hold notice, and the operator PDF brief. Inspect receipt before `confirm --quote-cents <approved-demo-total>`; that stage records the explicitly simulated completed consultation and confirms the same hold. Optional `reschedule` and `cancel` stages exercise cleanup. See `--help` for their date options.
 
 ```powershell
 $bookingManifest = Join-Path $privateRoot 'live-booking-smoke.json'

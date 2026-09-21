@@ -8,7 +8,8 @@ Do not use old README statements as live status. No secrets were read in the doc
 ## TrustCore references (read only)
 
 Root: `C:/Users/trustcore-rdp/inbound-voice-agent/`
-- `src/webhooks/book-meeting.ts`: Cal.com API v2 booking and alternative slots; Eastern-time fix.
+- `src/webhooks/book-meeting.ts`: Cal.com API v2 booking and alternative slots; legacy timezone
+  conversion reference only, without copying its locale default.
 - `RUNBOOK.md`: calendar linkage, lead watcher, separate inbound/outbound agents and operations.
 - `src/webhooks/take-message.ts`: Nodemailer Gmail SMTP sender.
 - `scripts/watch-leads.ts`: ImapFlow Gmail TLS reader using existing SMTP account credentials;

@@ -15,7 +15,7 @@ Recorded 2026-09-21. This inventory contains identifiers and variable names, nev
 | New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                     | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections |
 | New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`                                                         | Separate agent; no number attached                                         |
 | New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`                                                         | `gpt-4.1-mini`, standard voice `retell-Alejandro`                          |
-| Shared KB                 | `2026-09-21.1`, SHA-256 `d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8` | Local chat and provisioned voice configuration agree                       |
+| Shared KB                 | Checked in: `2026-09-21.2`, SHA-256 `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6` | Central Time policy; restart chat and republish voice before live parity   |
 | Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | InteractiveOnly; local and public health checked                           |
 | Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`               | Running; token never stored in Git or command arguments                    |
 | Local worker              | task `jlm-demo-worker`                                                                     | InteractiveOnly; user must remain signed in                                |

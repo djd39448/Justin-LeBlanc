@@ -5,20 +5,20 @@ import { bufferedIntervalsOverlap, localDateTimeToInstant } from '../packages/do
 
 describe('localDateTimeToInstant', () => {
   it('rejects a nonexistent spring-forward time', () => {
-    expect(() => localDateTimeToInstant('2026-03-08T02:30', 'America/New_York')).toThrow(
+    expect(() => localDateTimeToInstant('2026-03-08T02:30', 'America/Chicago')).toThrow(
       'does not exist',
     );
   });
 
   it('requires explicit choice for a duplicated fall-back time', () => {
-    expect(() => localDateTimeToInstant('2026-11-01T01:30', 'America/New_York')).toThrow(
+    expect(() => localDateTimeToInstant('2026-11-01T01:30', 'America/Chicago')).toThrow(
       'ambiguous',
     );
-    expect(localDateTimeToInstant('2026-11-01T01:30', 'America/New_York', 'earlier')).toBe(
-      '2026-11-01T05:30:00.000Z',
-    );
-    expect(localDateTimeToInstant('2026-11-01T01:30', 'America/New_York', 'later')).toBe(
+    expect(localDateTimeToInstant('2026-11-01T01:30', 'America/Chicago', 'earlier')).toBe(
       '2026-11-01T06:30:00.000Z',
+    );
+    expect(localDateTimeToInstant('2026-11-01T01:30', 'America/Chicago', 'later')).toBe(
+      '2026-11-01T07:30:00.000Z',
     );
   });
 });

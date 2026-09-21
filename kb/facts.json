@@ -41,13 +41,23 @@
   },
   {
     "id": "consultation-policy",
-    "text": "Demo consultation slots are 20 minutes, Monday through Friday from 10:00 to 16:00 America/New_York, with 24 hours notice and actual free/busy checks.",
+    "text": "Demo consultation slots are 20 minutes, Monday through Friday from 10:00 to 16:00 Central Time (America/Chicago), with 24 hours notice and actual free/busy checks.",
     "source_url": "repo:docs/DECISIONS.md",
     "observed_at": "2026-09-21",
     "effective_date": "2026-09-21",
-    "status": "demo_assumption",
+    "status": "owner_approved",
     "topic": "availability",
     "review_due": "2026-10-21"
+  },
+  {
+    "id": "booking-timezone",
+    "text": "All demo booking, consultation, and event times default to Houston Central Time (America/Chicago) and follow daylight-saving transitions when a caller or visitor does not specify a time zone.",
+    "source_url": "repo:docs/DECISIONS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "owner_approved",
+    "topic": "availability",
+    "review_due": "2026-12-20"
   },
   {
     "id": "confirmation-boundary",
