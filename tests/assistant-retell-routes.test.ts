@@ -2,14 +2,17 @@
 import { Hono } from 'hono';
 import { describe, expect, it } from 'vitest';
 
+import { buildRetellAgentConfig } from '../apps/api/assistants/retell.js';
 import { ConfigSchema } from '../apps/api/config.js';
 import { createRuntime } from '../apps/api/runtime.js';
 import { mountVoiceRoutes } from '../apps/api/voice-routes.js';
+import { loadKnowledgeRelease } from '../kb/release.js';
 import {
   buildRetellProvisionPlan,
   type ProvisionManifest,
   protectedProvisionDisposition,
 } from '../scripts/retell-provision.js';
+import { matchesExpectedSubset, retellPlanFingerprint } from '../scripts/retell-refresh.js';
 
 const config = ConfigSchema.parse({
   NODE_ENV: 'test',
@@ -158,11 +161,49 @@ describe('Retell provisioning plan', () => {
     expect(plan.llm.general_tools.every((tool) => tool.max_retry === 0)).toBe(true);
     expect(plan.agent.webhook_url).toBe('https://demo.example.test/api/webhooks/retell');
     expect(plan.agent.max_call_duration_ms).toBe(300_000);
+    expect(plan.llm.general_prompt).toContain(
+      'Before answering a business-fact question, call search_knowledge',
+    );
+  });
+
+  it('fingerprints prompts and complete tool parameters and tolerates only provider extras', () => {
+    const plan = buildRetellProvisionPlan('https://demo.example.test', 'voice_approved');
+    const promptChanged = structuredClone(plan);
+    promptChanged.llm.general_prompt += '\nChanged.';
+    expect(retellPlanFingerprint(promptChanged)).not.toBe(retellPlanFingerprint(plan));
+
+    const toolChanged = structuredClone(plan);
+    const firstTool = toolChanged.llm.general_tools[0];
+    if (firstTool === undefined) throw new Error('Expected a public Retell tool.');
+    firstTool.parameters.properties['unexpected'] = { type: 'string' };
+    expect(retellPlanFingerprint(toolChanged)).not.toBe(retellPlanFingerprint(plan));
+
+    expect(matchesExpectedSubset({ ...plan.llm, provider_default: true }, plan.llm)).toBe(true);
+    const providerMissingParameter = structuredClone(plan.llm);
+    const providerFirstTool = providerMissingParameter.general_tools[0];
+    const requiredParameter = Object.keys(
+      plan.llm.general_tools[0]?.parameters.properties ?? {},
+    )[0];
+    if (providerFirstTool === undefined || requiredParameter === undefined) {
+      throw new Error('Expected a custom tool parameter.');
+    }
+    delete providerFirstTool.parameters.properties[requiredParameter];
+    expect(matchesExpectedSubset(providerMissingParameter, plan.llm)).toBe(false);
   });
 
   it('rejects loopback and non-TLS callback URLs', () => {
     expect(() => buildRetellProvisionPlan('http://127.0.0.1:4318', 'voice_approved')).toThrow(
       'public HTTPS',
+    );
+  });
+
+  it('keeps the runtime Retell prompt aligned with required fact lookup', () => {
+    const agent = buildRetellAgentConfig(
+      { ...config, RETELL_JLM_PHONE_NUMBER: '+18325550123' },
+      loadKnowledgeRelease(),
+    );
+    expect(agent.prompt).toContain(
+      'Before answering a business-fact question, call search_knowledge',
     );
   });
 });

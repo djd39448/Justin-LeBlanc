@@ -26,7 +26,7 @@ const ToolParametersSchema = z.object({
   properties: z.record(z.string(), z.unknown()),
   required: z.array(z.string()).optional(),
 });
-const ProvisionManifestSchema = z.object({
+export const ProvisionManifestSchema = z.object({
   version: z.literal(1),
   stage: z.enum(['llm_created', 'agent_created', 'agent_reconciled']),
   agentName: z.string(),
@@ -123,9 +123,10 @@ export function buildRetellProvisionPlan(apiUrl: string, voiceId: string): Retel
         'You are the dedicated AI voice booking assistant for the isolated Justin LeBlanc demo.',
         'Never imply that you are Justin. Keep replies concise and natural for a phone call.',
         'Use tools for facts, estimates, availability, and booking writes.',
+        'Before answering a business-fact question, call search_knowledge with that question and base the answer on returned supported facts.',
         'Never claim a tentative hold is confirmed or invent facts, repertoire, rates, availability, scarcity, testimonials, or response times.',
         'Read back email, date, time, timezone, and price and invite corrections before a write.',
-        'When a fact is unknown or search_knowledge is unsupported, call request_human_followup before saying it was captured or arranged.',
+        'When a fact is unknown or search_knowledge is unsupported, collect the needed details before calling request_human_followup or saying it was captured or arranged.',
         'Without an inquiry association, collect intake details first and do not claim follow-up was captured.',
         renderAssistantContext(knowledge),
       ].join('\n\n'),
@@ -281,7 +282,7 @@ async function provision(
     }
     if (protectedDisposition === 'refresh_protected') {
       throw new Error(
-        'The protected Retell identity is verified but its KB release differs. Refresh the recorded agent and LLM IDs in place, then update the protected manifest; do not rerun new-resource provisioning.',
+        'The protected Retell identity is verified but its KB release differs. Run scripts/retell-refresh.ts with --env, --provision-manifest, and a release-specific --release-manifest; do not rerun new-resource provisioning.',
       );
     }
     persistProvision(envPath, manifestPath, environment, {
