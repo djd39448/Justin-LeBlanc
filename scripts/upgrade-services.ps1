@@ -15,7 +15,15 @@ $resolvedConfig = (Resolve-Path -LiteralPath $ConfigPath).Path
 $runner = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'run-service.ps1')).Path
 $stopper = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'stop-services.ps1')).Path
 $workspace = Split-Path -Parent $PSScriptRoot
-$shellExecutable = (Get-Command pwsh -ErrorAction Stop).Source
+$hostProcess = [Environment]::ProcessPath
+if (
+  [string]::IsNullOrWhiteSpace($hostProcess) -or
+  [System.IO.Path]::GetFileName($hostProcess) -ine 'pwsh.exe'
+) {
+  throw 'This migration must be hosted by pwsh.exe so task action ownership is deterministic.'
+}
+$shellExecutable = (Resolve-Path -LiteralPath $hostProcess).Path
+$conhostExecutable = (Resolve-Path -LiteralPath (Join-Path $env:WINDIR 'System32\conhost.exe')).Path
 $currentIdentity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
 if ($null -eq $currentIdentity.User) {
   throw 'The current Windows identity has no resolvable SID; refusing task ownership checks.'
@@ -53,15 +61,26 @@ function Get-OwnedTask {
   if ($actions.Count -ne 1) { throw "Refusing ${name}: expected exactly one owned action." }
   $action = $actions[0]
   $expectedArguments = Get-ExpectedArgument -Role $Role
+  $expectedForwardArguments = '--headless "{0}" {1}' -f $shellExecutable, $expectedArguments
   $taskSid = Resolve-AccountSid -AccountId $task.Principal.UserId
-  $owned =
-    $task.Description -eq $expectedDescription -and
-    $action.Execute -eq $shellExecutable -and
-    $action.Arguments -eq $expectedArguments -and
-    $action.WorkingDirectory -eq $workspace -and
-    $taskSid -eq $currentSid
-  if (-not $owned) {
-    throw "Refusing ${name}: its description, action, config path, workspace, shell, or principal is not owned by this checkout and user."
+  $directAction = $action.Execute -eq $shellExecutable
+  $forwardedAction = $action.Execute -eq $conhostExecutable
+  $ownership = [ordered]@{
+    description = $task.Description -eq $expectedDescription
+    execute = $directAction -or $forwardedAction
+    args =
+      ($directAction -and $action.Arguments -eq $expectedArguments) -or
+      ($forwardedAction -and $action.Arguments -eq $expectedForwardArguments)
+    workspace =
+      ($directAction -and $action.WorkingDirectory -eq $workspace) -or
+      ($forwardedAction -and [string]::IsNullOrEmpty($action.WorkingDirectory))
+    principal = $taskSid -eq $currentSid
+  }
+  $mismatches = @(
+    $ownership.GetEnumerator() | Where-Object { -not $_.Value } | ForEach-Object { $_.Key }
+  )
+  if ($mismatches.Count -gt 0) {
+    throw "Refusing ${name}: ownership mismatch fields: $($mismatches -join ', ')."
   }
   return $task
 }
