@@ -3,8 +3,8 @@
 > A useful, easy-to-read resource for planning private-event music with Justin LeBlanc in Houston and beyond.
 
 - Canonical demo: https://justinleblancmusic.50by50.dev/
-- Booking reference: https://justinleblancmusic.50by50.dev/reference
-- Event inquiry: https://justinleblancmusic.50by50.dev/plan-your-event
+- Booking reference: https://justinleblancmusic.50by50.dev/reference/
+- Event inquiry: https://justinleblancmusic.50by50.dev/plan-your-event/
 - Current public site: https://justinleblancmusic.com/
 - Last reviewed: 2026-09-21
 

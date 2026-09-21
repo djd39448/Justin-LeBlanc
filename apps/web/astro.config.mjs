@@ -10,7 +10,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   output: 'static',
   site: 'https://justinleblancmusic.50by50.dev',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   vite: {
     server: {
       proxy: {
