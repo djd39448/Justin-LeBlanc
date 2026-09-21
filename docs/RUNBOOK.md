@@ -19,7 +19,7 @@ Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Just
 
 Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
 
-The 16:01 UTC Administrator restart loaded the body/time repair. A fourth actual call then proved inquiry, availability, follow-up, and lifecycle handling through the repaired signed boundary. Retell v3 now publishes KB `2026-09-21.3` and native `end_call`; the API/chat process still reports `2026-09-21.2`, so Dave must complete another Administrator restart before testing the no-notice policy or native hangup. See [call-completion evidence](evidence/consultation-call-completion.json).
+Dave completed the Administrator restart for KB `2026-09-21.3`. At 16:21:06 UTC, local, direct-tunnel, and website-proxy health all returned HTTP 200 with the new hash, and all three tasks were Running/S4U. At 16:21:36 UTC, the website API accepted a same-day consultation only 68 minutes ahead with `consultationAvailable=true`, `performanceAvailable=true`, and no reasons; no booking or durable count changed. Retell v3 publishes native `end_call`, which remains untested by phone. See [call-completion evidence](evidence/consultation-call-completion.json).
 
 ## Protected configuration
 

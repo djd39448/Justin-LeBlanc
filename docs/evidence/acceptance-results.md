@@ -2,7 +2,7 @@
 
 **Overall: implementation is deployed and substantially live-verified. Full voice booking, native hangup, and recovery after an actual reboot/sign-out remain unverified.** Calendar booking, operator confirmation, non-overlapping reschedule, cancellation, actual authenticated YES processing, one-invoice delivery, operator BCC receipt, Sent reconciliation, duplicate replay, live voice inquiry/availability/follow-up tool handling, S4U boot-trigger registration, and post-apply task execution are complete.
 
-The photo acceptance snapshot verified the exact public hostname on deployment `75996868`, and the public Houston demo number is **(832) 501-3799**. Retell agent/LLM v3 is published on the same protected identities with KB `2026-09-21.3`, hash `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`, six unchanged backend tools, and native `end_call`. The API/chat process still reports `2026-09-21.2` pending Dave's Administrator restart.
+The photo acceptance snapshot verified the exact public hostname on deployment `75996868`, and the public Houston demo number is **(832) 501-3799**. Retell v3, API, and chat use KB `2026-09-21.3`, hash `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`. All health paths passed after restart, and a live read-only same-day consultation only 68 minutes ahead returned available with no reasons and created no booking.
 
 [Consultation-policy CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35624105352) passed for `e8b66cda1bfc473320c44dbc53bb28509c993800` at 16:13:44 UTC: **98 tests in 19 files**, ESLint, TypeScript, 20 Astro files with zero errors/warnings, and nine built pages.
 
@@ -15,7 +15,7 @@ The photo acceptance snapshot verified the exact public hostname on deployment `
 | A03 | Step/back/edit/unknown-date flow and server validation; API boundary tests.                                                | Public synthetic inquiry creation and scoped resume passed through the live proxy.                                                                                |
 | A04 | Useful initial HTML, matching metadata, reference page, sitemap, and explicit demo indexing controls.                      | Exact-host routes returned 200 with noindex, frame denial, CSP, and admin no-store protections.                                                                   |
 | A05 | Integer pricing, duration/travel handling, and custom-quote boundaries.                                                    | Real chat used deterministic labeled pricing without unsupported promises.                                                                                        |
-| A06 | One versioned KB and persisted unknown-question behavior across assistant adapters. | Retell v3 uses KB `2026-09-21.3` on the same isolated identity; API/chat still use `2026-09-21.2` pending the required restart. V1 handled an unknown song honestly, and v2 correctly answered the Houston time zone. |
+| A06 | One versioned KB and persisted unknown-question behavior across assistant adapters. | Retell v3, API, and chat use KB `2026-09-21.3` with the expected hash; a live same-day availability check proved the no-notice policy. V1 handled an unknown song honestly, and v2 correctly answered the Houston time zone. |
 | A07 | Shared qualification prompts and bounded public tools; operator actions remain excluded.                                   | Chat qualification passed. The fourth v2 call proved `upsert_inquiry`, four `get_availability` results, and persisted `request_human_followup`; booking did not complete. |
 | A08 | Opaque resume credentials, signed call context, and server-owned association.                                              | Web create/resume passed. The third and fourth calls persisted verified call/inquiry associations.                                                                  |
 | A09 | Separate consultation/performance roles, deterministic Calendar identities, invited-role deduplication, Central times, and a final attendee allowlist before OAuth/provider I/O. | [Live booking](live-booking-acceptance.json) created both records with two invited roles and no duplicate provider identity. Targeted tests prove zero network requests for an unallowlisted attendee; the live boundary check rejected unsafe recipient/token requests with no hold or effect. |
@@ -42,7 +42,7 @@ The photo acceptance snapshot verified the exact public hostname on deployment `
 - [Calendar booking lifecycle](live-booking-acceptance.json): tentative transparency repair, same-ID confirmation, agreed quote metadata, non-overlapping reschedule, cancellation, and zero unresolved effects.
 - [Reply-driven invoice](live-invoice-acceptance.json): actual YES, one immutable invoice, client receipt, operator receipt, Sent reconciliation, and no duplicate on replay.
 - [Voice calls](live-voice-acceptance.json): all four calls, totaling 485,156 ms and 87.701 cents, with sanitized call and ledger evidence.
-- [Call completion and v3 release](consultation-call-completion.json): repaired inquiry/availability/follow-up/lifecycle proof, the published no-notice KB, native `end_call`, and the pending backend restart.
+- [Call completion and v3 release](consultation-call-completion.json): repaired inquiry/availability/follow-up/lifecycle proof, cross-channel KB parity, live no-notice availability, and published native `end_call`.
 - [Voice tool repair](voice-tool-repair.json): scoped signed-endpoint body limit and DST-aware Central-time normalization fixes plus actual-call coverage.
 - [Published voice release](retell-central-release.json): prior Central-time release evidence and isolated resource reconciliation.
 - [Provider isolation](resource-isolation.json): before/after counts and hashes with existing resources unchanged.
@@ -58,4 +58,4 @@ All committed evidence is sanitized and omits private caller numbers, recipient 
 
 1. Separately authorize and verify recovery after an actual reboot or sign-out.
 2. Keep the provider queue at zero unresolved effects. Reconcile any uncertain Calendar or SMTP outcome before retrying.
-3. Keep live inquiry, availability, and follow-up tool handling marked passed. Require the v3 backend restart and phone evidence before marking no-notice consultation behavior, booking, or native hangup passed.
+3. Keep live inquiry, availability, follow-up, and no-notice policy handling marked passed. Require phone evidence before marking completed booking or native hangup passed.

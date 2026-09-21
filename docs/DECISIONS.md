@@ -10,7 +10,7 @@ These defaults let the build proceed. Justin must approve real business terms be
 | Voice | Existing Retell account, separate managed number and agent | Houston (832) 501-3799; same protected agent/LLM published at v3; fourth call proved inquiry, availability, follow-up, and lifecycle tools; booking and native hangup remain unverified |
 | Calendar/email | Dave's verified TrustCore accounts, isolated records | Limited Calendar consent granted; live booking and actual reply-driven $700 demo invoice verified |
 | Chat credential | Reuse existing OpenAI API key securely | Reuse configured; four real qualification cases passed |
-| Consultation | 20 minutes, Mon–Fri 10am–4pm Central Time (`America/Chicago`), no minimum advance notice for future times | User approved; respect existing actual free/busy |
+| Consultation | 20 minutes, Mon–Fri 10am–4pm Central Time (`America/Chicago`), no minimum advance notice for future times | User approved; live read-only same-day availability verified; respect actual free/busy |
 | Booking timezone | Customer-facing consultation and event inputs/displays use Central Time (`America/Chicago`) | User approved; DST-aware IANA conversion |
 | Buffers | 60 min setup + 30 min breakdown + 60 min each-side travel placeholder | Provisional, operator adjustable |
 | Event hold | Expires 48h after consultation end; requires scheduled consultation | Provisional |

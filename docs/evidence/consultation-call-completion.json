@@ -32,10 +32,64 @@
     "newResources": 0
   },
   "runtime": {
-    "status": "awaiting Administrator restart",
-    "lastObservedKbVersion": "2026-09-21.2",
-    "lastCheckedAt": "2026-09-21T16:17:46.821Z",
-    "healthStatus": 200
+    "status": "restarted and live policy verified",
+    "verifiedAt": "2026-09-21T16:21:36.765Z",
+    "kbVersion": "2026-09-21.3",
+    "kbHash": "2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e",
+    "health": {
+      "checkedAt": "2026-09-21T16:21:06.427Z",
+      "localStatus": 200,
+      "directTunnelStatus": 200,
+      "websiteProxyStatus": 200,
+      "allCapabilitiesEnabled": true,
+      "houstonPhoneCorrect": true
+    },
+    "tasks": [
+      {
+        "name": "jlm-demo-api",
+        "state": "Running",
+        "logonType": "S4U"
+      },
+      {
+        "name": "jlm-demo-worker",
+        "state": "Running",
+        "logonType": "S4U"
+      },
+      {
+        "name": "jlm-demo-tunnel",
+        "state": "Running",
+        "logonType": "S4U"
+      }
+    ],
+    "availability": {
+      "checkedAt": "2026-09-21T16:21:36.765Z",
+      "kind": "Live public availability read; no booking or phone call created",
+      "request": {
+        "consultationStart": "2026-09-21T17:30:00.000Z",
+        "performanceStart": "2026-10-01T23:00:00.000Z",
+        "performanceEnd": "2026-10-02T01:00:00.000Z"
+      },
+      "leadTimeMinutes": 68,
+      "consultationDisplay": "Monday, September 21, 2026 at 12:30 PM",
+      "httpStatus": 200,
+      "result": {
+        "consultationAvailable": true,
+        "performanceAvailable": true,
+        "reasons": []
+      },
+      "noticeRuleAbsent": true,
+      "businessRecordCountsBefore": {
+        "shows": 2,
+        "consultations": 2,
+        "invoices": 1
+      },
+      "businessRecordCountsAfter": {
+        "shows": 2,
+        "consultations": 2,
+        "invoices": 1
+      },
+      "unresolvedOutboxCount": 0
+    }
   },
   "verification": {
     "focusedBookingAndKbTests": 22,
@@ -66,9 +120,10 @@
   "privateDataOmitted": true,
   "executionBudget": {
     "route": "Shared Codex ChatGPT account on Windows",
-    "weeklyUsedPercent": 39,
+    "weeklyUsedPercent": 40,
     "reservedHeadroomPercent": 25,
     "newCallsInitiated": 0,
-    "resetCreditsConsumed": 0
+    "resetCreditsConsumed": 0,
+    "checkedAt": "2026-09-21T16:21:36.765Z"
   }
 }

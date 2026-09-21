@@ -4,7 +4,7 @@ Updated 2026-09-21. **Implemented and substantially live-verified. Full voice bo
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
 - [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, noindex controls, and exact-host deployment.
-- [ ] Shared KB parity after the consultation-policy release: Retell v3 uses `2026-09-21.3` / `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`; API/chat still report `2026-09-21.2` pending Dave's Administrator restart.
+- [x] Shared KB parity after the consultation-policy release: Retell v3, API, and chat use `2026-09-21.3` / `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`; all health paths passed, and a read-only website request accepted an available consultation only 68 minutes ahead with no reasons.
 - [x] Deterministic booking, money, state transitions, authentication, recipient gates, outbox leases, uncertainty reconciliation, and operator CLI.
 - [x] Public/assistant booking authorization before availability or hold creation, including replay-token validation, plus an independent attendee allowlist at the final Calendar provider boundary.
 - [x] Live negative recipient/token checks rejected unsafe booking requests without creating a hold or effect.

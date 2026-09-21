@@ -17,7 +17,7 @@ Recorded 2026-09-21. This inventory contains identifiers and variable names, nev
 | New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 3                                              | Published `gpt-4.1-mini` configuration with KB `2026-09-21.3`              |
 | Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                           | Created and verified through live consultation/show lifecycle              |
 | Houston demo number       | **(832) 501-3799**                                                                          | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools |
-| Shared KB                 | Voice: `2026-09-21.3`; API/chat: `2026-09-21.2`                                            | Administrator restart pending before all channels use the new no-notice policy |
+| Shared KB                 | `2026-09-21.3`, SHA-256 `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e` | API, chat, and Retell parity verified; same-day no-notice availability passed |
 | Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | Running S4U/Limited boot task; all three health paths passed post-upgrade   |
 | Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`               | Running; token never stored in Git or command arguments                    |
 | Local worker              | task `jlm-demo-worker`                                                                     | Running S4U/Limited boot task; startup jobs completed successfully          |

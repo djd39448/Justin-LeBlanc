@@ -72,9 +72,10 @@ availability, follow-up, and lifecycle paths; booking did not complete.
 
 The same protected agent and LLM identities then reached version 3 with KB `2026-09-21.3`, hash
 `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`, six unchanged backend
-tools, and native `end_call`. Provider read-back passed. The API/chat process still reports the
-prior KB until Dave completes the Administrator restart, so the no-notice consultation policy and
-native hangup do not yet have phone evidence. See
+tools, and native `end_call`. After the Administrator restart, API/chat/Retell parity passed across
+all health paths. A read-only website request then accepted a same-day consultation only 68 minutes
+ahead with no reasons and no durable changes, proving the no-notice policy live. Completed voice
+booking and native hangup remain untested by phone. See
 [call-completion evidence](../evidence/consultation-call-completion.json).
 
 ## Windows task ownership
