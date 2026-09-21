@@ -218,6 +218,7 @@ export class BookingService {
     private readonly store: Store,
     private readonly availabilityProvider: AvailabilityProvider,
     private readonly recipients: BookingRecipients,
+    private readonly authorizeSchedule?: (inquiry: Inquiry) => void,
   ) {}
 
   /**
@@ -363,6 +364,9 @@ export class BookingService {
     rawInput: z.input<typeof ScheduleInputSchema>,
   ): Promise<ScheduleReceipt> {
     const input = ScheduleInputSchema.parse(rawInput);
+    const currentInquiry = this.store.get('inquiries', input.inquiryId, InquirySchema);
+    assertInquiryToken(currentInquiry, input.token);
+    this.authorizeSchedule?.(currentInquiry.data);
     const availability = await this.getAvailability({
       consultationStart: input.consultationStart,
       performanceStart: input.performanceStart,
@@ -373,6 +377,9 @@ export class BookingService {
     }
 
     return this.store.transaction(() => {
+      const inquiry = this.store.get('inquiries', input.inquiryId, InquirySchema);
+      assertInquiryToken(inquiry, input.token);
+      this.authorizeSchedule?.(inquiry.data);
       const processedId = `booking:${input.requestKey}`;
       const prior = this.store.find('processed_events', processedId, ProcessedScheduleSchema);
       if (prior !== undefined) {
@@ -387,8 +394,6 @@ export class BookingService {
           replayed: true,
         };
       }
-      const inquiry = this.store.get('inquiries', input.inquiryId, InquirySchema);
-      assertInquiryToken(inquiry, input.token);
       if (inquiry.data.status === 'consultation_completed') {
         throw new Error(
           'This inquiry has completed consultation; an operator must create another hold.',

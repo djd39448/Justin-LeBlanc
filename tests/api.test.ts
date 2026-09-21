@@ -1,7 +1,7 @@
 /** Verifies real HTTP authorization, resume isolation, private rendering and demo seeding.
  * Dependencies: Hono app, SQLite runtime and Vitest. Consumers: CI.
  * Why: domain tests alone cannot catch exposed operator routes or wire-level schema drift. */
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { createApp } from '../apps/api/app.js';
 import { ConfigSchema } from '../apps/api/config.js';
@@ -41,6 +41,34 @@ const intake = {
   source: 'form',
 };
 describe('HTTP boundaries', () => {
+  it('blocks unapproved recipients and disabled assistant scheduling before availability or holds', async () => {
+    for (const enabled of [false, true]) {
+      const { runtime, app } = fixture({ BOOKING_WRITES_ENABLED: String(enabled) });
+      const response = await app.request('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...intake, email: enabled ? 'outside@example.com' : intake.email }),
+      });
+      const receipt = (await response.json()) as { id: string; token: string };
+      const busy = vi.spyOn(runtime.calendar, 'busy').mockResolvedValue([]);
+      await expect(
+        runtime.handlers.scheduleConsultationAndHold(
+          {
+            consultationStart: '2026-11-12T16:00:00Z',
+            performanceStart: '2026-11-14T22:00:00Z',
+            performanceEnd: '2026-11-15T00:00:00Z',
+            timezone: 'America/Chicago',
+            reviewConsent: true,
+            requestKey: `boundary-test-${enabled}`,
+          },
+          { channel: 'chat', inquiryId: receipt.id, resumeToken: receipt.token },
+        ),
+      ).rejects.toThrow(enabled ? 'Recipient blocked' : 'Booking writes are disabled');
+      expect(busy).not.toHaveBeenCalled();
+      expect(runtime.store.db.prepare('SELECT COUNT(*) AS count FROM shows').get()?.count).toBe(0);
+      expect(runtime.store.effects()).toHaveLength(0);
+    }
+  });
   it('rejects private actions and cross-origin requests; health contains no credentials', async () => {
     const { app } = fixture();
     expect((await app.request('/api/admin/state')).status).toBe(401);

@@ -10,7 +10,7 @@ import { createAssistantHandlers } from './assistants/handlers.js';
 import { OpenAIChatAssistant } from './assistants/openai.js';
 import { EventBriefService } from './billing/brief.js';
 import { BillingService } from './billing/service.js';
-import type { Config } from './config.js';
+import { assertRecipients, type Config } from './config.js';
 import { OutboxDispatcher } from './jobs/outbox.js';
 import { Store } from './store.js';
 
@@ -19,12 +19,20 @@ export function createRuntime(config: Config) {
   const store = new Store(config.DATABASE_URL);
   const knowledge = loadKnowledgeRelease();
   const calendar = new GoogleCalendarAdapter(config);
-  const booking = new BookingService(store, calendar, {
-    operatorEmail: config.OPERATOR_EMAIL,
-    performerEmail: config.PERFORMER_EMAIL,
-    senderEmail: config.SMTP_USER,
-    replyToEmail: config.OPERATOR_EMAIL,
-  });
+  const booking = new BookingService(
+    store,
+    calendar,
+    {
+      operatorEmail: config.OPERATOR_EMAIL,
+      performerEmail: config.PERFORMER_EMAIL,
+      senderEmail: config.SMTP_USER,
+      replyToEmail: config.OPERATOR_EMAIL,
+    },
+    (inquiry) => {
+      if (!config.BOOKING_WRITES_ENABLED) throw new Error('Booking writes are disabled.');
+      assertRecipients(config, [inquiry.input.email, config.OPERATOR_EMAIL]);
+    },
+  );
   const billing = new BillingService(store, calendar, {
     operatorEmail: config.OPERATOR_EMAIL,
     performerEmail: config.PERFORMER_EMAIL,
