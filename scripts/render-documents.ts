@@ -98,7 +98,7 @@ function briefFixture(): EventBrief {
     questions: ['Confirm on-site contact mobile number', 'Confirm final PA input compatibility'],
     lastUpdated: 'September 21, 2026 at 8:00 AM CDT',
     nextAction: 'Operator confirms final production details',
-    operatorUrl: 'https://justinleblancmusic.50by50.dev/admin/shows/JLM-SYNTHETIC-001',
+    operatorUrl: 'https://justinleblancmusic.50by50.dev/admin?show=JLM-SYNTHETIC-001',
   };
 }
 
