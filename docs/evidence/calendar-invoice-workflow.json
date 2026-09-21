@@ -1,0 +1,106 @@
+{
+  "recordedAt": "2026-09-21T17:45:39.067Z",
+  "codeCommit": "58d1c0ce5cd7fc8b675b0a89443bfa82bcfd9b10",
+  "policy": {
+    "authority": "Owner instruction: calendar performances are assumed played; invoice and email every morning",
+    "schedule": "08:00 America/Chicago",
+    "dstAware": true,
+    "eligibility": "Completed app-tagged confirmed performances with matching canonical show, customer, event times and agreed quote",
+    "catchUpLocalDays": 7,
+    "requiresPerformanceReply": false,
+    "newPerformanceCheckOrReminderEmails": false,
+    "invoiceRecipients": "Configured billing contact To; configured performer BCC; final demo allowlist enforced",
+    "legacyPendingChecks": "Operator review, preserving original records",
+    "uncertainDelivery": "Reconcile existing effect; never automatically resend"
+  },
+  "knowledge": {
+    "version": "2026-09-21.4",
+    "hash": "63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96"
+  },
+  "verification": {
+    "status": "local focused checks and full CI passed",
+    "billingTestsPassed": 15,
+    "documentTestsPassed": 3,
+    "lint": "passed",
+    "typecheck": "passed",
+    "astro": { "files": 20, "errors": 0, "warnings": 0, "pagesBuilt": 9 },
+    "ciUrl": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35633834649",
+    "ciCompletedAt": "2026-09-21T17:44:56Z",
+    "ciTestsPassed": 103,
+    "ciTestFilesPassed": 19,
+    "runnerHelpPassed": true,
+    "runnerWithoutPausedWorkerRejectedBeforeConfigAccess": true
+  },
+  "deployment": {
+    "providerRefresh": {
+      "status": "published and readback verified",
+      "agentVersion": 4,
+      "llmVersion": 4,
+      "planFingerprint": "c5c38fb00c49d58cc3093946480e58ad119c27d820815425d0fbd6b770536ab7",
+      "protectedIdentitiesPreserved": true,
+      "newResources": 0,
+      "customTools": 6,
+      "nativeEndCallRetained": true
+    },
+    "website": {
+      "deployment": "840a4ccf",
+      "url": "https://840a4ccf.50by50-justinleblancmusic.pages.dev",
+      "publicAdminStatus": 200,
+      "morningInvoiceLabelVerified": true,
+      "legacyControlsLabeled": true,
+      "noStore": true,
+      "noIndex": true
+    },
+    "runtime": {
+      "status": "Administrator restart completed; release and first worker scan verified",
+      "kbVersion": "2026-09-21.4",
+      "healthPaths": { "local": 200, "directTunnel": 200, "websiteProxy": 200 },
+      "allCapabilitiesEnabled": true,
+      "houstonPhoneCorrect": true,
+      "tasks": [
+        { "name": "jlm-demo-api", "state": "Running", "logonType": "S4U" },
+        { "name": "jlm-demo-worker", "state": "Running", "logonType": "S4U" },
+        { "name": "jlm-demo-tunnel", "state": "Running", "logonType": "S4U" }
+      ],
+      "firstScan": {
+        "completedAt": "2026-09-21T17:44:28.820Z",
+        "policyRunKind": "morning_invoice_scan_v2",
+        "datesCompleted": 7,
+        "from": "2026-09-14",
+        "through": "2026-09-20",
+        "eligible": 0,
+        "newInvoices": 0,
+        "newEffects": 0,
+        "existingSentInvoicePreserved": true
+      }
+    }
+  },
+  "isolation": { "verifiedAt": "2026-09-21T17:44:13.947Z", "baselineProvidersUnchanged": true },
+  "usage": { "sharedWeeklyUsedPercent": 43, "reservePercent": 25, "resetCreditsConsumed": 0 },
+  "liveWalkthrough": {
+    "status": "blocked before test-show creation",
+    "seedKey": "invoice-walkthrough-20260921",
+    "expectedAmountCents": 70000,
+    "currency": "USD",
+    "before": {
+      "checkedAt": "2026-09-21T17:33:18Z",
+      "shows": 3,
+      "invoices": 1,
+      "acceptedEffects": 20,
+      "unresolvedEffects": 0
+    },
+    "newShowCreated": false,
+    "newInvoiceCreated": false,
+    "newEmailSent": false,
+    "postRestartReadOnlyCheck": {
+      "checkedAt": "2026-09-21T17:45:39.067Z",
+      "shows": 3,
+      "invoices": 1,
+      "acceptedEffects": 20,
+      "unresolvedEffects": 0,
+      "freshTestShowAbsent": true
+    },
+    "blocker": "Automatic approval review rejected the demo-seed tool action twice, including after explicit owner confirmation; only reason supplied: blocked by policy",
+    "historicalEvidence": "live-invoice-acceptance.json proves the earlier reply-driven $700 invoice only"
+  }
+}

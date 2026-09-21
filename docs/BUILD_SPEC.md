@@ -12,9 +12,9 @@ the agreed redesign and workflows, not a static concept or a replacement brand.
 Prove one continuous journey: a visitor learns about Justin, asks questions through chat
 or voice, supplies gig requirements, receives a provisional estimate, books a consultation
 and tentative event hold, receives invitations, and triggers a one-page operator brief.
-After the consultation the operator confirms the performance. After it ends, the morning
-check asks whether it was played and whether charges changed; an authenticated affirmative
-reply produces a professional invoice emailed to the test client with an operator BCC.
+After the consultation the operator confirms the performance. At 08:00 America/Chicago, the
+morning job treats an app-tagged confirmed Calendar performance that ended on the prior local
+date as played, then issues the agreed invoice to the client with an operator BCC.
 
 ## 2. Settled constraints
 
@@ -134,10 +134,13 @@ Required fields and visual rules are in `docs/DOCUMENT_DESIGN.md`.
 
 ## 9. Post-show invoicing
 
-Implement daily calendar reconciliation, performer confirmation by actual email reply, validated
-changes, customer DB lookup, agreed-price snapshot, invoice generation and client email with BCC.
-The operator identity is Dave in demo, Justin after migration. See the full state machine in
-`docs/WORKFLOWS.md`; no invoice solely because a calendar event exists or someone replies ambiguously.
+Implement the deterministic 08:00 America/Chicago Calendar reconciliation, prior-end-date and
+seven-day catch-up rules, customer DB lookup, agreed-price snapshot, invoice generation and client
+email with operator BCC. Only an app-tagged confirmed performance with matching canonical records,
+an agreed quote and complete billing metadata is eligible. Skip consultations, tentative/cancelled,
+all-day, untagged/unparseable, unknown-show and already-invoiced events. Route a known confirmed show
+with missing billing/quote data or mismatched Calendar times/price to review without issue. See
+`docs/WORKFLOWS.md`; reply email is not a prerequisite for current-policy invoicing.
 
 ## 10. Mobile and agentic discoverability
 
@@ -159,9 +162,10 @@ field metrics. Optimize hero formats/sizes and defer third-party embeds.
 
 ## 11. Operator surface and demonstration
 
-Authenticated dashboard: inquiries, pending holds/consultations, confirmed shows, post-show replies,
-invoice drafts/sent/errors. Each record has timeline and next action. Controls: confirm, reschedule,
-cancel, amend agreed quote, preview brief, run morning check now, inspect invoice, reconcile/retry.
+Authenticated dashboard: inquiries, pending holds/consultations, confirmed shows, invoices and
+delivery errors. Each record has timeline and next action. Controls: confirm, reschedule, cancel,
+amend agreed quote, preview brief, run morning invoicing now, inspect invoice, reconcile/retry.
+Old performer-reply records may remain visible only as clearly labeled legacy reconciliation.
 Feature-complete CLI for the same business operations with `--help`, `--json`, dry-run and audit IDs.
 Seed a synthetic client and completed show to demonstrate billing immediately without waiting a day.
 Time simulation must be demo-only and conspicuous; it must never alter real calendar history.
@@ -169,8 +173,8 @@ Time simulation must be demo-only and conspicuous; it must never alter real cale
 ## 12. Definition of done
 
 All acceptance rows in `docs/ACCEPTANCE.md` pass with evidence. Hosted HTTPS demo, mobile QA,
-actual Retell and chat sessions, both calendar entries/invitations, delivered brief, actual reply
-ingestion, invoice received by test client and BCC operator, replay protection and no TrustCore
+actual Retell and chat sessions, both calendar entries/invitations, delivered brief, calendar-driven
+invoice received by test client and BCC operator, replay protection and no TrustCore
 resource changes. Commit/push code, migrations, source manifest, agent config, tests, runbooks,
 sanitized evidence, demo script and handoff. A mocked-only run is partial completion and must be
 reported as such, with the specific live dependency and completed work clearly separated.

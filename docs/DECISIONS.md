@@ -16,9 +16,9 @@ These defaults let the build proceed. Justin must approve real business terms be
 | Event hold | Expires 48h after consultation end; requires scheduled consultation | Provisional |
 | Confirmation | Authenticated operator confirms after consultation and agreed quote | User approved |
 | Contract/deposit | Track statuses; not required in demo, no payment/contract automation | Provisional |
-| Morning check | 08:00 America/Chicago, shows with prior-local-day end time | Provisional |
+| Morning invoicing | 08:00 America/Chicago; app-tagged confirmed performances with prior-local-day end time automatically invoice from the agreed quote when billing metadata is complete | User approved; Calendar-driven, DST-aware, seven-day catch-up |
 | Invoice terms | USD, due 14 calendar days after issue, no real payment link | Provisional |
-| Reminder | One performer reminder after 24h, unresolved queue after 72h | Provisional |
+| Performer reply/reminder | Not used for new invoices; retained only to reconcile old-policy records | Superseded by Calendar-driven invoicing |
 | Taxes | Explicit demo tax=0 assumption; real tax treatment unresolved | Provisional, not tax advice |
 | Audience | Demo operator and allowlisted test clients only for external workflow effects | Demo boundary |
 

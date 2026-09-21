@@ -37,61 +37,47 @@ text as authorization or calendar creation time as performance time.
     and blocks automatic invoice generation. Avoid repeated notification loops.
 
 States: inquiry `new -> qualified -> consultation_scheduled -> consultation_completed`;
-show `tentative -> confirmed -> awaiting_performance_reply -> performed|not_performed|needs_review`.
-Side exits: tentative -> expired/cancelled; confirmed -> cancelled. Consultation and show states
-are separate so a missed/rescheduled consultation does not incorrectly mark a show played.
+show `tentative -> confirmed -> performed` after the eligible Calendar end is reconciled.
+Side exits: tentative -> expired/cancelled; confirmed -> cancelled or needs_review. Consultation and
+show states remain separate. `awaiting_performance_reply` and `not_performed` are legacy states only.
 
 ## Morning scan
 
 Run a deterministic scheduled job at **08:00 America/Chicago**, not a model-based scheduler.
-For UTC-only cron, use an hourly trigger with local-time/date gate and one run key per local day;
-test DST. On startup/catch-up reconcile up to 7 unprocessed days, bounded and deduplicated.
+For UTC-only cron, use an hourly trigger with local-time/date gate and one policy-versioned run key
+per local day; test DST. On startup/catch-up reconcile up to 7 unprocessed days, bounded and
+deduplicated. A policy-version change must revisit dates completed under the superseded reply policy.
 
 Read configured performer calendar(s), resolving recurring instances and events crossing midnight.
-Select confirmed Justin demo shows whose **end** fell on the prior local date. A 1am finish is
-included on the morning after that finish date. Also reconcile overdue unprocessed eligible shows.
-Ignore consultations, tentative/cancelled/all-day/unrelated records and already invoiced shows.
-An untagged calendar show is never auto-billed; queue an operator mapping task if explicitly imported.
+Select app-tagged confirmed Justin demo performances whose **end** fell on the prior local date. A
+1am finish is included on the morning after that finish date. Reconcile up to seven overdue local
+dates on startup/catch-up. Ignore consultations, tentative/cancelled/all-day/unrelated/untagged
+records and already invoiced shows.
 
-Each eligible show must carry private app metadata: tenant ID, show ID, customer ID, quote version,
-currency and agreed total in minor units. Retrieve latest event revision and customer record.
-Calendar and DB price/version mismatch -> review, never silent overwrite. At confirmation the
-approved quote is written to DB and calendar; that snapshot drives post-show billing.
+For this workflow, an eligible completed Calendar performance is assumed played. Each event must
+carry private app metadata: tenant ID, show ID, customer ID, quote version, currency and agreed total
+in minor units. The canonical show must still be confirmed, the event times/metadata must match,
+the agreed quote must resolve exactly, and the customer must have complete billing identity, email
+and address data. Untagged/unparseable events and events with no known canonical show are skipped
+because no billing record can be identified safely. A known confirmed show with missing quote,
+customer or billing data, or mismatched Calendar times/price, goes to operator review without issue.
 
-Send one email thread per show to the authorized performer/operator (Dave for demo). Subject:
-`[Justin Demo][SHOW-ID] Did you play <event> on <date>?` Include venue/time, customer, agreed line
-items and total. Ask: **Did you perform? Reply YES (no changes), NO (not performed), or YES with
-itemized changes.** One show per thread makes a simple yes/no unambiguous.
+Inside one transaction, mark the eligible show performed and snapshot the agreed quote and billing
+record into one immutable approved invoice. A recoverable preparation step renders the PDF; a second
+transaction then queues delivery so an interrupted render can resume without recreating the invoice.
+Deliver the invoice **To the configured billing contact and BCC the configured performer/operator**
+only after both pass the exact demo allowlist at the final mail boundary. Do not ask whether the show
+was played and do not wait for a YES reply. Any charge change must be approved and reflected in the
+agreed quote before the scan; the morning job never invents or infers amendments.
 
-## Reply ingestion and approval
+## Legacy reply records
 
-SMTP sends mail but cannot receive replies. Reuse the verified Gmail IMAP connection pattern in a
-separate worker, or Gmail API OAuth when appropriate. Preferred minimal demo: bounded deterministic
-polling of relevant threads every 2 minutes, cursor + message-ID dedupe. Production push can use Gmail watch/Pub/Sub
-with renewal and history recovery. Never replace an existing mailbox watch without checking its
-consumer; polling avoids a collision. See `docs/INTEGRATIONS.md` for source references.
-
-Accept only inbound messages from configured operator identity, correlated to the original
-provider thread and In-Reply-To/token, validated with available trusted authentication metadata.
-A forged From header or a subject match is insufficient. Ignore sent echoes, BCC copies, bounces,
-auto-replies, quoted original text and signatures. A security-sensitive uncertain reply requires
-authenticated operator review; never let model content grant authority.
-
-| Reply | Deterministic outcome |
-|---|---|
-| YES / played, no changes | Snapshot validated billing details + agreed quote, issue invoice |
-| NO / did not play | Mark not_performed, no invoice; optional cancellation-charge review only |
-| YES plus clear changes | Extract candidate amendment, validate, send revised total for explicit approval |
-| NO changes (without clear played answer) | Ask whether performed; no invoice yet |
-| Ambiguous, multiple shows, conflicting totals | needs_review; concise clarification, no invoice |
-| No reply | Stay pending, remind once after 24h, operator queue after 72h |
-| Missing customer billing data/price | Request missing info; no issued invoice |
-| Duplicate/late reply after issue | Acknowledge state if needed; never issue a duplicate |
-
-For changes, optional economical model extracts typed candidates; deterministic rules validate
-money and quantities. Performer sees revised lines/total and replies APPROVE to that version.
-Approval token/version invalidates on further edits. Unknown intent cannot pass based on a model
-confidence score. Confirmed amendments update the audited show/quote and calendar metadata.
+The earlier demo policy created performer confirmation threads and `performance_checks`. Preserve
+those records and their authenticated IMAP reconciliation for audit/history, but label their controls
+as legacy. New confirmed performances do not create Did-you-play messages, unanswered reminders or
+reply-gated invoices. A late legacy reply cannot create a second invoice for a show already processed
+by the Calendar-driven workflow. A legacy show still awaiting a reply with no invoice routes to
+operator review during the versioned catch-up; never silently migrate it into automatic issue.
 
 ## Invoice generation and delivery
 
@@ -101,8 +87,8 @@ quantity/rate, agreed extras/discounts, subtotal, tax policy, deposits already p
 Validate integer cents, nonnegative payable amount and customer/address requirements. A missing
 seller legal address remains a marked demo fixture; do not publish Justin's home address by default.
 
-Invoice states: draft -> awaiting_change_approval (optional) -> approved -> issuing -> sent;
-failures -> delivery_pending/needs_review. After issue, snapshot is immutable. Corrections create
+Current-policy invoice states are approved -> issuing -> sent; failures -> delivery_pending/needs_review.
+Legacy records may retain earlier draft/approval states. After issue, the snapshot is immutable. Corrections create
 an auditable revision/void-and-replacement, never silently edit an emailed document. No payment
 collection or automatic paid status in this demo; paid is authenticated operator-entered evidence.
 
@@ -110,8 +96,8 @@ Render HTML email and PDF from one validated invoice model. Deliver **To billing
 performer** (Dave's configured address in demo; Justin after migration), correct Reply-To, attachment
 and accessible plaintext alternative. No public PDF URL; store privately with expiring access.
 
-Unique constraints on tenant/show/invoice kind and processed reply IDs prevent duplicate invoice
-creation. Outbox tracks provider message IDs. If send times out after possible acceptance, query
+Unique constraints on tenant/show/invoice kind, one run key per Houston local date, and deterministic
+outbox identities prevent duplicate invoice creation or delivery. Outbox tracks provider message IDs. If send times out after possible acceptance, query
 sent records/correlating Message-ID before retry; if still uncertain stop in delivery_pending.
 Do not claim delivered solely from API accepted; demo evidence includes inbox receipt/attachment.
 

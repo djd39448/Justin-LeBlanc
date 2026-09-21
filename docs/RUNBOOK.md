@@ -6,20 +6,22 @@ Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Just
 
 | Component       | State                                                                               | Operator note                                                                                                     |
 | --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `75996868`; supplied-photo desktop/mobile QA passed; earlier Central-time and voice-CTA checks retained                                  |
+| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `840a4ccf`; updated admin label/legacy controls, no-store and noindex verified                         |
 | API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Booking, chat, voice, and billing capabilities all returned true                                                  |
 | Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                              | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                             |
 | API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                 | Local, direct-tunnel, and website-proxy health passed after the upgrade                                            |
 | Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                       |
 | Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers      | Registration and task execution passed; actual sign-out/reboot recovery remains untested                           |
-| Email           | Reply-driven invoice delivery verified                                               | Authenticated `YES`, immutable invoice, Sent copy, exact client Inbox receipt, and Dave BCC receipt passed         |
+| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending | Old-policy $700 invoice reached client/operator but does not prove the current path                                |
 | Google Calendar | Dedicated calendar created; live booking lifecycle passed                            | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects  |
-| Retell          | **(832) 501-3799** plus published version-3 agent/LLM                                | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tool handling                         |
+| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                    |
 | Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking    | This proves the checked backup was readable and internally consistent; retain the source backup privately         |
 
 Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
 
-Dave completed the Administrator restart for KB `2026-09-21.3`. At 16:21:06 UTC, local, direct-tunnel, and website-proxy health all returned HTTP 200 with the new hash, and all three tasks were Running/S4U. At 16:21:36 UTC, the website API accepted a same-day consultation only 68 minutes ahead with `consultationAvailable=true`, `performanceAvailable=true`, and no reasons; no booking or durable count changed. Retell v3 publishes native `end_call`, which remains untested by phone. See [call-completion evidence](evidence/consultation-call-completion.json).
+Dave completed the Administrator restart for KB `2026-09-21.4`. At about 17:45 UTC, local, direct-tunnel, and website-proxy health all returned HTTP 200 with hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, all capabilities enabled and the Houston number; all three tasks were Running/S4U. Retell v4 publishes the same KB and native `end_call`, which remains untested by phone.
+
+The first runtime `morning:auto-invoice:v2` catch-up completed seven durable dates from 2026-09-14 through 2026-09-20 at 17:44:28.820 UTC with zero eligible shows. At 17:45:39.067 UTC, state remained three shows, one sent historical invoice, 20 accepted effects and no unresolved/new effects. A fresh eligible Calendar-to-inbox walkthrough remains pending.
 
 ## Protected configuration
 
@@ -109,7 +111,7 @@ Tentative performance holds are deliberately `transparent`: the canonical bookin
 
 ## Voice demo acceptance state
 
-The isolated Houston number **(832) 501-3799** and the same protected agent/LLM identities are provider-reconciled at version 3. The published voice release uses Central Time KB `2026-09-21.3`, hash `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`, six unchanged backend tools, and native `end_call`. The public website reads the number from gated same-origin health; the caller allowlist stays outside Git.
+The isolated Houston number **(832) 501-3799** and the same protected agent/LLM identities are provider-reconciled at version 4. The published voice release uses KB `2026-09-21.4`, hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, six unchanged custom tools, and native `end_call`. The public website reads the number from gated same-origin health; the caller allowlist stays outside Git.
 
 The first two calls remain historical no-tool evidence. The v1 call lasted 59,473 ms and cost 11.86 cents; the first v2 call lasted 18,473 ms, cost 5.177 cents, and correctly answered Houston Central Time / `America/Chicago`. The third v2 call lasted 196,946 ms and cost 34.191 cents; inquiry creation passed, while its availability/follow-up attempts and terminal webhooks exposed the former HTTP 413 boundary.
 
@@ -151,7 +153,7 @@ node "--env-file=$configPath" --import tsx scripts/cli.ts --json action --file $
 Remove-Item -LiteralPath $actionFile
 ```
 
-Supported operator actions include customer update, consultation completion, quote approval, show confirmation, cancellation or rescheduling, hold expiration, morning billing scan, reply polling, outbox dispatch and reconciliation, invoice preparation, and synthetic demo seeding. Use revisions and deterministic request keys from the current canonical records; never guess them.
+Supported operator actions include customer update, consultation completion, quote approval, show confirmation, cancellation or rescheduling, hold expiration, morning invoicing, outbox dispatch and reconciliation, invoice preparation, and synthetic demo seeding. Reply polling and billing follow-ups remain legacy-only actions for old-policy records. Use revisions and deterministic request keys from the current canonical records; never guess them.
 
 A synthetic seed action is safe only in the isolated demo database:
 
@@ -172,7 +174,7 @@ The morning scan can be evaluated for an explicit Houston-local date when the ga
 }
 ```
 
-With `force: false`, completed local dates are skipped without another Calendar read. Use `force: true` only from authenticated operator controls when a late-synced or newly seeded show must be found: it rescans all seven candidate dates, including dates already marked complete. Unique performance checks and deterministic outbox IDs prevent a forced replay from queuing the same request twice.
+With `force: false`, completed local dates are skipped without another Calendar read. Use `force: true` only from authenticated operator controls when a late-synced or newly seeded show must be found: it rescans all seven candidate dates, including dates already marked complete. Unique show/invoice constraints, daily run keys and deterministic outbox IDs must prevent a forced replay from creating or sending a duplicate invoice.
 
 ## Outbox recovery and uncertain email
 
@@ -216,9 +218,9 @@ A separate manual retry is allowed only for an effect already classified `failed
 
 The final dispatcher enforces `INVOICE_SEND_ENABLED` and the exact demo recipient allowlist. Turning a switch on is not permission to add recipients.
 
-## Reply polling safety
+## Legacy reply polling safety
 
-The worker also invokes the authenticated `billing-followups` action every two minutes after its reply poll. Operators can use **Review unanswered checks** or a private action file containing `{"action":"billing-followups"}`. It requires `INVOICE_SEND_ENABLED`. Initial unanswered performance checks receive one queued reminder after 24 hours from definitive original SMTP acceptance or Sent reconciliation, then enter the operator review queue after 72 hours without a reply. Pending or uncertain original sends do not start the clock. Amendment approval threads remain visible for operator review and do not use this initial-check reminder policy.
+The reply poll and `billing-followups` action are retained only as manual tools to reconcile records created under the earlier reply-gated policy; the worker no longer schedules billing follow-ups. New confirmed performances do not create Did-you-play messages, unanswered reminders or reply-gated invoices. The admin labels these controls as legacy. Do not use a legacy reply to issue a second invoice for a show already handled by current morning invoicing.
 
 Reply polling requires the email gate and a configured IMAP account. It snapshots the mailbox-open `UIDNEXT` high-water mark, then uses a bounded server-side IMAP `SEARCH` over later UIDs for the app's `In-Reply-To` Message-ID domain before fetching message bodies. Matching UIDs are processed in ascending bounded pages; arrivals above the opening high-water mark wait for the next poll. When a page has more matches, the cursor advances only to the last processed UID. When no matching messages remain, it advances to the stable high-water mark without downloading unrelated mailbox bodies. It retains the worker lock and UIDVALIDITY checks and ignores sent echoes, automatic responses, and bounce-like traffic.
 
@@ -232,9 +234,9 @@ A billing reply is accepted only when the message passes origin and authenticati
 
 If UIDVALIDITY changes or a cursor looks inconsistent, stop the worker, preserve the database and sanitized logs, and investigate before advancing or resetting mailbox state. Do not widen the scan or replay messages by editing the cursor directly.
 
-## Live invoice acceptance
+## Historical old-policy invoice acceptance
 
-The isolated synthetic acceptance completed the real provider path. A correlated authenticated `YES` reply advanced the approved rehearsal show, created one immutable $700 demo invoice, dispatched it once, and reconciled the deterministic Message-ID against Sent. The exact client Inbox contained one matching message and Dave's Inbox contained the BCC copy; the PDF attachment was present in both checked delivery evidence. The invoice remained clearly labeled as a demo and not a payment request.
+The isolated synthetic acceptance completed the earlier reply-gated provider path. A correlated authenticated `YES` created one immutable $700 demo invoice, dispatched it once, and reconciled the deterministic Message-ID against Sent. The exact client Inbox contained one matching message and Dave's Inbox contained the BCC copy. This remains useful delivery/idempotency evidence, but it does not prove the current Calendar-driven automatic invoice workflow.
 
 This proves the bounded synthetic workflow, not real customer billing or payment collection. Keep addresses, tokens, message bodies, private document contents, and provider IDs out of Git. For another authorized acceptance, use a new approved synthetic show and reconcile existing effects before dispatch; do not replay this invoice or replace its Message-ID.
 
@@ -287,7 +289,7 @@ Start-ScheduledTask -TaskName 'jlm-demo-tunnel'
 # Start-ScheduledTask -TaskName 'jlm-demo-worker'
 ```
 
-`scripts/smoke-booking-billing.ts` completed the `rehearsal-v1` path through the actual owner reply and invoice reconciliation. Its stages remain available for read-only inspection and a separately authorized future synthetic record. Live stages require `--apply --execute-providers`, the corresponding private feature gates, and working providers. Never reuse the completed manifest to send the same effect again.
+`scripts/smoke-booking-billing.ts` now exercises the current morning-to-invoice path without a performer-reply stage. Every state-changing `--apply` stage requires `--worker-paused` after the owned worker and child process are stopped, including stages that do not directly execute providers, because the live worker could dispatch newly queued effects. Provider stages also require `--execute-providers`. The completed `rehearsal-v1` manifest remains read-only old-policy evidence and must never be reused to send its effect again. Current-policy acceptance belongs in [calendar invoice workflow evidence](evidence/calendar-invoice-workflow.json).
 
 ```powershell
 $billingManifest = Join-Path $privateRoot 'booking-billing-smoke.json'
@@ -303,4 +305,4 @@ node --no-warnings --import tsx scripts/smoke-live-booking.ts `
   --env $configPath --manifest $bookingManifest --stage inspect
 ```
 
-Every live booking stage requires `--apply --execute-providers --worker-paused` and `BOOKING_WRITES_ENABLED=true`. Both runners validate private recipient roles, reject unrelated pending/uncertain work, and preserve accepted effects on replay. Reconcile an uncertain send; do not replace the manifest, seed key, or database to bypass a blocked stage. The current acceptance manifests are completed evidence, not permission to rerun provider writes.
+Every live booking stage requires `--apply --execute-providers --worker-paused` and `BOOKING_WRITES_ENABLED=true`. Both runners validate private recipient roles, reject unrelated pending/uncertain work, and preserve accepted effects on replay. Reconcile an uncertain send; do not replace a manifest, seed key or database to bypass a blocked stage. The completed booking and old-policy billing manifests are historical evidence; the fresh current-policy billing walkthrough remains pending.

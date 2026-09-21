@@ -20,7 +20,7 @@ adapter now checks every attendee against the demo recipient allowlist before OA
 provider requests. Scheduling also checks the gate, inquiry authorization, and recipients
 before availability reads or canonical holds, for both web and assistant callers.
 
-## Actual email replies and replay
+## Historical old-policy email replies and replay
 
 Scanning a mailbox from its oldest UID delayed the actual performer reply behind unrelated
 mail. The IMAP adapter now searches for app-correlated `In-Reply-To` values up to a captured
@@ -32,6 +32,19 @@ The authenticated YES produced one immutable USD 700.00 demo invoice, delivered 
 inbox and BCC operator with a PDF. Replaying the morning, reply, and delivery stages produced
 no second invoice and left the send attempt count at one. See
 [invoice evidence](../evidence/live-invoice-acceptance.json).
+
+This proves delivery, immutable snapshots and replay handling under the superseded reply-gated
+policy. Current policy assumes an eligible app-tagged confirmed Calendar performance was played
+after its end, then issues the invoice automatically at the 08:00 America/Chicago morning scan.
+It requires an agreed quote, complete billing metadata, exact trusted To/BCC recipients and matching
+Calendar/app identity. It skips tentative, cancelled, consultation, all-day, untagged and duplicate
+records. Policy-versioned daily run keys revisit old dates, while legacy awaiting-reply records with
+no invoice route to review instead of silently auto-migrating. New evidence belongs in
+[calendar invoice workflow evidence](../evidence/calendar-invoice-workflow.json).
+The implementation and KB `2026-09-21.4` rollout are verified. The first versioned runtime scan
+completed seven catch-up dates with zero eligible shows and no new effects, preserving the existing
+sent invoice. Fresh eligible automatic delivery remains pending; the historical $700 result must
+not be used to mark that provider walkthrough complete.
 
 ## Retell release identity
 

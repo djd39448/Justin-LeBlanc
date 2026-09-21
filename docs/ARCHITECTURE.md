@@ -48,11 +48,11 @@ revision/version and demo flag. Boundaries authorize by tenant and object ID.
 | quotes | immutable version, currency, typed line items, totals in minor units, estimate/agreed, approver/time, policy version |
 | calendar_links | role consultation/performance/buffer, provider/calendar/event ID, ETag/revision, sync state, show_id |
 | conversations | channel, inquiry/show link, provider call/session ID, KB release, consent/retention metadata; restricted transcripts |
-| performance_checks | show, original thread/message IDs, nonce hash, authorized responder, decision, approved quote version, last reminder |
+| performance_checks | legacy-only reply records retained for audit/reconciliation; not created by current morning invoicing |
 | invoices | unique number and show/kind, immutable customer/seller/price snapshot, due date, revision, status, private PDF key, content hash |
 | outbox | unique operation key, payload reference, pending/sending/accepted/uncertain/failed, provider ID, retry count/backoff |
 | processed_events | unique provider/event or message ID, received/processed time, outcome |
-| job_runs | unique job/local-date or cursor, lease/lock, last success, errors |
+| job_runs | unique job/policy-version/local-date or cursor, lease/lock, last success, errors |
 | audit_events | actor, action, entity, before/after revision, request ID, timestamp; sensitive values redacted |
 
 Amounts are integer cents with explicit currency. All-day/floating times cannot become billable
@@ -74,8 +74,8 @@ next action. Never return calendar details for unrelated appointments.
 | request_human_followup | inquiry, question/contact preference | logged task, no invented response time |
 | confirm_show | show ID, approved quote version, revision | operator-only; not exposed to public assistants |
 | amend_show / cancel_show | scoped ID, revision, changes/reason | operator or authenticated limited client action |
-| run_morning_check | as-of date (demo only) | eligible/pending/skipped results; operator/scheduler only |
-| process_performance_reply | provider message reference | validated state transition; internal only |
+| run_morning_check | as-of date (demo only) | eligible/invoiced/skipped/review results; operator/scheduler only |
+| process_performance_reply | provider message reference | legacy-record reconciliation only; cannot gate current invoices |
 | invoice_preview / reconcile_delivery | invoice ID/version | operator-only private result |
 
 Schema validation at every boundary, bounded bodies/lengths, sanitization and parameterized SQL.
@@ -106,6 +106,7 @@ safe CORS allowlist, rate limits, bot abuse controls, maximum chat turns/tokens/
 per-demo spend controls. Do not expose callback calling as an unauthenticated arbitrary dialer.
 No card data collection. Email/phone token verification for sensitive record association.
 Use database backups/export, secrets in host vault, least privilege and JSON logs with correlation
-IDs. Monitor pending outbox, missed morning job, stale replies, stale KB and failed invoices.
+IDs. Monitor pending outbox, missed morning invoice runs, review-required Calendar records, stale KB
+and failed invoices.
 Demo retention default 30 days, configurable; export/delete procedures must include provider data.
 Analytics record funnel events without free-text, emails, phone numbers or invoice contents.

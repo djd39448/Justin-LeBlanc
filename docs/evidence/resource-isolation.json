@@ -1,9 +1,9 @@
 {
-  "at": "2026-09-21T15:16:13.199Z",
+  "at": "2026-09-21T17:44:13.947Z",
   "providers": {
     "retellAgents": {
       "before": 22,
-      "after": 25,
+      "after": 27,
       "existingUnchanged": true,
       "changedExistingCount": 0,
       "baselineSha256": "f0293145710c83b00d6b8c317c1a3131116c0ce889be842d463a9d3ea5129566",
@@ -63,6 +63,6 @@
     "centralTimeInPrompt": true,
     "agentDisplayNameMatchesCurrentPlan": false
   },
-  "currentReleaseEvidence": "retell-central-release.json",
-  "resumeNote": "Prior completed isolation audit retained. This evidence reconciliation made no provider mutations or repeated audit. The separate Justin-only photo deployment is recorded in user-photos.json."
+  "currentReleaseEvidence": "calendar-invoice-workflow.json",
+  "resumeNote": "Baseline resource isolation rechecked after the authorized Justin-only v4 voice refresh and admin website deployment. Historical phone-number audit is retained separately; no new number, agent or LLM identity was created."
 }

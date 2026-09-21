@@ -1,6 +1,6 @@
 # Acceptance and evidence matrix
 
-Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. The fourth actual v2 call supplied phone evidence for repaired inquiry, availability, human-follow-up, and lifecycle tool handling; booking did not complete. Retell v3, API, and chat share the no-notice KB, and a live read-only same-day availability check passed only 68 minutes ahead. Phone verification of completed booking and native `end_call` remains pending. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot/sign-out remains untested. Requirements below are unchanged; do not mark a row passed without linked evidence.
+Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Calendar-driven automatic invoicing is implemented, CI-verified and loaded in the running services; a fresh live Calendar-to-inbox walkthrough remains pending. The delivered $700 reply-driven invoice is historical evidence for the superseded policy. Retell v4, API and chat share billing-policy KB `2026-09-21.4`. Phone verification of completed booking and native `end_call` remains pending; recovery after an actual reboot/sign-out remains untested. Do not mark a row passed without linked evidence.
 
 | ID | Scenario | Required result |
 |---|---|---|
@@ -18,12 +18,12 @@ Implementation and verification status: see the dated [A01–A26 results](eviden
 | A12 | Brief | Attractive one-page HTML/PDF delivered to operator, fields and unknowns legible |
 | A13 | Operator confirmation | Approved quote converts existing hold to confirmed; audit and attendee update |
 | A14 | Cancel/reschedule/expiry | Only demo-owned records change; availability released, cancelled show not billed |
-| A15 | Morning job | Yesterday's ended shows, not newly created bookings; DST, midnight, recurrence, catch-up |
-| A16 | Actual YES reply | Authenticated/correlated Gmail reply triggers one invoice for agreed amount |
-| A17 | NO reply | Not performed, no invoice or assumed cancellation charge |
-| A18 | Changed invoice | Candidate amendment -> visible revised total -> explicit approval -> exact invoice |
-| A19 | Bad/absent reply | Ambiguous, forged, wrong thread, auto-reply, missing fields: no invoice |
-| A20 | Deduplication | Duplicate job/webhook/reply/send timeout never creates duplicate invoice; uncertain sends reconcile |
+| A15 | Morning invoicing | 08:00 America/Chicago; app-tagged confirmed performances whose end fell on the prior local date; DST, midnight, recurrence and seven-day catch-up |
+| A16 | Automatic issue | Eligible completed Calendar performance is assumed played and produces one immutable invoice from the agreed quote without a reply gate |
+| A17 | Eligibility skips | Tentative/cancelled/consultation/all-day/untagged/already-invoiced records produce no invoice |
+| A18 | Required billing data | Known confirmed show with missing quote/customer/billing data or mismatched Calendar times/price routes to review; untagged/unparseable/unknown-show events are skipped |
+| A19 | Recipient boundary | Invoice delivery derives exact To/BCC recipients from trusted records/config and rejects any address outside the allowlist |
+| A20 | Deduplication | Duplicate/catch-up/forced jobs or send timeout never creates a duplicate invoice; uncertain sends reconcile |
 | A21 | Delivery | Test client receives readable PDF/email; configured operator receives BCC; no public link |
 | A22 | Auth and abuse | Public cannot confirm/price/issue/read private data; signed webhooks, rate/recipient limits |
 | A23 | Provider isolation | Before/after manifest proves existing Retell/Telnyx/DNS/TrustCore workflows unchanged |
@@ -33,8 +33,8 @@ Implementation and verification status: see the dated [A01–A26 results](eviden
 
 ## Test layers
 
-Offline unit/domain tests: quotes, transitions, auth gates, dates/timezones/DST, money, reply grammar,
-idempotency keys, invoice snapshots. Real local SQL transactions for state/race tests. Provider
+Offline unit/domain tests: quotes, transitions, auth gates, dates/timezones/DST, money, Calendar
+eligibility, idempotency keys and invoice snapshots. Real local SQL transactions for state/race tests. Provider
 contract fixtures for Cal.com, Calendar, Gmail/IMAP and Retell; raw-body signature verification.
 Playwright covers user journey plus keyboard/mobile and errors. Visual PDF checks use synthetic data.
 Opt-in live smoke suite uses actual isolated integrations and allowlisted test recipients.
@@ -49,9 +49,9 @@ Build/lint/typecheck must pass before code commits; docs commits use whitespace/
    don't merge on name alone. Finish one chosen record through the full lifecycle.
 4. Choose consultation and event date; inspect both invitation emails and private one-page brief.
 5. Operator approves agreed quote and confirms show; verify updated event.
-6. Use explicit demo time simulation / seeded past instance and run the real morning logic.
-7. Reply YES to the actual confirmation email. Observe invoice in test client inbox and BCC.
-8. Replay job/reply; verify no second invoice. Show NO and amendment cases using offline evidence.
+6. Use an explicit demo time simulation or seeded past confirmed performance and run the real morning invoicing logic.
+7. Observe the automatically issued invoice in the test client inbox and operator BCC without a performer reply.
+8. Replay the job; verify no second invoice. Show ineligible and missing-metadata skips using offline evidence.
 
 Record UTC timestamp, commit SHA, provider/resource IDs (redacted appropriately), commands,
 pass/fail and sanitized artifact links in `docs/evidence/acceptance-results.md`. Mark separately
