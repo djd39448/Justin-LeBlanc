@@ -15,6 +15,8 @@ export const site = {
   instagram: 'https://instagram.com/jus10sense',
   youtube: 'https://youtube.com/@jus10sense',
   facebook: 'https://facebook.com/250866058945459',
+  demoPhone: '+18325013799',
+  demoPhoneDisplay: '(832) 501-3799',
   reviewedAt: '2026-09-21',
 } as const;
 

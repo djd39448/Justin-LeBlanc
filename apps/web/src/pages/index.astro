@@ -61,8 +61,6 @@ const structuredData = [
     <div><strong>Confirmation</strong><span>Personal review after consultation</span></div>
   </div>
 
-  <ArtistPhotos />
-
   <section class="section page-shell" id="private-events" aria-labelledby="occasions-title">
     <div class="section-heading">
       <div>
@@ -98,54 +96,7 @@ const structuredData = [
     </div>
   </section>
 
-  <section class="section section-blue" id="hear-justin" aria-labelledby="media-title">
-    <div class="page-shell">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Hear the person behind the plan</p>
-          <h2 id="media-title">Start with an authentic performance source.</h2>
-        </div>
-        <p>
-          Justin's linked channel includes music and personal videos. No single clip is presented as
-          a current booking sample until Justin approves it for that purpose.
-        </p>
-      </div>
-      <div class="media-stage">
-        <div class="media-visual" role="img" aria-label="Justin LeBlanc holding an acoustic guitar against a blue background"></div>
-        <div class="media-copy">
-          <p class="eyebrow">No autoplay · public source</p>
-          <h3>Listen on Justin's channel.</h3>
-          <p>Open YouTube in a new page, or explore the public-show source before starting an inquiry.</p>
-          <a class="button button-light" href={site.youtube} rel="external">Visit YouTube</a>
-          <a class="text-link" href="/hear-live/">Public-show information →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-paper" aria-labelledby="pricing-title">
-    <div class="page-shell">
-      <span class="demo-label">Illustrative demo pricing · not Justin's published rates</span>
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">See how the estimate works</p>
-          <h2 id="pricing-title">Clear examples, then a personal quote.</h2>
-        </div>
-        <p>
-          These editable examples demonstrate the workflow. Travel, sound, timing, and custom
-          production remain assumptions until discussed. No inquiry creates a charge.
-        </p>
-      </div>
-      <div class="package-grid">
-        {demoPackages.map((item) => (
-          <article class="package-card">
-            <div><h3>{item.name}</h3><p>{item.detail}</p></div>
-            <div class="package-price">{item.price}</div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+  <ArtistPhotos id="hear-justin" showLinks />
 
   <section class="section section-blue" aria-labelledby="process-title">
     <div class="page-shell">
@@ -213,6 +164,30 @@ const structuredData = [
         <p>If a detail is not verified, the booking team will capture the question instead of guessing.</p>
       </div>
       <FaqList />
+    </div>
+  </section>
+
+  <section class="section section-paper" aria-labelledby="pricing-title">
+    <div class="page-shell">
+      <span class="demo-label">Illustrative demo pricing · not Justin's published rates</span>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">See how the estimate works</p>
+          <h2 id="pricing-title">Clear examples, then a personal quote.</h2>
+        </div>
+        <p>
+          These editable examples demonstrate the workflow. Travel, sound, timing, and custom
+          production remain assumptions until discussed. No inquiry creates a charge.
+        </p>
+      </div>
+      <div class="package-grid">
+        {demoPackages.map((item) => (
+          <article class="package-card">
+            <div><h3>{item.name}</h3><p>{item.detail}</p></div>
+            <div class="package-price">{item.price}</div>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
