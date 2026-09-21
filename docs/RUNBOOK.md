@@ -19,6 +19,8 @@ Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Just
 
 Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
 
+Voice repair verified at 16:01 UTC: Dave restarted the three demo services from Administrator PowerShell. All tasks are running S4U and all health paths passed. The updated API accepts signed 137 KB Retell envelopes through its authentication/context gates while ordinary bodies remain limited to 32 KiB. Focused tests verify Central-time conversion. See [repair evidence](evidence/voice-tool-repair.json); post-fix real phone verification remains pending.
+
 ## Protected configuration
 
 Keep the runtime environment file, SQLite database, generated documents, OAuth material, tunnel token, logs, backups, exports, and operator action files outside the repository. This document uses placeholders deliberately.

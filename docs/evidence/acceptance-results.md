@@ -4,7 +4,7 @@
 
 The photo acceptance snapshot verified the exact public hostname on deployment `75996868`, and the public Houston demo number is **(832) 501-3799**. The corrected startup upgrade created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC all three were running as S4U/Limited with exact boot triggers; all three health paths passed at 15:39:43 UTC. The current KB is release `2026-09-21.2`, hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
 
-Local verification at 15:13:37 UTC against `8a280a0` passed 87 tests in 17 files, lint, TypeScript, and the 19-file Astro check. After the separately authorized photo addition, [GitHub CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879) passed for `c0aee21` at 15:28:40 UTC: 87 tests in 17 files, lint, TypeScript, 20 Astro files with zero diagnostics, and 9 pages. After the third voice call exposed two defects, four new HTTP body-boundary tests and three new timezone tests passed. Relevant existing API/assistant tests, lint, and TypeScript also passed; full CI for those new code changes is pending.
+[Voice repair CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35622823710) passed for `ac22144` at 16:02:21 UTC: **94 tests in 19 files**, ESLint, TypeScript, 20 Astro files with zero errors/warnings, and nine built pages. Seven new tests cover the Retell body boundary and DST-aware assistant time conversion.
 
 “Offline” means real local code and SQLite with provider fixtures where needed. “Provider” means an actual external request. “Pending” identifies the exact missing evidence and is not a pass.
 

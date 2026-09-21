@@ -8,7 +8,7 @@ The local API and worker run against persistent SQLite. Booking uses a consultat
 
 ## Verified on 2026-09-21
 
-- [GitHub CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879) passed for `c0aee21` at 15:28:40 UTC: lint, TypeScript, **87 tests in 17 files**, 20 Astro files with zero diagnostics, and nine pages. The earlier local suite against `8a280a0` was not repeated.
+- [Voice repair CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35622823710) passed for `ac22144` at 16:02:21 UTC: **94 tests in 19 files**, ESLint, TypeScript, 20 Astro files with zero errors/warnings, and nine built pages. Seven new tests cover the Retell body boundary and DST-aware assistant time conversion.
 - Current deployment `75996868` adds the two supplied photographs; its desktop/mobile photo QA and build passed. Earlier noindex/security, keyboard, Central-time and Houston voice-CTA checks remain recorded separately. See [photo evidence](docs/evidence/user-photos.json).
 - Local, direct-tunnel, and website-proxy health report booking, chat, voice, and billing capabilities on. The API, worker, and tunnel tasks are running.
 - Four real OpenAI qualification cases passed using `gpt-4.1-mini` (6,911 tokens). Chat and the published voice configuration use Central Time KB `2026-09-21.2`, SHA-256 `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.

@@ -38,7 +38,7 @@
     "providerAgentOrNumberChanged": false
   },
   "deployment": {
-    "status": "awaiting Administrator restart",
+    "status": "applied and live HTTP boundary verified",
     "previousApiPid": 36740,
     "processStopAttempt": {
       "at": "2026-09-21T15:57:37.5515449Z",
@@ -48,9 +48,91 @@
       "at": "2026-09-21T15:59:35.4518433Z",
       "result": "launcher stopped; existing API child remains running"
     },
-    "liveApiCode": "pre-fix process still running",
+    "liveApiCode": "both repair commits loaded by restarted API",
     "userRestartCommand": "scripts/stop-services.ps1 -ConfigPath <private runtime.env> -Restart from Administrator PowerShell",
-    "signedHttpDiagnostics": "pending API reload"
+    "signedHttpDiagnostics": {
+      "checkedAt": "2026-09-21T16:01:27.874Z",
+      "kind": "Signed HTTP boundary diagnostics; not a real phone call",
+      "syntheticUnadmittedCall": true,
+      "admissionOrLifecycleRecordsCreated": false,
+      "bookingOrMailRequested": false,
+      "cases": [
+        {
+          "label": "Large signed tool reaches call admission",
+          "origin": "https://jlm-demo-api.50by50.dev",
+          "path": "/api/retell/tools",
+          "bodyBytes": 137768,
+          "httpStatus": 409,
+          "error": "retell_call_not_admitted",
+          "passed": true
+        },
+        {
+          "label": "Website proxy accepts large signed tool envelope",
+          "origin": "https://justinleblancmusic.50by50.dev",
+          "path": "/api/retell/tools",
+          "bodyBytes": 137768,
+          "httpStatus": 409,
+          "error": "retell_call_not_admitted",
+          "passed": true
+        },
+        {
+          "label": "Large tool still requires a valid signature",
+          "origin": "https://jlm-demo-api.50by50.dev",
+          "path": "/api/retell/tools",
+          "bodyBytes": 137768,
+          "httpStatus": 401,
+          "error": "invalid_retell_signature",
+          "passed": true
+        },
+        {
+          "label": "Large signed lifecycle reaches agent ownership gate",
+          "origin": "https://jlm-demo-api.50by50.dev",
+          "path": "/api/webhooks/retell",
+          "bodyBytes": 137654,
+          "httpStatus": 403,
+          "error": "wrong_retell_agent",
+          "passed": true
+        },
+        {
+          "label": "Ordinary public body cap remains 32 KiB",
+          "origin": "https://jlm-demo-api.50by50.dev",
+          "path": "/api/inquiries",
+          "bodyBytes": 33014,
+          "httpStatus": 413,
+          "error": "body_too_large",
+          "passed": true
+        }
+      ]
+    },
+    "verifiedAt": "2026-09-21T16:01:28.8183067Z",
+    "restartPerformedBy": "operator in Administrator PowerShell using existing stop-services.ps1 -Restart",
+    "currentApiPid": 32504,
+    "taskStates": [
+      {
+        "name": "jlm-demo-api",
+        "state": "Running",
+        "logonType": "S4U"
+      },
+      {
+        "name": "jlm-demo-worker",
+        "state": "Running",
+        "logonType": "S4U"
+      },
+      {
+        "name": "jlm-demo-tunnel",
+        "state": "Running",
+        "logonType": "S4U"
+      }
+    ],
+    "health": {
+      "checkedAt": "2026-09-21T16:01:05.238Z",
+      "localStatus": 200,
+      "directTunnelStatus": 200,
+      "websiteProxyStatus": 200,
+      "expectedKb": true,
+      "allCapabilitiesEnabled": true,
+      "houstonPhoneCorrect": true
+    }
   },
   "postFixRealPhoneVerified": false,
   "officialReferences": [
@@ -70,10 +152,44 @@
     "typecheck": "passed",
     "changedCodeEslint": "passed",
     "diffCheck": "passed",
-    "fullCi": "pending push"
+    "fullCi": {
+      "status": "passed",
+      "commit": "ac22144d360e153dfd0e4814ffd98977cf3edbcd",
+      "url": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35622823710",
+      "completedAt": "2026-09-21T16:02:21Z",
+      "testsPassed": 94,
+      "testFilesPassed": 19,
+      "eslint": "passed",
+      "typescript": "passed",
+      "astroFiles": 20,
+      "astroErrors": 0,
+      "astroWarnings": 0,
+      "pagesBuilt": 9
+    }
   },
   "lifecycleEvidence": {
     "observed": "call_started recorded; call_ended and call_analyzed absent from backend ledger",
     "inference": "Large terminal envelopes are also subject to the same old HTTP cap; provider delivery status was not captured"
+  },
+  "ledgerAfterRestart": {
+    "checkedAt": "2026-09-21T16:01:52.209Z",
+    "readOnly": true,
+    "showCount": 2,
+    "invoiceCount": 1,
+    "outboxStatuses": [
+      {
+        "status": "accepted",
+        "count": 15
+      }
+    ],
+    "syntheticDiagnosticConversations": 0,
+    "unresolvedOutboxCount": 0
+  },
+  "executionBudget": {
+    "route": "Shared Codex ChatGPT account on Windows; no independent provider pool assumed",
+    "weeklyUsedPercentAfterBatch": 38,
+    "reservedHeadroomPercent": 25,
+    "resetCreditsConsumed": 0,
+    "newCallsInitiated": 0
   }
 }
