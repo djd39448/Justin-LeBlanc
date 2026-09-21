@@ -1,0 +1,79 @@
+{
+  "diagnosedAt": "2026-09-21T15:55:27.515Z",
+  "callRef": "bf30785ebde69d84",
+  "agentVersion": 2,
+  "rootCauses": [
+    {
+      "code": "retell_envelope_body_limit",
+      "observedHttpStatus": 413,
+      "outerLimitBytes": 32768,
+      "innerLimitBytes": 32000,
+      "providerIncludesGrowingTranscript": true,
+      "capturedFormattedCallBytes": 117279
+    },
+    {
+      "code": "assistant_local_time_without_offset",
+      "observedShape": "YYYY-MM-DDTHH:mm:ss",
+      "affectedTool": "get_availability",
+      "wasMaskedByHttp413": true
+    }
+  ],
+  "acceptedTool": "upsert_inquiry",
+  "failedTools": [
+    "get_availability",
+    "get_availability",
+    "request_human_followup"
+  ],
+  "fix": {
+    "retellMaxBodyBytes": 1048576,
+    "ordinaryMaxBodyBytes": 32768,
+    "largerLimitPaths": [
+      "/api/retell/tools",
+      "/api/webhooks/retell"
+    ],
+    "signaturesRequired": true,
+    "argumentBoundsRetained": true,
+    "defaultLocalTimezone": "America/Chicago",
+    "dstGapAndAmbiguityPolicy": "reject",
+    "providerAgentOrNumberChanged": false
+  },
+  "deployment": {
+    "status": "awaiting Administrator restart",
+    "previousApiPid": 36740,
+    "processStopAttempt": {
+      "at": "2026-09-21T15:57:37.5515449Z",
+      "result": "Windows access denied; process not stopped"
+    },
+    "schedulerStopAttempt": {
+      "at": "2026-09-21T15:59:35.4518433Z",
+      "result": "launcher stopped; existing API child remains running"
+    },
+    "liveApiCode": "pre-fix process still running",
+    "userRestartCommand": "scripts/stop-services.ps1 -ConfigPath <private runtime.env> -Restart from Administrator PowerShell",
+    "signedHttpDiagnostics": "pending API reload"
+  },
+  "postFixRealPhoneVerified": false,
+  "officialReferences": [
+    "https://docs.retellai.com/build/single-multi-prompt/custom-function",
+    "https://docs.retellai.com/features/webhook-overview"
+  ],
+  "piiOmitted": true,
+  "codeCommits": [
+    "c8497a9",
+    "49cd43f"
+  ],
+  "validation": {
+    "payloadBoundaryTestsPassed": 4,
+    "timeNormalizationTestsPassed": 3,
+    "existingApiAndRetellTestsPassed": 16,
+    "existingApiAndAssistantTestsAfterTimeFixPassed": 18,
+    "typecheck": "passed",
+    "changedCodeEslint": "passed",
+    "diffCheck": "passed",
+    "fullCi": "pending push"
+  },
+  "lifecycleEvidence": {
+    "observed": "call_started recorded; call_ended and call_analyzed absent from backend ledger",
+    "inference": "Large terminal envelopes are also subject to the same old HTTP cap; provider delivery status was not captured"
+  }
+}

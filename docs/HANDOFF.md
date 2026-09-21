@@ -1,6 +1,6 @@
 # Demo handoff
 
-Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. Two acceptance gaps remain: neither of the two live voice calls invoked a backend assistant tool or created an inquiry, and recovery after an actual reboot/sign-out has not been tested. S4U boot-trigger registration and task execution are verified. No additional voice call is requested.
+Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. The third v2 voice call persisted an inquiry through `upsert_inquiry`; two availability calls and one human-follow-up call failed HTTP 413, so full voice booking remains unverified. Recovery after an actual reboot/sign-out is also untested. S4U boot-trigger registration and task execution are verified.
 
 ## Running system
 
@@ -20,7 +20,7 @@ Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calend
 - The confirmed performance was moved to a non-overlapping next-day interval and cancelled. Confirmation, reschedule, and cancellation retained the same event identity; every associated effect was accepted on its first attempt.
 - The real Houston morning workflow sent one performer check. One authenticated, correlated YES reply created one immutable USD 700.00 invoice and one delivery effect.
 - The client inbox contained exactly one matching invoice Message-ID. The operator BCC receipt and Sent copy were verified. Replaying the morning run, mailbox poll, reply handling, and sender produced no second invoice or send and left no queued work.
-- Two real inbound voice calls passed caller admission and signed webhook verification. The 59,473 ms v1 call cost 11.86 cents and ended by user hangup after event questions, qualification prompts, and an honest unknown-song answer. The 18,473 ms v2 call cost 5.177 cents and correctly answered that consultations use Houston Central Time / `America/Chicago`.
+- The first two calls remain historical: the 59,473 ms v1 call cost 11.86 cents and the 18,473 ms v2 call cost 5.177 cents; neither invoked tools. The third v2 call ran from 15:44:53–15:48:10 UTC, lasted 196,946 ms, cost 34.191 cents, and successfully persisted a call-associated inquiry. Two `get_availability` calls and one `request_human_followup` call failed HTTP 413 `body_too_large`; terminal ended/analyzed webhooks were also absent at that boundary.
 - Provider isolation reconciliation found the previously existing Retell resources, DNS records, and Pages projects unchanged. Only the isolated demo resources were added.
 - The current SQLite backup restored read-only with two shows and one invoice and passed integrity checking. The authenticated document preview, SMTP/IMAP diagnostic, public form/resume flow, grounded chat cases, and deployed accessibility/security checks remain valid.
 
@@ -28,7 +28,7 @@ Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calend
 
 | Area                             | Current evidence                                                                                                                                                         | Required next action                                                                                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Voice tool evidence              | Both calls connected successfully, and v2 answered the time-zone question correctly. Neither call invoked a tool or created an inquiry. The embedded KB can answer facts directly despite the required-search prompt. | Keep the limitation explicit. No additional call is requested; do not claim voice-side intake, availability, or booking tools are live-tested. |
+| Voice workflow                   | The third call proved live inquiry creation and association. Availability and human follow-up failed HTTP 413 because the growing signed call envelope exceeded the endpoint body limit; availability arguments also lacked an offset. | Track repair deployment in [voice-tool repair evidence](evidence/voice-tool-repair.json). Require a post-fix phone pass before claiming availability, follow-up, or booking. |
 | Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                    | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                                |
 | Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.      | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review.      |
 
@@ -74,6 +74,7 @@ The upgrade script checks exact task ownership, backs up task XML and state priv
 - [Operator mail receipts](evidence/operator-mail-receipts.json)
 - [Live voice call](evidence/live-voice-acceptance.json)
 - [Published Central voice release](evidence/retell-central-release.json)
+- [Voice tool repair](evidence/voice-tool-repair.json)
 - [Startup reconciliation](evidence/startup-reconciliation.json)
 - [Resume ledger reconciliation](evidence/resume-ledger-reconciliation.json)
 - [Provider isolation](evidence/resource-isolation.json)
@@ -89,4 +90,4 @@ The live evidence is sanitized: it contains no phone number, email address, cred
 
 1. Separately authorize and verify recovery after an actual reboot or sign-out.
 2. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
-3. Keep the voice-tool limitation explicit unless a separately requested future call produces real tool and ledger evidence.
+3. Keep inquiry creation marked passed and availability, follow-up, and booking marked pending until post-fix phone evidence exists.

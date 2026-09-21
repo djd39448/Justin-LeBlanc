@@ -1,9 +1,9 @@
 {
-  "reconciledAt": "2026-09-21T15:23:38.787Z",
-  "source": "Existing captured provider calls and read-only local ledger; no new call or provider request",
-  "callCount": 2,
-  "totalDurationMs": 77946,
-  "totalCostCents": 17.037,
+  "reconciledAt": "2026-09-21T15:55:27.514Z",
+  "source": "Captured provider call results and read-only backend ledger; no new call initiated",
+  "callCount": 3,
+  "totalDurationMs": 274892,
+  "totalCostCents": 51.228,
   "calls": [
     {
       "callRef": "70f528e5b192f604",
@@ -72,14 +72,69 @@
       "limitations": [
         "No assistant tool invocation occurred; answer alone does not verify voice tools or completed voice intake"
       ]
+    },
+    {
+      "callRef": "bf30785ebde69d84",
+      "agentVersion": 2,
+      "status": "ended",
+      "direction": "inbound",
+      "startedAt": "2026-09-21T15:44:53.545Z",
+      "endedAt": "2026-09-21T15:48:10.491Z",
+      "durationMs": 196946,
+      "disconnectionReason": "user_hangup",
+      "successful": false,
+      "costCents": 34.191,
+      "checkedAt": "2026-09-21T15:49:25.774Z",
+      "callerAdmissionAllowed": true,
+      "verifiedWebhookEvents": [
+        "call_started"
+      ],
+      "kbVersion": "2026-09-21.2",
+      "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+      "toolCalls": [
+        {
+          "name": "upsert_inquiry",
+          "success": true
+        },
+        {
+          "name": "get_availability",
+          "success": false,
+          "httpStatus": 413,
+          "error": "body_too_large"
+        },
+        {
+          "name": "get_availability",
+          "success": false,
+          "httpStatus": 413,
+          "error": "body_too_large"
+        },
+        {
+          "name": "request_human_followup",
+          "success": false,
+          "httpStatus": 413,
+          "error": "body_too_large"
+        }
+      ],
+      "backendToolEventCount": 1,
+      "inquiryAssociated": true,
+      "observed": [
+        "Actual voice upsert_inquiry persisted an inquiry and call association",
+        "Later availability and follow-up requests were rejected by the HTTP payload limit"
+      ],
+      "limitations": [
+        "No voice booking was completed",
+        "Call-ended and analyzed webhooks were not recorded in the backend ledger",
+        "Availability requests also used offset-free local timestamps, requiring Central-time conversion"
+      ]
     }
   ],
   "liveVoiceConnectionPassed": true,
   "liveVoiceToolAcceptancePassed": false,
-  "liveVoiceIntakeAcceptancePassed": false,
+  "liveVoiceIntakeAcceptancePassed": true,
   "limitations": [
-    "Neither call invoked an assistant tool",
-    "Provider success on the second call does not establish a backend tool or voice-intake pass"
+    "The first two calls invoked no tools",
+    "The third call created an inquiry, then availability and follow-up failed with HTTP 413",
+    "Post-fix live phone availability and booking remain unverified"
   ],
   "omitted": [
     "caller_phone_numbers",
@@ -87,5 +142,8 @@
     "recordings",
     "provider_call_ids",
     "private_contact_details"
-  ]
+  ],
+  "liveVoiceInquiryToolPassed": true,
+  "liveVoiceIntakeAcceptanceScope": "Inquiry creation and persisted call association only; availability, follow-up and booking are not a completed voice flow.",
+  "repairEvidence": "voice-tool-repair.json"
 }

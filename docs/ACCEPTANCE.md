@@ -1,6 +1,6 @@
 # Acceptance and evidence matrix
 
-Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. Two admitted signed voice calls used the current KB; v2 correctly answered the Houston time zone, but neither call invoked a backend tool or created an inquiry. No additional call is requested. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot/sign-out remains untested. Requirements below are unchanged; do not mark a row passed without linked evidence.
+Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. The third admitted v2 call successfully invoked `upsert_inquiry` and persisted its association; availability failed twice and human follow-up failed once with HTTP 413. Full voice booking remains unverified pending repair deployment and post-fix phone evidence. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot/sign-out remains untested. Requirements below are unchanged; do not mark a row passed without linked evidence.
 
 | ID | Scenario | Required result |
 |---|---|---|

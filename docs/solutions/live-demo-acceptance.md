@@ -47,12 +47,23 @@ fields; server-side argument bounds are unchanged. A successful phone connection
 success flag is not evidence of a tool invocation: inspect both the actual call and the signed
 backend tool ledger before claiming that result.
 
-The published agent and LLM reached version 2 without changing their protected identities. Two
-real calls connected successfully: v1 lasted 59,473 ms and cost 11.86 cents; v2 lasted 18,473 ms
-and cost 5.177 cents. V2 correctly answered that consultations use Houston Central Time /
-`America/Chicago`. Neither call invoked a tool. Requiring `search_knowledge` in the prompt was
-insufficient because the full KB is embedded in model context, so the model can answer directly.
-No additional call is requested, and voice-side tools remain unverified.
+The published agent and LLM reached version 2 without changing their protected identities. The
+first two calls remain historical no-tool evidence: v1 lasted 59,473 ms / 11.86 cents, and v2
+lasted 18,473 ms / 5.177 cents and correctly answered Houston Central Time / `America/Chicago`.
+Requiring `search_knowledge` in the prompt was insufficient because the full KB is embedded in
+model context, so the model can answer directly.
+
+A third v2 call lasted 196,946 ms and cost 34.191 cents. `upsert_inquiry` succeeded and persisted
+the call/inquiry association. Two `get_availability` calls and one `request_human_followup` call
+failed HTTP 413 because the signed growing call/transcript envelope exceeded the endpoint's 32 KiB
+body limit. Terminal ended/analyzed events were absent; the same cap applies to their envelopes,
+although provider delivery status was not captured. Availability tool
+arguments also used naive local timestamps without an offset. The tested scoped repair
+raises only signed tool/lifecycle endpoint limits and normalizes those local inputs with the existing
+DST-aware Central-time converter; the public 32 KiB limit, signature checks, and tool argument
+bounds remain unchanged. Deployment state is recorded in
+[voice-tool repair evidence](../evidence/voice-tool-repair.json); availability, follow-up, and
+booking still require a post-fix phone pass.
 
 ## Windows task ownership
 

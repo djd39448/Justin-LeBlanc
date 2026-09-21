@@ -1,6 +1,6 @@
 # Progress
 
-Updated 2026-09-21. **Implemented and substantially live-verified. Voice backend-tool use and recovery after an actual reboot/sign-out remain unverified.** No additional voice call is requested.
+Updated 2026-09-21. **Implemented and substantially live-verified. Full voice booking and recovery after an actual reboot/sign-out remain unverified.**
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
 - [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, noindex controls, and exact-host deployment.
@@ -10,11 +10,11 @@ Updated 2026-09-21. **Implemented and substantially live-verified. Voice backend
 - [x] Live negative recipient/token checks rejected unsafe booking requests without creating a hold or effect.
 - [x] Live Calendar consultation and tentative hold with Central times, invited roles, private brief, same-ID confirmation, non-overlapping reschedule, and cancellation.
 - [x] Live Houston morning run, authenticated YES reply, one immutable USD 700.00 invoice, exact client Message-ID receipt, operator BCC receipt, Sent reconciliation, and zero-duplicate replay.
-- [x] Isolated Houston voice resource at **(832) 501-3799**, published agent/LLM v2, two successful admitted connections with signed webhooks, correct KB identity, bounded spend, honest unknown-song handling, and a correct `America/Chicago` answer on v2.
+- [x] Isolated Houston voice resource at **(832) 501-3799**, published agent/LLM v2, three admitted connections, correct KB identity, honest unknown-song handling, a correct `America/Chicago` answer, and one persisted inquiry created through `upsert_inquiry`.
 - [x] Existing Retell, DNS, Pages, and other provider resources reconciled unchanged; only isolated demo resources were added.
 - [x] Current backup restored read-only with two shows and one invoice and passed SQLite integrity checking.
 - [x] Local API, worker, and tunnel are running with booking, chat, voice, morning, and invoice gates enabled.
-- [ ] Voice tool evidence: neither the 59,473 ms v1 call nor the 18,473 ms v2 call invoked a backend assistant tool; no inquiry or booking was created. The full embedded KB can answer directly despite the v2 search-first prompt.
+- [ ] Full voice workflow: the first two calls invoked no tools. On the 196,946 ms third v2 call, inquiry creation and association passed, but two availability calls and one human-follow-up call failed HTTP 413 `body_too_large`. Backend body-limit and naive Central-time normalization repairs passed focused tests and await an Administrator restart; post-fix phone availability, follow-up, and booking remain pending.
 - [x] Startup registration and task execution: backup created at 15:38:36 UTC, tasks restarted at 15:38:40 UTC, and all three verified running S4U/Limited with exact boot triggers at 15:39:09 UTC. All three health paths and worker startup jobs passed afterward.
 - [ ] Recovery after an actual reboot or sign-out has not been authorized or tested.
 
