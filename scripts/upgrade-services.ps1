@@ -16,10 +16,12 @@ $runner = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'run-service.ps1')
 $stopper = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot 'stop-services.ps1')).Path
 $workspace = Split-Path -Parent $PSScriptRoot
 $shellExecutable = (Get-Command pwsh -ErrorAction Stop).Source
-$currentUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$principal = [System.Security.Principal.WindowsPrincipal]::new(
-  [System.Security.Principal.WindowsIdentity]::GetCurrent()
-)
+$currentIdentity = [System.Security.Principal.WindowsIdentity]::GetCurrent()
+if ($null -eq $currentIdentity.User) {
+  throw 'The current Windows identity has no resolvable SID; refusing task ownership checks.'
+}
+$currentSid = $currentIdentity.User.Value
+$principal = [System.Security.Principal.WindowsPrincipal]::new($currentIdentity)
 $isElevated = $principal.IsInRole(
   [System.Security.Principal.WindowsBuiltInRole]::Administrator
 )
@@ -27,6 +29,19 @@ $isElevated = $principal.IsInRole(
 function Get-ExpectedArgument {
   param([Parameter(Mandatory)][string]$Role)
   return '-NoProfile -NonInteractive -WindowStyle Hidden -File "{0}" -Role {1} -ConfigPath "{2}"' -f $runner, $Role, $resolvedConfig
+}
+
+function Resolve-AccountSid {
+  param([Parameter(Mandatory)][string]$AccountId)
+  try {
+    if ($AccountId -match '^S-\d-\d+(?:-\d+)+$') {
+      return [System.Security.Principal.SecurityIdentifier]::new($AccountId).Value
+    }
+    $account = [System.Security.Principal.NTAccount]::new($AccountId)
+    return $account.Translate([System.Security.Principal.SecurityIdentifier]).Value
+  } catch {
+    throw 'A scheduled-task principal could not be resolved to a SID; refusing ownership.'
+  }
 }
 
 function Get-OwnedTask {
@@ -38,12 +53,13 @@ function Get-OwnedTask {
   if ($actions.Count -ne 1) { throw "Refusing ${name}: expected exactly one owned action." }
   $action = $actions[0]
   $expectedArguments = Get-ExpectedArgument -Role $Role
+  $taskSid = Resolve-AccountSid -AccountId $task.Principal.UserId
   $owned =
     $task.Description -eq $expectedDescription -and
     $action.Execute -eq $shellExecutable -and
     $action.Arguments -eq $expectedArguments -and
     $action.WorkingDirectory -eq $workspace -and
-    $task.Principal.UserId -eq $currentUser
+    $taskSid -eq $currentSid
   if (-not $owned) {
     throw "Refusing ${name}: its description, action, config path, workspace, shell, or principal is not owned by this checkout and user."
   }
