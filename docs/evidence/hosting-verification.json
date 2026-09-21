@@ -103,5 +103,12 @@
     },
     "disabledFollowupStatus": 400
   },
-  "currentLedgerEvidence": "resume-ledger-reconciliation.json"
+  "currentLedgerEvidence": "resume-ledger-reconciliation.json",
+  "latestDeployment": {
+    "id": "75996868",
+    "codeRevision": "c0aee219eb7fecccecb73afd9fda38b155fd3850",
+    "evidence": "user-photos.json",
+    "source": "Separately authorized photo task, recorded live desktop/mobile QA; no redeployment during resume"
+  },
+  "snapshotScope": "HTTP/header and Central checks below were captured on e63652d3. Latest photo deployment QA is separate; original timestamps are preserved."
 }

@@ -58,7 +58,7 @@ HTML, plain text, and PDF outputs use shared typed templates. Event brief prepar
 
 On 2026-09-21, one clearly labeled synthetic diagnostic was sent through the configured real SMTP provider to the approved demo recipients. It used the intended To plus BCC shape and a deterministic Message-ID. The authenticated IMAP adapter found the provider's Sent copy, and a separate bounded inbox scan completed safely. Sanitized evidence is stored under `docs/evidence/`.
 
-This diagnostic proves the configured SMTP and IMAP credentials could reach the provider, the envelope shape was accepted, and deterministic Sent-copy reconciliation worked for that message. It does not prove an authenticated performer reply, calendar-backed completed show, invoice snapshot, invoice PDF, or live invoice delivery. Those remain part of the pending end-to-end acceptance run.
+This diagnostic proves the configured SMTP and IMAP credentials could reach the provider, the envelope shape was accepted, and deterministic Sent-copy reconciliation worked for that message. It does not prove an authenticated performer reply, calendar-backed completed show, invoice snapshot, invoice PDF, or live invoice delivery. The subsequent [live invoice acceptance](../evidence/live-invoice-acceptance.json) separately proved that reply-driven workflow and the client and operator receipts.
 
 ## Operator procedure
 

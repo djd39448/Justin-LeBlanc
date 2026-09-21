@@ -1,5 +1,9 @@
 # Resume handoff — 2026-09-21, approximately 15:20 UTC
 
+## Latest addition after handoff was requested
+
+Dave asked for one final change: add his two supplied photographs. Completed, committed and pushed as `c0aee21` on main. All previous local commits through `18570d3` were included in that normal fast-forward push; the earlier statement that they remain unpushed is superseded. Current Pages deployment is **75996868**, superseding e63652d3. Both original photos are on the homepage; the portrait also appears on About. Responsive WebP assets preserve full 3:2 composition. Live desktop (1920px) and mobile (390px) showed both photos loaded without horizontal overflow. Focused Astro build (20 files, zero diagnostics, 9 pages), lint and diff checks passed. See committed `docs/evidence/user-photos.json`. The original uncommitted handoff/evidence drafts were preserved for the resume task to reconcile. Do not redo the photo work. GitHub CI for `c0aee21` subsequently passed at 15:28:40 UTC: 87 tests, 17 test files, 20 Astro files with zero diagnostics, and 9 pages ([run](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879)).
+
 Dave requested a new session because the current session was getting bloated and expensive.
 Implementation is stopped intentionally. Continue existing work; do not rebuild or reprovision.
 

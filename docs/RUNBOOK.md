@@ -1,20 +1,20 @@
 # Demo Operations Runbook
 
-Last verified: 2026-09-21 at 15:07:09 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
+Last verified: 2026-09-21 at 15:22:32 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
 
 ## Current service state
 
 | Component       | State                                                                               | Operator note                                                                                                     |
 | --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `e63652d3`; Central-time desktop/mobile and gated voice-CTA QA passed                                  |
+| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `75996868`; supplied-photo desktop/mobile QA passed; earlier Central-time and voice-CTA checks retained                                  |
 | API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Booking, chat, voice, and billing capabilities all returned true                                                  |
 | Worker          | Running as the InteractiveOnly scheduled task `jlm-demo-worker`                     | Runs only while the Windows user is signed in                                                                     |
 | API task        | Running as the InteractiveOnly scheduled task `jlm-demo-api`                        | Runs only while the Windows user is signed in                                                                     |
 | Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                       |
-| Windows startup | S4U startup task registration returned `AccessDenied`                               | InteractiveOnly tasks are the temporary operating mode; uptime does not survive sign-out as an unattended service |
+| Windows startup | All three tasks running with interactive logon and `MSFT_TaskLogonTrigger`          | Corrected S4U/AtStartup script has not been applied; unattended sign-out/reboot recovery is unverified             |
 | Email           | Reply-driven invoice delivery verified                                               | Authenticated `YES`, immutable invoice, Sent copy, exact client Inbox receipt, and Dave BCC receipt passed         |
 | Google Calendar | Dedicated calendar created; live booking lifecycle passed                            | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects  |
-| Retell          | Houston 832 number plus published version-1 agent/LLM                                | Three signed live-call webhooks passed; no assistant tool ran, so version-2 prompt/call acceptance remains        |
+| Retell          | **(832) 501-3799** plus published version-2 agent/LLM                                | Two calls connected and signed webhooks passed; neither call invoked an assistant tool                            |
 | Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking    | This proves the checked backup was readable and internally consistent; retain the source backup privately         |
 
 Public inquiry, chat, scheduling, voice admission, and billing now reach enabled backend gates. The API, worker, and tunnel tasks are running, but uptime still depends on the Windows user remaining signed in.
@@ -63,14 +63,14 @@ The task installer is intended for a clean or deliberately repaired host and ref
 pwsh -File scripts/install-services.ps1 -ConfigPath $configPath -InteractiveOnly
 ```
 
-The named tunnel has been installed from the protected token file. Do not recreate it, move its token to a command line, or change any unrelated tunnel or DNS record. S4U startup registration is not currently usable on this host because task registration returned `AccessDenied`.
+The named tunnel has been installed from the protected token file. Do not recreate it, move its token to a command line, or change any unrelated tunnel or DNS record. A previous direct S4U registration attempt returned `AccessDenied`; the corrected upgrade path below has passed dry-run ownership checks but has not been applied.
 
 `scripts/upgrade-services.ps1` is the reversible path for converting the existing owned tasks to S4U startup. Its corrected read-only dry run validated all three owned running tasks and planned their S4U upgrades with `elevated: false`. Review that exact plan, then use an already elevated PowerShell session for the manual apply step. The script does not invoke UAC, writes private XML backups, verifies the new triggers, and rolls back on failure:
 
 ```powershell
-pwsh -File scripts/upgrade-services.ps1 -ConfigPath $configPath
+& 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env'
 # After the dry run is reviewed, in an already elevated session:
-pwsh -File scripts/upgrade-services.ps1 -ConfigPath $configPath -Apply
+& 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env' -Apply
 ```
 
 Check API health and recent private logs without exposing configuration:
@@ -107,9 +107,9 @@ Tentative performance holds are deliberately `transparent`: the canonical bookin
 
 ## Voice demo acceptance state
 
-The isolated Houston 832 number, agent version 1, LLM version 1, and Central Time KB are provider-reconciled. The public website reads the number only from gated same-origin health; the full number and caller allowlist stay outside Git. Desktop and 390px mobile QA showed the enabled CTA without overflow and no call was placed during website QA.
+The isolated Houston number **(832) 501-3799**, agent version 2, LLM version 2, and Central Time KB are provider-reconciled. The public website reads the number from gated same-origin health; the caller allowlist stays outside Git. Desktop and 390px mobile QA showed the enabled CTA without overflow and no call was placed during website QA.
 
-One separate live call reached three correctly signed webhooks but invoked no assistant tool. Do not claim that voice-side inquiry, estimate, availability, or scheduling tools are live-tested. A version-2 search-first prompt and one short tool-bearing acceptance call remain; preserve the signed pre-connect allowlist and existing unrelated Retell resources when completing it.
+Two live calls connected successfully. The v1 call lasted 59,473 ms, cost 11.86 cents, and ended by user hangup after event questions and an honest unknown-song response. The v2 call lasted 18,473 ms, cost 5.177 cents, and correctly answered that consultations use Houston Central Time / `America/Chicago`. Both produced signed call evidence; neither invoked an assistant tool. The full KB is embedded, so the model can answer facts without `search_knowledge` despite the search-first prompt. Do not claim that voice-side inquiry, estimate, availability, or scheduling tools are live-tested. No additional call is requested.
 
 Use `scripts/retell-refresh.ts` for prompt, KB, and tool-definition releases on the same protected Retell agent and LLM identities. Its default mode is a provider-read-only plan; `--execute` creates and publishes the next version only after exact identity and plan-fingerprint checks pass. Keep using the same release manifest if the outcome is uncertain so the script can reconcile the staged release. Do not use `scripts/retell-provision.ts` to create a replacement identity for a routine release; that command is for initial provisioning and reconciliation of the protected identity.
 

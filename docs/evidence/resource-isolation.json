@@ -64,5 +64,5 @@
     "agentDisplayNameMatchesCurrentPlan": false
   },
   "currentReleaseEvidence": "retell-central-release.json",
-  "resumeNote": "Prior completed isolation audit retained; no provider mutation or repeated audit during this resume."
+  "resumeNote": "Prior completed isolation audit retained. This evidence reconciliation made no provider mutations or repeated audit. The separate Justin-only photo deployment is recorded in user-photos.json."
 }

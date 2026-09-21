@@ -1,17 +1,17 @@
 {
   "checkedAt": "2026-09-21T12:38:59.714Z",
-  "verifiedCode": "8a280a05c18a0bf93a3d168dac9dc75ef0a0feeb",
+  "verifiedCode": "c0aee219eb7fecccecb73afd9fda38b155fd3850",
   "checks": {
     "staticPages": 9,
     "typecheck": "pass",
+    "astroFiles": 20,
     "astroDiagnostics": 0,
     "testsPassed": 87,
     "lint": "pass",
     "testFiles": 17,
-    "completedAt": "2026-09-21T15:13:37Z",
-    "source": "plans/2026-09-21-resume-handoff.md",
-    "repeatedDuringResume": false,
-    "powerShellSyntax": "pass; separate subsequent startup-script parser/static checks"
+    "completedAt": "2026-09-21T15:28:40Z",
+    "source": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879",
+    "execution": "Existing GitHub CI run inspected; local suite not repeated"
   },
   "restart": {
     "tasks": [
@@ -59,7 +59,6 @@
     "strategy": "fresh timestamped directory, consistent SQLite backup and documents copy",
     "checkedAt": "2026-09-21T12:25:26.8177959Z"
   },
-  "githubVerifiedRun": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538",
   "setupBatch": {
     "checkedAt": "2026-09-21T14:26:18.7148987Z",
     "tunnelRunning": true,
@@ -102,7 +101,32 @@
     "hostingEvidence": "hosting-verification.json",
     "startupUpgradeApplied": false,
     "voiceToolsLiveVerified": false,
-    "providerMutationsDuringResume": 0,
-    "localSuiteRepeatedDuringResume": false
+    "localSuiteRepeatedDuringResume": false,
+    "githubWorkflow": "https://github.com/djd39448/Justin-LeBlanc/actions/workflows/verify.yml",
+    "ciEvidencePolicy": "GitHub Actions records verification for each published SHA; historical run URLs above are not a current-head claim.",
+    "verifiedCiRun": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879",
+    "verifiedCiCodeRevision": "c0aee219eb7fecccecb73afd9fda38b155fd3850",
+    "frontendDeployment": "75996868",
+    "frontendDeploymentEvidence": "user-photos.json",
+    "providerMutationsByThisResumeTask": 0
+  },
+  "historicalGithubVerifiedRuns": [
+    "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538",
+    "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35612538350"
+  ],
+  "previousLocalVerification": {
+    "verifiedCode": "8a280a05c18a0bf93a3d168dac9dc75ef0a0feeb",
+    "checks": {
+      "staticPages": 9,
+      "typecheck": "pass",
+      "astroDiagnostics": 0,
+      "testsPassed": 87,
+      "lint": "pass",
+      "testFiles": 17,
+      "completedAt": "2026-09-21T15:13:37Z",
+      "source": "plans/2026-09-21-resume-handoff.md",
+      "repeatedDuringResume": false,
+      "powerShellSyntax": "pass; separate subsequent startup-script parser/static checks"
+    }
   }
 }
