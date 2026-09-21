@@ -71,6 +71,7 @@ export type ReceivedMail = z.infer<typeof ReceivedMailSchema>;
 export interface MailboxPage {
   uidValidity: string;
   highestUid: number;
+  inspected: number;
   messages: ReceivedMail[];
 }
 
@@ -141,6 +142,12 @@ export class ImapEmailAdapter {
 
   /** Reads bounded messages after a durable UID cursor from Inbox only. */
   async readInbox(afterUid: number, maximum = 100): Promise<MailboxPage> {
+    if (!Number.isInteger(afterUid) || afterUid < 0) {
+      throw new Error('IMAP cursor must be a nonnegative integer UID.');
+    }
+    if (!Number.isInteger(maximum) || maximum < 1 || maximum > 500) {
+      throw new Error('IMAP scan maximum must be an integer from 1 through 500.');
+    }
     const client = this.createClient();
     await client.connect();
     try {
@@ -148,36 +155,45 @@ export class ImapEmailAdapter {
       const uidValidity = String(mailbox.uidValidity);
       const messages: ReceivedMail[] = [];
       let highestUid = afterUid;
+      let inspected = 0;
       const range = `${Math.max(1, afterUid + 1)}:*`;
       for await (const fetched of client.fetch(range, { uid: true, source: true }, { uid: true })) {
-        if (fetched.uid <= afterUid || fetched.source === undefined) continue;
+        if (fetched.uid <= afterUid) continue;
         highestUid = Math.max(highestUid, fetched.uid);
-        const parsed = await simpleParser(fetched.source);
-        const from = parsed.from?.value[0]?.address;
-        const messageId = parsed.messageId;
-        const inReplyTo = Array.isArray(parsed.inReplyTo) ? parsed.inReplyTo[0] : parsed.inReplyTo;
-        if (from === undefined || messageId === undefined || inReplyTo === undefined) continue;
-        const received = ReceivedMailSchema.safeParse({
-          mailbox: 'INBOX',
-          uidValidity,
-          uid: fetched.uid,
-          messageId,
-          inReplyTo,
-          from,
-          subject: parsed.subject ?? '',
-          text: parsed.text ?? '',
-          authenticationResults: headerText(parsed.headers.get('authentication-results')),
-          autoSubmitted: headerText(parsed.headers.get('auto-submitted')),
-          precedence: headerText(parsed.headers.get('precedence')),
-          returnPath: headerText(parsed.headers.get('return-path')),
-          receivedAt: (parsed.date ?? new Date()).toISOString(),
-        });
-        if (received.success) messages.push(received.data);
-        if (messages.length >= maximum) break;
+        inspected += 1;
+        if (fetched.source !== undefined) {
+          const parsed = await simpleParser(fetched.source);
+          const from = parsed.from?.value.length === 1 ? parsed.from.value[0]?.address : undefined;
+          const messageId = parsed.messageId;
+          const inReplyTo = Array.isArray(parsed.inReplyTo)
+            ? parsed.inReplyTo.length === 1
+              ? parsed.inReplyTo[0]
+              : undefined
+            : parsed.inReplyTo;
+          if (from !== undefined && messageId !== undefined && inReplyTo !== undefined) {
+            const received = ReceivedMailSchema.safeParse({
+              mailbox: 'INBOX',
+              uidValidity,
+              uid: fetched.uid,
+              messageId,
+              inReplyTo,
+              from,
+              subject: parsed.subject ?? '',
+              text: parsed.text ?? '',
+              authenticationResults: firstRawHeader(parsed.headerLines, 'authentication-results'),
+              autoSubmitted: headerText(parsed.headers.get('auto-submitted')),
+              precedence: headerText(parsed.headers.get('precedence')),
+              returnPath: headerText(parsed.headers.get('return-path')),
+              receivedAt: (parsed.date ?? new Date()).toISOString(),
+            });
+            if (received.success) messages.push(received.data);
+          }
+        }
+        if (inspected >= maximum) break;
       }
-      return { uidValidity, highestUid, messages };
+      return { uidValidity, highestUid, inspected, messages };
     } finally {
-      await client.logout();
+      client.close();
     }
   }
 
@@ -193,7 +209,7 @@ export class ImapEmailAdapter {
       const matches = await client.search({ header: { 'message-id': messageId } }, { uid: true });
       return Array.isArray(matches) && matches.length > 0;
     } finally {
-      await client.logout();
+      client.close();
     }
   }
 
@@ -203,21 +219,35 @@ export class ImapEmailAdapter {
       port: this.config.IMAP_PORT,
       secure: true,
       auth: { user: this.config.SMTP_USER, pass: this.config.SMTP_PASS },
+      connectionTimeout: 15_000,
+      greetingTimeout: 15_000,
+      socketTimeout: 30_000,
       logger: false,
     });
   }
 }
 
 /** Requires configured sender identity plus provider authentication evidence. */
-export function isAuthenticatedOperatorMail(message: ReceivedMail, operatorEmail: string): boolean {
+export function isAuthenticatedOperatorMail(
+  message: ReceivedMail,
+  operatorEmail: string,
+  trustedAuthservId = 'mx.google.com',
+): boolean {
   if (message.mailbox.toUpperCase() !== 'INBOX') return false;
   if (message.from !== operatorEmail.trim().toLowerCase()) return false;
   if (message.autoSubmitted.length > 0 && message.autoSubmitted.toLowerCase() !== 'no')
     return false;
   if (/^(bulk|junk|list)$/i.test(message.precedence)) return false;
   if (message.returnPath.trim() === '<>') return false;
-  const authentication = message.authenticationResults.toLowerCase();
-  return /\b(dkim|spf|dmarc)=pass\b/.test(authentication);
+  const authentication = message.authenticationResults.trim().toLowerCase();
+  if (!authentication.startsWith(`${trustedAuthservId.toLowerCase()};`)) return false;
+  const operatorDomain = operatorEmail.trim().toLowerCase().split('@')[1];
+  if (operatorDomain === undefined) return false;
+  const escapedDomain = operatorDomain.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return (
+    /\bdmarc=pass\b/.test(authentication) &&
+    new RegExp(`\\bheader\\.from=${escapedDomain}(?:\\s|;|$)`).test(authentication)
+  );
 }
 
 /** Removes common quoted history and signature blocks before command parsing. */
@@ -246,6 +276,16 @@ function headerText(value: unknown): string {
     return textValue === undefined ? String(value) : String(textValue);
   }
   return String(value);
+}
+
+function firstRawHeader(
+  lines: ReadonlyArray<{ key: string; line: string }>,
+  expectedKey: string,
+): string {
+  const header = lines.find((line) => line.key.toLowerCase() === expectedKey.toLowerCase());
+  if (header === undefined) return '';
+  const separator = header.line.indexOf(':');
+  return separator === -1 ? '' : header.line.slice(separator + 1).trim();
 }
 
 async function findSentMailbox(client: ImapFlow): Promise<string> {

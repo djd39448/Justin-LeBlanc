@@ -315,7 +315,8 @@ function reply(
     subject: overrides.subject ?? '[Justin Demo][show-show-1] Did you play?',
     text: overrides.text,
     authenticationResults:
-      overrides.authenticationResults ?? 'mx.example; spf=pass; dkim=pass; dmarc=pass',
+      overrides.authenticationResults ??
+      'mx.google.com; spf=pass; dkim=pass header.i=@example.test; dmarc=pass header.from=example.test',
     autoSubmitted: overrides.autoSubmitted ?? '',
     precedence: overrides.precedence ?? '',
     returnPath: overrides.returnPath ?? '<operator@example.test>',

@@ -9,8 +9,7 @@ import { randomUUID } from 'node:crypto';
 
 import { z } from 'zod';
 
-import { ImapEmailAdapter } from '../adapters/email.js';
-import { BillingService } from '../billing/service.js';
+import { type MailboxPage, type ReceivedMail } from '../adapters/email.js';
 import { Store } from '../store.js';
 
 const CursorSchema = z.object({
@@ -30,11 +29,19 @@ export interface ImapJobResult {
   processed: number;
 }
 
+export interface ReplyMailbox {
+  readInbox(afterUid: number, maximum?: number): Promise<MailboxPage>;
+}
+
+export interface ReplyProcessor {
+  processReply(message: ReceivedMail): Promise<unknown>;
+}
+
 /** Polls, processes in ascending UID order, then checkpoints the highest observed UID. */
 export async function runImapReplyJob(
   store: Store,
-  mailbox: ImapEmailAdapter,
-  service: BillingService,
+  mailbox: ReplyMailbox,
+  service: ReplyProcessor,
   input: { workerId?: string; maximum?: number } = {},
 ): Promise<ImapJobResult> {
   const owner = input.workerId ?? `imap-${randomUUID()}`;
@@ -78,7 +85,7 @@ export async function runImapReplyJob(
       uidValidity: page.uidValidity,
       previousUid,
       lastUid: page.highestUid,
-      fetched: page.messages.length,
+      fetched: page.inspected,
       processed,
     };
   } finally {

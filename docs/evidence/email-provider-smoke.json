@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-21T12:06:26.463Z",
+  "diagnostic": "synthetic SMTP/IMAP connectivity; no invoice or payment request",
+  "smtp": {
+    "sentNow": true,
+    "existedBefore": false,
+    "accepted": true,
+    "recipients": {
+      "to": 1,
+      "cc": 0,
+      "bcc": 1,
+      "allAllowlisted": true
+    },
+    "messageIdSha256": "bfe148f8fec1bfe94e4bd8282de10a51f9e6a2136479b775b27a491c59fc8db8"
+  },
+  "imap": {
+    "inboxConnected": true,
+    "boundedMaximum": 5,
+    "inspected": 5,
+    "correlatedRepliesParsed": 0,
+    "uidValidityObserved": true,
+    "sentCopyReconciled": true
+  },
+  "secretsOrAddressesRecorded": false
+}

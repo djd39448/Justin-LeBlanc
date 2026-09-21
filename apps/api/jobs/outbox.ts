@@ -214,7 +214,7 @@ export class OutboxDispatcher {
         `${effect.kind} blocked at the provider boundary; enable BOOKING_WRITES_ENABLED for an authorized run.`,
       );
     }
-    if (effect.kind === 'calendar.upsert') {
+    if (effect.kind.startsWith('calendar.')) {
       const payload = z
         .object({ reason: z.string().optional() })
         .passthrough()

@@ -43,6 +43,34 @@ describe('outbox dispatcher', () => {
     expect(store.effects('pending')).toHaveLength(1);
   });
 
+  it('keeps every booking calendar effect pending while booking writes are disabled', async () => {
+    const store = makeStore();
+    store.enqueue('calendar:cancel:show-1', 'calendar.cancel', 'show-1', {
+      version: 1,
+      showId: 'show-1',
+      role: 'performance',
+      reason: 'hold_expired',
+    });
+    let sends = 0;
+    const calendar: CalendarEffectAdapter = {
+      send: async () => {
+        sends += 1;
+        return { providerId: 'calendar-test' };
+      },
+      reconcile: async () => ({ status: 'not_found', providerId: null }),
+    };
+    const dispatcher = createDispatcher(
+      store,
+      config(false),
+      { send: async () => ({ providerMessageId: '<unused@example.test>' }) },
+      undefined,
+      calendar,
+    );
+    expect((await dispatcher.dispatchPending()).skipped).toBe(1);
+    expect(sends).toBe(0);
+    expect(store.effects('pending')).toHaveLength(1);
+  });
+
   it('reconciles an uncertain SMTP result by Message-ID without a second send', async () => {
     const store = makeStore();
     enqueueBookingMail(store);
@@ -123,11 +151,11 @@ function createDispatcher(
   appConfig: Config,
   smtp: OutboxMailSender,
   imap: SentMailReconciler = { sentContains: async () => false },
-): OutboxDispatcher {
-  const calendar: CalendarEffectAdapter = {
+  calendar: CalendarEffectAdapter = {
     send: async () => ({ providerId: 'calendar-test' }),
     reconcile: async () => ({ status: 'not_found', providerId: null }),
-  };
+  },
+): OutboxDispatcher {
   const billing: InvoiceDeliveryTracker = { markInvoiceDelivery: () => undefined };
   const briefs: BriefPreparer = { prepare: async () => ({ pdfPath: 'synthetic.pdf' }) };
   return new OutboxDispatcher(store, smtp, imap, calendar, billing, briefs, appConfig);

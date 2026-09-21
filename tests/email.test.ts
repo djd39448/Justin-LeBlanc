@@ -19,7 +19,8 @@ describe('email boundaries', () => {
       from: 'operator@example.test',
       subject: 'YES',
       text: 'YES',
-      authenticationResults: 'mx; spf=pass; dkim=pass',
+      authenticationResults:
+        'mx.google.com; spf=pass; dkim=pass header.i=@example.test; dmarc=pass header.from=example.test',
       autoSubmitted: '',
       precedence: '',
       returnPath: '<operator@example.test>',
@@ -34,13 +35,35 @@ describe('email boundaries', () => {
     ).toBe(false);
     expect(
       isAuthenticatedOperatorMail(
-        { ...mail, authenticationResults: 'spf=fail' },
+        {
+          ...mail,
+          authenticationResults: 'mx.google.com; spf=pass; dmarc=fail header.from=example.test',
+        },
         'operator@example.test',
       ),
     ).toBe(false);
     expect(
       isAuthenticatedOperatorMail(
         { ...mail, autoSubmitted: 'auto-replied' },
+        'operator@example.test',
+      ),
+    ).toBe(false);
+    expect(
+      isAuthenticatedOperatorMail(
+        {
+          ...mail,
+          authenticationResults:
+            'attacker.example; dmarc=pass header.from=example.test; mx.google.com; dmarc=pass header.from=example.test',
+        },
+        'operator@example.test',
+      ),
+    ).toBe(false);
+    expect(
+      isAuthenticatedOperatorMail(
+        {
+          ...mail,
+          authenticationResults: 'mx.google.com; dmarc=pass header.from=attacker.example',
+        },
         'operator@example.test',
       ),
     ).toBe(false);
