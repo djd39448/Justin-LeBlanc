@@ -9,6 +9,7 @@ import { randomUUID } from 'node:crypto';
 
 import { z } from 'zod';
 
+import { CalendarCancelEffectSchema, CalendarUpsertEffectSchema } from '../adapters/calendar.js';
 import { MailEffectSchema, UncertainEmailSendError } from '../adapters/email.js';
 import { EventBriefPreparationSchema } from '../billing/brief.js';
 import { type Config } from '../config.js';
@@ -148,6 +149,48 @@ export class OutboxDispatcher {
     });
   }
 
+  /** Returns one definitively failed pre-provider effect to pending after revalidating it. */
+  async retryFailed(effectId: string): Promise<'pending'> {
+    return this.withBatchLease(async (renew) => {
+      renew();
+      const effect = this.store.effects().find((candidate) => candidate.id === effectId);
+      if (effect === undefined) {
+        throw new Error(`Outbox effect ${effectId} was not found; inspect the outbox status.`);
+      }
+      if (effect.status !== 'failed') {
+        throw new Error(
+          `Outbox effect ${effectId} is ${effect.status}; only definitively failed effects can be retried.`,
+        );
+      }
+      if (effect.provider_id !== null) {
+        throw new Error(
+          `Failed effect ${effectId} has a provider identity; reconcile it instead of retrying.`,
+        );
+      }
+
+      this.assertKillSwitch(effect);
+      this.validatePayload(effect);
+      this.store.transaction(() => {
+        const changed = this.store.db
+          .prepare(
+            "UPDATE outbox SET status='pending',provider_id=NULL,error=NULL,updated_at=? WHERE id=? AND status='failed' AND provider_id IS NULL",
+          )
+          .run(new Date().toISOString(), effect.id).changes;
+        if (changed !== 1) {
+          throw new Error(
+            `Failed effect ${effectId} changed during retry; refresh the outbox status.`,
+          );
+        }
+        this.store.audit('operator', 'outbox.retry_failed', effect.id, {
+          kind: effect.kind,
+          priorStatus: 'failed',
+          attempts: effect.attempts,
+        });
+      });
+      return 'pending' as const;
+    });
+  }
+
   private async send(effect: Effect): Promise<string> {
     const payload = JSON.parse(effect.payload) as unknown;
     if (effect.kind === 'document.event_brief') {
@@ -167,6 +210,29 @@ export class OutboxDispatcher {
     }
     throw new Error(
       `No outbox adapter handles ${effect.kind}; register a handler before dispatch.`,
+    );
+  }
+
+  private validatePayload(effect: Effect): void {
+    const payload = JSON.parse(effect.payload) as unknown;
+    if (effect.kind === 'document.event_brief') {
+      EventBriefPreparationSchema.parse(payload);
+      return;
+    }
+    if (effect.kind.startsWith('email.')) {
+      MailEffectSchema.parse(payload);
+      return;
+    }
+    if (effect.kind === 'calendar.upsert') {
+      CalendarUpsertEffectSchema.parse(payload);
+      return;
+    }
+    if (effect.kind === 'calendar.cancel') {
+      CalendarCancelEffectSchema.parse(payload);
+      return;
+    }
+    throw new Error(
+      `No outbox adapter handles ${effect.kind}; register a handler before retrying it.`,
     );
   }
 

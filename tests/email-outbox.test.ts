@@ -105,6 +105,46 @@ describe('outbox dispatcher', () => {
     expect(store.effects('sending')).toHaveLength(1);
     store.releaseLease('provider:outbox', 'active-worker');
   });
+
+  it('revalidates and audits a manual retry of a definitively failed effect', async () => {
+    const store = makeStore();
+    enqueueBookingMail(store);
+    store.effectResult(
+      'mail:booking:show-1',
+      'failed',
+      null,
+      'Synthetic pre-provider validation failure',
+    );
+    const dispatcher = createDispatcher(store, config(true), {
+      send: async () => ({ providerMessageId: '<booking@example.test>' }),
+    });
+
+    await expect(dispatcher.retryFailed('mail:booking:show-1')).resolves.toBe('pending');
+    expect(store.effects('pending')).toHaveLength(1);
+    expect(store.effects('pending')[0]?.error).toBeNull();
+    expect(
+      store.db
+        .prepare(
+          "SELECT COUNT(*) AS count FROM audit_events WHERE json_extract(data,'$.action')='outbox.retry_failed' AND json_extract(data,'$.entityId')=?",
+        )
+        .get('mail:booking:show-1'),
+    ).toEqual({ count: 1 });
+  });
+
+  it('rejects manual retry of an uncertain effect without changing its state', async () => {
+    const store = makeStore();
+    enqueueBookingMail(store);
+    store.effectResult('mail:booking:show-1', 'uncertain', null, 'Synthetic provider timeout');
+    const dispatcher = createDispatcher(store, config(true), {
+      send: async () => ({ providerMessageId: '<booking@example.test>' }),
+    });
+
+    await expect(dispatcher.retryFailed('mail:booking:show-1')).rejects.toThrow(
+      'is uncertain; only definitively failed effects can be retried',
+    );
+    expect(store.effects('uncertain')).toHaveLength(1);
+    expect(store.effects('pending')).toHaveLength(0);
+  });
 });
 
 function makeStore(): Store {
