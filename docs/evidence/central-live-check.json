@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-09-21T15:07:09.581Z",
+  "healthStatus": 200,
+  "health": {
+    "ok": true,
+    "demo": true,
+    "kbVersion": "2026-09-21.2",
+    "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+    "capabilities": {
+      "booking": true,
+      "chat": true,
+      "voice": true,
+      "billing": true
+    }
+  },
+  "chatStatus": 200,
+  "chatReply": "By default, all demo bookings, consultations, and event times use the Houston Central Time zone (America/Chicago), including adjustments for daylight-saving time.\n\nDemo consultation slots are 20 minutes long and are available Monday through Friday from 10:00 to 16:00 Central Time. These require 24 hours notice and actual free/busy checks for scheduling.",
+  "kbMatch": true,
+  "centralTimeAnswer": true,
+  "consultationHoursAnswer": true
+}

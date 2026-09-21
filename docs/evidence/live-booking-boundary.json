@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-09-21T15:13:07.289Z",
+  "syntheticInquiryCreated": true,
+  "nonAllowlistedBookingStatus": 400,
+  "nonAllowlistedBookingRejected": true,
+  "invalidInquiryTokenStatus": 400,
+  "invalidInquiryTokenRejected": true,
+  "bookingEffectsCreated": false
+}

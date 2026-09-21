@@ -1,0 +1,91 @@
+{
+  "reconciledAt": "2026-09-21T15:23:38.787Z",
+  "source": "Existing captured provider calls and read-only local ledger; no new call or provider request",
+  "callCount": 2,
+  "totalDurationMs": 77946,
+  "totalCostCents": 17.037,
+  "calls": [
+    {
+      "callRef": "70f528e5b192f604",
+      "agentVersion": 1,
+      "status": "ended",
+      "direction": "inbound",
+      "startedAt": "2026-09-21T15:03:09.553Z",
+      "endedAt": "2026-09-21T15:04:09.026Z",
+      "durationMs": 59473,
+      "disconnectionReason": "user_hangup",
+      "successful": false,
+      "costCents": 11.86,
+      "checkedAt": "2026-09-21T15:04:37.272Z",
+      "callerAdmissionAllowed": true,
+      "verifiedWebhookEvents": [
+        "call_started",
+        "call_ended",
+        "call_analyzed"
+      ],
+      "kbVersion": "2026-09-21.2",
+      "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+      "toolCalls": [],
+      "backendToolEventCount": 0,
+      "inquiryAssociated": false,
+      "observed": [
+        "AI demo identity disclosed",
+        "Private-event inquiry answered",
+        "Outdoor three-hour event qualified",
+        "Date, venue and contact details requested",
+        "Unknown song policy acknowledged; no guarantee or captured-follow-up claim"
+      ],
+      "limitations": [
+        "Caller ended before completing intake; no inquiry or booking created",
+        "Central time was present in published prompt but not asked about during this call",
+        "No backend assistant tool invocation occurred during this call"
+      ]
+    },
+    {
+      "callRef": "2a48510e5aa87fe0",
+      "agentVersion": 2,
+      "status": "ended",
+      "direction": "inbound",
+      "startedAt": "2026-09-21T15:14:08.803Z",
+      "endedAt": "2026-09-21T15:14:27.276Z",
+      "durationMs": 18473,
+      "disconnectionReason": "user_hangup",
+      "successful": true,
+      "costCents": 5.177,
+      "checkedAt": "2026-09-21T15:15:09.350Z",
+      "callerAdmissionAllowed": true,
+      "verifiedWebhookEvents": [
+        "call_started",
+        "call_ended",
+        "call_analyzed"
+      ],
+      "kbVersion": "2026-09-21.2",
+      "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+      "toolCalls": [],
+      "backendToolEventCount": 0,
+      "inquiryAssociated": false,
+      "observed": [
+        "AI demo identity disclosed",
+        "Consultation time-zone answer correctly identified Houston Central Time and America/Chicago",
+        "No booking requested"
+      ],
+      "limitations": [
+        "No assistant tool invocation occurred; answer alone does not verify voice tools or completed voice intake"
+      ]
+    }
+  ],
+  "liveVoiceConnectionPassed": true,
+  "liveVoiceToolAcceptancePassed": false,
+  "liveVoiceIntakeAcceptancePassed": false,
+  "limitations": [
+    "Neither call invoked an assistant tool",
+    "Provider success on the second call does not establish a backend tool or voice-intake pass"
+  ],
+  "omitted": [
+    "caller_phone_numbers",
+    "transcripts",
+    "recordings",
+    "provider_call_ids",
+    "private_contact_details"
+  ]
+}

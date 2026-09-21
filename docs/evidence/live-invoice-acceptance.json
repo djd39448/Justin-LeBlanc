@@ -1,0 +1,25 @@
+{
+  "verifiedAt": "2026-09-21T15:00:16.246Z",
+  "showId": "jlm-demo-rehearsal-v1",
+  "invoiceEffectStatus": "accepted",
+  "sendAttempts": 1,
+  "toMatchesTestClient": true,
+  "bccMatchesPerformer": true,
+  "pdfAttached": true,
+  "clientInboxExactMessageIdCount": 1,
+  "operatorInboxReceipt": "verified-see-operator-mail-receipts.json",
+  "actualReplyObserved": true,
+  "invoiceStatus": "sent",
+  "sentCopyVerified": true,
+  "replay": {
+    "verifiedAt": "2026-09-21T15:06:00.425Z",
+    "morningQueued": 0,
+    "mailboxFetched": 0,
+    "invoiceStatus": "sent",
+    "sendAttempts": 1,
+    "invoiceCount": 1
+  },
+  "totalCents": 70000,
+  "currency": "USD",
+  "amountReconciledAt": "2026-09-21T15:24:42.883Z"
+}

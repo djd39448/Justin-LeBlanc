@@ -1,20 +1,16 @@
 {
-  "checkedAt": "2026-09-21T14:22:32.0582480Z",
+  "checkedAt": "2026-09-21T15:03:39.729Z",
   "oauthIdentityMatched": true,
   "requiredScopesGranted": [
     "calendar.app.created",
     "calendar.freebusy"
   ],
   "refreshCredentialStoredPrivately": true,
-  "calendarCreated": false,
-  "lastCalendarCreate": {
-    "retryClassification": "definitive_failure",
-    "httpStatus": 403,
-    "reasons": [
-      "PERMISSION_DENIED",
-      "SERVICE_DISABLED"
-    ]
-  },
-  "pending": "Owner approval to enable Calendar API and accept the API terms in the existing Alex project",
-  "resume": "scripts/google-authorize.ts --env <private-runtime.env> --provision-only"
+  "calendarCreated": true,
+  "calendarSummary": "jlm-demo-performances",
+  "calendarTimezone": "America/Chicago",
+  "calendarIdStoredPrivately": true,
+  "provisionedAt": "2026-09-21T14:45:58.338Z",
+  "liveReadWriteAccepted": true,
+  "pending": null
 }
