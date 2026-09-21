@@ -2,19 +2,21 @@
 
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
-The website and application are implemented. The complete live demonstration is **not complete**: public health, inquiry intake/resume, and chat now pass through the isolated Cloudflare tunnel, while Calendar booking, voice calling, and reply-driven billing remain disabled or pending. The Google grant identity and both limited Calendar scopes are verified, but calendar creation returns HTTP 403 `SERVICE_DISABLED` until the owner enables the Calendar API and accepts any required terms in the Alex project. Retell number provisioning returned `403 No valid KYC`.
+The website and application are implemented. Public health, inquiry intake/resume, chat, the dedicated Google Calendar booking lifecycle, and reply-driven invoice delivery have passed through the isolated demo stack. The isolated voice agent and LLM are published at version 1 with the Central Time KB, and a separate Houston 832 demo number is configured. A live call reached three verified signed webhooks but invoked no assistant tools; a revised search-first prompt and one short tool-bearing call remain pending. Unattended Windows startup also remains incomplete.
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Billing reads completed performances by Houston end date, requires an authenticated correlated reply, snapshots the approved invoice, and delivers through a durable outbox. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
 ## Verified on 2026-09-21
 
-- `npm run verify`: lint and type checking passed, **72 tests in 16 files**, nine static pages built.
-- Exact HTTPS hostname, noindex/security headers, five responsive viewport captures, keyboard navigation, semantic initial HTML.
-- Public API health, unauthenticated admin rejection, synthetic inquiry intake/resume, and two grounded OpenAI chat turns passed through `jlm-demo-api.50by50.dev`; no Calendar, email, or voice business write occurred.
-- Four real OpenAI qualification cases passed using `gpt-4.1-mini` (6,911 tokens) against the prior KB. The checked-in Central Time policy is KB `2026-09-21.2`; restart chat and republish voice before claiming both live assistants use it.
-- One real synthetic SMTP diagnostic, bounded IMAP read, and Sent-copy reconciliation. This is **not** proof of actual reply-driven invoicing.
+- `npm run verify`: lint and type checking passed, **81 tests in 17 files** passed, Astro checked 19 files with zero diagnostics, and nine static pages built at 15:03:11 UTC.
+- Exact HTTPS hostname on deployment `e63652d3`, noindex/security headers, responsive desktop/mobile layout, keyboard navigation, semantic initial HTML, Central-time planner labels, and the gated Houston voice CTA.
+- Local, direct-tunnel, and website-proxy health report booking, chat, voice, and billing capabilities on. The API, worker, and tunnel tasks are running.
+- Four real OpenAI qualification cases passed using `gpt-4.1-mini` (6,911 tokens). Chat and the published voice configuration use Central Time KB `2026-09-21.2`, SHA-256 `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
+- A live synthetic Calendar flow passed consultation and tentative-hold creation, invitation and private brief delivery, operator confirmation, reschedule, and cancellation. Tentative holds stay transparent until confirmation so an attendee copy does not collide with the same canonical hold.
+- The actual reply-driven billing flow accepted an authenticated `YES`, issued one immutable $700 demo invoice, reconciled its Sent copy, and verified exactly one matching client Inbox receipt plus Dave's BCC receipt.
+- The Houston demo number and published voice configuration are provider-reconciled. One live call reached three signed webhooks without invoking backend tools; do not describe the voice booking tools as live-tested until the revised prompt and short acceptance call pass.
 - Visually inspected synthetic PDF brief and invoices; authenticated local brief PDF served successfully.
-- Service restart and seeded SQLite backup/restore passed. Existing audited Retell, Pages, and DNS resources remained unchanged.
+- Service restart and seeded SQLite backup/restore passed. The owned tasks remain InteractiveOnly; an elevated operator must apply and verify the reversible startup upgrade for unattended operation.
 
 See the [A01–A26 evidence matrix](docs/evidence/acceptance-results.md) for offline, provider, and pending live results.
 

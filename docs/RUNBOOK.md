@@ -1,23 +1,23 @@
 # Demo Operations Runbook
 
-Last verified: 2026-09-21 at 14:16:25 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
+Last verified: 2026-09-21 at 15:07:09 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
 
 ## Current service state
 
 | Component       | State                                                                               | Operator note                                                                                                     |
 | --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Cloudflare Pages deployment `ae47bbfd`; noindex and security headers verified                                     |
-| API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Public inquiry intake/resume and two grounded chat turns passed; booking, voice, and billing capabilities are off |
+| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `e63652d3`; Central-time desktop/mobile and gated voice-CTA QA passed                                  |
+| API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Booking, chat, voice, and billing capabilities all returned true                                                  |
 | Worker          | Running as the InteractiveOnly scheduled task `jlm-demo-worker`                     | Runs only while the Windows user is signed in                                                                     |
 | API task        | Running as the InteractiveOnly scheduled task `jlm-demo-api`                        | Runs only while the Windows user is signed in                                                                     |
 | Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                       |
 | Windows startup | S4U startup task registration returned `AccessDenied`                               | InteractiveOnly tasks are the temporary operating mode; uptime does not survive sign-out as an unattended service |
-| Email           | Real SMTP and IMAP diagnostic verified                                              | The diagnostic was synthetic and did not send an invoice or prove reply-driven billing acceptance                 |
-| Google Calendar | Grant identity and both limited scopes verified; calendar create returned HTTP 403  | `SERVICE_DISABLED`: owner must enable Calendar API/terms, then run provision-only recovery                        |
-| Retell          | Isolated agent and LLM created; no managed number provisioned                       | Number API returned HTTP 403 `No valid KYC`; the owner must complete Retell KYC before any number purchase        |
+| Email           | Reply-driven invoice delivery verified                                               | Authenticated `YES`, immutable invoice, Sent copy, exact client Inbox receipt, and Dave BCC receipt passed         |
+| Google Calendar | Dedicated calendar created; live booking lifecycle passed                            | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects  |
+| Retell          | Houston 832 number plus published version-1 agent/LLM                                | Three signed live-call webhooks passed; no assistant tool ran, so version-2 prompt/call acceptance remains        |
 | Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking    | This proves the checked backup was readable and internally consistent; retain the source backup privately         |
 
-Public inquiry and chat now reach the backend. Scheduling, voice, and billing remain disabled. API and worker uptime still depends on the Windows user remaining signed in.
+Public inquiry, chat, scheduling, voice admission, and billing now reach enabled backend gates. The API, worker, and tunnel tasks are running, but uptime still depends on the Windows user remaining signed in.
 
 ## Protected configuration
 
@@ -65,6 +65,14 @@ pwsh -File scripts/install-services.ps1 -ConfigPath $configPath -InteractiveOnly
 
 The named tunnel has been installed from the protected token file. Do not recreate it, move its token to a command line, or change any unrelated tunnel or DNS record. S4U startup registration is not currently usable on this host because task registration returned `AccessDenied`.
 
+`scripts/upgrade-services.ps1` is the reversible path for converting the existing owned tasks to S4U startup. Its corrected read-only dry run validated all three owned running tasks and planned their S4U upgrades with `elevated: false`. Review that exact plan, then use an already elevated PowerShell session for the manual apply step. The script does not invoke UAC, writes private XML backups, verifies the new triggers, and rolls back on failure:
+
+```powershell
+pwsh -File scripts/upgrade-services.ps1 -ConfigPath $configPath
+# After the dry run is reviewed, in an already elevated session:
+pwsh -File scripts/upgrade-services.ps1 -ConfigPath $configPath -Apply
+```
+
 Check API health and recent private logs without exposing configuration:
 
 ```powershell
@@ -76,7 +84,7 @@ Get-Content (Join-Path $privateRoot 'logs\worker.log') -Tail 100
 
 The API binds to loopback. Check both URLs: local health alone does not prove the public tunnel, and public health does not prove Google, Retell, or invoice workflows.
 
-Local, direct-tunnel, and exact website-proxy health returned HTTP 200 with demo mode enabled, the same KB hash, and capabilities `chat: true`, `booking: false`, `voice: false`, and `billing: false`. Public smoke also proved HTTP 401 for unauthenticated admin, synthetic inquiry intake/resume, and two grounded chat turns without Calendar, email, or voice business writes. A seeded authenticated event-brief PDF preview returned HTTP 200, `application/pdf`, `Cache-Control: no-store`, and 66,125 bytes.
+Local, direct-tunnel, and exact website-proxy health returned HTTP 200 with demo mode enabled, KB `2026-09-21.2` / `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`, and capabilities `chat: true`, `booking: true`, `voice: true`, and `billing: true`. A real Central-time chat answer correctly identified `America/Chicago`, daylight-saving behavior, and the 10:00–16:00 consultation window. Public smoke also proved HTTP 401 for unauthenticated admin and synthetic inquiry intake/resume. A seeded authenticated event-brief PDF preview returned HTTP 200, `application/pdf`, `Cache-Control: no-store`, and 66,125 bytes.
 
 ## Stop or restart installed services
 
@@ -91,15 +99,37 @@ The helper stops only `jlm-demo-api`, `jlm-demo-worker`, and `jlm-demo-tunnel` t
 
 The final operational check ran the helper with `-Restart`, confirmed both owned API and worker tasks returned to `Running`, and confirmed local health HTTP 200 with the same knowledge-base identity and capability gates.
 
-## Complete Google Calendar authorization
+## Dedicated Google Calendar behavior
 
-The isolated refresh-grant identity matches the configured account and both required limited scopes passed validation. Calendar creation reached Google and returned definitive HTTP 403 `SERVICE_DISABLED`. The owner must enable the Google Calendar API in the Alex project and accept any required terms. Do not repeat OAuth; after enablement use the saved grant with provision-only recovery:
+The isolated refresh-grant identity, both limited scopes, and the dedicated calendar are verified. Live acceptance created a consultation plus tentative performance hold, delivered attendee invitations and the operator PDF brief, confirmed the same provider event against an agreed quote, rescheduled it without changing provider identity, and cancelled it. No outbox effect remained unresolved.
+
+Tentative performance holds are deliberately `transparent`: the canonical booking transaction blocks conflicts, while the attendee's copy does not make the same hold collide with itself through free/busy. Operator confirmation updates the same provider event to `confirmed` and `opaque`. A later reschedule that overlaps the confirmed attendee copy can still reject safely because Google free/busy does not expose enough event identity to subtract that interval without risking removal of an unrelated conflict. Treat that rejection as fail-closed; choose a non-overlapping time or investigate the exact provider event as an authenticated operator. Never substitute existing TrustCore calendars or weaken the conflict check.
+
+## Voice demo acceptance state
+
+The isolated Houston 832 number, agent version 1, LLM version 1, and Central Time KB are provider-reconciled. The public website reads the number only from gated same-origin health; the full number and caller allowlist stay outside Git. Desktop and 390px mobile QA showed the enabled CTA without overflow and no call was placed during website QA.
+
+One separate live call reached three correctly signed webhooks but invoked no assistant tool. Do not claim that voice-side inquiry, estimate, availability, or scheduling tools are live-tested. A version-2 search-first prompt and one short tool-bearing acceptance call remain; preserve the signed pre-connect allowlist and existing unrelated Retell resources when completing it.
+
+Use `scripts/retell-refresh.ts` for prompt, KB, and tool-definition releases on the same protected Retell agent and LLM identities. Its default mode is a provider-read-only plan; `--execute` creates and publishes the next version only after exact identity and plan-fingerprint checks pass. Keep using the same release manifest if the outcome is uncertain so the script can reconcile the staged release. Do not use `scripts/retell-provision.ts` to create a replacement identity for a routine release; that command is for initial provisioning and reconciliation of the protected identity.
 
 ```powershell
-npx tsx scripts/google-authorize.ts --env $configPath --provision-only
-```
+$retellProvisionManifest = Join-Path $privateRoot 'retell-provision.json'
+$retellReleaseManifest = Join-Path $privateRoot 'retell-release-<kb-version>.json'
 
-The helper records sanitized retry state in the private `google-calendar-provisioning.json` manifest beside the protected environment file. Inspect that definitive-failure manifest before retrying. Verify the dedicated calendar after recovery. Never substitute credentials or calendars from existing TrustCore resources, and keep booking writes disabled until live Calendar acceptance passes.
+# Read-only plan and identity check.
+node --import tsx scripts/retell-refresh.ts `
+  --env $configPath `
+  --provision-manifest $retellProvisionManifest `
+  --release-manifest $retellReleaseManifest
+
+# Run only after reviewing the dry-run plan.
+node --import tsx scripts/retell-refresh.ts `
+  --env $configPath `
+  --provision-manifest $retellProvisionManifest `
+  --release-manifest $retellReleaseManifest `
+  --execute
+```
 
 ## Operator CLI
 
@@ -186,7 +216,7 @@ The final dispatcher enforces `INVOICE_SEND_ENABLED` and the exact demo recipien
 
 The worker also invokes the authenticated `billing-followups` action every two minutes after its reply poll. Operators can use **Review unanswered checks** or a private action file containing `{"action":"billing-followups"}`. It requires `INVOICE_SEND_ENABLED`. Initial unanswered performance checks receive one queued reminder after 24 hours from definitive original SMTP acceptance or Sent reconciliation, then enter the operator review queue after 72 hours without a reply. Pending or uncertain original sends do not start the clock. Amendment approval threads remain visible for operator review and do not use this initial-check reminder policy.
 
-Reply polling requires the email gate and a configured IMAP account. It uses a durable mailbox UIDVALIDITY/UID cursor, a worker lock, bounded scans, and per-message processing before cursor advancement. It ignores sent echoes, automatic responses, and bounce-like traffic.
+Reply polling requires the email gate and a configured IMAP account. It snapshots the mailbox-open `UIDNEXT` high-water mark, then uses a bounded server-side IMAP `SEARCH` over later UIDs for the app's `In-Reply-To` Message-ID domain before fetching message bodies. Matching UIDs are processed in ascending bounded pages; arrivals above the opening high-water mark wait for the next poll. When a page has more matches, the cursor advances only to the last processed UID. When no matching messages remain, it advances to the stable high-water mark without downloading unrelated mailbox bodies. It retains the worker lock and UIDVALIDITY checks and ignores sent echoes, automatic responses, and bounce-like traffic.
 
 A billing reply is accepted only when the message passes origin and authentication checks and binds to a known outbound request through `In-Reply-To` plus the expected nonce. The subject alone never authorizes a state change. Run a manual poll with:
 
@@ -198,21 +228,11 @@ A billing reply is accepted only when the message passes origin and authenticati
 
 If UIDVALIDITY changes or a cursor looks inconsistent, stop the worker, preserve the database and sanitized logs, and investigate before advancing or resetting mailbox state. Do not widen the scan or replay messages by editing the cursor directly.
 
-## Pending live invoice acceptance
+## Live invoice acceptance
 
-The completed provider diagnostic proved authenticated SMTP submission, To plus BCC envelope handling, deterministic Message-ID Sent-copy reconciliation, and a bounded IMAP scan. It did not create or send an invoice.
+The isolated synthetic acceptance completed the real provider path. A correlated authenticated `YES` reply advanced the approved rehearsal show, created one immutable $700 demo invoice, dispatched it once, and reconciled the deterministic Message-ID against Sent. The exact client Inbox contained one matching message and Dave's Inbox contained the BCC copy; the PDF attachment was present in both checked delivery evidence. The invoice remained clearly labeled as a demo and not a payment request.
 
-Live invoice acceptance remains pending and must use an approved demo show and the existing gates:
-
-1. Complete Google consent and verify the dedicated calendar without modifying any existing TrustCore resource.
-2. Confirm the synthetic show and agreed quote in canonical state.
-3. Run the Houston morning job and dispatch the authorization request.
-4. Receive an authenticated performer `YES`, `NO`, or valid change request replying to that exact message.
-5. Poll replies and verify the stored state transition and immutable invoice snapshot.
-6. Dispatch once, then reconcile its deterministic Message-ID against Sent.
-7. Record sanitized evidence. Do not include addresses, tokens, message bodies with private data, or provider IDs.
-
-Until these steps are complete, describe email as provider-diagnostic verified and invoice delivery as pending.
+This proves the bounded synthetic workflow, not real customer billing or payment collection. Keep addresses, tokens, message bodies, private document contents, and provider IDs out of Git. For another authorized acceptance, use a new approved synthetic show and reconcile existing effects before dispatch; do not replay this invoice or replace its Message-ID.
 
 ## Back up, restore-check, and export
 
@@ -252,7 +272,7 @@ Provider credentials, Google consent, the tunnel token, DNS, Retell provisioning
 
 ## Restartable live acceptance runners
 
-These runners were lint/type checked and inspected without provider writes. Their live acceptance is pending. Keep their manifests beside the protected environment file. Stop the owned worker and its child process before live stages; `--worker-paused` is an operator assertion, not a process-control command. Keep the API and tunnel running. Resume the worker after reconciling the run.
+These runners completed the checked synthetic Calendar and billing acceptance. Keep their manifests beside the protected environment file. Stop the owned worker and its child process before any new live stage; `--worker-paused` is an operator assertion, not a process-control command. Keep the API and tunnel running. Resume the worker after reconciling the run.
 
 ```powershell
 # Briefly stop only demo services, including their owned child processes.
@@ -263,7 +283,7 @@ Start-ScheduledTask -TaskName 'jlm-demo-tunnel'
 # Start-ScheduledTask -TaskName 'jlm-demo-worker'
 ```
 
-First reconcile the already-seeded `rehearsal-v1` Calendar effect with `scripts/smoke-booking-billing.ts`. Its stages are `inspect`, `booking` (publish the existing synthetic past show), `morning`, `waiting-reply`, and `invoice-reconcile`. Live stages require `--apply --execute-providers`, the corresponding private feature gates, and working providers. The morning stage sends the real performer check once; wait for the owner's actual reply before polling. No synthetic reply substitutes for acceptance.
+`scripts/smoke-booking-billing.ts` completed the `rehearsal-v1` path through the actual owner reply and invoice reconciliation. Its stages remain available for read-only inspection and a separately authorized future synthetic record. Live stages require `--apply --execute-providers`, the corresponding private feature gates, and working providers. Never reuse the completed manifest to send the same effect again.
 
 ```powershell
 $billingManifest = Join-Path $privateRoot 'booking-billing-smoke.json'
@@ -271,7 +291,7 @@ node --no-warnings --import tsx scripts/smoke-booking-billing.ts `
   --env $configPath --manifest $billingManifest --stage inspect
 ```
 
-After the prior pending effect is cleared, use `scripts/smoke-live-booking.ts` for the future consultation/hold lifecycle. Its `hold` stage takes `--consultation-start`, `--performance-start`, and `--performance-end` as ISO instants and uses `--timezone America/Chicago`. Choose a real available future consultation respecting the configured 10:00–16:00 Central Time weekday hours and notice period. The stage sends both invitations, the client hold notice, and the operator PDF brief. Inspect receipt before `confirm --quote-cents <approved-demo-total>`; that stage records the explicitly simulated completed consultation and confirms the same hold. Optional `reschedule` and `cancel` stages exercise cleanup. See `--help` for their date options.
+`scripts/smoke-live-booking.ts` completed the future consultation/hold lifecycle: transparent tentative hold, both invitations, client notice, operator PDF brief, agreed-quote confirmation, non-overlapping reschedule, and cancellation. The stage inputs remain ISO instants with `--timezone America/Chicago`; any future authorized run must use a real available consultation within the 10:00–16:00 Central Time weekday window and notice period. See `--help` for date options and keep the confirmed-overlap limitation above in mind.
 
 ```powershell
 $bookingManifest = Join-Path $privateRoot 'live-booking-smoke.json'
@@ -279,4 +299,4 @@ node --no-warnings --import tsx scripts/smoke-live-booking.ts `
   --env $configPath --manifest $bookingManifest --stage inspect
 ```
 
-Every live booking stage requires `--apply --execute-providers --worker-paused` and `BOOKING_WRITES_ENABLED=true`. Both runners validate private recipient roles, reject unrelated pending/uncertain work, and preserve accepted effects on replay. Reconcile an uncertain send; do not replace the manifest, seed key, or database to bypass a blocked stage. Record actual invitation, brief, invoice/BCC receipt and replay results before marking the corresponding acceptance rows passed.
+Every live booking stage requires `--apply --execute-providers --worker-paused` and `BOOKING_WRITES_ENABLED=true`. Both runners validate private recipient roles, reject unrelated pending/uncertain work, and preserve accepted effects on replay. Reconcile an uncertain send; do not replace the manifest, seed key, or database to bypass a blocked stage. The current acceptance manifests are completed evidence, not permission to rerun provider writes.
