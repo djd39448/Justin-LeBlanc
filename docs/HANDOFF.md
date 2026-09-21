@@ -1,16 +1,16 @@
 # Demo handoff
 
-Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. The third v2 voice call persisted an inquiry through `upsert_inquiry`; two availability calls and one human-follow-up call failed HTTP 413, so full voice booking remains unverified. Recovery after an actual reboot/sign-out is also untested. S4U boot-trigger registration and task execution are verified.
+Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. A fourth actual v2 call proved inquiry creation, four availability tool results, human-follow-up persistence, and all lifecycle webhooks after the body/time repair. Full voice booking, native hangup, and recovery after an actual reboot/sign-out remain unverified. S4U boot-trigger registration and task execution are verified.
 
 ## Running system
 
 - The exact public hostname serves the latest site deployment and returns HTTP 200. Noindex, frame denial, CSP, and admin no-store protections remain enabled.
 - The local API, worker, and isolated tunnel are running. Booking, chat, voice, morning-scan, and invoice gates are enabled.
 - The corrected startup upgrade created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC the API, worker, and tunnel tasks were running as S4U/Limited with exactly one `MSFT_TaskBootTrigger` each. All three health paths passed at 15:39:43 UTC, worker startup jobs succeeded, and the tunnel restored four connections.
-- The public website proxy and local API health checks use KB release `2026-09-21.2` with hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
-- Published voice LLM release v2 uses that same KB and the existing isolated identity. Release verification normalizes only four known provider schema readback omissions; server-side schemas remain strict.
+- The public website proxy and local API health checks still use KB release `2026-09-21.2` with hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`; Dave's Administrator restart is required to load the new backend/chat release.
+- The same protected voice agent and LLM identities are published and read-back verified at v3 with KB `2026-09-21.3`, hash `2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`, six unchanged backend tools, and native `end_call`.
 - The public Houston demo number is **(832) 501-3799**.
-- [Voice repair CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35622823710) passed for `ac22144` at 16:02:21 UTC: **94 tests in 19 files**, ESLint, TypeScript, 20 Astro files with zero errors/warnings, and nine built pages. Seven new tests cover the Retell body boundary and DST-aware assistant time conversion.
+- [Consultation-policy CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35624105352) passed for `e8b66cda1bfc473320c44dbc53bb28509c993800` at 16:13:44 UTC: **98 tests in 19 files**, ESLint, TypeScript, 20 Astro files with zero errors/warnings, and nine built pages.
 - Private configuration, OAuth material, recipient data, provider credentials, SQLite state, generated customer documents, and backups remain outside the repository.
 
 ## Live acceptance completed
@@ -21,6 +21,7 @@ Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calend
 - The real Houston morning workflow sent one performer check. One authenticated, correlated YES reply created one immutable USD 700.00 invoice and one delivery effect.
 - The client inbox contained exactly one matching invoice Message-ID. The operator BCC receipt and Sent copy were verified. Replaying the morning run, mailbox poll, reply handling, and sender produced no second invoice or send and left no queued work.
 - The first two calls remain historical: the 59,473 ms v1 call cost 11.86 cents and the 18,473 ms v2 call cost 5.177 cents; neither invoked tools. The third v2 call ran from 15:44:53–15:48:10 UTC, lasted 196,946 ms, cost 34.191 cents, and successfully persisted a call-associated inquiry. Two `get_availability` calls and one `request_human_followup` call failed HTTP 413 `body_too_large`; terminal ended/analyzed webhooks were also absent at that boundary.
+- The fourth v2 call (`ee1ddd70e7624259`) lasted 210,264 ms, cost 36.473 cents, and ended by `user_hangup`. Read-only ledger inspection verified `upsert_inquiry`, four `get_availability` results, persisted `request_human_followup`, and started/ended/analyzed events. Every availability result reported `performanceAvailable=true` and only the then-active 24-hour consultation rule as a reason. This is actual phone evidence for the repaired tool path; no booking completed.
 - Provider isolation reconciliation found the previously existing Retell resources, DNS records, and Pages projects unchanged. Only the isolated demo resources were added.
 - The current SQLite backup restored read-only with two shows and one invoice and passed integrity checking. The authenticated document preview, SMTP/IMAP diagnostic, public form/resume flow, grounded chat cases, and deployed accessibility/security checks remain valid.
 
@@ -28,7 +29,7 @@ Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calend
 
 | Area                             | Current evidence                                                                                                                                                         | Required next action                                                                                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Voice workflow                   | The third call proved live inquiry creation and association. Availability and human follow-up failed HTTP 413 because the growing signed call envelope exceeded the endpoint body limit; availability arguments also lacked an offset. | Track repair deployment in [voice-tool repair evidence](evidence/voice-tool-repair.json). Require a post-fix phone pass before claiming availability, follow-up, or booking. |
+| Voice workflow                   | The fourth call proved the repaired inquiry, availability, follow-up, and lifecycle paths. Booking did not complete, and native `end_call` was published only in v3 after that call. | Restart the backend/chat to load KB `2026-09-21.3`, then phone-test a no-notice available consultation, completed booking, and native hangup. See [call-completion evidence](evidence/consultation-call-completion.json). |
 | Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                    | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                                |
 | Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.      | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review.      |
 
@@ -90,4 +91,4 @@ The live evidence is sanitized: it contains no phone number, email address, cred
 
 1. Separately authorize and verify recovery after an actual reboot or sign-out.
 2. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
-3. Keep inquiry creation marked passed and availability, follow-up, and booking marked pending until post-fix phone evidence exists.
+3. Keep inquiry, availability, and follow-up marked passed as tool operations. Keep booking, no-notice runtime behavior, and native hangup pending until the v3 backend restart and phone evidence exist.

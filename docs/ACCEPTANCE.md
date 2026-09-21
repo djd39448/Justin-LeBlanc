@@ -1,6 +1,6 @@
 # Acceptance and evidence matrix
 
-Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. The third admitted v2 call successfully invoked `upsert_inquiry` and persisted its association; availability failed twice and human follow-up failed once with HTTP 413. The repair is deployed and live signed HTTP diagnostics passed; full voice booking remains unverified pending post-fix phone evidence. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot/sign-out remains untested. Requirements below are unchanged; do not mark a row passed without linked evidence.
+Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. The fourth actual v2 call supplied phone evidence for repaired inquiry, availability, human-follow-up, and lifecycle tool handling; booking did not complete. Retell v3 publishes the no-notice KB and native `end_call`, while the API/chat restart and phone verification of those v3 behaviors remain pending. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot/sign-out remains untested. Requirements below are unchanged; do not mark a row passed without linked evidence.
 
 | ID | Scenario | Required result |
 |---|---|---|

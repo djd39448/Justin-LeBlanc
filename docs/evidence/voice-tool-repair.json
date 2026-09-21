@@ -134,7 +134,7 @@
       "houstonPhoneCorrect": true
     }
   },
-  "postFixRealPhoneVerified": false,
+  "postFixRealPhoneVerified": true,
   "officialReferences": [
     "https://docs.retellai.com/build/single-multi-prompt/custom-function",
     "https://docs.retellai.com/features/webhook-overview"
@@ -191,5 +191,14 @@
     "reservedHeadroomPercent": 25,
     "resetCreditsConsumed": 0,
     "newCallsInitiated": 0
+  },
+  "postFixRealPhoneScope": {
+    "callRef": "ee1ddd70e7624259",
+    "agentVersion": 2,
+    "backendToolEvents": 6,
+    "availabilityResponses": 4,
+    "humanFollowupPersisted": true,
+    "terminalWebhooksRecorded": true,
+    "bookingCompleted": false
   }
 }

@@ -1,9 +1,9 @@
 {
-  "reconciledAt": "2026-09-21T15:55:27.514Z",
+  "reconciledAt": "2026-09-21T16:15:14.781Z",
   "source": "Captured provider call results and read-only backend ledger; no new call initiated",
-  "callCount": 3,
-  "totalDurationMs": 274892,
-  "totalCostCents": 51.228,
+  "callCount": 4,
+  "totalDurationMs": 485156,
+  "totalCostCents": 87.701,
   "calls": [
     {
       "callRef": "70f528e5b192f604",
@@ -126,15 +126,90 @@
         "Call-ended and analyzed webhooks were not recorded in the backend ledger",
         "Availability requests also used offset-free local timestamps, requiring Central-time conversion"
       ]
+    },
+    {
+      "callRef": "ee1ddd70e7624259",
+      "agentVersion": 2,
+      "status": "ended",
+      "direction": "inbound",
+      "startedAt": "2026-09-21T16:03:56.543Z",
+      "endedAt": "2026-09-21T16:07:26.807Z",
+      "durationMs": 210264,
+      "disconnectionReason": "user_hangup",
+      "successful": true,
+      "costCents": 36.473,
+      "callerAdmissionAllowed": true,
+      "verifiedWebhookEvents": [
+        "call_started",
+        "call_analyzed",
+        "call_ended"
+      ],
+      "toolInvocationCount": 6,
+      "toolResults": [
+        {
+          "name": "get_availability",
+          "backendResultPersisted": true,
+          "consultationAvailable": false,
+          "performanceAvailable": true,
+          "reasons": [
+            "Consultations require at least 24 hours notice."
+          ]
+        },
+        {
+          "name": "upsert_inquiry",
+          "backendResultPersisted": true
+        },
+        {
+          "name": "get_availability",
+          "backendResultPersisted": true,
+          "consultationAvailable": false,
+          "performanceAvailable": true,
+          "reasons": [
+            "Consultations require at least 24 hours notice."
+          ]
+        },
+        {
+          "name": "get_availability",
+          "backendResultPersisted": true,
+          "consultationAvailable": false,
+          "performanceAvailable": true,
+          "reasons": [
+            "Consultations require at least 24 hours notice."
+          ]
+        },
+        {
+          "name": "get_availability",
+          "backendResultPersisted": true,
+          "consultationAvailable": false,
+          "performanceAvailable": true,
+          "reasons": [
+            "Consultations require at least 24 hours notice."
+          ]
+        },
+        {
+          "name": "request_human_followup",
+          "backendResultPersisted": true
+        }
+      ],
+      "inquiryAssociated": true,
+      "observed": [
+        "Actual phone tools and terminal webhooks reached the repaired API",
+        "Four consultation checks were rejected solely by the existing 24-hour policy",
+        "Human-follow-up request persisted"
+      ],
+      "limitations": [
+        "No voice booking completed",
+        "Caller hung up; native end_call was absent in published v2"
+      ]
     }
   ],
   "liveVoiceConnectionPassed": true,
   "liveVoiceToolAcceptancePassed": false,
   "liveVoiceIntakeAcceptancePassed": true,
   "limitations": [
-    "The first two calls invoked no tools",
-    "The third call created an inquiry, then availability and follow-up failed with HTTP 413",
-    "Post-fix live phone availability and booking remain unverified"
+    "Earlier call failures remain historical evidence",
+    "Fourth call reached all requested backend tools but consultations were denied by the old 24-hour rule",
+    "No completed voice booking or native hangup has been verified"
   ],
   "omitted": [
     "caller_phone_numbers",
@@ -145,5 +220,9 @@
   ],
   "liveVoiceInquiryToolPassed": true,
   "liveVoiceIntakeAcceptanceScope": "Inquiry creation and persisted call association only; availability, follow-up and booking are not a completed voice flow.",
-  "repairEvidence": "voice-tool-repair.json"
+  "repairEvidence": "voice-tool-repair.json",
+  "liveVoiceAvailabilityToolPassed": true,
+  "liveVoiceHumanFollowupToolPassed": true,
+  "liveVoiceToolAcceptanceScope": "Inquiry creation, availability responses and persisted human follow-up are proven by actual calls; complete booking and native call completion are not yet phone-verified.",
+  "policyRepairEvidence": "consultation-call-completion.json"
 }

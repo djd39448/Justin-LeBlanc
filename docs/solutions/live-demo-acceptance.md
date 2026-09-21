@@ -61,9 +61,21 @@ although provider delivery status was not captured. Availability tool
 arguments also used naive local timestamps without an offset. The tested scoped repair
 raises only signed tool/lifecycle endpoint limits and normalizes those local inputs with the existing
 DST-aware Central-time converter; the public 32 KiB limit, signature checks, and tool argument
-bounds remain unchanged. Deployment state is recorded in
-[voice-tool repair evidence](../evidence/voice-tool-repair.json); availability, follow-up, and
-booking still require a post-fix phone pass.
+bounds remain unchanged.
+
+A fourth actual v2 call (`ee1ddd70e7624259`) lasted 210,264 ms, cost 36.473 cents, and ended by
+`user_hangup`. Read-only backend-ledger inspection verified `upsert_inquiry`, four
+`get_availability` results, persisted `request_human_followup`, and started/ended/analyzed events.
+Each availability result returned `performanceAvailable=true` and only the then-active 24-hour
+consultation rule as a reason. This supplies actual phone evidence for the repaired inquiry,
+availability, follow-up, and lifecycle paths; booking did not complete.
+
+The same protected agent and LLM identities then reached version 3 with KB `2026-09-21.3`, hash
+`2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e`, six unchanged backend
+tools, and native `end_call`. Provider read-back passed. The API/chat process still reports the
+prior KB until Dave completes the Administrator restart, so the no-notice consultation policy and
+native hangup do not yet have phone evidence. See
+[call-completion evidence](../evidence/consultation-call-completion.json).
 
 ## Windows task ownership
 

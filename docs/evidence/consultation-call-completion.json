@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-09-21T16:15:14.782Z",
+  "codeCommit": "e8b66cda1bfc473320c44dbc53bb28509c993800",
+  "reason": "Owner removed consultation advance notice and requested explicit call hangup",
+  "consultationPolicy": {
+    "minimumAdvanceNoticeHours": 0,
+    "mustStartInFuture": true,
+    "durationMinutes": 20,
+    "timezone": "America/Chicago",
+    "dstAware": true,
+    "weekdaysOnly": true,
+    "localWindow": "10:00–16:00",
+    "providerFreeBusyAndLocalConflictChecksRetained": true
+  },
+  "nativeEndCall": {
+    "name": "end_call",
+    "type": "end_call",
+    "description": "Hang up after caller goodbye, request to end, or confirmation that nothing else is needed",
+    "speaksFarewell": true,
+    "backendCustomToolsRemain": 6,
+    "phoneVerified": false
+  },
+  "providerRelease": {
+    "stage": "published_verified",
+    "agentVersion": 3,
+    "llmVersion": 3,
+    "kbVersion": "2026-09-21.3",
+    "kbHash": "2e53a286acbc5d1793d01a9c25c9429d033e0521cd8f9279fe3d63c5c675eb1e",
+    "planFingerprint": "f3c96e8f2c7bc3fd59a46ab55a13f9399be826b1331324f0f7ccc13b9aaca7bd",
+    "publishedReadbackVerified": true,
+    "protectedIdentitiesPreserved": true,
+    "newResources": 0
+  },
+  "runtime": {
+    "status": "awaiting Administrator restart",
+    "lastObservedKbVersion": "2026-09-21.2",
+    "lastCheckedAt": "2026-09-21T16:17:46.821Z",
+    "healthStatus": 200
+  },
+  "verification": {
+    "focusedBookingAndKbTests": 22,
+    "focusedRetellTests": 10,
+    "eslint": "passed",
+    "typescript": "passed",
+    "fullCi": {
+      "status": "passed",
+      "commit": "e8b66cda1bfc473320c44dbc53bb28509c993800",
+      "url": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35624105352",
+      "completedAt": "2026-09-21T16:13:44Z",
+      "testFiles": 19,
+      "astroFiles": 20,
+      "astroErrors": 0,
+      "astroWarnings": 0,
+      "pages": 9,
+      "testsPassed": 98
+    }
+  },
+  "priorRealCall": {
+    "callRef": "ee1ddd70e7624259",
+    "voiceInquiryAvailabilityAndFollowupToolsPersisted": true,
+    "consultationRejectedByOldNoticeRule": true,
+    "callerHungUp": true
+  },
+  "postReleasePhoneVerified": false,
+  "officialReference": "https://docs.retellai.com/build/single-multi-prompt/end-call",
+  "privateDataOmitted": true,
+  "executionBudget": {
+    "route": "Shared Codex ChatGPT account on Windows",
+    "weeklyUsedPercent": 39,
+    "reservedHeadroomPercent": 25,
+    "newCallsInitiated": 0,
+    "resetCreditsConsumed": 0
+  }
+}
