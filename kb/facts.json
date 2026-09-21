@@ -1,0 +1,72 @@
+[
+  {
+    "id": "identity-name",
+    "text": "Justin LeBlanc is the musician represented by this private-event booking demo.",
+    "source_url": "https://justinleblancmusic.com/",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "verified_public",
+    "topic": "identity",
+    "review_due": "2026-12-20"
+  },
+  {
+    "id": "service-area",
+    "text": "Justin's current site presents private-event music for Houston and beyond.",
+    "source_url": "https://justinleblancmusic.com/",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "verified_public",
+    "topic": "booking",
+    "review_due": "2026-12-20"
+  },
+  {
+    "id": "booking-process",
+    "text": "The demo process is inquiry, consultation plus a tentative hold, then operator confirmation after an agreed quote.",
+    "source_url": "repo:docs/WORKFLOWS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "owner_approved",
+    "topic": "booking",
+    "review_due": "2026-12-20"
+  },
+  {
+    "id": "pricing-status",
+    "text": "All prices in this demo are editable examples and are not Justin's published or approved rates.",
+    "source_url": "repo:docs/DECISIONS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "demo_assumption",
+    "topic": "pricing",
+    "review_due": "2026-10-21"
+  },
+  {
+    "id": "consultation-policy",
+    "text": "Demo consultation slots are 20 minutes, Monday through Friday from 10:00 to 16:00 America/New_York, with 24 hours notice and actual free/busy checks.",
+    "source_url": "repo:docs/DECISIONS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "demo_assumption",
+    "topic": "availability",
+    "review_due": "2026-10-21"
+  },
+  {
+    "id": "confirmation-boundary",
+    "text": "A tentative hold is not a confirmed performance. Only an authenticated operator can confirm it after the consultation and an agreed quote.",
+    "source_url": "repo:docs/WORKFLOWS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "owner_approved",
+    "topic": "booking",
+    "review_due": "2026-12-20"
+  },
+  {
+    "id": "unknown-business-terms",
+    "text": "Actual repertoire, packages, rates, deposits, cancellation terms, production inclusions, and travel policy require Justin's approval.",
+    "source_url": "repo:docs/DECISIONS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "unknown",
+    "topic": "policies",
+    "review_due": "2026-10-21"
+  }
+]
