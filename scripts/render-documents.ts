@@ -61,7 +61,7 @@ function briefFixture(): EventBrief {
       { label: 'On-site contact', value: 'To confirm' },
     ],
     schedule: [
-      { label: 'Consultation', value: 'Completed September 1 at 10:00 AM EDT' },
+      { label: 'Consultation', value: 'Completed September 1 at 10:00 AM CDT' },
       { label: 'Load-in', value: '5:30 PM' },
       { label: 'Soundcheck', value: '6:15 PM' },
       { label: 'Performance', value: '7:00 PM-10:00 PM with one planned break' },

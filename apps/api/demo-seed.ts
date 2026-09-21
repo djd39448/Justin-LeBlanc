@@ -76,7 +76,7 @@ function seedOnce(runtime: Runtime, showId: string) {
       showId,
       start: new Date(end.getTime() - 7 * 86400000).toISOString(),
       end: new Date(end.getTime() - 7 * 86400000 + 20 * 60000).toISOString(),
-      timezone: 'America/New_York',
+      timezone: 'America/Chicago',
       status: 'completed',
     });
     runtime.store.insert(
