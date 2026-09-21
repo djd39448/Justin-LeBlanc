@@ -1,0 +1,18 @@
+{
+  "recordedAt": "2026-09-21T14:47:27.301Z",
+  "operation": "create-and-reconcile-phone-number",
+  "provider": "Retell-managed Twilio",
+  "nickname": "jlm-demo-private-bookings",
+  "status": "purchased",
+  "monthlyPriceUsd": 2,
+  "usageChargedSeparately": true,
+  "pricingSource": "https://www.retellai.com/pricing",
+  "providerReconciled": true,
+  "privateRuntimeConfigured": true,
+  "defaultInboundAgentBound": false,
+  "outboundAgentBound": false,
+  "inboundWebhookConfigured": true,
+  "voiceGateEnabled": false,
+  "existingResourcesModified": false,
+  "automaticRetries": 0
+}
