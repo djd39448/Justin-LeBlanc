@@ -1,6 +1,6 @@
 # Progress
 
-Updated 2026-09-21. **Implemented and substantially live-verified. Voice backend-tool use and unattended startup remain unverified.** No additional voice call is requested.
+Updated 2026-09-21. **Implemented and substantially live-verified. Voice backend-tool use and recovery after an actual reboot/sign-out remain unverified.** No additional voice call is requested.
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
 - [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, noindex controls, and exact-host deployment.
@@ -15,7 +15,8 @@ Updated 2026-09-21. **Implemented and substantially live-verified. Voice backend
 - [x] Current backup restored read-only with two shows and one invoice and passed SQLite integrity checking.
 - [x] Local API, worker, and tunnel are running with booking, chat, voice, morning, and invoice gates enabled.
 - [ ] Voice tool evidence: neither the 59,473 ms v1 call nor the 18,473 ms v2 call invoked a backend assistant tool; no inquiry or booking was created. The full embedded KB can answer directly despite the v2 search-first prompt.
-- [ ] Unattended uptime: at 15:22:32 UTC all three tasks were running with interactive logon and logon triggers. The corrected reversible S4U/AtStartup upgrade is prepared but has not been applied or reboot-tested.
+- [x] Startup registration and task execution: backup created at 15:38:36 UTC, tasks restarted at 15:38:40 UTC, and all three verified running S4U/Limited with exact boot triggers at 15:39:09 UTC. All three health paths and worker startup jobs passed afterward.
+- [ ] Recovery after an actual reboot or sign-out has not been authorized or tested.
 
 The provider queue was empty after the live booking cancellation and invoice replay. A confirmed event's attendee copy can still cause a safe false rejection when a requested reschedule overlaps the current interval; free/busy lacks event identity, so the adapter deliberately does not subtract that interval.
 

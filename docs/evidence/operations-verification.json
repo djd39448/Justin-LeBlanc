@@ -99,7 +99,7 @@
     "releaseEvidence": "retell-central-release.json",
     "ledgerEvidence": "resume-ledger-reconciliation.json",
     "hostingEvidence": "hosting-verification.json",
-    "startupUpgradeApplied": false,
+    "startupUpgradeApplied": true,
     "voiceToolsLiveVerified": false,
     "localSuiteRepeatedDuringResume": false,
     "githubWorkflow": "https://github.com/djd39448/Justin-LeBlanc/actions/workflows/verify.yml",
@@ -108,7 +108,11 @@
     "verifiedCiCodeRevision": "c0aee219eb7fecccecb73afd9fda38b155fd3850",
     "frontendDeployment": "75996868",
     "frontendDeploymentEvidence": "user-photos.json",
-    "providerMutationsByThisResumeTask": 0
+    "providerMutationsByThisResumeTask": 0,
+    "startupReconciledAt": "2026-09-21T15:39:09.2431541Z",
+    "postUpgradeHealth": "pass: local, direct tunnel and website proxy",
+    "rebootRecoveryTested": false,
+    "signOutRecoveryTested": false
   },
   "historicalGithubVerifiedRuns": [
     "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538",

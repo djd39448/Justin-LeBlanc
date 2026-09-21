@@ -66,3 +66,11 @@ reboot recovery; record each result separately.
 At 15:22:32 UTC all three owned tasks were running with `LogonType=Interactive` and
 `MSFT_TaskLogonTrigger`. The corrected S4U/AtStartup script had not been applied. This is a
 working attended configuration, not evidence of recovery after sign-out or reboot.
+
+The corrected apply created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC.
+It created a private manifest and three valid XML backups of the former interactive tasks. At
+15:39:09 UTC all three tasks were running S4U/Limited with exactly one
+`MSFT_TaskBootTrigger` each.
+Post-upgrade local, tunnel, and website-proxy health passed at 15:39:43 UTC; worker startup jobs
+also succeeded. This verifies registration and task execution, but not recovery after an actual
+reboot or sign-out.

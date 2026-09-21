@@ -2,7 +2,7 @@
 
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
-The website and application are implemented. Public health, inquiry intake/resume, chat, the dedicated Google Calendar booking lifecycle, and reply-driven invoice delivery have passed through the isolated demo stack. The isolated voice agent and LLM are published at version 2 with the Central Time KB, and the Houston demo number is **(832) 501-3799**. Two live calls connected successfully and produced verified signed webhooks. The second call correctly answered that consultations use Houston Central Time (`America/Chicago`), but neither call invoked an assistant tool. No additional call is requested. Unattended Windows startup also remains incomplete.
+The website and application are implemented. Public health, inquiry intake/resume, chat, the dedicated Google Calendar booking lifecycle, and reply-driven invoice delivery have passed through the isolated demo stack. The isolated voice agent and LLM are published at version 2 with the Central Time KB, and the Houston demo number is **(832) 501-3799**. Two live calls connected successfully and produced verified signed webhooks. The second call correctly answered that consultations use Houston Central Time (`America/Chicago`), but neither call invoked an assistant tool. No additional call is requested. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot or sign-out remains untested.
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Billing reads completed performances by Houston end date, requires an authenticated correlated reply, snapshots the approved invoice, and delivers through a durable outbox. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
@@ -16,7 +16,7 @@ The local API and worker run against persistent SQLite. Booking uses a consultat
 - The actual reply-driven billing flow accepted an authenticated `YES`, issued one immutable $700 demo invoice, reconciled its Sent copy, and verified exactly one matching client Inbox receipt plus Dave's BCC receipt.
 - The Houston demo number and published v2 voice configuration are provider-reconciled. The two successful connections lasted 59,473 ms (11.86 cents) and 18,473 ms (5.177 cents). Neither invoked a backend tool, so voice-side intake, availability, and booking tools are not live-tested. The embedded KB can still answer facts directly despite the search-first prompt.
 - Visually inspected synthetic PDF brief and invoices; authenticated local brief PDF served successfully.
-- Service restart and seeded SQLite backup/restore passed. At 15:22:32 UTC all three owned tasks were running with interactive logon and logon triggers. The corrected S4U/AtStartup upgrade has not been applied; an elevated operator must apply and verify it before unattended operation can be claimed.
+- Service restart and seeded SQLite backup/restore passed. The corrected upgrade created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC all three were running as S4U/Limited with exactly one boot trigger; all three health paths passed at 15:39:43 UTC. Actual reboot/sign-out recovery has not been tested.
 
 See the [A01–A26 evidence matrix](docs/evidence/acceptance-results.md) for offline, provider, and pending live results.
 

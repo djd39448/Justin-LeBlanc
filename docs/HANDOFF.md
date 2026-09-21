@@ -1,12 +1,12 @@
 # Demo handoff
 
-Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. Two acceptance gaps remain: neither of the two live voice calls invoked a backend assistant tool or created an inquiry, and unattended Windows startup has not been applied or reboot-tested. No additional voice call is requested.
+Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. Two acceptance gaps remain: neither of the two live voice calls invoked a backend assistant tool or created an inquiry, and recovery after an actual reboot/sign-out has not been tested. S4U boot-trigger registration and task execution are verified. No additional voice call is requested.
 
 ## Running system
 
 - The exact public hostname serves the latest site deployment and returns HTTP 200. Noindex, frame denial, CSP, and admin no-store protections remain enabled.
 - The local API, worker, and isolated tunnel are running. Booking, chat, voice, morning-scan, and invoice gates are enabled.
-- At 15:22:32 UTC the API, worker, and tunnel tasks were running with interactive logon and logon triggers. They require the Windows user to remain signed in; the corrected S4U/AtStartup upgrade has not been applied.
+- The corrected startup upgrade created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC the API, worker, and tunnel tasks were running as S4U/Limited with exactly one `MSFT_TaskBootTrigger` each. All three health paths passed at 15:39:43 UTC, worker startup jobs succeeded, and the tunnel restored four connections.
 - The public website proxy and local API health checks use KB release `2026-09-21.2` with hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
 - Published voice LLM release v2 uses that same KB and the existing isolated identity. Release verification normalizes only four known provider schema readback omissions; server-side schemas remain strict.
 - The public Houston demo number is **(832) 501-3799**.
@@ -29,7 +29,7 @@ Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calend
 | Area                             | Current evidence                                                                                                                                                         | Required next action                                                                                                                                   |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Voice tool evidence              | Both calls connected successfully, and v2 answered the time-zone question correctly. Neither call invoked a tool or created an inquiry. The embedded KB can answer facts directly despite the required-search prompt. | Keep the limitation explicit. No additional call is requested; do not claim voice-side intake, availability, or booking tools are live-tested. |
-| Unattended uptime                | At 15:22:32 UTC all three services were running with `LogonType=Interactive` and `MSFT_TaskLogonTrigger`.                                                               | From an already elevated shell, review and apply `scripts/upgrade-services.ps1`, then separately authorize and verify sign-out/reboot recovery.        |
+| Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                    | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                                |
 | Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.      | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review.      |
 
 ## Safety and recovery boundaries
@@ -53,13 +53,13 @@ node "--env-file=$configPath" --import tsx scripts/cli.ts --json health
 pwsh -NoProfile -File scripts/stop-services.ps1 -ConfigPath $configPath -Restart
 ```
 
-Review the unattended upgrade without mutation:
+The following exact executable was used for the verified dry run:
 
 ```powershell
 & 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env'
 ```
 
-Apply only from a manually opened elevated PowerShell after reviewing the preflight:
+The following exact command was applied successfully from a manually opened elevated PowerShell around 15:38 UTC. It is historical operator evidence, not a routine rerun step:
 
 ```powershell
 & 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env' -Apply
@@ -87,6 +87,6 @@ The live evidence is sanitized: it contains no phone number, email address, cred
 
 ## Next controlled work
 
-1. Apply and validate unattended startup only through the elevated, reversible upgrade flow.
+1. Separately authorize and verify recovery after an actual reboot or sign-out.
 2. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
 3. Keep the voice-tool limitation explicit unless a separately requested future call produces real tool and ledger evidence.

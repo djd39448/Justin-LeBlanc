@@ -1,6 +1,6 @@
 # Isolated resource inventory and resume commands
 
-Recorded 2026-09-21. This inventory contains identifiers and variable names, never credentials. Existing resources are read-only references. The implementation is substantially live-verified; voice backend-tool use and unattended startup remain unverified.
+Recorded 2026-09-21. This inventory contains identifiers and variable names, never credentials. Existing resources are read-only references. The implementation is substantially live-verified; voice backend-tool use and recovery after an actual reboot/sign-out remain unverified.
 
 ## Created and running
 
@@ -18,9 +18,9 @@ Recorded 2026-09-21. This inventory contains identifiers and variable names, nev
 | Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                           | Created and verified through live consultation/show lifecycle              |
 | Houston demo number       | **(832) 501-3799**                                                                          | One isolated number; two successful connections, neither with a tool call  |
 | Shared KB                 | `2026-09-21.2`, SHA-256 `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6` | Checked-in chat and published voice configuration agree                    |
-| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | InteractiveOnly; local, public, and website-proxy health checked           |
+| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | Running S4U/Limited boot task; all three health paths passed post-upgrade   |
 | Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`               | Running; token never stored in Git or command arguments                    |
-| Local worker              | task `jlm-demo-worker`                                                                     | Running InteractiveOnly; user must remain signed in                        |
+| Local worker              | task `jlm-demo-worker`                                                                     | Running S4U/Limited boot task; startup jobs completed successfully          |
 | Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                      | SQLite WAL; synthetic booking and sent-invoice acceptance state retained   |
 | Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                            | Outside Git, restricted host ACLs                                          |
 
@@ -31,13 +31,13 @@ On this host, `<private-root>` is `C:/Users/trustcore-rdp/.config/jlm-demo` and 
 - **Calendar:** the dedicated calendar exists and live acceptance passed consultation and tentative hold creation, attendee invitations, operator brief delivery, confirmation, non-overlapping reschedule, and cancellation with no unresolved effects. Tentative holds are transparent so attendee copies do not collide with the same canonical hold; confirmed shows become opaque. A reschedule that overlaps the confirmed attendee copy can still fail closed because Google free/busy does not expose enough event identity to subtract that interval safely.
 - **Retell number:** the isolated Houston number **(832) 501-3799** and version-2 agent/LLM are provider-reconciled. Two live calls connected successfully: 59,473 ms / 11.86 cents on v1 and 18,473 ms / 5.177 cents on v2. V2 correctly answered the Houston `America/Chicago` time zone. Neither call invoked an assistant tool; the embedded KB can be answered directly despite the search-first prompt. No additional call is requested. Never describe voice-side booking tools as live-tested or change the existing unrelated number, global webhook, or Telnyx configuration.
 - **Invoice delivery:** an authenticated `YES` produced one immutable $700 demo invoice. Sent-copy reconciliation, exactly one matching client Inbox receipt, and Dave's BCC receipt passed. This remains synthetic acceptance, not a real payment request.
-- **Unattended startup:** at 15:22:32 UTC all three owned tasks were running with `LogonType=Interactive` and `MSFT_TaskLogonTrigger`; the corrected S4U/AtStartup script had not been applied. The installed tasks require the user to remain signed in. An operator must review the corrected plan, use an already elevated PowerShell session for `-Apply`, and separately test sign-out/reboot recovery.
+- **Unattended startup:** the corrected apply created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC all three owned tasks were running S4U/Limited with exactly one `MSFT_TaskBootTrigger` each. At 15:39:43 UTC all three health paths passed, worker startup jobs succeeded, and the tunnel had four connections. A private manifest and three valid XML backups preserve the former interactive configuration. Actual reboot/sign-out recovery remains untested.
 
 ```powershell
-# Read-only startup-upgrade plan. Review the verified ownership and task list.
+# Verified read-only startup-upgrade plan, retained as operator history.
 & 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env'
 
-# Manual elevated step only after the dry run is approved.
+# Verified apply command, already applied around 15:38 UTC; do not rerun routinely.
 & 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env' -Apply
 ```
 

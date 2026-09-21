@@ -1,8 +1,8 @@
 # Acceptance results — 2026-09-21
 
-**Overall: implementation is deployed and substantially live-verified. Voice backend-tool use and unattended Windows startup remain unverified.** Calendar booking, operator confirmation, non-overlapping reschedule, cancellation, actual authenticated YES processing, one-invoice delivery, operator BCC receipt, Sent reconciliation, and duplicate replay are complete with real providers. No additional voice call is requested.
+**Overall: implementation is deployed and substantially live-verified. Voice backend-tool use and recovery after an actual reboot/sign-out remain unverified.** Calendar booking, operator confirmation, non-overlapping reschedule, cancellation, actual authenticated YES processing, one-invoice delivery, operator BCC receipt, Sent reconciliation, duplicate replay, S4U boot-trigger registration, and post-apply task execution are complete. No additional voice call is requested.
 
-The exact public hostname serves deployment `75996868`, and the public Houston demo number is **(832) 501-3799**. At 15:22:32 UTC the API, worker, and tunnel tasks were running with interactive logon and logon triggers; booking, chat, voice, morning-scan, and invoice capabilities were enabled. The current KB is release `2026-09-21.2`, hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
+The exact public hostname serves deployment `75996868`, and the public Houston demo number is **(832) 501-3799**. The corrected startup upgrade created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC all three were running as S4U/Limited with exact boot triggers; all three health paths passed at 15:39:43 UTC. The current KB is release `2026-09-21.2`, hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
 
 Local verification at 15:13:37 UTC against `8a280a0` passed 87 tests in 17 files, lint, TypeScript, and the 19-file Astro check. After the separately authorized photo addition, [GitHub CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879) passed for `c0aee21` at 15:28:40 UTC: 87 tests in 17 files, lint, TypeScript, 20 Astro files with zero diagnostics, and 9 pages. No local suite was repeated during this resume.
 
@@ -33,9 +33,9 @@ Local verification at 15:13:37 UTC against `8a280a0` passed 87 tests in 17 files
 | A21 | Exact allowlist, private snapshots, client delivery, operator BCC, and no public document link.                            | Client inbox contained exactly one matching Message-ID; operator receipt, PDF attachment, and Sent copy were verified.                                            |
 | A22 | Constant-time admin auth, signed raw webhooks, caller/recipient limits, rate limits, and provider gates. Public/assistant booking authorization runs before availability or hold creation and validates replay tokens; the Calendar sink revalidates every attendee. | Public admin rejection passed. Both admitted calls produced correctly signed webhook evidence. Live negative booking requests returned bounded 400 responses and created no hold/effect. |
 | A23 | Before/after provider manifests and Justin-scoped identifiers.                                                             | [Isolation evidence](resource-isolation.json) shows existing Retell, DNS, Pages, and other recorded resources unchanged; only isolated demo resources were added. |
-| A24 | Separate Pages/proxy deployment, loopback API, persistent SQLite, backup/restore, and private storage. | Exact hostname and proxy are live. The current backup restored read-only with two shows and one invoice and passed integrity checking. Interactive-logon tasks leave unattended uptime unverified. |
-| A25 | CLI help/JSON, operator actions, run-now jobs, kill switches, retries, redacted health, and service scripts.               | All capability gates are enabled and health passed. At 15:22:32 UTC all three tasks were running with interactive logon and logon triggers; corrected S4U/AtStartup apply and reboot verification remain incomplete. |
-| A26 | Reproducible install/build, schema/export/restore, runbook, handoff, and private delivery workflow.                        | Current evidence and recovery steps are documented. Voice-tool use and unattended startup remain explicitly unverified.                                          |
+| A24 | Separate Pages/proxy deployment, loopback API, persistent SQLite, backup/restore, and private storage. | Exact hostname and proxy are live. The current backup restored read-only with two shows and one invoice and passed integrity checking. S4U boot-trigger registration and task execution are verified; actual reboot/sign-out recovery is untested. |
+| A25 | CLI help/JSON, operator actions, run-now jobs, kill switches, retries, redacted health, and service scripts.               | Corrected apply created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. All three were running S4U/Limited with exact boot triggers at 15:39:09 UTC, and post-upgrade health passed. |
+| A26 | Reproducible install/build, schema/export/restore, runbook, handoff, and private delivery workflow.                        | Current evidence and recovery steps are documented. Voice-tool use and actual reboot/sign-out recovery remain explicitly unverified.                              |
 
 ## Live provider evidence
 
@@ -47,13 +47,13 @@ Local verification at 15:13:37 UTC against `8a280a0` passed 87 tests in 17 files
 - [Central live check](central-live-check.json): all capability gates enabled, healthy API, and a grounded Central-hours chat answer.
 - [Live booking boundary](live-booking-boundary.json): unallowlisted recipient and invalid token rejected with no hold or effect.
 - [Backup restore](live-backup-restore.json): read-only restore integrity with the current two-show, one-invoice state.
-- [Startup reconciliation](startup-reconciliation.json): all three tasks running with unchanged interactive principals/triggers; no apply performed.
+- [Startup reconciliation](startup-reconciliation.json): corrected apply succeeded; all three tasks were running S4U/Limited with exact boot triggers afterward.
 - [Resume ledger reconciliation](resume-ledger-reconciliation.json): two shows, one invoice, and zero unresolved outbox effects.
 
 All committed evidence is sanitized and omits private caller numbers, recipient addresses, credentials, access tokens, resume tokens, and private message bodies. The public Houston demo line is intentionally documented.
 
 ## Remaining continuous demo
 
-1. From a manually elevated PowerShell, review and apply the reversible startup upgrade. Separately authorize and verify sign-out/reboot recovery.
+1. Separately authorize and verify recovery after an actual reboot or sign-out.
 2. Keep the provider queue at zero unresolved effects. Reconcile any uncertain Calendar or SMTP outcome before retrying.
 3. Keep the voice-tool limitation explicit. No additional call is requested; require actual call and ledger evidence before ever marking voice-side tools live-tested.

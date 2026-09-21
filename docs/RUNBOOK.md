@@ -1,6 +1,6 @@
 # Demo Operations Runbook
 
-Last verified: 2026-09-21 at 15:22:32 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
+Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
 
 ## Current service state
 
@@ -8,16 +8,16 @@ Last verified: 2026-09-21 at 15:22:32 UTC. This runbook covers the isolated Just
 | --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `75996868`; supplied-photo desktop/mobile QA passed; earlier Central-time and voice-CTA checks retained                                  |
 | API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Booking, chat, voice, and billing capabilities all returned true                                                  |
-| Worker          | Running as the InteractiveOnly scheduled task `jlm-demo-worker`                     | Runs only while the Windows user is signed in                                                                     |
-| API task        | Running as the InteractiveOnly scheduled task `jlm-demo-api`                        | Runs only while the Windows user is signed in                                                                     |
+| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                              | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                             |
+| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                 | Local, direct-tunnel, and website-proxy health passed after the upgrade                                            |
 | Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                       |
-| Windows startup | All three tasks running with interactive logon and `MSFT_TaskLogonTrigger`          | Corrected S4U/AtStartup script has not been applied; unattended sign-out/reboot recovery is unverified             |
+| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers      | Registration and task execution passed; actual sign-out/reboot recovery remains untested                           |
 | Email           | Reply-driven invoice delivery verified                                               | Authenticated `YES`, immutable invoice, Sent copy, exact client Inbox receipt, and Dave BCC receipt passed         |
 | Google Calendar | Dedicated calendar created; live booking lifecycle passed                            | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects  |
 | Retell          | **(832) 501-3799** plus published version-2 agent/LLM                                | Two calls connected and signed webhooks passed; neither call invoked an assistant tool                            |
 | Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking    | This proves the checked backup was readable and internally consistent; retain the source backup privately         |
 
-Public inquiry, chat, scheduling, voice admission, and billing now reach enabled backend gates. The API, worker, and tunnel tasks are running, but uptime still depends on the Windows user remaining signed in.
+Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
 
 ## Protected configuration
 
@@ -46,7 +46,7 @@ node "--env-file=$configPath" --import tsx apps/api/server.ts
 node "--env-file=$configPath" --import tsx scripts/worker.ts
 ```
 
-For the installed InteractiveOnly tasks:
+For the installed S4U boot tasks:
 
 ```powershell
 Get-ScheduledTask -TaskName 'jlm-demo-api','jlm-demo-worker','jlm-demo-tunnel' |
@@ -63,13 +63,13 @@ The task installer is intended for a clean or deliberately repaired host and ref
 pwsh -File scripts/install-services.ps1 -ConfigPath $configPath -InteractiveOnly
 ```
 
-The named tunnel has been installed from the protected token file. Do not recreate it, move its token to a command line, or change any unrelated tunnel or DNS record. A previous direct S4U registration attempt returned `AccessDenied`; the corrected upgrade path below has passed dry-run ownership checks but has not been applied.
+The named tunnel has been installed from the protected token file. Do not recreate it, move its token to a command line, or change any unrelated tunnel or DNS record. A previous direct S4U registration attempt returned `AccessDenied`; the corrected upgrade path passed ownership checks and was applied around 15:38 UTC.
 
-`scripts/upgrade-services.ps1` is the reversible path for converting the existing owned tasks to S4U startup. Its corrected read-only dry run validated all three owned running tasks and planned their S4U upgrades with `elevated: false`. Review that exact plan, then use an already elevated PowerShell session for the manual apply step. The script does not invoke UAC, writes private XML backups, verifies the new triggers, and rolls back on failure:
+`scripts/upgrade-services.ps1` is the reversible path used to convert the existing owned tasks to S4U startup. The apply created a private manifest and three valid XML backups preserving the former interactive-logon tasks, then verified the new principals/triggers and restarted the previously running tasks. The commands below are retained as operator history; do not rerun them routinely. The script does not invoke UAC and rolls back on failure:
 
 ```powershell
 & 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env'
-# After the dry run is reviewed, in an already elevated session:
+# Verified apply command, already completed from an elevated session:
 & 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env' -Apply
 ```
 

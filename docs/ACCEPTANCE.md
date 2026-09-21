@@ -1,6 +1,6 @@
 # Acceptance and evidence matrix
 
-Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. Two admitted signed voice calls used the current KB; v2 correctly answered the Houston time zone, but neither call invoked a backend tool or created an inquiry. No additional call is requested. Unattended Windows startup remains unverified. Requirements below are unchanged; do not mark a row passed without linked evidence.
+Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Live Calendar booking and actual reply-driven invoice delivery are verified. Two admitted signed voice calls used the current KB; v2 correctly answered the Houston time zone, but neither call invoked a backend tool or created an inquiry. No additional call is requested. S4U boot-trigger registration and task execution are verified; recovery after an actual reboot/sign-out remains untested. Requirements below are unchanged; do not mark a row passed without linked evidence.
 
 | ID | Scenario | Required result |
 |---|---|---|

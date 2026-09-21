@@ -1,50 +1,184 @@
 {
-  "checkedAt": "2026-09-21T15:22:32.6721068Z",
-  "method": "Read-only Windows ScheduledTasks snapshot",
+  "checkedAt": "2026-09-21T15:39:09.2431541Z",
+  "method": "Read-only Windows ScheduledTasks, post-upgrade health and private log reconciliation",
   "elevatedShell": false,
   "scriptRevision": "18570d36c495953a331cbf38ca8f9ab8f5abb4f7",
-  "upgradeApplied": false,
+  "upgradeApplied": true,
+  "appliedBy": "Operator in elevated PowerShell",
+  "backup": {
+    "createdAt": "2026-09-21T15:38:36.8575827Z",
+    "storedPrivately": true,
+    "xmlCount": 3,
+    "originalLogonType": "InteractiveToken",
+    "originalTrigger": "LogonTrigger",
+    "previousRunningTasksPreserved": true
+  },
   "tasks": [
     {
       "name": "jlm-demo-api",
       "state": "Running",
-      "logonType": "Interactive",
+      "logonType": "S4U",
+      "runLevel": "Limited",
       "triggerTypes": [
-        "MSFT_TaskLogonTrigger"
+        "MSFT_TaskBootTrigger"
       ],
-      "lastRunTime": "2026-09-21T15:11:50.0000000Z",
-      "lastTaskResult": 267009
-    },
-    {
-      "name": "jlm-demo-tunnel",
-      "state": "Running",
-      "logonType": "Interactive",
-      "triggerTypes": [
-        "MSFT_TaskLogonTrigger"
-      ],
-      "lastRunTime": "2026-09-21T14:14:03.0000000Z",
+      "lastRunTime": "2026-09-21T15:38:40.0000000Z",
       "lastTaskResult": 267009
     },
     {
       "name": "jlm-demo-worker",
       "state": "Running",
-      "logonType": "Interactive",
+      "logonType": "S4U",
+      "runLevel": "Limited",
       "triggerTypes": [
-        "MSFT_TaskLogonTrigger"
+        "MSFT_TaskBootTrigger"
       ],
-      "lastRunTime": "2026-09-21T15:11:50.0000000Z",
+      "lastRunTime": "2026-09-21T15:38:40.0000000Z",
+      "lastTaskResult": 267009
+    },
+    {
+      "name": "jlm-demo-tunnel",
+      "state": "Running",
+      "logonType": "S4U",
+      "runLevel": "Limited",
+      "triggerTypes": [
+        "MSFT_TaskBootTrigger"
+      ],
+      "lastRunTime": "2026-09-21T15:38:40.0000000Z",
       "lastTaskResult": 267009
     }
   ],
-  "previousScriptChecks": {
-    "source": "plans/2026-09-21-resume-handoff.md",
-    "powerShellParser": "passed",
-    "psScriptAnalyzer": "passed",
-    "nonApplyDryRun": "passed for all three owned Running tasks",
-    "repeatedDuringResume": false
+  "health": {
+    "checkedAt": "2026-09-21T15:39:43.455Z",
+    "results": [
+      {
+        "url": "http://127.0.0.1:4318/api/health",
+        "status": 200,
+        "ok": true,
+        "demo": true,
+        "kbVersion": "2026-09-21.2",
+        "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+        "capabilities": {
+          "booking": true,
+          "chat": true,
+          "voice": true,
+          "billing": true
+        }
+      },
+      {
+        "url": "https://jlm-demo-api.50by50.dev/api/health",
+        "status": 200,
+        "ok": true,
+        "demo": true,
+        "kbVersion": "2026-09-21.2",
+        "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+        "capabilities": {
+          "booking": true,
+          "chat": true,
+          "voice": true,
+          "billing": true
+        }
+      },
+      {
+        "url": "https://justinleblancmusic.50by50.dev/api/health",
+        "status": 200,
+        "ok": true,
+        "demo": true,
+        "kbVersion": "2026-09-21.2",
+        "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+        "capabilities": {
+          "booking": true,
+          "chat": true,
+          "voice": true,
+          "billing": true
+        }
+      }
+    ]
   },
-  "remainingAction": "Run the corrected upgrade-services.ps1 -Apply from an already elevated PowerShell session, then reconcile task principals/triggers and health.",
+  "workerStartup": {
+    "observedAfter": "2026-09-21T15:38:40Z",
+    "successfulJobs": [
+      {
+        "job": "reconcile-interrupted",
+        "at": "2026-09-21T15:38:41.608Z"
+      },
+      {
+        "job": "morning",
+        "at": "2026-09-21T15:38:41.618Z"
+      },
+      {
+        "job": "imap",
+        "at": "2026-09-21T15:38:42.955Z"
+      },
+      {
+        "job": "billing-followups",
+        "at": "2026-09-21T15:38:42.959Z"
+      }
+    ]
+  },
+  "tunnel": {
+    "logUpdatedAt": "2026-09-21T15:38:43.8916591Z",
+    "registeredConnections": 4
+  },
   "rebootRecoveryTested": false,
   "signOutRecoveryTested": false,
-  "limitation": "Services still depend on the user being signed in; no unattended recovery claim."
+  "remainingAction": "Actual reboot or sign-out recovery may be verified only with explicit operator authorization; registration and post-upgrade execution already passed.",
+  "limitation": "S4U/AtStartup is configured and running, but actual reboot/sign-out recovery has not been exercised.",
+  "previousSnapshot": {
+    "checkedAt": "2026-09-21T15:22:32.6721068Z",
+    "method": "Read-only Windows ScheduledTasks snapshot",
+    "elevatedShell": false,
+    "scriptRevision": "18570d36c495953a331cbf38ca8f9ab8f5abb4f7",
+    "upgradeApplied": false,
+    "tasks": [
+      {
+        "name": "jlm-demo-api",
+        "state": "Running",
+        "logonType": "Interactive",
+        "triggerTypes": [
+          "MSFT_TaskLogonTrigger"
+        ],
+        "lastRunTime": "2026-09-21T15:11:50.0000000Z",
+        "lastTaskResult": 267009
+      },
+      {
+        "name": "jlm-demo-tunnel",
+        "state": "Running",
+        "logonType": "Interactive",
+        "triggerTypes": [
+          "MSFT_TaskLogonTrigger"
+        ],
+        "lastRunTime": "2026-09-21T14:14:03.0000000Z",
+        "lastTaskResult": 267009
+      },
+      {
+        "name": "jlm-demo-worker",
+        "state": "Running",
+        "logonType": "Interactive",
+        "triggerTypes": [
+          "MSFT_TaskLogonTrigger"
+        ],
+        "lastRunTime": "2026-09-21T15:11:50.0000000Z",
+        "lastTaskResult": 267009
+      }
+    ],
+    "previousScriptChecks": {
+      "source": "plans/2026-09-21-resume-handoff.md",
+      "powerShellParser": "passed",
+      "psScriptAnalyzer": "passed",
+      "nonApplyDryRun": "passed for all three owned Running tasks",
+      "repeatedDuringResume": false
+    },
+    "remainingAction": "Run the corrected upgrade-services.ps1 -Apply from an already elevated PowerShell session, then reconcile task principals/triggers and health.",
+    "rebootRecoveryTested": false,
+    "signOutRecoveryTested": false,
+    "limitation": "Services still depend on the user being signed in; no unattended recovery claim."
+  },
+  "ledgerAfterRestart": {
+    "checkedAt": "2026-09-21T15:41:07.872Z",
+    "readOnly": true,
+    "showCount": 2,
+    "invoiceCount": 1,
+    "unresolvedOutboxCount": 0
+  }
 }
