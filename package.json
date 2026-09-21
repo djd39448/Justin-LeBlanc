@@ -1,0 +1,46 @@
+{
+  "name": "justin-leblanc-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.14.0 <25"
+  },
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "tsx apps/api/server.ts",
+    "cli": "tsx scripts/cli.ts",
+    "build": "npm run build --workspace apps/web",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.1.1",
+    "commander": "15.0.0",
+    "hono": "4.13.8",
+    "imapflow": "2.0.5",
+    "mailparser": "3.9.28",
+    "nodemailer": "10.0.10",
+    "retell-sdk": "6.0.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/nodemailer": "^7.0.0",
+    "@types/mailparser": "^3.4.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-import": "^2.32.0",
+    "playwright": "1.63.0",
+    "prettier": "3.9.8",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.70.0",
+    "vitest": "5.0.1"
+  }
+}

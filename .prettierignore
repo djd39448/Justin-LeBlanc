@@ -1,0 +1,10 @@
+node_modules
+dist
+apps/web/dist
+apps/web/.astro
+work
+private
+package-lock.json
+*.svg
+*.astro
+docs/evidence/*.json

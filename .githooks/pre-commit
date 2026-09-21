@@ -1,0 +1,8 @@
+#!/bin/sh
+# Verify staged code before recording a rollbackable milestone.
+set -eu
+files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(ts|js|mjs)$' || true)
+if [ -n "$files" ]; then
+  echo "$files" | tr '\n' '\0' | xargs -0 npx eslint
+fi
+git diff --cached --check
