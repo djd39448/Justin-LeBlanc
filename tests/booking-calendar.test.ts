@@ -66,6 +66,90 @@ describe('GoogleCalendarAdapter readiness', () => {
       ),
     ).rejects.toThrow('Google Calendar user OAuth is not configured');
   });
+
+  it('requests expanded instances and preserves recurring and all-day identity safely', async () => {
+    const config = ConfigSchema.parse({
+      ...baseConfig,
+      GOOGLE_CLIENT_ID: 'client-id',
+      GOOGLE_CLIENT_SECRET: 'client-secret',
+      GOOGLE_REFRESH_TOKEN: 'refresh-token',
+      SHOW_CALENDAR_ID: 'jlm-demo-calendar@example.test',
+    });
+    let listUrl = '';
+    const request: typeof fetch = async (input) => {
+      const url = String(input);
+      if (url.includes('oauth2.googleapis.com')) {
+        return new Response(JSON.stringify({ access_token: 'access-token', expires_in: 3600 }), {
+          status: 200,
+        });
+      }
+      listUrl = url;
+      return new Response(
+        JSON.stringify({
+          items: [
+            {
+              id: 'instance-datetime',
+              etag: 'etag-datetime',
+              status: 'confirmed',
+              start: { dateTime: '2026-11-14T20:00:00-06:00', timeZone: 'America/Chicago' },
+              end: { dateTime: '2026-11-14T22:00:00-06:00', timeZone: 'America/Chicago' },
+              recurringEventId: 'series-datetime',
+              originalStartTime: { dateTime: '2026-11-14T20:00:00-06:00' },
+            },
+            {
+              id: 'instance-all-day',
+              etag: 'etag-all-day',
+              status: 'cancelled',
+              start: { date: '2026-11-15' },
+              end: { date: '2026-11-16' },
+              recurringEventId: 'series-all-day',
+              originalStartTime: { date: '2026-11-15' },
+            },
+            {
+              id: 'cancelled-exception',
+              etag: 'etag-cancelled-exception',
+              status: 'cancelled',
+              recurringEventId: 'series-datetime',
+              originalStartTime: { dateTime: '2026-11-21T20:00:00-06:00' },
+            },
+          ],
+        }),
+        { status: 200 },
+      );
+    };
+    const events = await new GoogleCalendarAdapter(config, request).listShowEvents({
+      timeMin: '2026-11-01T00:00:00.000Z',
+      timeMax: '2026-12-01T00:00:00.000Z',
+    });
+    const query = new URL(listUrl).searchParams;
+    expect(query.get('singleEvents')).toBe('true');
+    expect(query.get('showDeleted')).toBe('true');
+    expect(query.get('timeMin')).toBe('2026-11-01T00:00:00.000Z');
+    expect(query.get('timeMax')).toBe('2026-12-01T00:00:00.000Z');
+    expect(events).toMatchObject([
+      {
+        eventId: 'instance-datetime',
+        recurringEventId: 'series-datetime',
+        originalStart: '2026-11-14T20:00:00-06:00',
+        start: { kind: 'dateTime', dateTime: '2026-11-14T20:00:00-06:00' },
+      },
+      {
+        eventId: 'instance-all-day',
+        recurringEventId: 'series-all-day',
+        originalStart: '2026-11-15',
+        start: { kind: 'allDay', date: '2026-11-15' },
+        end: { kind: 'allDay', date: '2026-11-16' },
+      },
+      {
+        eventId: 'cancelled-exception',
+        status: 'cancelled',
+        recurringEventId: 'series-datetime',
+        originalStart: '2026-11-21T20:00:00-06:00',
+        start: { kind: 'dateTime', dateTime: '2026-11-21T20:00:00-06:00' },
+        end: { kind: 'dateTime', dateTime: '2026-11-21T20:00:00-06:00' },
+      },
+    ]);
+  });
 });
 
 describe('CalendarEffectDispatcher', () => {

@@ -47,24 +47,19 @@ const FreeBusyResponseSchema = z.object({
     }),
   ),
 });
+const GoogleEventTimeSchema = z.object({
+  dateTime: z.string().optional(),
+  date: z.string().optional(),
+  timeZone: z.string().optional(),
+});
 const GoogleEventSchema = z.object({
   id: z.string(),
   etag: z.string().default(''),
   status: z.enum(['confirmed', 'tentative', 'cancelled']).default('confirmed'),
-  start: z.object({
-    dateTime: z.string().optional(),
-    date: z.string().optional(),
-    timeZone: z.string().optional(),
-  }),
-  end: z.object({
-    dateTime: z.string().optional(),
-    date: z.string().optional(),
-    timeZone: z.string().optional(),
-  }),
+  start: GoogleEventTimeSchema.optional(),
+  end: GoogleEventTimeSchema.optional(),
   recurringEventId: z.string().optional(),
-  originalStartTime: z
-    .object({ dateTime: z.string().optional(), date: z.string().optional() })
-    .optional(),
+  originalStartTime: GoogleEventTimeSchema.optional(),
   attendees: z.array(z.object({ email: z.string() }).passthrough()).default([]),
   extendedProperties: z.object({ private: z.record(z.string(), z.string()).optional() }).optional(),
 });
@@ -121,9 +116,12 @@ function configuredCalendarIds(config: Config): string[] {
 }
 
 function parseEventTime(
-  value: z.infer<typeof GoogleEventSchema>['start'],
+  value: z.infer<typeof GoogleEventTimeSchema> | undefined,
   eventId: string,
 ): CalendarEventTime {
+  if (value === undefined) {
+    throw new Error(`Google event ${eventId} has no usable instance time; inspect the event.`);
+  }
   if (value.dateTime !== undefined) {
     return value.timeZone === undefined
       ? { kind: 'dateTime', dateTime: value.dateTime }
@@ -155,6 +153,7 @@ function eventMatchesDraft(
     actual: z.infer<typeof GoogleEventSchema>['start'],
     expected: CalendarEventDraft['start'],
   ): boolean =>
+    actual !== undefined &&
     actual.dateTime !== undefined &&
     Date.parse(actual.dateTime) === Date.parse(expected.dateTime) &&
     actual.timeZone === expected.timeZone;
@@ -290,11 +289,13 @@ export class GoogleCalendarAdapter {
       const result = EventListSchema.parse(raw);
       for (const event of result.items) {
         const original = event.originalStartTime?.dateTime ?? event.originalStartTime?.date ?? null;
+        const cancelledFallback =
+          event.status === 'cancelled' ? event.originalStartTime : undefined;
         events.push({
           eventId: event.id,
           status: event.status,
-          start: parseEventTime(event.start, event.id),
-          end: parseEventTime(event.end, event.id),
+          start: parseEventTime(event.start ?? cancelledFallback, event.id),
+          end: parseEventTime(event.end ?? cancelledFallback, event.id),
           recurringEventId: event.recurringEventId ?? null,
           originalStart: original,
           etag: event.etag,

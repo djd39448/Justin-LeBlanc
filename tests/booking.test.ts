@@ -228,3 +228,95 @@ describe('BookingService operator transitions', () => {
     store.close();
   });
 });
+
+describe('BookingService reschedule', () => {
+  it('moves the same show and releases its previous buffered interval', async () => {
+    const store = new Store(':memory:');
+    const service = createService(store);
+    const firstInquiry = service.upsertInquiry({ input: inquiryInput('first@example.test') });
+    const original = await service.scheduleConsultationAndHold({
+      inquiryId: firstInquiry.inquiryId,
+      token: firstInquiry.resumeToken,
+      requestKey: 'request-reschedule-0001',
+      consultationStart: '2026-10-01T14:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      timezone: 'America/Chicago',
+      reviewConsent: true,
+    });
+    const before = store.get('shows', original.showId, ShowSchema);
+    const moved = await service.rescheduleShow({
+      showId: before.id,
+      showRevision: before.revision,
+      actor: 'operator:test',
+      performanceStart: '2026-11-16T20:00:00.000Z',
+      performanceEnd: '2026-11-16T22:00:00.000Z',
+    });
+    expect(moved.id).toBe(before.id);
+    expect(moved.revision).toBe(before.revision + 1);
+    expect(store.all('shows', ShowSchema)).toHaveLength(1);
+    expect(
+      store
+        .effects()
+        .filter(
+          (effect) =>
+            effect.kind === 'calendar.upsert' && effect.id.endsWith(':performance:reschedule'),
+        ),
+    ).toHaveLength(1);
+
+    const secondInquiry = service.upsertInquiry({ input: inquiryInput('second@example.test') });
+    const replacement = await service.scheduleConsultationAndHold({
+      inquiryId: secondInquiry.inquiryId,
+      token: secondInquiry.resumeToken,
+      requestKey: 'request-released-slot-0002',
+      consultationStart: '2026-10-02T14:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      timezone: 'America/Chicago',
+      reviewConsent: true,
+    });
+    expect(replacement.showId).not.toBe(moved.id);
+    expect(store.all('shows', ShowSchema)).toHaveLength(2);
+    store.close();
+  });
+
+  it('rejects a buffered conflict without changing the original show', async () => {
+    const store = new Store(':memory:');
+    const service = createService(store);
+    const firstInquiry = service.upsertInquiry({ input: inquiryInput('first@example.test') });
+    const secondInquiry = service.upsertInquiry({ input: inquiryInput('second@example.test') });
+    const first = await service.scheduleConsultationAndHold({
+      inquiryId: firstInquiry.inquiryId,
+      token: firstInquiry.resumeToken,
+      requestKey: 'request-conflict-first',
+      consultationStart: '2026-10-01T14:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      timezone: 'America/Chicago',
+      reviewConsent: true,
+    });
+    await service.scheduleConsultationAndHold({
+      inquiryId: secondInquiry.inquiryId,
+      token: secondInquiry.resumeToken,
+      requestKey: 'request-conflict-second',
+      consultationStart: '2026-10-02T14:00:00.000Z',
+      performanceStart: '2026-11-16T20:00:00.000Z',
+      performanceEnd: '2026-11-16T22:00:00.000Z',
+      timezone: 'America/Chicago',
+      reviewConsent: true,
+    });
+    const before = store.get('shows', first.showId, ShowSchema);
+    await expect(
+      service.rescheduleShow({
+        showId: before.id,
+        showRevision: before.revision,
+        actor: 'operator:test',
+        performanceStart: '2026-11-16T21:00:00.000Z',
+        performanceEnd: '2026-11-16T23:00:00.000Z',
+      }),
+    ).rejects.toThrow('Requested reschedule is unavailable');
+    expect(store.get('shows', before.id, ShowSchema)).toEqual(before);
+    expect(store.effects().filter((effect) => effect.id.includes(':reschedule'))).toHaveLength(0);
+    store.close();
+  });
+});
