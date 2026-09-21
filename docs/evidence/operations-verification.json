@@ -1,15 +1,17 @@
 {
   "checkedAt": "2026-09-21T12:38:59.714Z",
-  "verifiedCode": "0fde0288d1ab860f35963b927f074617d315b8c7",
+  "verifiedCode": "8a280a05c18a0bf93a3d168dac9dc75ef0a0feeb",
   "checks": {
     "staticPages": 9,
     "typecheck": "pass",
     "astroDiagnostics": 0,
-    "testsPassed": 72,
+    "testsPassed": 87,
     "lint": "pass",
-    "testFiles": 16,
-    "completedAt": "2026-09-21T14:28:52Z",
-    "powerShellSyntax": "pass"
+    "testFiles": 17,
+    "completedAt": "2026-09-21T15:13:37Z",
+    "source": "plans/2026-09-21-resume-handoff.md",
+    "repeatedDuringResume": false,
+    "powerShellSyntax": "pass; separate subsequent startup-script parser/static checks"
   },
   "restart": {
     "tasks": [
@@ -71,5 +73,36 @@
       "voice",
       "billing"
     ]
+  },
+  "historicalChecks": {
+    "verifiedCode": "0fde0288d1ab860f35963b927f074617d315b8c7",
+    "checks": {
+      "staticPages": 9,
+      "typecheck": "pass",
+      "astroDiagnostics": 0,
+      "testsPassed": 72,
+      "lint": "pass",
+      "testFiles": 16,
+      "completedAt": "2026-09-21T14:28:52Z",
+      "powerShellSyntax": "pass"
+    }
+  },
+  "reconciledAt": "2026-09-21T15:24:14.070Z",
+  "historicalSections": [
+    "restart",
+    "backup",
+    "setupBatch"
+  ],
+  "latest": {
+    "startupEvidence": "startup-reconciliation.json",
+    "backupEvidence": "live-backup-restore.json",
+    "voiceEvidence": "live-voice-acceptance.json",
+    "releaseEvidence": "retell-central-release.json",
+    "ledgerEvidence": "resume-ledger-reconciliation.json",
+    "hostingEvidence": "hosting-verification.json",
+    "startupUpgradeApplied": false,
+    "voiceToolsLiveVerified": false,
+    "providerMutationsDuringResume": 0,
+    "localSuiteRepeatedDuringResume": false
   }
 }

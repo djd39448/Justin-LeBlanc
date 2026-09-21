@@ -1,7 +1,7 @@
 {
-  "at": "2026-09-21T14:16:25.077Z",
-  "websiteCheckedAt": "2026-09-21T12:38:28.783Z",
-  "deployment": "ae47bbfd",
+  "at": "2026-09-21T15:08:13.787Z",
+  "websiteCheckedAt": "2026-09-21T15:08:13.787Z",
+  "deployment": "e63652d3",
   "public": {
     "/": {
       "status": 200,
@@ -19,12 +19,11 @@
       "frame": "DENY",
       "csp": "frame-ancestors 'none'",
       "contentType": "text/html; charset=utf-8",
-      "h1": true,
-      "followupControl": true
+      "h1": true
     },
     "/api/health": {
       "status": 200,
-      "noindex": "noindex",
+      "noindex": "noindex, nofollow",
       "cacheControl": "no-store",
       "frame": null,
       "csp": null,
@@ -32,13 +31,13 @@
       "h1": false,
       "ok": true,
       "demo": true,
-      "kbVersion": "2026-09-21.1",
-      "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+      "kbVersion": "2026-09-21.2",
+      "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
       "capabilities": {
-        "booking": false,
+        "booking": true,
         "chat": true,
-        "voice": false,
-        "billing": false
+        "voice": true,
+        "billing": true
       }
     }
   },
@@ -60,22 +59,36 @@
       "calendar": false,
       "email": false,
       "voiceCall": false
-    }
+    },
+    "currentHealthCheckedAt": "2026-09-21T15:08:13.787Z",
+    "currentHealthStatus": 200,
+    "scope": "Original public smoke at checkedAt; later enabled provider workflows are recorded separately in currentLiveEvidence."
   },
   "local": {
-    "checkedAt": "2026-09-21T12:38:28.783Z",
+    "checkedAt": "2026-09-21T15:08:13.787Z",
     "health": {
       "ok": true,
       "demo": true,
-      "kbVersion": "2026-09-21.1",
-      "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+      "kbVersion": "2026-09-21.2",
+      "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
       "capabilities": {
-        "booking": false,
+        "booking": true,
         "chat": true,
-        "voice": false,
-        "billing": false
+        "voice": true,
+        "billing": true
       }
-    },
+    }
+  },
+  "codeRevision": "990fe56",
+  "publicApiEvidenceRevision": "6331d2b",
+  "currentLiveEvidence": [
+    "live-booking-acceptance.json",
+    "live-invoice-acceptance.json",
+    "live-voice-acceptance.json",
+    "central-live-check.json"
+  ],
+  "historicalLocalSmoke": {
+    "checkedAt": "2026-09-21T12:38:28.783Z",
     "unauthorized": 401,
     "counts": {
       "customers": 1,
@@ -90,6 +103,5 @@
     },
     "disabledFollowupStatus": 400
   },
-  "codeRevision": "8b8a4c9",
-  "publicApiEvidenceRevision": "6331d2b"
+  "currentLedgerEvidence": "resume-ledger-reconciliation.json"
 }

@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-09-21T15:22:32.6721068Z",
+  "method": "Read-only Windows ScheduledTasks snapshot",
+  "elevatedShell": false,
+  "scriptRevision": "18570d36c495953a331cbf38ca8f9ab8f5abb4f7",
+  "upgradeApplied": false,
+  "tasks": [
+    {
+      "name": "jlm-demo-api",
+      "state": "Running",
+      "logonType": "Interactive",
+      "triggerTypes": [
+        "MSFT_TaskLogonTrigger"
+      ],
+      "lastRunTime": "2026-09-21T15:11:50.0000000Z",
+      "lastTaskResult": 267009
+    },
+    {
+      "name": "jlm-demo-tunnel",
+      "state": "Running",
+      "logonType": "Interactive",
+      "triggerTypes": [
+        "MSFT_TaskLogonTrigger"
+      ],
+      "lastRunTime": "2026-09-21T14:14:03.0000000Z",
+      "lastTaskResult": 267009
+    },
+    {
+      "name": "jlm-demo-worker",
+      "state": "Running",
+      "logonType": "Interactive",
+      "triggerTypes": [
+        "MSFT_TaskLogonTrigger"
+      ],
+      "lastRunTime": "2026-09-21T15:11:50.0000000Z",
+      "lastTaskResult": 267009
+    }
+  ],
+  "previousScriptChecks": {
+    "source": "plans/2026-09-21-resume-handoff.md",
+    "powerShellParser": "passed",
+    "psScriptAnalyzer": "passed",
+    "nonApplyDryRun": "passed for all three owned Running tasks",
+    "repeatedDuringResume": false
+  },
+  "remainingAction": "Run the corrected upgrade-services.ps1 -Apply from an already elevated PowerShell session, then reconcile task principals/triggers and health.",
+  "rebootRecoveryTested": false,
+  "signOutRecoveryTested": false,
+  "limitation": "Services still depend on the user being signed in; no unattended recovery claim."
+}
