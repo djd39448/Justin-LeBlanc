@@ -27,7 +27,6 @@ import {
   ShowSchema,
   TENANT,
   type Quote,
-  type Show,
 } from '../../../packages/contracts/index.js';
 import { renderHtmlPdf, renderInvoice } from '../../../packages/documents/index.js';
 import {
@@ -93,7 +92,7 @@ export type ReplyResult =
   | { outcome: 'invoice_approved'; invoiceId: string; number: string };
 
 const JobRunSchema = z.object({
-  kind: z.literal('morning_scan'),
+  kind: z.literal('morning_invoice_scan_v2'),
   localDate: z.iso.date(),
   completedAt: z.iso.datetime({ offset: true }),
   eligible: z.number().int().nonnegative(),
@@ -173,7 +172,7 @@ export class BillingService {
         skipped += 1;
         continue;
       }
-      const outcome = this.queuePerformanceCheck(event);
+      const outcome = await this.queueAutomaticInvoice(event, now.toISOString());
       if (outcome === 'queued') queued += 1;
       if (outcome === 'review') review += 1;
       if (outcome === 'skipped') skipped += 1;
@@ -182,7 +181,7 @@ export class BillingService {
       for (const date of dates) {
         if (this.store.find('job_runs', morningRunId(date), JobRunSchema) === undefined) {
           this.store.insert('job_runs', morningRunId(date), {
-            kind: 'morning_scan',
+            kind: 'morning_invoice_scan_v2',
             localDate: date,
             completedAt: now.toISOString(),
             eligible: queued + review,
@@ -511,94 +510,187 @@ export class BillingService {
     });
   }
 
-  private queuePerformanceCheck(event: CalendarShowEvent): 'queued' | 'review' | 'skipped' {
+  /**
+   * Treats one completed, app-owned Calendar performance as performed and prepares its invoice.
+   * Existing invoice state always wins so render recovery can resume without resending mail.
+   */
+  private async queueAutomaticInvoice(
+    event: CalendarShowEvent,
+    issuedAt: string,
+  ): Promise<'queued' | 'review' | 'skipped'> {
     const metadata = event.metadata;
-    if (metadata === null) return 'skipped';
+    if (metadata === null || event.start.kind !== 'dateTime' || event.end.kind !== 'dateTime') {
+      return 'skipped';
+    }
     const existingInvoice = this.store
       .all('invoices', InvoiceSchema)
       .find((invoice) => invoice.data.showId === metadata.showId);
-    if (existingInvoice !== undefined) return 'skipped';
-    const checkId = performanceCheckId(metadata.showId);
-    if (this.store.find('performance_checks', checkId, PerformanceCheckSchema) !== undefined)
-      return 'skipped';
-    const showEntity = this.store.find('shows', metadata.showId, ShowSchema);
-    if (
-      showEntity === undefined ||
-      showEntity.data.status !== 'confirmed' ||
-      showEntity.data.quoteId === null
-    ) {
-      return 'skipped';
-    }
-    const quoteEntity = this.store.find('quotes', showEntity.data.quoteId, QuoteSchema);
-    const mismatch =
-      showEntity.data.customerId !== metadata.customerId ||
-      quoteEntity === undefined ||
-      quoteEntity.data.version !== metadata.quoteVersion ||
-      quoteEntity.data.totalCents !== metadata.agreedTotalCents ||
-      quoteEntity.data.currency !== metadata.currency;
-    if (mismatch) {
-      this.store.transaction(() => {
-        const reviewShow = ShowSchema.parse({ ...showEntity.data, status: 'needs_review' });
-        this.store.update('shows', showEntity.id, showEntity.revision, reviewShow);
-        this.store.audit('morning-job', 'show.calendar_quote_mismatch', showEntity.id, {
-          calendarEventId: event.eventId,
-        });
+    if (existingInvoice !== undefined) {
+      if (existingInvoice.data.status !== 'approved') return 'skipped';
+      await this.prepareInvoiceDelivery(existingInvoice.id);
+      this.store.audit('morning-job', 'invoice.delivery_resumed', existingInvoice.id, {
+        showId: metadata.showId,
+        calendarEventId: event.eventId,
       });
+      return 'queued';
+    }
+    const showEntity = this.store.find('shows', metadata.showId, ShowSchema);
+    if (showEntity?.data.status === 'awaiting_performance_reply') {
+      this.markLegacyCheckForReview(showEntity.id, showEntity.revision, event.eventId);
       return 'review';
     }
-    validateAgreedQuote(quoteEntity.data);
-    const nonce = randomBytes(18).toString('base64url');
-    const messageId = `<performance-check.${checkId}@${this.options.hostname}>`;
-    const check = PerformanceCheckSchema.parse({
-      showId: showEntity.id,
-      calendarEventId: event.eventId,
-      calendarEtag: event.etag,
-      customerId: showEntity.data.customerId,
-      quoteId: quoteEntity.id,
-      quoteVersion: quoteEntity.data.version,
-      agreedTotalCents: quoteEntity.data.totalCents,
-      currency: quoteEntity.data.currency,
-      authorizedResponder: this.options.operatorEmail.toLowerCase(),
-      replyNonceHash: hashSecret(nonce),
-      outboundMessageId: messageId,
-      approvalMessageId: null,
-      state: 'pending',
-      decision: 'unknown',
-      candidateLines: [],
-      candidateQuoteVersion: null,
-      approvalTokenHash: null,
-      reminderMessageId: null,
-      reminderQueuedAt: null,
-      reminderSentAt: null,
-      repliedAt: null,
-    });
-    const effect = this.performanceCheckMailEffect(
-      checkId,
-      nonce,
-      showEntity.data,
-      quoteEntity.data,
-      messageId,
-    );
+    if (showEntity === undefined || showEntity.data.status !== 'confirmed') {
+      return 'skipped';
+    }
+    if (showEntity.data.quoteId === null) {
+      this.markShowForReview(
+        showEntity.id,
+        showEntity.revision,
+        event.eventId,
+        'approved_quote_missing',
+      );
+      return 'review';
+    }
+    const quoteEntity = this.store.find('quotes', showEntity.data.quoteId, QuoteSchema);
+    const customerEntity = this.store.find('customers', showEntity.data.customerId, CustomerSchema);
+    if (
+      showEntity.data.customerId !== metadata.customerId ||
+      new Date(event.start.dateTime).getTime() !== new Date(showEntity.data.start).getTime() ||
+      new Date(event.end.dateTime).getTime() !== new Date(showEntity.data.end).getTime() ||
+      customerEntity === undefined ||
+      quoteEntity === undefined ||
+      quoteEntity.data.showId !== showEntity.id ||
+      quoteEntity.data.version !== metadata.quoteVersion ||
+      quoteEntity.data.totalCents !== metadata.agreedTotalCents ||
+      quoteEntity.data.currency !== metadata.currency
+    ) {
+      this.markShowForReview(
+        showEntity.id,
+        showEntity.revision,
+        event.eventId,
+        'calendar_record_mismatch',
+      );
+      return 'review';
+    }
+    let snapshot: Invoice['snapshot'];
+    const issueLocalDate = localDate(new Date(issuedAt), HOUSTON_TIMEZONE);
+    try {
+      validateAgreedQuote(quoteEntity.data);
+      snapshot = buildInvoiceSnapshot({
+        showId: showEntity.id,
+        show: showEntity.data,
+        customer: customerEntity.data,
+        quote: quoteEntity.data,
+        seller: {
+          displayName: this.options.sellerDisplayName,
+          address: this.options.sellerAddress,
+          replyEmail: this.options.senderEmail,
+          demoDisclosure: 'Demo invoice using provisional terms. Not a payment request.',
+        },
+        issuedAt,
+        dueDate: addLocalDateDays(issueLocalDate, 14),
+      });
+    } catch {
+      this.markShowForReview(
+        showEntity.id,
+        showEntity.revision,
+        event.eventId,
+        'invoice_validation_failed',
+      );
+      return 'review';
+    }
+    const invoiceId = `invoice-${showEntity.id}`;
     this.store.transaction(() => {
-      this.store.insert('performance_checks', checkId, check);
+      const issueYear = issueLocalDate.slice(0, 4);
+      const sequence = this.store.nextSequence(`invoice:${issueYear}`);
+      const number = `JLM-DEMO-${issueYear}-${String(sequence).padStart(4, '0')}`;
+      const invoice = InvoiceSchema.parse({
+        showId: showEntity.id,
+        number,
+        kind: 'performance',
+        status: 'approved',
+        snapshot,
+        snapshotHash: invoiceSnapshotHash(snapshot),
+        pdfKey: '',
+        contentHash: null,
+        outboundMessageId: `<invoice.${invoiceId}@${this.options.hostname}>`,
+        providerMessageId: null,
+        sentAt: null,
+      });
+      this.store.insert('invoices', invoiceId, invoice);
       this.store.update(
         'shows',
         showEntity.id,
         showEntity.revision,
-        ShowSchema.parse({ ...showEntity.data, status: 'awaiting_performance_reply' }),
+        ShowSchema.parse({ ...showEntity.data, status: 'performed' }),
       );
-      this.store.enqueue(
-        `mail:performance-check:${showEntity.id}`,
-        'email.performance_check',
-        showEntity.id,
-        effect,
-      );
-      this.store.audit('morning-job', 'performance_check.queued', showEntity.id, {
+      this.store.audit('morning-job', 'invoice.auto_approved', invoiceId, {
+        showId: showEntity.id,
         calendarEventId: event.eventId,
+        calendarEtag: event.etag,
+        quoteId: quoteEntity.id,
         quoteVersion: quoteEntity.data.version,
+        totalCents: quoteEntity.data.totalCents,
       });
     });
+    await this.prepareInvoiceDelivery(invoiceId);
     return 'queued';
+  }
+
+  private markLegacyCheckForReview(showId: string, showRevision: number, eventId: string): void {
+    const checkId = performanceCheckId(showId);
+    this.store.transaction(() => {
+      const show = this.store.get('shows', showId, ShowSchema);
+      if (show.revision !== showRevision || show.data.status !== 'awaiting_performance_reply') {
+        throw new Error(`Show ${showId} changed during morning reconciliation; refresh and retry.`);
+      }
+      this.store.update(
+        'shows',
+        show.id,
+        show.revision,
+        ShowSchema.parse({ ...show.data, status: 'needs_review' }),
+      );
+      const check = this.store.find('performance_checks', checkId, PerformanceCheckSchema);
+      if (check !== undefined && check.data.state !== 'completed' && check.data.state !== 'no_invoice') {
+        this.store.update(
+          'performance_checks',
+          check.id,
+          check.revision,
+          PerformanceCheckSchema.parse({
+            ...check.data,
+            state: 'needs_review',
+            decision: 'ambiguous',
+          }),
+        );
+      }
+      this.store.audit('morning-job', 'show.legacy_performance_check_review', showId, {
+        calendarEventId: eventId,
+      });
+    });
+  }
+
+  private markShowForReview(
+    showId: string,
+    revision: number,
+    eventId: string,
+    reason: string,
+  ): void {
+    this.store.transaction(() => {
+      const show = this.store.get('shows', showId, ShowSchema);
+      if (show.revision !== revision || show.data.status !== 'confirmed') {
+        throw new Error(`Show ${showId} changed during morning validation; refresh and retry.`);
+      }
+      this.store.update(
+        'shows',
+        show.id,
+        show.revision,
+        ShowSchema.parse({ ...show.data, status: 'needs_review' }),
+      );
+      this.store.audit('morning-job', 'show.invoice_review', showId, {
+        calendarEventId: eventId,
+        reason,
+      });
+    });
   }
 
   private markNotPerformed(
@@ -906,35 +998,6 @@ export class BillingService {
     });
   }
 
-  private performanceCheckMailEffect(
-    checkId: string,
-    nonce: string,
-    show: Show,
-    quote: Quote,
-    messageId: string,
-  ): MailEffect {
-    const lines = quote.lines
-      .map((line) => `${line.quantity} x ${line.description} @ ${formatUsd(line.unitCents)}`)
-      .join('\n');
-    const token = `[JLM-REPLY:${checkId}:${nonce}]`;
-    const subject = `[Justin Demo][${checkId}] Did you play ${show.eventType} on ${localDate(new Date(show.end), show.timezone)}?`;
-    const text = `Did you perform this show?\n\nVenue: ${show.venue || 'To confirm'}, ${show.city}\nEnd: ${show.end} (${show.timezone})\n\n${lines}\nAgreed total: ${formatUsd(quote.totalCents)}\n\nReply with exactly YES (no changes), NO (not performed), or:\nYES\nADD | description | quantity | unit amount\n\nDo not delete this correlation line:\n${token}`;
-    return MailEffectSchema.parse({
-      version: 1,
-      messageId,
-      envelopeFrom: this.options.senderEmail,
-      to: [this.options.operatorEmail],
-      cc: [],
-      bcc: [],
-      replyTo: this.options.senderEmail,
-      subject,
-      text,
-      html: `<div style="font-family:Arial,sans-serif;color:#13233a;line-height:1.45"><h1 style="color:#092f54">Did you perform this show?</h1><p><strong>${escapeHtml(show.eventType)}</strong><br>${escapeHtml(show.venue || 'To confirm')}, ${escapeHtml(show.city)}<br>${escapeHtml(show.end)} (${escapeHtml(show.timezone)})</p><pre style="white-space:pre-wrap">${escapeHtml(lines)}</pre><p><strong>Agreed total: ${formatUsd(quote.totalCents)}</strong></p><p>Reply with <strong>YES</strong> (no changes), <strong>NO</strong> (not performed), or itemized lines in this exact form:<br><code>YES<br>ADD | description | quantity | unit amount</code></p><p style="color:#526579">Do not delete: ${escapeHtml(token)}</p></div>`,
-      headers: { 'X-JLM-Check-ID': checkId, 'X-JLM-Tenant': TENANT },
-      attachments: [],
-    });
-  }
-
   private performanceReminderMailEffect(
     checkId: string,
     nonce: string,
@@ -1108,8 +1171,15 @@ function addUtcDays(instant: string, days: number): string {
   return new Date(new Date(instant).getTime() + days * DAY_MS).toISOString().slice(0, 10);
 }
 
+function addLocalDateDays(date: string, days: number): string {
+  const parsed = z.iso.date().parse(date);
+  return new Date(new Date(`${parsed}T12:00:00.000Z`).getTime() + days * DAY_MS)
+    .toISOString()
+    .slice(0, 10);
+}
+
 function morningRunId(date: string): string {
-  return `morning:${date}`;
+  return `morning:auto-invoice:v2:${date}`;
 }
 
 function performanceCheckId(showId: string): string {

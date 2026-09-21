@@ -98,6 +98,17 @@ describe('document templates', () => {
     expect(rendered.html).toContain('$800.00 USD');
     expect(rendered.text).toContain('Deposit credited: $100.00 USD');
     expect(rendered.html).not.toContain('operator@example.test');
+    for (const [issuedAt, localDate] of [
+      ['2026-09-22T04:30:00.000Z', '2026-09-21'],
+      ['2027-01-01T05:30:00.000Z', '2026-12-31'],
+    ] as const) {
+      const local = renderInvoice({
+        ...invoice,
+        snapshot: { ...invoice.snapshot, issuedAt },
+      });
+      expect(local.text).toContain(`Issued: ${localDate}`);
+      expect(local.html).toContain(localDate);
+    }
   });
 
   it('queues an operator-only brief email only after its PDF exists', async () => {

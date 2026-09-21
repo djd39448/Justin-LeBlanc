@@ -1,7 +1,7 @@
 /**
  * Runs the Houston morning billing scan under a durable lease.
  * Dependencies: Store leases and BillingService. Consumers: scheduler endpoint and CLI.
- * Why: overlapping cron/startup catch-up runs must never enqueue duplicate performer checks.
+ * Why: overlapping cron/startup catch-up runs must never enqueue duplicate invoices.
  */
 import { randomUUID } from 'node:crypto';
 

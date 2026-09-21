@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 import { z } from 'zod';
 
-const RELEASE_VERSION = '2026-09-21.3';
+const RELEASE_VERSION = '2026-09-21.4';
 const FactSchema = z.object({
   id: z.string().min(1),
   text: z.string().min(1),

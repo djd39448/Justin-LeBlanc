@@ -25,6 +25,7 @@ import {
   type Show,
 } from '../packages/contracts/index.js';
 import {
+  hashSecret,
   InvoiceSchema,
   parsePerformanceReply,
   PerformanceCheckSchema,
@@ -61,7 +62,7 @@ describe('performance reply grammar', () => {
 });
 
 describe('billing service', () => {
-  it('selects a show by Houston end date and issues one immutable invoice from an authenticated YES', async () => {
+  it('automatically issues one immutable invoice for a completed Houston performance', async () => {
     const fixture = await createFixture();
     const morning = await fixture.service.runMorningCheck({
       now: new Date('2026-09-21T14:00:00Z'),
@@ -69,7 +70,6 @@ describe('billing service', () => {
     });
     expect(morning.queued).toBe(1);
     expect(morning.localDates).toHaveLength(7);
-    const checkCount = fixture.store.all('performance_checks', PerformanceCheckSchema).length;
     const effectCount = fixture.store.effects().length;
     const replay = await fixture.service.runMorningCheck({
       now: new Date('2026-09-21T14:00:00Z'),
@@ -77,35 +77,8 @@ describe('billing service', () => {
     });
     expect(replay.localDates).toHaveLength(7);
     expect(replay.queued).toBe(0);
-    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(
-      checkCount,
-    );
+    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(0);
     expect(fixture.store.effects()).toHaveLength(effectCount);
-
-    const check = fixture.store.all('performance_checks', PerformanceCheckSchema)[0];
-    expect(check).toBeDefined();
-    if (check === undefined) throw new Error('Expected a performance check.');
-    const checkMail = fixture.store
-      .effects('pending')
-      .find((effect) => effect.kind === 'email.performance_check');
-    expect(checkMail).toBeDefined();
-    if (checkMail === undefined) throw new Error('Expected a performance-check email effect.');
-    const payload = MailEffectSchema.parse(JSON.parse(checkMail.payload));
-    const token = payload.text.match(/\[JLM-REPLY:[^\]]+\]/)?.[0];
-    expect(token).toBeDefined();
-    if (token === undefined) throw new Error('Expected a correlation token.');
-
-    const inbound = reply({
-      messageId: '<reply-yes@example.test>',
-      inReplyTo: check.data.outboundMessageId,
-      text: `YES\n\n> quoted original\n${token}`,
-    });
-    const issued = await fixture.service.processReply(inbound);
-    expect(issued.outcome).toBe('invoice_approved');
-    expect(await fixture.service.processReply(inbound)).toEqual({
-      outcome: 'duplicate',
-      reason: 'Provider Message-ID was already processed.',
-    });
 
     const invoice = fixture.store.all('invoices', InvoiceSchema)[0];
     expect(invoice?.data.snapshot.quote.totalCents).toBe(70_000);
@@ -119,6 +92,63 @@ describe('billing service', () => {
     expect(invoiceMail.to).toEqual(['client@example.test']);
     expect(invoiceMail.bcc).toEqual(['operator@example.test']);
     expect(invoiceMail.html).not.toContain('operator@example.test');
+    expect(fixture.store.get('shows', 'show-1', ShowSchema).data.status).toBe('performed');
+    expect(fixture.store.effects().some((effect) => effect.kind === 'email.performance_check')).toBe(
+      false,
+    );
+  });
+
+  it('uses a versioned run ledger so legacy completed dates receive one automatic scan', async () => {
+    const fixture = await createFixture();
+    const oldDates = [
+      '2026-09-20',
+      '2026-09-19',
+      '2026-09-18',
+      '2026-09-17',
+      '2026-09-16',
+      '2026-09-15',
+      '2026-09-14',
+    ];
+    for (const date of oldDates) {
+      fixture.store.insert('job_runs', `morning:${date}`, {
+        kind: 'morning_scan',
+        localDate: date,
+        completedAt: '2026-09-21T13:00:00.000Z',
+        eligible: 0,
+      });
+    }
+    const first = await fixture.service.runMorningCheck({
+      now: new Date('2026-09-21T14:00:00Z'),
+    });
+    expect(first.queued).toBe(1);
+    expect(first.localDates).toEqual(oldDates);
+    expect(
+      await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:05:00Z') }),
+    ).toEqual({ localDates: [], checked: 0, queued: 0, review: 0, skipped: 0 });
+  });
+
+  it('uses the Houston issue year and adds due days as civil calendar dates', async () => {
+    const fixture = await createFixture();
+    const show = fixture.store.get('shows', 'show-1', ShowSchema);
+    const start = '2026-12-31T03:00:00.000Z';
+    const end = '2026-12-31T05:00:00.000Z';
+    fixture.store.update(
+      'shows',
+      show.id,
+      show.revision,
+      ShowSchema.parse({ ...show.data, start, end }),
+    );
+    fixture.event.start = { kind: 'dateTime', dateTime: start, timeZone: 'America/Chicago' };
+    fixture.event.end = { kind: 'dateTime', dateTime: end, timeZone: 'America/Chicago' };
+
+    await fixture.service.runMorningCheck({
+      now: new Date('2027-01-01T02:00:00.000Z'),
+      force: true,
+    });
+    const invoice = fixture.store.all('invoices', InvoiceSchema)[0];
+    expect(invoice?.data.number).toBe('JLM-DEMO-2026-0001');
+    expect(invoice?.data.snapshot.issuedAt).toBe('2027-01-01T02:00:00.000Z');
+    expect(invoice?.data.snapshot.dueDate).toBe('2027-01-14');
   });
 
   it('finds a show added after a completed date scan only on an explicit forced rescan', async () => {
@@ -156,20 +186,148 @@ describe('billing service', () => {
       review: 0,
       skipped: 0,
     });
-    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(1);
+    expect(fixture.store.all('invoices', InvoiceSchema)).toHaveLength(1);
 
     const forced = await fixture.service.runMorningCheck({ now, force: true });
     expect(forced.localDates).toHaveLength(7);
     expect(forced.queued).toBe(1);
-    expect(fixture.store.all('performance_checks', PerformanceCheckSchema)).toHaveLength(2);
+    expect(fixture.store.all('invoices', InvoiceSchema)).toHaveLength(2);
+    expect(fixture.store.effects().filter((effect) => effect.kind === 'email.invoice')).toHaveLength(
+      2,
+    );
+  });
+
+  it('skips cancelled, tentative, all-day, untagged, and non-performance records', async () => {
+    const fixture = await createFixture();
+    const metadata = fixture.event.metadata;
+    if (metadata === null) throw new Error('Expected app-owned event metadata.');
+    fixture.events.splice(
+      0,
+      1,
+      { ...fixture.event, eventId: 'cancelled', status: 'cancelled' },
+      { ...fixture.event, eventId: 'tentative', status: 'tentative' },
+      {
+        ...fixture.event,
+        eventId: 'all-day',
+        start: { kind: 'allDay', date: '2026-09-19' },
+        end: { kind: 'allDay', date: '2026-09-20' },
+      },
+      { ...fixture.event, eventId: 'consultation', metadata: null },
+      {
+        ...fixture.event,
+        eventId: 'unrelated',
+        metadata: { ...metadata, tenantId: 'other-tenant' },
+      },
+    );
+    const result = await fixture.service.runMorningCheck({
+      now: new Date('2026-09-21T14:00:00Z'),
+      force: true,
+    });
+    expect(result).toMatchObject({ checked: 5, queued: 0, review: 0, skipped: 5 });
+    expect(fixture.store.all('invoices', InvoiceSchema)).toHaveLength(0);
+    expect(fixture.store.effects()).toHaveLength(0);
+  });
+
+  it('moves mismatched money and legacy awaiting checks to review without sending', async () => {
+    const invalid = await createFixture();
+    const quote = invalid.store.get('quotes', 'quote-1', QuoteSchema);
+    invalid.store.update(
+      'quotes',
+      quote.id,
+      quote.revision,
+      QuoteSchema.parse({ ...quote.data, subtotalCents: 69_000 }),
+    );
     expect(
-      fixture.store.effects().filter((effect) => effect.kind === 'email.performance_check'),
-    ).toHaveLength(2);
+      await invalid.service.runMorningCheck({
+        now: new Date('2026-09-21T14:00:00Z'),
+        force: true,
+      }),
+    ).toMatchObject({ queued: 0, review: 1 });
+    expect(invalid.store.get('shows', 'show-1', ShowSchema).data.status).toBe('needs_review');
+    expect(invalid.store.all('invoices', InvoiceSchema)).toHaveLength(0);
+
+    const missingQuote = await createFixture();
+    const missingShow = missingQuote.store.get('shows', 'show-1', ShowSchema);
+    missingQuote.store.update(
+      'shows',
+      missingShow.id,
+      missingShow.revision,
+      ShowSchema.parse({ ...missingShow.data, quoteId: null }),
+    );
+    expect(
+      await missingQuote.service.runMorningCheck({
+        now: new Date('2026-09-21T14:00:00Z'),
+        force: true,
+      }),
+    ).toMatchObject({ queued: 0, review: 1 });
+    expect(missingQuote.store.get('shows', 'show-1', ShowSchema).data.status).toBe('needs_review');
+
+    const legacy = await createFixture();
+    seedLegacyPerformanceCheck(legacy);
+    expect(
+      await legacy.service.runMorningCheck({
+        now: new Date('2026-09-21T14:00:00Z'),
+        force: true,
+      }),
+    ).toMatchObject({ queued: 0, review: 1 });
+    expect(legacy.store.get('shows', 'show-1', ShowSchema).data.status).toBe('needs_review');
+    expect(
+      legacy.store.get('performance_checks', 'show-show-1', PerformanceCheckSchema).data.state,
+    ).toBe('needs_review');
+    expect(legacy.store.all('invoices', InvoiceSchema)).toHaveLength(0);
+    expect(legacy.store.effects().filter((effect) => effect.kind === 'email.invoice')).toHaveLength(
+      0,
+    );
+  });
+
+  it('recovers an interrupted PDF render but never recreates a non-approved delivery', async () => {
+    let failRender = true;
+    const fixture = await createFixture({
+      renderPdf: async (_html, outputPath) => {
+        if (failRender) throw new Error('synthetic renderer interruption');
+        await writeFile(outputPath, '%PDF-1.4 recovered fixture');
+      },
+    });
+    await expect(
+      fixture.service.runMorningCheck({
+        now: new Date('2026-09-21T14:00:00Z'),
+        force: false,
+      }),
+    ).rejects.toThrow('synthetic renderer interruption');
+    expect(fixture.store.all('invoices', InvoiceSchema)[0]?.data.status).toBe('approved');
+    expect(fixture.store.effects()).toHaveLength(0);
+
+    failRender = false;
+    expect(
+      await fixture.service.runMorningCheck({
+        now: new Date('2026-09-21T14:05:00Z'),
+        force: false,
+      }),
+    ).toMatchObject({ queued: 1 });
+    const invoice = fixture.store.all('invoices', InvoiceSchema)[0];
+    expect(invoice?.data.status).toBe('issuing');
+    expect(fixture.store.effects().filter((effect) => effect.kind === 'email.invoice')).toHaveLength(
+      1,
+    );
+    if (invoice === undefined) throw new Error('Expected recovered invoice.');
+    fixture.service.markInvoiceDelivery({
+      invoiceId: invoice.id,
+      status: 'uncertain',
+      providerMessageId: null,
+    });
+    await fixture.service.runMorningCheck({
+      now: new Date('2026-09-21T14:10:00Z'),
+      force: true,
+    });
+    expect(fixture.store.all('invoices', InvoiceSchema)).toHaveLength(1);
+    expect(fixture.store.effects().filter((effect) => effect.kind === 'email.invoice')).toHaveLength(
+      1,
+    );
   });
 
   it('queues one reminder from definitive delivery time and accepts its authenticated reply', async () => {
     const fixture = await createFixture();
-    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    seedLegacyPerformanceCheck(fixture);
     const originalEffectId = 'mail:performance-check:show-1';
     const deliveredAt = new Date('2026-09-21T15:00:00.000Z');
     fixture.store.db
@@ -248,7 +406,7 @@ describe('billing service', () => {
 
   it('moves an unanswered delivered check to operator review after 72 hours without invoicing', async () => {
     const fixture = await createFixture();
-    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    seedLegacyPerformanceCheck(fixture);
     const deliveredAt = new Date('2026-09-21T15:00:00.000Z');
     fixture.store.db
       .prepare(
@@ -277,7 +435,7 @@ describe('billing service', () => {
 
   it('requires visible revised total approval before an amendment becomes billable', async () => {
     const fixture = await createFixture();
-    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    seedLegacyPerformanceCheck(fixture);
     const check = fixture.store.all('performance_checks', PerformanceCheckSchema)[0];
     const firstMail = fixture.store
       .effects('pending')
@@ -329,7 +487,7 @@ describe('billing service', () => {
 
   it('rejects subject-only correlation, sent echoes, and unauthenticated From headers', async () => {
     const fixture = await createFixture();
-    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    seedLegacyPerformanceCheck(fixture);
     const attempts = [
       reply({
         messageId: '<bad-thread@example.test>',
@@ -354,7 +512,7 @@ describe('billing service', () => {
 
   it('marks an authenticated NO as not performed without creating an invoice', async () => {
     const fixture = await createFixture();
-    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    seedLegacyPerformanceCheck(fixture);
     const check = fixture.store.all('performance_checks', PerformanceCheckSchema)[0];
     const effect = fixture.store
       .effects('pending')
@@ -382,14 +540,18 @@ describe('billing service', () => {
   });
 });
 
-async function createFixture(): Promise<{
+interface BillingFixture {
   store: Store;
   service: BillingService;
   event: CalendarShowEvent;
   events: CalendarShowEvent[];
   show: Show;
   quote: Quote;
-}> {
+}
+
+async function createFixture(
+  overrides: Pick<BillingOptions, 'renderPdf'> = {},
+): Promise<BillingFixture> {
   const store = new Store(':memory:');
   stores.push(store);
   const storage = await mkdtemp(join(tmpdir(), 'jlm-billing-'));
@@ -467,7 +629,9 @@ async function createFixture(): Promise<{
     sellerAddress: 'Demo address to confirm',
     demoMode: true,
     hostname: 'example.test',
-    renderPdf: async (_html, outputPath) => writeFile(outputPath, '%PDF-1.4 synthetic fixture'),
+    renderPdf:
+      overrides.renderPdf ??
+      (async (_html, outputPath) => writeFile(outputPath, '%PDF-1.4 synthetic fixture')),
   };
   return {
     store,
@@ -477,6 +641,65 @@ async function createFixture(): Promise<{
     show,
     quote,
   };
+}
+
+function seedLegacyPerformanceCheck(fixture: BillingFixture): void {
+  const checkId = 'show-show-1';
+  const nonce = 'legacy-nonce-1234567890';
+  const messageId = '<performance-check.show-show-1@example.test>';
+  fixture.store.insert(
+    'performance_checks',
+    checkId,
+    PerformanceCheckSchema.parse({
+      showId: 'show-1',
+      calendarEventId: fixture.event.eventId,
+      calendarEtag: fixture.event.etag,
+      customerId: 'customer-1',
+      quoteId: 'quote-1',
+      quoteVersion: 1,
+      agreedTotalCents: 70_000,
+      currency: 'USD',
+      authorizedResponder: 'operator@example.test',
+      replyNonceHash: hashSecret(nonce),
+      outboundMessageId: messageId,
+      reminderMessageId: null,
+      approvalMessageId: null,
+      state: 'pending',
+      decision: 'unknown',
+      candidateLines: [],
+      candidateQuoteVersion: null,
+      approvalTokenHash: null,
+      reminderQueuedAt: null,
+      reminderSentAt: null,
+      repliedAt: null,
+    }),
+  );
+  const show = fixture.store.get('shows', 'show-1', ShowSchema);
+  fixture.store.update(
+    'shows',
+    show.id,
+    show.revision,
+    ShowSchema.parse({ ...show.data, status: 'awaiting_performance_reply' }),
+  );
+  fixture.store.enqueue(
+    'mail:performance-check:show-1',
+    'email.performance_check',
+    'show-1',
+    MailEffectSchema.parse({
+      version: 1,
+      messageId,
+      envelopeFrom: 'sender@example.test',
+      to: ['operator@example.test'],
+      cc: [],
+      bcc: [],
+      replyTo: 'sender@example.test',
+      subject: '[Justin Demo][show-show-1] Did you play?',
+      text: `Did you perform this show?\n\nReply YES or NO.\n\n[JLM-REPLY:${checkId}:${nonce}]`,
+      html: `<p>Did you perform this show?</p><p>[JLM-REPLY:${checkId}:${nonce}]</p>`,
+      headers: { 'X-JLM-Check-ID': checkId, 'X-JLM-Tenant': 'justin-demo' },
+      attachments: [],
+    }),
+  );
 }
 
 function reply(

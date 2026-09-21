@@ -70,6 +70,16 @@
     "review_due": "2026-12-20"
   },
   {
+    "id": "invoice-policy",
+    "text": "Each morning at 08:00 Houston Central Time (America/Chicago), completed confirmed calendar performances are assumed played and invoiced automatically using the agreed quote. No performance-confirmation email reply is required. The invoice goes to the billing contact with the performer BCC'd. Missing or mismatched billing details require operator review; tentative holds, cancelled events, and consultations are not invoiced.",
+    "source_url": "repo:docs/WORKFLOWS.md",
+    "observed_at": "2026-09-21",
+    "effective_date": "2026-09-21",
+    "status": "owner_approved",
+    "topic": "billing",
+    "review_due": "2026-12-20"
+  },
+  {
     "id": "unknown-business-terms",
     "text": "Actual repertoire, packages, rates, deposits, cancellation terms, production inclusions, and travel policy require Justin's approval.",
     "source_url": "repo:docs/DECISIONS.md",

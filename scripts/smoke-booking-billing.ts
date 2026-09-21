@@ -3,7 +3,8 @@
  *
  * Dependencies: protected runtime config, canonical Store records, durable outbox, Google Calendar,
  * and Gmail. The private manifest is observational; database and provider records remain authority.
- * Provider access is impossible unless --execute-providers is paired with --apply.
+ * Direct provider access requires --execute-providers with --apply; state-changing stages also
+ * require a paused worker so queued effects cannot be dispatched by another process.
  */
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -15,7 +16,6 @@ import { z } from 'zod';
 import { MailEffectSchema } from '../apps/api/adapters/email.js';
 import { assertRecipients, loadConfig, type Config } from '../apps/api/config.js';
 import { seedDemo } from '../apps/api/demo-seed.js';
-import { runImapReplyJob } from '../apps/api/jobs/imap.js';
 import { runMorningJob } from '../apps/api/jobs/morning.js';
 import { createRuntime, type Runtime } from '../apps/api/runtime.js';
 import { ShowSchema } from '../packages/contracts/index.js';
@@ -53,6 +53,7 @@ interface Options {
   key: string;
   apply?: boolean;
   executeProviders?: boolean;
+  workerPaused?: boolean;
 }
 
 interface WorkflowIds {
@@ -235,6 +236,12 @@ async function runStage(
   }
   if (!apply) return { planned: true, requiresApply: true };
 
+  if (stage === 'waiting-reply') {
+    throw new Error(
+      'The current calendar-driven invoice policy needs no performer reply; use morning then invoice-reconcile.',
+    );
+  }
+
   if (stage === 'booking') {
     if (executeProviders) await reconcileBeforeProvider(runtime, ids);
     const seeded = seedDemo(runtime, seedKey);
@@ -265,36 +272,15 @@ async function runStage(
       asOfLocalDate: nextHoustonDate(show.data.end),
       force: true,
     });
-    assertMailRecipients(runtime, ids.checkMailEffectId, 'email.performance_check');
-    await dispatchOnly(runtime, ids, ids.checkMailEffectId);
+    assertMailRecipients(runtime, ids.invoiceMailEffectId, 'email.invoice');
+    await dispatchOnly(runtime, ids, ids.invoiceMailEffectId);
     return { morning: result, providerDispatch: true };
-  }
-
-  const check = runtime.store.find('performance_checks', ids.checkId, PerformanceCheckSchema);
-  const checkMail = runtime.store
-    .effects()
-    .find((effect) => effect.id === ids.checkMailEffectId && effect.status === 'accepted');
-  if (check === undefined || checkMail === undefined) {
-    throw new Error('Accepted performance check is absent; finish the morning stage first.');
-  }
-
-  if (stage === 'waiting-reply') {
-    const result = await runImapReplyJob(runtime.store, runtime.imap, runtime.billing, {
-      workerId: `acceptance-${ids.showId}`,
-      maximum: 100,
-    });
-    const invoice = runtime.store.find('invoices', ids.invoiceId, InvoiceSchema);
-    return {
-      mailbox: { fetched: result.fetched, processed: result.processed },
-      replyObserved: invoice !== undefined,
-      invoiceStatus: invoice?.data.status ?? null,
-    };
   }
 
   if (!runtime.config.INVOICE_SEND_ENABLED) throw new Error('Invoice provider gate is disabled.');
   const invoice = runtime.store.find('invoices', ids.invoiceId, InvoiceSchema);
   if (invoice === undefined)
-    throw new Error('Invoice is absent; wait for and poll the correlated reply.');
+    throw new Error('Invoice is absent; finish the calendar-driven morning stage first.');
   if (invoice.data.status === 'approved')
     await runtime.billing.prepareInvoiceDelivery(ids.invoiceId);
   assertMailRecipients(runtime, ids.invoiceMailEffectId, 'email.invoice');
@@ -349,16 +335,22 @@ function writeManifest(path: string, manifest: Manifest): void {
 async function main(): Promise<void> {
   const options = new Command()
     .name('smoke-booking-billing')
-    .description('Restartable synthetic booking, Calendar, reply, and invoice acceptance runner')
+    .description('Restartable synthetic Calendar-to-invoice acceptance runner')
     .requiredOption('--env <path>', 'Protected runtime env')
     .requiredOption('--manifest <path>', 'Private restart manifest outside Git')
-    .requiredOption('--stage <stage>', 'inspect|booking|morning|waiting-reply|invoice-reconcile')
+    .requiredOption('--stage <stage>', 'inspect|booking|morning|invoice-reconcile')
     .option('--key <key>', 'Stable synthetic seed key', 'rehearsal-v1')
     .option('--apply', 'Apply durable local state transitions')
     .option('--execute-providers', 'Allow bounded Calendar/Gmail provider operations')
+    .option('--worker-paused', 'Assert the owned worker and child are stopped for live stages')
     .parse()
     .opts<Options>();
   const stage = StageSchema.parse(options.stage);
+  if (options.apply && stage !== 'inspect' && !options.workerPaused) {
+    throw new Error(
+      'State-changing runner stages require --worker-paused; use normal operator actions with a running worker.',
+    );
+  }
   const ids = idsFor(options.key);
   readManifest(options.manifest, ids, options.key);
   const runtime = loadRuntime(options.env);

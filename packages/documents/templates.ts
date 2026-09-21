@@ -15,6 +15,7 @@
 import { z } from 'zod';
 
 import { InvoiceSchema, type Invoice } from '../domain/billing.js';
+import { localDateForInstant } from '../domain/time.js';
 
 const text = z.string().trim().max(800);
 const display = z.union([text.min(1), z.literal('To confirm')]);
@@ -128,7 +129,7 @@ export function renderInvoice(input: Invoice): RenderedDocument {
     (part, index, values) =>
       part.trim().length > 0 && values.findIndex((candidate) => candidate === part) === index,
   );
-  const issuedDate = snapshot.issuedAt.slice(0, 10);
+  const issuedDate = localDateForInstant(snapshot.issuedAt, 'America/Chicago');
   const totalRows = [
     ['Subtotal', snapshot.quote.subtotalCents],
     ['Tax (demo assumption)', snapshot.quote.taxCents],

@@ -57,7 +57,6 @@ try {
     if (runtime.config.INVOICE_SEND_ENABLED && now.getTime() - lastReplies >= 120_000) {
       lastReplies = now.getTime();
       await run('imap', () => runImapReplyJob(runtime.store, runtime.imap, runtime.billing));
-      await run('billing-followups', async () => runtime.billing.runFollowups({ now }));
     }
     if (runtime.config.BOOKING_WRITES_ENABLED)
       await run('expire-holds', async () => runtime.booking.expireHolds(), true);

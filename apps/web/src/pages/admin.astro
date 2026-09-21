@@ -55,15 +55,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="admin-panel-heading">
           <div><p class="eyebrow">Deterministic jobs</p><h2 id="jobs-title">Run and reconcile</h2></div>
           <div class="field admin-date-field">
-            <label for="morning-date">Morning check as-of date (optional)</label>
+            <label for="morning-date">Morning invoicing as-of date (optional)</label>
             <input id="morning-date" type="date" />
           </div>
         </div>
         <div class="admin-action-grid">
           <button class="button button-secondary" type="button" data-quick-action="demo-seed">Seed synthetic demo</button>
-          <button class="button button-secondary" type="button" data-quick-action="morning">Run morning check</button>
-          <button class="button button-secondary" type="button" data-quick-action="replies-poll">Poll replies</button>
-          <button class="button button-secondary" type="button" data-quick-action="billing-followups">Review unanswered checks</button>
+          <button class="button button-secondary" type="button" data-quick-action="morning">Run morning invoicing</button>
+          <button class="button button-secondary" type="button" data-quick-action="replies-poll">Legacy: poll replies</button>
+          <button class="button button-secondary" type="button" data-quick-action="billing-followups">Legacy: review unanswered checks</button>
           <button class="button button-secondary" type="button" data-quick-action="outbox-dispatch">Dispatch outbox</button>
           <button class="button button-secondary" type="button" data-quick-action="holds-expire">Expire due holds</button>
         </div>
@@ -88,9 +88,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </table></div>
         </div>
         <div class="admin-panel">
-          <div class="admin-panel-heading"><div><p class="eyebrow">Post-show</p><h2>Performance checks</h2></div></div>
+          <div class="admin-panel-heading"><div><p class="eyebrow">Old-policy records</p><h2>Legacy performance checks</h2></div></div>
+          <p class="form-hint">New confirmed performances invoice from the morning Calendar scan. These checks remain visible only to reconcile records created under the earlier reply-gated policy.</p>
           <div class="admin-table-wrap"><table class="admin-table">
-            <caption class="visually-hidden">Current post-performance checks</caption>
+            <caption class="visually-hidden">Legacy post-performance checks</caption>
             <thead><tr><th>Reference</th><th>Show</th><th>Decision</th><th>Updated</th></tr></thead>
             <tbody id="checks-body"></tbody>
           </table></div>
@@ -385,7 +386,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       tr.append(tableCell(check.id), tableCell(recordText(check.data, "showId")), statusCell(recordText(check.data, "decision", "pending")), tableCell(formatDate(check.updatedAt)));
       tbody.append(tr);
     }
-    if (state.checks.length === 0) appendEmpty(tbody, 4, "No performance checks yet.");
+    if (state.checks.length === 0) appendEmpty(tbody, 4, "No legacy performance checks.");
   }
 
   async function fetchDocument(path: string, fileName: string, openPreview: boolean): Promise<void> {
