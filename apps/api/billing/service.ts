@@ -80,6 +80,13 @@ export interface MorningCheckResult {
   skipped: number;
 }
 
+export interface PerformanceFollowupResult {
+  examined: number;
+  reminded: number;
+  escalated: number;
+  skipped: number;
+}
+
 export type ReplyResult =
   | { outcome: 'ignored' | 'duplicate' | 'needs_review' | 'no_invoice'; reason: string }
   | { outcome: 'awaiting_change_approval'; showId: string; candidateVersion: number }
@@ -98,6 +105,13 @@ const ProcessedMailSchema = z.object({
   uid: z.number().int().positive(),
   outcome: z.string(),
   processedAt: z.iso.datetime({ offset: true }),
+});
+const AcceptedOutboxRowSchema = z.object({
+  status: z.literal('accepted'),
+  kind: z.enum(['email.performance_check', 'email.performance_reminder']),
+  entity_id: z.string(),
+  payload: z.string(),
+  updated_at: z.iso.datetime({ offset: true }),
 });
 
 /** Coordinates the full post-performance workflow over one durable Store. */
@@ -179,6 +193,195 @@ export class BillingService {
     return { localDates: dates, checked: events.length, queued, review, skipped };
   }
 
+  /**
+   * Reminds initial unanswered performance checks once after 24 hours and escalates after 72.
+   * The clock starts only at definitive original SMTP acceptance or Sent reconciliation.
+   * Amendment approval threads remain outside this workflow and visible for operator review.
+   */
+  runFollowups(input: { now?: Date } = {}): PerformanceFollowupResult {
+    const now = input.now ?? new Date();
+    const nowMs = now.getTime();
+    if (!Number.isFinite(nowMs))
+      throw new Error('Follow-up time is invalid; supply a real instant.');
+
+    this.syncAcceptedReminderTimestamps();
+    const candidates = this.store
+      .all('performance_checks', PerformanceCheckSchema)
+      .filter((candidate) => candidate.data.state === 'pending')
+      .flatMap((checkEntity) => {
+        const row = AcceptedOutboxRowSchema.safeParse(
+          this.store.db
+            .prepare('SELECT status,kind,entity_id,payload,updated_at FROM outbox WHERE id=?')
+            .get(`mail:performance-check:${checkEntity.data.showId}`),
+        );
+        return row.success &&
+          row.data.kind === 'email.performance_check' &&
+          row.data.entity_id === checkEntity.data.showId
+          ? [{ checkEntity, originalRow: row.data }]
+          : [];
+      })
+      .sort(
+        (left, right) =>
+          new Date(left.originalRow.updated_at).getTime() -
+          new Date(right.originalRow.updated_at).getTime(),
+      )
+      .slice(0, MAX_FOLLOWUPS_PER_RUN);
+    const invoicedShows = new Set(
+      this.store.all('invoices', InvoiceSchema).map((invoice) => invoice.data.showId),
+    );
+    const result: PerformanceFollowupResult = {
+      examined: candidates.length,
+      reminded: 0,
+      escalated: 0,
+      skipped: 0,
+    };
+
+    for (const candidate of candidates) {
+      const checkEntity = candidate.checkEntity;
+      const check = checkEntity.data;
+      const originalRow = candidate.originalRow;
+      const show = this.store.find('shows', check.showId, ShowSchema);
+      if (
+        invoicedShows.has(check.showId) ||
+        show === undefined ||
+        show.data.status !== 'awaiting_performance_reply'
+      ) {
+        result.skipped += 1;
+        continue;
+      }
+      const deliveredAtMs = new Date(originalRow.updated_at).getTime();
+      const ageMs = nowMs - deliveredAtMs;
+      if (ageMs < 0 || ageMs < FOLLOWUP_REMINDER_AFTER_MS) {
+        result.skipped += 1;
+        continue;
+      }
+      if (ageMs >= FOLLOWUP_REVIEW_AFTER_MS) {
+        this.escalateUnansweredCheck(
+          checkEntity.id,
+          checkEntity.revision,
+          check,
+          show.revision,
+          now,
+        );
+        result.escalated += 1;
+        continue;
+      }
+      if (check.reminderQueuedAt !== null || check.reminderMessageId !== null) {
+        result.skipped += 1;
+        continue;
+      }
+
+      const originalMail = MailEffectSchema.safeParse(parseJsonSafely(originalRow.payload));
+      if (!originalMail.success || originalMail.data.messageId !== check.outboundMessageId) {
+        this.escalateInvalidFollowup(
+          checkEntity.id,
+          checkEntity.revision,
+          check,
+          show.revision,
+          now,
+          'Original outbox Message-ID did not match the performance check.',
+        );
+        result.escalated += 1;
+        continue;
+      }
+      const nonce = extractCorrelationNonce(originalMail.data.text, checkEntity.id);
+      if (nonce === undefined || !secretMatches(nonce, check.replyNonceHash)) {
+        this.escalateInvalidFollowup(
+          checkEntity.id,
+          checkEntity.revision,
+          check,
+          show.revision,
+          now,
+          'Original performance-check nonce could not be verified.',
+        );
+        result.escalated += 1;
+        continue;
+      }
+
+      const reminder = this.performanceReminderMailEffect(checkEntity.id, nonce, originalMail.data);
+      this.store.transaction(() => {
+        const fresh = this.store.get('performance_checks', checkEntity.id, PerformanceCheckSchema);
+        if (
+          fresh.data.state !== 'pending' ||
+          fresh.data.reminderQueuedAt !== null ||
+          fresh.data.reminderMessageId !== null
+        ) {
+          throw new Error(
+            `Performance check ${checkEntity.id} changed during follow-up; refresh before retrying.`,
+          );
+        }
+        this.store.update(
+          'performance_checks',
+          fresh.id,
+          fresh.revision,
+          PerformanceCheckSchema.parse({
+            ...fresh.data,
+            reminderMessageId: reminder.messageId,
+            reminderQueuedAt: now.toISOString(),
+          }),
+        );
+        this.store.enqueue(
+          `mail:performance-reminder:${check.showId}`,
+          'email.performance_reminder',
+          check.showId,
+          reminder,
+        );
+        this.store.audit('billing-followups', 'performance_check.reminder_queued', check.showId, {
+          originalDeliveredAt: originalRow.updated_at,
+          reminderMessageId: reminder.messageId,
+        });
+      });
+      result.reminded += 1;
+    }
+    return result;
+  }
+
+  private syncAcceptedReminderTimestamps(): void {
+    const accepted = this.store
+      .all('performance_checks', PerformanceCheckSchema)
+      .filter(
+        (check) => check.data.reminderMessageId !== null && check.data.reminderSentAt === null,
+      )
+      .flatMap((checkEntity) => {
+        const row = AcceptedOutboxRowSchema.safeParse(
+          this.store.db
+            .prepare('SELECT status,kind,entity_id,payload,updated_at FROM outbox WHERE id=?')
+            .get(`mail:performance-reminder:${checkEntity.data.showId}`),
+        );
+        const mail = row.success
+          ? MailEffectSchema.safeParse(parseJsonSafely(row.data.payload))
+          : undefined;
+        return row.success &&
+          row.data.kind === 'email.performance_reminder' &&
+          row.data.entity_id === checkEntity.data.showId &&
+          mail?.success === true &&
+          mail.data.messageId === checkEntity.data.reminderMessageId
+          ? [{ checkEntity, acceptedAt: row.data.updated_at }]
+          : [];
+      })
+      .sort(
+        (left, right) => new Date(left.acceptedAt).getTime() - new Date(right.acceptedAt).getTime(),
+      )
+      .slice(0, MAX_FOLLOWUPS_PER_RUN);
+
+    for (const { checkEntity, acceptedAt } of accepted) {
+      this.store.transaction(() => {
+        const fresh = this.store.get('performance_checks', checkEntity.id, PerformanceCheckSchema);
+        if (
+          fresh.data.reminderMessageId === checkEntity.data.reminderMessageId &&
+          fresh.data.reminderSentAt === null
+        ) {
+          this.store.update(
+            'performance_checks',
+            fresh.id,
+            fresh.revision,
+            PerformanceCheckSchema.parse({ ...fresh.data, reminderSentAt: acceptedAt }),
+          );
+        }
+      });
+    }
+  }
+
   /** Processes one parsed Inbox message; authentication/correlation failures cannot mutate money. */
   async processReply(message: ReceivedMail): Promise<ReplyResult> {
     const processedId = processedMailId(message.messageId);
@@ -193,6 +396,7 @@ export class BillingService {
       .find(
         (candidate) =>
           candidate.data.outboundMessageId === message.inReplyTo ||
+          candidate.data.reminderMessageId === message.inReplyTo ||
           candidate.data.approvalMessageId === message.inReplyTo,
       );
     if (checkEntity === undefined) {
@@ -363,6 +567,8 @@ export class BillingService {
       candidateLines: [],
       candidateQuoteVersion: null,
       approvalTokenHash: null,
+      reminderMessageId: null,
+      reminderQueuedAt: null,
       reminderSentAt: null,
       repliedAt: null,
     });
@@ -729,6 +935,80 @@ export class BillingService {
     });
   }
 
+  private performanceReminderMailEffect(
+    checkId: string,
+    nonce: string,
+    original: MailEffect,
+  ): MailEffect {
+    const token = `[JLM-REPLY:${checkId}:${nonce}]`;
+    const messageId = `<performance-reminder.${checkId}@${this.options.hostname}>`;
+    const instructions =
+      'Reply with exactly YES (no changes), NO (not performed), or the documented YES plus ADD lines.';
+    return MailEffectSchema.parse({
+      version: 1,
+      messageId,
+      envelopeFrom: this.options.senderEmail,
+      to: [this.options.operatorEmail],
+      cc: [],
+      bcc: [],
+      replyTo: this.options.senderEmail,
+      subject: `Reminder: ${original.subject}`,
+      text: `Reminder: the performance check below is still awaiting your reply.\n\n${instructions}\n\nDo not delete this correlation line:\n${token}`,
+      html: `<div style="font-family:Arial,sans-serif;color:#13233a;line-height:1.45"><h1 style="color:#092f54">Performance check reminder</h1><p>The original performance check is still awaiting your reply.</p><p>${escapeHtml(instructions)}</p><p style="color:#526579">Do not delete: ${escapeHtml(token)}</p></div>`,
+      headers: {
+        'In-Reply-To': original.messageId,
+        References: original.messageId,
+        'X-JLM-Check-ID': checkId,
+        'X-JLM-Tenant': TENANT,
+      },
+      attachments: [],
+    });
+  }
+
+  private escalateUnansweredCheck(
+    checkId: string,
+    revision: number,
+    check: PerformanceCheck,
+    showRevision: number,
+    now: Date,
+  ): void {
+    this.store.transaction(() => {
+      this.store.update(
+        'performance_checks',
+        checkId,
+        revision,
+        PerformanceCheckSchema.parse({ ...check, state: 'needs_review' }),
+      );
+      const show = this.store.get('shows', check.showId, ShowSchema);
+      if (show.revision !== showRevision || show.data.status !== 'awaiting_performance_reply') {
+        throw new Error(`Show ${check.showId} changed during follow-up; refresh before retrying.`);
+      }
+      this.store.update(
+        'shows',
+        show.id,
+        show.revision,
+        ShowSchema.parse({ ...show.data, status: 'needs_review' }),
+      );
+      this.store.audit('billing-followups', 'performance_check.no_reply_review', check.showId, {
+        escalatedAt: now.toISOString(),
+      });
+    });
+  }
+
+  private escalateInvalidFollowup(
+    checkId: string,
+    revision: number,
+    check: PerformanceCheck,
+    showRevision: number,
+    now: Date,
+    reason: string,
+  ): void {
+    this.escalateUnansweredCheck(checkId, revision, check, showRevision, now);
+    this.store.audit('billing-followups', 'performance_check.reminder_blocked', check.showId, {
+      reason,
+    });
+  }
+
   private amendmentApprovalMailEffect(
     checkId: string,
     quote: Quote,
@@ -780,6 +1060,10 @@ export class BillingService {
 
 const HOUSTON_TIMEZONE = 'America/Chicago';
 const DAY_MS = 86_400_000;
+const HOUR_MS = 3_600_000;
+const FOLLOWUP_REMINDER_AFTER_MS = 24 * HOUR_MS;
+const FOLLOWUP_REVIEW_AFTER_MS = 72 * HOUR_MS;
+const MAX_FOLLOWUPS_PER_RUN = 100;
 
 /** Returns the local YYYY-MM-DD for a real instant in an IANA timezone. */
 export function localDate(instant: Date, timezone: string): string {
@@ -840,6 +1124,14 @@ function extractCorrelationNonce(text: string, checkId: string): string | undefi
   const escaped = checkId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const match = text.match(new RegExp(`\\[JLM-REPLY:${escaped}:([A-Za-z0-9_-]{16,128})\\]`));
   return match?.[1];
+}
+
+function parseJsonSafely(value: string): unknown {
+  try {
+    return JSON.parse(value) as unknown;
+  } catch {
+    return undefined;
+  }
 }
 
 function formatUsd(cents: number): string {

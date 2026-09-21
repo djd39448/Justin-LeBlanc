@@ -17,7 +17,13 @@ import {
   type PerformanceCalendarReader,
 } from '../apps/api/billing/service.js';
 import { Store } from '../apps/api/store.js';
-import { QuoteSchema, type Customer, type Quote, type Show } from '../packages/contracts/index.js';
+import {
+  QuoteSchema,
+  ShowSchema,
+  type Customer,
+  type Quote,
+  type Show,
+} from '../packages/contracts/index.js';
 import {
   InvoiceSchema,
   parsePerformanceReply,
@@ -159,6 +165,114 @@ describe('billing service', () => {
     expect(
       fixture.store.effects().filter((effect) => effect.kind === 'email.performance_check'),
     ).toHaveLength(2);
+  });
+
+  it('queues one reminder from definitive delivery time and accepts its authenticated reply', async () => {
+    const fixture = await createFixture();
+    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    const originalEffectId = 'mail:performance-check:show-1';
+    const deliveredAt = new Date('2026-09-21T15:00:00.000Z');
+    fixture.store.db
+      .prepare("UPDATE outbox SET status='uncertain',updated_at=? WHERE id=? AND status='pending'")
+      .run(deliveredAt.toISOString(), originalEffectId);
+
+    expect(
+      fixture.service.runFollowups({
+        now: new Date(deliveredAt.getTime() + 80 * 3_600_000),
+      }),
+    ).toEqual({ examined: 0, reminded: 0, escalated: 0, skipped: 0 });
+    expect(
+      fixture.store.effects().find((effect) => effect.id.includes('reminder')),
+    ).toBeUndefined();
+
+    fixture.store.db
+      .prepare(
+        "UPDATE outbox SET status='accepted',provider_id=?,updated_at=? WHERE id=? AND status='uncertain'",
+      )
+      .run('<provider-original@example.test>', deliveredAt.toISOString(), originalEffectId);
+    expect(
+      fixture.service.runFollowups({
+        now: new Date(deliveredAt.getTime() + 23 * 3_600_000),
+      }).reminded,
+    ).toBe(0);
+    expect(
+      fixture.service.runFollowups({
+        now: new Date(deliveredAt.getTime() + 25 * 3_600_000),
+      }),
+    ).toEqual({ examined: 1, reminded: 1, escalated: 0, skipped: 0 });
+
+    const reminderEffect = fixture.store
+      .effects('pending')
+      .find((effect) => effect.id === 'mail:performance-reminder:show-1');
+    if (reminderEffect === undefined) throw new Error('Expected a durable reminder effect.');
+    expect(reminderEffect.kind).toBe('email.performance_reminder');
+    const reminder = MailEffectSchema.parse(JSON.parse(reminderEffect.payload));
+    const check = fixture.store.get('performance_checks', 'show-show-1', PerformanceCheckSchema);
+    expect(reminder.messageId).toBe(check.data.reminderMessageId);
+    expect(reminder.headers['In-Reply-To']).toBe(check.data.outboundMessageId);
+    expect(check.data.reminderQueuedAt).toBe('2026-09-22T16:00:00.000Z');
+    expect(check.data.reminderSentAt).toBeNull();
+    const token = reminder.text.match(/\[JLM-REPLY:[^\]]+\]/)?.[0];
+    if (token === undefined) throw new Error('Expected the verified original correlation token.');
+
+    const reminderAcceptedAt = new Date(deliveredAt.getTime() + 26 * 3_600_000).toISOString();
+    fixture.store.db
+      .prepare(
+        "UPDATE outbox SET status='accepted',provider_id=?,updated_at=? WHERE id=? AND status='pending'",
+      )
+      .run('<provider-reminder@example.test>', reminderAcceptedAt, reminderEffect.id);
+    expect(
+      fixture.service.runFollowups({
+        now: new Date(deliveredAt.getTime() + 30 * 3_600_000),
+      }).reminded,
+    ).toBe(0);
+    expect(
+      fixture.store.get('performance_checks', 'show-show-1', PerformanceCheckSchema).data
+        .reminderSentAt,
+    ).toBe(reminderAcceptedAt);
+    expect(
+      fixture.store.effects().filter((effect) => effect.id === reminderEffect.id),
+    ).toHaveLength(1);
+
+    const result = await fixture.service.processReply(
+      reply({
+        messageId: '<reply-to-reminder@example.test>',
+        inReplyTo: reminder.messageId,
+        text: `YES\n\n> reminder quoted text\n${token}`,
+        receivedAt: '2026-09-22T17:00:00.000Z',
+      }),
+    );
+    expect(result.outcome).toBe('invoice_approved');
+    expect(fixture.store.all('invoices', InvoiceSchema)).toHaveLength(1);
+  });
+
+  it('moves an unanswered delivered check to operator review after 72 hours without invoicing', async () => {
+    const fixture = await createFixture();
+    await fixture.service.runMorningCheck({ now: new Date('2026-09-21T14:00:00Z'), force: true });
+    const deliveredAt = new Date('2026-09-21T15:00:00.000Z');
+    fixture.store.db
+      .prepare(
+        "UPDATE outbox SET status='accepted',provider_id=?,updated_at=? WHERE id=? AND status='pending'",
+      )
+      .run(
+        '<provider-original@example.test>',
+        deliveredAt.toISOString(),
+        'mail:performance-check:show-1',
+      );
+
+    expect(
+      fixture.service.runFollowups({
+        now: new Date(deliveredAt.getTime() + 72 * 3_600_000),
+      }),
+    ).toEqual({ examined: 1, reminded: 0, escalated: 1, skipped: 0 });
+    expect(
+      fixture.store.get('performance_checks', 'show-show-1', PerformanceCheckSchema).data.state,
+    ).toBe('needs_review');
+    expect(fixture.store.get('shows', 'show-1', ShowSchema).data.status).toBe('needs_review');
+    expect(fixture.store.all('invoices', InvoiceSchema)).toHaveLength(0);
+    expect(
+      fixture.store.effects().filter((effect) => effect.id.includes('performance-reminder')),
+    ).toHaveLength(0);
   });
 
   it('requires visible revised total approval before an amendment becomes billable', async () => {
