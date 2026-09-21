@@ -39,7 +39,21 @@ const ProvisionManifestSchema = z.object({
   phoneNumberId: z.null(),
   recordedAt: z.iso.datetime({ offset: true }),
 });
-type ProvisionManifest = z.infer<typeof ProvisionManifestSchema>;
+export type ProvisionManifest = z.infer<typeof ProvisionManifestSchema>;
+
+export type ProtectedProvisionDisposition =
+  'unprotected' | 'reconcile_protected' | 'refresh_protected';
+
+/** Keeps a durable provider identity stable when the canonical KB changes. */
+export function protectedProvisionDisposition(
+  manifest: ProvisionManifest | undefined,
+  knowledge: { version: string; hash: string },
+): ProtectedProvisionDisposition {
+  if (manifest?.agentId === undefined || manifest.agentId === null) return 'unprotected';
+  return manifest.kbVersion === knowledge.version && manifest.kbHash === knowledge.hash
+    ? 'reconcile_protected'
+    : 'refresh_protected';
+}
 
 interface RetellProvisionTool {
   name: string;
@@ -229,6 +243,59 @@ async function provision(
 ): Promise<{ agentId: string; llmId: string; voiceId: string; reconciled: boolean }> {
   const knowledge = loadKnowledgeRelease();
   const agentName = `jlm-demo-booking-assistant-${knowledge.version}`;
+  const prior = readManifest(manifestPath);
+  const protectedDisposition = protectedProvisionDisposition(prior, knowledge);
+  if (prior?.agentId !== undefined && prior.agentId !== null) {
+    if (prior.apiUrl !== apiUrl) {
+      throw new Error(
+        'The protected Retell identity uses a different API URL; refresh it in place before provisioning.',
+      );
+    }
+    if (requestedVoiceId !== undefined && requestedVoiceId !== prior.voiceId) {
+      throw new Error(
+        'The requested voice differs from the protected Retell identity; refresh it in place before provisioning.',
+      );
+    }
+    let protectedAgent;
+    let protectedLlm;
+    try {
+      protectedAgent = await client.agent.retrieve(prior.agentId);
+      protectedLlm = await client.llm.retrieve(prior.llmId);
+    } catch {
+      throw new Error(
+        'The protected Retell agent or LLM could not be retrieved by its recorded ID; no resources were created.',
+      );
+    }
+    const expectedWebhook = buildRetellProvisionPlan(apiUrl, prior.voiceId).agent.webhook_url;
+    if (
+      protectedAgent.agent_id !== prior.agentId ||
+      protectedAgent.response_engine.type !== 'retell-llm' ||
+      protectedAgent.response_engine.llm_id !== prior.llmId ||
+      protectedLlm.llm_id !== prior.llmId ||
+      protectedAgent.voice_id !== prior.voiceId ||
+      protectedAgent.webhook_url !== expectedWebhook
+    ) {
+      throw new Error(
+        'The protected Retell identity no longer matches its recorded agent, LLM, voice, or webhook; no resources were created.',
+      );
+    }
+    if (protectedDisposition === 'refresh_protected') {
+      throw new Error(
+        'The protected Retell identity is verified but its KB release differs. Refresh the recorded agent and LLM IDs in place, then update the protected manifest; do not rerun new-resource provisioning.',
+      );
+    }
+    persistProvision(envPath, manifestPath, environment, {
+      ...prior,
+      stage: 'agent_reconciled',
+      recordedAt: new Date().toISOString(),
+    });
+    return {
+      agentId: protectedAgent.agent_id,
+      llmId: prior.llmId,
+      voiceId: protectedAgent.voice_id,
+      reconciled: true,
+    };
+  }
   let exactAgent;
   try {
     exactAgent = await findExactAgent(client, agentName);
@@ -263,7 +330,6 @@ async function provision(
     };
   }
 
-  const prior = readManifest(manifestPath);
   if (prior !== undefined && prior.agentName === agentName && prior.agentId !== null) {
     throw new Error(
       'The protected manifest names an agent that Retell did not return; stop safely.',

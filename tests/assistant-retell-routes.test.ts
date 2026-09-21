@@ -5,7 +5,11 @@ import { describe, expect, it } from 'vitest';
 import { ConfigSchema } from '../apps/api/config.js';
 import { createRuntime } from '../apps/api/runtime.js';
 import { mountVoiceRoutes } from '../apps/api/voice-routes.js';
-import { buildRetellProvisionPlan } from '../scripts/retell-provision.js';
+import {
+  buildRetellProvisionPlan,
+  type ProvisionManifest,
+  protectedProvisionDisposition,
+} from '../scripts/retell-provision.js';
 
 const config = ConfigSchema.parse({
   NODE_ENV: 'test',
@@ -119,6 +123,34 @@ describe('signed Retell HTTP routes', () => {
 });
 
 describe('Retell provisioning plan', () => {
+  it('requires an in-place refresh when a protected agent crosses a KB release', () => {
+    const protectedManifest: ProvisionManifest = {
+      version: 1,
+      stage: 'agent_reconciled',
+      agentName: 'jlm-demo-booking-assistant-2026-09-21.1',
+      agentId: 'agent_existing',
+      llmId: 'llm_existing',
+      voiceId: 'voice_existing',
+      kbVersion: '2026-09-21.1',
+      kbHash: 'old-hash',
+      apiUrl: 'https://demo.example.test',
+      phoneNumberId: null,
+      recordedAt: '2026-09-21T12:00:00.000Z',
+    };
+    expect(
+      protectedProvisionDisposition(protectedManifest, {
+        version: '2026-09-21.2',
+        hash: 'new-hash',
+      }),
+    ).toBe('refresh_protected');
+    expect(
+      protectedProvisionDisposition(
+        { ...protectedManifest, agentId: null, stage: 'llm_created' },
+        { version: '2026-09-21.2', hash: 'new-hash' },
+      ),
+    ).toBe('unprotected');
+  });
+
   it('contains only public custom tools and performs no phone-number action', () => {
     const plan = buildRetellProvisionPlan('https://demo.example.test', 'voice_approved');
     expect(plan.llm.general_tools.map((tool) => tool.name)).not.toContain('confirm_show');
