@@ -75,6 +75,51 @@ export interface MailboxPage {
   messages: ReceivedMail[];
 }
 
+export interface ReplyUidPagePlan {
+  selectedUids: number[];
+  checkpointUid: number;
+  hasMore: boolean;
+}
+
+/** Plans one stable page from a mailbox-open UIDNEXT snapshot and server search results. */
+export function planReplyUidPage(input: {
+  afterUid: number;
+  uidNext: number;
+  matchingUids: number[];
+  maximum: number;
+}): ReplyUidPagePlan {
+  const highWater = Math.max(0, input.uidNext - 1);
+  const eligible = [...new Set(input.matchingUids)]
+    .filter((uid) => Number.isInteger(uid) && uid > input.afterUid && uid <= highWater)
+    .sort((left, right) => left - right);
+  const selectedUids = eligible.slice(0, input.maximum);
+  const hasMore = eligible.length > selectedUids.length;
+  return {
+    selectedUids,
+    checkpointUid: hasMore
+      ? (selectedUids[selectedUids.length - 1] ?? input.afterUid)
+      : Math.max(input.afterUid, highWater),
+    hasMore,
+  };
+}
+
+/** Returns the app Message-ID domain fragment used only for In-Reply-To IMAP search. */
+export function replyMessageIdNeedle(publicSiteUrl: string): string {
+  return `@${new URL(publicSiteUrl).hostname.toLowerCase()}`;
+}
+
+/** Builds the narrow server query; message subject is intentionally not a correlation signal. */
+export function createReplySearchQuery(
+  afterUid: number,
+  highWater: number,
+  publicSiteUrl: string,
+): { uid: string; header: { 'in-reply-to': string } } {
+  return {
+    uid: `${Math.max(1, afterUid + 1)}:${highWater}`,
+    header: { 'in-reply-to': replyMessageIdNeedle(publicSiteUrl) },
+  };
+}
+
 export class UncertainEmailSendError extends Error {
   readonly messageId: string;
 
@@ -154,44 +199,66 @@ export class ImapEmailAdapter {
       const mailbox = await client.mailboxOpen('INBOX');
       const uidValidity = String(mailbox.uidValidity);
       const messages: ReceivedMail[] = [];
-      let highestUid = afterUid;
       let inspected = 0;
-      const range = `${Math.max(1, afterUid + 1)}:*`;
-      for await (const fetched of client.fetch(range, { uid: true, source: true }, { uid: true })) {
-        if (fetched.uid <= afterUid) continue;
-        highestUid = Math.max(highestUid, fetched.uid);
-        inspected += 1;
-        if (fetched.source !== undefined) {
-          const parsed = await simpleParser(fetched.source);
-          const from = parsed.from?.value.length === 1 ? parsed.from.value[0]?.address : undefined;
-          const messageId = parsed.messageId;
-          const inReplyTo = Array.isArray(parsed.inReplyTo)
-            ? parsed.inReplyTo.length === 1
-              ? parsed.inReplyTo[0]
-              : undefined
-            : parsed.inReplyTo;
-          if (from !== undefined && messageId !== undefined && inReplyTo !== undefined) {
-            const received = ReceivedMailSchema.safeParse({
-              mailbox: 'INBOX',
-              uidValidity,
-              uid: fetched.uid,
-              messageId,
-              inReplyTo,
-              from,
-              subject: parsed.subject ?? '',
-              text: parsed.text ?? '',
-              authenticationResults: firstRawHeader(parsed.headerLines, 'authentication-results'),
-              autoSubmitted: headerText(parsed.headers.get('auto-submitted')),
-              precedence: headerText(parsed.headers.get('precedence')),
-              returnPath: headerText(parsed.headers.get('return-path')),
-              receivedAt: (parsed.date ?? new Date()).toISOString(),
-            });
-            if (received.success) messages.push(received.data);
+      const highWater = Math.max(0, mailbox.uidNext - 1);
+      const matching =
+        highWater <= afterUid
+          ? []
+          : await client.search(
+              createReplySearchQuery(afterUid, highWater, this.config.PUBLIC_SITE_URL),
+              { uid: true },
+            );
+      const plan = planReplyUidPage({
+        afterUid,
+        uidNext: mailbox.uidNext,
+        matchingUids: Array.isArray(matching) ? matching : [],
+        maximum,
+      });
+      if (plan.selectedUids.length > 0) {
+        for await (const fetched of client.fetch(
+          plan.selectedUids,
+          { uid: true, source: true },
+          { uid: true },
+        )) {
+          inspected += 1;
+          if (fetched.source !== undefined) {
+            const parsed = await simpleParser(fetched.source);
+            const from =
+              parsed.from?.value.length === 1 ? parsed.from.value[0]?.address : undefined;
+            const messageId = parsed.messageId;
+            const inReplyTo = Array.isArray(parsed.inReplyTo)
+              ? parsed.inReplyTo.length === 1
+                ? parsed.inReplyTo[0]
+                : undefined
+              : parsed.inReplyTo;
+            if (from !== undefined && messageId !== undefined && inReplyTo !== undefined) {
+              const received = ReceivedMailSchema.safeParse({
+                mailbox: 'INBOX',
+                uidValidity,
+                uid: fetched.uid,
+                messageId,
+                inReplyTo,
+                from,
+                subject: parsed.subject ?? '',
+                text: parsed.text ?? '',
+                authenticationResults: firstRawHeader(parsed.headerLines, 'authentication-results'),
+                autoSubmitted: headerText(parsed.headers.get('auto-submitted')),
+                precedence: headerText(parsed.headers.get('precedence')),
+                returnPath: headerText(parsed.headers.get('return-path')),
+                receivedAt: (parsed.date ?? new Date()).toISOString(),
+              });
+              if (received.success) messages.push(received.data);
+            }
           }
         }
-        if (inspected >= maximum) break;
       }
-      return { uidValidity, highestUid, inspected, messages };
+      messages.sort((left, right) => left.uid - right.uid);
+      return {
+        uidValidity,
+        highestUid: plan.checkpointUid,
+        inspected,
+        messages,
+      };
     } finally {
       client.close();
     }
