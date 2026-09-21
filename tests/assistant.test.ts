@@ -1,6 +1,7 @@
 /** Verifies shared KB parity, public tool boundaries, and raw-body Retell authentication. */
 import { sign } from 'retell-sdk';
 import { describe, expect, it } from 'vitest';
+import { z } from 'zod';
 
 import { OpenAIChatAssistant } from '../apps/api/assistants/openai.js';
 import {
@@ -71,6 +72,31 @@ describe('assistant tool boundary', () => {
         },
       ),
     ).rejects.toThrow();
+  });
+
+  it('deterministically captures unsupported knowledge for an associated inquiry', async () => {
+    let capturedQuestion = '';
+    const handler = async () => ({ ok: true });
+    const result = await routeAssistantTool(
+      {
+        name: 'search_knowledge',
+        arguments: JSON.stringify({ question: 'Can Justin guarantee this song?', topic: null }),
+      },
+      { inquiryId: 'inquiry-demo', resumeToken: 'server-token', channel: 'chat' },
+      {
+        searchKnowledge: async () => ({ supported: false, facts: [] }),
+        upsertInquiry: handler,
+        estimateEvent: handler,
+        getAvailability: handler,
+        scheduleConsultationAndHold: handler,
+        requestHumanFollowup: async (args) => {
+          capturedQuestion = z.object({ question: z.string() }).parse(args).question;
+          return { status: 'captured' };
+        },
+      },
+    );
+    expect(capturedQuestion).toBe('Can Justin guarantee this song?');
+    expect(result).toMatchObject({ followup: { status: 'captured' } });
   });
 });
 

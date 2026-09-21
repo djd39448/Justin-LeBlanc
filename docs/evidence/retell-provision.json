@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-09-21T12:13:45.470Z",
+  "agentName": "jlm-demo-booking-assistant-2026-09-21.1",
+  "agentId": "agent_ee62bd9b73af71d0b42a877f00",
+  "llmId": "llm_8b63e841b1bbf015da8acca1ccfe",
+  "voiceId": "retell-Alejandro",
+  "voiceSource": "existing_standard_platform_voice",
+  "model": "gpt-4.1-mini",
+  "kbVersion": "2026-09-21.1",
+  "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+  "apiOrigin": "https://jlm-demo-api.50by50.dev",
+  "exactNameReconciliationPassed": true,
+  "phoneNumberId": null,
+  "phoneNumberAction": "none",
+  "live": false,
+  "liveBlocker": "The public API origin is not connected pending tunnel authorization."
+}

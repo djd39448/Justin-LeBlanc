@@ -88,20 +88,10 @@ describe('CalendarEffectDispatcher', () => {
       if (init?.method === 'POST') {
         if (typeof init.body !== 'string') throw new Error('Expected JSON event body.');
         createdEvent = z.record(z.string(), z.unknown()).parse(JSON.parse(init.body));
-        return new Response(
-          JSON.stringify({ ...createdEvent, etag: 'etag-1', status: 'tentative' }),
-          {
-            status: 200,
-          },
-        );
+        return new Response(JSON.stringify({ ...createdEvent, etag: 'etag-1' }), { status: 200 });
       }
       if (init?.method === 'GET' && createdEvent !== undefined) {
-        return new Response(
-          JSON.stringify({ ...createdEvent, etag: 'etag-1', status: 'tentative' }),
-          {
-            status: 200,
-          },
-        );
+        return new Response(JSON.stringify({ ...createdEvent, etag: 'etag-1' }), { status: 200 });
       }
       return new Response('', { status: 404 });
     };
@@ -116,6 +106,46 @@ describe('CalendarEffectDispatcher', () => {
     const sent = await dispatcher.send('calendar.upsert', payload);
     expect(sent.providerId).toMatch(/^[0-9a-f]{32}$/);
     store.db.prepare('DELETE FROM calendar_links').run();
+    const matchingEvent = createdEvent;
+    if (matchingEvent === undefined) throw new Error('Expected captured provider event.');
+    const staleProviderStates: Record<string, unknown>[] = [
+      { ...matchingEvent, status: 'confirmed' },
+      {
+        ...matchingEvent,
+        start: {
+          dateTime: '2026-11-14T21:00:00.000Z',
+          timeZone: 'America/Chicago',
+        },
+      },
+      {
+        ...matchingEvent,
+        end: {
+          dateTime: '2026-11-14T23:00:00.000Z',
+          timeZone: 'America/Chicago',
+        },
+      },
+      { ...matchingEvent, attendees: [] },
+      {
+        ...matchingEvent,
+        extendedProperties: {
+          private: {
+            tenantId: 'jlm-demo',
+            showId: 'show-1',
+            customerId: 'customer-1',
+            role: 'performance',
+            quoteVersion: '1',
+          },
+        },
+      },
+    ];
+    for (const stale of staleProviderStates) {
+      createdEvent = stale;
+      await expect(dispatcher.reconcile('calendar.upsert', payload)).resolves.toEqual({
+        status: 'uncertain',
+        providerId: sent.providerId,
+      });
+    }
+    createdEvent = matchingEvent;
     const reconciled = await dispatcher.reconcile('calendar.upsert', payload);
     expect(reconciled).toEqual({ status: 'accepted', providerId: sent.providerId });
     expect(store.db.prepare('SELECT count(*) AS count FROM calendar_links').get()).toEqual({

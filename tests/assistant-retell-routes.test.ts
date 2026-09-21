@@ -74,6 +74,48 @@ describe('signed Retell HTTP routes', () => {
     expect(await replay.json()).toMatchObject({ replayed: true });
     runtime.store.close();
   });
+
+  it('serializes concurrent tools for one call before the processed-event insert', async () => {
+    const runtime = createRuntime(config);
+    const app = new Hono();
+    let toolCalls = 0;
+    let releaseTool: (() => void) | undefined;
+    let markStarted: (() => void) | undefined;
+    const toolStarted = new Promise<void>((resolve) => {
+      markStarted = resolve;
+    });
+    const toolGate = new Promise<void>((resolve) => {
+      releaseTool = resolve;
+    });
+    runtime.handlers.searchKnowledge = async () => {
+      toolCalls += 1;
+      markStarted?.();
+      await toolGate;
+      return { supported: true };
+    };
+    mountVoiceRoutes(app, runtime, { verifySignature: async () => true });
+    const callStarted = JSON.stringify({
+      event: 'call_started',
+      call: { call_id: 'call_race', agent_id: 'agent_jlm_demo' },
+    });
+    expect((await app.request('/api/webhooks/retell', signedPost(callStarted))).status).toBe(200);
+    const toolBody = JSON.stringify({
+      name: 'search_knowledge',
+      call: { call_id: 'call_race', agent_id: 'agent_jlm_demo' },
+      args: { question: 'What is approved?', topic: null },
+    });
+    const firstPromise = app.request('/api/retell/tools', signedPost(toolBody));
+    await toolStarted;
+    const concurrent = await app.request('/api/retell/tools', signedPost(toolBody));
+    expect(concurrent.status).toBe(409);
+    expect(await concurrent.json()).toEqual({ error: 'retell_tool_in_progress' });
+    releaseTool?.();
+    expect((await firstPromise).status).toBe(200);
+    const replay = await app.request('/api/retell/tools', signedPost(toolBody));
+    expect(await replay.json()).toMatchObject({ replayed: true });
+    expect(toolCalls).toBe(1);
+    runtime.store.close();
+  });
 });
 
 describe('Retell provisioning plan', () => {

@@ -9,13 +9,11 @@ import { readFileSync } from 'node:fs';
 import { parseEnv } from 'node:util';
 
 import { Command } from 'commander';
-import { z } from 'zod';
 
-import { OpenAIChatAssistant } from '../apps/api/assistants/openai.js';
-import type { AssistantToolHandlers } from '../apps/api/assistants/tools.js';
 import { ConfigSchema } from '../apps/api/config.js';
-import { loadKnowledgeRelease, searchKnowledge } from '../kb/release.js';
-import { EstimateInputSchema, estimateEvent } from '../packages/domain/pricing.js';
+import { createRuntime } from '../apps/api/runtime.js';
+import { loadKnowledgeRelease } from '../kb/release.js';
+import { InquiryInputSchema, InquirySchema } from '../packages/contracts/index.js';
 
 interface QualificationCase {
   id: 'sourced_fact' | 'unknown_fact' | 'prompt_injection' | 'deterministic_estimate';
@@ -35,7 +33,7 @@ const cases: QualificationCase[] = [
     prompt:
       'Does Justin guarantee that he will learn Bohemian Rhapsody for an event? Use only the approved knowledge, and arrange human follow-up if it is unknown.',
     passes: (answer) =>
-      /cannot confirm|can.t confirm|do not know|don.t know|unknown|no approved information/i.test(
+      /cannot confirm|can.t confirm|do not know|don.t know|unknown|(no|do not have) approved (information|knowledge)/i.test(
         answer,
       ) && /follow.?up|human|operator/i.test(answer),
   },
@@ -55,11 +53,6 @@ const cases: QualificationCase[] = [
       /\$875(?:\.00)?|875 dollars/i.test(answer) && /travel|mileage/i.test(answer),
   },
 ];
-const SearchQualificationSchema = z.object({
-  question: z.string(),
-  topic: z.string().nullable(),
-});
-
 async function main(): Promise<void> {
   const options = new Command()
     .name('chat-qualify')
@@ -71,6 +64,7 @@ async function main(): Promise<void> {
   const config = ConfigSchema.parse({
     ...process.env,
     ...protectedEnvironment,
+    DATABASE_URL: ':memory:',
     AI_ENABLED: 'true',
     BOOKING_WRITES_ENABLED: 'false',
     INVOICE_SEND_ENABLED: 'false',
@@ -78,59 +72,63 @@ async function main(): Promise<void> {
     VOICE_ENABLED: 'false',
   });
   const knowledge = loadKnowledgeRelease();
-  const blocked = async (): Promise<unknown> => ({
-    blocked: true,
-    reason: 'Qualification mode permits no business writes.',
+  const runtime = createRuntime(config);
+  const inquiry = runtime.booking.upsertInquiry({
+    input: InquiryInputSchema.parse({
+      name: 'Synthetic Qualification Client',
+      email: 'qualification@example.test',
+      preferredReply: 'email',
+      eventType: 'private',
+      date: 'flexible',
+      city: 'Houston',
+      durationMinutes: 150,
+      timezone: 'America/Chicago',
+      atmosphere: 'Warm background music',
+      consent: true,
+      source: 'chat',
+    }),
   });
-  const handlers: AssistantToolHandlers = {
-    async searchKnowledge(rawArgs) {
-      const args = SearchQualificationSchema.parse(rawArgs);
-      return searchKnowledge(
-        knowledge,
-        args.question,
-        args.topic === null ? undefined : args.topic,
-      );
-    },
-    upsertInquiry: blocked,
-    async estimateEvent(rawArgs) {
-      return estimateEvent(EstimateInputSchema.parse(rawArgs));
-    },
-    getAvailability: blocked,
-    scheduleConsultationAndHold: blocked,
-    async requestHumanFollowup() {
-      return { captured: true, qualificationMode: true };
-    },
-  };
-  const assistant = new OpenAIChatAssistant(config, knowledge, handlers);
   const results = [];
-  for (const qualification of cases) {
-    const response = await assistant.respond({
-      message: qualification.prompt,
-      context: { inquiryId: 'qualification', resumeToken: null, channel: 'chat' },
-    });
-    results.push({
-      id: qualification.id,
-      passed: qualification.passes(response.text),
-      answer: response.text,
-      usage: response.usage,
-    });
+  try {
+    for (const qualification of cases) {
+      const response = await runtime.chat.respond({
+        message: qualification.prompt,
+        context: {
+          inquiryId: inquiry.inquiryId,
+          resumeToken: inquiry.resumeToken,
+          channel: 'chat',
+        },
+      });
+      results.push({
+        id: qualification.id,
+        passed: qualification.passes(response.text),
+        answer: response.text,
+        usage: response.usage,
+      });
+    }
+    const persistedInquiry = runtime.store.get('inquiries', inquiry.inquiryId, InquirySchema);
+    const humanFollowupCaptured = persistedInquiry.data.followupQuestions.length > 0;
+    process.stdout.write(
+      `${JSON.stringify(
+        {
+          qualifiedAt: new Date().toISOString(),
+          model: config.OPENAI_CHAT_MODEL,
+          kbVersion: knowledge.version,
+          kbHash: knowledge.hash,
+          providerWrites: ['openai.responses'],
+          externalBusinessWrites: false,
+          localSyntheticInquiry: true,
+          humanFollowupCaptured,
+          passed: humanFollowupCaptured && results.every((result) => result.passed),
+          cases: results,
+        },
+        null,
+        2,
+      )}\n`,
+    );
+  } finally {
+    runtime.store.close();
   }
-  process.stdout.write(
-    `${JSON.stringify(
-      {
-        qualifiedAt: new Date().toISOString(),
-        model: config.OPENAI_CHAT_MODEL,
-        kbVersion: knowledge.version,
-        kbHash: knowledge.hash,
-        providerWrites: ['openai.responses'],
-        businessWrites: false,
-        passed: results.every((result) => result.passed),
-        cases: results,
-      },
-      null,
-      2,
-    )}\n`,
-  );
 }
 
 void main().catch((error: unknown) => {

@@ -46,8 +46,19 @@ export async function routeAssistantTool(
   const call = ToolCallSchema.parse(rawCall);
   const args: unknown = JSON.parse(call.arguments);
   switch (call.name) {
-    case 'search_knowledge':
-      return handlers.searchKnowledge(args, context);
+    case 'search_knowledge': {
+      const result = await handlers.searchKnowledge(args, context);
+      const knowledge = z.object({ supported: z.boolean() }).passthrough().safeParse(result);
+      if (!knowledge.success || knowledge.data.supported) return result;
+      const question = z
+        .object({ question: z.string().trim().min(1).max(800) })
+        .parse(args).question;
+      if (context.inquiryId === null || context.resumeToken === null) {
+        return { ...knowledge.data, followup: { status: 'needs_inquiry_association' } };
+      }
+      const followup = await handlers.requestHumanFollowup({ question }, context);
+      return { ...knowledge.data, followup };
+    }
     case 'upsert_inquiry':
       return handlers.upsertInquiry(args, context);
     case 'estimate_event':

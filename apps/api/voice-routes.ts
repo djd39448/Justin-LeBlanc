@@ -5,7 +5,7 @@
  * Depended on by: API composition in app.ts.
  * Why this exists: Retell envelopes need raw-body auth and call-scoped server credentials.
  */
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 
 import type { Hono } from 'hono';
 import { z } from 'zod';
@@ -139,37 +139,47 @@ export function mountVoiceRoutes(
     const replayId = `retell-tool:${createHash('sha256').update(verified.text).digest('hex')}`;
     const replay = runtime.store.find('processed_events', replayId, ProcessedToolSchema);
     if (replay !== undefined) return jsonResponse({ result: replay.data.result, replayed: true });
-
-    let toolContext: AssistantToolContext;
-    try {
-      toolContext = ledger.contextForVerifiedCall(envelope.call.call_id);
-    } catch {
-      return jsonResponse({ error: 'retell_call_not_admitted' }, 409);
+    const leaseName = `retell-tool:${envelope.call.call_id}`;
+    const leaseOwner = randomUUID();
+    if (!runtime.store.acquireLease(leaseName, leaseOwner, 30_000)) {
+      return jsonResponse({ error: 'retell_tool_in_progress' }, 409);
     }
-    const rawResult = await routeAssistantTool(
-      { name: envelope.name, arguments: JSON.stringify(envelope.args) },
-      toolContext,
-      runtime.handlers,
-    );
-    const result = z.json().parse(rawResult);
-    runtime.store.transaction(() => {
-      runtime.store.insert('processed_events', replayId, {
-        kind: 'retell_tool',
-        callId: envelope.call.call_id,
-        name: envelope.name,
-        result,
-      });
-      runtime.store.audit(
-        'retell:verified_tool',
-        `assistant.${envelope.name}`,
-        envelope.call.call_id,
-        {
-          kbVersion: runtime.knowledge.version,
-        },
+    try {
+      const afterLease = runtime.store.find('processed_events', replayId, ProcessedToolSchema);
+      if (afterLease !== undefined) {
+        return jsonResponse({ result: afterLease.data.result, replayed: true });
+      }
+      let toolContext: AssistantToolContext;
+      try {
+        toolContext = ledger.contextForVerifiedCall(envelope.call.call_id);
+      } catch {
+        return jsonResponse({ error: 'retell_call_not_admitted' }, 409);
+      }
+      const rawResult = await routeAssistantTool(
+        { name: envelope.name, arguments: JSON.stringify(envelope.args) },
+        toolContext,
+        runtime.handlers,
       );
-    });
-    ledger.persistContext(envelope.call.call_id);
-    return jsonResponse({ result, replayed: false });
+      const result = z.json().parse(rawResult);
+      runtime.store.transaction(() => {
+        runtime.store.insert('processed_events', replayId, {
+          kind: 'retell_tool',
+          callId: envelope.call.call_id,
+          name: envelope.name,
+          result,
+        });
+        runtime.store.audit(
+          'retell:verified_tool',
+          `assistant.${envelope.name}`,
+          envelope.call.call_id,
+          { kbVersion: runtime.knowledge.version },
+        );
+      });
+      ledger.persistContext(envelope.call.call_id);
+      return jsonResponse({ result, replayed: false });
+    } finally {
+      runtime.store.releaseLease(leaseName, leaseOwner);
+    }
   });
 }
 

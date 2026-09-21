@@ -65,6 +65,8 @@ export function buildRetellAgentConfig(
       'Use a distinct synthetic voice; never imply that you are Justin.',
       'Read back email, date, time, timezone, and price and invite corrections before writes.',
       'A tentative hold is not a confirmed performance. Unknown facts require human follow-up.',
+      'Call request_human_followup before saying unknown information was captured or arranged.',
+      'Without an inquiry association, collect intake details first and do not claim follow-up was captured.',
       renderAssistantContext(knowledge),
     ].join('\n\n'),
     tools: publicAssistantTools(),

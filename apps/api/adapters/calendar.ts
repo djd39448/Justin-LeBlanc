@@ -65,6 +65,7 @@ const GoogleEventSchema = z.object({
   originalStartTime: z
     .object({ dateTime: z.string().optional(), date: z.string().optional() })
     .optional(),
+  attendees: z.array(z.object({ email: z.string() }).passthrough()).default([]),
   extendedProperties: z.object({ private: z.record(z.string(), z.string()).optional() }).optional(),
 });
 const EventListSchema = z.object({
@@ -144,6 +145,31 @@ function parseMetadata(values: Record<string, string> | undefined): CalendarShow
   });
   const result = schema.safeParse(values);
   return result.success ? result.data : null;
+}
+
+function eventMatchesDraft(
+  event: z.infer<typeof GoogleEventSchema>,
+  draft: CalendarEventDraft,
+): boolean {
+  const sameInstant = (
+    actual: z.infer<typeof GoogleEventSchema>['start'],
+    expected: CalendarEventDraft['start'],
+  ): boolean =>
+    actual.dateTime !== undefined &&
+    Date.parse(actual.dateTime) === Date.parse(expected.dateTime) &&
+    actual.timeZone === expected.timeZone;
+  const actualAttendees = event.attendees.map((value) => value.email.toLowerCase()).sort();
+  const expectedAttendees = draft.attendees.map((value) => value.email.toLowerCase()).sort();
+  const actualPrivate = event.extendedProperties?.private ?? {};
+  const expectedPrivate = draft.extendedProperties.private;
+  return (
+    event.status === draft.status &&
+    sameInstant(event.start, draft.start) &&
+    sameInstant(event.end, draft.end) &&
+    JSON.stringify(actualAttendees) === JSON.stringify(expectedAttendees) &&
+    JSON.stringify(Object.entries(actualPrivate).sort()) ===
+      JSON.stringify(Object.entries(expectedPrivate).sort())
+  );
 }
 
 /** Google Calendar adapter authorized only through a user OAuth refresh token. */
@@ -433,6 +459,11 @@ export class CalendarEffectDispatcher {
       return { status: 'uncertain', providerId: eventId };
     }
     if (kind === 'calendar.upsert') {
+      const show = this.store.get('shows', payload.showId, ShowSchema);
+      const draft = this.buildDraft(show.id, show.data, payload.role);
+      if (!eventMatchesDraft(event, draft)) {
+        return { status: 'uncertain', providerId: eventId };
+      }
       this.store.transaction(() => {
         const current = this.findLink(payload.showId, payload.role);
         if (current === undefined) {
