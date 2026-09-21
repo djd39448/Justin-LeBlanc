@@ -1,9 +1,9 @@
 {
-  "at": "2026-09-21T14:20:45.561Z",
+  "at": "2026-09-21T15:02:31.207Z",
   "providers": {
     "retellAgents": {
       "before": 22,
-      "after": 23,
+      "after": 24,
       "existingUnchanged": true,
       "changedExistingCount": 0,
       "baselineSha256": "f0293145710c83b00d6b8c317c1a3131116c0ce889be842d463a9d3ea5129566",
@@ -11,7 +11,7 @@
     },
     "retellNumbers": {
       "before": 1,
-      "after": 1,
+      "after": 2,
       "existingUnchanged": true,
       "changedExistingCount": 0,
       "baselineSha256": "f61590ad12aca37e750baf52771415f6743c4120a1d9e7cfa7df223273073529",
@@ -34,5 +34,32 @@
     "addedOnlyJustin": true,
     "baselineSha256": "0d40c78326f0a82d1249639cca82516d5efb5e4514d010c535f802455538cd1b",
     "afterSha256": "83a3b52d5fdfdef0e9523d8692412b125b090e3fefcbe485f145aed4533beb24"
+  },
+  "retellCurrent": {
+    "providerRead": true,
+    "numberExactConfiguredResource": true,
+    "houstonAreaCode": 832,
+    "numberNickname": "jlm-demo-houston-bookings",
+    "numberType": "retell-twilio",
+    "inboundWebhookMatches": true,
+    "inboundAgentBindings": 0,
+    "outboundAgentBindings": 0,
+    "priorJustinDemoNumberAbsent": true,
+    "currentJustinDemoNumberCount": 1,
+    "voiceEnabled": true,
+    "dailyCallLimit": 10,
+    "callerAllowlistCount": 1,
+    "callerAllowlistE164": true,
+    "agentIdentityExact": true,
+    "agentVersion": 1,
+    "agentPublished": true,
+    "llmIdentityExact": true,
+    "llmVersion": 1,
+    "llmPublished": true,
+    "kbVersion": "2026-09-21.2",
+    "kbHash": "d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6",
+    "promptExactCurrentPlan": true,
+    "centralTimeInPrompt": true,
+    "agentDisplayNameMatchesCurrentPlan": false
   }
 }
