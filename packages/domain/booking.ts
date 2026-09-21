@@ -40,6 +40,7 @@ const ACTIVE_SHOW_STATUSES = new Set<Show['status']>([
 ]);
 const CONSULTATION_MINUTES = 20;
 const MINIMUM_NOTICE_HOURS = 24;
+const CONSULTATION_TIME_ZONE = 'America/Chicago';
 const DEFAULT_BUFFER_BEFORE_MINUTES = 120;
 const DEFAULT_BUFFER_AFTER_MINUTES = 90;
 
@@ -184,7 +185,7 @@ function consultationPolicyReason(start: string, now: string): string | undefine
     return 'Consultations require at least 24 hours notice.';
   }
   const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: 'America/New_York',
+    timeZone: CONSULTATION_TIME_ZONE,
     weekday: 'short',
     hour: '2-digit',
     minute: '2-digit',
@@ -198,7 +199,7 @@ function consultationPolicyReason(start: string, now: string): string | undefine
     throw new Error('Unable to evaluate consultation hours; verify host ICU timezone data.');
   }
   if (weekday === 'Sat' || weekday === 'Sun' || hour < 10 || hour * 60 + minute > 15 * 60 + 40) {
-    return 'Consultations are offered Monday-Friday, 10:00-16:00 America/New_York.';
+    return `Consultations are offered Monday-Friday, 10:00-16:00 ${CONSULTATION_TIME_ZONE}.`;
   }
   return undefined;
 }

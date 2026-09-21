@@ -8,7 +8,11 @@ import {
   ShowSchema,
   type InquiryInput,
 } from '../packages/contracts/index.js';
-import { BookingService, type AvailabilityProvider } from '../packages/domain/booking.js';
+import {
+  BookingService,
+  type AvailabilityProvider,
+  type BusyInterval,
+} from '../packages/domain/booking.js';
 
 const inquiryInput = (email: string): InquiryInput => ({
   name: 'Synthetic Client',
@@ -46,6 +50,14 @@ class OpenAvailability implements AvailabilityProvider {
   }
 }
 
+class FixedAvailability implements AvailabilityProvider {
+  constructor(private readonly intervals: BusyInterval[]) {}
+
+  async busy(): Promise<BusyInterval[]> {
+    return this.intervals;
+  }
+}
+
 class BarrierAvailability implements AvailabilityProvider {
   private calls = 0;
   private release: (() => void) | undefined;
@@ -70,6 +82,31 @@ const createService = (store: Store, availability: AvailabilityProvider = new Op
     operatorEmail: 'operator@example.test',
     performerEmail: 'performer@example.test',
   });
+
+describe('BookingService consultation policy', () => {
+  it('evaluates consultation hours in Houston Central time', async () => {
+    const store = new Store(':memory:');
+    const service = createService(store);
+    const centralOpening = await service.getAvailability({
+      consultationStart: '2026-10-01T15:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      now: '2026-09-29T12:00:00.000Z',
+    });
+    const beforeCentralOpening = await service.getAvailability({
+      consultationStart: '2026-10-01T14:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      now: '2026-09-29T12:00:00.000Z',
+    });
+    expect(centralOpening.consultationAvailable).toBe(true);
+    expect(beforeCentralOpening.consultationAvailable).toBe(false);
+    expect(beforeCentralOpening.reasons).toContain(
+      'Consultations are offered Monday-Friday, 10:00-16:00 America/Chicago.',
+    );
+    store.close();
+  });
+});
 
 describe('BookingService inquiry authorization', () => {
   it('updates and inspects only with the opaque resume token', () => {
@@ -108,14 +145,14 @@ describe('BookingService hold race', () => {
         inquiryId: first.inquiryId,
         token: first.resumeToken,
         requestKey: 'request-first-0001',
-        consultationStart: '2026-10-01T14:00:00.000Z',
+        consultationStart: '2026-10-01T15:00:00.000Z',
       }),
       service.scheduleConsultationAndHold({
         ...base,
         inquiryId: second.inquiryId,
         token: second.resumeToken,
         requestKey: 'request-second-0002',
-        consultationStart: '2026-10-02T14:00:00.000Z',
+        consultationStart: '2026-10-02T15:00:00.000Z',
       }),
     ]);
     expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
@@ -135,7 +172,7 @@ describe('BookingService operator transitions', () => {
       inquiryId: inquiry.inquiryId,
       token: inquiry.resumeToken,
       requestKey: 'request-confirm-0001',
-      consultationStart: '2026-10-01T14:00:00.000Z',
+      consultationStart: '2026-10-01T15:00:00.000Z',
       performanceStart: '2026-11-14T20:00:00.000Z',
       performanceEnd: '2026-11-14T22:00:00.000Z',
       timezone: 'America/Chicago',
@@ -216,7 +253,7 @@ describe('BookingService operator transitions', () => {
       inquiryId: inquiry.inquiryId,
       token: inquiry.resumeToken,
       requestKey: 'request-expiry-0001',
-      consultationStart: '2026-10-01T14:00:00.000Z',
+      consultationStart: '2026-10-01T15:00:00.000Z',
       performanceStart: '2026-11-14T20:00:00.000Z',
       performanceEnd: '2026-11-14T22:00:00.000Z',
       timezone: 'America/Chicago',
@@ -225,6 +262,50 @@ describe('BookingService operator transitions', () => {
     expect(service.expireHolds('2026-10-04T15:00:00.000Z')).toEqual([scheduled.showId]);
     expect(service.expireHolds('2026-10-04T16:00:00.000Z')).toEqual([]);
     expect(store.effects().filter((effect) => effect.kind === 'calendar.cancel')).toHaveLength(1);
+    store.close();
+  });
+
+  it('rejects confirmation when an unrelated provider interval overlaps the owned hold', async () => {
+    const store = new Store(':memory:');
+    const openService = createService(store);
+    const inquiry = openService.upsertInquiry({ input: inquiryInput('client@example.test') });
+    const scheduled = await openService.scheduleConsultationAndHold({
+      inquiryId: inquiry.inquiryId,
+      token: inquiry.resumeToken,
+      requestKey: 'request-provider-conflict',
+      consultationStart: '2026-10-01T15:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      timezone: 'America/Chicago',
+      reviewConsent: true,
+    });
+    const quote = openService.approveAgreedQuote({
+      showId: scheduled.showId,
+      lines: [{ description: 'Approved performance', quantity: 1, unitCents: 70_000 }],
+      actor: 'operator:test',
+      requestKey: 'quote-provider-conflict',
+    });
+    const consultation = store.get('consultations', scheduled.consultationId, ConsultationSchema);
+    openService.completeConsultation(consultation.id, consultation.revision, 'operator:test');
+    const show = store.get('shows', scheduled.showId, ShowSchema);
+    const conflictService = createService(
+      store,
+      new FixedAvailability([
+        { start: '2026-11-14T21:00:00.000Z', end: '2026-11-14T21:30:00.000Z' },
+      ]),
+    );
+
+    await expect(
+      conflictService.confirmShow({
+        showId: show.id,
+        showRevision: show.revision,
+        quoteId: quote.id,
+        quoteRevision: quote.revision,
+        actor: 'operator:test',
+        requestKey: 'confirm-provider-conflict',
+      }),
+    ).rejects.toThrow('Live calendar availability changed');
+    expect(store.get('shows', show.id, ShowSchema).data.status).toBe('tentative');
     store.close();
   });
 });
@@ -238,7 +319,7 @@ describe('BookingService reschedule', () => {
       inquiryId: firstInquiry.inquiryId,
       token: firstInquiry.resumeToken,
       requestKey: 'request-reschedule-0001',
-      consultationStart: '2026-10-01T14:00:00.000Z',
+      consultationStart: '2026-10-01T15:00:00.000Z',
       performanceStart: '2026-11-14T20:00:00.000Z',
       performanceEnd: '2026-11-14T22:00:00.000Z',
       timezone: 'America/Chicago',
@@ -269,7 +350,7 @@ describe('BookingService reschedule', () => {
       inquiryId: secondInquiry.inquiryId,
       token: secondInquiry.resumeToken,
       requestKey: 'request-released-slot-0002',
-      consultationStart: '2026-10-02T14:00:00.000Z',
+      consultationStart: '2026-10-02T15:00:00.000Z',
       performanceStart: '2026-11-14T20:00:00.000Z',
       performanceEnd: '2026-11-14T22:00:00.000Z',
       timezone: 'America/Chicago',
@@ -289,7 +370,7 @@ describe('BookingService reschedule', () => {
       inquiryId: firstInquiry.inquiryId,
       token: firstInquiry.resumeToken,
       requestKey: 'request-conflict-first',
-      consultationStart: '2026-10-01T14:00:00.000Z',
+      consultationStart: '2026-10-01T15:00:00.000Z',
       performanceStart: '2026-11-14T20:00:00.000Z',
       performanceEnd: '2026-11-14T22:00:00.000Z',
       timezone: 'America/Chicago',
@@ -299,7 +380,7 @@ describe('BookingService reschedule', () => {
       inquiryId: secondInquiry.inquiryId,
       token: secondInquiry.resumeToken,
       requestKey: 'request-conflict-second',
-      consultationStart: '2026-10-02T14:00:00.000Z',
+      consultationStart: '2026-10-02T15:00:00.000Z',
       performanceStart: '2026-11-16T20:00:00.000Z',
       performanceEnd: '2026-11-16T22:00:00.000Z',
       timezone: 'America/Chicago',

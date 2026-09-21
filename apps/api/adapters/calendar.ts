@@ -56,6 +56,7 @@ const GoogleEventSchema = z.object({
   id: z.string(),
   etag: z.string().default(''),
   status: z.enum(['confirmed', 'tentative', 'cancelled']).default('confirmed'),
+  transparency: z.enum(['opaque', 'transparent']).default('opaque'),
   start: GoogleEventTimeSchema.optional(),
   end: GoogleEventTimeSchema.optional(),
   recurringEventId: z.string().optional(),
@@ -94,6 +95,7 @@ interface CalendarEventDraft {
   summary: string;
   description: string;
   status: 'confirmed' | 'tentative';
+  transparency: 'opaque' | 'transparent';
   start: { dateTime: string; timeZone: string };
   end: { dateTime: string; timeZone: string };
   attendees: { email: string }[];
@@ -169,6 +171,7 @@ function eventMatchesDraft(
   const expectedPrivate = draft.extendedProperties.private;
   return (
     event.status === draft.status &&
+    event.transparency === draft.transparency &&
     sameInstant(event.start, draft.start) &&
     sameInstant(event.end, draft.end) &&
     JSON.stringify(actualAttendees) === JSON.stringify(expectedAttendees) &&
@@ -534,6 +537,7 @@ export class CalendarEffectDispatcher {
         summary: '[DEMO][CONSULTATION] Justin LeBlanc event planning',
         description: `Private-event planning consultation. Booking reference: ${show.inquiryId}.`,
         status: 'confirmed',
+        transparency: 'opaque',
         start: { dateTime: consultation.start, timeZone: consultation.timezone },
         end: { dateTime: consultation.end, timeZone: consultation.timezone },
         attendees,
@@ -557,6 +561,9 @@ export class CalendarEffectDispatcher {
       summary: `[DEMO][${label}] Justin LeBlanc — ${show.eventType}`,
       description: `${show.eventType} in ${show.city}. This demo hold is governed by the booking record; internal financial notes are omitted.`,
       status: show.status === 'confirmed' ? 'confirmed' : 'tentative',
+      // A tentative invite must not make its attendee copy collide with the same canonical hold.
+      // The local transaction remains authoritative for hold conflicts until confirmation.
+      transparency: show.status === 'confirmed' ? 'opaque' : 'transparent',
       start: { dateTime: show.start, timeZone: show.timezone },
       end: { dateTime: show.end, timeZone: show.timezone },
       attendees,

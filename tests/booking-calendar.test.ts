@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { CalendarEffectDispatcher, GoogleCalendarAdapter } from '../apps/api/adapters/calendar.js';
 import { ConfigSchema } from '../apps/api/config.js';
 import { Store } from '../apps/api/store.js';
+import { ShowSchema } from '../packages/contracts/index.js';
 
 const baseConfig = {
   NODE_ENV: 'test',
@@ -31,9 +32,9 @@ function seedTentativeShow(store: Store): void {
   store.insert('consultations', 'consultation-1', {
     inquiryId: 'inquiry-1',
     showId: 'show-1',
-    start: '2026-10-01T14:00:00.000Z',
-    end: '2026-10-01T14:20:00.000Z',
-    timezone: 'America/New_York',
+    start: '2026-10-01T15:00:00.000Z',
+    end: '2026-10-01T15:20:00.000Z',
+    timezone: 'America/Chicago',
     status: 'scheduled',
   });
   store.insert('shows', 'show-1', {
@@ -65,6 +66,73 @@ describe('GoogleCalendarAdapter readiness', () => {
         '2026-10-02T00:00:00.000Z',
       ),
     ).rejects.toThrow('Google Calendar user OAuth is not configured');
+  });
+
+  it('keeps primary free/busy and excludes only the owned show event without subtracting intervals', async () => {
+    const config = ConfigSchema.parse({
+      ...baseConfig,
+      GOOGLE_CLIENT_ID: 'client-id',
+      GOOGLE_CLIENT_SECRET: 'client-secret',
+      GOOGLE_REFRESH_TOKEN: 'refresh-token',
+      SHOW_CALENDAR_ID: 'jlm-demo-calendar@example.test',
+      FREE_BUSY_CALENDAR_IDS: 'primary@example.test',
+    });
+    let queriedIds: string[] = [];
+    const request: typeof fetch = async (input, init) => {
+      const url = String(input);
+      if (url.includes('oauth2.googleapis.com')) {
+        return new Response(JSON.stringify({ access_token: 'access-token', expires_in: 3600 }), {
+          status: 200,
+        });
+      }
+      if (url.endsWith('/freeBusy')) {
+        const body = z
+          .object({ items: z.array(z.object({ id: z.string() })) })
+          .parse(JSON.parse(String(init?.body)));
+        queriedIds = body.items.map((item) => item.id);
+        return new Response(
+          JSON.stringify({
+            calendars: {
+              'primary@example.test': {
+                busy: [{ start: '2026-11-14T21:00:00.000Z', end: '2026-11-14T22:00:00.000Z' }],
+              },
+            },
+          }),
+          { status: 200 },
+        );
+      }
+      return new Response(
+        JSON.stringify({
+          items: [
+            {
+              id: 'owned-performance',
+              status: 'tentative',
+              start: { dateTime: '2026-11-14T20:00:00.000Z' },
+              end: { dateTime: '2026-11-14T22:00:00.000Z' },
+            },
+            {
+              id: 'other-demo-event',
+              status: 'confirmed',
+              start: { dateTime: '2026-11-14T18:00:00.000Z' },
+              end: { dateTime: '2026-11-14T19:00:00.000Z' },
+            },
+          ],
+        }),
+        { status: 200 },
+      );
+    };
+
+    const intervals = await new GoogleCalendarAdapter(config, request).busy(
+      '2026-11-14T17:00:00.000Z',
+      '2026-11-14T23:00:00.000Z',
+      ['owned-performance'],
+    );
+
+    expect(queriedIds).toEqual(['primary@example.test']);
+    expect(intervals).toEqual([
+      { start: '2026-11-14T18:00:00.000Z', end: '2026-11-14T19:00:00.000Z' },
+      { start: '2026-11-14T21:00:00.000Z', end: '2026-11-14T22:00:00.000Z' },
+    ]);
   });
 
   it('requests expanded instances and preserves recurring and all-day identity safely', async () => {
@@ -195,6 +263,8 @@ describe('CalendarEffectDispatcher', () => {
       SHOW_CALENDAR_ID: 'jlm-demo-calendar@example.test',
     });
     let createdEvent: Record<string, unknown> | undefined;
+    let providerEventId: string | undefined;
+    const writeMethods: string[] = [];
     const request: typeof fetch = async (input, init) => {
       const url = String(input);
       if (url.includes('oauth2.googleapis.com')) {
@@ -202,9 +272,13 @@ describe('CalendarEffectDispatcher', () => {
           status: 200,
         });
       }
-      if (init?.method === 'POST') {
+      if (init?.method === 'POST' || init?.method === 'PATCH') {
         if (typeof init.body !== 'string') throw new Error('Expected JSON event body.');
-        createdEvent = z.record(z.string(), z.unknown()).parse(JSON.parse(init.body));
+        const draft = z.record(z.string(), z.unknown()).parse(JSON.parse(init.body));
+        if (init.method === 'POST') providerEventId = z.string().parse(draft['id']);
+        if (providerEventId === undefined) throw new Error('Expected an existing provider ID.');
+        createdEvent = { ...draft, id: providerEventId };
+        writeMethods.push(init.method);
         return new Response(JSON.stringify({ ...createdEvent, etag: 'etag-1' }), { status: 200 });
       }
       if (init?.method === 'GET' && createdEvent !== undefined) {
@@ -222,11 +296,17 @@ describe('CalendarEffectDispatcher', () => {
     const payload = { version: 1, showId: 'show-1', role: 'performance', reason: 'initial_hold' };
     const sent = await dispatcher.send('calendar.upsert', payload);
     expect(sent.providerId).toMatch(/^[0-9a-f]{32}$/);
+    expect(createdEvent).toMatchObject({
+      status: 'tentative',
+      transparency: 'transparent',
+      attendees: [{ email: 'client@example.test' }, { email: 'operator@example.test' }],
+    });
     store.db.prepare('DELETE FROM calendar_links').run();
     const matchingEvent = createdEvent;
     if (matchingEvent === undefined) throw new Error('Expected captured provider event.');
     const staleProviderStates: Record<string, unknown>[] = [
       { ...matchingEvent, status: 'confirmed' },
+      { ...matchingEvent, transparency: 'opaque' },
       {
         ...matchingEvent,
         start: {
@@ -267,6 +347,28 @@ describe('CalendarEffectDispatcher', () => {
     expect(reconciled).toEqual({ status: 'accepted', providerId: sent.providerId });
     expect(store.db.prepare('SELECT count(*) AS count FROM calendar_links').get()).toEqual({
       count: 1,
+    });
+
+    const tentative = store.get('shows', 'show-1', ShowSchema);
+    store.update('shows', tentative.id, tentative.revision, {
+      ...tentative.data,
+      status: 'confirmed',
+    });
+    const confirmed = await dispatcher.send('calendar.upsert', {
+      ...payload,
+      reason: 'operator_confirmation',
+    });
+    expect(confirmed.providerId).toBe(sent.providerId);
+    expect(writeMethods).toEqual(['POST', 'PATCH']);
+    expect(createdEvent).toMatchObject({
+      id: sent.providerId,
+      status: 'confirmed',
+      transparency: 'opaque',
+      attendees: [{ email: 'client@example.test' }, { email: 'operator@example.test' }],
+    });
+    await expect(dispatcher.reconcile('calendar.upsert', payload)).resolves.toEqual({
+      status: 'accepted',
+      providerId: sent.providerId,
     });
     store.close();
   });
