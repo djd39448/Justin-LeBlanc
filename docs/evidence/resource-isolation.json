@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-21T12:17:06.349Z",
+  "at": "2026-09-21T14:20:45.561Z",
   "providers": {
     "retellAgents": {
       "before": 22,
@@ -28,11 +28,11 @@
   },
   "dns": {
     "before": 27,
-    "after": 28,
+    "after": 29,
     "removedOrChangedExisting": 0,
-    "addedCount": 1,
+    "addedCount": 2,
     "addedOnlyJustin": true,
     "baselineSha256": "0d40c78326f0a82d1249639cca82516d5efb5e4514d010c535f802455538cd1b",
-    "afterSha256": "c6706138b8a580fc8bdad90e07c5e5368d6fda66b9a6b5716d4b435cb6c0cf9e"
+    "afterSha256": "83a3b52d5fdfdef0e9523d8692412b125b090e3fefcbe485f145aed4533beb24"
   }
 }
