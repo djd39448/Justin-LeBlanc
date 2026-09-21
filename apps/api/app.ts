@@ -10,6 +10,7 @@ import { EstimateInputSchema, estimateEvent } from '../../packages/domain/pricin
 import { localDateTimeToInstant } from '../../packages/domain/time.js';
 
 import { chatTurn } from './chat-session.js';
+import { mountInboundRoutes } from './inbound-routes.js';
 import { operatorAction } from './operator-actions.js';
 import { mountOperatorRoutes } from './operator-routes.js';
 import type { Runtime } from './runtime.js';
@@ -111,6 +112,7 @@ export function createApp(runtime: Runtime): Hono {
   });
   app.post('/api/chat', async (c) => c.json(await chatTurn(runtime, await c.req.json())));
   mountVoiceRoutes(app, runtime);
+  mountInboundRoutes(app, runtime);
   mountOperatorRoutes(app, runtime);
   app.use('/api/jobs/*', requireToken(runtime.config.JOB_AUTH_SECRET));
   app.post('/api/jobs/run', async (c) => {

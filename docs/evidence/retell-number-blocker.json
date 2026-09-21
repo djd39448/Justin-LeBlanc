@@ -1,0 +1,11 @@
+{
+  "recordedAt": "2026-09-21T12:17:48.936Z",
+  "operation": "create-phone-number",
+  "provider": "Retell-managed Twilio",
+  "nickname": "jlm-demo-private-bookings",
+  "status": 403,
+  "reason": "No valid KYC",
+  "numberPurchased": false,
+  "automaticRetries": 0,
+  "ownerAction": "Complete identity verification in the existing Retell dashboard."
+}

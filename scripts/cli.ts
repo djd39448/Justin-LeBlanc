@@ -46,16 +46,16 @@ program
   );
 program
   .command('backup')
-  .description('Create a consistent SQLite snapshot; private PDFs remain in private storage')
+  .description('Create a fresh consistent SQLite snapshot with a private document copy')
   .requiredOption('--directory <path>', 'Private backup directory')
   .action((opts: { directory: string }) =>
     withRuntime(async (r) => {
-      const dir = resolve(opts.directory);
-      await mkdir(dir, { recursive: true });
-      const file = resolve(
-        dir,
-        `jlm-demo-${new Date().toISOString().replace(/[:.]/g, '-')}.sqlite`,
+      const dir = resolve(
+        opts.directory,
+        `snapshot-${new Date().toISOString().replace(/[:.]/g, '-')}`,
       );
+      await mkdir(dir, { recursive: true });
+      const file = resolve(dir, 'jlm-demo.sqlite');
       await backup(r.store.db, file);
       await cp(r.config.PRIVATE_STORAGE_PATH, resolve(dir, 'documents'), {
         recursive: true,
@@ -75,10 +75,15 @@ program
     withRuntime(async (r) => {
       const dir = resolve(opts.directory);
       await mkdir(dir, { recursive: true });
-      for (const table of TableSchema.options) {
-        const records = r.store.db
-          .prepare(`SELECT * FROM ${table} WHERE tenant_id=?`)
-          .all('justin-demo');
+      const snapshot = r.store.transaction(() =>
+        Object.fromEntries(
+          TableSchema.options.map((table) => [
+            table,
+            r.store.db.prepare(`SELECT * FROM ${table} WHERE tenant_id=?`).all('justin-demo'),
+          ]),
+        ),
+      );
+      for (const [table, records] of Object.entries(snapshot)) {
         await writeFile(resolve(dir, `${table}.json`), JSON.stringify(records, null, 2), {
           mode: 0o600,
         });

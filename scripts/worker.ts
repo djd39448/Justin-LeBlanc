@@ -17,12 +17,13 @@ for (const signal of ['SIGINT', 'SIGTERM'] as const)
 let lastReplies = 0;
 let lastMorning = 0;
 /** Isolates a job failure so another independent job still runs; logs omit private payloads. */
-async function run(name: string, task: () => Promise<unknown>): Promise<void> {
+async function run(name: string, task: () => Promise<unknown>, quiet = false): Promise<void> {
   try {
     await task();
-    process.stdout.write(
-      JSON.stringify({ event: 'job_ok', job: name, at: new Date().toISOString() }) + '\n',
-    );
+    if (!quiet)
+      process.stdout.write(
+        JSON.stringify({ event: 'job_ok', job: name, at: new Date().toISOString() }) + '\n',
+      );
   } catch (error) {
     console.error(
       JSON.stringify({
@@ -57,8 +58,10 @@ try {
       lastReplies = now.getTime();
       await run('imap', () => runImapReplyJob(runtime.store, runtime.imap, runtime.billing));
     }
-    await run('expire-holds', async () => runtime.booking.expireHolds());
-    await run('outbox', () => runtime.outbox.dispatchPending(10));
+    if (runtime.config.BOOKING_WRITES_ENABLED)
+      await run('expire-holds', async () => runtime.booking.expireHolds(), true);
+    if (runtime.store.effects('pending').length > 0)
+      await run('outbox', () => runtime.outbox.dispatchPending(10), true);
     if (!stopping) await delay(15_000);
   }
 } finally {

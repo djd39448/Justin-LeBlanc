@@ -1,0 +1,8 @@
+{
+  "name": "50by50-justinleblancmusic",
+  "compatibility_date": "2026-09-21",
+  "pages_build_output_dir": "apps/web/dist",
+  "vars": {
+    "API_ORIGIN": "https://jlm-demo-api.50by50.dev",
+  },
+}

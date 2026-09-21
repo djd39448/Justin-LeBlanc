@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-21T12:17:06.349Z",
+  "providers": {
+    "retellAgents": {
+      "before": 22,
+      "after": 23,
+      "existingUnchanged": true,
+      "changedExistingCount": 0,
+      "baselineSha256": "f0293145710c83b00d6b8c317c1a3131116c0ce889be842d463a9d3ea5129566",
+      "existingAfterSha256": "f0293145710c83b00d6b8c317c1a3131116c0ce889be842d463a9d3ea5129566"
+    },
+    "retellNumbers": {
+      "before": 1,
+      "after": 1,
+      "existingUnchanged": true,
+      "changedExistingCount": 0,
+      "baselineSha256": "f61590ad12aca37e750baf52771415f6743c4120a1d9e7cfa7df223273073529",
+      "existingAfterSha256": "f61590ad12aca37e750baf52771415f6743c4120a1d9e7cfa7df223273073529"
+    },
+    "cfPages": {
+      "before": 9,
+      "after": 10,
+      "existingUnchanged": true,
+      "changedExistingCount": 0,
+      "baselineSha256": "8059a3391d6c7cc487bacafe3060abec3676f4f4003f7089e0d0ab8044678120",
+      "existingAfterSha256": "8059a3391d6c7cc487bacafe3060abec3676f4f4003f7089e0d0ab8044678120"
+    }
+  },
+  "dns": {
+    "before": 27,
+    "after": 28,
+    "removedOrChangedExisting": 0,
+    "addedCount": 1,
+    "addedOnlyJustin": true,
+    "baselineSha256": "0d40c78326f0a82d1249639cca82516d5efb5e4514d010c535f802455538cd1b",
+    "afterSha256": "c6706138b8a580fc8bdad90e07c5e5368d6fda66b9a6b5716d4b435cb6c0cf9e"
+  }
+}

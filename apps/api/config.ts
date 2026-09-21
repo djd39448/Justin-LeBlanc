@@ -33,6 +33,8 @@ export const ConfigSchema = z.object({
   RETELL_API_KEY: z.string().default(''),
   RETELL_JLM_AGENT_ID: z.string().default(''),
   RETELL_JLM_PHONE_NUMBER: z.string().default(''),
+  DEMO_CALLER_ALLOWLIST: z.string().default(''),
+  VOICE_DAILY_CALL_LIMIT: z.coerce.number().int().min(1).max(100).default(10),
   BOOKING_WRITES_ENABLED: bool.default(false),
   INVOICE_SEND_ENABLED: bool.default(false),
   MORNING_SCAN_ENABLED: bool.default(false),

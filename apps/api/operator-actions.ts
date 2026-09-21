@@ -48,6 +48,7 @@ const ActionSchema = z.discriminatedUnion('action', [
   z.object({ action: z.literal('replies-poll') }),
   z.object({ action: z.literal('outbox-dispatch') }),
   z.object({ action: z.literal('outbox-reconcile'), id }),
+  z.object({ action: z.literal('outbox-retry-failed'), id }),
   z.object({ action: z.literal('invoice-prepare'), id }),
   z.object({ action: z.literal('demo-seed'), key: z.string().min(1).max(60).optional() }),
 ]);
@@ -89,6 +90,8 @@ export async function operatorAction(runtime: Runtime, raw: unknown): Promise<un
       return runtime.outbox.dispatchPending();
     case 'outbox-reconcile':
       return runtime.outbox.reconcileUncertain(input.id);
+    case 'outbox-retry-failed':
+      return runtime.outbox.retryFailed(input.id);
     case 'invoice-prepare':
       return runtime.billing.prepareInvoiceDelivery(input.id);
     case 'demo-seed':
