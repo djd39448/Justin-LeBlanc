@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-09-21T14:16:25.077Z",
+  "apiHost": "jlm-demo-api.50by50.dev",
+  "passed": true,
+  "health": {
+    "status": 200,
+    "ok": true,
+    "demo": true,
+    "kbVersion": "2026-09-21.1",
+    "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+    "capabilities": {
+      "booking": false,
+      "chat": true,
+      "voice": false,
+      "billing": false
+    }
+  },
+  "unauthorizedAdmin": {
+    "status": 401,
+    "error": "unauthorized"
+  },
+  "inquiry": {
+    "intakeStatus": 201,
+    "resumeStatus": 200,
+    "inquiryStatus": "new",
+    "scopedResumeMatched": true,
+    "shows": 0
+  },
+  "chat": {
+    "actualOpenAiTurns": 2,
+    "statuses": [
+      200,
+      200
+    ],
+    "kbVersion": "2026-09-21.1",
+    "kbHash": "d050467fbc915673bcd95ae9cea1cd26ee49a9c6fe0c37da0d247663a2d9b0d8",
+    "pricingGrounded": true,
+    "confirmationGrounded": true
+  },
+  "voiceGate": {
+    "enabled": false,
+    "unsignedInboundStatus": 200,
+    "unsignedInboundRejected": true,
+    "unsignedWebhookStatus": 401,
+    "unsignedWebhookError": "missing_retell_signature"
+  },
+  "providerBusinessWrites": {
+    "calendar": false,
+    "email": false,
+    "voiceCall": false
+  }
+}
