@@ -84,6 +84,53 @@ const createService = (store: Store, availability: AvailabilityProvider = new Op
   });
 
 describe('BookingService consultation policy', () => {
+  it('allows an available consultation less than 24 hours in the future', async () => {
+    const store = new Store(':memory:');
+    const service = createService(store);
+    const availability = await service.getAvailability({
+      consultationStart: '2026-10-01T15:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      now: '2026-10-01T14:00:00.000Z',
+    });
+    expect(availability.consultationAvailable).toBe(true);
+    expect(availability.reasons).toEqual([]);
+    store.close();
+  });
+
+  it('rejects a past consultation even without a minimum notice period', async () => {
+    const store = new Store(':memory:');
+    const service = createService(store);
+    const availability = await service.getAvailability({
+      consultationStart: '2026-10-01T15:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      now: '2026-10-01T15:00:01.000Z',
+    });
+    expect(availability.consultationAvailable).toBe(false);
+    expect(availability.reasons).toContain('Consultations must start in the future.');
+    store.close();
+  });
+
+  it('rejects a provider conflict less than 24 hours in the future', async () => {
+    const store = new Store(':memory:');
+    const service = createService(
+      store,
+      new FixedAvailability([
+        { start: '2026-10-01T15:00:00.000Z', end: '2026-10-01T15:20:00.000Z' },
+      ]),
+    );
+    const availability = await service.getAvailability({
+      consultationStart: '2026-10-01T15:00:00.000Z',
+      performanceStart: '2026-11-14T20:00:00.000Z',
+      performanceEnd: '2026-11-14T22:00:00.000Z',
+      now: '2026-10-01T14:00:00.000Z',
+    });
+    expect(availability.consultationAvailable).toBe(false);
+    expect(availability.reasons).toContain('The consultation interval is busy.');
+    store.close();
+  });
+
   it('evaluates consultation hours in Houston Central time', async () => {
     const store = new Store(':memory:');
     const service = createService(store);

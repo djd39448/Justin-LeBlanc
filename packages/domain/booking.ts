@@ -39,7 +39,6 @@ const ACTIVE_SHOW_STATUSES = new Set<Show['status']>([
   'awaiting_performance_reply',
 ]);
 const CONSULTATION_MINUTES = 20;
-const MINIMUM_NOTICE_HOURS = 24;
 const CONSULTATION_TIME_ZONE = 'America/Chicago';
 const DEFAULT_BUFFER_BEFORE_MINUTES = 120;
 const DEFAULT_BUFFER_AFTER_MINUTES = 90;
@@ -181,8 +180,8 @@ function assertInquiryToken(inquiry: Entity<Inquiry>, token: string): void {
 
 function consultationPolicyReason(start: string, now: string): string | undefined {
   const startMs = Date.parse(InstantSchema.parse(start));
-  if (startMs < Date.parse(InstantSchema.parse(now)) + MINIMUM_NOTICE_HOURS * 60 * 60_000) {
-    return 'Consultations require at least 24 hours notice.';
+  if (startMs <= Date.parse(InstantSchema.parse(now))) {
+    return 'Consultations must start in the future.';
   }
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: CONSULTATION_TIME_ZONE,

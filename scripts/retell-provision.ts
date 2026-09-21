@@ -15,6 +15,10 @@ import Retell from 'retell-sdk';
 import { z } from 'zod';
 
 import { publicAssistantTools } from '../apps/api/assistants/tools.js';
+import {
+  RETELL_END_CALL_TOOL,
+  VOICE_COMPLETION_PROMPT,
+} from '../apps/api/assistants/voice-policy.js';
 import { loadKnowledgeRelease, renderAssistantContext } from '../kb/release.js';
 
 const EnvironmentSchema = z.object({
@@ -76,7 +80,7 @@ export interface RetellProvisionPlan {
   llm: {
     begin_message: string;
     general_prompt: string;
-    general_tools: RetellProvisionTool[];
+    general_tools: (RetellProvisionTool | typeof RETELL_END_CALL_TOOL)[];
     model: 'gpt-4.1-mini';
     model_temperature: number;
     start_speaker: 'agent';
@@ -128,9 +132,10 @@ export function buildRetellProvisionPlan(apiUrl: string, voiceId: string): Retel
         'Read back email, date, time, timezone, and price and invite corrections before a write.',
         'When a fact is unknown or search_knowledge is unsupported, collect the needed details before calling request_human_followup or saying it was captured or arranged.',
         'Without an inquiry association, collect intake details first and do not claim follow-up was captured.',
+        VOICE_COMPLETION_PROMPT,
         renderAssistantContext(knowledge),
       ].join('\n\n'),
-      general_tools: tools,
+      general_tools: [...tools, RETELL_END_CALL_TOOL],
       model: 'gpt-4.1-mini',
       model_temperature: 0,
       start_speaker: 'agent',

@@ -159,11 +159,16 @@ describe('Retell provisioning plan', () => {
     ).toBe('unprotected');
   });
 
-  it('contains only public custom tools and performs no phone-number action', () => {
+  it('keeps business tools public and adds native call completion without a phone-number action', () => {
     const plan = buildRetellProvisionPlan('https://demo.example.test', 'voice_approved');
     expect(plan.llm.general_tools.map((tool) => tool.name)).not.toContain('confirm_show');
-    expect(plan.llm.general_tools.every((tool) => tool.type === 'custom')).toBe(true);
-    expect(plan.llm.general_tools.every((tool) => tool.max_retry === 0)).toBe(true);
+    const customTools = plan.llm.general_tools.filter((tool) => tool.type === 'custom');
+    expect(customTools).toHaveLength(6);
+    expect(customTools.every((tool) => tool.max_retry === 0)).toBe(true);
+    expect(plan.llm.general_tools.filter((tool) => tool.type === 'end_call')).toEqual([
+      expect.objectContaining({ name: 'end_call', speak_during_execution: true }),
+    ]);
+    expect(plan.llm.general_prompt).toContain('invoke end_call');
     expect(plan.agent.webhook_url).toBe('https://demo.example.test/api/webhooks/retell');
     expect(plan.agent.max_call_duration_ms).toBe(300_000);
     expect(plan.llm.general_prompt).toContain(
@@ -179,17 +184,16 @@ describe('Retell provisioning plan', () => {
 
     const toolChanged = structuredClone(plan);
     const firstTool = toolChanged.llm.general_tools[0];
-    if (firstTool === undefined) throw new Error('Expected a public Retell tool.');
+    if (firstTool?.type !== 'custom') throw new Error('Expected a public Retell tool.');
     firstTool.parameters.properties['unexpected'] = { type: 'string' };
     expect(retellPlanFingerprint(toolChanged)).not.toBe(retellPlanFingerprint(plan));
 
     expect(matchesExpectedSubset({ ...plan.llm, provider_default: true }, plan.llm)).toBe(true);
     const providerMissingParameter = structuredClone(plan.llm);
     const providerFirstTool = providerMissingParameter.general_tools[0];
-    const requiredParameter = Object.keys(
-      plan.llm.general_tools[0]?.parameters.properties ?? {},
-    )[0];
-    if (providerFirstTool === undefined || requiredParameter === undefined) {
+    if (providerFirstTool?.type !== 'custom') throw new Error('Expected a custom tool.');
+    const requiredParameter = Object.keys(providerFirstTool.parameters.properties)[0];
+    if (requiredParameter === undefined) {
       throw new Error('Expected a custom tool parameter.');
     }
     delete providerFirstTool.parameters.properties[requiredParameter];
@@ -208,7 +212,7 @@ describe('Retell provisioning plan', () => {
     const searchTool = missingSupportedField.general_tools.find(
       (tool) => tool.name === 'search_knowledge',
     );
-    if (searchTool === undefined) throw new Error('Expected search_knowledge tool.');
+    if (searchTool?.type !== 'custom') throw new Error('Expected search_knowledge tool.');
     const question = z
       .record(z.string(), z.unknown())
       .parse(searchTool.parameters.properties['question']);
@@ -217,6 +221,20 @@ describe('Retell provisioning plan', () => {
     expect(matchesExpectedSubset(missingSupportedField, normalizeRetellExpectedLlm(plan.llm))).toBe(
       false,
     );
+  });
+
+  it('verifies the native end-call action without applying custom JSON-schema projections', () => {
+    const plan = buildRetellProvisionPlan('https://demo.example.test', 'voice_approved');
+    const expected = normalizeRetellExpectedLlm(plan.llm);
+    const native = expected.general_tools.find((tool) => tool.type === 'end_call');
+    expect(native).toEqual(plan.llm.general_tools.find((tool) => tool.type === 'end_call'));
+    expect(native).not.toHaveProperty('url');
+    expect(native).not.toHaveProperty('parameters');
+    const missing = {
+      ...expected,
+      general_tools: expected.general_tools.filter((tool) => tool.type !== 'end_call'),
+    };
+    expect(matchesExpectedSubset(missing, expected)).toBe(false);
   });
 
   it('rejects loopback and non-TLS callback URLs', () => {
@@ -233,6 +251,10 @@ describe('Retell provisioning plan', () => {
     expect(agent.prompt).toContain(
       'Before answering a business-fact question, call search_knowledge',
     );
+    expect(agent.prompt).toContain('invoke end_call');
+    expect(agent.callControlTools).toEqual([
+      expect.objectContaining({ name: 'end_call', type: 'end_call' }),
+    ]);
   });
 });
 

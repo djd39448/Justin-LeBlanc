@@ -13,6 +13,7 @@ import type { Config } from '../config.js';
 import { Store } from '../store.js';
 
 import { publicAssistantTools, type AssistantToolContext } from './tools.js';
+import { RETELL_END_CALL_TOOL, VOICE_COMPLETION_PROMPT } from './voice-policy.js';
 
 export const RetellWebhookSchema = z.object({
   event: z.enum(['call_started', 'call_ended', 'call_analyzed']),
@@ -44,6 +45,7 @@ export interface RetellAgentConfig {
   kbHash: string;
   prompt: string;
   tools: ReturnType<typeof publicAssistantTools>;
+  callControlTools: (typeof RETELL_END_CALL_TOOL)[];
   webhookUrl: string;
 }
 
@@ -68,9 +70,11 @@ export function buildRetellAgentConfig(
       'A tentative hold is not a confirmed performance. Unknown facts require human follow-up.',
       'For unknown information, collect the needed details before calling request_human_followup or saying it was captured or arranged.',
       'Without an inquiry association, collect intake details first and do not claim follow-up was captured.',
+      VOICE_COMPLETION_PROMPT,
       renderAssistantContext(knowledge),
     ].join('\n\n'),
     tools: publicAssistantTools(),
+    callControlTools: [RETELL_END_CALL_TOOL],
     webhookUrl: `${config.API_URL}/api/webhooks/retell`,
   };
 }

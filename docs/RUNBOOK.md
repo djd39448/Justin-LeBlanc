@@ -293,7 +293,7 @@ node --no-warnings --import tsx scripts/smoke-booking-billing.ts `
   --env $configPath --manifest $billingManifest --stage inspect
 ```
 
-`scripts/smoke-live-booking.ts` completed the future consultation/hold lifecycle: transparent tentative hold, both invitations, client notice, operator PDF brief, agreed-quote confirmation, non-overlapping reschedule, and cancellation. The stage inputs remain ISO instants with `--timezone America/Chicago`; any future authorized run must use a real available consultation within the 10:00–16:00 Central Time weekday window and notice period. See `--help` for date options and keep the confirmed-overlap limitation above in mind.
+`scripts/smoke-live-booking.ts` completed the future consultation/hold lifecycle: transparent tentative hold, both invitations, client notice, operator PDF brief, agreed-quote confirmation, non-overlapping reschedule, and cancellation. The stage inputs remain ISO instants with `--timezone America/Chicago`; any future authorized run must use a real available future consultation within the 10:00–16:00 Central Time weekday window. See `--help` for date options and keep the confirmed-overlap limitation above in mind.
 
 ```powershell
 $bookingManifest = Join-Path $privateRoot 'live-booking-smoke.json'

@@ -41,7 +41,7 @@
   },
   {
     "id": "consultation-policy",
-    "text": "Demo consultation slots are 20 minutes, Monday through Friday from 10:00 to 16:00 Central Time (America/Chicago), with 24 hours notice and actual free/busy checks.",
+    "text": "Demo consultation slots are 20 minutes, Monday through Friday from 10:00 to 16:00 Central Time (America/Chicago), with no minimum advance notice for future available times and with actual free/busy checks.",
     "source_url": "repo:docs/DECISIONS.md",
     "observed_at": "2026-09-21",
     "effective_date": "2026-09-21",

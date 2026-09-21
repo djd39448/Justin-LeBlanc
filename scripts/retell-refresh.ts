@@ -65,6 +65,7 @@ export function normalizeRetellExpectedLlm(
   return {
     ...expected,
     general_tools: expected.general_tools.map((tool) => {
+      if (tool.type !== 'custom') return tool;
       const properties = { ...tool.parameters.properties };
       if (tool.name === 'upsert_inquiry' || tool.name === 'estimate_event') {
         properties['durationMinutes'] = omitSchemaKeys(properties['durationMinutes'], [
