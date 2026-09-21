@@ -117,7 +117,15 @@ export function createApp(runtime: Runtime): Hono {
   app.use('/api/jobs/*', requireToken(runtime.config.JOB_AUTH_SECRET));
   app.post('/api/jobs/run', async (c) => {
     const request = z
-      .object({ action: z.enum(['morning', 'replies-poll', 'outbox-dispatch', 'holds-expire']) })
+      .object({
+        action: z.enum([
+          'morning',
+          'replies-poll',
+          'billing-followups',
+          'outbox-dispatch',
+          'holds-expire',
+        ]),
+      })
       .parse(await c.req.json());
     const result = await operatorAction(runtime, { ...request, force: false });
     return c.newResponse(JSON.stringify({ result }), 200, { 'Content-Type': 'application/json' });

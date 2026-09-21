@@ -23,6 +23,39 @@ afterEach(() => {
 });
 
 describe('outbox dispatcher', () => {
+  it('gates reminders with invoice email independently of the morning scan', async () => {
+    const store = makeStore();
+    enqueueBookingMail(store, 'email.performance_reminder');
+    let sends = 0;
+    const sender = {
+      send: async () => {
+        sends += 1;
+        return { providerMessageId: '<reminder@example.test>' };
+      },
+    };
+    const disabled = createDispatcher(
+      store,
+      {
+        ...config(false),
+        INVOICE_SEND_ENABLED: false,
+        MORNING_SCAN_ENABLED: true,
+      },
+      sender,
+    );
+    expect((await disabled.dispatchPending()).skipped).toBe(1);
+    expect(sends).toBe(0);
+    const enabled = createDispatcher(
+      store,
+      {
+        ...config(false),
+        INVOICE_SEND_ENABLED: true,
+        MORNING_SCAN_ENABLED: false,
+      },
+      sender,
+    );
+    expect((await enabled.dispatchPending()).accepted).toBe(1);
+    expect(sends).toBe(1);
+  });
   it('leaves a booking email pending when its final-boundary kill switch is disabled', async () => {
     const store = makeStore();
     enqueueBookingMail(store);
@@ -153,7 +186,7 @@ function makeStore(): Store {
   return store;
 }
 
-function enqueueBookingMail(store: Store): void {
+function enqueueBookingMail(store: Store, kind = 'email.booking_confirmation'): void {
   const mail = MailEffectSchema.parse({
     version: 1,
     messageId: '<booking@example.test>',
@@ -168,7 +201,7 @@ function enqueueBookingMail(store: Store): void {
     headers: {},
     attachments: [],
   });
-  store.enqueue('mail:booking:show-1', 'email.booking_confirmation', 'show-1', mail);
+  store.enqueue('mail:booking:show-1', kind, 'show-1', mail);
 }
 
 function config(bookingEnabled: boolean): Config {

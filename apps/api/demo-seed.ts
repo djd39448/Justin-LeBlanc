@@ -19,6 +19,21 @@ import type { Runtime } from './runtime.js';
 export function seedDemo(runtime: Runtime, key = 'rehearsal-v1') {
   if (!runtime.config.DEMO_MODE) throw new Error('Synthetic seeding requires DEMO_MODE=true.');
   const showId = `jlm-demo-${key.replace(/[^a-z0-9-]/gi, '').slice(0, 60)}`;
+  const lease = `demo:seed:${showId}`;
+  const owner = randomUUID();
+  if (!runtime.store.acquireLease(lease, owner, 30_000))
+    throw new Error(
+      'This demo seed is already running; inspect its existing result before retrying.',
+    );
+  try {
+    return seedOnce(runtime, showId);
+  } finally {
+    runtime.store.releaseLease(lease, owner);
+  }
+}
+
+/** Keeps inquiry creation within the same seed lease as the canonical show and outbox writes. */
+function seedOnce(runtime: Runtime, showId: string) {
   const existing = runtime.store.find('shows', showId, ShowSchema);
   if (existing) return { showId, replayed: true };
   const inquiry = runtime.booking.upsertInquiry({

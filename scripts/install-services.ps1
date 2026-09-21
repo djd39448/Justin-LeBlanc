@@ -1,12 +1,12 @@
 # Installs only Justin-scoped startup tasks; never changes existing unrelated task definitions.
 # Run from an elevated shell. Runtime secrets remain in ConfigPath outside the checkout.
-param([Parameter(Mandatory)][string]$ConfigPath,[switch]$IncludeTunnel,[switch]$InteractiveOnly)
+param([Parameter(Mandatory)][string]$ConfigPath,[switch]$IncludeTunnel,[switch]$TunnelOnly,[switch]$InteractiveOnly)
 $ErrorActionPreference='Stop'
 $resolvedConfig=(Resolve-Path -LiteralPath $ConfigPath).Path
 $runner=Join-Path $PSScriptRoot 'run-service.ps1'
 $shellExecutable=(Get-Command pwsh).Source
 $roles=@('api','worker')
-if($IncludeTunnel){$roles+='tunnel'}
+if($TunnelOnly){$roles=@('tunnel')}elseif($IncludeTunnel){$roles+='tunnel'}
 foreach($role in $roles){
   $taskName="jlm-demo-$role"
   $existing=Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue

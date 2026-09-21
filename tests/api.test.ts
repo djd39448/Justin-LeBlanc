@@ -79,6 +79,20 @@ describe('HTTP boundaries', () => {
     expect(other.status).toBe(400);
     expect(await other.text()).not.toContain('client@example.com');
   });
+  it('keeps follow-ups behind job authentication and the invoice email gate', async () => {
+    const { app, runtime } = fixture();
+    const request = (token: string) =>
+      app.request('/api/jobs/run', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'billing-followups' }),
+        headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      });
+    expect((await request('a'.repeat(40))).status).toBe(401);
+    const disabled = await request('j'.repeat(40));
+    expect(disabled.status).toBe(400);
+    expect(await disabled.text()).toContain('Invoice email is disabled');
+    expect(runtime.store.effects()).toHaveLength(0);
+  });
   it('converts valid zones and rejects DST gaps', async () => {
     const { app } = fixture();
     for (const [local, status] of [
@@ -99,6 +113,18 @@ describe('HTTP boundaries', () => {
       Authorization: `Bearer ${'a'.repeat(40)}`,
       'Content-Type': 'application/json',
     };
+    runtime.store.acquireLease('demo:seed:jlm-demo-http-test', 'another-worker', 30_000);
+    const contended = await app.request('/api/admin/action', {
+      method: 'POST',
+      body: JSON.stringify({ action: 'demo-seed', key: 'http-test' }),
+      headers,
+    });
+    expect(contended.status).toBe(400);
+    expect(runtime.store.db.prepare('SELECT COUNT(*) AS count FROM inquiries').get()?.count).toBe(
+      0,
+    );
+    expect(runtime.store.effects()).toHaveLength(0);
+    runtime.store.releaseLease('demo:seed:jlm-demo-http-test', 'another-worker');
     for (let i = 0; i < 2; i++) {
       const r = await app.request('/api/admin/action', {
         method: 'POST',

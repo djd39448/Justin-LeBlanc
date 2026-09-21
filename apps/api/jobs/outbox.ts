@@ -260,7 +260,9 @@ export class OutboxDispatcher {
 
   private assertKillSwitch(effect: Effect): void {
     if (
-      (effect.kind === 'email.invoice' || effect.kind === 'email.amendment_approval') &&
+      (effect.kind === 'email.invoice' ||
+        effect.kind === 'email.amendment_approval' ||
+        effect.kind === 'email.performance_reminder') &&
       !this.config.INVOICE_SEND_ENABLED
     ) {
       throw new DisabledEffectError(
@@ -303,6 +305,7 @@ export class OutboxDispatcher {
         'email.invoice',
         'email.amendment_approval',
         'email.performance_check',
+        'email.performance_reminder',
         'email.booking_confirmation',
         'email.event_brief',
       ].includes(effect.kind)

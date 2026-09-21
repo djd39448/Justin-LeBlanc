@@ -46,6 +46,7 @@ const ActionSchema = z.discriminatedUnion('action', [
     force: z.boolean().default(true),
   }),
   z.object({ action: z.literal('replies-poll') }),
+  z.object({ action: z.literal('billing-followups') }),
   z.object({ action: z.literal('outbox-dispatch') }),
   z.object({ action: z.literal('outbox-reconcile'), id }),
   z.object({ action: z.literal('outbox-retry-failed'), id }),
@@ -86,6 +87,9 @@ export async function operatorAction(runtime: Runtime, raw: unknown): Promise<un
       });
     case 'replies-poll':
       return runImapReplyJob(runtime.store, runtime.imap, runtime.billing);
+    case 'billing-followups':
+      if (!runtime.config.INVOICE_SEND_ENABLED) throw new Error('Invoice email is disabled.');
+      return runtime.billing.runFollowups();
     case 'outbox-dispatch':
       return runtime.outbox.dispatchPending();
     case 'outbox-reconcile':
