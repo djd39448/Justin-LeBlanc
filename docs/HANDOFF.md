@@ -1,101 +1,92 @@
-# Demo Handoff
+# Demo handoff
 
-- Status date: 2026-09-21
-- Delivery code baseline verified by final checks: `0fde0288d1ab860f35963b927f074617d315b8c7`
-- Billing/document correction commit: `8e1ce48`
-- Public API smoke evidence commit: `6331d2b`
+Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, billing, and voice transport paths have real provider evidence. Two acceptance gaps remain: neither of the two live voice calls invoked a backend assistant tool or created an inquiry, and unattended Windows startup has not been applied or reboot-tested. No additional voice call is requested.
 
-## What is running
+## Running system
 
-- The Cloudflare Pages website at `https://justinleblancmusic.50by50.dev` returned HTTP 200 on the exact hostname. The verified deployment ID is `ae47bbfd`.
-- Public pages return `noindex, nofollow, noarchive`, frame denial, and a `frame-ancestors 'none'` CSP. The admin page also returns `Cache-Control: no-store`.
-- The API is healthy on `127.0.0.1:4318`. Its checked capability result was `chat: true`, with booking, voice, and billing false under the current gates.
-- The isolated Cloudflare tunnel `jlm-demo-api` (`e692323b-f1d0-494b-8529-113bd188104b`) routes `jlm-demo-api.50by50.dev` to loopback port 4318. Its protected token stays outside Git, and the running tunnel task reported four QUIC connections.
-- Public API and exact website-proxy health returned HTTP 200 with the same KB identity. Synthetic public inquiry intake/resume and two grounded chat turns passed; unauthenticated admin returned HTTP 401 and no Calendar, email, or voice business write occurred.
-- `jlm-demo-api` and `jlm-demo-worker` are installed and running as InteractiveOnly Windows tasks. `jlm-demo-tunnel` is also running.
-- The final `stop-services.ps1 -Restart` check returned both owned tasks to `Running` and local health to HTTP 200 with the same knowledge-base identity and capability gates.
-- The SQLite-backed demo has canonical booking and billing state, durable outbox processing, document generation, operator actions, backups, exports, and restore checking.
-- One real, clearly labeled synthetic email diagnostic passed SMTP submission, To plus BCC delivery handling, deterministic Message-ID Sent-copy reconciliation, and a bounded IMAP scan.
-- A seeded backup was copied to a new restore directory, opened read-only, and passed SQLite `PRAGMA integrity_check` with its seeded records readable.
-- The backup command writes each SQLite snapshot and document copy into a distinct timestamped `snapshot-*` directory, preventing files from separate runs from being merged.
-- An unauthenticated local admin request returned HTTP 401. A seeded authenticated event-brief PDF preview returned HTTP 200, 66,125 bytes, `application/pdf`, and `Cache-Control: no-store`.
+- The exact public hostname serves the latest site deployment and returns HTTP 200. Noindex, frame denial, CSP, and admin no-store protections remain enabled.
+- The local API, worker, and isolated tunnel are running. Booking, chat, voice, morning-scan, and invoice gates are enabled.
+- At 15:22:32 UTC the API, worker, and tunnel tasks were running with interactive logon and logon triggers. They require the Windows user to remain signed in; the corrected S4U/AtStartup upgrade has not been applied.
+- The public website proxy and local API health checks use KB release `2026-09-21.2` with hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
+- Published voice LLM release v2 uses that same KB and the existing isolated identity. Release verification normalizes only four known provider schema readback omissions; server-side schemas remain strict.
+- The public Houston demo number is **(832) 501-3799**.
+- Local verification at 15:13:37 UTC against `8a280a0` passed 87 tests in 17 files, lint, TypeScript, and the 19-file Astro check. After the separately authorized photo addition, [GitHub CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879) passed for `c0aee21` at 15:28:40 UTC: 87 tests in 17 files, lint, TypeScript, 20 Astro files with zero diagnostics, and 9 pages. No local suite was repeated during this resume.
+- Private configuration, OAuth material, recipient data, provider credentials, SQLite state, generated customer documents, and backups remain outside the repository.
 
-Private configuration and operational data remain outside the repository. No credentials, recipient addresses, OAuth artifacts, private documents, database backups, or provider tokens belong in Git.
+## Live acceptance completed
 
-## What is not live
+- A real consultation and tentative performance hold were created on the isolated Calendar with the expected Central times and two invited roles. The private one-page brief was delivered and reconciled.
+- A durable one-time repair updated the existing tentative performance event to transparent without changing its provider identity. The approved USD 700.00 quote then confirmed that same event as opaque with matching quote metadata.
+- The confirmed performance was moved to a non-overlapping next-day interval and cancelled. Confirmation, reschedule, and cancellation retained the same event identity; every associated effect was accepted on its first attempt.
+- The real Houston morning workflow sent one performer check. One authenticated, correlated YES reply created one immutable USD 700.00 invoice and one delivery effect.
+- The client inbox contained exactly one matching invoice Message-ID. The operator BCC receipt and Sent copy were verified. Replaying the morning run, mailbox poll, reply handling, and sender produced no second invoice or send and left no queued work.
+- Two real inbound voice calls passed caller admission and signed webhook verification. The 59,473 ms v1 call cost 11.86 cents and ended by user hangup after event questions, qualification prompts, and an honest unknown-song answer. The 18,473 ms v2 call cost 5.177 cents and correctly answered that consultations use Houston Central Time / `America/Chicago`.
+- Provider isolation reconciliation found the previously existing Retell resources, DNS records, and Pages projects unchanged. Only the isolated demo resources were added.
+- The current SQLite backup restored read-only with two shows and one invoice and passed integrity checking. The authenticated document preview, SMTP/IMAP diagnostic, public form/resume flow, grounded chat cases, and deployed accessibility/security checks remain valid.
 
-| Area               | Current limit                                                                                                         | Required next action                                                                                                                            |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| Google Calendar    | Grant identity and both limited scopes passed; calendar create returns HTTP 403 `SERVICE_DISABLED`                    | Owner enables the Calendar API/accepts its terms, then operator runs provision-only recovery and verifies calendar/invitations                  |
-| Invoice acceptance | Only the synthetic provider diagnostic is complete                                                                    | Run one end-to-end synthetic show through morning authorization, authenticated reply, immutable invoice, SMTP delivery, and Sent reconciliation |
-| Retell             | An isolated agent and LLM exist, but no managed number was purchased; the number API returned HTTP 403 `No valid KYC` | Owner completes Retell KYC, then provisions an isolated demo number and completes inbound-call acceptance                                       |
-| Unattended uptime  | S4U startup task registration returned `AccessDenied`                                                                 | Approve and install a supported startup service/task mode; until then a user must remain signed in                                              |
+## Remaining limits
 
-Public inquiry and chat paths now reach the backend through the isolated tunnel. Scheduling, voice, billing, and provider-backed operator outcomes remain gated. Do not present the demo as continuously available because the API and worker still depend on InteractiveOnly tasks.
+| Area                             | Current evidence                                                                                                                                                         | Required next action                                                                                                                                   |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Voice tool evidence              | Both calls connected successfully, and v2 answered the time-zone question correctly. Neither call invoked a tool or created an inquiry. The embedded KB can answer facts directly despite the required-search prompt. | Keep the limitation explicit. No additional call is requested; do not claim voice-side intake, availability, or booking tools are live-tested. |
+| Unattended uptime                | At 15:22:32 UTC all three services were running with `LogonType=Interactive` and `MSFT_TaskLogonTrigger`.                                                               | From an already elevated shell, review and apply `scripts/upgrade-services.ps1`, then separately authorize and verify sign-out/reboot recovery.        |
+| Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.      | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review.      |
 
-## Implemented boundaries
+## Safety and recovery boundaries
 
-- Booking, money, authentication, recipient gates, state transitions, and idempotency are deterministic.
-- The calendar adapter uses a dedicated calendar and private metadata. It does not modify existing TrustCore calendars.
-- Billing uses yesterday's Houston-local performance end date, a seven-day catch-up window, durable processed events, and version-bound performer approval.
-- Initial unanswered checks queue one reminder after 24 hours from definitive original delivery, then enter review after 72 hours. Queued and confirmed-send timestamps stay distinct. Unanswered amendment approvals remain visible for operator review outside this initial-check reminder policy.
-- Invoice snapshots are immutable and receive sequence numbers from stored state. Customer billing data comes from the canonical customer and agreed quote.
-- Email effects have deterministic IDs and Message-IDs. SMTP interruption becomes uncertain; recovery reconciles the Sent mailbox and never blindly resends.
-- Replies require an authenticated, aligned origin plus a known `In-Reply-To` and nonce. Subjects do not authorize billing. Sent echoes, automatic replies, and bounce-like messages are ignored.
-- The IMAP worker persists UIDVALIDITY and the UID cursor, scans bounded batches under a lock, and advances only after processing.
-- The final SMTP boundary enforces the exact demo allowlist and sends the client message with the required BCC. Internal event briefs remain operator-only.
-- Generated briefs and invoices share typed HTML, plain-text, and PDF templates. The document is prepared before its mail effect is enqueued.
+- Calendar writes use deterministic identities and durable outbox effects. The accepted initial hold effect was never reset; its transparency correction used a new effect ID.
+- Tentative performance invitations are transparent and become opaque on confirmation. The configured primary free/busy calendar remains queried, and unrelated conflicts still block confirmation.
+- Public and assistant booking requests must pass the configured demo-recipient boundary before availability or hold creation, including idempotent replay. The Calendar adapter independently validates every final attendee before OAuth refresh or any provider request.
+- A live negative boundary check rejected an unallowlisted public recipient and an invalid inquiry token with no holds or effects created.
+- SMTP interruption becomes uncertain. Recovery reconciles the deterministic Message-ID against Sent and never blindly resends.
+- Replies require aligned authentication, a known thread, and the per-check nonce. Subjects alone never authorize billing. Sent echoes, automatic replies, and bounce-like messages are ignored.
+- Invoice snapshots are immutable, numbered from stored state, and derived only from the canonical customer and agreed quote.
+- The final provider boundary enforces the demo allowlist for Calendar attendees, email recipients, and calls.
 
-## Operational entry points
+## Operator entry points
 
-Use an environment file outside the repository:
+Use the protected environment file outside the checkout. Do not place admin credentials in a URL.
 
 ```powershell
 $configPath = 'C:\path\outside-repo\runtime.env'
 node "--env-file=$configPath" --import tsx scripts/cli.ts --json health
+pwsh -NoProfile -File scripts/stop-services.ps1 -ConfigPath $configPath -Restart
 ```
 
-The worker and API can be run directly with the same protected file or controlled through the `jlm-demo-api` and `jlm-demo-worker` scheduled tasks. Full commands, action schemas, backup handling, and uncertainty recovery are in [RUNBOOK.md](RUNBOOK.md).
+Review the unattended upgrade without mutation:
 
-Do not put the admin token in a URL. Operator actions should be stored briefly in a private JSON file, passed to `scripts/cli.ts`, and removed after use. Use record revisions and request keys from current state.
+```powershell
+& 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env'
+```
 
-## Evidence and acceptance state
+Apply only from a manually opened elevated PowerShell after reviewing the preflight:
 
-Repository evidence includes the sanitized email provider diagnostic, [hosting verification](evidence/hosting-verification.json), [public API smoke](evidence/public-api-smoke.json), [Google setup status](evidence/google-setup-status.json), and [document visual QA](evidence/documents/README.md). These artifacts intentionally omit addresses, credentials, message bodies with private data, and provider secrets.
+```powershell
+& 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' -NoProfile -File 'C:/Users/trustcore-rdp/Desktop/Justin Leblanc/scripts/upgrade-services.ps1' -ConfigPath 'C:/Users/trustcore-rdp/.config/jlm-demo/runtime.env' -Apply
+```
 
-The sanitized Retell provisioning evidence records the isolated agent, LLM, knowledge-base version, and reconciliation result. It records no phone number because none was purchased. Owner KYC and a managed number remain prerequisites for live voice acceptance.
+The upgrade script checks exact task ownership, backs up task XML and state privately, preserves prior running state, and rolls back a failed registration. It does not invoke UAC or reboot the host.
 
-The following statements are supported now:
+## Evidence
 
-- local API health: verified;
-- exact-host website HTTP 200: verified;
-- noindex, frame denial, CSP, and admin no-store headers: verified;
-- public and website-proxy API health HTTP 200 with the expected KB identity: verified;
-- public synthetic inquiry intake/resume and two grounded chat turns: verified with no provider business writes;
-- unauthorized admin HTTP 401 and authenticated seeded brief PDF HTTP 200: verified;
-- InteractiveOnly API and worker tasks running: verified;
-- SMTP and IMAP provider access with deterministic Sent reconciliation: verified by a synthetic diagnostic;
-- seeded backup restore integrity: verified.
-- synthetic one-page brief, one-page invoice, and two-page long-edge invoice visual layout: verified.
+- [Live booking and Calendar](evidence/live-booking-acceptance.json)
+- [Live reply-driven invoice](evidence/live-invoice-acceptance.json)
+- [Operator mail receipts](evidence/operator-mail-receipts.json)
+- [Live voice call](evidence/live-voice-acceptance.json)
+- [Published Central voice release](evidence/retell-central-release.json)
+- [Startup reconciliation](evidence/startup-reconciliation.json)
+- [Resume ledger reconciliation](evidence/resume-ledger-reconciliation.json)
+- [Provider isolation](evidence/resource-isolation.json)
+- [Central live health and chat](evidence/central-live-check.json)
+- [Live booking recipient boundary](evidence/live-booking-boundary.json)
+- [Live backup restore](evidence/live-backup-restore.json)
+- [Acceptance matrix](evidence/acceptance-results.md)
+- [Operations runbook](RUNBOOK.md)
 
-The final `npm run verify` completed at 14:28:52 UTC: ESLint passed, TypeScript passed, 72 tests across 16 files passed, and Astro checked 18 files with zero diagnostics and built 9 pages.
+The live evidence is sanitized: it contains no phone number, email address, credential, access token, resume token, or private message body.
 
-The following statements must remain pending:
+## Next controlled work
 
-- live Google Calendar read/write acceptance;
-- reply-driven invoice approval and delivery;
-- Retell managed-number call handling;
-- unattended recovery after Windows sign-out or reboot.
-
-## Next controlled session
-
-1. The owner enables the Google Calendar API in the Alex project and accepts any required terms. Do not repeat OAuth; run `scripts/google-authorize.ts --env <protected-env> --provision-only` and inspect the private provisioning manifest.
-2. Verify the dedicated calendar and run the isolated synthetic booking/calendar flow.
-3. Run the pending invoice acceptance exactly once. Reconcile any uncertain SMTP result by deterministic Message-ID; do not resend it blindly.
-4. The owner completes Retell KYC. Provision and test an isolated Retell number only after that prerequisite and explicit resource approval.
-5. Replace InteractiveOnly API and worker tasks with an approved unattended startup method, then test reboot and sign-out recovery.
-6. Record final test totals and the integration commit in this handoff without copying private configuration.
-
-The shared account usage snapshot supplied during final review was 22% used, leaving the required reserve intact.
-
-Cloudflare, Google, Retell, Windows privilege, DNS, and credential changes remain user-controlled. The current repository work does not authorize changes to existing TrustCore resources.
+1. Apply and validate unattended startup only through the elevated, reversible upgrade flow.
+2. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
+3. Keep the voice-tool limitation explicit unless a separately requested future call produces real tool and ledger evidence.

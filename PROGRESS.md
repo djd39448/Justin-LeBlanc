@@ -1,23 +1,22 @@
 # Progress
 
-Updated 2026-09-21. **Implemented and partially live-verified; the requested end-to-end demo remains incomplete.**
+Updated 2026-09-21. **Implemented and substantially live-verified. Voice backend-tool use and unattended startup remain unverified.** No additional voice call is requested.
 
-- [x] Private repository, approved specification, isolation preflight, runtime architecture.
-- [x] Researched redesign, authentic blue/guitar identity, discovery form, shared assistant UI, operator workspace, campaign drafts, readable reference and structured metadata.
-- [x] Persistent canonical records, strict schemas, deterministic pricing/state, auth and allowlists, durable outbox, leases, reconciliation, CLI, backups and exports.
-- [x] Calendar booking/confirmation/cancel/reschedule/expiry adapters; OpenAI and signed Retell tool adapters sharing one versioned KB.
-- [x] Houston morning job, authenticated IMAP reply handling, revised-total approval, immutable invoices, private HTML/PDF documents, guarded SMTP delivery.
-- [x] 72 offline tests, lint/type checking, nine-page build, mobile/keyboard inspection, document visual QA.
-- [x] Separate Cloudflare Pages site deployed at the exact hostname. The isolated named tunnel is running, and local API and worker tasks remain InteractiveOnly.
-- [x] Real chat qualification (four cases/6,911 tokens), synthetic SMTP/IMAP diagnostic and Sent reconciliation, seeded database restore, provider isolation comparison.
-- [x] Public API: health, unauthorized admin rejection, synthetic inquiry intake/resume, and two grounded chat turns passed through the isolated public tunnel with no provider business writes.
-- [ ] Calendar: refresh-token identity and both limited scopes are verified; calendar creation returns HTTP 403 `SERVICE_DISABLED` until the owner enables the Calendar API/terms in the Alex project, then provision-only recovery and invitation acceptance remain.
-- [ ] Live booking, operator brief receipt, confirmation update, actual performer reply, invoice receipt/BCC and replay demonstration.
-- [ ] Retell number: owner KYC required after a single API attempt returned 403; live call pending.
-- [ ] Unattended uptime: S4U startup registration denied; current tasks require the Windows user to remain signed in.
+- [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
+- [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, noindex controls, and exact-host deployment.
+- [x] Shared KB-backed chat and voice prompts using release `2026-09-21.2` and hash `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
+- [x] Deterministic booking, money, state transitions, authentication, recipient gates, outbox leases, uncertainty reconciliation, and operator CLI.
+- [x] Public/assistant booking authorization before availability or hold creation, including replay-token validation, plus an independent attendee allowlist at the final Calendar provider boundary.
+- [x] Live negative recipient/token checks rejected unsafe booking requests without creating a hold or effect.
+- [x] Live Calendar consultation and tentative hold with Central times, invited roles, private brief, same-ID confirmation, non-overlapping reschedule, and cancellation.
+- [x] Live Houston morning run, authenticated YES reply, one immutable USD 700.00 invoice, exact client Message-ID receipt, operator BCC receipt, Sent reconciliation, and zero-duplicate replay.
+- [x] Isolated Houston voice resource at **(832) 501-3799**, published agent/LLM v2, two successful admitted connections with signed webhooks, correct KB identity, bounded spend, honest unknown-song handling, and a correct `America/Chicago` answer on v2.
+- [x] Existing Retell, DNS, Pages, and other provider resources reconciled unchanged; only isolated demo resources were added.
+- [x] Current backup restored read-only with two shows and one invoice and passed SQLite integrity checking.
+- [x] Local API, worker, and tunnel are running with booking, chat, voice, morning, and invoice gates enabled.
+- [ ] Voice tool evidence: neither the 59,473 ms v1 call nor the 18,473 ms v2 call invoked a backend assistant tool; no inquiry or booking was created. The full embedded KB can answer directly despite the v2 search-first prompt.
+- [ ] Unattended uptime: at 15:22:32 UTC all three tasks were running with interactive logon and logon triggers. The corrected reversible S4U/AtStartup upgrade is prepared but has not been applied or reboot-tested.
 
-Full-suite application baseline: `0fde028`. Public API smoke evidence: `6331d2b`. Deployed Pages version: `ae47bbfd`. Final documentation commits are discoverable with `git log`; [acceptance evidence](docs/evidence/acceptance-results.md) records the exact verification scope.
+The provider queue was empty after the live booking cancellation and invoice replay. A confirmed event's attendee copy can still cause a safe false rejection when a requested reschedule overlaps the current interval; free/busy lacks event identity, so the adapter deliberately does not subtract that interval.
 
-Workers completed bounded design/web, booking/AI, and billing/document tasks with explicit ownership. Windows and Mac shared the same ChatGPT Pro allowance; the final measured window was **22% used**, so the required 25% reserve remained intact. No reset credits were consumed. Account usage is shared and is not a per-task token attribution. The measured API qualification tokens are separate from that cloud allowance.
-
-The before/after manifest shows no existing Retell agent/number, Pages project, or DNS record changed. Only Justin-scoped resources were created. See the [resource inventory](docs/resource-inventory.md), [runbook](docs/RUNBOOK.md), and [handoff](docs/HANDOFF.md) for the precise restartable dependencies.
+Local verification at 15:13:37 UTC against `8a280a0` passed 87 tests in 17 files, lint, TypeScript, and the 19-file Astro check. After the separately authorized photo addition, [GitHub CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879) passed for `c0aee21` at 15:28:40 UTC: 87 tests in 17 files, lint, TypeScript, 20 Astro files with zero diagnostics, and 9 pages. No local suite was repeated during this resume. Current evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md), with operational recovery in the [runbook](docs/RUNBOOK.md) and current limitations in the [handoff](docs/HANDOFF.md).

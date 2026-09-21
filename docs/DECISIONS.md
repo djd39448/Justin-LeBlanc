@@ -7,8 +7,8 @@ These defaults let the build proceed. Justin must approve real business terms be
 | Objective | More private-event bookings, less qualification/admin effort | User approved |
 | Theme | Optimize existing blue musician identity | User approved |
 | Hosting | Isolated `justinleblancmusic.50by50.dev` | User approved |
-| Voice | Existing Retell account, separate managed number and agent | Agent provisioned; number blocked by owner KYC |
-| Calendar/email | Dave's verified TrustCore accounts, isolated records | SMTP/IMAP diagnostic verified; limited Calendar consent pending |
+| Voice | Existing Retell account, separate managed number and agent | Houston (832) 501-3799; published agent/LLM v2; two live calls connected, neither invoked tools |
+| Calendar/email | Dave's verified TrustCore accounts, isolated records | Limited Calendar consent granted; live booking and actual reply-driven $700 demo invoice verified |
 | Chat credential | Reuse existing OpenAI API key securely | Reuse configured; four real qualification cases passed |
 | Consultation | 20 minutes, Mon–Fri 10am–4pm Central Time (`America/Chicago`), 24h notice | User approved; respect existing actual free/busy |
 | Booking timezone | Customer-facing consultation and event inputs/displays use Central Time (`America/Chicago`) | User approved; DST-aware IANA conversion |

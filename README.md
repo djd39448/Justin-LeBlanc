@@ -2,21 +2,21 @@
 
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
-The website and application are implemented. Public health, inquiry intake/resume, chat, the dedicated Google Calendar booking lifecycle, and reply-driven invoice delivery have passed through the isolated demo stack. The isolated voice agent and LLM are published at version 1 with the Central Time KB, and a separate Houston 832 demo number is configured. A live call reached three verified signed webhooks but invoked no assistant tools; a revised search-first prompt and one short tool-bearing call remain pending. Unattended Windows startup also remains incomplete.
+The website and application are implemented. Public health, inquiry intake/resume, chat, the dedicated Google Calendar booking lifecycle, and reply-driven invoice delivery have passed through the isolated demo stack. The isolated voice agent and LLM are published at version 2 with the Central Time KB, and the Houston demo number is **(832) 501-3799**. Two live calls connected successfully and produced verified signed webhooks. The second call correctly answered that consultations use Houston Central Time (`America/Chicago`), but neither call invoked an assistant tool. No additional call is requested. Unattended Windows startup also remains incomplete.
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Billing reads completed performances by Houston end date, requires an authenticated correlated reply, snapshots the approved invoice, and delivers through a durable outbox. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
 ## Verified on 2026-09-21
 
-- `npm run verify`: lint and type checking passed, **81 tests in 17 files** passed, Astro checked 19 files with zero diagnostics, and nine static pages built at 15:03:11 UTC.
-- Exact HTTPS hostname on deployment `e63652d3`, noindex/security headers, responsive desktop/mobile layout, keyboard navigation, semantic initial HTML, Central-time planner labels, and the gated Houston voice CTA.
+- [GitHub CI](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35619025879) passed for `c0aee21` at 15:28:40 UTC: lint, TypeScript, **87 tests in 17 files**, 20 Astro files with zero diagnostics, and nine pages. The earlier local suite against `8a280a0` was not repeated.
+- Current deployment `75996868` adds the two supplied photographs; its desktop/mobile photo QA and build passed. Earlier noindex/security, keyboard, Central-time and Houston voice-CTA checks remain recorded separately. See [photo evidence](docs/evidence/user-photos.json).
 - Local, direct-tunnel, and website-proxy health report booking, chat, voice, and billing capabilities on. The API, worker, and tunnel tasks are running.
 - Four real OpenAI qualification cases passed using `gpt-4.1-mini` (6,911 tokens). Chat and the published voice configuration use Central Time KB `2026-09-21.2`, SHA-256 `d6dd327317ecf32b537cbc74df5ea7957e79429442383014d4ef40986d9b0ad6`.
 - A live synthetic Calendar flow passed consultation and tentative-hold creation, invitation and private brief delivery, operator confirmation, reschedule, and cancellation. Tentative holds stay transparent until confirmation so an attendee copy does not collide with the same canonical hold.
 - The actual reply-driven billing flow accepted an authenticated `YES`, issued one immutable $700 demo invoice, reconciled its Sent copy, and verified exactly one matching client Inbox receipt plus Dave's BCC receipt.
-- The Houston demo number and published voice configuration are provider-reconciled. One live call reached three signed webhooks without invoking backend tools; do not describe the voice booking tools as live-tested until the revised prompt and short acceptance call pass.
+- The Houston demo number and published v2 voice configuration are provider-reconciled. The two successful connections lasted 59,473 ms (11.86 cents) and 18,473 ms (5.177 cents). Neither invoked a backend tool, so voice-side intake, availability, and booking tools are not live-tested. The embedded KB can still answer facts directly despite the search-first prompt.
 - Visually inspected synthetic PDF brief and invoices; authenticated local brief PDF served successfully.
-- Service restart and seeded SQLite backup/restore passed. The owned tasks remain InteractiveOnly; an elevated operator must apply and verify the reversible startup upgrade for unattended operation.
+- Service restart and seeded SQLite backup/restore passed. At 15:22:32 UTC all three owned tasks were running with interactive logon and logon triggers. The corrected S4U/AtStartup upgrade has not been applied; an elevated operator must apply and verify it before unattended operation can be claimed.
 
 See the [A01–A26 evidence matrix](docs/evidence/acceptance-results.md) for offline, provider, and pending live results.
 
