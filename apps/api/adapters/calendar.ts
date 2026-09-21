@@ -131,6 +131,12 @@ function parseEventTime(
   throw new Error(`Google event ${eventId} has neither dateTime nor date; inspect the event.`);
 }
 
+function hasUsableEventTime(
+  value: z.infer<typeof GoogleEventTimeSchema> | undefined,
+): value is z.infer<typeof GoogleEventTimeSchema> {
+  return value !== undefined && (value.dateTime !== undefined || value.date !== undefined);
+}
+
 function parseMetadata(values: Record<string, string> | undefined): CalendarShowMetadata | null {
   if (values === undefined || values['tenantId'] !== TENANT) return null;
   const schema = z.object({
@@ -291,11 +297,19 @@ export class GoogleCalendarAdapter {
         const original = event.originalStartTime?.dateTime ?? event.originalStartTime?.date ?? null;
         const cancelledFallback =
           event.status === 'cancelled' ? event.originalStartTime : undefined;
+        const start = hasUsableEventTime(event.start) ? event.start : cancelledFallback;
+        const end = hasUsableEventTime(event.end) ? event.end : cancelledFallback;
+        if (
+          event.status === 'cancelled' &&
+          (!hasUsableEventTime(start) || !hasUsableEventTime(end))
+        ) {
+          continue;
+        }
         events.push({
           eventId: event.id,
           status: event.status,
-          start: parseEventTime(event.start ?? cancelledFallback, event.id),
-          end: parseEventTime(event.end ?? cancelledFallback, event.id),
+          start: parseEventTime(start, event.id),
+          end: parseEventTime(end, event.id),
           recurringEventId: event.recurringEventId ?? null,
           originalStart: original,
           etag: event.etag,

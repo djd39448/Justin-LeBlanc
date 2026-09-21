@@ -112,6 +112,10 @@ describe('GoogleCalendarAdapter readiness', () => {
               recurringEventId: 'series-datetime',
               originalStartTime: { dateTime: '2026-11-21T20:00:00-06:00' },
             },
+            {
+              id: 'deleted-non-recurring-tombstone',
+              status: 'cancelled',
+            },
           ],
         }),
         { status: 200 },
@@ -126,6 +130,8 @@ describe('GoogleCalendarAdapter readiness', () => {
     expect(query.get('showDeleted')).toBe('true');
     expect(query.get('timeMin')).toBe('2026-11-01T00:00:00.000Z');
     expect(query.get('timeMax')).toBe('2026-12-01T00:00:00.000Z');
+    expect(events).toHaveLength(3);
+    expect(events.map((event) => event.eventId)).not.toContain('deleted-non-recurring-tombstone');
     expect(events).toMatchObject([
       {
         eventId: 'instance-datetime',
@@ -149,6 +155,33 @@ describe('GoogleCalendarAdapter readiness', () => {
         end: { kind: 'dateTime', dateTime: '2026-11-21T20:00:00-06:00' },
       },
     ]);
+  });
+
+  it('still rejects an active event without a usable time', async () => {
+    const config = ConfigSchema.parse({
+      ...baseConfig,
+      GOOGLE_CLIENT_ID: 'client-id',
+      GOOGLE_CLIENT_SECRET: 'client-secret',
+      GOOGLE_REFRESH_TOKEN: 'refresh-token',
+      SHOW_CALENDAR_ID: 'jlm-demo-calendar@example.test',
+    });
+    const request: typeof fetch = async (input) =>
+      String(input).includes('oauth2.googleapis.com')
+        ? new Response(JSON.stringify({ access_token: 'access-token', expires_in: 3600 }), {
+            status: 200,
+          })
+        : new Response(
+            JSON.stringify({ items: [{ id: 'malformed-active', status: 'confirmed' }] }),
+            {
+              status: 200,
+            },
+          );
+    await expect(
+      new GoogleCalendarAdapter(config, request).listShowEvents({
+        timeMin: '2026-11-01T00:00:00.000Z',
+        timeMax: '2026-12-01T00:00:00.000Z',
+      }),
+    ).rejects.toThrow('no usable instance time');
   });
 });
 
