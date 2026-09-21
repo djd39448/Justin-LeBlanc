@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-09-21T14:53:33.189Z",
+  "status": "verified",
+  "verificationMethod": "read-only Gmail Inbox search in a dedicated Chrome tab",
+  "mailbox": "authenticated Dave account",
+  "scope": {
+    "primaryShowId": "0ff01042-c7fe-4805-bd01-35132bc6d43c",
+    "syntheticRehearsalId": "show-jlm-demo-rehearsal-v1"
+  },
+  "received": {
+    "consultationInvitations": {
+      "count": 1,
+      "category": "demo consultation event invitation",
+      "inInbox": true,
+      "calendarAttachmentPresent": true
+    },
+    "performanceInvitations": {
+      "count": 2,
+      "categories": [
+        "tentative demo performance invitation",
+        "confirmed synthetic rehearsal performance invitation"
+      ],
+      "inInbox": true,
+      "calendarAttachmentsPresent": true,
+      "correlation": "Visible invitation state and schedule matched the two expected demo events; Google invitation subjects omit internal show identifiers."
+    },
+    "privateEventBrief": {
+      "count": 1,
+      "inInbox": true,
+      "targetShowId": "0ff01042-c7fe-4805-bd01-35132bc6d43c",
+      "pdfAttachmentPresent": true
+    }
+  },
+  "privacy": {
+    "addressesRecorded": false,
+    "messageBodiesRecorded": false,
+    "attachmentContentsOpened": false,
+    "actionsTaken": "search and read only"
+  },
+  "limitations": [
+    "This verifies recipient mailbox delivery and visible attachment presence, not attachment contents.",
+    "Invoice BCC receipt was outside this check and remains pending issuance."
+  ]
+}
