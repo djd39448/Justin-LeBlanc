@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-21",
+  "source": "Both original photos were supplied by Dave in this task; he explicitly requested adding both to the website.",
+  "alterations": "Original PNGs preserved. Astro generates responsive web assets during the build.",
+  "assets": [
+    {
+      "path": "apps/web/src/assets/justin-portrait.png",
+      "bytes": 1971875,
+      "sha256": "e0d3ba0cf734fe16da49147e42955f762adfd0062d8b37fc46d3a0d9a7cad92f"
+    },
+    {
+      "path": "apps/web/src/assets/justin-playing-guitar.png",
+      "bytes": 2408601,
+      "sha256": "6e053d19d8977fa630ea918d9f97a0e7bf127361062d45e0efad754ff5b56149"
+    }
+  ],
+  "deployment": "75996868",
+  "verification": {
+    "build": "pass:20 Astro files, zero diagnostics,9pages",
+    "liveHomepagePhotos": 2,
+    "liveAboutPortraits": 1,
+    "desktopWidth": 1920,
+    "mobileWidth": 390,
+    "allHomeImagesLoaded": true,
+    "noHorizontalOverflow": true,
+    "uncroppedAspectRatio": "3:2"
+  }
+}

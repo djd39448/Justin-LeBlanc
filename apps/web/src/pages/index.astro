@@ -7,6 +7,7 @@
  * Why this exists: It makes private-event discovery the main path while preserving Justin's identity.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ArtistPhotos from "../components/ArtistPhotos.astro";
 import ChatPanel from "../components/ChatPanel.astro";
 import EventPlanner from "../components/EventPlanner.astro";
 import FaqList from "../components/FaqList.astro";
@@ -59,6 +60,8 @@ const structuredData = [
     <div><strong>Start with</strong><span>Your date, place & atmosphere</span></div>
     <div><strong>Confirmation</strong><span>Personal review after consultation</span></div>
   </div>
+
+  <ArtistPhotos />
 
   <section class="section page-shell" id="private-events" aria-labelledby="occasions-title">
     <div class="section-heading">

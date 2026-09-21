@@ -7,6 +7,7 @@
  * Why this exists: Visitors need artist context without fabricated biography or credentials.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ArtistPhotos from "../components/ArtistPhotos.astro";
 import { site } from "../content";
 ---
 
@@ -21,6 +22,7 @@ import { site } from "../content";
       </p>
     </div>
   </section>
+  <ArtistPhotos variant="portrait" />
   <section class="section page-shell split-section">
     <div class="prose">
       <h2>What is verified here</h2>
