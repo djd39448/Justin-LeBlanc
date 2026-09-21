@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { CalendarEffectDispatcher, GoogleCalendarAdapter } from '../apps/api/adapters/calendar.js';
 import { ConfigSchema } from '../apps/api/config.js';
 import { Store } from '../apps/api/store.js';
-import { ShowSchema } from '../packages/contracts/index.js';
+import { CalendarLinkSchema, ShowSchema } from '../packages/contracts/index.js';
 
 const baseConfig = {
   NODE_ENV: 'test',
@@ -254,6 +254,41 @@ describe('GoogleCalendarAdapter readiness', () => {
 });
 
 describe('CalendarEffectDispatcher', () => {
+  it('blocks an unallowlisted attendee before OAuth or Calendar network requests', async () => {
+    const config = ConfigSchema.parse({
+      ...baseConfig,
+      DEMO_RECIPIENT_ALLOWLIST: 'operator@example.test',
+      GOOGLE_CLIENT_ID: 'client-id',
+      GOOGLE_CLIENT_SECRET: 'client-secret',
+      GOOGLE_REFRESH_TOKEN: 'refresh-token',
+      SHOW_CALENDAR_ID: 'jlm-demo-calendar@example.test',
+    });
+    let networkRequests = 0;
+    const request: typeof fetch = async () => {
+      networkRequests += 1;
+      return new Response('{}', { status: 200 });
+    };
+    const store = new Store(':memory:');
+    seedTentativeShow(store);
+    const dispatcher = new CalendarEffectDispatcher(
+      store,
+      new GoogleCalendarAdapter(config, request),
+      config,
+    );
+
+    await expect(
+      dispatcher.send('calendar.upsert', {
+        version: 1,
+        showId: 'show-1',
+        role: 'performance',
+        reason: 'initial_hold',
+      }),
+    ).rejects.toThrow('Recipient blocked at provider boundary');
+    expect(networkRequests).toBe(0);
+    expect(store.all('calendar_links', CalendarLinkSchema)).toHaveLength(0);
+    store.close();
+  });
+
   it('creates a deterministic owned event and reconciles it by exact private metadata', async () => {
     const config = ConfigSchema.parse({
       ...baseConfig,

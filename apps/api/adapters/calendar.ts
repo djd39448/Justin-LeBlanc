@@ -20,7 +20,7 @@ import {
   type Show,
 } from '../../../packages/contracts/index.js';
 import type { BusyInterval } from '../../../packages/domain/booking.js';
-import type { Config } from '../config.js';
+import { assertRecipients, type Config } from '../config.js';
 import { type Effect, Store } from '../store.js';
 
 const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
@@ -249,6 +249,10 @@ export class GoogleCalendarAdapter {
     eventId: string,
     exists: boolean,
   ): Promise<ProviderEventReceipt> {
+    assertRecipients(
+      this.config,
+      draft.attendees.map((attendee) => attendee.email),
+    );
     this.assertConfigured();
     const calendar = encodeURIComponent(this.config.SHOW_CALENDAR_ID);
     const path = !exists
