@@ -1,7 +1,7 @@
 # Demo Handoff
 
 - Status date: 2026-09-21
-- Delivery code baseline verified by final checks: `8b8a4c954cde7a8d8f61cff1fd7a852ab0676f4c`
+- Delivery code baseline verified by final checks: `0fde0288d1ab860f35963b927f074617d315b8c7`
 - Billing/document correction commit: `8e1ce48`
 - Public API smoke evidence commit: `6331d2b`
 
@@ -78,7 +78,7 @@ The following statements are supported now:
 - seeded backup restore integrity: verified.
 - synthetic one-page brief, one-page invoice, and two-page long-edge invoice visual layout: verified.
 
-The final `npm run verify` completed at 12:37:27 UTC: ESLint passed, TypeScript passed, 69 tests across 15 files passed, and Astro checked 18 files with zero diagnostics and built 9 pages.
+The final `npm run verify` completed at 14:28:52 UTC: ESLint passed, TypeScript passed, 72 tests across 16 files passed, and Astro checked 18 files with zero diagnostics and built 9 pages.
 
 The following statements must remain pending:
 
@@ -96,6 +96,6 @@ The following statements must remain pending:
 5. Replace InteractiveOnly API and worker tasks with an approved unattended startup method, then test reboot and sign-out recovery.
 6. Record final test totals and the integration commit in this handoff without copying private configuration.
 
-The shared account usage snapshot supplied during final review was 17% used, leaving the required reserve intact.
+The shared account usage snapshot supplied during final review was 22% used, leaving the required reserve intact.
 
 Cloudflare, Google, Retell, Windows privilege, DNS, and credential changes remain user-controlled. The current repository work does not authorize changes to existing TrustCore resources.

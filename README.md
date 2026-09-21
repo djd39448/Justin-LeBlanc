@@ -8,7 +8,7 @@ The local API and worker run against persistent SQLite. Booking uses a consultat
 
 ## Verified on 2026-09-21
 
-- `npm run verify`: lint and type checking passed, **69 tests in 15 files**, nine static pages built.
+- `npm run verify`: lint and type checking passed, **72 tests in 16 files**, nine static pages built.
 - Exact HTTPS hostname, noindex/security headers, five responsive viewport captures, keyboard navigation, semantic initial HTML.
 - Public API health, unauthenticated admin rejection, synthetic inquiry intake/resume, and two grounded OpenAI chat turns passed through `jlm-demo-api.50by50.dev`; no Calendar, email, or voice business write occurred.
 - Four real OpenAI qualification cases passed using `gpt-4.1-mini` (6,911 tokens); both assistant configurations share KB `2026-09-21.1`.

@@ -249,3 +249,34 @@ The protected runtime configuration contains independent gates for booking write
 5. Re-enable a gate only after the canonical state and provider evidence agree.
 
 Provider credentials, Google consent, the tunnel token, DNS, Retell provisioning, and startup-task permissions remain user-controlled actions.
+
+## Restartable live acceptance runners
+
+These runners were lint/type checked and inspected without provider writes. Their live acceptance is pending. Keep their manifests beside the protected environment file. Stop the owned worker and its child process before live stages; `--worker-paused` is an operator assertion, not a process-control command. Keep the API and tunnel running. Resume the worker after reconciling the run.
+
+```powershell
+# Briefly stop only demo services, including their owned child processes.
+pwsh -File scripts/stop-services.ps1 -ConfigPath $configPath
+Start-ScheduledTask -TaskName 'jlm-demo-api'
+Start-ScheduledTask -TaskName 'jlm-demo-tunnel'
+# After the live run is reconciled:
+# Start-ScheduledTask -TaskName 'jlm-demo-worker'
+```
+
+First reconcile the already-seeded `rehearsal-v1` Calendar effect with `scripts/smoke-booking-billing.ts`. Its stages are `inspect`, `booking` (publish the existing synthetic past show), `morning`, `waiting-reply`, and `invoice-reconcile`. Live stages require `--apply --execute-providers`, the corresponding private feature gates, and working providers. The morning stage sends the real performer check once; wait for the owner's actual reply before polling. No synthetic reply substitutes for acceptance.
+
+```powershell
+$billingManifest = Join-Path $privateRoot 'booking-billing-smoke.json'
+node --no-warnings --import tsx scripts/smoke-booking-billing.ts `
+  --env $configPath --manifest $billingManifest --stage inspect
+```
+
+After the prior pending effect is cleared, use `scripts/smoke-live-booking.ts` for the future consultation/hold lifecycle. Its `hold` stage takes `--consultation-start`, `--performance-start`, and `--performance-end` as ISO instants, plus `--timezone` if different from Houston. Choose a real available future consultation respecting the configured notice and weekday hours. The stage sends both invitations, the client hold notice, and the operator PDF brief. Inspect receipt before `confirm --quote-cents <approved-demo-total>`; that stage records the explicitly simulated completed consultation and confirms the same hold. Optional `reschedule` and `cancel` stages exercise cleanup. See `--help` for their date options.
+
+```powershell
+$bookingManifest = Join-Path $privateRoot 'live-booking-smoke.json'
+node --no-warnings --import tsx scripts/smoke-live-booking.ts `
+  --env $configPath --manifest $bookingManifest --stage inspect
+```
+
+Every live booking stage requires `--apply --execute-providers --worker-paused` and `BOOKING_WRITES_ENABLED=true`. Both runners validate private recipient roles, reject unrelated pending/uncertain work, and preserve accepted effects on replay. Reconcile an uncertain send; do not replace the manifest, seed key, or database to bypass a blocked stage. Record actual invitation, brief, invoice/BCC receipt and replay results before marking the corresponding acceptance rows passed.

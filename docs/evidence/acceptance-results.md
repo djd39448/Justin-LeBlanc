@@ -2,7 +2,7 @@
 
 **Overall: implementation delivered; full live acceptance pending.** The website, public API health, inquiry intake/resume, and chat are live-verified. Calendar invitations, actual reply-driven invoice delivery, and a Retell call remain pending. No fixture or provider diagnostic below is represented as an end-to-end live pass.
 
-Verified full-suite application baseline: `8b8a4c9`; public API smoke evidence commit: `6331d2b`. Pages deployment: `ae47bbfd`. Full local verification completed at 12:37:27 UTC: ESLint, TypeScript, **69 tests/15 files**, Astro 18 files with zero diagnostics, and nine built pages. See [operations evidence](operations-verification.json) and [public API smoke](public-api-smoke.json). The exact application baseline also passed [GitHub CI 35600644538](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538).
+Verified full-suite application baseline: `0fde028`; public API smoke evidence commit: `6331d2b`. Pages deployment: `ae47bbfd`. Full local verification completed at 14:28:52 UTC: ESLint, TypeScript, **72 tests/16 files**, Astro 18 files with zero diagnostics, and nine built pages. See [operations evidence](operations-verification.json) and [public API smoke](public-api-smoke.json). The prior deployed application baseline passed [GitHub CI 35600644538](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538).
 
 “Offline” means real local code/SQLite with provider fixtures where needed. “Provider” means an actual external request. “Pending” means no claim of the required live outcome.
 
@@ -39,7 +39,7 @@ Verified full-suite application baseline: `8b8a4c9`; public API smoke evidence c
 
 The model qualification made real `openai.responses` calls: 6,617 input +294 output =6,911 tokens. Public smoke then created one synthetic inquiry, resumed it, and completed two actual OpenAI chat turns with grounded pricing and confirmation boundaries. Neither run created Calendar, email, or voice business effects. The SMTP diagnostic sent one clearly labeled synthetic message; it did not request payment. IMAP scanned five UIDs and found zero correlated replies. The actual private database has one seeded rehearsal show and zero invoices.
 
-The last account allowance snapshot was 17% used on the shared weekly ChatGPT Pro window. Windows and Mac used the same account route; no independent pool was assumed and no reset credits were consumed. This account-level measure is not a per-task token total.
+The last account allowance snapshot was 22% used on the shared weekly ChatGPT Pro window. Windows and Mac used the same account route; no independent pool was assumed and no reset credits were consumed. This account-level measure is not a per-task token total.
 
 ## Remaining continuous demo
 

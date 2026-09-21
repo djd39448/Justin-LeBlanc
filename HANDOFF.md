@@ -4,4 +4,4 @@ See [docs/HANDOFF.md](docs/HANDOFF.md) for running components, exact limitations
 
 Local checkout: `C:/Users/trustcore-rdp/Desktop/Justin Leblanc`. Private remote: `https://github.com/djd39448/Justin-LeBlanc`, branch `main`. The site is deployed at `https://justinleblancmusic.50by50.dev`; the complete live demonstration is not yet accepted.
 
-Resume from the existing private manifests and database. Reconcile resource IDs and uncertain effects before any retry. Existing theme, hostname, key reuse, isolated Retell number, and push decisions are already authorized; unresolved browser consent/network access and provider KYC dependencies are recorded explicitly.
+Resume from the existing private manifests and database. Reconcile resource IDs and uncertain effects before any retry. Existing theme, hostname, key reuse, isolated Retell number, and push decisions are already authorized; remaining Calendar API enablement/terms, provider KYC, and unattended startup dependencies are recorded explicitly.

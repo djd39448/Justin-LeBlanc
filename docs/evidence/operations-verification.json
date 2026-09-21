@@ -1,14 +1,14 @@
 {
   "checkedAt": "2026-09-21T12:38:59.714Z",
-  "verifiedCode": "8b8a4c954cde7a8d8f61cff1fd7a852ab0676f4c",
+  "verifiedCode": "0fde0288d1ab860f35963b927f074617d315b8c7",
   "checks": {
     "staticPages": 9,
     "typecheck": "pass",
     "astroDiagnostics": 0,
-    "testsPassed": 69,
+    "testsPassed": 72,
     "lint": "pass",
-    "testFiles": 15,
-    "completedAt": "2026-09-21T12:37:27Z",
+    "testFiles": 16,
+    "completedAt": "2026-09-21T14:28:52Z",
     "powerShellSyntax": "pass"
   },
   "restart": {
@@ -57,5 +57,19 @@
     "strategy": "fresh timestamped directory, consistent SQLite backup and documents copy",
     "checkedAt": "2026-09-21T12:25:26.8177959Z"
   },
-  "githubVerifiedRun": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538"
+  "githubVerifiedRun": "https://github.com/djd39448/Justin-LeBlanc/actions/runs/35600644538",
+  "setupBatch": {
+    "checkedAt": "2026-09-21T14:26:18.7148987Z",
+    "tunnelRunning": true,
+    "publicHealthStatus": 200,
+    "runtimeEnvAcl": "current user, SYSTEM, Administrators only",
+    "tunnelTokenAcl": "current user, SYSTEM, Administrators only",
+    "backupCreatedAt": "2026-09-21T14:25:49.532Z",
+    "backupIncludes": "current SQLite snapshot and documents after public inquiry/chat smoke",
+    "providerEffectsStillGated": [
+      "booking",
+      "voice",
+      "billing"
+    ]
+  }
 }
