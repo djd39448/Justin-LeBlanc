@@ -14,6 +14,7 @@ import { operatorAction } from './operator-actions.js';
 import { mountOperatorRoutes } from './operator-routes.js';
 import type { Runtime } from './runtime.js';
 import { boundary, rateLimit, resumeToken, requireToken } from './security.js';
+import { mountVoiceRoutes } from './voice-routes.js';
 
 /** Builds routes against injected persistent services; does not start a network listener. */
 export function createApp(runtime: Runtime): Hono {
@@ -109,6 +110,7 @@ export function createApp(runtime: Runtime): Hono {
     );
   });
   app.post('/api/chat', async (c) => c.json(await chatTurn(runtime, await c.req.json())));
+  mountVoiceRoutes(app, runtime);
   mountOperatorRoutes(app, runtime);
   app.use('/api/jobs/*', requireToken(runtime.config.JOB_AUTH_SECRET));
   app.post('/api/jobs/run', async (c) => {

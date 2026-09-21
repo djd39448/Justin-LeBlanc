@@ -34,6 +34,8 @@ const RetellConversationSchema = z.object({
   createdAt: z.iso.datetime({ offset: true }),
   lastSeenAt: z.iso.datetime({ offset: true }),
 });
+const DEFAULT_MAX_LIVE_CALLS = 2;
+const DEFAULT_MAX_CALL_DURATION_MS = 5 * 60_000;
 
 export interface RetellAgentConfig {
   agentId: string;
@@ -66,7 +68,7 @@ export function buildRetellAgentConfig(
       renderAssistantContext(knowledge),
     ].join('\n\n'),
     tools: publicAssistantTools(),
-    webhookUrl: `${config.API_URL}/webhooks/retell`,
+    webhookUrl: `${config.API_URL}/api/webhooks/retell`,
   };
 }
 
@@ -76,6 +78,20 @@ export async function verifyRetellWebhook(
   signature: string,
   config: Config,
 ): Promise<RetellWebhook> {
+  const rawText = await verifyRetellSignature(rawBody, signature, config);
+  const event = RetellWebhookSchema.parse(JSON.parse(rawText));
+  if (event.call.agent_id !== config.RETELL_JLM_AGENT_ID) {
+    throw new Error('Retell webhook belongs to another agent; reject it without processing.');
+  }
+  return event;
+}
+
+/** Verifies exact raw bytes for webhook and custom-function envelopes without parsing them. */
+export async function verifyRetellSignature(
+  rawBody: Uint8Array,
+  signature: string,
+  config: Config,
+): Promise<string> {
   if (config.RETELL_API_KEY.length === 0) {
     throw new Error(
       'RETELL_API_KEY is empty; configure webhook verification before enabling voice.',
@@ -85,11 +101,7 @@ export async function verifyRetellWebhook(
   if (!(await Retell.verify(rawText, config.RETELL_API_KEY, signature))) {
     throw new Error('Retell webhook signature is invalid; reject the request with HTTP 401.');
   }
-  const event = RetellWebhookSchema.parse(JSON.parse(rawText));
-  if (event.call.agent_id !== config.RETELL_JLM_AGENT_ID) {
-    throw new Error('Retell webhook belongs to another agent; reject it without processing.');
-  }
-  return event;
+  return rawText;
 }
 
 /**
@@ -97,14 +109,31 @@ export async function verifyRetellWebhook(
  * Resume tokens stay in memory; after restart a call must establish association again.
  */
 export class RetellCallSessionLedger {
-  private readonly liveContexts = new Map<string, AssistantToolContext>();
+  private readonly liveContexts = new Map<
+    string,
+    { context: AssistantToolContext; expiresAt: number }
+  >();
 
-  constructor(private readonly store: Store) {}
+  constructor(
+    private readonly store: Store,
+    private readonly maxLiveCalls = DEFAULT_MAX_LIVE_CALLS,
+    private readonly maxCallDurationMs = DEFAULT_MAX_CALL_DURATION_MS,
+    private readonly now: () => number = Date.now,
+  ) {}
 
   /** Creates or refreshes the ledger after raw signature and dedicated-agent checks pass. */
   beginVerifiedCall(event: RetellWebhook, knowledge: KnowledgeRelease): AssistantToolContext {
     const callId = event.call.call_id;
     const id = `retell:${callId}`;
+    this.removeExpiredCalls();
+    const live = this.liveContexts.get(callId);
+    if (live !== undefined) return live.context;
+    if (this.liveContexts.size >= this.maxLiveCalls) {
+      throw new RetellCallAdmissionError(
+        'retell_concurrency_limit',
+        'The demo voice assistant has reached its live-call limit.',
+      );
+    }
     const now = new Date().toISOString();
     const prior = this.store.find('conversations', id, RetellConversationSchema);
     if (prior === undefined) {
@@ -127,24 +156,26 @@ export class RetellCallSessionLedger {
         lastSeenAt: now,
       });
     }
-    const existing = this.liveContexts.get(callId);
-    if (existing !== undefined) return existing;
     const context: AssistantToolContext = {
       inquiryId: prior === undefined ? null : prior.data.inquiryId,
       resumeToken: null,
       channel: 'voice',
     };
-    this.liveContexts.set(callId, context);
+    this.liveContexts.set(callId, {
+      context,
+      expiresAt: this.now() + this.maxCallDurationMs,
+    });
     return context;
   }
 
   /** Returns context only for a call admitted by beginVerifiedCall in this process. */
   contextForVerifiedCall(callId: string): AssistantToolContext {
-    const context = this.liveContexts.get(callId);
-    if (context === undefined) {
+    this.removeExpiredCalls();
+    const live = this.liveContexts.get(callId);
+    if (live === undefined) {
       throw new Error('Retell call has no verified live session; verify its raw webhook first.');
     }
-    return context;
+    return live.context;
   }
 
   /** Persists only the non-secret inquiry association after a successful tool call. */
@@ -165,9 +196,25 @@ export class RetellCallSessionLedger {
   }
 
   /** Removes plaintext live credentials after a verified call end event. */
-  endVerifiedCall(callId: string): void {
-    if (!this.liveContexts.delete(callId)) {
-      throw new Error('Retell call has no verified live session to end.');
+  endVerifiedCall(callId: string): boolean {
+    return this.liveContexts.delete(callId);
+  }
+
+  private removeExpiredCalls(): void {
+    const now = this.now();
+    for (const [callId, live] of this.liveContexts) {
+      if (live.expiresAt <= now) this.liveContexts.delete(callId);
     }
+  }
+}
+
+/** A safe, typed admission rejection that HTTP routes can map without leaking provider data. */
+export class RetellCallAdmissionError extends Error {
+  constructor(
+    readonly code: 'retell_concurrency_limit',
+    message: string,
+  ) {
+    super(message);
+    this.name = 'RetellCallAdmissionError';
   }
 }

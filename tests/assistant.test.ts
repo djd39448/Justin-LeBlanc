@@ -2,6 +2,7 @@
 import { sign } from 'retell-sdk';
 import { describe, expect, it } from 'vitest';
 
+import { OpenAIChatAssistant } from '../apps/api/assistants/openai.js';
 import {
   RetellCallSessionLedger,
   type RetellWebhook,
@@ -73,6 +74,89 @@ describe('assistant tool boundary', () => {
   });
 });
 
+describe('OpenAIChatAssistant readiness and budget', () => {
+  const handler = async () => ({ ok: true });
+  const handlers = {
+    searchKnowledge: handler,
+    upsertInquiry: handler,
+    estimateEvent: handler,
+    getAvailability: handler,
+    scheduleConsultationAndHold: handler,
+    requestHumanFollowup: handler,
+  };
+
+  it('boots without a key and reports the readiness gap only when chat is invoked', async () => {
+    const aiConfig = ConfigSchema.parse({ ...baseConfigForAi(), AI_ENABLED: 'true' });
+    const assistant = new OpenAIChatAssistant(aiConfig, loadKnowledgeRelease(), handlers);
+    await expect(
+      assistant.respond({
+        message: 'Hello',
+        context: { inquiryId: null, resumeToken: null, channel: 'chat' },
+      }),
+    ).rejects.toThrow('OPENAI_API_KEY is empty');
+  });
+
+  it('rejects oversized server history before making a provider request', async () => {
+    const aiConfig = ConfigSchema.parse({
+      ...baseConfigForAi(),
+      AI_ENABLED: 'true',
+      OPENAI_API_KEY: 'server-test-key',
+    });
+    const neverRequest: typeof fetch = async () => {
+      throw new Error('Provider request should not be reached.');
+    };
+    const assistant = new OpenAIChatAssistant(
+      aiConfig,
+      loadKnowledgeRelease(),
+      handlers,
+      neverRequest,
+    );
+    await expect(
+      assistant.respond({
+        message: 'Hello',
+        priorItems: Array.from({ length: 81 }, () => ({ role: 'user', content: 'bounded' })),
+        context: { inquiryId: null, resumeToken: null, channel: 'chat' },
+      }),
+    ).rejects.toThrow('80 items');
+  });
+
+  it('sends a bounded provider request and reports provider token usage', async () => {
+    const aiConfig = ConfigSchema.parse({
+      ...baseConfigForAi(),
+      AI_ENABLED: 'true',
+      OPENAI_API_KEY: 'server-test-key',
+    });
+    let capturedSignal: AbortSignal | null | undefined;
+    const request: typeof fetch = async (_input, init) => {
+      capturedSignal = init?.signal;
+      return new Response(
+        JSON.stringify({
+          id: 'response_test',
+          output: [
+            {
+              type: 'message',
+              content: [{ type: 'output_text', text: 'Bounded reply.' }],
+            },
+          ],
+          usage: { input_tokens: 10, output_tokens: 3, total_tokens: 13 },
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } },
+      );
+    };
+    const result = await new OpenAIChatAssistant(
+      aiConfig,
+      loadKnowledgeRelease(),
+      handlers,
+      request,
+    ).respond({
+      message: 'Hello',
+      context: { inquiryId: null, resumeToken: null, channel: 'chat' },
+    });
+    expect(capturedSignal).toBeInstanceOf(AbortSignal);
+    expect(result.usage).toEqual({ inputTokens: 10, outputTokens: 3, totalTokens: 13 });
+  });
+});
+
 describe('Retell webhook verification', () => {
   it('accepts the exact signed raw body and rejects altered bytes', async () => {
     const raw = JSON.stringify({
@@ -108,4 +192,37 @@ describe('Retell webhook verification', () => {
     expect(restored.resumeToken).toBeNull();
     store.close();
   });
+
+  it('caps live call concurrency and expires call credentials after five minutes', () => {
+    const store = new Store(':memory:');
+    let now = 1_000;
+    const ledger = new RetellCallSessionLedger(store, 2, 300_000, () => now);
+    const event = (callId: string): RetellWebhook => ({
+      event: 'call_started',
+      call: { call_id: callId, agent_id: 'agent_jlm_demo' },
+    });
+    ledger.beginVerifiedCall(event('call_one'), loadKnowledgeRelease());
+    ledger.beginVerifiedCall(event('call_two'), loadKnowledgeRelease());
+    expect(() => ledger.beginVerifiedCall(event('call_three'), loadKnowledgeRelease())).toThrow(
+      'live-call limit',
+    );
+    now += 300_001;
+    expect(() => ledger.contextForVerifiedCall('call_one')).toThrow('no verified live session');
+    expect(ledger.beginVerifiedCall(event('call_three'), loadKnowledgeRelease()).channel).toBe(
+      'voice',
+    );
+    store.close();
+  });
 });
+
+function baseConfigForAi(): Record<string, string> {
+  return {
+    NODE_ENV: 'test',
+    ADMIN_TOKEN: 'a'.repeat(32),
+    JOB_AUTH_SECRET: 'j'.repeat(32),
+    DEMO_RECIPIENT_ALLOWLIST: 'operator@example.test,client@example.test',
+    OPERATOR_EMAIL: 'operator@example.test',
+    PERFORMER_EMAIL: 'operator@example.test',
+    CLIENT_TEST_EMAIL: 'client@example.test',
+  };
+}
