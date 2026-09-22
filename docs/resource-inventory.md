@@ -1,6 +1,10 @@
 # Isolated resource inventory and resume commands
 
-Recorded 2026-09-21. This inventory contains identifiers and variable names, never credentials. Existing resources are read-only references. Calendar-driven invoicing is implemented, CI-verified and loaded in the running services; fresh eligible delivery, full voice booking, and recovery after an actual reboot/sign-out remain unverified.
+Recorded 2026-09-21; round-two source status updated 2026-09-22. This inventory contains identifiers
+and variable names, never credentials. Existing resources are read-only references. Calendar-driven
+invoicing is implemented, CI-verified and loaded in the running services; fresh eligible delivery,
+full voice booking, and recovery after an actual reboot/sign-out remain unverified. Round-two source
+is pushed on `codex/justin-round-two` but no runtime or Pages deployment is claimed.
 
 ## Created and running
 
@@ -26,12 +30,14 @@ Recorded 2026-09-21. This inventory contains identifiers and variable names, nev
 
 On this host, `<private-root>` is `C:/Users/trustcore-rdp/.config/jlm-demo` and the configuration is `runtime.env` there. Do not print or commit populated files. Private resource manifests are `retell-provision.json` and `retell-number.json`; read them before retrying provisioning.
 
-## Planned round-two Calendar resource — not created or selected
+## Round-two Public Shows resource — adapter complete, live source unconfirmed
 
-Round two requires one exact live Public Shows Calendar for website listings. First determine
-whether the Calendar currently used by Justin's existing events page is public-performance-only and
-accessible by exact ID. Otherwise, keep the integration disabled and obtain explicit owner approval
-before creating/selecting a dedicated secondary Calendar or populating any event.
+Round two now has a tested isolated reader and `/api/public-events` route in commit
+`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` on `codex/justin-round-two`. It still requires one
+exact live Public Shows Calendar for website listings. Determine whether the Calendar used by
+Justin's existing events page is public-performance-only, owner-confirmed, and accessible by exact
+ID. Otherwise, keep the integration disabled and obtain explicit owner approval before
+creating/selecting a dedicated secondary Calendar or populating any event.
 
 - Private variable names: `PUBLIC_EVENTS_ENABLED` (default `false`) and
   `PUBLIC_EVENTS_CALENDAR_ID`, plus `PUBLIC_EVENTS_TIMEZONE` and a backed-up random
@@ -42,8 +48,12 @@ before creating/selecting a dedicated secondary Calendar or populating any event
   in private operational inventory while disappearing from rendered public web output and public
   phone-bearing payloads.
 
-No Calendar ID, OAuth change, cache, endpoint, or round-two deployment exists yet. Record the exact
-resource and sanitized evidence here only after implementation and provider verification.
+No owner-confirmed Public Shows Calendar ID, OAuth change, live cache, runtime install, or Pages
+round-two deployment is recorded. The endpoint exists in source only. Windows coordination failed
+before preflight because the Codex runner could not find its CLI path and the Claude runner had no
+credit; this made no provider or runtime change. Record the exact resource and sanitized evidence
+here only after provider verification. See
+[round-two local evidence](evidence/round-two-2026-09-22.md).
 
 ## Verified resources and remaining limitations
 
@@ -65,7 +75,10 @@ The upgrade script changes only existing owned demo tasks, stores private XML ba
 
 ## Deployment and configuration
 
-Node 24.14.0/npm 11.9.0 were used. Dependencies are pinned by `package-lock.json`. Build and deploy only this Pages project:
+Node 24.14.0/npm 11.9.0 were used. Dependencies are pinned by `package-lock.json`. The round-two
+branch passed 137 tests in 23 files, 21 clean Astro files, nine pages, 30 Playwright passes, the
+public-output audit, and the secret scan. Follow the disabled-first sequence in the
+[runbook](RUNBOOK.md), and build/deploy only this Pages project after the enabled endpoint gate:
 
 ```powershell
 npm ci
@@ -89,4 +102,4 @@ For a website rollback, choose a previously verified deployment **inside `50by50
 
 For client transfer, export private records/documents through the CLI, take a consistent backup, create separate client-owned provider resources and credentials, replace every demo identity/allowlist, and rerun full acceptance before switching traffic. Synthetic demo invoices are not client accounting records. The checked-in repository contains no actual private export.
 
-Evidence: [resource isolation](evidence/resource-isolation.json), [hosting](evidence/hosting-verification.json), [public API smoke](evidence/public-api-smoke.json), [live booking](evidence/live-booking-acceptance.json), [historical old-policy invoice](evidence/live-invoice-acceptance.json), [calendar invoice workflow](evidence/calendar-invoice-workflow.json), [operator receipts](evidence/operator-mail-receipts.json), [live voice](evidence/live-voice-acceptance.json), [call completion and v3 release](evidence/consultation-call-completion.json), [voice tool repair](evidence/voice-tool-repair.json), [Central voice release](evidence/retell-central-release.json), [Houston number](evidence/retell-number-provisioned.json), [startup reconciliation](evidence/startup-reconciliation.json), [resume ledger](evidence/resume-ledger-reconciliation.json), and [operations/restore](evidence/operations-verification.json).
+Evidence: [round-two local implementation](evidence/round-two-2026-09-22.md), [resource isolation](evidence/resource-isolation.json), [hosting](evidence/hosting-verification.json), [public API smoke](evidence/public-api-smoke.json), [live booking](evidence/live-booking-acceptance.json), [historical old-policy invoice](evidence/live-invoice-acceptance.json), [calendar invoice workflow](evidence/calendar-invoice-workflow.json), [operator receipts](evidence/operator-mail-receipts.json), [live voice](evidence/live-voice-acceptance.json), [call completion and v3 release](evidence/consultation-call-completion.json), [voice tool repair](evidence/voice-tool-repair.json), [Central voice release](evidence/retell-central-release.json), [Houston number](evidence/retell-number-provisioned.json), [startup reconciliation](evidence/startup-reconciliation.json), [resume ledger](evidence/resume-ledger-reconciliation.json), and [operations/restore](evidence/operations-verification.json).

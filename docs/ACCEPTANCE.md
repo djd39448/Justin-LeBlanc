@@ -2,10 +2,11 @@
 
 Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Calendar-driven automatic invoicing is implemented, CI-verified and loaded in the running services; a fresh live Calendar-to-inbox walkthrough remains pending. The delivered $700 reply-driven invoice is historical evidence for the superseded policy. Retell v4, API and chat share billing-policy KB `2026-09-21.4`. Phone verification of completed booking and native `end_call` remains pending; recovery after an actual reboot/sign-out remains untested. Do not mark a row passed without linked evidence.
 
-## Round-two acceptance — pending implementation
+## Round-two acceptance — local implementation complete
 
-The rows below are owner-approved requirements from 2026-09-22. They are all pending until a new
-dated evidence record proves them. Existing A01–A26 results remain unchanged.
+The rows below are owner-approved requirements from 2026-09-22. Local implementation evidence is
+recorded in [round-two evidence](evidence/round-two-2026-09-22.md); existing A01–A26 results remain
+unchanged. Local/offline and live/deployed status must remain separate.
 
 | ID    | Scenario                 | Required result                                                                                                                                                                                                                                                                                                                                                 |
 | ----- | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -24,6 +25,15 @@ dated evidence record proves them. Existing A01–A26 results remain unchanged.
 | R2-13 | Public copy/pricing      | No public package/demo prices or engineering-oriented demo/operator copy remains; visitor budget is clearly non-binding planning context. FAQ uses first-person approved facts only.                                                                                                                                                                            |
 | R2-14 | Responsive/accessibility | 360/390/768/1280/1440 evidence shows pinned navigation, visible planner start, correct hero crop, accessible form/Calendar states, 44px controls, 16px form text, AA contrast, visible focus, reduced motion, and no horizontal overflow.                                                                                                                       |
 | R2-15 | Build/deployment         | `npm run verify`, browser tests, public-output privacy/copy audit, and secret scan pass. API deploys disabled before configuration/cache proof and frontend; existing-resource authorization is observed; rollback targets are captured, additive schema remains, and SQLite is never reset.                                                                    |
+
+Status on 2026-09-22:
+
+| Rows        | Status                         | Evidence / remaining gate                                                                                                                                                                          |
+| ----------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| R2-01–R2-06 | Local PASS                     | Playwright plus contract/persistence/brief/money-boundary tests pass at the feature tip.                                                                                                           |
+| R2-07–R2-10 | Offline PASS; live pending     | Exact-source adapter, multi-calendar privacy fixture, DTO bounds, recurrence/cache/failure behavior, and UI states pass. Owner-confirmed live Calendar/access and warm-cache proof remain pending. |
+| R2-11–R2-14 | Local PASS                     | Built-output audit, preserved backend suite, responsive screenshots, target/text-size checks, focus behavior, semantic times, reduced motion, and overflow tests pass.                             |
+| R2-15       | Local PASS; deployment pending | All local commands pass. Windows coordination was unavailable before preflight, so no API/runtime or Pages release and no rollback capture are claimed.                                            |
 
 | ID  | Scenario                   | Required result                                                                                                                                                         |
 | --- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

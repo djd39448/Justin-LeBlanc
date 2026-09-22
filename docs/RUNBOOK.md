@@ -1,6 +1,8 @@
 # Demo Operations Runbook
 
-Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new provider resources, or customer communication.
+Last runtime verification: 2026-09-21 at 15:39:43 UTC. Round-two local verification: 2026-09-22.
+This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new
+provider resources, or customer communication.
 
 ## Current service state
 
@@ -19,26 +21,98 @@ Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Just
 
 Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
 
-## Round-two web release boundary — planned, not active
+## Round-two web release boundary — implemented locally, not active
 
-The approved [round-two specification](ROUND_TWO_BUILD_SPEC.md) removes all public chat/voice UI
-and phone references while preserving the running assistant services. Do not disable, reprovision,
-or alter Retell/OpenAI, their KB/tools, provider identities, manifests, or backend gates as part of
-that presentation change.
+The pushed feature branch `codex/justin-round-two` contains verified implementation commit
+`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` and implements the approved
+[round-two specification](ROUND_TWO_BUILD_SPEC.md). It removes public chat/voice UI and phone
+references while preserving the running assistant services. Do not disable, reprovision, or alter
+Retell/OpenAI, their KB/tools, provider identities, manifests, or backend gates as part of this
+release.
 
 The same round adds a separate read-only public-events path. It requires exact private
 `PUBLIC_EVENTS_CALENDAR_ID`, `PUBLIC_EVENTS_TIMEZONE`, `PUBLIC_EVENTS_ID_SECRET`, and
-`PUBLIC_EVENTS_ENABLED` configuration and must never point at
-`SHOW_CALENDAR_ID`, free/busy, primary, family, or discovered Calendars. Until implementation and
-new evidence exist, no public-events endpoint or Public Shows Calendar should be assumed. Provider
-failure must fail closed; never work around it by exposing an unfiltered Calendar.
+`PUBLIC_EVENTS_ENABLED` configuration and must never point at `SHOW_CALENDAR_ID`, free/busy,
+primary, family, or discovered Calendars. The code and offline privacy tests exist; a live Public
+Shows Calendar/configuration is not proven by checked-in evidence. Provider failure must fail
+closed; never work around it by exposing an unfiltered Calendar.
 
-Deployment order for that round is API/additive inquiry contract first, then the Pages frontend.
-A suitable existing Calendar and existing read grant must be owner-confirmed; otherwise keep the
-reader disabled because the kickoff does not authorize Calendar/event mutation or new consent.
-A frontend rollback retains the additive schema and never resets SQLite. Add exact authorization,
-cache inspection/purge, disable, outage, and rollback commands only after the implementation exists
-and the live configuration has been verified.
+Deployment order is API/additive inquiry contract first, then the Pages frontend. A suitable exact
+Calendar and existing read grant must be owner-confirmed; otherwise keep the reader disabled because
+the kickoff does not authorize Calendar/event mutation or new consent. A frontend rollback retains
+the additive schema and never resets SQLite.
+
+Before any deployment, stop if the runtime checkout is dirty, the expected feature tip differs, an
+outbox/provider effect is unresolved, or another operator is changing the same checkout. Record the
+current runtime commit, sanitized configuration manifest, service states, and current Pages
+deployment privately:
+
+```powershell
+$configPath = 'C:\Users\trustcore-rdp\.config\jlm-demo\runtime.env'
+$privateRoot = 'C:\Users\trustcore-rdp\.config\jlm-demo'
+
+git fetch origin
+git status --short
+git rev-parse HEAD
+git rev-parse origin/codex/justin-round-two
+npx --yes wrangler@4.90.0 pages deployment list `
+  --project-name 50by50-justinleblancmusic
+node "--env-file=$configPath" --import tsx scripts/cli.ts --json health
+node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
+  --directory (Join-Path $privateRoot 'backups')
+```
+
+The remote release SHA must contain verified implementation commit
+`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` and match the final SHA supplied in the current handoff.
+Capture the actual prior runtime commit and Pages deployment in the private change record; do not
+substitute a remembered value. Set only
+`PUBLIC_EVENTS_ENABLED=false` in the protected runtime configuration for the first restart. Leave
+the Calendar ID and ID secret absent until the owner/access gate is satisfied; never print the
+configuration file.
+
+Install and verify the exact branch, then restart only the owned Justin services:
+
+```powershell
+$localBranch = git branch --list 'codex/justin-round-two'
+if ($localBranch) {
+  git switch codex/justin-round-two
+} else {
+  git switch --track origin/codex/justin-round-two
+}
+git pull --ff-only origin codex/justin-round-two
+npm ci
+npm run verify
+pwsh -File scripts/stop-services.ps1 -ConfigPath $configPath -Restart
+```
+
+Recheck local, direct-tunnel, and exact-site health. With the reader disabled, all three
+`/api/public-events` routes must return HTTP 503, `Cache-Control: no-store`, `Retry-After: 300`, and
+exactly `{"error":"public_events_unavailable","message":"Current dates are temporarily unavailable."}`.
+Existing booking, chat, voice, and billing capability states must remain unchanged. A 200 response,
+provider diagnostics, or unfiltered fallback is a stop condition.
+
+Only after the owner confirms the exact public-performance-only Calendar and existing read access,
+configure its private ID, `America/Chicago`, and a backed-up random ID secret of at least 32 bytes.
+Enable the reader, restart only the API as the existing helper requires, warm it once, and inspect
+only the sanitized response. Every in-horizon venue/city display must be owner-reviewed; any street
+address, residence, or ambiguous/private location blocks the entry. Verify fresh, stale, empty, and
+fixed 503 behavior while the old frontend remains live.
+
+When and only when the enabled endpoint passes, deploy the already-verified frontend:
+
+```powershell
+npm run build
+$env:CLOUDFLARE_ACCOUNT_ID = 'b393d8ff72d57912119b872640d3511f'
+npx --yes wrangler@4.90.0 pages deploy apps/web/dist `
+  --project-name 50by50-justinleblancmusic --branch main --commit-dirty=true
+```
+
+For a schedule incident, set only `PUBLIC_EVENTS_ENABLED=false` and restart the owned API; do not
+delete or rewrite Calendar data. For a frontend incident, restore the captured prior deployment in
+the `50by50-justinleblancmusic` project. For a runtime regression, return the checkout to the exact
+captured prior commit, run `npm ci`, and restart the owned services. In every rollback retain the
+additive `text`/`budgetCents` schema, preserve SQLite, and reconcile uncertain effects before any
+retry.
 
 Dave completed the Administrator restart for KB `2026-09-21.4`. At about 17:45 UTC, local, direct-tunnel, and website-proxy health all returned HTTP 200 with hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, all capabilities enabled and the Houston number; all three tasks were Running/S4U. Retell v4 publishes the same KB and native `end_call`, which remains untested by phone.
 

@@ -1,30 +1,42 @@
 # Progress
 
-Updated 2026-09-22. **The deployed baseline is substantially live-verified; the approved round-two
-brand/conversion work below is not implemented. Full voice booking and recovery after an actual
+Updated 2026-09-22. **Round-two implementation and local acceptance are complete on pushed feature
+branch `codex/justin-round-two`; they are not yet the deployed public frontend. The deployed
+baseline remains substantially live-verified. Full voice booking and recovery after an actual
 reboot/sign-out remain unverified.**
 
-## Round-two approved work — pending
+## Round-two implementation — locally complete, deployment gated
 
-Requirements were updated on 2026-09-22; none of the items below should be reported as deployed
-until new evidence exists.
+The verified implementation commit is `ffb2fa00ed1465dbbbbc6ef737033f01751a157c`, based on audited
+clean `origin/main` `5d664bb4e51b198ae3dc0768154a1a86a29817a4`. Local evidence is in
+[the dated round-two record](docs/evidence/round-two-2026-09-22.md). Do not report these changes as
+live until runtime and Pages evidence exists.
 
-- [ ] Put the shared planner directly in the opening homepage conversion experience; no CTA, modal,
+- [x] Put the shared planner directly in the opening homepage conversion experience; no CTA, modal,
       or route change is required to begin.
-- [ ] Pin primary navigation to the viewport top with correct mobile, focus, and anchor-offset
+- [x] Pin primary navigation to the viewport top with correct mobile, focus, and anchor-offset
       behavior.
-- [ ] Implement the brand/hero, category rail, Listen, Follow, FAQ, form-field, and public-copy
+- [x] Implement the brand/hero, category rail, Listen, Follow, FAQ, form-field, and public-copy
       changes in [the round-two specification](docs/ROUND_TWO_BUILD_SPEC.md).
-- [ ] Add `preferredReply: "text"` and optional integer `budgetCents` while preserving old records;
+- [x] Add `preferredReply: "text"` and optional integer `budgetCents` while preserving old records;
       replace budget ranges with visitor-entered numeric USD.
-- [ ] Resolve the exact live Public Shows Calendar, add the isolated read-only sanitized
-      `/api/public-events` projection, and prove private/corporate/wedding/consultation/hold events never
-      enter public output.
-- [ ] Remove chatbot/voice UI, phone number, `tel:` links, and assistant references from the public
+- [x] Add the isolated read-only sanitized `/api/public-events` projection and offline fixture proof
+      that private/corporate/wedding/consultation/hold sources are never queried or published.
+- [ ] Owner-confirm the exact live public-performance-only Calendar and sufficient existing read
+      access; keep `PUBLIC_EVENTS_ENABLED=false` until that provider gate passes.
+- [x] Remove chatbot/voice UI, phone number, `tel:` links, and assistant references from the public
       website while preserving all underlying Retell/OpenAI resources, KB/tools, routes, config, and
       backend tests.
-- [ ] Add responsive/browser/privacy evidence and deploy the compatible API before the dependent
-      frontend. Do not mutate Retell for this round.
+- [x] Add responsive browser evidence at all five required widths, the public-output audit, secret
+      scan, and CI gates.
+- [ ] Deploy the compatible API disabled-first, verify the exact Calendar endpoint, then deploy the
+      dependent frontend. Windows coordination was unavailable; no deployment is claimed. Do not
+      mutate Retell for this round.
+
+Final local results: `npm run verify` passed 137 tests in 23 files, lint/typecheck, 21 Astro files
+with zero diagnostics, and nine built pages. Playwright passed 30 tests with 15 intentional
+viewport-specific skips. The built-output audit scanned 16 files with no findings, and the secret
+scan was clean. Baseline was 103 tests in 19 files, 20 Astro files, and nine pages.
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
 - [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, noindex controls, and deployment `840a4ccf`; `/admin` returned HTTP 200 with the new label, legacy controls, no-store and noindex.
@@ -45,4 +57,4 @@ until new evidence exists.
 
 The provider queue was empty after the live booking cancellation and invoice replay. A confirmed event's attendee copy can still cause a safe false rejection when a requested reschedule overlaps the current interval; free/busy lacks event identity, so the adapter deliberately does not subtract that interval.
 
-[CI run 35633834649](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35633834649) passed for `58d1c0ce5cd7fc8b675b0a89443bfa82bcfd9b10` at 17:44:56 UTC: **103 tests in 19 files**, lint, typecheck, 20 Astro files with zero errors/warnings, and nine built pages. Current evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md).
+[CI run 35633834649](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35633834649) remains the deployed-baseline CI result for `58d1c0ce5cd7fc8b675b0a89443bfa82bcfd9b10`: **103 tests in 19 files**, lint, typecheck, 20 Astro files with zero errors/warnings, and nine built pages. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current local branch evidence is in [the round-two record](docs/evidence/round-two-2026-09-22.md).

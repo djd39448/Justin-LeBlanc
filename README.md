@@ -2,19 +2,29 @@
 
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
-The website and application are implemented. Public health, inquiry intake/resume, chat, and the dedicated Google Calendar booking lifecycle have passed through the isolated demo stack. Automatic 08:00 America/Chicago invoicing from eligible completed Calendar performances is implemented, tested and loaded in the running services; a fresh live end-to-end invoice delivery remains pending. The earlier reply-driven $700 invoice remains historical old-policy evidence. Retell v4, API and chat share billing-policy KB `2026-09-21.4`. Full voice booking, native hangup, and recovery after an actual reboot or sign-out remain unverified.
+The existing website and application are deployed. Public health, inquiry intake/resume, chat, and the dedicated private Google Calendar booking lifecycle have passed through the isolated demo stack. Automatic 08:00 America/Chicago invoicing from eligible completed Calendar performances is implemented, tested and loaded in the running services; a fresh live end-to-end invoice delivery remains pending. The earlier reply-driven $700 invoice remains historical old-policy evidence. Retell v4, API and chat share billing-policy KB `2026-09-21.4`. Full voice booking, native hangup, and recovery after an actual reboot or sign-out remain unverified.
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Current billing policy treats an app-tagged confirmed Calendar performance that ended on the prior Houston date as played, then snapshots the agreed quote and complete billing record and delivers through a durable outbox to exact allowlisted To/BCC recipients. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
-## Approved next round — not yet implemented
+## Round two — implemented locally, release gated
 
-On 2026-09-22, Dave approved a conversion-first brand refresh. The homepage will open with the
-usable booking form, retain a pinned top navigation, replace the external schedule link with a
-sanitized public-only feed from an exact live Public Shows Calendar, accept an optional numeric USD
-budget, and remove all chat/voice UI and phone references from public output while preserving the
-underlying assistant services. These requirements are pending; they do not describe the currently
-deployed Pages build. See [the round-two build specification](docs/ROUND_TWO_BUILD_SPEC.md) and
-[the replacement kickoff](KICKOFF.md).
+The conversion-first refresh is implemented and locally verified in commit
+`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` on `codex/justin-round-two`. The homepage opens with
+the usable planner, keeps navigation pinned, accepts an optional exact numeric USD budget, removes
+public chat/voice/phone presentation while preserving the backend, and renders a fail-closed
+sanitized feed from one exact server-configured Public Shows Calendar.
+
+The branch is pushed but is not merged, and this paragraph is not a claim that the public Pages
+frontend has changed. The frontend release remains closed until the additive API is installed
+disabled-first on the authoritative Windows runtime and the owner confirms an exact
+public-performance-only Calendar with sufficient existing read access. See
+[the dated round-two evidence](docs/evidence/round-two-2026-09-22.md),
+[the build specification](docs/ROUND_TWO_BUILD_SPEC.md), and [the kickoff](KICKOFF.md).
+
+Final local verification passed with **137 tests in 23 files**, lint/typecheck clean, 21 Astro files
+with zero diagnostics, nine built pages, 30 Playwright passes (15 intentional viewport skips), a
+clean 16-file public-output audit, and a clean secret scan. The clean pre-edit baseline was 103 tests
+in 19 files, 20 Astro files, and nine pages.
 
 ## Verified on 2026-09-21
 
@@ -39,6 +49,9 @@ Use Node **24.14.0** (supported major 24) and the checked-in lockfile. Copy `.en
 npm ci
 npx playwright install chromium
 npm run verify
+npm run test:e2e
+npm run audit:public
+npm run scan:secrets -- --json
 node --env-file=C:/private/jlm-demo/runtime.env --import tsx apps/api/server.ts
 # In a second terminal:
 node --env-file=C:/private/jlm-demo/runtime.env --import tsx scripts/worker.ts
@@ -53,7 +66,7 @@ node --env-file=C:/private/jlm-demo/runtime.env --import tsx scripts/cli.ts --js
 
 ## Documentation
 
-- [Current progress](PROGRESS.md), [handoff](docs/HANDOFF.md), [operations runbook](docs/RUNBOOK.md).
+- [Current progress](PROGRESS.md), [handoff](docs/HANDOFF.md), [operations runbook](docs/RUNBOOK.md), [round-two evidence](docs/evidence/round-two-2026-09-22.md).
 - [Resource inventory and deployment/restart commands](docs/resource-inventory.md).
 - [Round-two build specification](docs/ROUND_TWO_BUILD_SPEC.md), [baseline build specification](docs/BUILD_SPEC.md), [decisions](docs/DECISIONS.md), [workflows](docs/WORKFLOWS.md), [architecture](docs/ARCHITECTURE.md).
 - [Design research](docs/design-research.md), [campaign drafts](docs/campaign-drafts.md), [document QA](docs/evidence/documents/README.md).

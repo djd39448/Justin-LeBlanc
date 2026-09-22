@@ -1,11 +1,28 @@
 # Current implementation handoff
 
-Round-two requirements were approved on 2026-09-22 but are not implemented in the deployed build.
-They move the planner into the opening homepage experience, pin the navigation, add a sanitized
-public-only live Calendar feed, change budget to visitor-entered numeric USD, and remove all public
-chat/voice presentation while preserving the assistant backends. Use
-[docs/ROUND_TWO_BUILD_SPEC.md](docs/ROUND_TWO_BUILD_SPEC.md) and the replacement
-[KICKOFF.md](KICKOFF.md) for the next implementation session.
+Round-two implementation and local acceptance are complete in
+`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` on pushed feature branch
+`codex/justin-round-two`; the branch is not merged and the public Pages frontend remains on the
+prior deployment. The new build puts the planner in
+the opening homepage experience, pins navigation, adds an exact-source sanitized Public Shows
+projection, accepts visitor-entered numeric USD, and removes public chat/voice/phone presentation
+while preserving the assistant backends. See
+[the round-two evidence](docs/evidence/round-two-2026-09-22.md),
+[docs/ROUND_TWO_BUILD_SPEC.md](docs/ROUND_TWO_BUILD_SPEC.md), and [KICKOFF.md](KICKOFF.md).
+
+The final local gate passed 137 tests in 23 files, lint/typecheck, 21 Astro files with zero
+diagnostics, nine built pages, 30 Playwright passes with 15 intentional viewport skips, a clean
+16-file public-output audit, and a clean secret scan. The clean baseline was 103 tests in 19 files,
+20 Astro files, and nine pages. Five responsive screenshots are under
+`docs/evidence/round-two/web/`.
+
+Deployment is still gated. Windows coordination failed before a preflight could run: the Codex CLI
+path was unavailable and the Claude runner had no remaining credit. No runtime or provider mutation
+is claimed. Next, restore a working Windows runner, capture the current runtime/config and Pages
+rollback point, deploy the additive API with `PUBLIC_EVENTS_ENABLED=false`, and verify the fixed
+503 plus existing capabilities. The frontend may deploy only after the owner confirms an exact
+public-performance-only Calendar, existing read access, controlled venue/city strings, and a warm
+sanitized endpoint.
 
 The isolated demo is deployed, and live Calendar booking is verified. The Houston demo line is **(832) 501-3799**. Automatic 08:00 America/Chicago invoicing is implemented, tested and loaded in the running services; fresh live current-policy delivery remains pending. The delivered reply-driven $700 invoice is historical old-policy evidence only. Retell v4, API and chat share KB `2026-09-21.4`. Full voice booking and native hangup remain unverified. S4U boot-trigger registration and task execution are verified; actual reboot/sign-out recovery remains untested.
 
