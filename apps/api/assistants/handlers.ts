@@ -49,8 +49,7 @@ const AssistantInquiryArgsSchema = z.object({
   atmosphere: z.string(),
   consent: z.literal(true),
 });
-const assistantLocalDateTimePattern =
-  /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})(?::([0-5]\d))?$/;
+const assistantLocalDateTimePattern = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})(?::([0-5]\d))?$/;
 const AssistantLocalDateTimeSchema = z
   .string()
   .regex(
@@ -120,6 +119,7 @@ export function createAssistantHandlers(
         equipment: 'unknown',
         access: 'unknown',
         budget: 'unsure',
+        budgetCents: null,
         notes: '',
         marketingConsent: false,
         source: context.channel,

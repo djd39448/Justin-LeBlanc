@@ -168,7 +168,7 @@ function buildEventBriefModel(input: {
     client: [
       { label: 'Host', value: known(input.customer.name) },
       { label: 'Company', value: known(input.customer.company) },
-      { label: 'Preferred contact', value: known(intake.preferredReply) },
+      { label: 'Preferred contact', value: preferredReplyLabel(intake.preferredReply) },
       { label: 'Email', value: known(input.customer.email) },
       { label: 'Phone', value: known(input.customer.phone) },
       { label: 'On-site contact', value: 'To confirm' },
@@ -204,6 +204,16 @@ function buildEventBriefModel(input: {
       { label: 'Insurance/COI', value: 'To confirm' },
     ],
     commercial: [
+      ...(intake.budgetCents === null
+        ? intake.budget.trim() === '' || intake.budget === 'unsure'
+          ? []
+          : [{ label: 'Legacy budget context', value: known(intake.budget) }]
+        : [
+            {
+              label: 'Estimated budget supplied by client',
+              value: formatUsd(intake.budgetCents),
+            },
+          ]),
       {
         label: 'Quote',
         value: quote === undefined ? 'To confirm' : `${quote.kind} v${quote.version}`,
@@ -243,8 +253,22 @@ function known(value: string): string {
   return value.trim().length === 0 ? 'To confirm' : value.trim();
 }
 
+function preferredReplyLabel(value: 'email' | 'text' | 'phone'): string {
+  switch (value) {
+    case 'email':
+      return 'Email';
+    case 'text':
+      return 'Text';
+    case 'phone':
+      return 'Phone Call';
+  }
+}
+
 function formatUsd(cents: number): string {
-  return `$${(cents / 100).toFixed(2)} USD`;
+  const absoluteCents = Math.abs(cents);
+  const dollars = Math.trunc(absoluteCents / 100).toString();
+  const minor = (absoluteCents % 100).toString().padStart(2, '0');
+  return `${cents < 0 ? '-' : ''}$${dollars}.${minor} USD`;
 }
 
 function formatLocal(

@@ -37,6 +37,7 @@ const inquiryInput = (email: string): InquiryInput => ({
   equipment: 'unknown',
   access: 'unknown',
   budget: 'unsure',
+  budgetCents: null,
   notes: '',
   consent: true,
   marketingConsent: false,

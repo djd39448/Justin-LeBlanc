@@ -6,6 +6,14 @@ export const TENANT = 'justin-demo';
 export const POLICY_VERSION = 'demo-2026-09-21.1';
 const short = z.string().trim().max(200);
 const note = z.string().trim().max(800);
+export const MAX_BUDGET_CENTS = 9_999_999_999;
+export const BudgetCentsSchema = z
+  .number()
+  .int()
+  .min(0)
+  .max(MAX_BUDGET_CENTS)
+  .nullable()
+  .default(null);
 export const InstantSchema = z.iso.datetime({ offset: true });
 export const TimezoneSchema = z.string().refine((value) => {
   try {
@@ -22,8 +30,8 @@ export const InquiryInputSchema = z
       .email()
       .max(254)
       .transform((v) => v.toLowerCase()),
-    phone: z.string().max(30).default(''),
-    preferredReply: z.enum(['email', 'phone']).default('email'),
+    phone: z.string().trim().max(30).default(''),
+    preferredReply: z.enum(['email', 'text', 'phone']).default('email'),
     company: short.default(''),
     eventType: z.enum(['private', 'celebration', 'corporate', 'wedding', 'other']),
     date: z.union([z.iso.date(), z.literal('flexible')]),
@@ -42,6 +50,7 @@ export const InquiryInputSchema = z
     equipment: note.default('unknown'),
     access: note.default('unknown'),
     budget: short.default('unsure'),
+    budgetCents: BudgetCentsSchema,
     notes: note.default(''),
     consent: z.literal(true),
     marketingConsent: z.boolean().default(false),
@@ -51,13 +60,14 @@ export const InquiryInputSchema = z
       .default({}),
   })
   .superRefine((v, ctx) => {
-    if (v.preferredReply === 'phone' && v.phone.length < 7)
+    if ((v.preferredReply === 'text' || v.preferredReply === 'phone') && v.phone.length < 7)
       ctx.addIssue({
         code: 'custom',
         path: ['phone'],
-        message: 'Phone is required for a phone consultation.',
+        message: 'Phone is required when Preferred Reply is Text or Phone Call.',
       });
   });
+/** Canonical parsed inquiry shape; raw JSON may omit budgetCents and receives the null default. */
 export type InquiryInput = z.infer<typeof InquiryInputSchema>;
 export const CustomerSchema = z.object({
   name: short.min(1),

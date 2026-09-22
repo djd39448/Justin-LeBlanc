@@ -176,8 +176,10 @@ function section(heading: string, rows: { label: string; value: string }[]): str
 }
 
 function formatUsd(cents: number): string {
-  const sign = cents < 0 ? '-' : '';
-  return `${sign}$${(Math.abs(cents) / 100).toFixed(2)} USD`;
+  const absoluteCents = Math.abs(cents);
+  const dollars = Math.trunc(absoluteCents / 100).toString();
+  const minor = (absoluteCents % 100).toString().padStart(2, '0');
+  return `${cents < 0 ? '-' : ''}$${dollars}.${minor} USD`;
 }
 
 function formatEventDate(instant: string, timezone: string): string {
