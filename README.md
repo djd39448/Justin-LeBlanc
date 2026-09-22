@@ -6,6 +6,16 @@ The website and application are implemented. Public health, inquiry intake/resum
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Current billing policy treats an app-tagged confirmed Calendar performance that ended on the prior Houston date as played, then snapshots the agreed quote and complete billing record and delivers through a durable outbox to exact allowlisted To/BCC recipients. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
+## Approved next round — not yet implemented
+
+On 2026-09-22, Dave approved a conversion-first brand refresh. The homepage will open with the
+usable booking form, retain a pinned top navigation, replace the external schedule link with a
+sanitized public-only feed from an exact live Public Shows Calendar, accept an optional numeric USD
+budget, and remove all chat/voice UI and phone references from public output while preserving the
+underlying assistant services. These requirements are pending; they do not describe the currently
+deployed Pages build. See [the round-two build specification](docs/ROUND_TWO_BUILD_SPEC.md) and
+[the replacement kickoff](KICKOFF.md).
+
 ## Verified on 2026-09-21
 
 - [CI run 35633834649](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35633834649) passed for `58d1c0ce5cd7fc8b675b0a89443bfa82bcfd9b10` at 17:44:56 UTC: **103 tests in 19 files**, lint, typecheck, 20 Astro files with zero errors/warnings, and nine built pages.
@@ -45,7 +55,7 @@ node --env-file=C:/private/jlm-demo/runtime.env --import tsx scripts/cli.ts --js
 
 - [Current progress](PROGRESS.md), [handoff](docs/HANDOFF.md), [operations runbook](docs/RUNBOOK.md).
 - [Resource inventory and deployment/restart commands](docs/resource-inventory.md).
-- [Build specification](docs/BUILD_SPEC.md), [decisions](docs/DECISIONS.md), [workflows](docs/WORKFLOWS.md), [architecture](docs/ARCHITECTURE.md).
+- [Round-two build specification](docs/ROUND_TWO_BUILD_SPEC.md), [baseline build specification](docs/BUILD_SPEC.md), [decisions](docs/DECISIONS.md), [workflows](docs/WORKFLOWS.md), [architecture](docs/ARCHITECTURE.md).
 - [Design research](docs/design-research.md), [campaign drafts](docs/campaign-drafts.md), [document QA](docs/evidence/documents/README.md).
 - [Acceptance requirements](docs/ACCEPTANCE.md), [coding standards](CODING_STANDARDS.md), [agent instructions](AGENTS.md).
 

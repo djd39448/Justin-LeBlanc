@@ -56,3 +56,28 @@ approval still required from Justin before launch.
   unverified. Demo examples stay labeled and editable.
 - Current public show entries require venue-by-venue verification before reproduction. The demo
   links to Justin's live source and does not claim free admission.
+
+## Owner-feedback amendment — 2026-09-22
+
+The following owner/client decisions supersede concrete decisions 3–5, 7–8 where they conflict;
+the dated research observations above remain historical inputs.
+
+1. Paid-event conversion outranks the supporting discovery journey. The homepage opening experience
+   includes the usable planner itself, not merely a CTA. The first form controls are available
+   without a modal, reveal, or route change.
+2. The hero composition changes to Justin/photo left and name/copy lower-right. The planner begins
+   in the same opening conversion block or immediately contiguous with the concise mobile hero.
+3. Primary navigation remains pinned to the viewport top throughout scrolling and uses anchor/focus
+   offsets so it never covers content.
+4. Public dates are rendered from a sanitized server projection of one exact live Public Shows
+   Google Calendar. Private bookings, consultations, corporate events, weddings, and holds remain
+   outside that source. Calendar membership—not title parsing—is the public/private distinction.
+5. Budget becomes an optional visitor-entered numeric USD amount. It is non-binding planning context
+   and never controls a quote or invoice.
+6. Neither chatbot nor voice assistant appears in public web output. The Retell/OpenAI backends,
+   number, KB/tools, routes, configuration, and tests remain intact for a future explicit re-enable.
+7. Package/demo prices disappear from public pages. Listen, Follow, FAQ, and public performance
+   dates support the brand but do not stand between a ready buyer and the form.
+
+The implementation and evidence contract is in
+[ROUND_TWO_BUILD_SPEC.md](ROUND_TWO_BUILD_SPEC.md).

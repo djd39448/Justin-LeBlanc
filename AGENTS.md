@@ -1,12 +1,19 @@
 # Justin LeBlanc build instructions
 
-Read `README.md`, `docs/BUILD_SPEC.md`, `docs/WORKFLOWS.md`, `docs/ARCHITECTURE.md`,
-`CODING_STANDARDS.md`, and `plans/2026-09-21-build-plan.md` before implementation.
+Read `README.md`, `docs/ROUND_TWO_BUILD_SPEC.md`, `docs/BUILD_SPEC.md`,
+`docs/WORKFLOWS.md`, `docs/ARCHITECTURE.md`, `CODING_STANDARDS.md`, and the current `KICKOFF.md`
+before implementation. The dated 2026-09-21 plans and evidence remain historical context; the
+round-two specification controls any conflicting public-site requirement.
 
 ## Authority and scope
 
 - Dave approved an isolated demo, preserving Justin's visual identity, with website,
   discovery form, voice, chat, calendar, email, and post-performance invoicing.
+- Dave's 2026-09-22 round-two direction makes the public homepage conversion-first: render the
+  planner in the opening experience, keep navigation pinned, add a sanitized live Public Shows
+  Calendar projection, accept visitor-entered numeric budget, and remove all public chat/voice
+  presentation. Preserve the voice/chat resources and backend implementation for a future explicit
+  re-enable. See `docs/ROUND_TWO_BUILD_SPEC.md`; do not confuse planned work with deployed state.
 - Work only in this repository and new Justin demo resources. Existing TrustCore and
   Telnyx resources are read-only references. Never overwrite their agents, numbers,
   calendar event types, handlers, deployments, DNS, or credentials.

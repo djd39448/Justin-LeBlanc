@@ -4,27 +4,46 @@ Recorded 2026-09-21. This inventory contains identifiers and variable names, nev
 
 ## Created and running
 
-| Resource                  | Identifier / location                                                                      | Verified state                                                             |
-| ------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| Private GitHub repository | `djd39448/Justin-LeBlanc`, branch `main`                                                   | Published main SHA and GitHub Actions result are supplied in session delivery |
-| Cloudflare account        | `b393d8ff72d57912119b872640d3511f`                                                         | Existing authorized account                                                |
-| Existing DNS zone         | `50by50.dev`, `2ad6b3d042155b73baca25bea5b3be2d`                                           | Two Justin-only CNAMEs added; existing records unchanged                   |
-| New Pages project         | `50by50-justinleblancmusic`, ID `7c9bb5e4-3b90-4d1f-954e-43d87400ea30`                     | Separate project, static site and API proxy                                |
-| Custom hostname           | `justinleblancmusic.50by50.dev`, binding `bd4ec301-091e-4bee-a4cd-bf0030e56e7a`            | HTTPS 200, noindex/security headers                                        |
-| Latest checked deployment | `840a4ccf`, `https://840a4ccf.50by50-justinleblancmusic.pages.dev`                         | `/admin` HTTP 200; new label/legacy controls, no-store and noindex verified                |
-| New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                     | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections |
-| New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`, version 4                                              | Same protected identity; six custom tools plus native `end_call`           |
-| New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 4                                              | Published `gpt-4.1-mini` configuration with KB `2026-09-21.4`              |
-| Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                           | Created and verified through live consultation/show lifecycle              |
-| Houston demo number       | **(832) 501-3799**                                                                          | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools |
-| Shared KB                 | `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96` | Retell/API/chat parity verified after restart                               |
-| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | Running S4U/Limited boot task; all three health paths passed post-upgrade   |
-| Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`               | Running; token never stored in Git or command arguments                    |
-| Local worker              | task `jlm-demo-worker`                                                                     | Running S4U/Limited boot task; startup jobs completed successfully          |
-| Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                      | SQLite WAL; synthetic booking and historical old-policy invoice retained   |
-| Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                            | Outside Git, restricted host ACLs                                          |
+| Resource                  | Identifier / location                                                                      | Verified state                                                                    |
+| ------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| Private GitHub repository | `djd39448/Justin-LeBlanc`, branch `main`                                                   | Published main SHA and GitHub Actions result are supplied in session delivery     |
+| Cloudflare account        | `b393d8ff72d57912119b872640d3511f`                                                         | Existing authorized account                                                       |
+| Existing DNS zone         | `50by50.dev`, `2ad6b3d042155b73baca25bea5b3be2d`                                           | Two Justin-only CNAMEs added; existing records unchanged                          |
+| New Pages project         | `50by50-justinleblancmusic`, ID `7c9bb5e4-3b90-4d1f-954e-43d87400ea30`                     | Separate project, static site and API proxy                                       |
+| Custom hostname           | `justinleblancmusic.50by50.dev`, binding `bd4ec301-091e-4bee-a4cd-bf0030e56e7a`            | HTTPS 200, noindex/security headers                                               |
+| Latest checked deployment | `840a4ccf`, `https://840a4ccf.50by50-justinleblancmusic.pages.dev`                         | `/admin` HTTP 200; new label/legacy controls, no-store and noindex verified       |
+| New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                     | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections        |
+| New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`, version 4                                              | Same protected identity; six custom tools plus native `end_call`                  |
+| New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 4                                              | Published `gpt-4.1-mini` configuration with KB `2026-09-21.4`                     |
+| Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                           | Created and verified through live consultation/show lifecycle                     |
+| Houston demo number       | **(832) 501-3799**                                                                         | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools |
+| Shared KB                 | `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96` | Retell/API/chat parity verified after restart                                     |
+| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | Running S4U/Limited boot task; all three health paths passed post-upgrade         |
+| Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`               | Running; token never stored in Git or command arguments                           |
+| Local worker              | task `jlm-demo-worker`                                                                     | Running S4U/Limited boot task; startup jobs completed successfully                |
+| Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                      | SQLite WAL; synthetic booking and historical old-policy invoice retained          |
+| Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                            | Outside Git, restricted host ACLs                                                 |
 
 On this host, `<private-root>` is `C:/Users/trustcore-rdp/.config/jlm-demo` and the configuration is `runtime.env` there. Do not print or commit populated files. Private resource manifests are `retell-provision.json` and `retell-number.json`; read them before retrying provisioning.
+
+## Planned round-two Calendar resource — not created or selected
+
+Round two requires one exact live Public Shows Calendar for website listings. First determine
+whether the Calendar currently used by Justin's existing events page is public-performance-only and
+accessible by exact ID. Otherwise, keep the integration disabled and obtain explicit owner approval
+before creating/selecting a dedicated secondary Calendar or populating any event.
+
+- Private variable names: `PUBLIC_EVENTS_ENABLED` (default `false`) and
+  `PUBLIC_EVENTS_CALENDAR_ID`, plus `PUBLIC_EVENTS_TIMEZONE` and a backed-up random
+  `PUBLIC_EVENTS_ID_SECRET` (never committed or returned to the browser).
+- The public-events reader must never use `SHOW_CALENDAR_ID`, free/busy Calendars, `primary`, family
+  Calendars, or discovery fallback.
+- Public-site voice removal does not delete or change the Retell resources above. The number remains
+  in private operational inventory while disappearing from rendered public web output and public
+  phone-bearing payloads.
+
+No Calendar ID, OAuth change, cache, endpoint, or round-two deployment exists yet. Record the exact
+resource and sanitized evidence here only after implementation and provider verification.
 
 ## Verified resources and remaining limitations
 

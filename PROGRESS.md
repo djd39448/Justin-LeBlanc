@@ -1,6 +1,30 @@
 # Progress
 
-Updated 2026-09-21. **Implemented and substantially live-verified. Full voice booking and recovery after an actual reboot/sign-out remain unverified.**
+Updated 2026-09-22. **The deployed baseline is substantially live-verified; the approved round-two
+brand/conversion work below is not implemented. Full voice booking and recovery after an actual
+reboot/sign-out remain unverified.**
+
+## Round-two approved work — pending
+
+Requirements were updated on 2026-09-22; none of the items below should be reported as deployed
+until new evidence exists.
+
+- [ ] Put the shared planner directly in the opening homepage conversion experience; no CTA, modal,
+      or route change is required to begin.
+- [ ] Pin primary navigation to the viewport top with correct mobile, focus, and anchor-offset
+      behavior.
+- [ ] Implement the brand/hero, category rail, Listen, Follow, FAQ, form-field, and public-copy
+      changes in [the round-two specification](docs/ROUND_TWO_BUILD_SPEC.md).
+- [ ] Add `preferredReply: "text"` and optional integer `budgetCents` while preserving old records;
+      replace budget ranges with visitor-entered numeric USD.
+- [ ] Resolve the exact live Public Shows Calendar, add the isolated read-only sanitized
+      `/api/public-events` projection, and prove private/corporate/wedding/consultation/hold events never
+      enter public output.
+- [ ] Remove chatbot/voice UI, phone number, `tel:` links, and assistant references from the public
+      website while preserving all underlying Retell/OpenAI resources, KB/tools, routes, config, and
+      backend tests.
+- [ ] Add responsive/browser/privacy evidence and deploy the compatible API before the dependent
+      frontend. Do not mutate Retell for this round.
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
 - [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, noindex controls, and deployment `840a4ccf`; `/admin` returned HTTP 200 with the new label, legacy controls, no-store and noindex.

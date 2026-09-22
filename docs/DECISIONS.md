@@ -2,29 +2,54 @@
 
 These defaults let the build proceed. Justin must approve real business terms before launch.
 
-| Topic | Selected demo default | Status |
-|---|---|---|
-| Objective | More private-event bookings, less qualification/admin effort | User approved |
-| Theme | Optimize existing blue musician identity | User approved |
-| Hosting | Isolated `justinleblancmusic.50by50.dev` | User approved |
-| Voice | Existing Retell account, separate managed number and agent | Houston (832) 501-3799; same protected agent/LLM published at v3; fourth call proved inquiry, availability, follow-up, and lifecycle tools; booking and native hangup remain unverified |
-| Calendar/email | Dave's verified TrustCore accounts, isolated records | Limited Calendar consent granted; live booking and actual reply-driven $700 demo invoice verified |
-| Chat credential | Reuse existing OpenAI API key securely | Reuse configured; four real qualification cases passed |
-| Consultation | 20 minutes, Mon–Fri 10am–4pm Central Time (`America/Chicago`), no minimum advance notice for future times | User approved; live read-only same-day availability verified; respect actual free/busy |
-| Booking timezone | Customer-facing consultation and event inputs/displays use Central Time (`America/Chicago`) | User approved; DST-aware IANA conversion |
-| Buffers | 60 min setup + 30 min breakdown + 60 min each-side travel placeholder | Provisional, operator adjustable |
-| Event hold | Expires 48h after consultation end; requires scheduled consultation | Provisional |
-| Confirmation | Authenticated operator confirms after consultation and agreed quote | User approved |
-| Contract/deposit | Track statuses; not required in demo, no payment/contract automation | Provisional |
-| Morning invoicing | 08:00 America/Chicago; app-tagged confirmed performances with prior-local-day end time automatically invoice from the agreed quote when billing metadata is complete | User approved; Calendar-driven, DST-aware, seven-day catch-up |
-| Invoice terms | USD, due 14 calendar days after issue, no real payment link | Provisional |
-| Performer reply/reminder | Not used for new invoices; retained only to reconcile old-policy records | Superseded by Calendar-driven invoicing |
-| Taxes | Explicit demo tax=0 assumption; real tax treatment unresolved | Provisional, not tax advice |
-| Audience | Demo operator and allowlisted test clients only for external workflow effects | Demo boundary |
+## Round-two owner decisions — 2026-09-22
 
-## Demo pricing examples (not Justin's published or approved rates)
+These decisions supersede earlier public-site placement and assistant-presentation decisions. They
+do not change the deployed runtime until implementation and new evidence are complete.
 
-Seed editable package configuration, not hardcoded prose:
+| Topic                   | Current decision                                                                                                                                                   | Status                                          |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| Conversion priority     | The homepage opening experience renders the usable booking form itself; no CTA, modal, route change, or preliminary reveal is required to begin                    | User approved                                   |
+| Navigation              | The primary navigation remains pinned to the viewport top throughout scrolling and uses safe anchor/focus offsets                                                  | User approved                                   |
+| Homepage order          | Persistent header → hero/inline planner → category rail → live public dates → Listen → Follow → FAQ → return-to-planner prompt → footer                            | User approved                                   |
+| Public performances     | Use an exact dedicated live Public Shows Google Calendar; calendar membership distinguishes public venue dates from private/corporate/wedding/consultation records | User approved; exact Calendar ID/access pending |
+| Public Calendar privacy | A separate read-only server adapter returns a sanitized projection only; never read/fallback to the private booking, free/busy, primary, or discovered Calendars   | User approved                                   |
+| Preferred reply         | Public choices are Email, Text, and Phone Call; Text and Phone Call require a phone number; Text is a human follow-up preference, not automated SMS                | User approved                                   |
+| Budget                  | Replace fixed ranges with an optional visitor-entered numeric USD amount; it is planning context only and never controls quote/invoice math                        | User approved                                   |
+| Public AI               | Remove every chatbot/voice surface, phone number, `tel:` link, and assistant reference from public web output                                                      | User approved                                   |
+| Assistant backend       | Preserve Retell/OpenAI resources, number, KB/tools, routes, webhooks, configuration, limits, allowlists, and backend tests for possible later re-enable            | User approved                                   |
+| Public pricing          | Do not publish package/demo prices. Visitor-entered budget is not a price or offer                                                                                 | User approved                                   |
+
+See [ROUND_TWO_BUILD_SPEC.md](ROUND_TWO_BUILD_SPEC.md) for the complete contract and acceptance
+requirements.
+
+| Topic                    | Selected demo default                                                                                                                                                | Status                                                                                                                                                                                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Objective                | More private-event bookings, less qualification/admin effort                                                                                                         | User approved                                                                                                                                                                           |
+| Theme                    | Optimize existing blue musician identity                                                                                                                             | User approved                                                                                                                                                                           |
+| Hosting                  | Isolated `justinleblancmusic.50by50.dev`                                                                                                                             | User approved                                                                                                                                                                           |
+| Voice                    | Existing Retell account, separate managed number and agent                                                                                                           | Houston (832) 501-3799; same protected agent/LLM published at v3; fourth call proved inquiry, availability, follow-up, and lifecycle tools; booking and native hangup remain unverified |
+| Calendar/email           | Dave's verified TrustCore accounts, isolated records                                                                                                                 | Limited Calendar consent granted; live booking and actual reply-driven $700 demo invoice verified                                                                                       |
+| Chat credential          | Reuse existing OpenAI API key securely                                                                                                                               | Reuse configured; four real qualification cases passed                                                                                                                                  |
+| Consultation             | 20 minutes, Mon–Fri 10am–4pm Central Time (`America/Chicago`), no minimum advance notice for future times                                                            | User approved; live read-only same-day availability verified; respect actual free/busy                                                                                                  |
+| Booking timezone         | Customer-facing consultation and event inputs/displays use Central Time (`America/Chicago`)                                                                          | User approved; DST-aware IANA conversion                                                                                                                                                |
+| Buffers                  | 60 min setup + 30 min breakdown + 60 min each-side travel placeholder                                                                                                | Provisional, operator adjustable                                                                                                                                                        |
+| Event hold               | Expires 48h after consultation end; requires scheduled consultation                                                                                                  | Provisional                                                                                                                                                                             |
+| Confirmation             | Authenticated operator confirms after consultation and agreed quote                                                                                                  | User approved                                                                                                                                                                           |
+| Contract/deposit         | Track statuses; not required in demo, no payment/contract automation                                                                                                 | Provisional                                                                                                                                                                             |
+| Morning invoicing        | 08:00 America/Chicago; app-tagged confirmed performances with prior-local-day end time automatically invoice from the agreed quote when billing metadata is complete | User approved; Calendar-driven, DST-aware, seven-day catch-up                                                                                                                           |
+| Invoice terms            | USD, due 14 calendar days after issue, no real payment link                                                                                                          | Provisional                                                                                                                                                                             |
+| Performer reply/reminder | Not used for new invoices; retained only to reconcile old-policy records                                                                                             | Superseded by Calendar-driven invoicing                                                                                                                                                 |
+| Taxes                    | Explicit demo tax=0 assumption; real tax treatment unresolved                                                                                                        | Provisional, not tax advice                                                                                                                                                             |
+| Audience                 | Demo operator and allowlisted test clients only for external workflow effects                                                                                        | Demo boundary                                                                                                                                                                           |
+
+## Historical internal demo pricing examples (not public website content)
+
+These values remain only for synthetic records, deterministic backend tests, and historical
+evidence. Round two removes them from public pages; it does not rewrite issued snapshots or dismantle
+the dormant assistant implementation. Seed editable package configuration, not hardcoded public
+prose:
+
 - Private gathering: 2 performance hours, solo demo format, base $700.
 - Extended celebration: 3 performance hours, solo demo format, base $1,000.
 - Corporate reception: 2 performance hours, base $900.

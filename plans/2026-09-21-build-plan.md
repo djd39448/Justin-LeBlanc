@@ -1,6 +1,9 @@
 # Execution plan — 2026-09-21
 
-Status: implementation/review batches delivered; live integration demonstration partially blocked. See [current progress](../PROGRESS.md) and [evidence](../docs/evidence/acceptance-results.md). Canonical scope: docs/BUILD_SPEC.md.
+Status: historical implementation plan; its batches were delivered and the live integration
+demonstration remained partial. It does not govern the approved 2026-09-22 public-site revision.
+See [current progress](../PROGRESS.md), [round-two specification](../docs/ROUND_TWO_BUILD_SPEC.md),
+and [evidence](../docs/evidence/acceptance-results.md).
 
 ## 0. Preflight and research
 

@@ -4,20 +4,41 @@ Last verified: 2026-09-21 at 15:39:43 UTC. This runbook covers the isolated Just
 
 ## Current service state
 
-| Component       | State                                                                               | Operator note                                                                                                     |
-| --------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200 | Deployment `840a4ccf`; updated admin label/legacy controls, no-store and noindex verified                         |
-| API             | Local, public tunnel, and website-proxy health returned HTTP 200                    | Booking, chat, voice, and billing capabilities all returned true                                                  |
-| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                              | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                             |
-| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                 | Local, direct-tunnel, and website-proxy health passed after the upgrade                                            |
-| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                       |
-| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers      | Registration and task execution passed; actual sign-out/reboot recovery remains untested                           |
-| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending | Old-policy $700 invoice reached client/operator but does not prove the current path                                |
-| Google Calendar | Dedicated calendar created; live booking lifecycle passed                            | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects  |
-| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                    |
-| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking    | This proves the checked backup was readable and internally consistent; retain the source backup privately         |
+| Component       | State                                                                                   | Operator note                                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200     | Deployment `840a4ccf`; updated admin label/legacy controls, no-store and noindex verified                        |
+| API             | Local, public tunnel, and website-proxy health returned HTTP 200                        | Booking, chat, voice, and billing capabilities all returned true                                                 |
+| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                  | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                            |
+| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                     | Local, direct-tunnel, and website-proxy health passed after the upgrade                                          |
+| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                    | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                      |
+| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers          | Registration and task execution passed; actual sign-out/reboot recovery remains untested                         |
+| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending | Old-policy $700 invoice reached client/operator but does not prove the current path                              |
+| Google Calendar | Dedicated calendar created; live booking lifecycle passed                               | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects |
+| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                   | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                   |
+| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking        | This proves the checked backup was readable and internally consistent; retain the source backup privately        |
 
 Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
+
+## Round-two web release boundary — planned, not active
+
+The approved [round-two specification](ROUND_TWO_BUILD_SPEC.md) removes all public chat/voice UI
+and phone references while preserving the running assistant services. Do not disable, reprovision,
+or alter Retell/OpenAI, their KB/tools, provider identities, manifests, or backend gates as part of
+that presentation change.
+
+The same round adds a separate read-only public-events path. It requires exact private
+`PUBLIC_EVENTS_CALENDAR_ID`, `PUBLIC_EVENTS_TIMEZONE`, `PUBLIC_EVENTS_ID_SECRET`, and
+`PUBLIC_EVENTS_ENABLED` configuration and must never point at
+`SHOW_CALENDAR_ID`, free/busy, primary, family, or discovered Calendars. Until implementation and
+new evidence exist, no public-events endpoint or Public Shows Calendar should be assumed. Provider
+failure must fail closed; never work around it by exposing an unfiltered Calendar.
+
+Deployment order for that round is API/additive inquiry contract first, then the Pages frontend.
+A suitable existing Calendar and existing read grant must be owner-confirmed; otherwise keep the
+reader disabled because the kickoff does not authorize Calendar/event mutation or new consent.
+A frontend rollback retains the additive schema and never resets SQLite. Add exact authorization,
+cache inspection/purge, disable, outage, and rollback commands only after the implementation exists
+and the live configuration has been verified.
 
 Dave completed the Administrator restart for KB `2026-09-21.4`. At about 17:45 UTC, local, direct-tunnel, and website-proxy health all returned HTTP 200 with hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, all capabilities enabled and the Houston number; all three tasks were Running/S4U. Retell v4 publishes the same KB and native `end_call`, which remains untested by phone.
 

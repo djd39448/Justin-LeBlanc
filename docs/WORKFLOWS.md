@@ -12,6 +12,16 @@ All customer-facing consultation and event inputs and displays use Central Time
 timezone and original local input. Calendar event IDs are not customer IDs. Never treat subject
 text as authorization or calendar creation time as performance time.
 
+Round two renders the first inquiry step directly in the homepage opening experience. A visitor
+does not need to follow a CTA, change routes, open a dialog, or start an assistant to submit the
+form. The dedicated Plan Your Event route reuses the same state and contracts.
+
+Preferred reply values are `email`, `text`, and `phone`; Text and Phone Call require a phone number.
+Text records a human follow-up preference only. Optional visitor budget is normalized from USD input
+to integer `budgetCents` and remains non-authoritative lead context. It never supplies or amends an
+estimate, quote, deposit, invoice, or charge. Existing records with legacy budget strings remain
+readable.
+
 ## Inquiry -> consultation -> hold -> booking
 
 1. Answer sourced FAQs; create/update inquiry after consent and validate email/phone/timezone.
@@ -40,6 +50,40 @@ States: inquiry `new -> qualified -> consultation_scheduled -> consultation_comp
 show `tentative -> confirmed -> performed` after the eligible Calendar end is reconciled.
 Side exits: tentative -> expired/cancelled; confirmed -> cancelled or needs_review. Consultation and
 show states remain separate. `awaiting_performance_reply` and `not_performed` are legacy states only.
+
+## Live public-performance listing
+
+The public schedule is a read-only projection from one exact dedicated Public Shows Google
+Calendar. Calendar membership is the publish decision: public venue performances go on that
+Calendar; consultations, private gatherings, weddings, corporate events, tentative holds, and
+canonical booking records remain on the private booking Calendar.
+
+The server never reads `SHOW_CALENDAR_ID`, `FREE_BUSY_CALENDAR_IDS`, `primary`, or a discovered
+Calendar for public listings. It accepts no browser-supplied Calendar ID or provider time window.
+If the Calendar currently used by Justin's existing events page contains mixed records, migrate
+future public dates to an owner-confirmed dedicated Calendar instead of classifying by title,
+description, color, attendees, visibility, location, or keywords. The kickoff does not authorize
+creating or editing Calendar resources; leave the tested reader disabled and report the exact owner
+action if no suitable source already exists.
+
+`PublicEventsCalendarReader` performs the round-two spec's exact bounded, read-only future query with
+expanded recurring instances, deleted events omitted, chronological order, pagination limits, and
+explicit timeout/cache behavior.
+The refresh is server-side and coalesced; visitors read a short-lived sanitized cache rather than
+causing one Google request each. Only the strict public DTO is cached. Raw Google responses and
+private/provider identifiers are never persisted for this feature.
+
+Eligible output is a confirmed, timed event from the exact public Calendar with a bounded public
+title, venue/general locality, start, end, and timezone. Optional source URLs must be HTTPS and
+allowlisted. Cancelled, malformed, all-day when unsupported, out-of-horizon, or private-booking
+metadata-bearing records are excluded. Responses never contain descriptions, attendees,
+organizer/email, conferencing, attachments, Google links or IDs, extended properties,
+customer/show/booking IDs, private addresses, or financial data.
+
+On provider errors, missing configuration, invalid data, or expired last-known-good state, the API
+returns a controlled unavailable/empty response. It never falls back to an unfiltered Calendar or a
+broader OAuth scope. A cancelled or moved public event disappears or updates after the next bounded
+refresh. Public listing reads cannot create, edit, invite, cancel, confirm, or invoice anything.
 
 ## Morning scan
 

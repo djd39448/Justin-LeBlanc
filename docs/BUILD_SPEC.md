@@ -2,6 +2,32 @@
 
 Version 1.0 | 2026-09-21 | Owner: Dave Dobbins | Client: Justin LeBlanc
 
+> **Round-two supersession (2026-09-22):**
+> [ROUND_TWO_BUILD_SPEC.md](ROUND_TWO_BUILD_SPEC.md) is the current authority for the public
+> homepage, persistent navigation, brand treatment, inquiry fields, live public-performance
+> Calendar, public pricing, and assistant presentation. In particular, the planner now begins in
+> the opening homepage experience, the header stays pinned, budget is a visitor-entered numeric USD
+> amount, and neither chat nor voice appears on the public website. The underlying assistant
+> services remain intact. The booking, Calendar hold, invoicing, safety, and provider-isolation
+> requirements below remain in force unless the round-two document explicitly changes them.
+
+## Round-two owner-approved summary
+
+- Paid-event conversion is primary: the booking form itself is visible and usable in the opening
+  experience without a CTA, modal, route change, or preliminary reveal.
+- Navigation is persistent at the top of the viewport and cannot cover anchors or focused controls.
+- **Where I'm Playing** reads an exact dedicated live Public Shows Calendar through a separate
+  sanitized server projection. Private bookings and the existing booking Calendar are never public
+  feed inputs.
+- Preferred Reply adds `Text`; the page-three field changes remain as specified in the round-two
+  document; budget becomes an optional numeric USD input stored as non-authoritative planning
+  context.
+- Chat and voice UI, copy, phone number, and browser calls disappear from public output. Retell,
+  OpenAI, KB/tools, routes, provider resources, private configuration, and backend tests stay in
+  place.
+- This summary describes approved work, not deployed behavior. New round-two evidence is required
+  before any item is marked complete.
+
 ## 1. Outcome
 
 Deliver a working, polished demo at **https://justinleblancmusic.50by50.dev** in a separate
@@ -9,12 +35,13 @@ deployment. Preserve the blue musician/guitar identity of Justin's current websi
 making private-event inquiries the main conversion. This is a complete implementation of
 the agreed redesign and workflows, not a static concept or a replacement brand.
 
-Prove one continuous journey: a visitor learns about Justin, asks questions through chat
-or voice, supplies gig requirements, receives a provisional estimate, books a consultation
-and tentative event hold, receives invitations, and triggers a one-page operator brief.
-After the consultation the operator confirms the performance. At 08:00 America/Chicago, the
-morning job treats an app-tagged confirmed Calendar performance that ended on the prior local
-date as played, then issues the agreed invoice to the client with an operator BCC.
+Prove one continuous journey: a visitor can begin the homepage planner immediately, supplies gig
+requirements, books a consultation and tentative event hold, receives invitations, and triggers a
+one-page operator brief. The visitor's optional budget is planning context, not an automated quote.
+After the consultation the operator confirms the performance. At 08:00 America/Chicago, the morning
+job treats an app-tagged confirmed Calendar performance that ended on the prior local date as played,
+then issues the agreed invoice to the client with an operator BCC. Chat and voice remain dormant
+backend capabilities rather than public entry points in this round.
 
 ## 2. Settled constraints
 
@@ -34,9 +61,9 @@ date as played, then issues the agreed invoice to the client with an operator BC
 ## 3. Audiences and conversion
 
 Primary: hosts of private parties, weddings, corporate gatherings, celebrations, and private
-venue events in the Houston area. Main action: **Check your date & plan your event**.
-Secondary assistance: **Ask a question** and **Talk to the booking assistant**. A visitor may
-submit an inquiry without completing an AI conversation or knowing every technical detail.
+venue events in the Houston area. The opening homepage experience renders the planner itself so a
+ready buyer can begin immediately without navigating or revealing another surface. Listen, Follow,
+FAQs, and public-performance dates support the decision but do not precede or gate the form.
 
 Conversion means an accurate qualified inquiry and consultation, not an AI promise that a
 performance is contracted. Separate tentative holds, confirmed bookings and delivered shows.
@@ -58,27 +85,19 @@ research gaps, not evidence of inactivity.
 
 ## 5. Information architecture and visual requirements
 
-Homepage order:
-1. Compact header: Justin LeBlanc, private events, hear me live, FAQs, primary booking CTA.
-2. Blue photographic hero with concise private-event value proposition, Houston service-area
-   wording supported by sources, visible primary CTA above the fold, and readable text overlay.
-3. What the music can add to an event; event categories without unsupported format claims.
-4. Authentic listen/watch samples and credited evidence. No autoplay audio. Lazy-load embeds.
-5. Demo package examples or estimate guidance, visibly provisional; never silently imply a quote.
-6. How it works: tell us about your event -> consultation + tentative hold -> confirmation.
-7. Discovery form with assisted chat/voice entry points.
-8. Smaller **Hear Justin live before you book** schedule; link to current source, show dates,
-   venue, time and timezone. Say free only for verified no-cover shows and explain venue terms.
-9. FAQs, contact options, social links, privacy, small demo identification.
+Current homepage order is defined in [ROUND_TWO_BUILD_SPEC.md](ROUND_TWO_BUILD_SPEC.md): pinned
+header; hero with inline planner; event-category rail; live public-performance dates; Listen;
+Follow; FAQ; one return-to-planner prompt; footer. There is no public assistant entry point or
+public package-pricing section. The form is not hidden behind a CTA.
 
 Supporting routes: `/plan-your-event` (conversion deep link), `/hear-live`, `/faq`, `/about`,
 `/privacy`, `/reference` (human-readable agent reference), `/admin` (authenticated operator).
 Reuse sections rather than duplicate facts. Keep navigation short. Do not add filler SEO articles.
 
-Visual style: retained rich blue/navy + light neutral reading panels, restrained typography,
-authentic portrait/guitar imagery, generous but efficient spacing. Restore strong navigation
-contrast. Avoid enormous empty hero space, generic SaaS styling and intrusive floating widgets.
-Keep the primary CTA reachable with one hand on phones; chat must not obscure form controls.
+Visual style: retained rich blue/navy, white high-contrast text, restrained typography, authentic
+portrait/guitar imagery, and efficient spacing. Navigation remains pinned at the viewport top and
+must not cover anchors or focused controls. Avoid enormous empty hero space, generic SaaS styling,
+intrusive floating widgets, and any public chat/voice surface.
 
 ## 6. Discovery form and progressive qualification
 
@@ -91,25 +110,35 @@ Track inquiry submitted, consultation scheduled, hold created and show confirmed
 Three short steps with save/resume token, progress indicator, back navigation, inline validation,
 and final summary edit. Accessible non-JavaScript inquiry fallback where feasible.
 
-| Group | Required to submit | Optional / follow-up detail |
-|---|---|---|
-| Contact | Name, email, preferred reply method | Phone (required if phone consult), company, planner role |
-| Occasion | Event type, date or flexible-date choice, city | Venue name, full address, indoor/outdoor, guest count |
-| Timing | Approximate performance start/end or duration, timezone | Guest arrival, load-in, soundcheck, breaks, hard curfew |
-| Music | Desired atmosphere | Genre/song requests, ceremony/cocktail/dinner moments, MC duties |
-| Production | Known/unknown equipment needs | PA/microphone, venue sound contact, power, stage/space, weather cover |
-| Access | Known/unknown access constraints | Stairs/elevator, parking, load-in distance, security/vendor check-in |
-| Commercial | Budget range or unsure | Billing entity, billing email/address, PO, insurance/COI requirements |
-| Other | Consent to requested follow-up | Special requests, accessibility, planning notes |
+| Group      | Required to submit                                      | Optional / follow-up detail                                                       |
+| ---------- | ------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Contact    | Name, email, preferred reply method                     | Phone (required for Text or Phone Call), company, planner role                    |
+| Occasion   | Event type, date or flexible-date choice, city          | Venue name, full address, indoor/outdoor, guest count                             |
+| Timing     | Approximate performance start/end or duration, timezone | Guest arrival, load-in, soundcheck, breaks, hard curfew                           |
+| Music      | Desired atmosphere                                      | Genre/song requests, ceremony/cocktail/dinner moments, MC duties                  |
+| Production | Known/unknown equipment needs                           | Not sure yet, venue provides PA, or PA required; other production detail in notes |
+| Access     | Not shown in round-two public form                      | Preserve legacy stored access notes; new intake submits `unknown`                 |
+| Commercial | Optional numeric estimated budget in USD                | Billing entity, billing email/address, PO, insurance/COI requirements             |
+| Other      | Consent to requested follow-up                          | Special requests, accessibility, planning notes                                   |
 
 Do not require complete billing or venue technical information to capture a lead. Require missing
 billing fields before an invoice can be issued. Marketing opt-in is separate and unchecked.
 Store unknowns explicitly; never have an assistant fabricate answers to finish a form.
 
-## 7. Voice and chat
+Round two adds optional integer `budgetCents` while preserving legacy budget strings on read. The
+visitor's number is non-binding context only and can never become quote or invoice money. Preferred
+reply values are Email, Text, and Phone Call; Text does not promise automated SMS. The visible page-
+three timezone field is removed while the existing Central Time value remains authoritative.
 
-Warm, concise booking assistants that discover the occasion, connect relevant verified benefits,
-answer accurately, handle objections, and offer the next step without pressure. Identify as AI.
+## 7. Dormant voice and chat implementation
+
+Round two removes every chat/voice component, CTA, phone number, `tel:` link, browser availability
+call, and assistant reference from public website output. The underlying implementation remains
+available for a future explicit release; it is not decommissioned or reprovisioned in this round.
+
+When later enabled, assistants remain warm and concise, discover the occasion, connect relevant
+verified benefits, answer accurately, handle objections, and offer the next step without pressure.
+They identify as AI.
 Use a dedicated voice identity, not a cloned Justin voice. Voice read-back of email/date/time and
 price must allow correction. Recording/transcript policy must be explicitly configured and disclosed;
 do not assume a generic sentence establishes legal compliance.
@@ -128,6 +157,13 @@ and retry-safe email/calendar writes. Show customer-facing consultation and even
 Time (`America/Chicago`) with daylight-saving-aware conversion.
 Reuse existing TrustCore behavior after inspecting current source; old docs aren't live proof.
 Never call the family-only calendar function or weaken its protections for public visitors.
+
+Public performance listings are a separate read-only concern. Use one exact dedicated live Public
+Shows Calendar, selected privately and queried through a separate sanitized reader. Calendar
+membership distinguishes public venue dates from private/corporate/wedding/consultation records.
+Never use the booking/free-busy/primary/family Calendars as a listing source, and never infer
+publication from event text or color. The browser receives only the bounded public DTO defined in
+[ROUND_TWO_BUILD_SPEC.md](ROUND_TWO_BUILD_SPEC.md).
 
 Email operator a clean one-page brief, accessible HTML and PDF using the same data/template.
 Required fields and visual rules are in `docs/DOCUMENT_DESIGN.md`.
@@ -172,9 +208,11 @@ Time simulation must be demo-only and conspicuous; it must never alter real cale
 
 ## 12. Definition of done
 
-All acceptance rows in `docs/ACCEPTANCE.md` pass with evidence. Hosted HTTPS demo, mobile QA,
-actual Retell and chat sessions, both calendar entries/invitations, delivered brief, calendar-driven
-invoice received by test client and BCC operator, replay protection and no TrustCore
-resource changes. Commit/push code, migrations, source manifest, agent config, tests, runbooks,
-sanitized evidence, demo script and handoff. A mocked-only run is partial completion and must be
-reported as such, with the specific live dependency and completed work clearly separated.
+All applicable baseline and R2 acceptance rows in `docs/ACCEPTANCE.md` pass with new dated evidence.
+Round-two evidence includes the immediately usable homepage planner, pinned navigation, numeric
+budget compatibility, public-only live Calendar projection with negative privacy fixtures, complete
+absence of public chat/voice/phone output, responsive/accessibility checks, and proof that assistant
+backends remain intact. Existing booking, invitation, brief, invoice, replay, and provider-isolation
+evidence remains valid unless changed. Commit/push code, source manifest, tests, runbooks, sanitized
+evidence, and handoff. A mocked-only run is partial completion and must be reported as such, with the
+specific live dependency and completed work clearly separated.

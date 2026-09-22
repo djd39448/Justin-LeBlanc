@@ -15,9 +15,16 @@ price with explicit distinction. Next two-column sections:
 - Client: host, company, contact method, email/phone, planner and on-site contact.
 - Schedule: consultation, arrival/load-in, soundcheck, performance sets/breaks, finish/curfew.
 - Music: atmosphere, requested genres/songs, key moments, format, MC requests.
-- Venue: address, indoor/outdoor, stage/space, power/PA, parking/access, cover/weather, insurance.
+- Venue: address, indoor/outdoor, stage/space, power/PA, cover/weather, insurance. Preserve legacy
+  access notes when present, but round-two public intake no longer asks for Venue Access.
 - Commercial: package/quote version, itemized extras, deposit/remaining balance if applicable,
-  billing contact/PO, hold expiry, questions requiring confirmation.
+  billing contact/PO, hold expiry, questions requiring confirmation. If the visitor supplied
+  `budgetCents`, show it as **Estimated budget supplied by client** and keep it visually separate
+  from estimates, agreed quotes, deposits, invoices, and balances.
+
+Round-two preferred contact labels are **Email**, **Text**, and **Phone Call**. Equipment values
+render as **Not sure yet**, **Venue provides PA**, or **PA required**. The form's
+`Special Requests (optional)` content continues to use the stable `musicRequests` record field.
 
 Footer: last updated, next action, private operator link. Unknowns are labeled **To confirm**.
 Do not put raw transcripts into this brief. Bound free-text in intake so ordinary records fit one

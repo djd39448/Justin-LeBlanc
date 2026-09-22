@@ -2,6 +2,24 @@
 
 Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calendar, email, and voice transport paths have real provider evidence. Calendar-driven automatic invoicing is implemented, CI-verified and loaded in the running services; a fresh live Calendar-to-inbox walkthrough remains pending. The delivered reply-driven $700 invoice is historical old-policy evidence only. Full voice booking, native hangup, and recovery after an actual reboot/sign-out remain unverified.
 
+## Approved round-two work — not deployed
+
+Dave's 2026-09-22 feedback is recorded in
+[ROUND_TWO_BUILD_SPEC.md](ROUND_TWO_BUILD_SPEC.md). The next web release must:
+
+- render the planner in the opening homepage conversion experience with no preliminary CTA/reveal;
+- keep the primary navigation pinned throughout scrolling;
+- read actual public venue dates from an exact dedicated live Public Shows Calendar through a
+  separate sanitized endpoint, never from the private booking/free-busy Calendars;
+- accept an optional visitor-entered numeric USD budget while preserving old inquiry records; and
+- remove every chatbot/voice UI element, phone number, `tel:` link, and assistant reference from
+  public output while leaving the Retell/OpenAI resources, KB/tools, routes, configuration, and
+  backend tests intact.
+
+These are approved requirements, not current runtime claims. The existing public Pages deployment
+still reflects the prior design. Use the replacement [KICKOFF.md](../KICKOFF.md) for a clean
+implementation session, and create new dated evidence rather than rewriting the live evidence below.
+
 ## Running system
 
 - The exact public hostname serves deployment `840a4ccf` and returns HTTP 200. `/admin` shows **Run morning invoicing** and legacy reply controls with no-store/noindex protections; photo deployment `75996868` remains historical visual evidence.
@@ -28,11 +46,11 @@ Status date: 2026-09-21. The isolated demo is deployed and its web, chat, Calend
 
 ## Remaining limits
 
-| Area                             | Current evidence                                                                                                                                                         | Required next action                                                                                                                                   |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Voice workflow                   | The fourth call proved the repaired inquiry, availability, follow-up, and lifecycle paths. Booking did not complete; native `end_call` is published on v4 but has not been exercised by phone. | Phone-test a completed booking and native hangup on v4. See [call-completion evidence](evidence/consultation-call-completion.json). |
-| Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                    | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                                |
-| Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.      | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review.      |
+| Area                             | Current evidence                                                                                                                                                                               | Required next action                                                                                                                              |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Voice workflow                   | The fourth call proved the repaired inquiry, availability, follow-up, and lifecycle paths. Booking did not complete; native `end_call` is published on v4 but has not been exercised by phone. | Phone-test a completed booking and native hangup on v4. See [call-completion evidence](evidence/consultation-call-completion.json).               |
+| Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                                           | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                           |
+| Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.                            | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review. |
 
 ## Safety and recovery boundaries
 
@@ -92,7 +110,9 @@ The live evidence is sanitized: it contains no phone number, email address, cred
 
 ## Next controlled work
 
-1. Complete a fresh live Calendar-to-inbox automatic invoice walkthrough; record it in [calendar invoice workflow evidence](evidence/calendar-invoice-workflow.json).
-2. Separately authorize and verify recovery after an actual reboot or sign-out.
-3. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
-4. Keep inquiry, availability, and follow-up marked passed as tool operations. Keep booking and native hangup pending until v3 phone evidence exists.
+1. Implement and verify [the round-two brand/conversion specification](ROUND_TWO_BUILD_SPEC.md) on a feature branch. Resolve the exact Public Shows Calendar before any provider mutation.
+2. Deploy the additive inquiry/public-events API before the dependent frontend; do not change Retell, its number, KB, or tool set for this round.
+3. Complete a fresh live Calendar-to-inbox automatic invoice walkthrough; record it in [calendar invoice workflow evidence](evidence/calendar-invoice-workflow.json).
+4. Separately authorize and verify recovery after an actual reboot or sign-out.
+5. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
+6. Keep inquiry, availability, and follow-up marked passed as tool operations. Keep booking and native hangup pending until current-release phone evidence exists.

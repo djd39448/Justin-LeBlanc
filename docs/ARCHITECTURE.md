@@ -22,9 +22,52 @@ Calendar/Cal.com, Gmail and Retell adapters. Chat and voice tools enter the same
 Scheduler invokes authenticated job endpoints or CLI. Private storage holds generated PDFs.
 Browser sees only publishable widget configuration, never provider credentials or admin tokens.
 
+## Round-two public web boundary
+
+The current public redesign is conversion-first: the homepage renders the beginning of the shared
+event planner in its opening hero/conversion block. The pinned header and supporting Listen, Follow,
+public-performance, and FAQ content never gate access to that form. `/plan-your-event/` reuses the
+same component and contracts for campaign/direct-link traffic.
+
+Chat and voice services remain deployed backend capabilities but are neither rendered nor advertised
+by the public website. No public page or browser bundle may contain their UI, phone number, `tel:`
+link, availability request, or marketing copy. Provider identities, routes, webhooks, KB/tools,
+configuration, and backend tests remain intact for a later explicit re-enable.
+
+Public performance listings use a boundary separate from booking Calendar operations:
+
+```text
+exact Public Shows Calendar ID
+  -> read-only PublicEventsCalendarReader
+  -> bounded server refresh
+  -> sanitized public-event cache
+  -> GET /api/public-events
+  -> Where I'm Playing UI
+```
+
+`SHOW_CALENDAR_ID`, free/busy Calendars, `primary`, and discovered Calendars are forbidden inputs to
+this path. Calendar membership is the publication classification: only deliberately public venue
+events belong on the configured Public Shows Calendar. If the existing Calendar behind Justin's
+current events page mixes public and private records, split it rather than infer classification from
+text, colors, attendees, visibility, or venue names.
+
+The public DTO contains only a versioned HMAC ID, bounded plain-text title, a controlled
+venue/city-region display string, RFC 3339 start/end, and IANA timezone; v1 omits source URLs. It
+never contains Calendar/provider
+IDs, descriptions, attendees, organizer/email, conferencing, attachments, extended properties,
+customer/booking/show IDs, private addresses, prices, or internal notes. Cache only this sanitized
+projection. The exact mapping, 180-day/4-page/100-output bounds, five-minute fresh/24-hour stale
+window, eight-second timeout, and HTTP 200/503 envelopes are defined in the round-two spec. Missing
+configuration, malformed provider envelopes, expired cache, or provider failure fails closed.
+
+The inquiry JSON contract adds `preferredReply: "text"` and optional integer `budgetCents` while
+retaining old `email`/`phone` and legacy budget strings for stored-record compatibility. Visitor
+budget is descriptive lead context and never enters quote or invoice arithmetic.
+
 ## Module map (target, create during build)
 
-`apps/web/`: pages, components, styles and accessible form/chat UI.
+`apps/web/`: pages, components, styles, the directly rendered accessible planner, and dormant
+assistant UI components excluded from public output.
 `apps/api/`: HTTP/auth/rate-limit boundaries, provider adapters, job entrypoints.
 `packages/domain/`: pure pricing, booking and invoice state transitions.
 `packages/contracts/`: schemas, DTOs, public error codes, tool schemas.
@@ -39,21 +82,21 @@ Browser sees only publishable widget configuration, never provider credentials o
 Every business table carries `tenant_id=justin-demo` (configurable for migration), IDs, timestamps,
 revision/version and demo flag. Boundaries authorize by tenant and object ID.
 
-| Entity | Required fields / constraints |
-|---|---|
-| customers | name, normalized contact email, phone, company/legal billing name, billing email/address, PO requirements, preferences; contact and bill-to can differ |
-| inquiries | customer_id, channel, source/UTM, event requirements, consent, status, secure resume-token hash |
-| shows | inquiry/customer, event type, venue, timezone, UTC start/end, buffers, operational requirements, status, hold expiry, quote_id |
-| consultations | show/inquiry, UTC/timezone, provider booking/event ID, attendee info, status |
-| quotes | immutable version, currency, typed line items, totals in minor units, estimate/agreed, approver/time, policy version |
-| calendar_links | role consultation/performance/buffer, provider/calendar/event ID, ETag/revision, sync state, show_id |
-| conversations | channel, inquiry/show link, provider call/session ID, KB release, consent/retention metadata; restricted transcripts |
-| performance_checks | legacy-only reply records retained for audit/reconciliation; not created by current morning invoicing |
-| invoices | unique number and show/kind, immutable customer/seller/price snapshot, due date, revision, status, private PDF key, content hash |
-| outbox | unique operation key, payload reference, pending/sending/accepted/uncertain/failed, provider ID, retry count/backoff |
-| processed_events | unique provider/event or message ID, received/processed time, outcome |
-| job_runs | unique job/policy-version/local-date or cursor, lease/lock, last success, errors |
-| audit_events | actor, action, entity, before/after revision, request ID, timestamp; sensitive values redacted |
+| Entity             | Required fields / constraints                                                                                                                          |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| customers          | name, normalized contact email, phone, company/legal billing name, billing email/address, PO requirements, preferences; contact and bill-to can differ |
+| inquiries          | customer_id, channel, source/UTM, event requirements, consent, status, secure resume-token hash                                                        |
+| shows              | inquiry/customer, event type, venue, timezone, UTC start/end, buffers, operational requirements, status, hold expiry, quote_id                         |
+| consultations      | show/inquiry, UTC/timezone, provider booking/event ID, attendee info, status                                                                           |
+| quotes             | immutable version, currency, typed line items, totals in minor units, estimate/agreed, approver/time, policy version                                   |
+| calendar_links     | role consultation/performance/buffer, provider/calendar/event ID, ETag/revision, sync state, show_id                                                   |
+| conversations      | channel, inquiry/show link, provider call/session ID, KB release, consent/retention metadata; restricted transcripts                                   |
+| performance_checks | legacy-only reply records retained for audit/reconciliation; not created by current morning invoicing                                                  |
+| invoices           | unique number and show/kind, immutable customer/seller/price snapshot, due date, revision, status, private PDF key, content hash                       |
+| outbox             | unique operation key, payload reference, pending/sending/accepted/uncertain/failed, provider ID, retry count/backoff                                   |
+| processed_events   | unique provider/event or message ID, received/processed time, outcome                                                                                  |
+| job_runs           | unique job/policy-version/local-date or cursor, lease/lock, last success, errors                                                                       |
+| audit_events       | actor, action, entity, before/after revision, request ID, timestamp; sensitive values redacted                                                         |
 
 Amounts are integer cents with explicit currency. All-day/floating times cannot become billable
 shows until resolved. Use transaction/revision checks for quote approval and status changes.
@@ -64,19 +107,23 @@ Customer snapshots preserve an issued invoice even if the address later changes.
 All tools return typed success/error, request ID, persisted entity ID, current status and safe
 next action. Never return calendar details for unrelated appointments.
 
-| Tool | Inputs | Output / permission |
-|---|---|---|
-| search_knowledge | question, topic, KB release | supported answer facts with source/unknown flags; read-only |
-| upsert_inquiry | validated form fields, inquiry token if resuming | inquiry ID, missing fields; public bounded intake |
-| estimate_event | requirements, pricing version | itemized demo estimate or custom_quote_required |
-| get_availability | event interval/timezone, consultation range | open slots/conflict boolean only |
-| schedule_consultation_and_hold | inquiry, chosen slots, review consent, request key | record IDs + pending/complete status |
-| request_human_followup | inquiry, question/contact preference | logged task, no invented response time |
-| confirm_show | show ID, approved quote version, revision | operator-only; not exposed to public assistants |
-| amend_show / cancel_show | scoped ID, revision, changes/reason | operator or authenticated limited client action |
-| run_morning_check | as-of date (demo only) | eligible/invoiced/skipped/review results; operator/scheduler only |
-| process_performance_reply | provider message reference | legacy-record reconciliation only; cannot gate current invoices |
-| invoice_preview / reconcile_delivery | invoice ID/version | operator-only private result |
+| Tool                                 | Inputs                                             | Output / permission                                               |
+| ------------------------------------ | -------------------------------------------------- | ----------------------------------------------------------------- |
+| search_knowledge                     | question, topic, KB release                        | supported answer facts with source/unknown flags; read-only       |
+| upsert_inquiry                       | validated form fields, inquiry token if resuming   | inquiry ID, missing fields; public bounded intake                 |
+| estimate_event                       | requirements, pricing version                      | itemized demo estimate or custom_quote_required                   |
+| get_availability                     | event interval/timezone, consultation range        | open slots/conflict boolean only                                  |
+| schedule_consultation_and_hold       | inquiry, chosen slots, review consent, request key | record IDs + pending/complete status                              |
+| request_human_followup               | inquiry, question/contact preference               | logged task, no invented response time                            |
+| confirm_show                         | show ID, approved quote version, revision          | operator-only; not exposed to public assistants                   |
+| amend_show / cancel_show             | scoped ID, revision, changes/reason                | operator or authenticated limited client action                   |
+| run_morning_check                    | as-of date (demo only)                             | eligible/invoiced/skipped/review results; operator/scheduler only |
+| process_performance_reply            | provider message reference                         | legacy-record reconciliation only; cannot gate current invoices   |
+| invoice_preview / reconcile_delivery | invoice ID/version                                 | operator-only private result                                      |
+
+Round two additionally exposes `GET /api/public-events` with no caller-supplied Calendar ID or date
+range. It returns only the sanitized DTO described above and performs no provider write. The dormant
+assistant tools remain internal backend capability even though no public assistant UI links to them.
 
 Schema validation at every boundary, bounded bodies/lengths, sanitization and parameterized SQL.
 AI requests cannot directly send mail, select arbitrary recipients, set prices or execute SQL.

@@ -8,6 +8,7 @@ Do not use old README statements as live status. No secrets were read in the doc
 ## TrustCore references (read only)
 
 Root: `C:/Users/trustcore-rdp/inbound-voice-agent/`
+
 - `src/webhooks/book-meeting.ts`: Cal.com API v2 booking and alternative slots; legacy timezone
   conversion reference only, without copying its locale default.
 - `RUNBOOK.md`: calendar linkage, lead watcher, separate inbound/outbound agents and operations.
@@ -21,6 +22,7 @@ Root: `C:/Users/trustcore-rdp/inbound-voice-agent/`
   Retell-managed demo number.
 
 Root: `C:/Users/trustcore-rdp/Birthday-Challenge/`
+
 - `playbooks/sop-new-site.md`: Pages project, verification, custom domain, launch-log conventions.
 - `.github/workflows/deploy-trustcore-systems.yml`: deployment reference; contains shared DNS/mail
   provisioning concerns. Extract only needed Justin deployment steps, don't copy wholesale.
@@ -44,6 +46,13 @@ files into the repo. Status per integration: located / authorized / configured /
 5. Dedicated tagged demo performance calendar under Dave's account plus selected actual free/busy
    calendars. Invites must reach Dave and test client. Invitation-capable identity required; existing
    family service-account config may not support attendee invites. Never claim it does without test.
+   Round two adds a separate, exact Public Shows Calendar for website listings. First inspect the
+   Calendar currently behind Justin's existing events page. Reuse it only if it contains public
+   venue performances exclusively and can be selected by exact ID; otherwise finish the disabled
+   integration and report the exact owner action to create/select a dedicated secondary Calendar.
+   The round-two kickoff does not itself authorize Calendar/event mutation. Do not expose or reuse the private booking,
+   free/busy, family, primary, or discovered Calendars. Verify the existing `calendar.app.created`
+   grant against the selected secondary Calendar before requesting any additional scope.
 6. Gmail account: SMTP sender and existing IMAP permissions may already suffice. Preferred reuse is
    separate ImapFlow worker with durable UIDVALIDITY/UID + Message-ID/thread ledger. Verify socket
    support on actual host. If using OAuth Gmail API instead, verify read/send scopes and refresh;
@@ -65,6 +74,10 @@ files into the repo. Status per integration: located / authorized / configured /
   https://developers.openai.com/api/docs/guides/structured-outputs
 - Calendar attendees/invitations and permissions:
   https://developers.google.com/workspace/calendar/api/v3/reference/events/insert
+- Calendar OAuth scopes, including the app-created-secondary-calendar boundary:
+  https://developers.google.com/workspace/calendar/api/auth
+- Bounded recurring-instance listing:
+  https://developers.google.com/workspace/calendar/api/v3/reference/events/list
 - Gmail API push alternative (watch renewal, history cursor, missed-event recovery):
   https://developers.google.com/workspace/gmail/api/guides/push
 
@@ -75,9 +88,16 @@ Document `PUBLIC_SITE_URL`, `DEMO_MODE`, `DEMO_RECIPIENT_ALLOWLIST`, `OPERATOR_E
 `PERFORMER_EMAIL`, `CLIENT_TEST_EMAIL`, `DATABASE_URL`, `PRIVATE_STORAGE_*`, `RETELL_API_KEY`,
 `RETELL_JLM_AGENT_ID`, `RETELL_JLM_PHONE_NUMBER`, `OPENAI_API_KEY`, `OPENAI_CHAT_MODEL`,
 `CAL_API_KEY`, `CAL_JLM_EVENT_TYPE`, `GOOGLE_*` credential references, `SHOW_CALENDAR_ID`,
-`FREE_BUSY_CALENDAR_IDS`, `SMTP_USER`, `SMTP_PASS`, `IMAP_*`, `JOB_AUTH_SECRET`, `ADMIN_*`,
+`FREE_BUSY_CALENDAR_IDS`, `PUBLIC_EVENTS_ENABLED`, `PUBLIC_EVENTS_CALENDAR_ID`, `SMTP_USER`,
+`SMTP_PASS`, `IMAP_*`, `JOB_AUTH_SECRET`, `ADMIN_*`,
 `BOOKING_WRITES_ENABLED`, `INVOICE_SEND_ENABLED`, `MORNING_SCAN_ENABLED` in `.env.example`.
 Use placeholders and comments, never populated credentials. Avoid requiring unused alternatives.
+
+The public-events reader is a separate read-only adapter and returns a sanitized DTO only. Calendar
+IDs, provider event IDs, OAuth material, attendees, organizer details, descriptions, conferencing,
+attachments, extended properties, private addresses, booking IDs, and prices never enter browser
+output or the sanitized cache. `PUBLIC_EVENTS_ENABLED` defaults off. No public request chooses the
+Calendar or query horizon, and failure never falls back to a broader Calendar.
 
 ## Migration to Justin
 

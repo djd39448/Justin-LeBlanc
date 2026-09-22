@@ -1,5 +1,12 @@
 # Current implementation handoff
 
+Round-two requirements were approved on 2026-09-22 but are not implemented in the deployed build.
+They move the planner into the opening homepage experience, pin the navigation, add a sanitized
+public-only live Calendar feed, change budget to visitor-entered numeric USD, and remove all public
+chat/voice presentation while preserving the assistant backends. Use
+[docs/ROUND_TWO_BUILD_SPEC.md](docs/ROUND_TWO_BUILD_SPEC.md) and the replacement
+[KICKOFF.md](KICKOFF.md) for the next implementation session.
+
 The isolated demo is deployed, and live Calendar booking is verified. The Houston demo line is **(832) 501-3799**. Automatic 08:00 America/Chicago invoicing is implemented, tested and loaded in the running services; fresh live current-policy delivery remains pending. The delivered reply-driven $700 invoice is historical old-policy evidence only. Retell v4, API and chat share KB `2026-09-21.4`. Full voice booking and native hangup remain unverified. S4U boot-trigger registration and task execution are verified; actual reboot/sign-out recovery remains untested.
 
 Public and assistant booking requests are authorized before availability or hold creation, and the final Calendar adapter independently rejects any attendee outside the exact demo allowlist before OAuth or provider I/O.
