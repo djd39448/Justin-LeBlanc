@@ -1,6 +1,11 @@
 /** Proxies only this site's API to the dedicated Node origin.
  * Dependencies: Cloudflare Pages fetch runtime. Consumers: browser forms and operator UI.
  * Why: same-origin requests keep deployment configuration server-side and fail visibly when absent. */
+const publicEventsUnavailable = JSON.stringify({
+  error: 'public_events_unavailable',
+  message: 'Current dates are temporarily unavailable.',
+});
+
 export async function onRequest(context: {
   request: Request;
   env: { API_ORIGIN?: string };
@@ -23,6 +28,23 @@ export async function onRequest(context: {
       redirect: 'manual',
       signal: AbortSignal.timeout(95000),
     });
+    if (
+      context.request.method === 'GET' &&
+      incoming.pathname === '/api/public-events' &&
+      response.status === 503
+    ) {
+      const body = await response.text();
+      if (body !== publicEventsUnavailable) throw new Error('Upstream unavailable');
+      return new Response(body, {
+        status: 503,
+        headers: {
+          'Cache-Control': 'no-store',
+          'Content-Type': 'application/json',
+          'Retry-After': '300',
+          'X-Robots-Tag': 'noindex',
+        },
+      });
+    }
     if (response.status >= 500) throw new Error('Upstream unavailable');
     return response;
   } catch {
