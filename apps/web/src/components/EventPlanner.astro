@@ -20,8 +20,8 @@ const { compact = false } = Astro.props;
       <h2 id="planner-title">Plan the music around your event</h2>
     </div>
     <p>
-      Three short steps. Unknown details can stay unknown. An inquiry starts the conversation; it
-      does not confirm a date or price.
+      Three short steps. Unknown details can stay unknown. Sending this form starts a conversation;
+      it does not confirm your date.
     </p>
   </div>
 
@@ -64,16 +64,17 @@ const { compact = false } = Astro.props;
           <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required />
         </div>
         <div class="field">
-          <label for="preferredReply">Preferred reply <span aria-hidden="true">*</span></label>
+          <label for="preferredReply">Preferred Reply <span aria-hidden="true">*</span></label>
           <select id="preferredReply" name="preferredReply" required>
             <option value="email">Email</option>
-            <option value="phone">Phone consultation</option>
+            <option value="text">Text</option>
+            <option value="phone">Phone Call</option>
           </select>
         </div>
         <div class="field">
           <label for="phone">Phone <span id="phone-optional">(optional)</span></label>
           <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" />
-          <p class="form-hint">Required only if you choose a phone consultation.</p>
+          <p class="form-hint">Required if you choose Text or Phone Call.</p>
         </div>
         <div class="field field-wide">
           <label for="company">Company or planning role (optional)</label>
@@ -156,43 +157,24 @@ const { compact = false } = Astro.props;
             <option value="240">About 4 hours</option>
           </select>
         </div>
-        <div class="field">
-          <span class="field-label" id="timezone-label">Booking time zone</span>
-          <input id="timezone" name="timezone" type="hidden" value="America/Chicago" />
-          <p class="fixed-field-value" aria-labelledby="timezone-label">
-            <strong>Central Time</strong>
-            <span>America/Chicago · daylight-saving aware</span>
-          </p>
-        </div>
+        <input id="timezone" name="timezone" type="hidden" value="America/Chicago" />
         <div class="field field-wide">
-          <label for="musicRequests">Music or event-moment requests (optional)</label>
+          <label for="musicRequests">Special Requests (optional)</label>
           <textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea>
         </div>
         <div class="field">
           <label for="equipment">Sound or equipment needs</label>
           <select id="equipment" name="equipment">
             <option value="unknown">Not sure yet</option>
-            <option value="Venue sound may be available">Venue sound may be available</option>
-            <option value="Please discuss sound needs">Please discuss sound needs</option>
+            <option value="Venue provides PA">Venue provides PA</option>
+            <option value="PA required">PA required</option>
           </select>
         </div>
         <div class="field">
-          <label for="access">Venue access</label>
-          <select id="access" name="access">
-            <option value="unknown">Not sure yet</option>
-            <option value="Easy ground-level access">Easy ground-level access</option>
-            <option value="Access details need discussion">Access details need discussion</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="budget">Budget guidance</label>
-          <select id="budget" name="budget">
-            <option value="unsure">Not sure yet</option>
-            <option value="Under $750">Under $750</option>
-            <option value="$750–$1,250">$750–$1,250</option>
-            <option value="$1,250–$2,000">$1,250–$2,000</option>
-            <option value="Over $2,000">Over $2,000</option>
-          </select>
+          <label for="budgetCents">Estimated budget (USD, optional)</label>
+          <input id="budgetCents" name="budgetCents" type="text" inputmode="decimal" autocomplete="off" maxlength="32" />
+          <p class="form-hint">Planning context only; it is not a quote or a charge.</p>
+          <p class="form-hint" id="legacy-budget-context" hidden></p>
         </div>
         <div class="field">
           <label for="scheduleNotes">Timing notes (optional)</label>
@@ -227,7 +209,7 @@ const { compact = false } = Astro.props;
         <button class="button" id="submit-inquiry" type="submit">Send inquiry</button>
       </div>
       <p class="form-hint form-hint-center">
-        Submission creates an inquiry, not a confirmed booking or charge.
+        Sending this form starts a conversation; it does not confirm your date.
       </p>
     </fieldset>
   </form>
@@ -247,19 +229,15 @@ const { compact = false } = Astro.props;
     <div class="form-alert" id="schedule-alert" role="alert" tabindex="-1" hidden></div>
     <form id="schedule-form">
       <div class="field-grid">
+        <input id="scheduleTimezone" name="scheduleTimezone" type="hidden" value="America/Chicago" />
+        <p class="form-hint field-wide schedule-time-guidance">
+          Consultation and performance times below use Central Time.
+        </p>
         <div class="field">
           <label for="consultationLocal">Consultation date and time</label>
           <input id="consultationLocal" name="consultationLocal" type="datetime-local" required />
           <p class="form-hint">
             20 minutes · Monday–Friday · 10:00 a.m.–4:00 p.m. Central Time.
-          </p>
-        </div>
-        <div class="field">
-          <span class="field-label" id="schedule-timezone-label">Booking time zone</span>
-          <input id="scheduleTimezone" name="scheduleTimezone" type="hidden" value="America/Chicago" />
-          <p class="fixed-field-value" aria-labelledby="schedule-timezone-label">
-            <strong>Central Time</strong>
-            <span>Consultation and performance times</span>
           </p>
         </div>
         <div class="field">
@@ -306,6 +284,13 @@ const { compact = false } = Astro.props;
     missingFields: string[];
   };
 
+  type InquiryInspection = {
+    inquiryId: string;
+    status: string;
+    input: InquiryInput;
+    shows: unknown[];
+  };
+
   type ResumeRecord = {
     id: string;
     token: string;
@@ -346,6 +331,8 @@ const { compact = false } = Astro.props;
   const preferredReply = document.querySelector<HTMLSelectElement>("#preferredReply");
   const phone = document.querySelector<HTMLInputElement>("#phone");
   const phoneOptional = document.querySelector<HTMLSpanElement>("#phone-optional");
+  const budgetInput = document.querySelector<HTMLInputElement>("#budgetCents");
+  const legacyBudgetContext = document.querySelector<HTMLParagraphElement>("#legacy-budget-context");
   const dateFlexible = document.querySelector<HTMLInputElement>("#dateFlexible");
   const eventDate = document.querySelector<HTMLInputElement>("#eventDate");
   const submitButton = document.querySelector<HTMLButtonElement>("#submit-inquiry");
@@ -361,6 +348,10 @@ const { compact = false } = Astro.props;
   const reviewConsent = document.querySelector<HTMLInputElement>("#reviewConsent");
   const createBookingButton = document.querySelector<HTMLButtonElement>("#create-booking");
   let checkedSchedule: CheckedSchedule | null = null;
+  let resumedInput: InquiryInput | null = null;
+  let resumedLegacyBudget: string | null = null;
+  let budgetWasEdited = false;
+  let plannerWasEdited = false;
 
   function requirePlannerElements(): void {
     if (
@@ -372,6 +363,8 @@ const { compact = false } = Astro.props;
       !preferredReply ||
       !phone ||
       !phoneOptional ||
+      !budgetInput ||
+      !legacyBudgetContext ||
       !dateFlexible ||
       !eventDate ||
       !submitButton
@@ -398,7 +391,7 @@ const { compact = false } = Astro.props;
 
   function updateConditionalFields(): void {
     if (!preferredReply || !phone || !phoneOptional || !dateFlexible || !eventDate) return;
-    const phoneRequired = preferredReply.value === "phone";
+    const phoneRequired = preferredReply.value === "text" || preferredReply.value === "phone";
     phone.required = phoneRequired;
     phoneOptional.textContent = phoneRequired ? "*" : "(optional)";
     eventDate.required = !dateFlexible.checked;
@@ -464,6 +457,7 @@ const { compact = false } = Astro.props;
     updateConditionalFields();
     const panel = planner.querySelector<HTMLElement>(`[data-step="${step}"]`);
     if (!panel) return false;
+    if (step === 3 && !validateBudget()) return false;
     const controls = panel.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
       "input, select, textarea"
     );
@@ -476,6 +470,34 @@ const { compact = false } = Astro.props;
     return true;
   }
 
+  function parseBudgetCents(value: string): number | null {
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+    if (!/^(?:0|[1-9][0-9]*)(?:\.[0-9]{1,2})?$/.test(trimmed)) {
+      throw new Error("Enter a whole-dollar amount or up to two decimal places.");
+    }
+    const [dollars, decimals = ""] = trimmed.split(".");
+    const cents = Number.parseInt(`${dollars}${decimals.padEnd(2, "0")}`, 10);
+    if (!Number.isSafeInteger(cents) || cents > 9_999_999_999) {
+      throw new Error("Enter an amount no greater than $99,999,999.99.");
+    }
+    return cents;
+  }
+
+  function validateBudget(): boolean {
+    if (!budgetInput) return false;
+    try {
+      parseBudgetCents(budgetInput.value);
+      budgetInput.setCustomValidity("");
+      return true;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Enter a valid estimated budget.";
+      budgetInput.setCustomValidity(message);
+      budgetInput.reportValidity();
+      return false;
+    }
+  }
+
   function saveDraft(): void {
     if (!planner || !saveState) return;
     const saved: Record<string, string | boolean> = {};
@@ -485,6 +507,7 @@ const { compact = false } = Astro.props;
     for (const control of controls) {
       saved[control.name] = control instanceof HTMLInputElement && control.type === "checkbox" ? control.checked : control.value;
     }
+    saved.__budgetWasEdited = budgetWasEdited;
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
       saveState.textContent = "Saved in this browser";
@@ -511,10 +534,112 @@ const { compact = false } = Astro.props;
           control.value = value;
         }
       }
+      plannerWasEdited = true;
+      budgetWasEdited = saved.__budgetWasEdited === true;
       saveState.textContent = "Draft resumed in this browser";
     } catch (error) {
       saveState.textContent = "Saved draft could not be read";
       console.error("Inquiry draft recovery failed. Clear the saved browser draft and retry.", error);
+    }
+  }
+
+  function setControlValue(name: string, value: string): void {
+    if (!planner) return;
+    const control = planner.elements.namedItem(name);
+    if (
+      control instanceof HTMLInputElement ||
+      control instanceof HTMLSelectElement ||
+      control instanceof HTMLTextAreaElement
+    ) {
+      control.value = value;
+    }
+  }
+
+  function formatBudgetInput(cents: number): string {
+    const dollars = Math.trunc(cents / 100).toString();
+    const minor = (cents % 100).toString().padStart(2, "0");
+    return `${dollars}.${minor}`;
+  }
+
+  function captureResumedBudget(input: InquiryInput, overwriteInput: boolean): void {
+    if (!budgetInput || !legacyBudgetContext) return;
+    resumedInput = input;
+    if (input.budgetCents === null) {
+      resumedLegacyBudget = input.budget.trim() === "" || input.budget === "unsure"
+        ? null
+        : input.budget;
+      if (overwriteInput) budgetInput.value = "";
+      const showLegacyContext =
+        !budgetWasEdited && resumedLegacyBudget !== null && budgetInput.value.trim() === "";
+      legacyBudgetContext.hidden = !showLegacyContext;
+      legacyBudgetContext.textContent = showLegacyContext
+        ? `Previous budget selection: ${resumedLegacyBudget}. Leave the amount blank to keep this context.`
+        : "";
+      return;
+    }
+    resumedLegacyBudget = null;
+    if (overwriteInput || (!budgetWasEdited && budgetInput.value.trim() === "")) {
+      budgetInput.value = formatBudgetInput(input.budgetCents);
+    }
+    legacyBudgetContext.hidden = true;
+    legacyBudgetContext.textContent = "";
+  }
+
+  function applySubmittedInput(input: InquiryInput): void {
+    if (!dateFlexible || !eventDate || !budgetInput || !legacyBudgetContext || !planner) return;
+    for (const [name, value] of [
+      ["name", input.name],
+      ["email", input.email],
+      ["phone", input.phone],
+      ["preferredReply", input.preferredReply],
+      ["company", input.company],
+      ["eventType", input.eventType],
+      ["city", input.city],
+      ["venue", input.venue],
+      ["setting", input.setting],
+      ["durationMinutes", String(input.durationMinutes)],
+      ["atmosphere", input.atmosphere],
+      ["musicRequests", input.musicRequests],
+      ["scheduleNotes", input.scheduleNotes],
+      ["equipment", input.equipment],
+      ["notes", input.notes]
+    ]) {
+      setControlValue(name, value);
+    }
+    setControlValue("guestCount", input.guestCount === null ? "" : String(input.guestCount));
+    dateFlexible.checked = input.date === "flexible";
+    eventDate.value = input.date === "flexible" ? "" : input.date;
+    const consent = planner.elements.namedItem("consent");
+    if (consent instanceof HTMLInputElement) consent.checked = input.consent;
+    const marketing = planner.elements.namedItem("marketingConsent");
+    if (marketing instanceof HTMLInputElement) marketing.checked = input.marketingConsent;
+
+    budgetWasEdited = false;
+    captureResumedBudget(input, true);
+    updateConditionalFields();
+    renderSummary();
+  }
+
+  async function restoreSubmittedInquiry(record: ResumeRecord): Promise<void> {
+    if (!saveState) return;
+    try {
+      const response = await fetch(`/api/inquiries/${encodeURIComponent(record.id)}`, {
+        headers: { Authorization: `Bearer ${record.token}`, Accept: "application/json" }
+      });
+      const body = await responseJson(response, "Inquiry resume API");
+      if (!response.ok || !isInquiryInspection(body)) {
+        throw new Error(`Inquiry resume API returned HTTP ${response.status} without a valid record.`);
+      }
+      record.status = body.status;
+      persistResumeRecord(record);
+      if (!plannerWasEdited) applySubmittedInput(body.input);
+      else captureResumedBudget(body.input, false);
+      saveState.textContent = plannerWasEdited
+        ? "Saved inquiry available; current edits kept"
+        : "Submitted inquiry resumed securely";
+    } catch (error) {
+      console.error("Submitted inquiry could not be resumed. Verify its saved token and /api/inquiries.", error);
+      saveState.textContent = "Submitted inquiry could not be resumed";
     }
   }
 
@@ -530,11 +655,18 @@ const { compact = false } = Astro.props;
       throw new Error("Cannot build inquiry payload because the event planner is unavailable.");
     }
     const params = new URLSearchParams(window.location.search);
+    const budgetCents = parseBudgetCents(controlValue("budgetCents"));
+    const preserveLegacyBudget =
+      resumedLegacyBudget !== null && !budgetWasEdited && budgetCents === null;
     return {
       name: controlValue("name"),
       email: controlValue("email"),
       phone: controlValue("phone"),
-      preferredReply: controlValue("preferredReply") === "phone" ? "phone" : "email",
+      preferredReply: controlValue("preferredReply") === "text"
+        ? "text"
+        : controlValue("preferredReply") === "phone"
+          ? "phone"
+          : "email",
       company: controlValue("company"),
       eventType: controlValue("eventType") as InquiryInput["eventType"],
       date: dateFlexible.checked ? "flexible" : controlValue("eventDate"),
@@ -551,8 +683,9 @@ const { compact = false } = Astro.props;
       musicRequests: controlValue("musicRequests"),
       scheduleNotes: controlValue("scheduleNotes"),
       equipment: controlValue("equipment"),
-      access: controlValue("access"),
-      budget: controlValue("budget"),
+      access: "unknown",
+      budget: preserveLegacyBudget ? (resumedLegacyBudget ?? "unsure") : "unsure",
+      budgetCents,
       notes: controlValue("notes"),
       consent: true,
       marketingConsent: planner.elements.namedItem("marketingConsent") instanceof HTMLInputElement
@@ -560,9 +693,9 @@ const { compact = false } = Astro.props;
         : false,
       source: "form",
       utm: {
-        source: params.get("utm_source") || undefined,
-        medium: params.get("utm_medium") || undefined,
-        campaign: params.get("utm_campaign") || undefined
+        source: params.get("utm_source") || resumedInput?.utm.source,
+        medium: params.get("utm_medium") || resumedInput?.utm.medium,
+        campaign: params.get("utm_campaign") || resumedInput?.utm.campaign
       }
     };
   }
@@ -575,6 +708,23 @@ const { compact = false } = Astro.props;
       typeof record.token === "string" &&
       typeof record.status === "string" &&
       Array.isArray(record.missingFields)
+    );
+  }
+
+  function isInquiryInspection(value: unknown): value is InquiryInspection {
+    if (typeof value !== "object" || value === null) return false;
+    const record = value as Record<string, unknown>;
+    if (typeof record.input !== "object" || record.input === null) return false;
+    const input = record.input as Record<string, unknown>;
+    return (
+      typeof record.inquiryId === "string" &&
+      typeof record.status === "string" &&
+      Array.isArray(record.shows) &&
+      typeof input.name === "string" &&
+      typeof input.email === "string" &&
+      typeof input.preferredReply === "string" &&
+      typeof input.budget === "string" &&
+      (input.budgetCents === null || Number.isSafeInteger(input.budgetCents))
     );
   }
 
@@ -811,24 +961,31 @@ const { compact = false } = Astro.props;
     submitButton.textContent = "Sending…";
     clearAlert();
     try {
-      const response = await fetch(planner.action, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const existingResume = readResumeRecord();
+      const response = await fetch(
+        existingResume === null
+          ? planner.action
+          : `/api/inquiries/${encodeURIComponent(existingResume.id)}`,
+        {
+        method: existingResume === null ? "POST" : "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          ...(existingResume === null
+            ? {}
+            : { Authorization: `Bearer ${existingResume.token}` })
+        },
         body: JSON.stringify(buildPayload())
       });
-      const responseBody: unknown = await response.json();
+      const responseBody = await responseJson(response, "Inquiry API");
       if (!response.ok || !isInquiryResponse(responseBody)) {
         throw new Error(`Inquiry API returned HTTP ${response.status} without a valid persisted record.`);
       }
-      sessionStorage.setItem(
-        RESUME_KEY,
-        JSON.stringify({
-          id: responseBody.id,
-          token: responseBody.token,
-          status: responseBody.status,
-          requestKey: makeRequestKey()
-        })
-      );
+      persistResumeRecord({
+        id: responseBody.id,
+        token: responseBody.token,
+        status: responseBody.status,
+        requestKey: existingResume?.requestKey ?? makeRequestKey()
+      });
       sessionStorage.removeItem(STORAGE_KEY);
       planner.replaceChildren();
       const confirmation = document.createElement("div");
@@ -870,13 +1027,26 @@ const { compact = false } = Astro.props;
     updateConditionalFields();
     showStep(1, false);
     const existingResume = readResumeRecord();
-    if (existingResume && existingResume.status !== "confirmed") activateScheduling(existingResume, false);
-    activePlanner.addEventListener("input", () => {
+    if (existingResume) {
+      if (existingResume.status !== "confirmed") activateScheduling(existingResume, false);
+      void restoreSubmittedInquiry(existingResume);
+    }
+    activePlanner.addEventListener("input", (event) => {
+      plannerWasEdited = true;
+      if (budgetInput && event.target === budgetInput) {
+        budgetWasEdited = true;
+        budgetInput.setCustomValidity("");
+        if (legacyBudgetContext) {
+          legacyBudgetContext.hidden = true;
+          legacyBudgetContext.textContent = "";
+        }
+      }
       updateConditionalFields();
       saveDraft();
       if (activePlanner.dataset.currentStep === "3") renderSummary();
     });
     activePlanner.addEventListener("change", () => {
+      plannerWasEdited = true;
       updateConditionalFields();
       saveDraft();
       if (activePlanner.dataset.currentStep === "3") renderSummary();

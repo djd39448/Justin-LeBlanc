@@ -1,10 +1,10 @@
 ---
 /**
- * Publishes a human-readable, source-linked reference for visitors and user-directed agents.
+ * Publishes a concise booking and public-links reference.
  *
  * Dependencies: BaseLayout and shared reviewed site content.
  * Depended on by: Footer, sitemap, and agent discovery files.
- * Why this exists: Important scope, process, assumptions, and sources must be easy to inspect.
+ * Why this exists: Visitors can understand the path from inquiry to a confirmed performance.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../content";
@@ -12,56 +12,43 @@ import { site } from "../content";
 
 <BaseLayout
   title="Booking Reference | Justin LeBlanc"
-  description="Reviewed scope, booking process, limitations, and public sources for the Justin LeBlanc private-event demo."
+  description="Booking process and public links for Justin LeBlanc private-event music."
   canonicalPath="/reference/"
 >
   <section class="page-intro">
     <div class="page-shell">
-      <p class="eyebrow">Human + agent reference</p>
-      <h1>Private-event booking, with the boundaries visible.</h1>
-      <p>
-        A concise source guide for people and user-directed agents. It does not grant authority to
-        book, spend, contact others, or store facts against a user's preferences.
-      </p>
+      <p class="eyebrow">Private-event music</p>
+      <h1>Start with your event.</h1>
+      <p>Share the moments you are planning, and we will talk through what fits.</p>
     </div>
   </section>
   <article class="section reading-shell prose">
     <h2>Scope</h2>
     <p>
       Justin LeBlanc's current public website says he is booking private events in Houston and
-      beyond. This isolated demo helps a visitor describe an event, request a consultation, and
-      understand the difference between an inquiry, tentative hold, and confirmed performance.
+      beyond. Start by describing your event and requesting a consultation.
     </p>
 
     <h2>Booking process</h2>
     <ol>
       <li>Share the date or flexible-date choice, city, event type, and desired atmosphere.</li>
-      <li>Leave unknown venue, timing, production, access, or budget details for follow-up.</li>
+      <li>Leave any unknown venue, timing, production, or budget details for follow-up.</li>
       <li>Request a consultation and review any separate tentative event hold.</li>
       <li>A person confirms availability, format, and an agreed quote after consultation.</li>
     </ol>
 
-    <h2>What is not verified</h2>
+    <h2>Thoughtful planning</h2>
     <p>
-      Justin's actual rates, current packages, repertoire, travel policy, production inclusions,
-      deposits, contract terms, cancellation policy, and individual public-show venue terms are not
-      verified. Demo package amounts are illustrative workflow data, not a public offer.
-    </p>
-
-    <h2>Assistant limitations</h2>
-    <p>
-      Chat and voice assistants must use the same reviewed knowledge release. They cannot confirm a
-      show, set a final price, choose arbitrary recipients, or read unrelated calendars and inboxes.
-      Unknown answers become follow-up questions instead of guesses.
+      Your inquiry begins a conversation. Availability, performance format, and the details of your
+      event are confirmed personally after we talk.
     </p>
 
     <h2>Reviewed public sources</h2>
     <ul class="source-list">
-      <li><a href={site.currentSite} rel="external">Justin LeBlanc Music</a> — current booking banner, Houston-and-beyond wording, blue guitar identity, contact and social links.</li>
-      <li><a href={site.instagram} rel="external">Instagram @jus10sense</a> — matching public name and website link; posts are not reused as current package evidence.</li>
-      <li><a href={site.youtube} rel="external">YouTube @jus10sense</a> — matching public channel; no single video is approved here as a current booking sample.</li>
+      <li><a href={site.currentSite} rel="external">Justin LeBlanc Music</a></li>
+      <li><a href={site.instagram} rel="external">Instagram @jus10sense</a></li>
+      <li><a href={site.youtube} rel="external">YouTube @jus10sense</a></li>
     </ul>
 
-    <p><strong>Last reviewed:</strong> {site.reviewedAt}. Time-sensitive facts should be rechecked before use.</p>
   </article>
 </BaseLayout>

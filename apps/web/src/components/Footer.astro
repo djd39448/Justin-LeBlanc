@@ -1,10 +1,10 @@
 ---
 /**
- * Renders source links, privacy routes, and the demo boundary.
+ * Renders concise navigation and verified public links.
  *
  * Dependencies: Shared reviewed site content.
  * Depended on by: BaseLayout.
- * Why this exists: Visitors and agents need clear provenance and limitations on every page.
+ * Why this exists: Visitors need a clear route to planning, listening, and following Justin.
  */
 import { site } from "../content";
 ---
@@ -13,21 +13,17 @@ import { site } from "../content";
   <div class="footer-grid page-shell">
     <div>
       <a class="wordmark footer-mark" href="/"><span>Justin</span> LeBlanc</a>
-      <p>Private-event planning for Houston and beyond.</p>
-      <p class="source-note">
-        This isolated demo is not Justin's current production website. Availability, format, and
-        final pricing require personal confirmation.
-      </p>
+      <p>Music shaped around your room, your guests, and the moments they will remember.</p>
     </div>
     <nav aria-label="Footer">
-      <a href="/about/">About</a>
-      <a href="/hear-live/">Hear Justin</a>
-      <a href="/faq/">FAQs</a>
+      <a href="/#listen">Listen</a>
+      <a href="/#follow">Follow</a>
+      <a href="/faq/">FAQ</a>
       <a href="/privacy/">Privacy</a>
-      <a href="/reference/">Agent reference</a>
+      <a href="/#plan-your-event">Plan your event</a>
     </nav>
     <div>
-      <p class="footer-label">Public sources</p>
+      <p class="footer-label">Follow Justin</p>
       <a href={site.currentSite} rel="external">Current website</a>
       <a href={site.instagram} rel="external">Instagram</a>
       <a href={site.youtube} rel="external">YouTube</a>
@@ -35,7 +31,6 @@ import { site } from "../content";
     </div>
   </div>
   <div class="footer-bottom page-shell">
-    <span>Demo reviewed {site.reviewedAt}</span>
     <span>© 2026 Justin LeBlanc</span>
   </div>
 </footer>

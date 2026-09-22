@@ -1,14 +1,9 @@
-# Justin LeBlanc private-event booking demo
+# Justin LeBlanc private-event music
 
-> A useful, easy-to-read resource for planning private-event music with Justin LeBlanc in Houston and beyond.
+> A direct way to plan music for private gatherings, celebrations, corporate receptions, and wedding inquiries.
 
-- Canonical demo: https://justinleblancmusic.50by50.dev/
-- Booking reference: https://justinleblancmusic.50by50.dev/reference/
+- Canonical website: https://justinleblancmusic.50by50.dev/
 - Event inquiry: https://justinleblancmusic.50by50.dev/plan-your-event/
 - Current public site: https://justinleblancmusic.com/
-- Last reviewed: 2026-09-21
-
-This demo distinguishes inquiries, tentative holds, and confirmed performances. Justin's actual
-rates, current packages, repertoire, production inclusions, travel policy, and venue terms require
-owner confirmation. Demo prices are illustrative. Assistants may explain reviewed facts and capture
-questions; they cannot confirm a show, final price, or external action for a user.
+Sending this form starts a conversation; it does not confirm your date. Public performance dates
+are available on the homepage when they are confirmed for sharing.

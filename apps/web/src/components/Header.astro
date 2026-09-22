@@ -1,40 +1,74 @@
 ---
 /**
- * Renders the compact, high-contrast primary navigation.
+ * Renders the persistent, keyboard-accessible primary navigation.
  *
  * Dependencies: None.
  * Depended on by: BaseLayout.
- * Why this exists: The current public site's low-contrast navigation needs an accessible replacement.
+ * Why this exists: Every visitor should be able to reach music, social links, answers, and the planner.
  */
 const currentPath = Astro.url.pathname;
 const navItems = [
-  { href: "/#private-events", label: "Private events" },
-  { href: "/hear-live/", label: "Hear Justin" },
-  { href: "/faq/", label: "FAQs" }
+  { href: "/#listen", label: "LISTEN" },
+  { href: "/#follow", label: "FOLLOW" },
+  { href: "/faq/", label: "FAQ" }
 ];
+const plannerHref = currentPath === "/"
+  ? "#plan-your-event"
+  : currentPath === "/plan-your-event/"
+    ? "#planner-title"
+    : "/#plan-your-event";
 ---
 
 <header class="site-header">
-  <div class="notice-bar">Private-event demo · Houston & beyond</div>
   <div class="nav-shell">
     <a class="wordmark" href="/" aria-label="Justin LeBlanc home">
       <span>Justin</span> LeBlanc
     </a>
     <nav class="desktop-nav" aria-label="Primary navigation">
       {navItems.map((item) => (
-        <a href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
+        <a href={item.href} aria-current={currentPath === "/faq/" && item.href === "/faq/" ? "page" : undefined}>
           {item.label}
         </a>
       ))}
-      <a class="button button-small" href="/plan-your-event/">Plan your event</a>
+      <a class="button button-small" href={plannerHref} aria-current={currentPath === "/plan-your-event/" ? "page" : undefined}>PLAN YOUR EVENT</a>
     </nav>
-    <details class="mobile-nav">
-      <summary aria-label="Open navigation">Menu</summary>
-      <nav aria-label="Mobile navigation">
-        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
-        <a href="/about/">About Justin</a>
-        <a class="button button-small" href="/plan-your-event/">Plan your event</a>
+    <div class="mobile-nav">
+      <button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+      <nav id="mobile-menu" aria-label="Mobile navigation" hidden>
+        {navItems.map((item) => (
+          <a href={item.href} aria-current={currentPath === "/faq/" && item.href === "/faq/" ? "page" : undefined}>
+            {item.label}
+          </a>
+        ))}
+        <a class="button button-small" href={plannerHref} aria-current={currentPath === "/plan-your-event/" ? "page" : undefined}>PLAN YOUR EVENT</a>
       </nav>
-    </details>
+    </div>
   </div>
 </header>
+
+<script>
+  const mobileToggle = document.querySelector<HTMLButtonElement>(".mobile-nav-toggle");
+  const mobileMenu = document.querySelector<HTMLElement>("#mobile-menu");
+
+  if (mobileToggle && mobileMenu) {
+    const closeMenu = (restoreFocus: boolean): void => {
+      mobileMenu.hidden = true;
+      mobileToggle.setAttribute("aria-expanded", "false");
+      if (restoreFocus) mobileToggle.focus();
+    };
+
+    mobileToggle.addEventListener("click", () => {
+      const isOpen = mobileToggle.getAttribute("aria-expanded") === "true";
+      mobileMenu.hidden = isOpen;
+      mobileToggle.setAttribute("aria-expanded", String(!isOpen));
+      if (!isOpen) mobileMenu.querySelector<HTMLAnchorElement>("a")?.focus();
+    });
+    mobileMenu.addEventListener("click", (event) => {
+      if (event.target instanceof HTMLAnchorElement) closeMenu(false);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !mobileMenu.hidden) closeMenu(true);
+    });
+    mobileToggle.dataset.menuReady = "true";
+  }
+</script>

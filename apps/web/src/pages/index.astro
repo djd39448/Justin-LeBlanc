@@ -1,193 +1,92 @@
 ---
 /**
- * Renders the primary private-event landing page and complete semantic booking context.
+ * Renders the conversion-first private-event landing page.
  *
- * Dependencies: BaseLayout, planner, chat, FAQ, and reviewed shared content.
- * Depended on by: The root website route and campaign entry points.
- * Why this exists: It makes private-event discovery the main path while preserving Justin's identity.
+ * Dependencies: Shared layout, planner, public events, photos, and reviewed FAQ content.
+ * Depended on by: The root public route.
+ * Why this exists: Visitors can start a thoughtful event inquiry without leaving the opening page.
  */
-import BaseLayout from "../layouts/BaseLayout.astro";
 import ArtistPhotos from "../components/ArtistPhotos.astro";
-import ChatPanel from "../components/ChatPanel.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import EventPlanner from "../components/EventPlanner.astro";
 import FaqList from "../components/FaqList.astro";
-import VoicePanel from "../components/VoicePanel.astro";
-import { demoPackages, site } from "../content";
+import PublicEvents from "../components/PublicEvents.astro";
+import { site } from "../content";
 
-const structuredData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: site.name,
-    url: site.currentSite,
-    image: `${site.canonicalOrigin}/images/justin-blue-guitar-hero.jpg`,
-    sameAs: [site.instagram, site.youtube, site.facebook]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: "Justin LeBlanc private-event music inquiry",
-    description:
-      "A planning and inquiry service for private-event music with Justin LeBlanc in Houston and beyond.",
-    areaServed: { "@type": "City", name: "Houston" },
-    provider: { "@type": "Person", name: site.name, url: site.currentSite },
-    url: `${site.canonicalOrigin}/plan-your-event/`
-  }
-];
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: site.canonicalOrigin,
+  image: `${site.canonicalOrigin}/images/justin-blue-guitar-hero.jpg`,
+  sameAs: [site.instagram, site.youtube, site.facebook]
+};
 ---
 
 <BaseLayout canonicalPath="/" structuredData={structuredData} preloadHero>
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-content page-shell">
-      <div class="hero-copy">
-        <p class="eyebrow">Justin LeBlanc · Private events</p>
-        <h1 id="hero-title">Live music shaped around your room.</h1>
-        <p>
-          Planning a gathering in Houston or beyond? Share the date, setting, and atmosphere you
-          have in mind, then request a personal consultation about availability and format.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-light" href="/plan-your-event/">Check your date & plan your event</a>
-          <a class="button" href="#hear-justin">Hear Justin first</a>
-        </div>
+  <section class="opening" aria-labelledby="hero-title">
+    <div class="opening__photo" aria-hidden="true"></div>
+    <div class="opening__content page-shell">
+      <div class="opening__copy">
+        <p class="eyebrow">Private-event music</p>
+        <h1 id="hero-title">Justin LeBlanc</h1>
+        <p>A polished, personable performance shaped around your room, your guests, and the moments they’ll remember.</p>
       </div>
-      <a class="hero-source" href={site.currentSite} rel="external">Authentic image from Justin's current site</a>
-    </div>
-  </section>
-
-  <div class="identity-strip" aria-label="Booking scope">
-    <div><strong>Serving</strong><span>Houston & beyond</span></div>
-    <div><strong>Start with</strong><span>Your date, place & atmosphere</span></div>
-    <div><strong>Confirmation</strong><span>Personal review after consultation</span></div>
-  </div>
-
-  <section class="section page-shell" id="private-events" aria-labelledby="occasions-title">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">A soundtrack with a purpose</p>
-        <h2 id="occasions-title">Begin with how you want the event to feel.</h2>
-      </div>
-      <p>
-        The planner captures the moments, setting, timing, and practical details around the music.
-        Specific songs, performance format, and production needs are discussed and confirmed.
-      </p>
-    </div>
-    <div class="occasion-grid">
-      <article class="occasion-card">
-        <span class="occasion-number">01</span>
-        <h3>Private gatherings</h3>
-        <p>Start with the people, the room, and the energy you want around the conversation.</p>
-      </article>
-      <article class="occasion-card">
-        <span class="occasion-number">02</span>
-        <h3>Celebrations</h3>
-        <p>Share the milestone, schedule, and moments you want the music to support.</p>
-      </article>
-      <article class="occasion-card">
-        <span class="occasion-number">03</span>
-        <h3>Corporate receptions</h3>
-        <p>Bring venue, timing, guest, access, and production notes into one clear brief.</p>
-      </article>
-      <article class="occasion-card">
-        <span class="occasion-number">04</span>
-        <h3>Wedding inquiries</h3>
-        <p>Describe the ceremony, cocktail, dinner, or reception moments you are considering.</p>
-      </article>
-    </div>
-  </section>
-
-  <ArtistPhotos id="hear-justin" showLinks />
-
-  <section class="section section-blue" aria-labelledby="process-title">
-    <div class="page-shell">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">From idea to confirmed plan</p>
-          <h2 id="process-title">A clear next step at every stage.</h2>
-        </div>
-        <p>A tentative hold and a confirmed booking are different states, shown plainly throughout.</p>
-      </div>
-      <div class="process-grid">
-        <article class="process-card">
-          <h3>Tell us about the event</h3>
-          <p>Share the known details. Leave venue, production, access, or budget unknown if needed.</p>
-        </article>
-        <article class="process-card">
-          <h3>Consultation + tentative hold</h3>
-          <p>Choose a real consultation time and review the separate tentative event hold.</p>
-        </article>
-        <article class="process-card">
-          <h3>Personal confirmation</h3>
-          <p>A person confirms the performance only after the consultation and an agreed quote.</p>
-        </article>
+      <div id="plan-your-event" class="opening__planner" tabindex="-1">
+        <EventPlanner compact />
       </div>
     </div>
   </section>
 
-  <EventPlanner compact />
+  <section class="category-rail" aria-label="Events Justin LeBlanc performs for">
+    <span>PRIVATE GATHERINGS</span><span>CELEBRATIONS</span><span>CORPORATE RECEPTIONS</span><span>WEDDING INQUIRIES</span>
+  </section>
 
-  <section class="section section-paper" aria-labelledby="help-title">
-    <div class="page-shell split-section">
-      <div>
-        <p class="eyebrow">Prefer to ask first?</p>
-        <h2 id="help-title">Get help without losing the form.</h2>
-        <p>
-          The assistant is optional. The full booking process and important answers remain readable
-          without AI, JavaScript, or a conversation.
-        </p>
-      </div>
-      <div>
-        <ChatPanel />
-        <VoicePanel />
+  <PublicEvents />
+
+  <section class="listen section section-blue" id="listen" aria-labelledby="listen-title">
+    <div class="page-shell media-stage">
+      <div class="media-visual" aria-hidden="true"></div>
+      <div class="media-copy">
+        <p class="eyebrow">Listen</p>
+        <h2 id="listen-title">Music with room to breathe.</h2>
+        <p>Listen on Justin’s public channel, then bring the feeling you are after to your event inquiry.</p>
+        <a class="button button-light" href={site.youtube} rel="external">Listen on YouTube</a>
       </div>
     </div>
   </section>
 
-  <section class="section page-shell" aria-labelledby="live-title">
-    <div class="schedule-placeholder">
-      <div>
-        <p class="eyebrow">Hear Justin live before you book</p>
-        <h2 id="live-title">Public dates stay on the current source.</h2>
-        <p>
-          Venue terms and individual listings have not been verified for this demo, so dates are not
-          copied here and no free-admission claim is made.
-        </p>
-      </div>
-      <a class="button button-secondary" href={`${site.currentSite}events`} rel="external">Check current events</a>
-    </div>
-  </section>
+  <ArtistPhotos id="follow" showLinks />
 
   <section class="section section-paper" aria-labelledby="faq-title">
     <div class="page-shell">
       <div class="section-heading">
-        <div><p class="eyebrow">Before you inquire</p><h2 id="faq-title">Straight answers.</h2></div>
-        <p>If a detail is not verified, the booking team will capture the question instead of guessing.</p>
+        <div><p class="eyebrow">A few answers</p><h2 id="faq-title">Let’s make it easy to begin.</h2></div>
+        <p>A few things people often want to know before reaching out.</p>
       </div>
       <FaqList />
     </div>
   </section>
 
-  <section class="section section-paper" aria-labelledby="pricing-title">
-    <div class="page-shell">
-      <span class="demo-label">Illustrative demo pricing · not Justin's published rates</span>
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">See how the estimate works</p>
-          <h2 id="pricing-title">Clear examples, then a personal quote.</h2>
-        </div>
-        <p>
-          These editable examples demonstrate the workflow. Travel, sound, timing, and custom
-          production remain assumptions until discussed. No inquiry creates a charge.
-        </p>
-      </div>
-      <div class="package-grid">
-        {demoPackages.map((item) => (
-          <article class="package-card">
-            <div><h3>{item.name}</h3><p>{item.detail}</p></div>
-            <div class="package-price">{item.price}</div>
-          </article>
-        ))}
-      </div>
+  <section class="closing-cta section" aria-labelledby="closing-title">
+    <div class="reading-shell">
+      <p class="eyebrow">Ready when you are</p>
+      <h2 id="closing-title">Tell me about the room.</h2>
+      <p>Start with the details you have, and we will take it from there.</p>
+      <a class="button" href="#plan-your-event" data-planner-return>PLAN YOUR EVENT</a>
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  const returnLink = document.querySelector<HTMLAnchorElement>("[data-planner-return]");
+  const plannerHeading = document.querySelector<HTMLElement>("#planner-title");
+  if (returnLink && plannerHeading) {
+    returnLink.addEventListener("click", () => {
+      window.setTimeout(() => {
+        plannerHeading.setAttribute("tabindex", "-1");
+        plannerHeading.focus();
+      }, 0);
+    });
+  }
+</script>

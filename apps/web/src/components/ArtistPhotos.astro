@@ -32,7 +32,8 @@ const headingId = id ? `${id}-title` : `artist-photos-${variant}`;
 >
   <div class="page-shell">
     <header class="artist-photos__heading">
-      <h2 id={headingId}>Meet Justin</h2>
+      <p class="eyebrow">Follow</p>
+      <h2 id={headingId}>{showLinks ? "Meet Justin" : "Justin LeBlanc"}</h2>
     </header>
 
     <div class="artist-photos__grid">
@@ -70,7 +71,6 @@ const headingId = id ? `${id}-title` : `artist-photos-${variant}`;
         <a href={site.instagram} rel="external">Instagram</a>
         <a href={site.youtube} rel="external">YouTube</a>
         <a href={site.facebook} rel="external">Facebook</a>
-        <a href={site.currentSite} rel="external">Current website</a>
       </nav>
     )}
   </div>

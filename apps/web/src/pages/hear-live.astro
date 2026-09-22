@@ -1,27 +1,26 @@
 ---
 /**
- * Presents honest listening and public-show paths without reproducing unverified listings.
+ * Presents Justin's verified listening channels.
  *
  * Dependencies: BaseLayout and reviewed public source links.
  * Depended on by: Primary navigation and media calls to action.
- * Why this exists: Hearing Justin remains a secondary path into private-event planning.
+ * Why this exists: Listening remains a helpful path into private-event planning.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { site } from "../content";
 ---
 
 <BaseLayout
-  title="Hear Justin | Justin LeBlanc"
-  description="Visit Justin LeBlanc's current public music sources and plan a private event."
+  title="Listen | Justin LeBlanc"
+  description="Listen to Justin LeBlanc and plan a private event."
   canonicalPath="/hear-live/"
 >
   <section class="page-intro">
     <div class="page-shell">
       <p class="eyebrow">Listen before you plan</p>
-      <h1>Hear Justin from the source.</h1>
+      <h1>Listen to Justin.</h1>
       <p>
-        The demo links to Justin's public channel and current website. It does not present an
-        unapproved clip as a booking sample or copy unverified public-show terms.
+        Visit Justin’s public channel for music, then bring the feeling you are after to your event inquiry.
       </p>
     </div>
   </section>
@@ -30,19 +29,15 @@ import { site } from "../content";
       <p class="eyebrow">Public music channel</p>
       <h2>YouTube @jus10sense</h2>
       <p>
-        The public channel identity matches Justin's linked website profile. Its content spans music
-        and personal videos, so choose from the source rather than relying on a curated claim here.
+        Visit Justin’s public channel to hear more.
       </p>
       <a class="button" href={site.youtube} rel="external">Open Justin's YouTube</a>
     </div>
     <aside class="source-card">
-      <p class="eyebrow">Current public dates</p>
-      <h3>Check the live source</h3>
-      <p>
-        Event listings, venue rules, and admission terms can change. This demo links out until each
-        listing is verified; it never labels an event free without venue evidence.
-      </p>
-      <a class="button button-light" href={`${site.currentSite}events`} rel="external">View current events</a>
+      <p class="eyebrow">Follow along</p>
+      <h3>More from Justin.</h3>
+      <p>Find current updates and videos through Justin’s public links.</p>
+      <a class="button button-light" href={site.instagram} rel="external">Follow on Instagram</a>
     </aside>
   </section>
   <section class="section section-paper">
@@ -52,7 +47,7 @@ import { site } from "../content";
         Share the date or flexible-date choice, city, setting, and atmosphere. Specific songs and
         performance format remain part of the conversation.
       </p>
-      <a class="button" href="/plan-your-event/">Plan your event</a>
+      <a class="button" href="/#plan-your-event">Plan your event</a>
     </div>
   </section>
 </BaseLayout>
