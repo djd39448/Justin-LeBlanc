@@ -2,7 +2,17 @@
 import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 export default tseslint.config(
-  { ignores: ['**/dist/**', '**/node_modules/**', '**/.astro/**', 'work/**', 'private/**'] },
+  {
+    ignores: [
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/.astro/**',
+      'playwright-report/**',
+      'test-results/**',
+      'work/**',
+      'private/**',
+    ],
+  },
   ...tseslint.configs.recommended,
   {
     files: ['**/*.ts', '**/*.js', '**/*.mjs'],

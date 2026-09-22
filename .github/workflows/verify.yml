@@ -16,3 +16,6 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run verify
+      - run: npm run audit:public
+      - run: npm run scan:secrets
+      - run: npm run test:e2e
