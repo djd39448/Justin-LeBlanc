@@ -3,6 +3,7 @@
  * Why: domain tests alone cannot catch exposed operator routes or wire-level schema drift. */
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { PublicEventsUnavailableError } from '../apps/api/adapters/public-events.js';
 import { createApp } from '../apps/api/app.js';
 import { ConfigSchema } from '../apps/api/config.js';
 import { createRuntime, type Runtime } from '../apps/api/runtime.js';
@@ -89,26 +90,55 @@ describe('HTTP boundaries', () => {
     expect(health.headers.get('Cache-Control')).toBe('no-store');
     expect(await health.text()).not.toContain('test-only');
   });
-  it('publishes only the gated E.164 demo voice number', async () => {
+  it('keeps the dormant voice number out of public health output', async () => {
     const caller = '+12025550199';
-    const readHealth = async (overrides: Record<string, string>) => {
-      const { app } = fixture({ DEMO_CALLER_ALLOWLIST: caller, ...overrides });
-      const response = await app.request('/api/health');
-      expect(response.status).toBe(200);
-      const text = await response.text();
-      expect(text).not.toContain(caller);
-      return JSON.parse(text) as Record<string, unknown>;
-    };
+    const voiceNumber = '+12025550100';
+    const { app } = fixture({
+      DEMO_CALLER_ALLOWLIST: caller,
+      VOICE_ENABLED: 'true',
+      RETELL_JLM_PHONE_NUMBER: voiceNumber,
+    });
+    const response = await app.request('/api/health');
+    expect(response.status).toBe(200);
+    const text = await response.text();
+    expect(text).not.toContain(caller);
+    expect(text).not.toContain(voiceNumber);
+    expect(JSON.parse(text) as Record<string, unknown>).not.toHaveProperty('demoVoicePhoneNumber');
+  });
+  it('returns only the sanitized public-events contract and a fixed unavailable response', async () => {
+    const { app, runtime } = fixture();
+    vi.spyOn(runtime.publicEvents, 'read').mockResolvedValueOnce({
+      events: [
+        {
+          id: 'pe_abcdefghijklmnopqrstuv',
+          title: 'Synthetic public performance',
+          venue: 'Public Venue, Houston',
+          start: '2026-10-03T20:00:00-05:00',
+          end: '2026-10-03T22:00:00-05:00',
+          timezone: 'America/Chicago',
+        },
+      ],
+      status: 'fresh',
+      lastUpdated: '2026-09-22T12:00:00.000Z',
+    });
+    const available = await app.request('/api/public-events');
+    expect(available.status).toBe(200);
+    expect(available.headers.get('Cache-Control')).toContain('max-age=60');
+    expect(
+      Object.keys(((await available.json()) as { events: object[] }).events[0] ?? {}).sort(),
+    ).toEqual(['end', 'id', 'start', 'timezone', 'title', 'venue']);
 
-    expect(
-      await readHealth({ VOICE_ENABLED: 'false', RETELL_JLM_PHONE_NUMBER: '+12025550100' }),
-    ).not.toHaveProperty('demoVoicePhoneNumber');
-    expect(
-      await readHealth({ VOICE_ENABLED: 'true', RETELL_JLM_PHONE_NUMBER: '202-555-0100' }),
-    ).not.toHaveProperty('demoVoicePhoneNumber');
-    expect(
-      await readHealth({ VOICE_ENABLED: 'true', RETELL_JLM_PHONE_NUMBER: '+12025550100' }),
-    ).toHaveProperty('demoVoicePhoneNumber', '+12025550100');
+    vi.spyOn(runtime.publicEvents, 'read').mockRejectedValueOnce(
+      new PublicEventsUnavailableError(),
+    );
+    const unavailable = await app.request('/api/public-events');
+    expect(unavailable.status).toBe(503);
+    expect(unavailable.headers.get('Cache-Control')).toBe('no-store');
+    expect(unavailable.headers.get('Retry-After')).toBe('300');
+    expect(await unavailable.json()).toEqual({
+      error: 'public_events_unavailable',
+      message: 'Current dates are temporarily unavailable.',
+    });
   });
   it('persists form intake and requires its own resume credential', async () => {
     const { app } = fixture();

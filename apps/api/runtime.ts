@@ -6,6 +6,7 @@ import { BookingService } from '../../packages/domain/booking.js';
 
 import { CalendarEffectDispatcher, GoogleCalendarAdapter } from './adapters/calendar.js';
 import { ImapEmailAdapter, SmtpEmailAdapter } from './adapters/email.js';
+import { PublicEventsCalendarReader } from './adapters/public-events.js';
 import { createAssistantHandlers } from './assistants/handlers.js';
 import { OpenAIChatAssistant } from './assistants/openai.js';
 import { EventBriefService } from './billing/brief.js';
@@ -19,6 +20,37 @@ export function createRuntime(config: Config) {
   const store = new Store(config.DATABASE_URL);
   const knowledge = loadKnowledgeRelease();
   const calendar = new GoogleCalendarAdapter(config);
+  const publicEvents = new PublicEventsCalendarReader(
+    {
+      enabled: config.PUBLIC_EVENTS_ENABLED,
+      calendarId: config.PUBLIC_EVENTS_CALENDAR_ID,
+      timezone: config.PUBLIC_EVENTS_TIMEZONE,
+      idSecret: config.PUBLIC_EVENTS_ID_SECRET,
+      googleClientId: config.GOOGLE_CLIENT_ID,
+      googleClientSecret: config.GOOGLE_CLIENT_SECRET,
+      googleRefreshToken: config.GOOGLE_REFRESH_TOKEN,
+    },
+    {
+      reportExcluded: ({ excluded }) => {
+        console.warn(
+          JSON.stringify({
+            event: 'public_events_excluded',
+            count: excluded,
+            remedy:
+              'Review only the controlled Public Shows Calendar entries; no event data was logged.',
+          }),
+        );
+      },
+      reportFailure: (failure) => {
+        console.error(
+          JSON.stringify({
+            event: 'public_events_refresh_failed',
+            ...failure,
+          }),
+        );
+      },
+    },
+  );
   const booking = new BookingService(
     store,
     calendar,
@@ -62,6 +94,7 @@ export function createRuntime(config: Config) {
     store,
     knowledge,
     calendar,
+    publicEvents,
     booking,
     billing,
     briefs,

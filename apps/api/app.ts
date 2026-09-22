@@ -9,6 +9,10 @@ import { InquiryInputSchema, ScheduleInputSchema } from '../../packages/contract
 import { EstimateInputSchema, estimateEvent } from '../../packages/domain/pricing.js';
 import { localDateTimeToInstant } from '../../packages/domain/time.js';
 
+import {
+  PUBLIC_EVENTS_UNAVAILABLE,
+  PublicEventsUnavailableError,
+} from './adapters/public-events.js';
 import { chatTurn } from './chat-session.js';
 import { mountInboundRoutes } from './inbound-routes.js';
 import { operatorAction } from './operator-actions.js';
@@ -17,7 +21,6 @@ import type { Runtime } from './runtime.js';
 import { boundary, rateLimit, resumeToken, requireToken } from './security.js';
 import { mountVoiceRoutes, RETELL_MAX_BODY_BYTES } from './voice-routes.js';
 
-const e164Pattern = /^\+[1-9]\d{7,14}$/;
 const PUBLIC_MAX_BODY_BYTES = 32 * 1024;
 
 /** Builds routes against injected persistent services; does not start a network listener. */
@@ -45,11 +48,29 @@ export function createApp(runtime: Runtime): Hono {
         voice: runtime.config.VOICE_ENABLED,
         billing: runtime.config.INVOICE_SEND_ENABLED,
       },
-      ...(runtime.config.VOICE_ENABLED && e164Pattern.test(runtime.config.RETELL_JLM_PHONE_NUMBER)
-        ? { demoVoicePhoneNumber: runtime.config.RETELL_JLM_PHONE_NUMBER }
-        : {}),
     }),
   );
+  app.get('/api/public-events', async (c) => {
+    try {
+      const projection = await runtime.publicEvents.read();
+      c.header('Cache-Control', 'public, max-age=60, stale-while-revalidate=240');
+      return c.json(projection);
+    } catch (error) {
+      if (!(error instanceof PublicEventsUnavailableError)) {
+        console.error(
+          JSON.stringify({
+            event: 'public_events_route_failed',
+            error: error instanceof Error ? error.name : 'UnknownError',
+            remedy:
+              'Inspect the Public Shows reader and keep PUBLIC_EVENTS_ENABLED=false until resolved.',
+          }),
+        );
+      }
+      c.header('Cache-Control', 'no-store');
+      c.header('Retry-After', '300');
+      return c.json(PUBLIC_EVENTS_UNAVAILABLE, 503);
+    }
+  });
   app.use('/api/inquiries*', rateLimit(runtime.store));
   app.use('/api/chat', rateLimit(runtime.store, 10));
   app.use('/api/bookings', rateLimit(runtime.store, 10));
