@@ -1,17 +1,18 @@
 # Demo handoff
 
 Status date: 2026-09-22. The isolated baseline is deployed and its web, chat, private Calendar,
-email, and voice transport paths have real provider evidence. Round-two code and local acceptance
-are complete on a pushed feature branch but are not yet the public frontend. Calendar-driven
+email, and voice transport paths have real provider evidence. Round-two code is merged to `main`;
+its additive API and fail-closed Pages bridge are live, while the conversion frontend remains
+gated on a dedicated public-only Calendar. Calendar-driven
 automatic invoicing is implemented, CI-verified and loaded in the running services; a fresh live
 Calendar-to-inbox walkthrough remains pending. The delivered reply-driven $700 invoice is
 historical old-policy evidence only. Full voice booking, native hangup, and recovery after an actual
 reboot/sign-out remain unverified.
 
-## Round-two implementation — locally verified, not deployed
+## Round-two implementation — API deployed, frontend gated
 
 Dave's 2026-09-22 direction is implemented in
-`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` on `codex/justin-round-two`. The branch:
+`e4e082e5d85d56f3301ce7652180b40c78f24956` on `main`. The release:
 
 - renders the planner in the opening homepage conversion experience with no preliminary CTA/reveal;
 - keeps the primary navigation pinned throughout scrolling;
@@ -23,29 +24,32 @@ Dave's 2026-09-22 direction is implemented in
   backend tests intact.
 
 The exact-source adapter, fixed 503, recurrence/filter/cache boundaries, multi-calendar privacy
-fixture, and sanitized DTO all pass offline. `npm run verify` passed 137 tests in 23 files,
+fixture, and sanitized DTO all pass. `npm run verify` passed 141 tests in 24 files,
 lint/typecheck, 21 Astro files with zero diagnostics, and nine pages. Playwright passed 30 cases with
 15 intentional viewport skips; the 16-file public-output audit and secret scan found nothing.
 Responsive screenshots and command-level evidence are in
 [the dated round-two record](evidence/round-two-2026-09-22.md).
 
-These are local implementation claims, not runtime claims. The existing Pages deployment still
-reflects the prior design. The owner-confirmed Public Shows Calendar and existing read access are
-not proven in checked-in evidence. Windows coordination failed before preflight because its Codex
-runner could not find the configured CLI path and its Claude runner had no credit; therefore no
-runtime, Calendar, or Pages mutation is claimed. Restore coordination, deploy the API
-disabled-first, and leave the frontend unchanged until the enabled sanitized endpoint passes.
+The Windows runtime now runs the same release commit with `PUBLIC_EVENTS_ENABLED=false` after a
+private backup and rollback capture. All three health paths pass with unchanged capabilities, and
+all three public-events paths return the exact fixed sanitized 503. Pages deployment `5213f7b6`
+reused every static file and updated only the API safety bridge, so the public site still reflects
+the prior design. The exact Calendar used by Justin's existing public events page was inspected and
+rejected because it mixes private-event records and street-address locations. No Calendar/event,
+OAuth, Retell, mail, billing, or DNS resource was changed.
 
 ## Running system
 
-- The exact public hostname serves deployment `840a4ccf` and returns HTTP 200. `/admin` shows **Run morning invoicing** and legacy reply controls with no-store/noindex protections; photo deployment `75996868` remains historical visual evidence.
+- The exact public hostname serves bridge-only deployment `5213f7b6-da9c-4985-819b-a05da8831db1` and returns HTTP 200. All 27 static files were reused, and a post-deploy comparison found zero mismatches across 26 served files after excluding Cloudflare's injected beacon. Deployment `840a4ccf-4784-4421-b85b-091f40f65cb4` is the captured frontend rollback point.
 - The local API, worker, and isolated tunnel are Running/S4U. Booking, chat, voice, morning and invoice gates are enabled.
+- The runtime checkout is clean at `e4e082e5d85d56f3301ce7652180b40c78f24956`. Local, direct-tunnel and exact-site health return HTTP 200 with KB `2026-09-21.4`, all four capabilities enabled and no `demoVoicePhoneNumber`; the outbox has 20 accepted and zero unresolved effects.
+- Local, direct-tunnel and exact-site `/api/public-events` return HTTP 503, `Cache-Control: no-store`, `Retry-After: 300`, and exactly `{"error":"public_events_unavailable","message":"Current dates are temporarily unavailable."}`.
 - The corrected startup upgrade created its backup at 15:38:36 UTC and restarted the tasks at 15:38:40 UTC. At 15:39:09 UTC the API, worker, and tunnel tasks were running as S4U/Limited with exactly one `MSFT_TaskBootTrigger` each. All three health paths passed at 15:39:43 UTC, worker startup jobs succeeded, and the tunnel restored four connections.
 - At about 17:45 UTC, local, direct-tunnel, and website-proxy health all returned HTTP 200 with KB `2026-09-21.4`, hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, all capabilities enabled and the Houston number.
 - The same protected voice agent and LLM identities are published and read-back verified at v4 with that KB, six unchanged custom tools, and native `end_call`.
 - The first `morning:auto-invoice:v2` catch-up completed all seven dates from 2026-09-14 through 2026-09-20 at 17:44:28.820 UTC with zero eligible shows and no new effects; the existing sent invoice was preserved.
 - The public Houston demo number is **(832) 501-3799**.
-- [CI run 35633834649](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35633834649) passed for `58d1c0ce5cd7fc8b675b0a89443bfa82bcfd9b10` at 17:44:56 UTC: **103 tests in 19 files**, lint, typecheck, 20 Astro files with zero errors/warnings, and nine built pages.
+- [Main CI run 35785830763](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35785830763) passed for `e4e082e5d85d56f3301ce7652180b40c78f24956`: **141 tests in 24 files**, lint, typecheck, public-output and secret audits, 21 Astro files with zero diagnostics, nine built pages, and the Playwright matrix.
 - Private configuration, OAuth material, recipient data, provider credentials, SQLite state, generated customer documents, and backups remain outside the repository.
 
 ## Live acceptance completed
@@ -67,8 +71,9 @@ disabled-first, and leave the frontend unchanged until the enabled sanitized end
 | Voice workflow                   | The fourth call proved the repaired inquiry, availability, follow-up, and lifecycle paths. Booking did not complete; native `end_call` is published on v4 but has not been exercised by phone. | Phone-test a completed booking and native hangup on v4. See [call-completion evidence](evidence/consultation-call-completion.json).               |
 | Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                                           | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                           |
 | Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.                            | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review. |
-| Round-two runtime                | Feature branch and local gates pass; the authoritative Windows preflight/deploy did not run.                                                                                                   | Repair Windows coordination, capture rollback state, and deploy the additive API with `PUBLIC_EVENTS_ENABLED=false`.                              |
-| Public Shows Calendar            | Exact-source reader and privacy fixtures pass offline; no owner-confirmed live public-only Calendar/access proof is recorded.                                                                  | Owner selects/confirms the exact calendar and controlled venue/city entries; separately authorize any required scope or credential.               |
+| Round-two runtime                | Clean release commit is live disabled-first; health, fixed 503, service state, unresolved-effect, backup and rollback gates pass.                                                              | Keep the additive API schema and `PUBLIC_EVENTS_ENABLED=false` until the dedicated public source is approved.                                     |
+| Public Shows Calendar            | The Calendar on the existing public events page mixes private events and street-address locations and is disqualified. No separate owner-confirmed public-only Calendar/access proof exists.   | Owner selects/confirms a dedicated calendar and controlled venue/city entries; separately authorize any required scope or credential.             |
+| Round-two frontend               | Code is on `main`, but production intentionally reuses the prior visible frontend; only the Pages API bridge changed.                                                                          | Enable, warm and review the dedicated sanitized feed, then deploy and smoke-test the conversion frontend.                                         |
 
 ## Safety and recovery boundaries
 
@@ -129,17 +134,12 @@ The live evidence is sanitized: it contains no phone number, email address, cred
 
 ## Next controlled work
 
-1. Repair the Windows coordination/CLI path. Capture the current runtime commit/config manifest,
-   unresolved-effect state, service health, and current Pages deployment before changing anything.
-2. Deploy feature branch `codex/justin-round-two` API/runtime changes with
-   `PUBLIC_EVENTS_ENABLED=false`, verify the fixed 503 and all existing capability health, and keep
-   the additive inquiry schema on rollback.
-3. Obtain owner confirmation of the exact public-performance-only Calendar, existing read access,
+1. Obtain owner confirmation of an exact public-performance-only Calendar, existing read access,
    and every controlled venue/city value. Do not create/share/edit a Calendar or broaden consent
    without separate authorization.
-4. Enable and warm the exact feed privately; only after fresh/stale/empty/503 checks pass, deploy
+2. Enable and warm the exact feed privately; only after fresh/stale/empty/503 checks pass, deploy
    the frontend and perform the live privacy/accessibility route checks.
-5. Complete a fresh live Calendar-to-inbox automatic invoice walkthrough; record it in
+3. Complete a fresh live Calendar-to-inbox automatic invoice walkthrough; record it in
    [calendar invoice workflow evidence](evidence/calendar-invoice-workflow.json).
-6. Separately authorize and verify recovery after an actual reboot or sign-out.
-7. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.
+4. Separately authorize and verify recovery after an actual reboot or sign-out.
+5. Preserve the zero-unresolved-effect state. Reconcile any uncertain provider outcome before retrying.

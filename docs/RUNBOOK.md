@@ -1,30 +1,36 @@
 # Demo Operations Runbook
 
-Last runtime verification: 2026-09-21 at 15:39:43 UTC. Round-two local verification: 2026-09-22.
+Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Round-two local verification:
+2026-09-22.
 This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new
 provider resources, or customer communication.
 
 ## Current service state
 
-| Component       | State                                                                                   | Operator note                                                                                                    |
-| --------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200     | Deployment `840a4ccf`; updated admin label/legacy controls, no-store and noindex verified                        |
-| API             | Local, public tunnel, and website-proxy health returned HTTP 200                        | Booking, chat, voice, and billing capabilities all returned true                                                 |
-| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                  | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                            |
-| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                     | Local, direct-tunnel, and website-proxy health passed after the upgrade                                          |
-| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                    | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                      |
-| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers          | Registration and task execution passed; actual sign-out/reboot recovery remains untested                         |
-| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending | Old-policy $700 invoice reached client/operator but does not prove the current path                              |
-| Google Calendar | Dedicated calendar created; live booking lifecycle passed                               | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects |
-| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                   | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                   |
-| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking        | This proves the checked backup was readable and internally consistent; retain the source backup privately        |
+| Component       | State                                                                                   | Operator note                                                                                                         |
+| --------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200     | Bridge-only deployment `5213f7b6`; visible static site remains on the prior design; `840a4ccf` is the rollback target |
+| API             | Local, public tunnel, and website-proxy health returned HTTP 200                        | Booking, chat, voice, and billing capabilities remain true; no public phone field                                     |
+| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                  | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                                 |
+| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                     | Local, direct-tunnel, and website-proxy health passed after the upgrade                                               |
+| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                    | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                           |
+| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers          | Registration and task execution passed; actual sign-out/reboot recovery remains untested                              |
+| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending | Old-policy $700 invoice reached client/operator but does not prove the current path                                   |
+| Google Calendar | Dedicated calendar created; live booking lifecycle passed                               | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects      |
+| Public Shows    | Disabled; exact fixed 503 returned through local, tunnel, and website paths             | Existing public feed was disqualified; a dedicated public-performance-only Calendar is still required                 |
+| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                   | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                        |
+| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking        | This proves the checked backup was readable and internally consistent; retain the source backup privately             |
 
-Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At 15:39:43 UTC local, direct-tunnel, and website-proxy health returned HTTP 200 with `ok: true`, the expected KB identity, and all four capabilities enabled. Actual recovery after sign-out or reboot remains untested.
+Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At the
+latest verification, local, direct-tunnel, and website-proxy health returned HTTP 200 with
+`ok: true`, KB `2026-09-21.4`, and all four capabilities enabled. The response omitted the public
+phone field. All three `/api/public-events` paths returned HTTP 503 with the fixed sanitized body
+and approved no-store/retry headers. Actual recovery after sign-out or reboot remains untested.
 
-## Round-two web release boundary — implemented locally, not active
+## Round-two web release boundary — API active, frontend gated
 
-The pushed feature branch `codex/justin-round-two` contains verified implementation commit
-`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` and implements the approved
+Verified release commit `e4e082e5d85d56f3301ce7652180b40c78f24956` is on `main`, the Windows
+runtime, and the pushed feature branch. It implements the approved
 [round-two specification](ROUND_TWO_BUILD_SPEC.md). It removes public chat/voice UI and phone
 references while preserving the running assistant services. Do not disable, reprovision, or alter
 Retell/OpenAI, their KB/tools, provider identities, manifests, or backend gates as part of this
@@ -33,14 +39,17 @@ release.
 The same round adds a separate read-only public-events path. It requires exact private
 `PUBLIC_EVENTS_CALENDAR_ID`, `PUBLIC_EVENTS_TIMEZONE`, `PUBLIC_EVENTS_ID_SECRET`, and
 `PUBLIC_EVENTS_ENABLED` configuration and must never point at `SHOW_CALENDAR_ID`, free/busy,
-primary, family, or discovered Calendars. The code and offline privacy tests exist; a live Public
-Shows Calendar/configuration is not proven by checked-in evidence. Provider failure must fail
+primary, family, or discovered Calendars. The code and privacy tests pass, and the reader is live
+with `PUBLIC_EVENTS_ENABLED=false`. The Calendar embedded on Justin's existing public events page
+was inspected and disqualified because it mixes private-event records and street-level locations.
+A separate Public Shows Calendar/configuration is not yet available. Provider failure must fail
 closed; never work around it by exposing an unfiltered Calendar.
 
-Deployment order is API/additive inquiry contract first, then the Pages frontend. A suitable exact
-Calendar and existing read grant must be owner-confirmed; otherwise keep the reader disabled because
-the kickoff does not authorize Calendar/event mutation or new consent. A frontend rollback retains
-the additive schema and never resets SQLite.
+The API/additive inquiry contract and Pages safety bridge are deployed. The bridge-only Pages
+deployment changed no visible static asset, so the conversion-first frontend remains gated. A
+suitable exact Calendar and existing read grant must be owner-confirmed; otherwise keep the reader
+disabled because the kickoff does not authorize Calendar/event mutation or new consent. A frontend
+rollback retains the additive schema and never resets SQLite.
 
 Before any deployment, stop if the runtime checkout is dirty, the expected feature tip differs, an
 outbox/provider effect is unresolved, or another operator is changing the same checkout. Record the
@@ -63,7 +72,7 @@ node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
 ```
 
 The remote release SHA must contain verified implementation commit
-`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` and match the final SHA supplied in the current handoff.
+`e4e082e5d85d56f3301ce7652180b40c78f24956` and match the final SHA supplied in the current handoff.
 Capture the actual prior runtime commit and Pages deployment in the private change record; do not
 substitute a remembered value. Set only
 `PUBLIC_EVENTS_ENABLED=false` in the protected runtime configuration for the first restart. Leave
