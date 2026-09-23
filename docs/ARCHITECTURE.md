@@ -29,6 +29,11 @@ event planner in its opening hero/conversion block. The pinned header and suppor
 public-performance, and FAQ content never gate access to that form. `/plan-your-event/` reuses the
 same component and contracts for campaign/direct-link traffic.
 
+The public planner is a two-step, inquiry-only client. It may create or update the canonical inquiry
+and show its readable recap and success reference, but it contains no consultation/time selector and
+makes no `/api/time`, `/api/availability`, or `/api/bookings` request. Those authenticated domain
+capabilities remain available to private operator and explicitly authorized assistant workflows.
+
 Chat and voice services remain deployed backend capabilities but are neither rendered nor advertised
 by the public website. No public page or browser bundle may contain their UI, phone number, `tel:`
 link, availability request, or marketing copy. Provider identities, routes, webhooks, KB/tools,

@@ -7,24 +7,27 @@ These defaults let the build proceed. Justin must approve real business terms be
 These decisions supersede the 2026-09-22 public-form structure, field, label, browser-scheduling,
 and post-submit decisions only where they conflict. They do not supersede the preserved private
 booking, consultation, tentative-hold, Calendar, operator, assistant, invoice, security, or
-provider-isolation decisions. They are approved requirements, not a deployment claim. See
-[PUBLIC_FORM_SIMPLIFICATION_SPEC.md](PUBLIC_FORM_SIMPLIFICATION_SPEC.md).
+provider-isolation decisions. They are implemented and live in commit
+`c6abf12015bcb6ef179985a08919cd3319026915` and Pages deployment
+`73a78aec-f10a-4b95-b494-fd191ecccbd6`. See
+[PUBLIC_FORM_SIMPLIFICATION_SPEC.md](PUBLIC_FORM_SIMPLIFICATION_SPEC.md) and
+[the dated release evidence](evidence/public-form-simplification-2026-09-23.md).
 
-| Topic                     | Current decision                                                                                                                                                                              | Status                                |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| Public journey            | The browser captures or resumes an inquiry and stops at human-follow-up confirmation                                                                                                          | User approved; implementation pending |
-| Form structure            | Use exactly two public steps: Contact, then Event planning                                                                                                                                    | User approved; implementation pending |
-| Step 1                    | Retain name, email, Preferred Reply, conditional phone requirement, and optional company/planning role                                                                                        | User approved; implementation pending |
-| Step 2 event fields       | Retain event type, event date/flexibility, venue, setting, and guest count; relabel Event city as **Location of the event**                                                                   | User approved; implementation pending |
-| Step 2 planning details   | After the event fields, show only **Performance time**, **Sound / equipment needs**, **Budget (optional)**, and **Special requests (optional)**                                               | User approved; implementation pending |
-| Recap and consent         | End step 2 with a readable recap, edit/back behavior, required contact consent, and separate optional unchecked marketing consent                                                             | User approved; implementation pending |
-| Removed public fields     | Do not render atmosphere, timing notes, catch-all additional notes, booking timezone, or venue access controls                                                                                | User approved; implementation pending |
-| Location compatibility    | **Location of the event** is a public label change; retain the stable `city` property and do not expand collection to a private street address                                                | User approved; implementation pending |
-| Budget label              | The visible label is **Budget (optional)** with no `USD`; existing USD currency semantics, decimal validation, `budgetCents`, legacy read behavior, and quote/invoice isolation remain intact | User approved; implementation pending |
-| Public scheduling         | Remove consultation/time selectors, availability checks, booking calls, and all reserve/next-step/tentative-hold cards from the public browser                                                | User approved; implementation pending |
-| Post-submit state         | Show concise inquiry success/reference and human follow-up; do not offer public scheduling or reservation                                                                                     | User approved; implementation pending |
-| Legacy removed-field data | Required legacy keys/defaults may remain in the client payload/bundle, but retired controls stay hidden; resume/resubmit must preserve stored removed-field, scheduling, and booking data     | User approved; implementation pending |
-| Preserved backend         | Keep consultation, hold, availability, Calendar, operator, voice/chat, billing, auth, allowlist, idempotency, provider resources, and tests intact                                            | User approved; no decommissioning     |
+| Topic                     | Current decision                                                                                                                                                                              | Status                      |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| Public journey            | The browser captures or resumes an inquiry and stops at human-follow-up confirmation                                                                                                          | Implemented and live        |
+| Form structure            | Use exactly two public steps: Contact, then Event planning                                                                                                                                    | Implemented and live        |
+| Step 1                    | Retain name, email, Preferred Reply, conditional phone requirement, and optional company/planning role                                                                                        | Implemented and live        |
+| Step 2 event fields       | Retain event type, event date/flexibility, venue, setting, and guest count; relabel Event city as **Location of the event**                                                                   | Implemented and live        |
+| Step 2 planning details   | After the event fields, show only **Performance time**, **Sound / equipment needs**, **Budget (optional)**, and **Special requests (optional)**                                               | Implemented and live        |
+| Recap and consent         | End step 2 with a readable recap, edit/back behavior, required contact consent, and separate optional unchecked marketing consent                                                             | Implemented and live        |
+| Removed public fields     | Do not render atmosphere, timing notes, catch-all additional notes, booking timezone, or venue access controls                                                                                | Implemented and live        |
+| Location compatibility    | **Location of the event** is a public label change; retain the stable `city` property and do not expand collection to a private street address                                                | Implemented and live        |
+| Budget label              | The visible label is **Budget (optional)** with no `USD`; existing USD currency semantics, decimal validation, `budgetCents`, legacy read behavior, and quote/invoice isolation remain intact | Implemented and live        |
+| Public scheduling         | Remove consultation/time selectors, availability checks, booking calls, and all reserve/next-step/tentative-hold cards from the public browser                                                | Implemented and live        |
+| Post-submit state         | Show concise inquiry success/reference and human follow-up; do not offer public scheduling or reservation                                                                                     | Implemented and live        |
+| Legacy removed-field data | Required legacy keys/defaults may remain in the client payload/bundle, but retired controls stay hidden; resume/resubmit must preserve stored removed-field, scheduling, and booking data     | Implemented and verified    |
+| Preserved backend         | Keep consultation, hold, availability, Calendar, operator, voice/chat, billing, auth, allowlist, idempotency, provider resources, and tests intact                                            | Preserved and test-verified |
 
 ## Round-two owner decisions — 2026-09-22
 

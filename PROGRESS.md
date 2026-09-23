@@ -1,22 +1,31 @@
 # Progress
 
-Updated 2026-09-22. **The corrected conversion-first frontend is live at
+Updated 2026-09-23. **The two-step, inquiry-only public planner is live at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision
-`9ca79d9a5afeb38c8740f768b9bae73319f1756e`, contained in both `origin/main` and
+`c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and
 `origin/codex/justin-round-two`. Cloudflare Pages deployment
-`a3152e61-ed47-41a7-9595-ebd42e694245` serves the release. Corrected deployment
-`8d348ce1-d6f7-48f8-ad72-53dd7d856a07` is the immediate rollback target; bridge-only deployment
-`5213f7b6-da9c-4985-819b-a05da8831db1` is a legacy fallback. The dedicated Public Shows Calendar
+`73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the release; deployment
+`a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. The dedicated Public Shows Calendar
 remains disabled for the next QA pass, so Where I'm Playing temporarily renders one verified public
 date without requesting Calendar data. Full voice booking and recovery after an actual
 reboot/sign-out remain unverified.**
 
-## Round-two implementation — corrected frontend live
+## Public-form simplification — live
 
-The verified frontend release revision is `9ca79d9a5afeb38c8740f768b9bae73319f1756e`, contained in
-`origin/main` and the pushed feature branch. Release evidence is in
-[the dated round-two record](docs/evidence/round-two-2026-09-22.md). The canonical hostname returns
-HTTP 200, health returns HTTP 200, and `/admin` retains no-store/noindex.
+The verified implementation commit is `c6abf12015bcb6ef179985a08919cd3319026915`, on `origin/main`
+and the pushed feature branch. Release evidence is in
+[the dated public-form record](docs/evidence/public-form-simplification-2026-09-23.md). The canonical
+hostname, `/plan-your-event/`, deployment URL, and health return HTTP 200; `/admin` retains
+no-store/noindex and unauthenticated `/api/admin/state` returns 401.
+
+- [x] Reduce the public planner from three steps to two: Contact, then Event planning.
+- [x] Keep the retained event fields, relabel Event city as **Location of the event**, and keep only
+      **Performance time**, **Sound / equipment needs**, **Budget (optional)**, and
+      **Special requests (optional)** as planning-detail controls before recap and consent.
+- [x] Remove retired atmosphere/timing/additional-note controls plus every public consultation,
+      availability, booking, reserve, next-step, and tentative-hold surface or endpoint path.
+- [x] Preserve required legacy payload keys/data and every protected backend/private booking,
+      Calendar, assistant, billing, auth, recipient, and idempotency capability.
 
 - [x] Put the shared planner directly in the opening homepage conversion experience; no CTA, modal,
       or route change is required to begin.
@@ -50,15 +59,15 @@ HTTP 200, health returns HTTP 200, and `/admin` retains no-store/noindex.
 - [ ] Configure and review a dedicated Public Shows Calendar during the next QA pass; keep the
       exact safe `/api/public-events` 503 until then.
 
-Final results: local verification passed 146 unit/integration tests in 24 files, lint/typecheck, 21 Astro files with
-zero diagnostics, and nine built pages. Playwright passed 32 tests with 23 intentional
-viewport-specific skips across five viewports. The built-output audit had zero findings, and the
-secret scan was clean. Feature CI run
-[35805519891](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805519891) and main CI run
-[35805755436](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805755436) passed.
+Final results: local verification passed 146 unit/integration tests in 24 files, lint/typecheck, 21
+Astro files with zero diagnostics, and nine built pages. Playwright passed 34 tests with 26
+intentional viewport-specific skips across five viewports. The public-output audit scanned 15 files
+with zero findings, and the secret scan was clean. Feature CI run
+[35905466911](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905466911) and main CI run
+[35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed.
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
-- [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, and noindex controls. Production deployment `a3152e61` serves the corrected conversion frontend, the canonical hostname returns HTTP 200, and `/admin` retains no-store/noindex. Corrected deployment `8d348ce1` is the immediate rollback target; prior bridge-only deployment `5213f7b6` is a legacy fallback.
+- [x] Responsive public site, inquiry flow, operator workspace, readable reference content, structured metadata, and noindex controls. Production deployment `73a78aec` serves the inquiry-only frontend, the canonical hostname and `/plan-your-event/` return HTTP 200, and `/admin` retains no-store/noindex. Deployment `a3152e61` is the immediate rollback target.
 - [x] Billing-policy KB parity: Retell v4, API and chat use `2026-09-21.4` / `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`; all three health paths returned HTTP 200 with all capabilities enabled after restart.
 - [x] Deterministic booking, money, state transitions, authentication, recipient gates, outbox leases, uncertainty reconciliation, and operator CLI.
 - [x] Public/assistant booking authorization before availability or hold creation, including replay-token validation, plus an independent attendee allowlist at the final Calendar provider boundary.
@@ -76,4 +85,4 @@ secret scan was clean. Feature CI run
 
 The provider queue was empty after the live booking cancellation and invoice replay. A confirmed event's attendee copy can still cause a safe false rejection when a requested reschedule overlaps the current interval; free/busy lacks event identity, so the adapter deliberately does not subtract that interval.
 
-[Main CI run 35805755436](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805755436) passed for `9ca79d9a5afeb38c8740f768b9bae73319f1756e`, after feature CI run [35805519891](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805519891) also passed: **146 tests in 24 files**, lint, typecheck, the public-output and secret audits, 21 Astro files with zero diagnostics, nine built pages, and the Playwright matrix. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current release evidence is in [the round-two record](docs/evidence/round-two-2026-09-22.md).
+[Main CI run 35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed for `c6abf12015bcb6ef179985a08919cd3319026915`, after feature CI run [35905466911](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905466911) also passed. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current release evidence is in [the public-form record](docs/evidence/public-form-simplification-2026-09-23.md).

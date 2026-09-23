@@ -16,6 +16,12 @@ Round two renders the first inquiry step directly in the homepage opening experi
 does not need to follow a CTA, change routes, open a dialog, or start an assistant to submit the
 form. The dedicated Plan Your Event route reuses the same state and contracts.
 
+The 2026-09-23 public planner has exactly two steps and stops after inquiry submission with a human
+follow-up message. It does not select consultation times, check availability, create a hold, or call
+the booking endpoints. The consultation and hold workflow below remains the private domain workflow
+for operator, human follow-up, and explicitly authorized assistant channels; it is not a browser
+continuation after `POST` or `PUT /api/inquiries`.
+
 Preferred reply values are `email`, `text`, and `phone`; Text and Phone Call require a phone number.
 Text records a human follow-up preference only. Optional visitor budget is normalized from USD input
 to integer `budgetCents` and remains non-authoritative lead context. It never supplies or amends an

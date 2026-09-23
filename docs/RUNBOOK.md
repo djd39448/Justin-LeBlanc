@@ -1,7 +1,7 @@
 # Demo Operations Runbook
 
-Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Round-two local verification:
-2026-09-22.
+Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Public-form release and live
+smoke: 2026-09-23.
 This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new
 provider resources, or customer communication.
 
@@ -9,7 +9,7 @@ provider resources, or customer communication.
 
 | Component       | State                                                                                              | Operator note                                                                                                    |
 | --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Website         | Corrected conversion frontend live at `https://justinleblancmusic.50by50.dev`; exact-host HTTP 200 | Production deployment `a3152e61`; corrected deployment `8d348ce1` is the immediate rollback target               |
+| Website         | Two-step inquiry-only planner live at `https://justinleblancmusic.50by50.dev`; exact-host HTTP 200 | Production deployment `73a78aec`; deployment `a3152e61` is the immediate rollback target                         |
 | API             | Local, public tunnel, and website-proxy health returned HTTP 200                                   | Booking, chat, voice, and billing capabilities remain true; health exposes no voice-agent number                 |
 | Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                             | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                            |
 | API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                                | Local, direct-tunnel, and website-proxy health passed after the upgrade                                          |
@@ -28,11 +28,12 @@ voice-agent phone field. The public frontend independently displays Justin's hum
 **(832) 303-9116**. All three `/api/public-events` paths returned HTTP 503 with the fixed sanitized body
 and approved no-store/retry headers. Actual recovery after sign-out or reboot remains untested.
 
-## Round-two web release boundary — corrected frontend live, Calendar disabled
+## Public-form release boundary — inquiry-only frontend live, Calendar disabled
 
-Verified frontend release revision `9ca79d9a5afeb38c8740f768b9bae73319f1756e` is contained in both
+Verified implementation commit `c6abf12015bcb6ef179985a08919cd3319026915` is on both
 `origin/main` and `origin/codex/justin-round-two`. It implements the approved
-[round-two specification](ROUND_TWO_BUILD_SPEC.md) plus Dave's static-listing correction. It
+[public-form specification](PUBLIC_FORM_SIMPLIFICATION_SPEC.md) plus the non-conflicting round-two
+requirements. It
 removes public AI/chat/voice UI, package pricing, and the dormant voice-agent number while
 preserving the running assistant services, and it publishes the human business number
 **(832) 303-9116**. Do not disable, reprovision, or alter Retell/OpenAI, their KB/tools, provider
@@ -48,9 +49,8 @@ A separate Public Shows Calendar/configuration is not yet available. Provider fa
 closed; never work around it by exposing an unfiltered Calendar.
 
 The API/additive inquiry contract and Pages safety bridge remain deployed. Production Pages
-deployment `a3152e61-ed47-41a7-9595-ebd42e694245` serves the corrected conversion frontend;
-corrected deployment `8d348ce1-d6f7-48f8-ad72-53dd7d856a07` is the immediate rollback target, and
-prior bridge-only deployment `5213f7b6-da9c-4985-819b-a05da8831db1` is a legacy fallback. Where I'm
+deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the inquiry-only frontend;
+deployment `a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. Where I'm
 Playing renders one manually curated public date—**Solo Sunday with Justin LeBlanc**, Sep 27, 2026,
 5:00–8:00 PM Central, at The Blue Lion Brunchery & Pub in The Woodlands, TX—from a public Woodlands
 Online source. The listing omits the street address, is filtered at build time, expires in the
@@ -59,6 +59,14 @@ next QA pass. A frontend rollback retains the additive schema and never resets S
 
 This was a static Pages release. It did not require a runtime service restart or a Windows-checkout
 sync; do not record either action unless separately performed and verified.
+
+Live read-only smoke must verify the canonical page, `/plan-your-event/`, deployment URL, and
+`/api/health` return 200; `/api/admin/state` returns 401; `/admin` returns 200 with no-store/noindex;
+and `/api/public-events` retains its exact safe 503. The planner must have two steps, the exact
+retained Step 2 labels including **Sound / equipment needs**, no retired or public scheduling
+controls, no horizontal overflow, no console warning/error, and no `/api/time`, `/api/availability`,
+`/api/bookings`, or scheduling marker in the deployed planner bundle. A read-only smoke does not
+submit a live inquiry.
 
 Before any deployment, stop if the runtime checkout is dirty, the expected feature tip differs, an
 outbox/provider effect is unresolved, or another operator is changing the same checkout. Record the
@@ -81,7 +89,7 @@ node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
 ```
 
 The remote release SHA must contain verified implementation commit
-`9ca79d9a5afeb38c8740f768b9bae73319f1756e` and match the final SHA supplied in the current handoff.
+`c6abf12015bcb6ef179985a08919cd3319026915` and match the final SHA supplied in the current handoff.
 Capture the actual prior runtime commit and Pages deployment in the private change record; do not
 substitute a remembered value. Set only
 `PUBLIC_EVENTS_ENABLED=false` in the protected runtime configuration for the first restart. Leave

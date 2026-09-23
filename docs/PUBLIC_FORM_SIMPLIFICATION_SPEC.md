@@ -1,6 +1,6 @@
 # Public form simplification specification
 
-Status: owner-approved requirements, not yet implemented
+Status: implemented, verified, and live
 Date: 2026-09-23
 Owner: Dave Dobbins
 Client: Justin LeBlanc
@@ -19,7 +19,8 @@ workflow. The existing consultation, tentative-hold, availability, Calendar, ope
 chat capabilities remain protected backend resources for later human or explicitly authorized
 channel use.
 
-This document records approved work. It is not evidence that the change has shipped.
+Implementation and deployment evidence is recorded in
+[public-form-simplification-2026-09-23.md](evidence/public-form-simplification-2026-09-23.md).
 
 ## 2. Public journey
 
@@ -162,9 +163,11 @@ Implementation is complete only when automated and browser evidence proves all o
 12. Responsive, keyboard, focus, validation, reduced-motion, public-output, secret-scan, and live
     route/header checks pass before any deployment is reported.
 
-Record implementation commit, test counts, responsive evidence, production deployment and rollback
-IDs, and live smoke results in a new dated evidence record. Do not rewrite historical round-two or
-provider evidence to imply it tested this later form.
+The verified implementation commit is `c6abf12015bcb6ef179985a08919cd3319026915`. Production Pages
+deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` is live, with
+`a3152e61-ed47-41a7-9595-ebd42e694245` retained as the immediate rollback target. See the dated
+evidence record above for tests, responsive screenshots, and read-only live smoke. Historical
+round-two and provider evidence remains unchanged.
 
 ## 8. Non-goals
 
@@ -173,4 +176,4 @@ provider evidence to imply it tested this later form.
 - Changing quote, invoice, payment, pricing, or currency policy.
 - Adding automated SMS, public chat, public voice, or browser microphone features.
 - Enabling the dedicated Public Shows Calendar or changing its separate release gate.
-- Claiming deployment before the verified frontend is actually live.
+- Treating read-only live smoke as evidence that a real inquiry was submitted.

@@ -1,15 +1,32 @@
 # Demo handoff
 
-Status date: 2026-09-22. The isolated baseline is deployed and its web, chat, private Calendar,
-email, and voice transport paths have real provider evidence. The corrected round-two conversion
-frontend is live from verified revision `9ca79d9a5afeb38c8740f768b9bae73319f1756e`, which is contained in both
-`origin/main` and `origin/codex/justin-round-two`. Calendar-driven automatic invoicing is
+Status date: 2026-09-23. The isolated baseline is deployed and its web, chat, private Calendar,
+email, and voice transport paths have real provider evidence. The two-step, inquiry-only public
+planner is live from commit `c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and
+`origin/codex/justin-round-two`. Calendar-driven automatic invoicing is
 implemented, CI-verified and loaded in the running services; a fresh live Calendar-to-inbox
 walkthrough remains pending. The delivered reply-driven $700 invoice is historical old-policy
 evidence only. Full voice booking, native hangup, and recovery after an actual reboot/sign-out
 remain unverified.
 
-## Round-two implementation — corrected frontend live
+## Public-form simplification — live
+
+Production deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the two-step planner;
+`a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. Step 2 uses
+**Location of the event** and the exact retained planning labels, including
+**Sound / equipment needs**. Retired step-three and all public consultation/scheduling controls are
+absent. The deployed planner bundle contains no `/api/time`, `/api/availability`, `/api/bookings`,
+or scheduling markers; protected backend workflows remain available outside the public browser.
+
+The final gate passed 146 unit/integration tests in 24 files, lint/typecheck, 21 clean Astro files,
+nine pages, 34 Playwright passes with 26 intentional skips across five viewports, a zero-finding
+15-file public-output audit, and a clean secret scan. Feature CI
+[35905466911](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905466911) and main CI
+[35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed. Live
+read-only smoke passed without submitting an inquiry. See
+[the dated public-form evidence](evidence/public-form-simplification-2026-09-23.md).
+
+## Historical round-two implementation — superseded public form
 
 Dave's 2026-09-22 direction and follow-up correction are implemented in verified frontend revision
 `9ca79d9a5afeb38c8740f768b9bae73319f1756e`. The release:
@@ -37,13 +54,13 @@ command-level evidence are in
 The existing Windows runtime remains on its previously verified backend release with
 `PUBLIC_EVENTS_ENABLED=false`; this static Pages release did not require a runtime restart or a
 Windows-checkout sync. All three health paths retain their prior passing evidence, and all three
-public-events paths retain the exact fixed sanitized 503. Cloudflare Pages production deployment
-`a3152e61-ed47-41a7-9595-ebd42e694245` serves the corrected frontend. No Calendar/event, OAuth,
-Retell, mail, billing, or DNS resource was changed.
+public-events paths retain the exact fixed sanitized 503. Cloudflare Pages deployment
+`a3152e61-ed47-41a7-9595-ebd42e694245` is retained as the immediate frontend rollback target. No
+Calendar/event, OAuth, Retell, mail, billing, or DNS resource was changed.
 
 ## Running system
 
-- The exact public hostname serves corrected frontend deployment `a3152e61-ed47-41a7-9595-ebd42e694245` and returns HTTP 200. Corrected deployment `8d348ce1-d6f7-48f8-ad72-53dd7d856a07` is the immediate rollback point; bridge-only deployment `5213f7b6-da9c-4985-819b-a05da8831db1` is a legacy fallback.
+- The exact public hostname serves deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` and returns HTTP 200. Deployment `a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback point.
 - The local API, worker, and isolated tunnel are Running/S4U. Booking, chat, voice, morning and invoice gates are enabled.
 - The previously verified runtime checkout was clean at `e4e082e5d85d56f3301ce7652180b40c78f24956`. Local, direct-tunnel and exact-site health returned HTTP 200 with KB `2026-09-21.4`, all four capabilities enabled and no `demoVoicePhoneNumber`; the outbox had 20 accepted and zero unresolved effects. The static Pages correction did not restart or sync that runtime.
 - Local, direct-tunnel and exact-site `/api/public-events` return HTTP 503, `Cache-Control: no-store`, `Retry-After: 300`, and exactly `{"error":"public_events_unavailable","message":"Current dates are temporarily unavailable."}`.
@@ -52,7 +69,7 @@ Retell, mail, billing, or DNS resource was changed.
 - The same protected voice agent and LLM identities are published and read-back verified at v4 with that KB, six unchanged custom tools, and native `end_call`.
 - The first `morning:auto-invoice:v2` catch-up completed all seven dates from 2026-09-14 through 2026-09-20 at 17:44:28.820 UTC with zero eligible shows and no new effects; the existing sent invoice was preserved.
 - The human business number shown publicly is **(832) 303-9116**. The dormant backend voice-agent number remains **(832) 501-3799** and is absent from the public website.
-- [Main CI run 35805755436](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805755436) passed for `9ca79d9a5afeb38c8740f768b9bae73319f1756e` after [feature CI run 35805519891](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805519891) passed: **146 tests in 24 files**, lint, typecheck, public-output and secret audits, 21 Astro files with zero diagnostics, nine built pages, and the Playwright matrix.
+- [Main CI run 35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed for `c6abf12015bcb6ef179985a08919cd3319026915` after [feature CI run 35905466911](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905466911) passed.
 - Private configuration, OAuth material, recipient data, provider credentials, SQLite state, generated customer documents, and backups remain outside the repository.
 
 ## Live acceptance completed
@@ -69,14 +86,14 @@ Retell, mail, billing, or DNS resource was changed.
 
 ## Remaining limits
 
-| Area                             | Current evidence                                                                                                                                                                               | Required next action                                                                                                                                                                                 |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Voice workflow                   | The fourth call proved the repaired inquiry, availability, follow-up, and lifecycle paths. Booking did not complete; native `end_call` is published on v4 but has not been exercised by phone. | Phone-test a completed booking and native hangup on v4. See [call-completion evidence](evidence/consultation-call-completion.json).                                                                  |
-| Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                                           | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                                                                              |
-| Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.                            | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review.                                                    |
-| Round-two runtime                | The previously verified runtime remains disabled-first; health, fixed 503, service state, unresolved-effect, backup and rollback gates passed.                                                 | Keep the additive API schema and `PUBLIC_EVENTS_ENABLED=false` until the dedicated public source is approved.                                                                                        |
-| Public Shows Calendar            | No separate owner-confirmed public-only Calendar/access proof exists. The frontend uses one manually curated public listing and does not request Calendar data.                                | Configure and review a dedicated calendar and controlled venue/city entries during the next QA pass.                                                                                                 |
-| Round-two frontend               | Production deployment `a3152e61` serves the corrected conversion frontend; canonical HTTP 200 and admin no-store/noindex passed.                                                               | Keep corrected deployment `8d348ce1` as the immediate rollback target; retain bridge-only `5213f7b6` as a legacy fallback and replace the temporary listing only after the dedicated feed passes QA. |
+| Area                             | Current evidence                                                                                                                                                                               | Required next action                                                                                                                              |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Voice workflow                   | The fourth call proved the repaired inquiry, availability, follow-up, and lifecycle paths. Booking did not complete; native `end_call` is published on v4 but has not been exercised by phone. | Phone-test a completed booking and native hangup on v4. See [call-completion evidence](evidence/consultation-call-completion.json).               |
+| Unattended recovery              | S4U/Limited registration, exact boot triggers, and post-apply task execution are verified. No actual reboot or sign-out was authorized or performed.                                           | Separately authorize and verify recovery after a real reboot or sign-out before claiming that behavior.                                           |
+| Overlapping confirmed reschedule | Google free/busy does not expose event identity for an attendee copy. A proposed buffered interval overlapping the current confirmed event may be rejected as busy.                            | Keep the fail-closed behavior. Do not subtract intervals that might contain an unrelated conflict; use a non-overlapping move or operator review. |
+| Round-two runtime                | The previously verified runtime remains disabled-first; health, fixed 503, service state, unresolved-effect, backup and rollback gates passed.                                                 | Keep the additive API schema and `PUBLIC_EVENTS_ENABLED=false` until the dedicated public source is approved.                                     |
+| Public Shows Calendar            | No separate owner-confirmed public-only Calendar/access proof exists. The frontend uses one manually curated public listing and does not request Calendar data.                                | Configure and review a dedicated calendar and controlled venue/city entries during the next QA pass.                                              |
+| Public frontend                  | Production deployment `73a78aec` serves the two-step inquiry-only planner; canonical and plan route HTTP 200 plus admin no-store/noindex passed.                                               | Keep deployment `a3152e61` as the immediate rollback target; replace the temporary listing only after the dedicated feed passes QA.               |
 
 ## Safety and recovery boundaries
 
@@ -131,6 +148,7 @@ The upgrade script checks exact task ownership, backs up task XML and state priv
 - [Live backup restore](evidence/live-backup-restore.json)
 - [Acceptance matrix](evidence/acceptance-results.md)
 - [Round-two implementation and browser evidence](evidence/round-two-2026-09-22.md)
+- [Public-form simplification release](evidence/public-form-simplification-2026-09-23.md)
 - [Operations runbook](RUNBOOK.md)
 
 The live evidence is sanitized: it contains no phone number, email address, credential, access token, resume token, or private message body.
