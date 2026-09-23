@@ -237,6 +237,15 @@ test.describe('round-two homepage conversion surface', () => {
       await expect(page.locator('#planner-title')).toBeInViewport();
       await expect(page.locator('#name')).toBeInViewport();
       if (width === 1440) await expect(page.locator('#email')).toBeInViewport();
+      const requiredControls = width === 1440 ? ['#name', '#email'] : ['#name'];
+      const viewportHeight = width === 1440 ? 900 : 844;
+      for (const selector of requiredControls) {
+        const bounds = await page.locator(selector).boundingBox();
+        expect(bounds).not.toBeNull();
+        if (bounds === null) continue;
+        expect(bounds.y).toBeGreaterThanOrEqual(0);
+        expect(bounds.y + bounds.height).toBeLessThanOrEqual(viewportHeight);
+      }
     }
 
     const overflow = await page.evaluate(
