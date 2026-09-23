@@ -1,9 +1,10 @@
 # Justin LeBlanc build instructions
 
-Read `README.md`, `docs/ROUND_TWO_BUILD_SPEC.md`, `docs/BUILD_SPEC.md`,
+Read `README.md`, `docs/PUBLIC_FORM_SIMPLIFICATION_SPEC.md`, `docs/ROUND_TWO_BUILD_SPEC.md`, `docs/BUILD_SPEC.md`,
 `docs/WORKFLOWS.md`, `docs/ARCHITECTURE.md`, `CODING_STANDARDS.md`, and the current `KICKOFF.md`
 before implementation. The dated 2026-09-21 plans and evidence remain historical context; the
-round-two specification controls any conflicting public-site requirement.
+2026-09-23 public-form simplification specification controls conflicting public-form requirements,
+and the round-two specification controls other conflicting public-site requirements.
 
 ## Authority and scope
 
@@ -14,6 +15,15 @@ round-two specification controls any conflicting public-site requirement.
   Calendar projection, accept visitor-entered numeric budget, and remove all public chat/voice
   presentation. Preserve the voice/chat resources and backend implementation for a future explicit
   re-enable. See `docs/ROUND_TWO_BUILD_SPEC.md`; do not confuse planned work with deployed state.
+- Dave's 2026-09-23 direction simplifies the public browser to a two-step, inquiry-only planner.
+  Step 1 retains contact and preferred reply. Step 2 retains the existing event fields, relabels
+  `Event city` as `Location of the event`, and keeps only Performance time, Sound / equipment
+  needs, Budget (optional), and Special requests (optional) as planning-detail fields before the
+  recap and consent controls. Remove every public consultation selector, availability/booking call,
+  and post-submit reserve/tentative-hold card while preserving the private/backend consultation,
+  hold, Calendar, assistant, and legacy-data implementation. See
+  `docs/PUBLIC_FORM_SIMPLIFICATION_SPEC.md`; it supersedes older requirements only where they
+  conflict and is not evidence that the change has deployed.
 - Work only in this repository and new Justin demo resources. Existing TrustCore and
   Telnyx resources are read-only references. Never overwrite their agents, numbers,
   calendar event types, handlers, deployments, DNS, or credentials.

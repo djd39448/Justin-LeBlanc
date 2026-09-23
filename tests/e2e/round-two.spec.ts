@@ -134,6 +134,31 @@ function projectWidth(testInfo: TestInfo): number {
   return viewport.width;
 }
 
+function relativeLuminance(cssColor: string): number {
+  const channels = cssColor
+    .match(/[0-9.]+/g)
+    ?.slice(0, 3)
+    .map(Number);
+  if (channels === undefined || channels.length !== 3) {
+    throw new Error(`Expected an RGB color, received ${cssColor}.`);
+  }
+  const linear = channels.map((channel) => {
+    const normalized = channel / 255;
+    return normalized <= 0.04045 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;
+  });
+  const [red = 0, green = 0, blue = 0] = linear;
+  return red * 0.2126 + green * 0.7152 + blue * 0.0722;
+}
+
+function contrastRatio(first: string, second: string): number {
+  const firstLuminance = relativeLuminance(first);
+  const secondLuminance = relativeLuminance(second);
+  return (
+    (Math.max(firstLuminance, secondLuminance) + 0.05) /
+    (Math.min(firstLuminance, secondLuminance) + 0.05)
+  );
+}
+
 async function routePublicEvents(page: Page, mode: PublicEventsMode): Promise<void> {
   await page.route('**/api/public-events', async (route) => {
     if (mode === 'loading') {
@@ -163,15 +188,14 @@ async function routePublicEvents(page: Page, mode: PublicEventsMode): Promise<vo
   });
 }
 
-async function fillPlannerThroughDetails(page: Page): Promise<void> {
+async function fillPlannerThroughReview(page: Page): Promise<void> {
   await page.locator('#name').fill('Alex Planner');
   await page.locator('#email').fill('alex@example.test');
   await page.getByRole('button', { name: 'Continue to event', exact: true }).click();
   await page.locator('#eventType').selectOption('private');
   await page.locator('#city').fill('Houston');
   await page.locator('#dateFlexible').check();
-  await page.getByRole('button', { name: 'Continue to details', exact: true }).click();
-  await expect(page.locator('[data-step="3"]')).toBeVisible();
+  await expect(page.locator('[data-step="2"]')).toBeVisible();
 }
 
 test.describe('round-two homepage conversion surface', () => {
@@ -253,13 +277,13 @@ test.describe('round-two homepage conversion surface', () => {
     );
     expect(overflow).toBe(true);
 
-    mkdirSync(join(process.cwd(), 'docs/evidence/round-two/web'), { recursive: true });
+    const evidenceDirectory = join(
+      process.cwd(),
+      'docs/evidence/public-form-simplification-2026-09-23',
+    );
+    mkdirSync(evidenceDirectory, { recursive: true });
     await page.screenshot({
-      path: join(
-        process.cwd(),
-        'docs/evidence/round-two/web',
-        `homepage-${testInfo.project.name}.png`,
-      ),
+      path: join(evidenceDirectory, `homepage-${testInfo.project.name}.png`),
       fullPage: true,
     });
   });
@@ -330,6 +354,90 @@ test.describe('round-two homepage conversion surface', () => {
     for (const fontSize of formTextSizes) expect(fontSize).toBeGreaterThanOrEqual(16);
   });
 
+  test('uses a readable two-step inquiry-only review without public scheduling controls', async ({
+    page,
+  }, testInfo) => {
+    const width = projectWidth(testInfo);
+    test.skip(
+      width !== 390 && width !== 1440,
+      'Exercise the consolidated review at representative mobile and desktop viewports.',
+    );
+    await routePublicEvents(page, 'empty');
+    await page.goto('/');
+
+    await expect(page.locator('[data-progress-step]')).toHaveCount(2);
+    await expect(page.locator('#progress-label')).toHaveText('Step 1 of 2');
+    await fillPlannerThroughReview(page);
+    await page.locator('#venue').fill('The Blue Room');
+    await page.locator('#budgetCents').fill('1500');
+    await page.locator('#musicRequests').fill('A favorite first-dance song.');
+    await page.locator('#consent').check();
+
+    await expect(page.locator('#progress-label')).toHaveText('Step 2 of 2');
+    await expect(page.getByRole('button', { name: 'Back', exact: true })).toHaveAttribute(
+      'data-back-step',
+      '1',
+    );
+    await expect(page.locator('label[for="city"]')).toContainText('Location of the event');
+    await expect(page.locator('label[for="durationMinutes"]')).toHaveText('Performance time');
+    await expect(page.locator('label[for="equipment"]')).toHaveText('Sound / equipment needs');
+    await expect(page.locator('label[for="budgetCents"]')).toHaveText('Budget (optional)');
+    await expect(page.locator('label[for="musicRequests"]')).toHaveText(
+      'Special requests (optional)',
+    );
+    await expect(page.locator('#inquiry-summary')).toContainText('The Blue Room, Houston');
+    await expect(page.locator('#inquiry-summary')).toContainText('$1500');
+    await expect(page.locator('#inquiry-summary')).toContainText('A favorite first-dance song.');
+
+    await expect(
+      page.locator(
+        '[data-step="3"], #atmosphere, #scheduleNotes, #notes, #schedule-card, #schedule-form, #consultationLocal, #performanceStartLocal, #performanceEndLocal',
+      ),
+    ).toHaveCount(0);
+
+    const contrast = await page.evaluate(() => {
+      const card = document.querySelector<HTMLElement>('.review-card');
+      const value = document.querySelector<HTMLElement>('#inquiry-summary dd');
+      const checkbox = document.querySelector<HTMLInputElement>('#marketingConsent');
+      const checkboxLabel = document.querySelector<HTMLElement>('label[for="consent"] span');
+      if (card === null || value === null || checkbox === null || checkboxLabel === null) {
+        throw new Error('Consolidated review contrast test could not find its controls.');
+      }
+      const cardStyle = window.getComputedStyle(card);
+      const valueStyle = window.getComputedStyle(value);
+      const checkboxStyle = window.getComputedStyle(checkbox);
+      const checkboxLabelStyle = window.getComputedStyle(checkboxLabel);
+      return {
+        cardBackground: cardStyle.backgroundColor,
+        cardBorder: cardStyle.borderTopColor,
+        checkboxAppearance: checkboxStyle.appearance,
+        checkboxBackground: checkboxStyle.backgroundColor,
+        checkboxBorder: checkboxStyle.borderTopColor,
+        checkboxBorderWidth: Number.parseFloat(checkboxStyle.borderTopWidth),
+        checkboxLabel: checkboxLabelStyle.color,
+        value: valueStyle.color,
+      };
+    });
+    expect(contrastRatio(contrast.value, contrast.cardBackground)).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(contrast.checkboxLabel, 'rgb(255, 255, 255)')).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(contrast.cardBorder, contrast.cardBackground)).toBeGreaterThanOrEqual(3);
+    expect(
+      contrastRatio(contrast.checkboxBorder, contrast.checkboxBackground),
+    ).toBeGreaterThanOrEqual(3);
+    expect(contrast.checkboxAppearance).toBe('none');
+    expect(contrast.checkboxBorderWidth).toBeGreaterThanOrEqual(2);
+
+    const evidenceDirectory = join(
+      process.cwd(),
+      'docs/evidence/public-form-simplification-2026-09-23',
+    );
+    mkdirSync(evidenceDirectory, { recursive: true });
+    await page.screenshot({
+      path: join(evidenceDirectory, `review-${testInfo.project.name}.png`),
+      fullPage: true,
+    });
+  });
+
   test('renders the curated public listing without requesting the dormant Calendar endpoint', async ({
     page,
   }) => {
@@ -394,8 +502,6 @@ test.describe('round-two homepage conversion surface', () => {
     await page.locator('#eventType').selectOption('private');
     await page.locator('#city').fill('Houston');
     await page.locator('#dateFlexible').check();
-    await page.getByRole('button', { name: 'Continue to details', exact: true }).click();
-    await page.locator('#atmosphere').fill('Warm and conversational');
     await page.locator('#consent').check();
     await page.locator('#submit-inquiry').click();
 
@@ -468,6 +574,13 @@ test.describe('round-two homepage conversion surface', () => {
     );
     await routePublicEvents(page, 'empty');
     let submittedBudgetCents: number | null = null;
+    let publicSchedulingRequestCount = 0;
+    page.on('request', (request) => {
+      const path = new URL(request.url()).pathname;
+      if (path === '/api/time' || path === '/api/availability' || path === '/api/bookings') {
+        publicSchedulingRequestCount += 1;
+      }
+    });
     await page.route('**/api/inquiries', async (route) => {
       const payload = route.request().postDataJSON() as { budgetCents?: unknown };
       if (typeof payload.budgetCents === 'number') submittedBudgetCents = payload.budgetCents;
@@ -493,7 +606,7 @@ test.describe('round-two homepage conversion surface', () => {
     await page.locator('#preferredReply').selectOption('email');
     expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(false);
 
-    await fillPlannerThroughDetails(page);
+    await fillPlannerThroughReview(page);
     const budget = page.locator('#budgetCents');
     await expect(budget).toHaveAttribute('type', 'text');
     await expect(budget).toHaveAttribute('inputmode', 'decimal');
@@ -527,7 +640,6 @@ test.describe('round-two homepage conversion surface', () => {
     await page.locator('#event-planner').evaluate((element) => {
       (element as HTMLFormElement).noValidate = false;
     });
-    await page.locator('#atmosphere').fill('Warm and conversational');
     await page.locator('#consent').evaluate((element) => {
       const consent = element as HTMLInputElement;
       consent.checked = true;
@@ -538,6 +650,15 @@ test.describe('round-two homepage conversion surface', () => {
       element.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
     });
     await expect.poll(() => submittedBudgetCents).toBe(75_050);
+    await expect(page.locator('.submission-confirmation')).toContainText('Your inquiry is saved');
+    await expect(page.locator('.submission-confirmation')).toContainText(
+      'will follow up using your selected reply method',
+    );
+    await expect(page.locator('.submission-confirmation')).toContainText(
+      'Inquiry reference: inq_e2e',
+    );
+    await expect(page.locator('#schedule-card, #schedule-form')).toHaveCount(0);
+    expect(publicSchedulingRequestCount).toBe(0);
   });
 
   test('uses semantic event times and honors reduced-motion preferences', async ({
@@ -580,6 +701,9 @@ test.describe('round-two homepage conversion surface', () => {
     await page.goto('/plan-your-event/');
     await expect(page.locator('main h1')).toHaveCount(1);
     await expect(page.locator('main h1')).toHaveText('Plan Your Event');
+    await expect(page.locator('#progress-label')).toHaveText('Step 1 of 2');
+    await expect(page.locator('[data-progress-step]')).toHaveCount(2);
+    await expect(page.locator('[data-step="3"], #schedule-card, #schedule-form')).toHaveCount(0);
   });
 
   test('resumes legacy budget context and replaces it with numeric cents on edit', async ({
@@ -591,6 +715,13 @@ test.describe('round-two homepage conversion surface', () => {
     );
     await routePublicEvents(page, 'empty');
     let updatedPayload: Record<string, unknown> | null = null;
+    let publicSchedulingRequestCount = 0;
+    page.on('request', (request) => {
+      const path = new URL(request.url()).pathname;
+      if (path === '/api/time' || path === '/api/availability' || path === '/api/bookings') {
+        publicSchedulingRequestCount += 1;
+      }
+    });
     await page.route('**/api/inquiries/legacy-e2e', async (route) => {
       if (route.request().method() === 'GET') {
         await route.fulfill({
@@ -634,12 +765,18 @@ test.describe('round-two homepage conversion surface', () => {
     await expect(page.locator('#budgetCents')).toHaveValue('');
 
     await page.getByRole('button', { name: 'Continue to event', exact: true }).click();
-    await page.getByRole('button', { name: 'Continue to details', exact: true }).click();
     await expect(page.locator('#legacy-budget-context')).toContainText('750–1,000');
     await expect(page.locator('#legacy-budget-context')).toBeVisible();
     await page.locator('#budgetCents').fill('750.50');
     await page.locator('#submit-inquiry').click();
     await expect.poll(() => updatedPayload).not.toBeNull();
-    expect(updatedPayload).toMatchObject({ budget: 'unsure', budgetCents: 75_050 });
+    expect(updatedPayload).toMatchObject({
+      atmosphere: 'Warm and conversational',
+      budget: 'unsure',
+      budgetCents: 75_050,
+      notes: '',
+      scheduleNotes: '',
+    });
+    expect(publicSchedulingRequestCount).toBe(0);
   });
 });

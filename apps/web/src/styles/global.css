@@ -634,7 +634,7 @@ h3 {
 
 .planner-progress ol {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -677,6 +677,7 @@ h3 {
   margin: 0;
   padding: clamp(1.5rem, 5vw, 3.5rem);
   border: 0;
+  color: var(--ink);
 }
 
 .form-step legend {
@@ -760,16 +761,45 @@ input:disabled {
   align-items: flex-start;
   gap: 0.7rem;
   margin-top: 0.65rem;
+  color: var(--ink);
   font-size: 0.9rem !important;
   font-weight: 500 !important;
   cursor: pointer;
 }
 
-.check-row input {
-  width: 1.25rem;
-  min-height: 1.25rem;
+.check-row input[type='checkbox'] {
+  display: grid;
+  width: 1.35rem;
+  height: 1.35rem;
+  min-height: 1.35rem;
   margin: 0.15rem 0 0;
-  accent-color: var(--blue-700);
+  padding: 0;
+  flex: 0 0 1.35rem;
+  place-content: center;
+  appearance: none;
+  border: 2px solid var(--blue-700);
+  border-radius: 0.22rem;
+  background: #fff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.check-row input[type='checkbox']::before {
+  width: 0.65rem;
+  height: 0.36rem;
+  transform: rotate(-45deg) scale(0);
+  transform-origin: center;
+  border-bottom: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  content: '';
+}
+
+.check-row input[type='checkbox']:checked {
+  background: var(--blue-700);
+}
+
+.check-row input[type='checkbox']:checked::before {
+  transform: rotate(-45deg) scale(1);
 }
 
 .form-hint {
@@ -821,9 +851,10 @@ input:disabled {
 .review-card {
   margin-top: 2rem;
   padding: 1.4rem;
-  border: 1px solid var(--line);
+  border: 1px solid #7c879d;
   border-radius: var(--radius-md);
   background: var(--paper);
+  color: var(--ink);
 }
 
 .review-heading {
@@ -835,6 +866,7 @@ input:disabled {
 
 .review-heading h3 {
   margin: 0 auto 0 0;
+  color: var(--navy-900);
 }
 
 .text-button {
@@ -858,7 +890,7 @@ input:disabled {
 
 #inquiry-summary div {
   padding-top: 0.75rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #7c879d;
 }
 
 #inquiry-summary dt {
@@ -871,6 +903,7 @@ input:disabled {
 
 #inquiry-summary dd {
   margin: 0.1rem 0 0;
+  color: var(--ink);
 }
 
 .consent-row {
@@ -887,75 +920,6 @@ input:disabled {
   font-family: 'Libre Caslon Display', Georgia, serif;
   font-size: 2.5rem;
   font-weight: 400;
-}
-
-.schedule-card {
-  margin-top: 1.5rem;
-  padding: clamp(1.5rem, 5vw, 3.5rem);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  background: #fff;
-  box-shadow: var(--shadow);
-  scroll-margin-top: calc(5rem + env(safe-area-inset-top) + 1rem);
-}
-
-.schedule-card:focus {
-  outline: none;
-}
-
-.schedule-card-heading {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1rem;
-}
-
-.schedule-card-heading h3 {
-  max-width: 28ch;
-  margin: 0;
-  color: var(--navy-900);
-  font-family: 'Libre Caslon Display', Georgia, serif;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  font-weight: 400;
-}
-
-.availability-result {
-  margin-top: 2rem;
-  padding: clamp(1.25rem, 4vw, 2rem);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--paper);
-}
-
-.availability-result h4 {
-  margin: 0 0 1rem;
-  color: var(--navy-900);
-  font-size: 1.1rem;
-}
-
-#schedule-summary {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 0 0 1.25rem;
-}
-
-#schedule-summary div {
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--line);
-}
-
-#schedule-summary dt {
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-#schedule-summary dd {
-  margin: 0.2rem 0 0;
 }
 
 .reference-code {
@@ -1598,10 +1562,6 @@ input:disabled {
   font-weight: 700;
 }
 
-.schedule-time-guidance {
-  margin: 0;
-}
-
 .closing-cta {
   background: var(--navy-900);
   color: #fff;
@@ -1817,13 +1777,11 @@ input:disabled {
     grid-template-columns: 1fr;
   }
 
-  .schedule-card-heading,
   .admin-panel-heading {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  #schedule-summary,
   .admin-action-grid,
   .admin-auth-row {
     grid-template-columns: 1fr;

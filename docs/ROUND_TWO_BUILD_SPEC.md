@@ -5,6 +5,16 @@ Date: 2026-09-22
 Owner: Dave Dobbins
 Client: Justin LeBlanc
 
+> **Public-form supersession — 2026-09-23:**
+> [PUBLIC_FORM_SIMPLIFICATION_SPEC.md](PUBLIC_FORM_SIMPLIFICATION_SPEC.md) replaces this document's
+> public-form structure, fields, labels, browser scheduling behavior, post-submit behavior, and
+> related acceptance requirements where they conflict. The current approved public browser is a
+> two-step, inquiry-only planner with no consultation selector, availability/booking call, or
+> reserve/tentative-hold card. This round-two document remains authoritative for all
+> non-conflicting brand, navigation, public-show, accessibility, privacy, security, backend, and
+> release requirements. The superseding specification records approved work and does not itself
+> prove deployment.
+
 This document supersedes the customer-facing information architecture, assistant presentation,
 public pricing, and discovery-form details in [BUILD_SPEC.md](BUILD_SPEC.md). It does not supersede
 the existing booking, Calendar hold, email, invoice, outbox, authentication, noindex, allowlist, or
@@ -22,6 +32,11 @@ preliminary click.
 consultation/tentative-hold workflow from the homepage. It does not bypass availability, personal
 review, the consultation, the agreed quote, or authenticated confirmation, and it does not collect
 payment.
+
+That continuation requirement is superseded by the 2026-09-23 public-form specification. The
+current approved public browser stops after inquiry submission and human-follow-up confirmation;
+the consultation/tentative-hold workflow remains available only through preserved private/backend
+capabilities.
 
 The public site should feel like Justin LeBlanc the performer. Booking technology should remain
 quiet, direct, and dependable.
@@ -97,6 +112,14 @@ Immediately after the opening conversion block, display:
 Use four evenly distributed items on wide screens and a legible 2×2 layout on narrow screens.
 
 ## 5. Inquiry form contract
+
+The requirements below record the 2026-09-22 form. For current public-form implementation, use
+[PUBLIC_FORM_SIMPLIFICATION_SPEC.md](PUBLIC_FORM_SIMPLIFICATION_SPEC.md): exactly two steps, an
+inquiry-only browser, **Location of the event**, the reduced planning-detail field set, a readable
+recap with consent controls, and no public consultation/availability/booking continuation. Preserve
+the stable inquiry fields and private/backend workflow as that specification requires.
+
+### Superseded 2026-09-22 form details
 
 Preserve the three-step, resumable, accessible planner, but render its first step directly in the
 opening conversion experience.
@@ -330,6 +353,10 @@ of this presentation-only removal.
   route is canonical, and the two surfaces must not contain conflicting answers.
 
 ## 9. Acceptance and evidence
+
+The public-form acceptance requirements in
+[PUBLIC_FORM_SIMPLIFICATION_SPEC.md](PUBLIC_FORM_SIMPLIFICATION_SPEC.md) replace conflicting form,
+browser-scheduling, and post-submit checks below. Keep the remaining round-two checks.
 
 In addition to [ACCEPTANCE.md](ACCEPTANCE.md), prove:
 

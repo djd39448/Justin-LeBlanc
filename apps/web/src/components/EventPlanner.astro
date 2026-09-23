@@ -1,6 +1,6 @@
 ---
 /**
- * Renders and submits the three-step accessible discovery form.
+ * Renders and submits the two-step accessible discovery form.
  *
  * Dependencies: The shared InquiryInput API contract at /api/inquiries.
  * Depended on by: Home and plan-your-event pages.
@@ -20,7 +20,7 @@ const { compact = false } = Astro.props;
       <h2 id="planner-title">Plan the music around your event</h2>
     </div>
     <p>
-      Three short steps. Unknown details can stay unknown. Sending this form starts a conversation;
+      Two short steps. Unknown details can stay unknown. Sending this form starts a conversation;
       it does not confirm your date.
     </p>
   </div>
@@ -42,11 +42,10 @@ const { compact = false } = Astro.props;
     data-current-step="1"
   >
     <div class="planner-progress" aria-label="Form progress">
-      <p><span id="progress-label">Step 1 of 3</span><span id="save-state">Saved as you go</span></p>
+      <p><span id="progress-label">Step 1 of 2</span><span id="save-state">Saved as you go</span></p>
       <ol>
         <li class="is-current" data-progress-step="1"><span>1</span> Contact</li>
-        <li data-progress-step="2"><span>2</span> Event</li>
-        <li data-progress-step="3"><span>3</span> Details & review</li>
+        <li data-progress-step="2"><span>2</span> Event & review</li>
       </ol>
     </div>
 
@@ -101,7 +100,7 @@ const { compact = false } = Astro.props;
           </select>
         </div>
         <div class="field">
-          <label for="city">Event city <span aria-hidden="true">*</span></label>
+          <label for="city">Location of the event <span aria-hidden="true">*</span></label>
           <input id="city" name="city" autocomplete="address-level2" maxlength="200" required />
         </div>
         <div class="field">
@@ -128,28 +127,8 @@ const { compact = false } = Astro.props;
           <label for="guestCount">Approximate guest count (optional)</label>
           <input id="guestCount" name="guestCount" type="number" min="1" max="10000" inputmode="numeric" />
         </div>
-      </div>
-      <div class="form-actions">
-        <button class="button button-secondary" type="button" data-back-step="1">Back</button>
-        <button class="button" type="button" data-next-step="3">Continue to details</button>
-      </div>
-    </fieldset>
-
-    <fieldset class="form-step" data-step="3">
-      <legend>Shape the atmosphere, then review</legend>
-      <div class="field-grid">
-        <div class="field field-wide">
-          <label for="atmosphere">What should the room feel like? <span aria-hidden="true">*</span></label>
-          <input
-            id="atmosphere"
-            name="atmosphere"
-            maxlength="200"
-            placeholder="Warm and conversational, celebratory, relaxed…"
-            required
-          />
-        </div>
         <div class="field">
-          <label for="durationMinutes">Approximate performance time</label>
+          <label for="durationMinutes">Performance time</label>
           <select id="durationMinutes" name="durationMinutes" required>
             <option value="60">About 1 hour</option>
             <option value="120" selected>About 2 hours</option>
@@ -158,12 +137,8 @@ const { compact = false } = Astro.props;
           </select>
         </div>
         <input id="timezone" name="timezone" type="hidden" value="America/Chicago" />
-        <div class="field field-wide">
-          <label for="musicRequests">Special Requests (optional)</label>
-          <textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea>
-        </div>
         <div class="field">
-          <label for="equipment">Sound or equipment needs</label>
+          <label for="equipment">Sound / equipment needs</label>
           <select id="equipment" name="equipment">
             <option value="unknown">Not sure yet</option>
             <option value="Venue provides PA">Venue provides PA</option>
@@ -171,18 +146,14 @@ const { compact = false } = Astro.props;
           </select>
         </div>
         <div class="field">
-          <label for="budgetCents">Estimated budget (USD, optional)</label>
+          <label for="budgetCents">Budget (optional)</label>
           <input id="budgetCents" name="budgetCents" type="text" inputmode="decimal" autocomplete="off" maxlength="32" />
           <p class="form-hint">Planning context only; it is not a quote or a charge.</p>
           <p class="form-hint" id="legacy-budget-context" hidden></p>
         </div>
-        <div class="field">
-          <label for="scheduleNotes">Timing notes (optional)</label>
-          <input id="scheduleNotes" name="scheduleNotes" maxlength="800" placeholder="Guest arrival, curfew, flexible timing…" />
-        </div>
         <div class="field field-wide">
-          <label for="notes">Anything else that would help? (optional)</label>
-          <textarea id="notes" name="notes" rows="3" maxlength="800"></textarea>
+          <label for="musicRequests">Special requests (optional)</label>
+          <textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea>
         </div>
       </div>
 
@@ -190,7 +161,6 @@ const { compact = false } = Astro.props;
         <div class="review-heading">
           <h3 id="review-title">Your inquiry at a glance</h3>
           <button class="text-button" type="button" data-back-step="1">Edit contact</button>
-          <button class="text-button" type="button" data-back-step="2">Edit event</button>
         </div>
         <dl id="inquiry-summary"></dl>
       </div>
@@ -205,7 +175,7 @@ const { compact = false } = Astro.props;
       </label>
 
       <div class="form-actions">
-        <button class="button button-secondary" type="button" data-back-step="2">Back</button>
+        <button class="button button-secondary" type="button" data-back-step="1">Back</button>
         <button class="button" id="submit-inquiry" type="submit">Send inquiry</button>
       </div>
       <p class="form-hint form-hint-center">
@@ -213,61 +183,6 @@ const { compact = false } = Astro.props;
       </p>
     </fieldset>
   </form>
-
-  <section class="schedule-card" id="schedule-card" aria-labelledby="schedule-title" tabindex="-1" hidden>
-    <div class="schedule-card-heading">
-      <div>
-        <p class="eyebrow">Next step</p>
-        <h3 id="schedule-title">Choose a consultation and tentative event time</h3>
-      </div>
-      <p class="reference-code" id="schedule-reference"></p>
-    </div>
-    <p>
-      These are separate calendar entries. The event remains tentative until a person completes the
-      consultation, agrees the quote, and confirms the show.
-    </p>
-    <div class="form-alert" id="schedule-alert" role="alert" tabindex="-1" hidden></div>
-    <form id="schedule-form">
-      <div class="field-grid">
-        <input id="scheduleTimezone" name="scheduleTimezone" type="hidden" value="America/Chicago" />
-        <p class="form-hint field-wide schedule-time-guidance">
-          Consultation and performance times below use Central Time.
-        </p>
-        <div class="field">
-          <label for="consultationLocal">Consultation date and time</label>
-          <input id="consultationLocal" name="consultationLocal" type="datetime-local" required />
-          <p class="form-hint">
-            20 minutes · Monday–Friday · 10:00 a.m.–4:00 p.m. Central Time.
-          </p>
-        </div>
-        <div class="field">
-          <label for="performanceStartLocal">Tentative performance start</label>
-          <input id="performanceStartLocal" name="performanceStartLocal" type="datetime-local" required />
-        </div>
-        <div class="field">
-          <label for="performanceEndLocal">Tentative performance end</label>
-          <input id="performanceEndLocal" name="performanceEndLocal" type="datetime-local" required />
-        </div>
-      </div>
-      <div class="form-actions form-actions-end">
-        <button class="button button-secondary" id="check-availability" type="button">Check both times</button>
-      </div>
-      <div class="availability-result" id="availability-result" hidden>
-        <h4>Review both calendar requests</h4>
-        <dl id="schedule-summary"></dl>
-        <label class="check-row consent-row" for="reviewConsent">
-          <input id="reviewConsent" name="reviewConsent" type="checkbox" />
-          <span>
-            I reviewed both dates and understand the performance is a tentative hold, not a confirmed
-            booking.
-          </span>
-        </label>
-        <button class="button" id="create-booking" type="submit" disabled>
-          Create consultation + tentative hold
-        </button>
-      </div>
-    </form>
-  </section>
 </section>
 
 <script>
@@ -304,31 +219,9 @@ const { compact = false } = Astro.props;
     requestKey: string;
   };
 
-  type CheckedSchedule = {
-    consultationStart: string;
-    performanceStart: string;
-    performanceEnd: string;
-    timezone: string;
-  };
-
-  type AvailabilityResponse = {
-    consultationAvailable: boolean;
-    performanceAvailable: boolean;
-    reasons: string[];
-  };
-
-  type BookingResponse = {
-    inquiryId: string;
-    showId: string;
-    consultationId: string;
-    status: string;
-    replayed: boolean;
-  };
-
   const STORAGE_KEY = "justin-demo-inquiry-draft-v1";
   const RESUME_KEY = "justin-demo-inquiry-resume-v1";
   const CENTRAL_TIME_ZONE = "America/Chicago";
-  const CENTRAL_TIME_LABEL = "Central Time (America/Chicago)";
   const planner = document.querySelector<HTMLFormElement>("#event-planner");
   const alertBox = document.querySelector<HTMLDivElement>("#form-alert");
   const progressLabel = document.querySelector<HTMLSpanElement>("#progress-label");
@@ -342,18 +235,7 @@ const { compact = false } = Astro.props;
   const dateFlexible = document.querySelector<HTMLInputElement>("#dateFlexible");
   const eventDate = document.querySelector<HTMLInputElement>("#eventDate");
   const submitButton = document.querySelector<HTMLButtonElement>("#submit-inquiry");
-  const scheduleCard = document.querySelector<HTMLElement>("#schedule-card");
-  const scheduleReference = document.querySelector<HTMLParagraphElement>("#schedule-reference");
-  const scheduleAlert = document.querySelector<HTMLDivElement>("#schedule-alert");
-  const scheduleForm = document.querySelector<HTMLFormElement>("#schedule-form");
   const inquiryTimezone = document.querySelector<HTMLInputElement>("#timezone");
-  const scheduleTimezone = document.querySelector<HTMLInputElement>("#scheduleTimezone");
-  const checkAvailabilityButton = document.querySelector<HTMLButtonElement>("#check-availability");
-  const availabilityResult = document.querySelector<HTMLDivElement>("#availability-result");
-  const scheduleSummary = document.querySelector<HTMLDListElement>("#schedule-summary");
-  const reviewConsent = document.querySelector<HTMLInputElement>("#reviewConsent");
-  const createBookingButton = document.querySelector<HTMLButtonElement>("#create-booking");
-  let checkedSchedule: CheckedSchedule | null = null;
   let resumedInput: InquiryInput | null = null;
   let resumedLegacyBudget: string | null = null;
   let budgetWasEdited = false;
@@ -418,14 +300,22 @@ const { compact = false } = Astro.props;
     if (!summary || !dateFlexible) return;
     const eventType = document.querySelector<HTMLSelectElement>("#eventType");
     const setting = document.querySelector<HTMLSelectElement>("#setting");
+    const preferredReplySelect = document.querySelector<HTMLSelectElement>("#preferredReply");
+    const performanceTime = document.querySelector<HTMLSelectElement>("#durationMinutes");
+    const equipment = document.querySelector<HTMLSelectElement>("#equipment");
+    const budget = controlValue("budgetCents");
     const rows = [
       ["Contact", `${controlValue("name")} · ${controlValue("email")}`],
+      ["Preferred reply", preferredReplySelect?.selectedOptions[0]?.text ?? "Email"],
       ["Event", eventType && eventType.selectedOptions[0] ? eventType.selectedOptions[0].text : ""],
       ["Date", dateFlexible.checked ? "Flexible / not chosen" : controlValue("eventDate")],
-      ["Place", [controlValue("venue"), controlValue("city")].filter(Boolean).join(", ")],
+      ["Location", [controlValue("venue"), controlValue("city")].filter(Boolean).join(", ")],
       ["Setting", setting && setting.selectedOptions[0] ? setting.selectedOptions[0].text : "Not sure yet"],
-      ["Time zone", CENTRAL_TIME_LABEL],
-      ["Atmosphere", controlValue("atmosphere") || "Add below"]
+      ["Guests", controlValue("guestCount")],
+      ["Performance time", performanceTime?.selectedOptions[0]?.text ?? ""],
+      ["Sound / equipment", equipment?.selectedOptions[0]?.text ?? "Not sure yet"],
+      ["Budget", budget ? `$${budget}` : resumedLegacyBudget ?? ""],
+      ["Special requests", controlValue("musicRequests")]
     ];
     summary.replaceChildren();
     for (const [term, value] of rows) {
@@ -450,8 +340,8 @@ const { compact = false } = Astro.props;
       item.classList.toggle("is-complete", itemStep < step);
     }
     planner.dataset.currentStep = String(step);
-    progressLabel.textContent = `Step ${step} of 3`;
-    if (step === 3) renderSummary();
+    progressLabel.textContent = `Step ${step} of 2`;
+    if (step === 2) renderSummary();
     const activeControl = planner.querySelector<HTMLElement>(
       `[data-step="${step}"] input, [data-step="${step}"] select, [data-step="${step}"] textarea`
     );
@@ -488,7 +378,7 @@ const { compact = false } = Astro.props;
     updateConditionalFields();
     const panel = planner.querySelector<HTMLElement>(`[data-step="${step}"]`);
     if (!panel) return false;
-    if (step === 3 && !validateBudget()) return false;
+    if (step === 2 && !validateBudget()) return false;
     const controls = panel.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
       "input, select, textarea"
     );
@@ -629,11 +519,8 @@ const { compact = false } = Astro.props;
       ["venue", input.venue],
       ["setting", input.setting],
       ["durationMinutes", String(input.durationMinutes)],
-      ["atmosphere", input.atmosphere],
       ["musicRequests", input.musicRequests],
-      ["scheduleNotes", input.scheduleNotes],
-      ["equipment", input.equipment],
-      ["notes", input.notes]
+      ["equipment", input.equipment]
     ]) {
       setControlValue(name, value);
     }
@@ -710,14 +597,14 @@ const { compact = false } = Astro.props;
       endLocal: "",
       durationMinutes: Number.parseInt(controlValue("durationMinutes"), 10),
       timezone: CENTRAL_TIME_ZONE,
-      atmosphere: controlValue("atmosphere"),
+      atmosphere: resumedInput?.atmosphere || "Not specified",
       musicRequests: controlValue("musicRequests"),
-      scheduleNotes: controlValue("scheduleNotes"),
+      scheduleNotes: resumedInput?.scheduleNotes || "",
       equipment: controlValue("equipment"),
       access: "unknown",
       budget: preserveLegacyBudget ? (resumedLegacyBudget ?? "unsure") : "unsure",
       budgetCents,
-      notes: controlValue("notes"),
+      notes: resumedInput?.notes || "",
       consent: true,
       marketingConsent: planner.elements.namedItem("marketingConsent") instanceof HTMLInputElement
         ? (planner.elements.namedItem("marketingConsent") as HTMLInputElement).checked
@@ -774,29 +661,6 @@ const { compact = false } = Astro.props;
     );
   }
 
-  function isAvailabilityResponse(value: unknown): value is AvailabilityResponse {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    return (
-      typeof record.consultationAvailable === "boolean" &&
-      typeof record.performanceAvailable === "boolean" &&
-      Array.isArray(record.reasons) &&
-      record.reasons.every((reason) => typeof reason === "string")
-    );
-  }
-
-  function isBookingResponse(value: unknown): value is BookingResponse {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    return (
-      typeof record.inquiryId === "string" &&
-      typeof record.showId === "string" &&
-      typeof record.consultationId === "string" &&
-      typeof record.status === "string" &&
-      typeof record.replayed === "boolean"
-    );
-  }
-
   function makeRequestKey(): string {
     if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
     return `web-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -824,180 +688,11 @@ const { compact = false } = Astro.props;
     sessionStorage.setItem(RESUME_KEY, JSON.stringify(record));
   }
 
-  function showScheduleAlert(message: string, kind: "error" | "success"): void {
-    if (!scheduleAlert) return;
-    scheduleAlert.hidden = false;
-    scheduleAlert.className = `form-alert form-alert-${kind}`;
-    scheduleAlert.textContent = message;
-    scheduleAlert.focus();
-  }
-
-  function clearScheduleAlert(): void {
-    if (!scheduleAlert) return;
-    scheduleAlert.hidden = true;
-    scheduleAlert.textContent = "";
-  }
-
-  function activateScheduling(record: ResumeRecord, focusCard: boolean): void {
-    if (!scheduleCard || !scheduleReference) return;
-    persistResumeRecord(record);
-    scheduleCard.hidden = false;
-    scheduleReference.textContent = `Inquiry ${record.id}`;
-    if (scheduleTimezone) scheduleTimezone.value = CENTRAL_TIME_ZONE;
-    if (focusCard) {
-      scheduleCard.scrollIntoView({ behavior: "smooth", block: "start" });
-      scheduleCard.focus();
-    }
-  }
-
   async function responseJson(response: Response, context: string): Promise<unknown> {
     try {
       return await response.json();
     } catch (error) {
       throw new Error(`${context} returned HTTP ${response.status} without JSON.`, { cause: error });
-    }
-  }
-
-  async function convertLocalTime(local: string, timezone: string): Promise<string> {
-    const response = await fetch("/api/time", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ local, timezone })
-    });
-    const body = await responseJson(response, "Time conversion API");
-    if (!response.ok || typeof body !== "object" || body === null || typeof (body as Record<string, unknown>).instant !== "string") {
-      throw new Error(`Time conversion failed with HTTP ${response.status}. Check the local time and timezone.`);
-    }
-    return (body as { instant: string }).instant;
-  }
-
-  function scheduleValue(name: string): string {
-    if (!scheduleForm) return "";
-    const control = scheduleForm.elements.namedItem(name);
-    if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement) return control.value;
-    return "";
-  }
-
-  function renderScheduleSummary(): void {
-    if (!scheduleSummary) return;
-    const rows = [
-      ["Consultation", `${scheduleValue("consultationLocal")} · ${CENTRAL_TIME_LABEL}`],
-      ["Tentative event", `${scheduleValue("performanceStartLocal")} to ${scheduleValue("performanceEndLocal")} · ${CENTRAL_TIME_LABEL}`],
-      ["Status", "Consultation request + tentative performance hold"]
-    ];
-    scheduleSummary.replaceChildren();
-    for (const [term, value] of rows) {
-      const wrapper = document.createElement("div");
-      const dt = document.createElement("dt");
-      const dd = document.createElement("dd");
-      dt.textContent = term;
-      dd.textContent = value;
-      wrapper.append(dt, dd);
-      scheduleSummary.append(wrapper);
-    }
-  }
-
-  function invalidateAvailability(): void {
-    checkedSchedule = null;
-    if (availabilityResult) availabilityResult.hidden = true;
-    if (reviewConsent) reviewConsent.checked = false;
-    if (createBookingButton) createBookingButton.disabled = true;
-    clearScheduleAlert();
-  }
-
-  async function checkScheduleAvailability(): Promise<void> {
-    if (!scheduleForm || !checkAvailabilityButton || !availabilityResult || !reviewConsent || !createBookingButton) return;
-    if (!scheduleForm.reportValidity()) return;
-    const timezone = CENTRAL_TIME_ZONE;
-    const consultationLocal = scheduleValue("consultationLocal");
-    const performanceStartLocal = scheduleValue("performanceStartLocal");
-    const performanceEndLocal = scheduleValue("performanceEndLocal");
-    if (performanceEndLocal <= performanceStartLocal) {
-      showScheduleAlert("Performance end must be later than performance start. Adjust the event times and check again.", "error");
-      return;
-    }
-    checkAvailabilityButton.disabled = true;
-    checkAvailabilityButton.textContent = "Checking…";
-    clearScheduleAlert();
-    try {
-      const [consultationStart, performanceStart, performanceEnd] = await Promise.all([
-        convertLocalTime(consultationLocal, timezone),
-        convertLocalTime(performanceStartLocal, timezone),
-        convertLocalTime(performanceEndLocal, timezone)
-      ]);
-      const candidate = { consultationStart, performanceStart, performanceEnd, timezone };
-      const response = await fetch("/api/availability", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ consultationStart, performanceStart, performanceEnd })
-      });
-      const body = await responseJson(response, "Availability API");
-      if (!response.ok || !isAvailabilityResponse(body)) {
-        throw new Error(`Availability API returned HTTP ${response.status} without a valid result.`);
-      }
-      if (!body.consultationAvailable || !body.performanceAvailable) {
-        const reasonText = body.reasons.length > 0 ? body.reasons.join(" ") : "One or both times are unavailable.";
-        showScheduleAlert(`${reasonText} Choose different times and check again.`, "error");
-        return;
-      }
-      checkedSchedule = candidate;
-      renderScheduleSummary();
-      availabilityResult.hidden = false;
-      reviewConsent.checked = false;
-      createBookingButton.disabled = true;
-      showScheduleAlert("Both times are currently available. Review the two requests before creating them.", "success");
-    } catch (error) {
-      console.error("Schedule availability check failed. Verify /api/time and /api/availability.", error);
-      showScheduleAlert(
-        "We could not verify both times. No consultation or hold was created. Check the entries and try again.",
-        "error"
-      );
-    } finally {
-      checkAvailabilityButton.disabled = false;
-      checkAvailabilityButton.textContent = "Check both times";
-    }
-  }
-
-  async function createSchedule(): Promise<void> {
-    if (!checkedSchedule || !reviewConsent || !reviewConsent.checked || !createBookingButton) return;
-    const resume = readResumeRecord();
-    if (!resume) {
-      showScheduleAlert("Secure inquiry resume details are missing. Submit the inquiry again before scheduling.", "error");
-      return;
-    }
-    createBookingButton.disabled = true;
-    createBookingButton.textContent = "Creating both entries…";
-    try {
-      const response = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          inquiryId: resume.id,
-          token: resume.token,
-          requestKey: resume.requestKey,
-          ...checkedSchedule,
-          reviewConsent: true
-        })
-      });
-      const body = await responseJson(response, "Booking API");
-      if (!response.ok || !isBookingResponse(body)) {
-        throw new Error(`Booking API returned HTTP ${response.status} without persisted record IDs.`);
-      }
-      resume.status = body.status;
-      persistResumeRecord(resume);
-      if (scheduleForm) scheduleForm.hidden = true;
-      showScheduleAlert(
-        `Consultation ${body.consultationId} and tentative hold ${body.showId} are saved. Status: ${body.status}.`,
-        "success"
-      );
-    } catch (error) {
-      console.error("Consultation and hold creation failed. Verify /api/bookings and reconciliation state.", error);
-      showScheduleAlert(
-        "We could not verify creation of both calendar entries. Do not submit a new inquiry; retry this scheduling step so the service can reconcile safely.",
-        "error"
-      );
-      createBookingButton.disabled = false;
-      createBookingButton.textContent = "Retry consultation + tentative hold";
     }
   }
 
@@ -1049,15 +744,13 @@ const { compact = false } = Astro.props;
       heading.textContent = "Your inquiry is saved";
       const copy = document.createElement("p");
       copy.textContent =
-        "A person still needs to confirm availability, format, and pricing. This browser holds the secure resume details for your inquiry.";
+        "Justin or his team will follow up using your selected reply method to confirm availability, format, and pricing. This browser holds the secure resume details for your inquiry.";
       const reference = document.createElement("p");
       reference.className = "reference-code";
       reference.textContent = `Inquiry reference: ${responseBody.id}`;
       confirmation.append(heading, copy, reference);
       planner.append(confirmation);
       confirmation.focus();
-      const resume = readResumeRecord();
-      if (resume) activateScheduling(resume, true);
     } catch (error) {
       console.error("Inquiry submission failed at /api/inquiries. Verify API health and request schema.", error);
       showAlert(
@@ -1077,12 +770,10 @@ const { compact = false } = Astro.props;
     }
     restoreDraft();
     if (inquiryTimezone) inquiryTimezone.value = CENTRAL_TIME_ZONE;
-    if (scheduleTimezone) scheduleTimezone.value = CENTRAL_TIME_ZONE;
     updateConditionalFields();
     showStep(1, false);
     const existingResume = readResumeRecord();
     if (existingResume) {
-      if (existingResume.status !== "confirmed") activateScheduling(existingResume, false);
       void restoreSubmittedInquiry(existingResume);
     }
     activePlanner.addEventListener("input", (event) => {
@@ -1104,13 +795,13 @@ const { compact = false } = Astro.props;
       }
       updateConditionalFields();
       saveDraft();
-      if (activePlanner.dataset.currentStep === "3") renderSummary();
+      if (activePlanner.dataset.currentStep === "2") renderSummary();
     });
     activePlanner.addEventListener("change", () => {
       plannerWasEdited = true;
       updateConditionalFields();
       saveDraft();
-      if (activePlanner.dataset.currentStep === "3") renderSummary();
+      if (activePlanner.dataset.currentStep === "2") renderSummary();
     });
     activePlanner.querySelectorAll<HTMLButtonElement>("[data-next-step]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -1127,23 +818,8 @@ const { compact = false } = Astro.props;
     });
     activePlanner.addEventListener("submit", (event) => {
       event.preventDefault();
-      if (validateStep(3)) void submitInquiry();
+      if (validateStep(2)) void submitInquiry();
     });
-    if (scheduleForm && checkAvailabilityButton && reviewConsent && createBookingButton) {
-      scheduleForm
-        .querySelectorAll<HTMLInputElement | HTMLSelectElement>(
-          "#consultationLocal, #scheduleTimezone, #performanceStartLocal, #performanceEndLocal"
-        )
-        .forEach((control) => control.addEventListener("input", invalidateAvailability));
-      checkAvailabilityButton.addEventListener("click", () => void checkScheduleAvailability());
-      reviewConsent.addEventListener("change", () => {
-        createBookingButton.disabled = !reviewConsent.checked || checkedSchedule === null;
-      });
-      scheduleForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        if (scheduleForm.reportValidity()) void createSchedule();
-      });
-    }
   } catch (error) {
     console.error("Event planner initialization failed. Inspect the required element IDs.", error);
     showAlert(
