@@ -44,7 +44,7 @@ interface AuditResult {
 
 const forbiddenPatterns: ReadonlyArray<{ label: string; pattern: RegExp }> = [
   { label: 'Retell demo phone number', pattern: /(?:\+1\s*)?\(?832\)?[\s.-]*501[\s.-]*3799/i },
-  { label: 'telephone URL', pattern: /tel:/i },
+  { label: 'unexpected telephone URL', pattern: /\btel:(?!\+18323039116\b)[^"'\s<]+/i },
   { label: 'voice component identifier', pattern: /VoicePanel/i },
   { label: 'chat component identifier', pattern: /ChatPanel/i },
   { label: 'public voice-number field', pattern: /demoVoicePhoneNumber/i },

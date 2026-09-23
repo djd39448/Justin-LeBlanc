@@ -14,7 +14,7 @@ export async function onRequest(context: {
     return Response.json(
       {
         error: 'api_not_configured',
-        message: 'The demo API is being connected. Please try again shortly.',
+        message: 'The booking service is being connected. Please try again shortly.',
       },
       { status: 503, headers: { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } },
     );
@@ -52,7 +52,7 @@ export async function onRequest(context: {
       {
         error: 'api_unavailable',
         message:
-          'The demo backend is currently unavailable. Your browser draft remains saved; please try again after service access is connected.',
+          'The booking service is temporarily unavailable. Your browser draft remains saved; please try again shortly.',
       },
       { status: 503, headers: { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } },
     );

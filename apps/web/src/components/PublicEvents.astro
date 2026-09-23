@@ -1,11 +1,36 @@
 ---
 /**
- * Renders a progressively enhanced projection of upcoming public performances.
+ * Renders the temporary curated projection of upcoming public performances.
  *
- * Dependencies: The sanitized /api/public-events endpoint.
+ * Dependencies: Curated public listings verified from public sources.
  * Depended on by: The homepage.
- * Why this exists: Visitors can find public performances without exposing private booking data.
+ * Why this exists: Visitors can find verified public performances while Calendar sync stays
+ * disabled until its dedicated QA pass.
  */
+import { temporaryPublicEvents } from "../content";
+
+const buildTime = Date.now();
+const visiblePublicEvents = temporaryPublicEvents.filter((event) => {
+  const endTime = Date.parse(event.end);
+  if (!Number.isFinite(endTime)) {
+    throw new Error(`Temporary public event ${event.id} has an invalid end time.`);
+  }
+  return endTime > buildTime;
+});
+const curatedState =
+  "Dates currently confirmed on Justin’s public listings. More dates will be added as they are announced.";
+const emptyState = "New public dates will be posted here soon.";
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+  timeZone: "America/Chicago",
+  timeZoneName: "short"
+});
 ---
 
 <section class="public-events section" aria-labelledby="public-events-title">
@@ -18,124 +43,71 @@
       <p>Public performances are listed here as they are confirmed for sharing.</p>
     </div>
     <div class="public-events__state" id="public-events-state" role="status" aria-live="polite">
-      Loading upcoming public performances…
+      {visiblePublicEvents.length > 0 ? curatedState : emptyState}
     </div>
-    <ol class="public-events__list" id="public-events-list" hidden></ol>
+    <ol class="public-events__list" id="public-events-list" hidden={visiblePublicEvents.length === 0}>
+      {visiblePublicEvents.map((event) => (
+        <li data-curated-event data-end={event.end}>
+          <time datetime={event.start}>{dateFormatter.format(new Date(event.start))}</time>
+          <time datetime={event.end} class="visually-hidden">
+            {` through ${dateFormatter.format(new Date(event.end))}`}
+          </time>
+          <div>
+            <h3>{event.title}</h3>
+            <p>{event.venue} · {event.city}</p>
+            <a class="public-events__source" href={event.sourceUrl} rel="external">Event details</a>
+          </div>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 
 <script>
-  type PublicEvent = {
-    id: string;
-    title: string;
-    venue: string;
-    city?: string;
-    start: string;
-    end: string;
-    timezone: string;
-  };
-
-  type PublicEventsResponse = {
-    events: PublicEvent[];
-    status: "fresh" | "stale";
-    lastUpdated: string;
-  };
-
   const state = document.querySelector<HTMLElement>("#public-events-state");
   const list = document.querySelector<HTMLOListElement>("#public-events-list");
+  const CURATED_STATE =
+    "Dates currently confirmed on Justin’s public listings. More dates will be added as they are announced.";
+  const EMPTY_PLACEHOLDER_STATE = "New public dates will be posted here soon.";
+  const MAX_TIMEOUT_MS = 2_147_483_647;
 
-  function isResponse(value: unknown): value is PublicEventsResponse {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    return (
-      Array.isArray(record.events) &&
-      record.events.every(isPublicEvent) &&
-      (record.status === "fresh" || record.status === "stale") &&
-      typeof record.lastUpdated === "string"
-    );
+  function pruneExpiredCuratedEvents(): number | null {
+    if (!list) return null;
+    let nextEndTime: number | null = null;
+    const items = list.querySelectorAll<HTMLElement>("[data-curated-event]");
+    for (const item of items) {
+      const end = item.dataset.end;
+      const endTime = end ? Date.parse(end) : Number.NaN;
+      if (!Number.isFinite(endTime)) {
+        console.error(
+          "A curated public event has an invalid end time. Remove or correct the entry in content.ts before the next build."
+        );
+        item.remove();
+      } else if (endTime <= Date.now()) {
+        item.remove();
+      } else if (nextEndTime === null || endTime < nextEndTime) {
+        nextEndTime = endTime;
+      }
+    }
+    return nextEndTime;
   }
 
-  function isPublicEvent(value: unknown): value is PublicEvent {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    return (
-      typeof record.id === "string" &&
-      typeof record.title === "string" &&
-      typeof record.venue === "string" &&
-      (record.city === undefined || typeof record.city === "string") &&
-      typeof record.start === "string" &&
-      typeof record.end === "string" &&
-      typeof record.timezone === "string"
-    );
-  }
-
-  function formatDate(value: string, timezone: string): string {
-    return new Intl.DateTimeFormat("en-US", {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: timezone,
-      timeZoneName: "short"
-    }).format(new Date(value));
-  }
-
-  function renderEvents(events: PublicEvent[], status: "fresh" | "stale"): void {
+  function showCuratedState(): void {
     if (!state || !list) return;
-    if (events.length === 0) {
-      list.replaceChildren();
-      list.hidden = true;
-      state.hidden = false;
-      state.textContent = "There are no upcoming public performances listed right now.";
-      return;
-    }
-    list.replaceChildren();
-    for (const event of events) {
-      const item = document.createElement("li");
-      const start = document.createElement("time");
-      start.dateTime = event.start;
-      start.textContent = formatDate(event.start, event.timezone);
-      const end = document.createElement("time");
-      end.dateTime = event.end;
-      end.className = "visually-hidden";
-      end.textContent = ` through ${formatDate(event.end, event.timezone)}`;
-      const details = document.createElement("div");
-      const title = document.createElement("h3");
-      const venue = document.createElement("p");
-      title.textContent = event.title;
-      venue.textContent = event.city ? `${event.venue} · ${event.city}` : event.venue;
-      details.append(title, venue);
-      item.append(start, end, details);
-      list.append(item);
-    }
-    list.hidden = false;
-    state.textContent = status === "stale"
-      ? "Showing the most recently confirmed public-performance listing while dates refresh."
-      : "";
-    state.hidden = status === "fresh";
+    const hasEvents = list.children.length > 0;
+    list.hidden = !hasEvents;
+    state.hidden = false;
+    state.textContent = hasEvents ? CURATED_STATE : EMPTY_PLACEHOLDER_STATE;
   }
 
-  async function loadEvents(): Promise<void> {
-    if (!state) return;
-    try {
-      const response = await fetch("/api/public-events", { headers: { Accept: "application/json" } });
-      const body: unknown = await response.json();
-      if (!response.ok || !isResponse(body)) {
-        throw new Error("Public performances are unavailable.");
-      }
-      renderEvents(body.events, body.status);
-    } catch (error) {
-      console.error("Could not load the public events projection. Check /api/public-events.", error);
-      if (list) {
-        list.replaceChildren();
-        list.hidden = true;
-      }
-      state.hidden = false;
-      state.textContent = "Current dates are temporarily unavailable.";
+  function refreshCuratedEvents(): void {
+    const nextEndTime = pruneExpiredCuratedEvents();
+    showCuratedState();
+    if (nextEndTime !== null) {
+      const delay = Math.min(Math.max(nextEndTime - Date.now() + 1, 1), MAX_TIMEOUT_MS);
+      window.setTimeout(refreshCuratedEvents, delay);
     }
   }
 
-  void loadEvents();
+  refreshCuratedEvents();
 </script>

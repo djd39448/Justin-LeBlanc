@@ -15,10 +15,25 @@ export const site = {
   instagram: 'https://instagram.com/jus10sense',
   youtube: 'https://youtube.com/@jus10sense',
   facebook: 'https://facebook.com/250866058945459',
+  businessPhone: '+18323039116',
+  businessPhoneDisplay: '(832) 303-9116',
   // Retained solely for the dormant, non-public voice component's isolated integration contract.
   demoPhone: '+18325013799',
   demoPhoneDisplay: '(832) 501-3799',
 } as const;
+
+export const temporaryPublicEvents = [
+  {
+    id: 'public-solo-sunday-2026-09-27',
+    title: 'Solo Sunday with Justin LeBlanc',
+    venue: 'The Blue Lion Brunchery & Pub',
+    city: 'The Woodlands, TX',
+    start: '2026-09-27T17:00:00-05:00',
+    end: '2026-09-27T20:00:00-05:00',
+    timezone: 'America/Chicago',
+    sourceUrl: 'https://www.woodlandsonline.com/evps/evitem.cfm?evid=208495',
+  },
+] as const;
 
 export const faqs = [
   {

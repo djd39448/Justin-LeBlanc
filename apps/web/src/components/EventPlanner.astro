@@ -284,6 +284,12 @@ const { compact = false } = Astro.props;
     missingFields: string[];
   };
 
+  type ValidationErrorResponse = {
+    error: "validation";
+    message: string;
+    fields: Array<{ path: string; message: string }>;
+  };
+
   type InquiryInspection = {
     inquiryId: string;
     status: string;
@@ -393,6 +399,7 @@ const { compact = false } = Astro.props;
     if (!preferredReply || !phone || !phoneOptional || !dateFlexible || !eventDate) return;
     const phoneRequired = preferredReply.value === "text" || preferredReply.value === "phone";
     phone.required = phoneRequired;
+    if (!phoneRequired) phone.setCustomValidity("");
     phoneOptional.textContent = phoneRequired ? "*" : "(optional)";
     eventDate.required = !dateFlexible.checked;
     eventDate.disabled = dateFlexible.checked;
@@ -450,6 +457,30 @@ const { compact = false } = Astro.props;
     );
     if (activeControl && focusControl) activeControl.focus();
     clearAlert();
+  }
+
+  function applyServerValidation(value: unknown): boolean {
+    if (!planner || !isValidationErrorResponse(value)) return false;
+    let firstControl: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null = null;
+    for (const issue of value.fields) {
+      const control = planner.elements.namedItem(issue.path);
+      if (
+        control instanceof HTMLInputElement ||
+        control instanceof HTMLSelectElement ||
+        control instanceof HTMLTextAreaElement
+      ) {
+        control.setCustomValidity(issue.message);
+        if (firstControl === null) firstControl = control;
+      }
+    }
+    if (firstControl === null) return false;
+    const panel = firstControl.closest<HTMLElement>("[data-step]");
+    const step = panel === null ? Number.NaN : Number(panel.dataset.step);
+    if (Number.isFinite(step)) showStep(step, false);
+    showAlert(value.message, "error");
+    firstControl.focus();
+    firstControl.reportValidity();
+    return true;
   }
 
   function validateStep(step: number): boolean {
@@ -708,6 +739,21 @@ const { compact = false } = Astro.props;
       typeof record.token === "string" &&
       typeof record.status === "string" &&
       Array.isArray(record.missingFields)
+    );
+  }
+
+  function isValidationErrorResponse(value: unknown): value is ValidationErrorResponse {
+    if (typeof value !== "object" || value === null) return false;
+    const record = value as Record<string, unknown>;
+    return (
+      record.error === "validation" &&
+      typeof record.message === "string" &&
+      Array.isArray(record.fields) &&
+      record.fields.every((field) => {
+        if (typeof field !== "object" || field === null) return false;
+        const issue = field as Record<string, unknown>;
+        return typeof issue.path === "string" && typeof issue.message === "string";
+      })
     );
   }
 
@@ -977,7 +1023,15 @@ const { compact = false } = Astro.props;
         body: JSON.stringify(buildPayload())
       });
       const responseBody = await responseJson(response, "Inquiry API");
-      if (!response.ok || !isInquiryResponse(responseBody)) {
+      if (!response.ok) {
+        if (applyServerValidation(responseBody)) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Send inquiry";
+          return;
+        }
+        throw new Error(`Inquiry API returned HTTP ${response.status} without actionable field errors.`);
+      }
+      if (!isInquiryResponse(responseBody)) {
         throw new Error(`Inquiry API returned HTTP ${response.status} without a valid persisted record.`);
       }
       persistResumeRecord({
@@ -1033,9 +1087,16 @@ const { compact = false } = Astro.props;
     }
     activePlanner.addEventListener("input", (event) => {
       plannerWasEdited = true;
+      const editedControl = event.target;
+      if (
+        editedControl instanceof HTMLInputElement ||
+        editedControl instanceof HTMLSelectElement ||
+        editedControl instanceof HTMLTextAreaElement
+      ) {
+        editedControl.setCustomValidity("");
+      }
       if (budgetInput && event.target === budgetInput) {
         budgetWasEdited = true;
-        budgetInput.setCustomValidity("");
         if (legacyBudgetContext) {
           legacyBudgetContext.hidden = true;
           legacyBudgetContext.textContent = "";

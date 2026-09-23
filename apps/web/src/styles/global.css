@@ -42,6 +42,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(5rem + env(safe-area-inset-top) + 1rem);
@@ -1405,7 +1409,7 @@ input:disabled {
   display: grid;
   min-height: calc(100vh - 4.5rem);
   grid-template-columns: minmax(0, 1fr) minmax(29rem, 0.94fr);
-  grid-template-rows: auto auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   align-items: end;
   gap: clamp(2rem, 6vw, 7rem);
   padding-block: clamp(3rem, 7vh, 6rem);
@@ -1414,7 +1418,7 @@ input:disabled {
 .opening__copy {
   grid-column: 2;
   grid-row: 1;
-  align-self: start;
+  align-self: end;
   margin-bottom: 2rem;
   text-align: right;
 }
@@ -1431,6 +1435,27 @@ input:disabled {
   margin-left: auto;
   color: rgba(255, 255, 255, 0.84);
   font-size: clamp(1rem, 1.45vw, 1.24rem);
+}
+
+.booking-phone {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.booking-phone a {
+  min-height: 2.75rem;
+  padding: 0.7rem 0;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
 }
 
 .opening__planner {
@@ -1557,6 +1582,19 @@ input:disabled {
 .public-events__list p {
   margin: 0;
   color: var(--muted);
+}
+
+.public-events__source {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-top: 0.8rem;
+  color: var(--blue-700);
+  font-weight: 700;
+}
+
+.footer-phone {
+  font-weight: 700;
 }
 
 .schedule-time-guidance {
@@ -1844,6 +1882,13 @@ input:disabled {
   .opening__copy > p:not(.eyebrow) {
     margin-left: 0;
     font-size: 0.98rem;
+  }
+
+  .booking-phone {
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0;
   }
 
   .opening .planner-heading {

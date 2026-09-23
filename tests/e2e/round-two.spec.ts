@@ -1,8 +1,8 @@
 /**
  * Covers the round-two conversion contract in the built public website.
  *
- * Dependencies: The Astro preview started by playwright.config.ts and sanitized public-events
- * fixtures intercepted at the browser boundary.
+ * Dependencies: The Astro preview started by playwright.config.ts and temporary public-event
+ * fixtures used to prove Calendar requests remain dormant.
  * Depended on by: Round-two acceptance evidence and the release review.
  * Why this exists: Responsive composition, focus behavior, and fail-closed public dates are
  * user-visible contracts that unit tests cannot prove.
@@ -33,6 +33,13 @@ const INVALID_BUDGETS = [
   '100000000.00',
 ] as const;
 const VALID_BUDGETS = ['', '0', '750', '750.5', '750.50', ' 750.50 ', '99999999.99'] as const;
+const CURATED_EVENT = {
+  title: 'Solo Sunday with Justin LeBlanc',
+  start: '2026-09-27T17:00:00-05:00',
+  end: '2026-09-27T20:00:00-05:00',
+} as const;
+const CURATED_STATE =
+  'Dates currently confirmed on Justin’s public listings. More dates will be added as they are announced.';
 
 const RESUMED_LEGACY_INPUT = {
   name: 'Legacy Planner',
@@ -85,11 +92,11 @@ const POPULATED_FIXTURE: PublicEventsFixture = {
   events: [
     {
       id: 'pe_e2e_1',
-      title: 'Justin LeBlanc live',
-      venue: 'The Blue Room',
-      city: 'Houston, TX',
-      start: '2026-10-17T19:30:00-05:00',
-      end: '2026-10-17T21:30:00-05:00',
+      title: CURATED_EVENT.title,
+      venue: 'The Blue Lion Brunchery & Pub',
+      city: 'The Woodlands, TX',
+      start: CURATED_EVENT.start,
+      end: CURATED_EVENT.end,
       timezone: 'America/Chicago',
     },
   ],
@@ -171,12 +178,17 @@ test.describe('round-two homepage conversion surface', () => {
   test('renders the required hierarchy, exact copy, usable first step, and a viewport screenshot', async ({
     page,
   }, testInfo) => {
-    await routePublicEvents(page, 'populated');
+    await routePublicEvents(page, 'unavailable');
     await page.goto('/');
 
     await expect(page.locator('main h1')).toHaveCount(1);
     await expect(page.locator('main h1')).toHaveText('Justin LeBlanc');
     await expect(page.getByText(OPENING_LINE, { exact: true })).toBeVisible();
+    const businessPhoneLinks = page.locator('a[href="tel:+18323039116"]');
+    await expect(businessPhoneLinks).toHaveCount(2);
+    await expect(businessPhoneLinks.first()).toHaveText('(832) 303-9116');
+    await expect(page.locator('link[rel~="icon"]')).toHaveCount(0);
+    await expect(page.locator('.voice-card, .chat-card, .package-grid')).toHaveCount(0);
     for (const category of CATEGORY_LABELS) {
       await expect(page.getByText(category, { exact: true })).toBeVisible();
     }
@@ -309,56 +321,106 @@ test.describe('round-two homepage conversion surface', () => {
     for (const fontSize of formTextSizes) expect(fontSize).toBeGreaterThanOrEqual(16);
   });
 
-  test('handles loading, populated, empty, stale, and unavailable public-event states', async ({
+  test('renders the curated public listing without requesting the dormant Calendar endpoint', async ({
     page,
   }) => {
-    const expectations: Array<{ mode: PublicEventsMode; text: string }> = [
-      { mode: 'loading', text: 'Loading upcoming public performances…' },
-      { mode: 'populated', text: '' },
-      { mode: 'empty', text: 'There are no upcoming public performances listed right now.' },
-      {
-        mode: 'stale',
-        text: 'Showing the most recently confirmed public-performance listing while dates refresh.',
-      },
-      { mode: 'unavailable', text: 'Current dates are temporarily unavailable.' },
-    ];
+    await page.addInitScript(() => {
+      Date.now = () => Date.parse('2026-09-22T15:00:00.000Z');
+    });
+    let calendarRequestCount = 0;
+    page.on('request', (request) => {
+      if (new URL(request.url()).pathname === '/api/public-events') calendarRequestCount += 1;
+    });
+    await routePublicEvents(page, 'populated');
+    await page.goto('/');
 
-    for (const expectation of expectations) {
-      await page.unroute('**/api/public-events');
-      await routePublicEvents(page, expectation.mode);
-      await page.goto('/', {
-        waitUntil: expectation.mode === 'loading' ? 'domcontentloaded' : 'load',
+    await expect(page.locator('#public-events-state')).toHaveText(CURATED_STATE);
+    await expect(page.locator('#public-events-list li')).toHaveCount(1);
+    await expect(page.locator('#public-events-list')).toContainText(CURATED_EVENT.title);
+    await expect(page.locator('#public-events-list')).toContainText(
+      'The Blue Lion Brunchery & Pub',
+    );
+    await expect(page.locator('.public-events__source')).toHaveAttribute(
+      'href',
+      'https://www.woodlandsonline.com/evps/evitem.cfm?evid=208495',
+    );
+    const eventTimes = page.locator('#public-events-list time');
+    await expect(eventTimes).toHaveCount(2);
+    await expect(eventTimes.first()).toHaveAttribute('datetime', CURATED_EVENT.start);
+    await expect(eventTimes.nth(1)).toHaveAttribute('datetime', CURATED_EVENT.end);
+    await expect(eventTimes.nth(1)).toHaveClass(/visually-hidden/);
+    await expect(eventTimes.first()).toBeVisible();
+    expect(calendarRequestCount).toBe(0);
+  });
+
+  test('returns server phone validation to the phone control', async ({ page }, testInfo) => {
+    test.skip(
+      projectWidth(testInfo) !== 390,
+      'Run the server-field validation contract once at the mobile acceptance viewport.',
+    );
+    await routePublicEvents(page, 'unavailable');
+    await page.route('**/api/inquiries', async (route) => {
+      await route.fulfill({
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          error: 'validation',
+          message: 'Check the highlighted fields.',
+          fields: [
+            {
+              path: 'phone',
+              message: 'Phone is required when Preferred Reply is Text or Phone Call.',
+            },
+          ],
+        }),
       });
-      const state = page.locator('#public-events-state');
-      if (expectation.text !== '') await expect(state).toContainText(expectation.text);
+    });
+    await page.goto('/');
 
-      if (expectation.mode === 'loading') {
-        await expect(state).toContainText('Loading upcoming public performances…');
-        const loadingHidden = await page
-          .locator('#public-events-list')
-          .evaluate((element) => (element as HTMLOListElement).hidden);
-        expect(loadingHidden).toBe(true);
-        await expect(page.locator('#public-events-list')).toContainText(PRIMARY_EVENT.title);
-      }
-      if (expectation.mode === 'populated' || expectation.mode === 'stale') {
-        await expect(page.locator('#public-events-list li')).toHaveCount(1);
-        if (expectation.mode === 'populated') {
-          await expect(page.locator('#public-events-list')).toContainText(PRIMARY_EVENT.title);
-        }
-        const eventTimes = page.locator('#public-events-list time');
-        await expect(eventTimes).toHaveCount(2);
-        await expect(eventTimes.first()).toHaveAttribute('datetime', PRIMARY_EVENT.start);
-        await expect(eventTimes.nth(1)).toHaveAttribute('datetime', PRIMARY_EVENT.end);
-        await expect(eventTimes.nth(1)).toHaveClass(/visually-hidden/);
-        await expect(eventTimes.first()).toBeVisible();
-      }
-      if (expectation.mode === 'empty' || expectation.mode === 'unavailable') {
-        const listHidden = await page
-          .locator('#public-events-list')
-          .evaluate((element) => (element as HTMLOListElement).hidden);
-        expect(listHidden).toBe(true);
-      }
-    }
+    await page.locator('#name').fill('Alex Planner');
+    await page.locator('#email').fill('alex@example.test');
+    await page.locator('#preferredReply').selectOption('phone');
+    await page.locator('#phone').fill('1');
+    await page.getByRole('button', { name: 'Continue to event', exact: true }).click();
+    await page.locator('#eventType').selectOption('private');
+    await page.locator('#city').fill('Houston');
+    await page.locator('#dateFlexible').check();
+    await page.getByRole('button', { name: 'Continue to details', exact: true }).click();
+    await page.locator('#atmosphere').fill('Warm and conversational');
+    await page.locator('#consent').check();
+    await page.locator('#submit-inquiry').click();
+
+    const phone = page.locator('#phone');
+    await expect(page.locator('[data-step="1"]')).toBeVisible();
+    await expect(phone).toBeFocused();
+    await expect
+      .poll(() => phone.evaluate((element) => (element as HTMLInputElement).validationMessage))
+      .toBe('Phone is required when Preferred Reply is Text or Phone Call.');
+    await expect(page.locator('#form-alert')).toContainText('Check the highlighted fields.');
+
+    await page.locator('#preferredReply').selectOption('email');
+    await expect
+      .poll(() => phone.evaluate((element) => (element as HTMLInputElement).validationMessage))
+      .toBe('');
+    await expect(phone).not.toHaveAttribute('required');
+  });
+
+  test('automatically retires an expired temporary public listing', async ({ page }, testInfo) => {
+    test.skip(
+      projectWidth(testInfo) !== 390,
+      'Run the temporary-listing expiry contract once at the mobile acceptance viewport.',
+    );
+    await page.addInitScript(() => {
+      Date.now = () => Date.parse('2026-09-28T15:00:00.000Z');
+    });
+    await routePublicEvents(page, 'unavailable');
+    await page.goto('/');
+
+    await expect(page.locator('#public-events-state')).toHaveText(
+      'New public dates will be posted here soon.',
+    );
+    await expect(page.locator('#public-events-list')).toBeHidden();
+    await expect(page.getByText(CURATED_EVENT.title, { exact: true })).toHaveCount(0);
   });
 
   test('supports the required mobile-menu keyboard and focus lifecycle', async ({

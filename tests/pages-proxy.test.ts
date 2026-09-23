@@ -18,6 +18,21 @@ function request(path: string, init?: RequestInit): Promise<Response> {
 afterEach(() => vi.unstubAllGlobals());
 
 describe('Pages API proxy', () => {
+  it('uses neutral public copy when the API origin is not configured', async () => {
+    const response = await onRequest({
+      request: new Request('https://justinleblancmusic.50by50.dev/api/health'),
+      env: {},
+    });
+
+    expect(response.status).toBe(503);
+    const body = await response.json();
+    expect(body).toEqual({
+      error: 'api_not_configured',
+      message: 'The booking service is being connected. Please try again shortly.',
+    });
+    expect(JSON.stringify(body)).not.toMatch(/\bdemo\b/i);
+  });
+
   it('passes through only the exact sanitized public-events unavailable response', async () => {
     vi.stubGlobal(
       'fetch',
@@ -40,20 +55,28 @@ describe('Pages API proxy', () => {
     [504, '/api/public-events', { error: 'provider_diagnostic', calendarId: 'private' }],
     [503, '/api/bookings', unavailable],
   ])('masks unsafe upstream %s response for %s', async (status, path, body) => {
-    vi.stubGlobal('fetch', vi.fn(async () => Response.json(body, { status })));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json(body, { status })),
+    );
 
     const response = await request(path as string);
 
     expect(response.status).toBe(503);
-    expect(await response.json()).toEqual({
+    const responseBody = await response.json();
+    expect(responseBody).toEqual({
       error: 'api_unavailable',
       message:
-        'The demo backend is currently unavailable. Your browser draft remains saved; please try again after service access is connected.',
+        'The booking service is temporarily unavailable. Your browser draft remains saved; please try again shortly.',
     });
+    expect(JSON.stringify(responseBody)).not.toMatch(/\bdemo\b/i);
   });
 
   it('masks the fixed public-events response for non-GET requests', async () => {
-    vi.stubGlobal('fetch', vi.fn(async () => Response.json(unavailable, { status: 503 })));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json(unavailable, { status: 503 })),
+    );
 
     const response = await request('/api/public-events', { method: 'POST' });
 
@@ -64,7 +87,10 @@ describe('Pages API proxy', () => {
   });
 
   it('preserves successful API responses', async () => {
-    vi.stubGlobal('fetch', vi.fn(async () => Response.json({ ok: true })));
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => Response.json({ ok: true })),
+    );
 
     const response = await request('/api/health');
 
