@@ -1,19 +1,22 @@
 # Progress
 
-Updated 2026-09-22. **Round-two code is merged to `main` at
-`e4e082e5d85d56f3301ce7652180b40c78f24956`; the additive API is live with Public Shows disabled
-and the Pages safety bridge is production deployment `5213f7b6`. The visible frontend
-intentionally remains the prior design because the Calendar on Justin's existing public events
-page mixes private events and street-address locations. A dedicated owner-approved Public Shows
-Calendar is still required before the conversion frontend can safely go live. Full voice booking
-and recovery after an actual reboot/sign-out remain unverified.**
+Updated 2026-09-22. **The corrected conversion-first frontend is live at
+`https://justinleblancmusic.50by50.dev/` from verified frontend revision
+`9ca79d9a5afeb38c8740f768b9bae73319f1756e`, contained in both `origin/main` and
+`origin/codex/justin-round-two`. Cloudflare Pages deployment
+`a3152e61-ed47-41a7-9595-ebd42e694245` serves the release. Corrected deployment
+`8d348ce1-d6f7-48f8-ad72-53dd7d856a07` is the immediate rollback target; bridge-only deployment
+`5213f7b6-da9c-4985-819b-a05da8831db1` is a legacy fallback. The dedicated Public Shows Calendar
+remains disabled for the next QA pass, so Where I'm Playing temporarily renders one verified public
+date without requesting Calendar data. Full voice booking and recovery after an actual
+reboot/sign-out remain unverified.**
 
-## Round-two implementation — API live, frontend gated
+## Round-two implementation — corrected frontend live
 
-The verified release commit is `e4e082e5d85d56f3301ce7652180b40c78f24956`, fast-forwarded to
-`origin/main` from audited base `5d664bb4e51b198ae3dc0768154a1a86a29817a4`. Release evidence is
-in [the dated round-two record](docs/evidence/round-two-2026-09-22.md). Only the additive API and
-fail-closed Pages bridge are live; do not report the conversion frontend as deployed.
+The verified frontend release revision is `9ca79d9a5afeb38c8740f768b9bae73319f1756e`, contained in
+`origin/main` and the pushed feature branch. Release evidence is in
+[the dated round-two record](docs/evidence/round-two-2026-09-22.md). The canonical hostname returns
+HTTP 200, health returns HTTP 200, and `/admin` retains no-store/noindex.
 
 - [x] Put the shared planner directly in the opening homepage conversion experience; no CTA, modal,
       or route change is required to begin.
@@ -25,29 +28,37 @@ fail-closed Pages bridge are live; do not report the conversion frontend as depl
       replace budget ranges with visitor-entered numeric USD.
 - [x] Add the isolated read-only sanitized `/api/public-events` projection and offline fixture proof
       that private/corporate/wedding/consultation/hold sources are never queried or published.
-- [ ] Owner-confirm the exact live public-performance-only Calendar and sufficient existing read
+- [ ] During the next QA pass, owner-confirm the exact live public-performance-only Calendar and sufficient existing read
       access; the exact Calendar published by the existing events page was inspected and rejected
       because it contains private-event records and street-address locations. Keep
       `PUBLIC_EVENTS_ENABLED=false` until a safe dedicated source passes.
-- [x] Remove chatbot/voice UI, phone number, `tel:` links, and assistant references from the public
-      website while preserving all underlying Retell/OpenAI resources, KB/tools, routes, config, and
-      backend tests.
+- [x] Remove chatbot/voice UI, the dormant voice-agent number, package pricing, and assistant
+      references from the public website while preserving all underlying Retell/OpenAI resources,
+      KB/tools, routes, config, and backend tests. Show the human business phone
+      **(832) 303-9116** instead.
+- [x] Add one temporary manually curated public listing for **Solo Sunday with Justin LeBlanc**,
+      Sep 27, 2026, 5:00–8:00 PM Central, at The Blue Lion Brunchery & Pub in The Woodlands, TX.
+      Link to the public Woodlands Online source, omit the street address, filter it at build time,
+      expire it client-side after the event, and make no frontend Calendar request.
 - [x] Add responsive browser evidence at all five required widths, the public-output audit, secret
       scan, and CI gates.
 - [x] Capture private rollback state, deploy the compatible API disabled-first, and verify local,
       direct-tunnel, and exact-site health plus the fixed fail-closed 503. All four existing
       capability flags remain enabled and the outbox has no unresolved effects.
-- [ ] Enable and review a dedicated Public Shows source, then deploy the dependent conversion
-      frontend. Do not mutate Retell for this round.
+- [x] Deploy and smoke-test the corrected conversion frontend without enabling or querying the
+      Public Shows Calendar. Do not mutate Retell for this release.
+- [ ] Configure and review a dedicated Public Shows Calendar during the next QA pass; keep the
+      exact safe `/api/public-events` 503 until then.
 
-Final results: `npm run verify` passed 141 tests in 24 files, lint/typecheck, 21 Astro files
-with zero diagnostics, and nine built pages. Playwright passed 30 tests with 15 intentional
-viewport-specific skips. The built-output audit scanned 16 files with no findings, and the secret
-scan was clean. Both feature and `main` CI passed. Baseline was 103 tests in 19 files, 20 Astro
-files, and nine pages.
+Final results: local verification passed 146 unit/integration tests in 24 files, lint/typecheck, 21 Astro files with
+zero diagnostics, and nine built pages. Playwright passed 32 tests with 23 intentional
+viewport-specific skips across five viewports. The built-output audit had zero findings, and the
+secret scan was clean. Feature CI run
+[35805519891](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805519891) and main CI run
+[35805755436](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805755436) passed.
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
-- [x] Responsive baseline public site, discovery flow, operator workspace, readable reference content, structured metadata, and noindex controls. Production deployment `5213f7b6` reused all 27 static assets and updated only the safety bridge; 26 served files matched the prior visible site, and `/admin` retained no-store/noindex.
+- [x] Responsive public site, discovery flow, operator workspace, readable reference content, structured metadata, and noindex controls. Production deployment `a3152e61` serves the corrected conversion frontend, the canonical hostname returns HTTP 200, and `/admin` retains no-store/noindex. Corrected deployment `8d348ce1` is the immediate rollback target; prior bridge-only deployment `5213f7b6` is a legacy fallback.
 - [x] Billing-policy KB parity: Retell v4, API and chat use `2026-09-21.4` / `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`; all three health paths returned HTTP 200 with all capabilities enabled after restart.
 - [x] Deterministic booking, money, state transitions, authentication, recipient gates, outbox leases, uncertainty reconciliation, and operator CLI.
 - [x] Public/assistant booking authorization before availability or hold creation, including replay-token validation, plus an independent attendee allowlist at the final Calendar provider boundary.
@@ -65,4 +76,4 @@ files, and nine pages.
 
 The provider queue was empty after the live booking cancellation and invoice replay. A confirmed event's attendee copy can still cause a safe false rejection when a requested reschedule overlaps the current interval; free/busy lacks event identity, so the adapter deliberately does not subtract that interval.
 
-[Main CI run 35785830763](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35785830763) passed for `e4e082e5d85d56f3301ce7652180b40c78f24956`: **141 tests in 24 files**, lint, typecheck, the public-output and secret audits, 21 Astro files with zero diagnostics, nine built pages, and the Playwright matrix. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current release evidence is in [the round-two record](docs/evidence/round-two-2026-09-22.md).
+[Main CI run 35805755436](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805755436) passed for `9ca79d9a5afeb38c8740f768b9bae73319f1756e`, after feature CI run [35805519891](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35805519891) also passed: **146 tests in 24 files**, lint, typecheck, the public-output and secret audits, 21 Astro files with zero diagnostics, nine built pages, and the Playwright matrix. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current release evidence is in [the round-two record](docs/evidence/round-two-2026-09-22.md).

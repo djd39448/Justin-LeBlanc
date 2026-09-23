@@ -7,34 +7,36 @@ provider resources, or customer communication.
 
 ## Current service state
 
-| Component       | State                                                                                   | Operator note                                                                                                         |
-| --------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Website         | Live at `https://justinleblancmusic.50by50.dev`; exact-host check returned HTTP 200     | Bridge-only deployment `5213f7b6`; visible static site remains on the prior design; `840a4ccf` is the rollback target |
-| API             | Local, public tunnel, and website-proxy health returned HTTP 200                        | Booking, chat, voice, and billing capabilities remain true; no public phone field                                     |
-| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                  | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                                 |
-| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                     | Local, direct-tunnel, and website-proxy health passed after the upgrade                                               |
-| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                    | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                           |
-| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers          | Registration and task execution passed; actual sign-out/reboot recovery remains untested                              |
-| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending | Old-policy $700 invoice reached client/operator but does not prove the current path                                   |
-| Google Calendar | Dedicated calendar created; live booking lifecycle passed                               | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects      |
-| Public Shows    | Disabled; exact fixed 503 returned through local, tunnel, and website paths             | Existing public feed was disqualified; a dedicated public-performance-only Calendar is still required                 |
-| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                   | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                        |
-| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking        | This proves the checked backup was readable and internally consistent; retain the source backup privately             |
+| Component       | State                                                                                              | Operator note                                                                                                    |
+| --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| Website         | Corrected conversion frontend live at `https://justinleblancmusic.50by50.dev`; exact-host HTTP 200 | Production deployment `a3152e61`; corrected deployment `8d348ce1` is the immediate rollback target               |
+| API             | Local, public tunnel, and website-proxy health returned HTTP 200                                   | Booking, chat, voice, and billing capabilities remain true; health exposes no voice-agent number                 |
+| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                             | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                            |
+| API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                                | Local, direct-tunnel, and website-proxy health passed after the upgrade                                          |
+| Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                               | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                      |
+| Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers                     | Registration and task execution passed; actual sign-out/reboot recovery remains untested                         |
+| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending            | Old-policy $700 invoice reached client/operator but does not prove the current path                              |
+| Google Calendar | Dedicated calendar created; live booking lifecycle passed                                          | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects |
+| Public Shows    | Calendar disabled; exact fixed 503 returned through local, tunnel, and website paths               | Static frontend shows one verified public date; dedicated Calendar setup is deferred to the next QA pass         |
+| Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                              | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                   |
+| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking                   | This proves the checked backup was readable and internally consistent; retain the source backup privately        |
 
 Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At the
 latest verification, local, direct-tunnel, and website-proxy health returned HTTP 200 with
-`ok: true`, KB `2026-09-21.4`, and all four capabilities enabled. The response omitted the public
-phone field. All three `/api/public-events` paths returned HTTP 503 with the fixed sanitized body
+`ok: true`, KB `2026-09-21.4`, and all four capabilities enabled. The response omitted the
+voice-agent phone field. The public frontend independently displays Justin's human business number,
+**(832) 303-9116**. All three `/api/public-events` paths returned HTTP 503 with the fixed sanitized body
 and approved no-store/retry headers. Actual recovery after sign-out or reboot remains untested.
 
-## Round-two web release boundary — API active, frontend gated
+## Round-two web release boundary — corrected frontend live, Calendar disabled
 
-Verified release commit `e4e082e5d85d56f3301ce7652180b40c78f24956` is on `main`, the Windows
-runtime, and the pushed feature branch. It implements the approved
-[round-two specification](ROUND_TWO_BUILD_SPEC.md). It removes public chat/voice UI and phone
-references while preserving the running assistant services. Do not disable, reprovision, or alter
-Retell/OpenAI, their KB/tools, provider identities, manifests, or backend gates as part of this
-release.
+Verified frontend release revision `9ca79d9a5afeb38c8740f768b9bae73319f1756e` is contained in both
+`origin/main` and `origin/codex/justin-round-two`. It implements the approved
+[round-two specification](ROUND_TWO_BUILD_SPEC.md) plus Dave's static-listing correction. It
+removes public AI/chat/voice UI, package pricing, and the dormant voice-agent number while
+preserving the running assistant services, and it publishes the human business number
+**(832) 303-9116**. Do not disable, reprovision, or alter Retell/OpenAI, their KB/tools, provider
+identities, manifests, or backend gates as part of this release.
 
 The same round adds a separate read-only public-events path. It requires exact private
 `PUBLIC_EVENTS_CALENDAR_ID`, `PUBLIC_EVENTS_TIMEZONE`, `PUBLIC_EVENTS_ID_SECRET`, and
@@ -45,11 +47,18 @@ was inspected and disqualified because it mixes private-event records and street
 A separate Public Shows Calendar/configuration is not yet available. Provider failure must fail
 closed; never work around it by exposing an unfiltered Calendar.
 
-The API/additive inquiry contract and Pages safety bridge are deployed. The bridge-only Pages
-deployment changed no visible static asset, so the conversion-first frontend remains gated. A
-suitable exact Calendar and existing read grant must be owner-confirmed; otherwise keep the reader
-disabled because the kickoff does not authorize Calendar/event mutation or new consent. A frontend
-rollback retains the additive schema and never resets SQLite.
+The API/additive inquiry contract and Pages safety bridge remain deployed. Production Pages
+deployment `a3152e61-ed47-41a7-9595-ebd42e694245` serves the corrected conversion frontend;
+corrected deployment `8d348ce1-d6f7-48f8-ad72-53dd7d856a07` is the immediate rollback target, and
+prior bridge-only deployment `5213f7b6-da9c-4985-819b-a05da8831db1` is a legacy fallback. Where I'm
+Playing renders one manually curated public date—**Solo Sunday with Justin LeBlanc**, Sep 27, 2026,
+5:00–8:00 PM Central, at The Blue Lion Brunchery & Pub in The Woodlands, TX—from a public Woodlands
+Online source. The listing omits the street address, is filtered at build time, expires in the
+browser after its end, and makes no Calendar request. Keep the Calendar reader disabled until the
+next QA pass. A frontend rollback retains the additive schema and never resets SQLite.
+
+This was a static Pages release. It did not require a runtime service restart or a Windows-checkout
+sync; do not record either action unless separately performed and verified.
 
 Before any deployment, stop if the runtime checkout is dirty, the expected feature tip differs, an
 outbox/provider effect is unresolved, or another operator is changing the same checkout. Record the
@@ -72,7 +81,7 @@ node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
 ```
 
 The remote release SHA must contain verified implementation commit
-`e4e082e5d85d56f3301ce7652180b40c78f24956` and match the final SHA supplied in the current handoff.
+`9ca79d9a5afeb38c8740f768b9bae73319f1756e` and match the final SHA supplied in the current handoff.
 Capture the actual prior runtime commit and Pages deployment in the private change record; do not
 substitute a remembered value. Set only
 `PUBLIC_EVENTS_ENABLED=false` in the protected runtime configuration for the first restart. Leave
@@ -105,9 +114,10 @@ configure its private ID, `America/Chicago`, and a backed-up random ID secret of
 Enable the reader, restart only the API as the existing helper requires, warm it once, and inspect
 only the sanitized response. Every in-horizon venue/city display must be owner-reviewed; any street
 address, residence, or ambiguous/private location blocks the entry. Verify fresh, stale, empty, and
-fixed 503 behavior while the old frontend remains live.
+fixed 503 behavior while the static fallback remains live.
 
-When and only when the enabled endpoint passes, deploy the already-verified frontend:
+When and only when the enabled endpoint passes, rebuild and deploy the frontend so the Calendar
+feed can replace the static fallback:
 
 ```powershell
 npm run build
@@ -215,7 +225,7 @@ Tentative performance holds are deliberately `transparent`: the canonical bookin
 
 ## Voice demo acceptance state
 
-The isolated Houston number **(832) 501-3799** and the same protected agent/LLM identities are provider-reconciled at version 4. The published voice release uses KB `2026-09-21.4`, hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, six unchanged custom tools, and native `end_call`. The public website reads the number from gated same-origin health; the caller allowlist stays outside Git.
+The dormant backend Houston voice-agent number **(832) 501-3799** and the same protected agent/LLM identities are provider-reconciled at version 4. The published voice release uses KB `2026-09-21.4`, hash `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, six unchanged custom tools, and native `end_call`. The number is not rendered on the public website or returned by public health; the caller allowlist stays outside Git. The separate visible human business number is **(832) 303-9116**.
 
 The first two calls remain historical no-tool evidence. The v1 call lasted 59,473 ms and cost 11.86 cents; the first v2 call lasted 18,473 ms, cost 5.177 cents, and correctly answered Houston Central Time / `America/Chicago`. The third v2 call lasted 196,946 ms and cost 34.191 cents; inquiry creation passed, while its availability/follow-up attempts and terminal webhooks exposed the former HTTP 413 boundary.
 

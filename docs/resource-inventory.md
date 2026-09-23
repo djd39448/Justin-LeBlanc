@@ -3,57 +3,61 @@
 Recorded 2026-09-21; round-two source status updated 2026-09-22. This inventory contains identifiers
 and variable names, never credentials. Existing resources are read-only references. Calendar-driven
 invoicing is implemented, CI-verified and loaded in the running services; fresh eligible delivery,
-full voice booking, and recovery after an actual reboot/sign-out remain unverified. Round-two source
-is pushed on `codex/justin-round-two` but no runtime or Pages deployment is claimed.
+full voice booking, and recovery after an actual reboot/sign-out remain unverified. Corrected
+round-two frontend revision `9ca79d9a5afeb38c8740f768b9bae73319f1756e` is contained in both `origin/main` and
+`origin/codex/justin-round-two`; its static frontend is deployed without a runtime restart or
+Windows-checkout sync.
 
 ## Created and running
 
-| Resource                  | Identifier / location                                                                      | Verified state                                                                    |
-| ------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Private GitHub repository | `djd39448/Justin-LeBlanc`, branch `main`                                                   | Published main SHA and GitHub Actions result are supplied in session delivery     |
-| Cloudflare account        | `b393d8ff72d57912119b872640d3511f`                                                         | Existing authorized account                                                       |
-| Existing DNS zone         | `50by50.dev`, `2ad6b3d042155b73baca25bea5b3be2d`                                           | Two Justin-only CNAMEs added; existing records unchanged                          |
-| New Pages project         | `50by50-justinleblancmusic`, ID `7c9bb5e4-3b90-4d1f-954e-43d87400ea30`                     | Separate project, static site and API proxy                                       |
-| Custom hostname           | `justinleblancmusic.50by50.dev`, binding `bd4ec301-091e-4bee-a4cd-bf0030e56e7a`            | HTTPS 200, noindex/security headers                                               |
-| Latest checked deployment | `840a4ccf`, `https://840a4ccf.50by50-justinleblancmusic.pages.dev`                         | `/admin` HTTP 200; new label/legacy controls, no-store and noindex verified       |
-| New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                     | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections        |
-| New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`, version 4                                              | Same protected identity; six custom tools plus native `end_call`                  |
-| New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 4                                              | Published `gpt-4.1-mini` configuration with KB `2026-09-21.4`                     |
-| Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                           | Created and verified through live consultation/show lifecycle                     |
-| Houston demo number       | **(832) 501-3799**                                                                         | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools |
-| Shared KB                 | `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96` | Retell/API/chat parity verified after restart                                     |
-| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                      | Running S4U/Limited boot task; all three health paths passed post-upgrade         |
-| Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`               | Running; token never stored in Git or command arguments                           |
-| Local worker              | task `jlm-demo-worker`                                                                     | Running S4U/Limited boot task; startup jobs completed successfully                |
-| Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                      | SQLite WAL; synthetic booking and historical old-policy invoice retained          |
-| Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                            | Outside Git, restricted host ACLs                                                 |
+| Resource                  | Identifier / location                                                                          | Verified state                                                                           |
+| ------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Private GitHub repository | `djd39448/Justin-LeBlanc`, branch `main`                                                       | Frontend revision `9ca79d9a5afeb38c8740f768b9bae73319f1756e`; main and feature CI passed |
+| Cloudflare account        | `b393d8ff72d57912119b872640d3511f`                                                             | Existing authorized account                                                              |
+| Existing DNS zone         | `50by50.dev`, `2ad6b3d042155b73baca25bea5b3be2d`                                               | Two Justin-only CNAMEs added; existing records unchanged                                 |
+| New Pages project         | `50by50-justinleblancmusic`, ID `7c9bb5e4-3b90-4d1f-954e-43d87400ea30`                         | Separate project, static site and API proxy                                              |
+| Custom hostname           | `justinleblancmusic.50by50.dev`, binding `bd4ec301-091e-4bee-a4cd-bf0030e56e7a`                | HTTPS 200, noindex/security headers                                                      |
+| Latest checked deployment | `a3152e61-ed47-41a7-9595-ebd42e694245`, `https://a3152e61.50by50-justinleblancmusic.pages.dev` | Corrected conversion frontend live; canonical HTTP 200; `/admin` no-store/noindex        |
+| New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                         | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections               |
+| New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`, version 4                                                  | Same protected identity; six custom tools plus native `end_call`                         |
+| New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 4                                                  | Published `gpt-4.1-mini` configuration with KB `2026-09-21.4`                            |
+| Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                               | Created and verified through live consultation/show lifecycle                            |
+| Houston demo number       | **(832) 501-3799**                                                                             | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools        |
+| Shared KB                 | `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`     | Retell/API/chat parity verified after restart                                            |
+| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                          | Running S4U/Limited boot task; all three health paths passed post-upgrade                |
+| Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`                   | Running; token never stored in Git or command arguments                                  |
+| Local worker              | task `jlm-demo-worker`                                                                         | Running S4U/Limited boot task; startup jobs completed successfully                       |
+| Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                          | SQLite WAL; synthetic booking and historical old-policy invoice retained                 |
+| Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                                | Outside Git, restricted host ACLs                                                        |
 
 On this host, `<private-root>` is `C:/Users/trustcore-rdp/.config/jlm-demo` and the configuration is `runtime.env` there. Do not print or commit populated files. Private resource manifests are `retell-provision.json` and `retell-number.json`; read them before retrying provisioning.
 
-## Round-two Public Shows resource — adapter complete, live source unconfirmed
+## Round-two Public Shows resource — static fallback live, Calendar deferred
 
-Round two now has a tested isolated reader and `/api/public-events` route in commit
-`ffb2fa00ed1465dbbbbc6ef737033f01751a157c` on `codex/justin-round-two`. It still requires one
-exact live Public Shows Calendar for website listings. Determine whether the Calendar used by
-Justin's existing events page is public-performance-only, owner-confirmed, and accessible by exact
-ID. Otherwise, keep the integration disabled and obtain explicit owner approval before
-creating/selecting a dedicated secondary Calendar or populating any event.
+Round two has a tested isolated reader and `/api/public-events` route, but the integration remains
+disabled and returns the exact safe 503. Dave explicitly authorized a static exception for the
+current frontend: one manually curated public listing for **Solo Sunday with Justin LeBlanc**, Sep
+27, 2026, 5:00–8:00 PM Central, at The Blue Lion Brunchery & Pub in The Woodlands, TX. It links to
+the public Woodlands Online source, omits the street address, is filtered at build time, and expires
+client-side after its end. The frontend makes no Calendar request. Set up the dedicated Public
+Shows Calendar during the next QA pass.
 
 - Private variable names: `PUBLIC_EVENTS_ENABLED` (default `false`) and
   `PUBLIC_EVENTS_CALENDAR_ID`, plus `PUBLIC_EVENTS_TIMEZONE` and a backed-up random
   `PUBLIC_EVENTS_ID_SECRET` (never committed or returned to the browser).
 - The public-events reader must never use `SHOW_CALENDAR_ID`, free/busy Calendars, `primary`, family
   Calendars, or discovery fallback.
-- Public-site voice removal does not delete or change the Retell resources above. The number remains
-  in private operational inventory while disappearing from rendered public web output and public
-  phone-bearing payloads.
+- Public-site voice removal does not delete or change the Retell resources above. The dormant
+  voice-agent number remains in private operational inventory while disappearing from rendered
+  public web output and public phone-bearing payloads. The separate public human business number is
+  **(832) 303-9116**.
 
-No owner-confirmed Public Shows Calendar ID, OAuth change, live cache, runtime install, or Pages
-round-two deployment is recorded. The endpoint exists in source only. Windows coordination failed
-before preflight because the Codex runner could not find its CLI path and the Claude runner had no
-credit; this made no provider or runtime change. Record the exact resource and sanitized evidence
-here only after provider verification. See
-[round-two local evidence](evidence/round-two-2026-09-22.md).
+No owner-confirmed Public Shows Calendar ID, OAuth change, or live cache is recorded. The static
+Pages release did not require a runtime install/restart or Windows-checkout sync. Cloudflare Pages
+deployment `a3152e61-ed47-41a7-9595-ebd42e694245` serves the corrected frontend. Corrected
+deployment `8d348ce1-d6f7-48f8-ad72-53dd7d856a07` is the immediate rollback deployment;
+`5213f7b6-da9c-4985-819b-a05da8831db1` is retained as a bridge-only legacy fallback. See
+[round-two release evidence](evidence/round-two-2026-09-22.md).
 
 ## Verified resources and remaining limitations
 
@@ -75,10 +79,11 @@ The upgrade script changes only existing owned demo tasks, stores private XML ba
 
 ## Deployment and configuration
 
-Node 24.14.0/npm 11.9.0 were used. Dependencies are pinned by `package-lock.json`. The round-two
-branch passed 137 tests in 23 files, 21 clean Astro files, nine pages, 30 Playwright passes, the
-public-output audit, and the secret scan. Follow the disabled-first sequence in the
-[runbook](RUNBOOK.md), and build/deploy only this Pages project after the enabled endpoint gate:
+Node 24.14.0/npm 11.9.0 were used. Dependencies are pinned by `package-lock.json`. The corrected
+round-two release passed 146 unit/integration tests in 24 files, 21 clean Astro files, nine pages, 32 Playwright
+passes with 23 intentional skips across five viewports, the zero-finding public-output audit, and
+the clean secret scan. Feature CI run 35805519891 and main CI run 35805755436 passed. Build/deploy
+only this Pages project:
 
 ```powershell
 npm ci
