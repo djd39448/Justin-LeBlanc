@@ -6,79 +6,439 @@
  * Depended on by: the homepage and /plan-your-event/.
  * Why this exists: visitors can send a resumable booking inquiry without public scheduling.
  */
-interface Props { compact?: boolean }
+interface Props {
+  compact?: boolean;
+}
 const { compact = false } = Astro.props;
 ---
-<section class:list={["planner", compact && "planner-compact"]} aria-labelledby="planner-title">
-  <div class="section-heading planner-heading"><div><p class="eyebrow">BOOKING INQUIRIES</p><h2 id="planner-title">Tell me about your event</h2></div><p>Two short steps. Share the details you have, and I’ll take it from there.</p></div>
-  <noscript><div class="notice notice-warning">JavaScript is required for this guided form. Use Justin's <a href="https://justinleblancmusic.com/contact" rel="external">current contact page</a> to send an inquiry.</div></noscript>
-  <form class="planner-form" id="event-planner" action="/api/inquiries" method="post" data-current-step="1">
-    <div class="planner-progress" aria-label="Form progress"><p><span id="progress-label">Step 1 of 2</span><span id="save-state">Saved as you go</span></p><ol><li class="is-current" data-progress-step="1"><span>1</span> Contact</li><li data-progress-step="2"><span>2</span> Event &amp; review</li></ol></div>
+
+<section class:list={['planner', compact && 'planner-compact']} aria-labelledby="planner-title">
+  <div class="section-heading planner-heading">
+    <div>
+      <p class="eyebrow">BOOKING INQUIRIES</p>
+      <h2 id="planner-title">Tell me about your event</h2>
+    </div>
+    <p>Two short steps. Share the details you have, and I’ll take it from there.</p>
+  </div>
+  <noscript>
+    <div class="notice notice-warning">
+      JavaScript is required for this guided form. Use Justin's{' '}
+      <a href="https://justinleblancmusic.com/contact" rel="external">
+        current contact page
+      </a>{' '}
+      to send an inquiry.
+    </div>
+  </noscript>
+  <form
+    class="planner-form"
+    id="event-planner"
+    action="/api/inquiries"
+    method="post"
+    data-current-step="1"
+  >
+    <div class="planner-progress" aria-label="Form progress">
+      <p>
+        <span id="progress-label">Step 1 of 2</span>
+        <span id="save-state">Saved as you go</span>
+      </p>
+      <ol>
+        <li class="is-current" data-progress-step="1">
+          <span>1</span> Contact
+        </li>
+        <li data-progress-step="2">
+          <span>2</span> Event &amp; review
+        </li>
+      </ol>
+    </div>
     <div class="form-alert" id="form-alert" role="alert" tabindex="-1" hidden></div>
-    <fieldset class="form-step" data-step="1"><legend class="visually-hidden">Contact details</legend><div class="field-grid">
-      <div class="field"><label for="name">Your Name <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" maxlength="200" required /></div>
-      <div class="field"><label for="email">Email <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
-      <div class="field"><label for="phone">Phone Number</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="phone-hint" /><p class="form-hint" id="phone-hint">Optional for any response preference.</p></div>
-      <div class="field"><label for="preferredReply">Preferred method of response</label><select id="preferredReply" name="preferredReply"><option value="text" selected>Text</option><option value="email">Email</option><option value="phone">Phone Call</option></select></div>
-    </div><div class="form-actions form-actions-end"><button class="button" type="button" data-next-step="2">Last Step</button></div></fieldset>
-    <fieldset class="form-step" data-step="2" hidden><legend class="visually-hidden">Event details</legend><div class="field-grid">
-      <div class="field"><label for="eventType">Event type <span aria-hidden="true">*</span></label><select id="eventType" name="eventType" required><option value="">Choose one</option><option value="private">Private gathering</option><option value="celebration">Celebration</option><option value="corporate">Corporate reception</option><option value="wedding">Wedding</option><option value="other">Other</option></select></div>
-      <div class="field"><label for="city">Location of Event <span aria-hidden="true">*</span></label><input id="city" name="city" autocomplete="address-level2" maxlength="200" required /></div>
-      <div class="field"><label for="eventDate">Event Date <span aria-hidden="true">*</span></label><div class="date-input-wrap"><input id="eventDate" name="eventDate" inputmode="numeric" autocomplete="off" placeholder="MM-DD-YY or MM-DD-YYYY" maxlength="10" aria-describedby="event-date-hint" required /><button class="date-picker-button" id="eventDatePickerButton" type="button" aria-label="Open calendar picker">▣</button><input class="visually-hidden date-picker-source" id="eventDatePicker" type="date" tabindex="-1" aria-hidden="true" /></div><p class="form-hint" id="event-date-hint">Use MM-DD-YY or MM-DD-YYYY.</p></div>
-      <fieldset class="field field-choice-group"><legend>Is it outdoors? <span aria-hidden="true">*</span></legend><div class="choice-row"><label><input type="radio" name="setting" value="outdoor" required /> <span>Yes</span></label><label><input type="radio" name="setting" value="indoor" /> <span>No</span></label></div></fieldset>
-      <div class="field"><label for="durationMinutes">Approximate performance time</label><select id="durationMinutes" name="durationMinutes" required><option value="60">About 1 hour</option><option value="120" selected>About 2 hours</option><option value="180">About 3 hours</option><option value="240">About 4 hours</option></select></div>
-      <div class="field"><label for="equipment">Sound or equipment needs</label><select id="equipment" name="equipment"><option value="PA required" selected>PA required</option><option value="PA is provided">PA is provided</option></select></div>
-      <div class="field"><label for="budgetCents">Estimated Budget (optional)</label><input id="budgetCents" name="budgetCents" type="text" inputmode="decimal" autocomplete="off" maxlength="32" /><p class="form-hint">Planning context only; it is not a quote or a charge.</p><p class="form-hint" id="legacy-budget-context" hidden></p></div>
-      <div class="field field-wide"><label for="musicRequests">Special Requests (optional)</label><textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea></div>
-    </div><div class="review-card" aria-labelledby="review-title"><div class="review-heading"><h3 id="review-title">Your inquiry at a glance</h3><button class="text-button" type="button" data-back-step="1">Edit contact</button></div><dl id="inquiry-summary"></dl></div>
-    <label class="check-row consent-row" for="consent"><input id="consent" name="consent" type="checkbox" required /><span>I agree to be contacted about this event inquiry. <span aria-hidden="true">*</span></span></label><label class="check-row" for="marketingConsent"><input id="marketingConsent" name="marketingConsent" type="checkbox" /><span>Also send occasional music and public-show updates. Optional and unchecked.</span></label>
-    <div class="form-actions"><button class="button button-secondary" type="button" data-back-step="1">Back</button><button class="button" id="submit-inquiry" type="submit">That’s It</button></div></fieldset>
+    <fieldset class="form-step" data-step="1">
+      <legend class="visually-hidden">Contact details</legend>
+      <div class="field-grid">
+        <div class="field">
+          <label for="name">
+            Your Name <span aria-hidden="true">*</span>
+          </label>
+          <input id="name" name="name" autocomplete="name" maxlength="200" required />
+        </div>
+        <div class="field">
+          <label for="email">
+            Email <span aria-hidden="true">*</span>
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            maxlength="254"
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            maxlength="30"
+            aria-describedby="phone-hint"
+          />
+          <p class="form-hint" id="phone-hint">
+            Optional for any response preference.
+          </p>
+        </div>
+        <div class="field">
+          <label for="preferredReply">Preferred method of response</label>
+          <select id="preferredReply" name="preferredReply">
+            <option value="text" selected>
+              Text
+            </option>
+            <option value="email">Email</option>
+            <option value="phone">Phone Call</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions form-actions-end">
+        <button class="button" type="button" data-next-step="2">
+          Last Step
+        </button>
+      </div>
+    </fieldset>
+    <fieldset class="form-step" data-step="2" hidden>
+      <legend class="visually-hidden">Event details</legend>
+      <div class="field-grid">
+        <div class="field">
+          <label for="eventType">
+            Event type <span aria-hidden="true">*</span>
+          </label>
+          <select id="eventType" name="eventType" required>
+            <option value="">Choose one</option>
+            <option value="private">Private gathering</option>
+            <option value="celebration">Celebration</option>
+            <option value="corporate">Corporate reception</option>
+            <option value="wedding">Wedding</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="city">
+            Location of Event <span aria-hidden="true">*</span>
+          </label>
+          <input id="city" name="city" autocomplete="address-level2" maxlength="200" required />
+        </div>
+        <div class="field">
+          <label for="eventDate">
+            Event Date <span aria-hidden="true">*</span>
+          </label>
+          <div class="date-input-wrap">
+            <input
+              id="eventDate"
+              name="eventDate"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="MM-DD-YY or MM-DD-YYYY"
+              maxlength="10"
+              aria-describedby="event-date-hint"
+              required
+            />
+            <button
+              class="date-picker-button"
+              id="eventDatePickerButton"
+              type="button"
+              aria-label="Open calendar picker"
+            >
+              ▣
+            </button>
+            <input
+              class="visually-hidden date-picker-source"
+              id="eventDatePicker"
+              type="date"
+              tabindex="-1"
+              aria-hidden="true"
+            />
+          </div>
+          <p class="form-hint" id="event-date-hint">
+            Use MM-DD-YY or MM-DD-YYYY.
+          </p>
+        </div>
+        <fieldset class="field field-choice-group">
+          <legend>
+            Is it outdoors? <span aria-hidden="true">*</span>
+          </legend>
+          <div class="choice-row">
+            <label>
+              <input type="radio" name="setting" value="outdoor" required /> <span>Yes</span>
+            </label>
+            <label>
+              <input type="radio" name="setting" value="indoor" /> <span>No</span>
+            </label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="durationMinutes">Approximate performance time</label>
+          <select id="durationMinutes" name="durationMinutes" required>
+            <option value="60">About 1 hour</option>
+            <option value="120" selected>
+              About 2 hours
+            </option>
+            <option value="180">About 3 hours</option>
+            <option value="240">About 4 hours</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="equipment">Sound or equipment needs</label>
+          <select id="equipment" name="equipment">
+            <option value="PA required" selected>
+              PA required
+            </option>
+            <option value="PA is provided">PA is provided</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="budgetCents">Estimated Budget (optional)</label>
+          <input
+            id="budgetCents"
+            name="budgetCents"
+            type="text"
+            inputmode="decimal"
+            autocomplete="off"
+            maxlength="32"
+          />
+          <p class="form-hint">Planning context only; it is not a quote or a charge.</p>
+          <p class="form-hint" id="legacy-budget-context" hidden></p>
+        </div>
+        <div class="field field-wide">
+          <label for="musicRequests">Special Requests (optional)</label>
+          <textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea>
+        </div>
+      </div>
+      <div class="review-card" aria-labelledby="review-title">
+        <div class="review-heading">
+          <h3 id="review-title">Your inquiry at a glance</h3>
+          <button class="text-button" type="button" data-back-step="1">
+            Edit contact
+          </button>
+        </div>
+        <dl id="inquiry-summary"></dl>
+      </div>
+      <label class="check-row consent-row" for="consent">
+        <input id="consent" name="consent" type="checkbox" required />
+        <span>
+          I agree to be contacted about this event inquiry. <span aria-hidden="true">*</span>
+        </span>
+      </label>
+      <label class="check-row" for="marketingConsent">
+        <input id="marketingConsent" name="marketingConsent" type="checkbox" />
+        <span>Also send occasional music and public-show updates. Optional and unchecked.</span>
+      </label>
+      <div class="form-actions">
+        <button class="button button-secondary" type="button" data-back-step="1">
+          Back
+        </button>
+        <button class="button" id="submit-inquiry" type="submit">
+          That’s It
+        </button>
+      </div>
+    </fieldset>
   </form>
 </section>
 <script>
   import type { InquiryInput } from '../../../../packages/contracts/index';
   import { formatInquiryDate, insertDateDashes, parseInquiryDate } from '../lib/inquiry-date';
   type InquiryResponse = { id: string; token: string; status: string; missingFields: string[] };
-  type ValidationResponse = { error: 'validation'; message: string; fields: Array<{ path: string; message: string }> };
+  type ValidationResponse = {
+    error: 'validation';
+    message: string;
+    fields: Array<{ path: string; message: string }>;
+  };
   type Inspection = { inquiryId: string; status: string; input: InquiryInput; shows: unknown[] };
   type ResumeRecord = { id: string; token: string; status: string; requestKey: string };
   type PendingCreate = { key: string; payload: InquiryInput; created?: ResumeRecord };
-  const STORAGE_KEY = 'justin-demo-inquiry-draft-v1'; const RESUME_KEY = 'justin-demo-inquiry-resume-v1'; const RECEIPT_KEY = 'justin-demo-inquiry-receipt-v1'; const IDEMPOTENCY_KEY = 'justin-demo-inquiry-idempotency-v1'; const PHONE_ERROR = 'Enter a complete 10-digit phone number or clear this field.'; const CENTRAL_TIME_ZONE = 'America/Chicago';
-  const planner = document.querySelector<HTMLFormElement>('#event-planner'); const alertBox = document.querySelector<HTMLDivElement>('#form-alert'); const progressLabel = document.querySelector<HTMLSpanElement>('#progress-label'); const saveState = document.querySelector<HTMLSpanElement>('#save-state'); const summary = document.querySelector<HTMLDListElement>('#inquiry-summary'); const phone = document.querySelector<HTMLInputElement>('#phone'); const eventDate = document.querySelector<HTMLInputElement>('#eventDate'); const datePicker = document.querySelector<HTMLInputElement>('#eventDatePicker'); const datePickerButton = document.querySelector<HTMLButtonElement>('#eventDatePickerButton'); const budgetInput = document.querySelector<HTMLInputElement>('#budgetCents'); const legacyBudgetContext = document.querySelector<HTMLParagraphElement>('#legacy-budget-context'); const submitButton = document.querySelector<HTMLButtonElement>('#submit-inquiry'); let resumedInput: InquiryInput | null = null; let resumedLegacyBudget: string | null = null; let budgetWasEdited = false; let plannerWasEdited = false; let resumeReady = true;
-  function showAlert(message: string, kind: 'error' | 'success'): void { if (!alertBox) return; alertBox.hidden = false; alertBox.className = `form-alert form-alert-${kind}`; alertBox.textContent = message; alertBox.focus(); } function clearAlert(): void { if (alertBox) { alertBox.hidden = true; alertBox.textContent = ''; } } function control(name: string): HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null { const value = planner?.elements.namedItem(name); return value instanceof HTMLInputElement || value instanceof HTMLSelectElement || value instanceof HTMLTextAreaElement ? value : null; } function value(name: string): string { return control(name)?.value.trim() ?? ''; }
+  const STORAGE_KEY = 'justin-demo-inquiry-draft-v1';
+  const RESUME_KEY = 'justin-demo-inquiry-resume-v1';
+  const RECEIPT_KEY = 'justin-demo-inquiry-receipt-v1';
+  const IDEMPOTENCY_KEY = 'justin-demo-inquiry-idempotency-v1';
+  const PHONE_ERROR = 'Enter a complete 10-digit phone number or clear this field.';
+  const CENTRAL_TIME_ZONE = 'America/Chicago';
+  const planner = document.querySelector<HTMLFormElement>('#event-planner');
+  const alertBox = document.querySelector<HTMLDivElement>('#form-alert');
+  const progressLabel = document.querySelector<HTMLSpanElement>('#progress-label');
+  const saveState = document.querySelector<HTMLSpanElement>('#save-state');
+  const summary = document.querySelector<HTMLDListElement>('#inquiry-summary');
+  const phone = document.querySelector<HTMLInputElement>('#phone');
+  const eventDate = document.querySelector<HTMLInputElement>('#eventDate');
+  const datePicker = document.querySelector<HTMLInputElement>('#eventDatePicker');
+  const datePickerButton = document.querySelector<HTMLButtonElement>('#eventDatePickerButton');
+  const budgetInput = document.querySelector<HTMLInputElement>('#budgetCents');
+  const legacyBudgetContext =
+    document.querySelector<HTMLParagraphElement>('#legacy-budget-context');
+  const submitButton = document.querySelector<HTMLButtonElement>('#submit-inquiry');
+  let resumedInput: InquiryInput | null = null;
+  let resumedLegacyBudget: string | null = null;
+  let budgetWasEdited = false;
+  let plannerWasEdited = false;
+  let resumeReady = true;
+  function showAlert(message: string, kind: 'error' | 'success'): void {
+    if (!alertBox) return;
+    alertBox.hidden = false;
+    alertBox.className = `form-alert form-alert-${kind}`;
+    alertBox.textContent = message;
+    alertBox.focus();
+  }
+  function clearAlert(): void {
+    if (alertBox) {
+      alertBox.hidden = true;
+      alertBox.textContent = '';
+    }
+  }
+  function control(
+    name: string,
+  ): HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null {
+    const value = planner?.elements.namedItem(name);
+    return value instanceof HTMLInputElement ||
+      value instanceof HTMLSelectElement ||
+      value instanceof HTMLTextAreaElement
+      ? value
+      : null;
+  }
+  function value(name: string): string {
+    return control(name)?.value.trim() ?? '';
+  }
   function phoneIsValid(): boolean {
     if (!phone) return false;
     const raw = phone.value.trim();
-    if (!raw) { phone.setCustomValidity(''); return true; }
+    if (!raw) {
+      phone.setCustomValidity('');
+      return true;
+    }
     const compact = raw.replace(/[() .-]/g, '');
-    const valid = /^\d{10}$/.test(compact) || /^1\d{10}$/.test(compact) || /^\+1\d{10}$/.test(compact);
+    const valid =
+      /^\d{10}$/.test(compact) || /^1\d{10}$/.test(compact) || /^\+1\d{10}$/.test(compact);
     phone.setCustomValidity(valid ? '' : PHONE_ERROR);
     return valid;
   }
-  function parseBudgetCents(raw: string): number | null { const trimmed = raw.trim(); if (!trimmed) return null; if (!/^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(trimmed)) throw new Error('Enter a whole-dollar amount or up to two decimal places.'); const [dollars, decimals = ''] = trimmed.split('.'); const cents = Number.parseInt(`${dollars}${decimals.padEnd(2, '0')}`, 10); if (!Number.isSafeInteger(cents) || cents > 9_999_999_999) throw new Error('Enter an amount no greater than $99,999,999.99.'); return cents; }
+  function parseBudgetCents(raw: string): number | null {
+    const trimmed = raw.trim();
+    if (!trimmed) return null;
+    if (!/^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(trimmed))
+      throw new Error('Enter a whole-dollar amount or up to two decimal places.');
+    const [dollars, decimals = ''] = trimmed.split('.');
+    const cents = Number.parseInt(`${dollars}${decimals.padEnd(2, '0')}`, 10);
+    if (!Number.isSafeInteger(cents) || cents > 9_999_999_999)
+      throw new Error('Enter an amount no greater than $99,999,999.99.');
+    return cents;
+  }
   function validateDate(): boolean {
     if (!eventDate) return false;
-    const historicalFlexible = resumedInput?.date === 'flexible' && eventDate.value.trim() === 'Flexible';
+    const historicalFlexible =
+      resumedInput?.date === 'flexible' && eventDate.value.trim() === 'Flexible';
     const valid = historicalFlexible || parseInquiryDate(eventDate.value) !== null;
     eventDate.setCustomValidity(valid ? '' : 'Enter a real date in MM-DD-YY or MM-DD-YYYY format.');
     return valid;
-  } function validateBudget(): boolean { if (!budgetInput) return false; try { parseBudgetCents(budgetInput.value); budgetInput.setCustomValidity(''); return true; } catch (error) { budgetInput.setCustomValidity(error instanceof Error ? error.message : 'Enter a valid estimated budget.'); budgetInput.reportValidity(); return false; } }
-  function renderSummary(): void { if (!summary) return; const selected = (name: string) => { const el = control(name); return el instanceof HTMLSelectElement ? el.selectedOptions[0]?.text ?? '' : ''; }; const setting = planner?.querySelector<HTMLInputElement>('input[name="setting"]:checked'); const rows = [['Contact', `${value('name')} · ${value('email')}`], ['Preferred method', selected('preferredReply')], ['Event type', selected('eventType')], ['Event Date', value('eventDate')], ['Location', value('city')], ['Outdoors', setting?.value === 'outdoor' ? 'Yes' : setting?.value === 'indoor' ? 'No' : ''], ['Performance time', selected('durationMinutes')], ['Sound / equipment', selected('equipment')], ['Estimated budget', value('budgetCents') ? `$${value('budgetCents')}` : resumedLegacyBudget ?? ''], ['Special requests', value('musicRequests')]]; summary.replaceChildren(...rows.map(([term, text]) => { const wrapper = document.createElement('div'); const dt = document.createElement('dt'); const dd = document.createElement('dd'); dt.textContent = term; dd.textContent = text || 'Not provided'; wrapper.append(dt, dd); return wrapper; })); }
-  function showStep(step: number, focus = true): void { if (!planner || !progressLabel) return; planner.querySelectorAll<HTMLElement>('[data-step]').forEach((panel) => { panel.hidden = Number(panel.dataset.step) !== step; }); planner.querySelectorAll<HTMLElement>('[data-progress-step]').forEach((item) => { const n = Number(item.dataset.progressStep); item.classList.toggle('is-current', n === step); item.classList.toggle('is-complete', n < step); }); planner.dataset.currentStep = String(step); progressLabel.textContent = `Step ${step} of 2`; if (step === 2) renderSummary(); if (focus) planner.querySelector<HTMLElement>(`[data-step="${step}"] input, [data-step="${step}"] select, [data-step="${step}"] textarea`)?.focus(); clearAlert(); }
-  function validateStep(step: number): boolean { if (!planner) return false; if (step === 1 && !phoneIsValid()) { phone?.focus(); phone?.reportValidity(); return false; } if (step === 2 && (!validateDate() || !validateBudget())) return false; const panel = planner.querySelector<HTMLElement>(`[data-step="${step}"]`); if (!panel) return false; for (const field of panel.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input,select,textarea')) if (!field.checkValidity()) { field.reportValidity(); return false; } return true; }
+  }
+  function validateBudget(): boolean {
+    if (!budgetInput) return false;
+    try {
+      parseBudgetCents(budgetInput.value);
+      budgetInput.setCustomValidity('');
+      return true;
+    } catch (error) {
+      budgetInput.setCustomValidity(
+        error instanceof Error ? error.message : 'Enter a valid estimated budget.',
+      );
+      budgetInput.reportValidity();
+      return false;
+    }
+  }
+  function renderSummary(): void {
+    if (!summary) return;
+    const selected = (name: string) => {
+      const el = control(name);
+      return el instanceof HTMLSelectElement ? (el.selectedOptions[0]?.text ?? '') : '';
+    };
+    const setting = planner?.querySelector<HTMLInputElement>('input[name="setting"]:checked');
+    const rows = [
+      ['Contact', `${value('name')} · ${value('email')}`],
+      ['Preferred method', selected('preferredReply')],
+      ['Event type', selected('eventType')],
+      ['Event Date', value('eventDate')],
+      ['Location', value('city')],
+      ['Outdoors', setting?.value === 'outdoor' ? 'Yes' : setting?.value === 'indoor' ? 'No' : ''],
+      ['Performance time', selected('durationMinutes')],
+      ['Sound / equipment', selected('equipment')],
+      [
+        'Estimated budget',
+        value('budgetCents') ? `$${value('budgetCents')}` : (resumedLegacyBudget ?? ''),
+      ],
+      ['Special requests', value('musicRequests')],
+    ];
+    summary.replaceChildren(
+      ...rows.map(([term, text]) => {
+        const wrapper = document.createElement('div');
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = term;
+        dd.textContent = text || 'Not provided';
+        wrapper.append(dt, dd);
+        return wrapper;
+      }),
+    );
+  }
+  function showStep(step: number, focus = true): void {
+    if (!planner || !progressLabel) return;
+    planner.querySelectorAll<HTMLElement>('[data-step]').forEach((panel) => {
+      panel.hidden = Number(panel.dataset.step) !== step;
+    });
+    planner.querySelectorAll<HTMLElement>('[data-progress-step]').forEach((item) => {
+      const n = Number(item.dataset.progressStep);
+      item.classList.toggle('is-current', n === step);
+      item.classList.toggle('is-complete', n < step);
+    });
+    planner.dataset.currentStep = String(step);
+    progressLabel.textContent = `Step ${step} of 2`;
+    if (step === 2) renderSummary();
+    if (focus)
+      planner
+        .querySelector<HTMLElement>(
+          `[data-step="${step}"] input, [data-step="${step}"] select, [data-step="${step}"] textarea`,
+        )
+        ?.focus();
+    clearAlert();
+  }
+  function validateStep(step: number): boolean {
+    if (!planner) return false;
+    if (step === 1 && !phoneIsValid()) {
+      phone?.focus();
+      phone?.reportValidity();
+      return false;
+    }
+    if (step === 2 && (!validateDate() || !validateBudget())) return false;
+    const panel = planner.querySelector<HTMLElement>(`[data-step="${step}"]`);
+    if (!panel) return false;
+    for (const field of panel.querySelectorAll<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >('input,select,textarea'))
+      if (!field.checkValidity()) {
+        field.reportValidity();
+        return false;
+      }
+    return true;
+  }
   function saveDraft(): void {
     if (!planner || !saveState) return;
     const saved: Record<string, string | boolean> = {};
-    planner.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]').forEach((field) => {
-      if (field instanceof HTMLInputElement && field.type === 'radio') {
-        if (field.checked) saved[field.name] = field.value;
-        else if (!(field.name in saved)) saved[field.name] = '';
-      } else if (field instanceof HTMLInputElement && field.type === 'checkbox') {
-        saved[field.name] = field.checked;
-      } else {
-        saved[field.name] = field.value;
-      }
-    });
+    planner
+      .querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]')
+      .forEach((field) => {
+        if (field instanceof HTMLInputElement && field.type === 'radio') {
+          if (field.checked) saved[field.name] = field.value;
+          else if (!(field.name in saved)) saved[field.name] = '';
+        } else if (field instanceof HTMLInputElement && field.type === 'checkbox') {
+          saved[field.name] = field.checked;
+        } else {
+          saved[field.name] = field.value;
+        }
+      });
     saved.__budgetWasEdited = budgetWasEdited;
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
     saveState.textContent = 'Saved in this browser';
@@ -88,30 +448,46 @@ const { compact = false } = Astro.props;
     const raw = sessionStorage.getItem(STORAGE_KEY);
     if (!raw) return;
     let saved: Record<string, unknown>;
-    try { saved = JSON.parse(raw) as Record<string, unknown>; }
-    catch { sessionStorage.removeItem(STORAGE_KEY); return; }
+    try {
+      saved = JSON.parse(raw) as Record<string, unknown>;
+    } catch {
+      sessionStorage.removeItem(STORAGE_KEY);
+      return;
+    }
     Object.entries(saved).forEach(([name, savedValue]) => {
       const named = planner.elements.namedItem(name);
       if (named instanceof RadioNodeList) {
         if (typeof savedValue === 'string') named.value = savedValue;
       } else if (named instanceof HTMLInputElement && named.type === 'checkbox') {
         named.checked = savedValue === true;
-      } else if (typeof savedValue === 'string' && (named instanceof HTMLInputElement || named instanceof HTMLSelectElement || named instanceof HTMLTextAreaElement)) {
-        named.value = name === 'eventDate' && /^\d{4}-\d{2}-\d{2}$/.test(savedValue)
-          ? formatInquiryDate(savedValue)
-          : savedValue;
+      } else if (
+        typeof savedValue === 'string' &&
+        (named instanceof HTMLInputElement ||
+          named instanceof HTMLSelectElement ||
+          named instanceof HTMLTextAreaElement)
+      ) {
+        named.value =
+          name === 'eventDate' && /^\d{4}-\d{2}-\d{2}$/.test(savedValue)
+            ? formatInquiryDate(savedValue)
+            : savedValue;
       }
     });
     plannerWasEdited = Object.keys(saved).some((name) => !name.startsWith('__'));
     budgetWasEdited = saved.__budgetWasEdited === true;
     saveState.textContent = 'Draft resumed in this browser';
   }
-  function makeRequestKey(): string { return crypto.randomUUID ? crypto.randomUUID() : `web-${Date.now()}-${Math.random().toString(36).slice(2)}`; }
+  function makeRequestKey(): string {
+    return crypto.randomUUID
+      ? crypto.randomUUID()
+      : `web-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  }
   function makeIdempotencyKey(): string {
     const bytes = new Uint8Array(32);
     crypto.getRandomValues(bytes);
     let binary = '';
-    bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+    bytes.forEach((byte) => {
+      binary += String.fromCharCode(byte);
+    });
     return btoa(binary).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
   }
   function readPendingCreate(): PendingCreate | null {
@@ -119,9 +495,17 @@ const { compact = false } = Astro.props;
     if (!raw) return null;
     try {
       const saved = JSON.parse(raw) as Partial<PendingCreate>;
-      if (typeof saved.key !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(saved.key) || !saved.payload || typeof saved.payload !== 'object') return null;
+      if (
+        typeof saved.key !== 'string' ||
+        !/^[A-Za-z0-9_-]{43}$/.test(saved.key) ||
+        !saved.payload ||
+        typeof saved.payload !== 'object'
+      )
+        return null;
       return { key: saved.key, payload: saved.payload as InquiryInput, created: saved.created };
-    } catch { return null; }
+    } catch {
+      return null;
+    }
   }
   function pendingCreate(payload: InquiryInput): PendingCreate {
     const saved = readPendingCreate();
@@ -139,23 +523,42 @@ const { compact = false } = Astro.props;
   }
   function rememberResumedInput(input: InquiryInput): void {
     resumedInput = input;
-    resumedLegacyBudget = input.budgetCents === null && input.budget.trim() && input.budget !== 'unsure' ? input.budget : null;
+    resumedLegacyBudget =
+      input.budgetCents === null && input.budget.trim() && input.budget !== 'unsure'
+        ? input.budget
+        : null;
     if (legacyBudgetContext) {
-      legacyBudgetContext.textContent = resumedLegacyBudget ? `Previous budget answer: ${resumedLegacyBudget}. Enter a new amount only to replace it.` : '';
+      legacyBudgetContext.textContent = resumedLegacyBudget
+        ? `Previous budget answer: ${resumedLegacyBudget}. Enter a new amount only to replace it.`
+        : '';
       legacyBudgetContext.hidden = !resumedLegacyBudget || budgetWasEdited;
     }
   }
   function applyResumedInput(input: InquiryInput): void {
     rememberResumedInput(input);
-    [['name', input.name], ['email', input.email], ['phone', input.phone], ['preferredReply', input.preferredReply], ['eventType', input.eventType], ['city', input.city], ['durationMinutes', String(input.durationMinutes)], ['musicRequests', input.musicRequests], ['equipment', input.equipment]].forEach(([name, fieldValue]) => {
+    [
+      ['name', input.name],
+      ['email', input.email],
+      ['phone', input.phone],
+      ['preferredReply', input.preferredReply],
+      ['eventType', input.eventType],
+      ['city', input.city],
+      ['durationMinutes', String(input.durationMinutes)],
+      ['musicRequests', input.musicRequests],
+      ['equipment', input.equipment],
+    ].forEach(([name, fieldValue]) => {
       const field = control(name);
       if (field) field.value = fieldValue;
     });
-    const setting = planner?.querySelector<HTMLInputElement>(`input[name="setting"][value="${input.setting}"]`);
+    const setting = planner?.querySelector<HTMLInputElement>(
+      `input[name="setting"][value="${input.setting}"]`,
+    );
     if (setting) setting.checked = true;
-    if (eventDate) eventDate.value = input.date === 'flexible' ? 'Flexible' : formatInquiryDate(input.date);
+    if (eventDate)
+      eventDate.value = input.date === 'flexible' ? 'Flexible' : formatInquiryDate(input.date);
     if (datePicker && input.date !== 'flexible') datePicker.value = input.date;
-    if (budgetInput) budgetInput.value = input.budgetCents === null ? '' : (input.budgetCents / 100).toFixed(2);
+    if (budgetInput)
+      budgetInput.value = input.budgetCents === null ? '' : (input.budgetCents / 100).toFixed(2);
     const consent = control('consent');
     if (consent instanceof HTMLInputElement) consent.checked = input.consent;
     const marketing = control('marketingConsent');
@@ -165,40 +568,82 @@ const { compact = false } = Astro.props;
   async function restoreSubmitted(record: ResumeRecord): Promise<void> {
     resumeReady = false;
     try {
-      const response = await fetch(`/api/inquiries/${encodeURIComponent(record.id)}`, { headers: { Authorization: `Bearer ${record.token}`, Accept: 'application/json' } });
-      const body = await response.json() as Inspection;
+      const response = await fetch(`/api/inquiries/${encodeURIComponent(record.id)}`, {
+        headers: { Authorization: `Bearer ${record.token}`, Accept: 'application/json' },
+      });
+      const body = (await response.json()) as Inspection;
       if (!response.ok || !body.input) throw new Error('Resume failed');
       if (!plannerWasEdited) applyResumedInput(body.input);
       else {
         rememberResumedInput(body.input);
-        if (body.input.date === 'flexible' && eventDate && eventDate.value.trim() === '') eventDate.value = 'Flexible';
+        if (body.input.date === 'flexible' && eventDate && eventDate.value.trim() === '')
+          eventDate.value = 'Flexible';
       }
       resumeReady = true;
-      if (saveState) saveState.textContent = plannerWasEdited ? 'Saved inquiry available; current edits kept' : 'Submitted inquiry resumed securely';
+      if (saveState)
+        saveState.textContent = plannerWasEdited
+          ? 'Saved inquiry available; current edits kept'
+          : 'Submitted inquiry resumed securely';
     } catch {
       if (saveState) saveState.textContent = 'Submitted inquiry could not be resumed';
     }
   }
   function buildPayload(): InquiryInput {
     const budgetCents = parseBudgetCents(value('budgetCents'));
-    const selectedSetting = planner?.querySelector<HTMLInputElement>('input[name="setting"]:checked');
+    const selectedSetting = planner?.querySelector<HTMLInputElement>(
+      'input[name="setting"]:checked',
+    );
     const old = resumedInput;
     const params = new URLSearchParams(window.location.search);
     return {
-      name: value('name'), email: value('email'), phone: value('phone'),
-      preferredReply: value('preferredReply') as InquiryInput['preferredReply'], company: old?.company ?? '',
-      eventType: value('eventType') as InquiryInput['eventType'], date: parseInquiryDate(value('eventDate')) ?? (old?.date === 'flexible' ? 'flexible' : ''), city: value('city'), venue: old?.venue ?? '', address: old?.address ?? '',
-      setting: (selectedSetting?.value ?? old?.setting ?? 'unknown') as InquiryInput['setting'], guestCount: old?.guestCount ?? null, startLocal: old?.startLocal ?? '', endLocal: old?.endLocal ?? '', durationMinutes: Number(value('durationMinutes')), timezone: old?.timezone || CENTRAL_TIME_ZONE,
-      atmosphere: old?.atmosphere ?? 'Not specified', musicRequests: value('musicRequests'), scheduleNotes: old?.scheduleNotes ?? '', equipment: value('equipment') || old?.equipment || 'PA required', access: old?.access ?? 'unknown', budget: resumedLegacyBudget && !budgetWasEdited && budgetCents === null ? resumedLegacyBudget : 'unsure', budgetCents, notes: old?.notes ?? '', consent: true,
-      marketingConsent: (control('marketingConsent') as HTMLInputElement | null)?.checked ?? false, source: old?.source || 'form',
-      utm: { source: params.get('utm_source') || old?.utm.source, medium: params.get('utm_medium') || old?.utm.medium, campaign: params.get('utm_campaign') || old?.utm.campaign },
+      name: value('name'),
+      email: value('email'),
+      phone: value('phone'),
+      preferredReply: value('preferredReply') as InquiryInput['preferredReply'],
+      company: old?.company ?? '',
+      eventType: value('eventType') as InquiryInput['eventType'],
+      date: parseInquiryDate(value('eventDate')) ?? (old?.date === 'flexible' ? 'flexible' : ''),
+      city: value('city'),
+      venue: old?.venue ?? '',
+      address: old?.address ?? '',
+      setting: (selectedSetting?.value ?? old?.setting ?? 'unknown') as InquiryInput['setting'],
+      guestCount: old?.guestCount ?? null,
+      startLocal: old?.startLocal ?? '',
+      endLocal: old?.endLocal ?? '',
+      durationMinutes: Number(value('durationMinutes')),
+      timezone: old?.timezone || CENTRAL_TIME_ZONE,
+      atmosphere: old?.atmosphere ?? 'Not specified',
+      musicRequests: value('musicRequests'),
+      scheduleNotes: old?.scheduleNotes ?? '',
+      equipment: value('equipment') || old?.equipment || 'PA required',
+      access: old?.access ?? 'unknown',
+      budget:
+        resumedLegacyBudget && !budgetWasEdited && budgetCents === null
+          ? resumedLegacyBudget
+          : 'unsure',
+      budgetCents,
+      notes: old?.notes ?? '',
+      consent: true,
+      marketingConsent: (control('marketingConsent') as HTMLInputElement | null)?.checked ?? false,
+      source: old?.source || 'form',
+      utm: {
+        source: params.get('utm_source') || old?.utm.source,
+        medium: params.get('utm_medium') || old?.utm.medium,
+        campaign: params.get('utm_campaign') || old?.utm.campaign,
+      },
     };
   }
   function readResumeRecord(): ResumeRecord | null {
     try {
-      const parsed = JSON.parse(sessionStorage.getItem(RESUME_KEY) || 'null') as ResumeRecord | null;
-      return parsed && typeof parsed.id === 'string' && typeof parsed.token === 'string' ? parsed : null;
-    } catch { return null; }
+      const parsed = JSON.parse(
+        sessionStorage.getItem(RESUME_KEY) || 'null',
+      ) as ResumeRecord | null;
+      return parsed && typeof parsed.id === 'string' && typeof parsed.token === 'string'
+        ? parsed
+        : null;
+    } catch {
+      return null;
+    }
   }
   async function submitInquiry(): Promise<void> {
     if (!planner || !submitButton) return;
@@ -206,17 +651,27 @@ const { compact = false } = Astro.props;
     try {
       const existing = readResumeRecord();
       if (existing && !resumeReady) {
-        showAlert('Your saved inquiry could not be loaded safely. Please refresh before trying again.', 'error');
+        showAlert(
+          'Your saved inquiry could not be loaded safely. Please refresh before trying again.',
+          'error',
+        );
         submitButton.disabled = false;
         return;
       }
       const currentPayload = buildPayload();
       const pending = existing ? readPendingCreate() : pendingCreate(currentPayload);
       const pendingCreated = pending?.created;
-      if (existing && pendingCreated?.id === existing.id && pendingCreated.token === existing.token) {
+      if (
+        existing &&
+        pendingCreated?.id === existing.id &&
+        pendingCreated.token === existing.token
+      ) {
         const updateResponse = await fetch(`/api/inquiries/${encodeURIComponent(existing.id)}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${existing.token}` },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${existing.token}`,
+          },
           body: JSON.stringify(currentPayload),
         });
         if (!updateResponse.ok) throw new Error('LATEST_EDITS_NOT_APPLIED');
@@ -233,7 +688,10 @@ const { compact = false } = Astro.props;
       if (existing) {
         requestUrl = `/api/inquiries/${encodeURIComponent(existing.id)}`;
         requestMethod = 'PUT';
-        requestHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${existing.token}` };
+        requestHeaders = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${existing.token}`,
+        };
         requestPayload = currentPayload;
       } else {
         if (!pending) throw new Error('Pending inquiry state is missing; refresh and try again.');
@@ -247,7 +705,7 @@ const { compact = false } = Astro.props;
         headers: requestHeaders,
         body: JSON.stringify(requestPayload),
       });
-      const body = await response.json() as unknown;
+      const body = (await response.json()) as unknown;
       if (!response.ok) {
         const invalid = body as ValidationResponse;
         if (invalid.error === 'validation' && Array.isArray(invalid.fields)) {
@@ -266,7 +724,12 @@ const { compact = false } = Astro.props;
       }
       const receipt = body as InquiryResponse;
       if (!receipt.id || !receipt.token) throw new Error('Invalid inquiry response');
-      const receiptRecord = { id: receipt.id, token: receipt.token, status: receipt.status, requestKey: makeRequestKey() };
+      const receiptRecord = {
+        id: receipt.id,
+        token: receipt.token,
+        status: receipt.status,
+        requestKey: makeRequestKey(),
+      };
       if (!existing && pending) saveCreatedPending(pending, receiptRecord);
       else sessionStorage.setItem(RESUME_KEY, JSON.stringify(receiptRecord));
       if (!existing && pending && !samePayload(currentPayload, pending.payload)) {
@@ -283,11 +746,71 @@ const { compact = false } = Astro.props;
       sessionStorage.removeItem(IDEMPOTENCY_KEY);
       window.location.replace('/inquiry-received/');
     } catch (error) {
-      showAlert(error instanceof Error && error.message === 'LATEST_EDITS_NOT_APPLIED'
-        ? 'Your inquiry was saved, but your latest edits were not applied. Please try again.'
-        : 'We could not save the inquiry. Your answers remain saved in this browser. Please try again.', 'error');
+      showAlert(
+        error instanceof Error && error.message === 'LATEST_EDITS_NOT_APPLIED'
+          ? 'Your inquiry was saved, but your latest edits were not applied. Please try again.'
+          : 'We could not save the inquiry. Your answers remain saved in this browser. Please try again.',
+        'error',
+      );
       submitButton.disabled = false;
     }
   }
-  try { if (!planner || !phone || !eventDate || !budgetInput || !submitButton) throw new Error('Planner controls missing'); restoreDraft(); const resume = readResumeRecord(); if (resume) void restoreSubmitted(resume); showStep(1, false); eventDate.addEventListener('input', () => { eventDate.value = insertDateDashes(eventDate.value); eventDate.setCustomValidity(''); saveDraft(); }); eventDate.addEventListener('blur', validateDate); datePickerButton?.addEventListener('click', () => { if (typeof datePicker?.showPicker === 'function') datePicker.showPicker(); else datePicker?.focus(); }); datePicker?.addEventListener('change', () => { if (datePicker.value) eventDate.value = formatInquiryDate(datePicker.value); eventDate.dispatchEvent(new Event('input', { bubbles: true })); }); planner.addEventListener('input', (event) => { plannerWasEdited = true; const field = event.target; if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement) field.setCustomValidity(''); if (field === phone) phoneIsValid(); if (field === budgetInput) { budgetWasEdited = true; if (legacyBudgetContext) legacyBudgetContext.hidden = true; } saveDraft(); if (planner.dataset.currentStep === '2') renderSummary(); }); planner.addEventListener('change', () => { plannerWasEdited = true; saveDraft(); if (planner.dataset.currentStep === '2') renderSummary(); }); planner.querySelectorAll<HTMLButtonElement>('[data-next-step]').forEach((button) => button.addEventListener('click', () => { if (validateStep(1)) showStep(2); })); planner.querySelectorAll<HTMLButtonElement>('[data-back-step]').forEach((button) => button.addEventListener('click', () => showStep(1))); planner.addEventListener('submit', (event) => { event.preventDefault(); if (validateStep(2)) void submitInquiry(); }); } catch (error) { console.error('Event planner initialization failed.', error); }
+  try {
+    if (!planner || !phone || !eventDate || !budgetInput || !submitButton)
+      throw new Error('Planner controls missing');
+    restoreDraft();
+    const resume = readResumeRecord();
+    if (resume) void restoreSubmitted(resume);
+    showStep(1, false);
+    eventDate.addEventListener('input', () => {
+      eventDate.value = insertDateDashes(eventDate.value);
+      eventDate.setCustomValidity('');
+      saveDraft();
+    });
+    eventDate.addEventListener('blur', validateDate);
+    datePickerButton?.addEventListener('click', () => {
+      if (typeof datePicker?.showPicker === 'function') datePicker.showPicker();
+      else datePicker?.focus();
+    });
+    datePicker?.addEventListener('change', () => {
+      if (datePicker.value) eventDate.value = formatInquiryDate(datePicker.value);
+      eventDate.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    planner.addEventListener('input', (event) => {
+      plannerWasEdited = true;
+      const field = event.target;
+      if (
+        field instanceof HTMLInputElement ||
+        field instanceof HTMLSelectElement ||
+        field instanceof HTMLTextAreaElement
+      )
+        field.setCustomValidity('');
+      if (field === phone) phoneIsValid();
+      if (field === budgetInput) {
+        budgetWasEdited = true;
+        if (legacyBudgetContext) legacyBudgetContext.hidden = true;
+      }
+      saveDraft();
+      if (planner.dataset.currentStep === '2') renderSummary();
+    });
+    planner.addEventListener('change', () => {
+      plannerWasEdited = true;
+      saveDraft();
+      if (planner.dataset.currentStep === '2') renderSummary();
+    });
+    planner.querySelectorAll<HTMLButtonElement>('[data-next-step]').forEach((button) =>
+      button.addEventListener('click', () => {
+        if (validateStep(1)) showStep(2);
+      }),
+    );
+    planner
+      .querySelectorAll<HTMLButtonElement>('[data-back-step]')
+      .forEach((button) => button.addEventListener('click', () => showStep(1)));
+    planner.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (validateStep(2)) void submitInquiry();
+    });
+  } catch (error) {
+    console.error('Event planner initialization failed.', error);
+  }
 </script>
