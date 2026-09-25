@@ -3,8 +3,11 @@
 ## Round-three status — local implementation only
 
 The current round-three implementation is the two-step inquiry-only planner plus its protected
-backend notification/follow-up support. It passed the local release gates and awaits runtime,
-Pages, and synthetic-production evidence. Do not describe it as deployed, provider
+backend notification/follow-up support. It passed the local release gates and feature CI. Windows
+backup/integrity also passed, but the non-elevated restart could not reconcile orphaned S4U child
+processes; the old API/tunnel remain healthy, the worker is down, and protected inquiry keys remain
+absent. It awaits an Administrator runtime recovery, Pages, and synthetic-production evidence. Do
+not describe it as deployed, provider
 delivered, or ChatGPT-active until the evidence placeholders are replaced by observed results.
 The account-side Gmail task instructions are in
 [CHATGPT_INQUIRY_NOTIFICATION_SETUP.md](CHATGPT_INQUIRY_NOTIFICATION_SETUP.md).

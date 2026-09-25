@@ -30,15 +30,22 @@ git pull --ff-only origin codex/justin-inquiry-round-three
 git rev-parse HEAD
 node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
   --directory (Join-Path $privateRoot 'backups')
+& 'C:/Users/trustcore-rdp/.cache/codex-runtimes/codex-primary-runtime/dependencies/native/powershell/pwsh.exe' `
+  -NoProfile -File scripts/stop-services.ps1 -ConfigPath $configPath
 npm ci
 npm run verify
 ```
 
-Set both protected inquiry keys in one no-echo edit, first with notifications disabled. Restart
-only the owned Justin tasks with `scripts/stop-services.ps1`, verify the new health capability on
-all three paths, then enable notifications and repeat the owned-service health/outbox check. The
-round-two commands later in this document are retained as historical release evidence; do not use
-their branch name for round three.
+The stop step for installed S4U tasks must run from an already elevated Administrator shell. Do not
+run `npm ci` while those tasks' child processes are still executing from this checkout: Windows can
+hold `esbuild.exe` open, partially prune `node_modules`, and leave the worker down. Stop before any
+task-state mutation when elevation is unavailable.
+
+Set both protected inquiry keys in one no-echo edit, first with notifications disabled. Start only
+the three owned Justin tasks, verify the new health capability on all three paths, then use the same
+elevated stop/start path to enable notifications and repeat the health/outbox check. The round-two
+commands later in this document are retained as historical release evidence; do not use their
+branch name for round three.
 
 Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Public-form release and live
 smoke: 2026-09-23.

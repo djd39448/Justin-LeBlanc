@@ -5,9 +5,11 @@
 As of 2026-09-24, the round-three branch contains the approved two-step inquiry-only planner,
 strict phone and composite-date validation, receipt/idempotency handling, Justin-only durable
 notification effects, 20-hour/24-hour follow-up state, and authenticated operator/admin
-completion controls. Local verification and deployment evidence are intentionally recorded as
-passed in the dated evidence record; deployment fields remain pending. This is not yet a
-deployment or provider-delivery claim.
+completion controls. Local verification and feature CI pass. Windows backup and integrity evidence
+also pass, but the old S4U runtime could not be replaced from a non-elevated shell: the old API and
+tunnel remain healthy, the worker is down, and protected notification configuration remains
+unchanged. An Administrator recovery/restart is the current release blocker; this is not yet a
+round-three deployment or provider-delivery claim.
 
 Updated 2026-09-23. **The two-step, inquiry-only public planner is live at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision

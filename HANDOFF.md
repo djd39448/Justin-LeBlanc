@@ -7,8 +7,11 @@ remote main head. The public experience is exactly two inquiry steps and ends at
 `/inquiry-received/`; it has no public availability, scheduling, hold, or booking action. Phone
 and date rules, replacement-update compatibility, idempotency, Justin-only inquiry outbox mail,
 and the durable 20-hour/24-hour follow-up lifecycle are part of this release. The branch is not
-yet a deployment, email-delivery, or ChatGPT-automation claim. The full local gate passed; root
-should fill the remaining runtime fields after release.
+yet a deployment, email-delivery, or ChatGPT-automation claim. The full local gate and feature CI
+passed. Windows backup/integrity passed, but an Administrator shell is required to stop the
+orphaned S4U children, repair with exact `npm ci`, and complete the disabled-first restart. The old
+API and tunnel remain healthy; the owned worker is currently down and the protected notification
+keys remain absent.
 
 The two-step, inquiry-only public planner is live at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision

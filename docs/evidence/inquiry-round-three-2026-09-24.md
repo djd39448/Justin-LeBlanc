@@ -65,5 +65,24 @@ round-two screenshots are not evidence for this release.
 
 ## Runtime and production release
 
-Pending verified backend deployment, protected configuration, owned service restart, Pages
-deployment, one synthetic inquiry, Justin-only delivery, and ChatGPT account-side result.
+Windows preflight and release attempt on 2026-09-25 established:
+
+- the runtime checkout is clean at `92130431c9ec316dab8bc9b9702d802d4d8da3c0`; the prior runtime
+  revision is `8f765d8aa92e10df4baf6c6ce13f6acbfff2e2a1`;
+- the fresh online backup `snapshot-2026-09-25T01-34-38-489Z` and non-destructive
+  `restore-check-2026-09-25T01-34Z` passed SQLite integrity checking;
+- the outbox had 20 accepted effects, zero pending/sending/uncertain/failed effects, and no held
+  lease;
+- Windows verification passed after a package-tree repair, but exact `npm ci` remains pending
+  because the live S4U API holds `esbuild.exe` open;
+- the old API and tunnel remain healthy on the prior runtime, while the owned worker is down; an
+  elevated Administrator shell is required to reconcile the orphaned S4U child processes before
+  exact install and restart;
+- protected inquiry configuration remains unchanged and the two new keys remain absent; no inquiry
+  notification or test mail was sent; and
+- Pages production `73a78aec-f10a-4b95-b494-fd191ecccbd6` and rollback
+  `a3152e61-ed47-41a7-9595-ebd42e694245` remain untouched.
+
+Pending: elevated backend recovery/deployment, protected configuration, disabled-first and enabled
+health proof, Pages deployment, one synthetic inquiry, Justin-only delivery, and the ChatGPT
+account-side result.
