@@ -267,6 +267,8 @@ export class OutboxDispatcher {
   }
 
   private assertKillSwitch(effect: Effect): void {
+    if (['email.inquiry_received', 'email.inquiry_due_soon', 'email.inquiry_overdue'].includes(effect.kind) && !this.config.INQUIRY_NOTIFICATIONS_ENABLED)
+      throw new DisabledEffectError('Inquiry notification is disabled at the provider boundary.');
     if (
       (effect.kind === 'email.invoice' ||
         effect.kind === 'email.amendment_approval' ||

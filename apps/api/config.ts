@@ -17,7 +17,7 @@ export const ConfigSchema = z.object({
   PERFORMER_EMAIL: z.email(),
   CLIENT_TEST_EMAIL: z.email(),
   INQUIRY_NOTIFICATIONS_ENABLED: bool.default(false),
-  INQUIRY_NOTIFICATION_EMAIL: z.string().default(''),
+  INQUIRY_NOTIFICATION_EMAIL: z.union([z.email(), z.literal('')]).default(''),
   SMTP_HOST: z.string().default('smtp.gmail.com'),
   SMTP_PORT: z.coerce.number().default(465),
   SMTP_USER: z.string().default(''),
@@ -46,6 +46,9 @@ export const ConfigSchema = z.object({
   MORNING_SCAN_ENABLED: bool.default(false),
   AI_ENABLED: bool.default(false),
   VOICE_ENABLED: bool.default(false),
+}).superRefine((config, ctx) => {
+  if (config.INQUIRY_NOTIFICATIONS_ENABLED && config.INQUIRY_NOTIFICATION_EMAIL === '')
+    ctx.addIssue({ code: 'custom', path: ['INQUIRY_NOTIFICATION_EMAIL'], message: 'Inquiry notification email is required when notifications are enabled.' });
 });
 export type Config = z.infer<typeof ConfigSchema>;
 /** Validates env values; errors identify names only. */
@@ -73,7 +76,6 @@ export function assertRecipients(config: Config, recipients: string[]): void {
 }
 export function assertInquiryNotificationRecipients(config: Config, mail: { to: string[]; cc: string[]; bcc: string[] }): void {
   const recipient = config.INQUIRY_NOTIFICATION_EMAIL.trim().toLowerCase();
-  const allowed = new Set(config.DEMO_RECIPIENT_ALLOWLIST.split(',').map((v) => v.trim().toLowerCase()));
-  if (!config.INQUIRY_NOTIFICATIONS_ENABLED || recipient.length === 0 || !allowed.has(recipient) || mail.to.length !== 1 || mail.to[0]?.toLowerCase() !== recipient || mail.cc.length !== 0 || mail.bcc.length !== 0)
+  if (!config.INQUIRY_NOTIFICATIONS_ENABLED || recipient.length === 0 || mail.to.length !== 1 || mail.to[0]?.toLowerCase() !== recipient || mail.cc.length !== 0 || mail.bcc.length !== 0)
     throw new Error('Inquiry notification recipient policy blocked this message.');
 }

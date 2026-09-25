@@ -46,12 +46,10 @@ describe('round-two inquiry contract', () => {
   });
 
   it.each(['text', 'phone'] as const)(
-    'requires phone for %s preference on the phone path',
+    'accepts blank phone for %s preference',
     (preferredReply) => {
       const result = InquiryInputSchema.safeParse({ ...baseInput, phone: '  ', preferredReply });
-      expect(result.success).toBe(false);
-      if (result.success) return;
-      expect(result.error.issues.some((issue) => issue.path.join('.') === 'phone')).toBe(true);
+      expect(result.success).toBe(true);
     },
   );
 

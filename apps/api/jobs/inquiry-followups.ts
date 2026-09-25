@@ -43,8 +43,8 @@ export async function runInquiryFollowups(store: Store, config: Config, now = ne
           return { initialized, dueSoon: false, overdue: false, skipped: true };
         }
         const age = now.getTime() - Date.parse(followUp.receivedAt);
-        const dueSoon = age >= 20 * HOUR && followUp.reminder20QueuedAt === null;
-        const overdue = age >= 24 * HOUR && followUp.overdue24QueuedAt === null;
+        const dueSoon = options.enabled && age >= 20 * HOUR && followUp.reminder20QueuedAt === null;
+        const overdue = options.enabled && age >= 24 * HOUR && followUp.overdue24QueuedAt === null;
         if (dueSoon) followUp = { ...followUp, reminder20QueuedAt: now.toISOString() };
         if (overdue) followUp = { ...followUp, overdue24QueuedAt: now.toISOString() };
         if (initialAlert) followUp = { ...followUp, initialAlertQueuedAt: now.toISOString() };
