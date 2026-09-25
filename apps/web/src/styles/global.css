@@ -695,6 +695,80 @@ h3 {
   gap: 1.35rem 1.5rem;
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.date-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+.date-input-wrap input:first-child {
+  padding-right: 3.4rem;
+}
+.date-picker-button {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2.75rem;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--paper-blue);
+  color: var(--blue-700);
+  cursor: pointer;
+}
+.date-picker-button:focus-visible {
+  outline: 3px solid var(--blue-700);
+  outline-offset: 2px;
+}
+.field-choice-group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.field-choice-group legend {
+  width: auto;
+  margin: 0 0 0.45rem;
+  color: var(--navy-900);
+  font-size: 0.88rem;
+  font-family: inherit;
+  font-weight: 700;
+}
+.choice-row {
+  display: flex;
+  gap: 1rem;
+  min-height: 3.25rem;
+  align-items: center;
+}
+.choice-row label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  color: var(--ink);
+  font-weight: 600;
+  cursor: pointer;
+}
+.choice-row input[type='radio'] {
+  width: 1.25rem;
+  height: 1.25rem;
+  min-height: 1.25rem;
+}
+.receipt-page {
+  min-height: 24rem;
+}
+
 .field-wide {
   grid-column: 1 / -1;
 }

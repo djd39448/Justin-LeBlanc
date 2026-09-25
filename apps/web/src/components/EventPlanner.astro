@@ -1,830 +1,293 @@
 ---
 /**
- * Renders and submits the two-step accessible discovery form.
+ * Renders and submits the two-step accessible inquiry form.
  *
- * Dependencies: The shared InquiryInput API contract at /api/inquiries.
- * Depended on by: Home and plan-your-event pages.
- * Why this exists: A structured, resumable inquiry captures useful detail without requiring unknowns.
+ * Dependencies: the shared InquiryInput API contract at /api/inquiries.
+ * Depended on by: the homepage and /plan-your-event/.
+ * Why this exists: visitors can send a resumable booking inquiry without public scheduling.
  */
-interface Props {
-  compact?: boolean;
-}
-
+interface Props { compact?: boolean }
 const { compact = false } = Astro.props;
 ---
-
 <section class:list={["planner", compact && "planner-compact"]} aria-labelledby="planner-title">
-  <div class="section-heading planner-heading">
-    <div>
-      <p class="eyebrow">Tell us what you know</p>
-      <h2 id="planner-title">Plan the music around your event</h2>
-    </div>
-    <p>
-      Two short steps. Unknown details can stay unknown. Sending this form starts a conversation;
-      it does not confirm your date.
-    </p>
-  </div>
-
-  <noscript>
-    <div class="notice notice-warning">
-      JavaScript is off, so step guidance and browser saving are unavailable. You can still read the
-      complete form below, or use Justin's{" "}
-      <a href="https://justinleblancmusic.com/contact" rel="external">current contact page</a> to
-      send an inquiry.
-    </div>
-  </noscript>
-
-  <form
-    class="planner-form"
-    id="event-planner"
-    action="/api/inquiries"
-    method="post"
-    data-current-step="1"
-  >
-    <div class="planner-progress" aria-label="Form progress">
-      <p><span id="progress-label">Step 1 of 2</span><span id="save-state">Saved as you go</span></p>
-      <ol>
-        <li class="is-current" data-progress-step="1"><span>1</span> Contact</li>
-        <li data-progress-step="2"><span>2</span> Event & review</li>
-      </ol>
-    </div>
-
+  <div class="section-heading planner-heading"><div><p class="eyebrow">BOOKING INQUIRIES</p><h2 id="planner-title">Tell me about your event</h2></div><p>Two short steps. Share the details you have, and I’ll take it from there.</p></div>
+  <noscript><div class="notice notice-warning">JavaScript is required for this guided form. Use Justin's <a href="https://justinleblancmusic.com/contact" rel="external">current contact page</a> to send an inquiry.</div></noscript>
+  <form class="planner-form" id="event-planner" action="/api/inquiries" method="post" data-current-step="1">
+    <div class="planner-progress" aria-label="Form progress"><p><span id="progress-label">Step 1 of 2</span><span id="save-state">Saved as you go</span></p><ol><li class="is-current" data-progress-step="1"><span>1</span> Contact</li><li data-progress-step="2"><span>2</span> Event &amp; review</li></ol></div>
     <div class="form-alert" id="form-alert" role="alert" tabindex="-1" hidden></div>
-
-    <fieldset class="form-step" data-step="1">
-      <legend>How should we follow up?</legend>
-      <div class="field-grid">
-        <div class="field">
-          <label for="name">Name <span aria-hidden="true">*</span></label>
-          <input id="name" name="name" autocomplete="name" maxlength="200" required />
-        </div>
-        <div class="field">
-          <label for="email">Email <span aria-hidden="true">*</span></label>
-          <input id="email" name="email" type="email" autocomplete="email" maxlength="254" required />
-        </div>
-        <div class="field">
-          <label for="preferredReply">Preferred Reply <span aria-hidden="true">*</span></label>
-          <select id="preferredReply" name="preferredReply" required>
-            <option value="email">Email</option>
-            <option value="text">Text</option>
-            <option value="phone">Phone Call</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="phone">Phone <span id="phone-optional">(optional)</span></label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" />
-          <p class="form-hint">Required if you choose Text or Phone Call.</p>
-        </div>
-        <div class="field field-wide">
-          <label for="company">Company or planning role (optional)</label>
-          <input id="company" name="company" autocomplete="organization" maxlength="200" />
-        </div>
-      </div>
-      <div class="form-actions form-actions-end">
-        <button class="button" type="button" data-next-step="2">Continue to event</button>
-      </div>
-    </fieldset>
-
-    <fieldset class="form-step" data-step="2">
-      <legend>What are you planning?</legend>
-      <div class="field-grid">
-        <div class="field">
-          <label for="eventType">Event type <span aria-hidden="true">*</span></label>
-          <select id="eventType" name="eventType" required>
-            <option value="">Choose one</option>
-            <option value="private">Private gathering</option>
-            <option value="celebration">Celebration</option>
-            <option value="corporate">Corporate reception</option>
-            <option value="wedding">Wedding</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="city">Location of the event <span aria-hidden="true">*</span></label>
-          <input id="city" name="city" autocomplete="address-level2" maxlength="200" required />
-        </div>
-        <div class="field">
-          <label for="eventDate">Event date</label>
-          <input id="eventDate" name="eventDate" type="date" required />
-          <label class="check-row" for="dateFlexible">
-            <input id="dateFlexible" name="dateFlexible" type="checkbox" />
-            <span>My date is flexible or not chosen yet</span>
-          </label>
-        </div>
-        <div class="field">
-          <label for="venue">Venue name (optional)</label>
-          <input id="venue" name="venue" maxlength="200" />
-        </div>
-        <div class="field">
-          <label for="setting">Setting</label>
-          <select id="setting" name="setting">
-            <option value="unknown">Not sure yet</option>
-            <option value="indoor">Indoors</option>
-            <option value="outdoor">Outdoors</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="guestCount">Approximate guest count (optional)</label>
-          <input id="guestCount" name="guestCount" type="number" min="1" max="10000" inputmode="numeric" />
-        </div>
-        <div class="field">
-          <label for="durationMinutes">Performance time</label>
-          <select id="durationMinutes" name="durationMinutes" required>
-            <option value="60">About 1 hour</option>
-            <option value="120" selected>About 2 hours</option>
-            <option value="180">About 3 hours</option>
-            <option value="240">About 4 hours</option>
-          </select>
-        </div>
-        <input id="timezone" name="timezone" type="hidden" value="America/Chicago" />
-        <div class="field">
-          <label for="equipment">Sound / equipment needs</label>
-          <select id="equipment" name="equipment">
-            <option value="unknown">Not sure yet</option>
-            <option value="Venue provides PA">Venue provides PA</option>
-            <option value="PA required">PA required</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="budgetCents">Budget (optional)</label>
-          <input id="budgetCents" name="budgetCents" type="text" inputmode="decimal" autocomplete="off" maxlength="32" />
-          <p class="form-hint">Planning context only; it is not a quote or a charge.</p>
-          <p class="form-hint" id="legacy-budget-context" hidden></p>
-        </div>
-        <div class="field field-wide">
-          <label for="musicRequests">Special requests (optional)</label>
-          <textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea>
-        </div>
-      </div>
-
-      <div class="review-card" aria-labelledby="review-title">
-        <div class="review-heading">
-          <h3 id="review-title">Your inquiry at a glance</h3>
-          <button class="text-button" type="button" data-back-step="1">Edit contact</button>
-        </div>
-        <dl id="inquiry-summary"></dl>
-      </div>
-
-      <label class="check-row consent-row" for="consent">
-        <input id="consent" name="consent" type="checkbox" required />
-        <span>I agree to be contacted about this event inquiry. <span aria-hidden="true">*</span></span>
-      </label>
-      <label class="check-row" for="marketingConsent">
-        <input id="marketingConsent" name="marketingConsent" type="checkbox" />
-        <span>Also send occasional music and public-show updates. Optional and unchecked.</span>
-      </label>
-
-      <div class="form-actions">
-        <button class="button button-secondary" type="button" data-back-step="1">Back</button>
-        <button class="button" id="submit-inquiry" type="submit">Send inquiry</button>
-      </div>
-      <p class="form-hint form-hint-center">
-        Sending this form starts a conversation; it does not confirm your date.
-      </p>
-    </fieldset>
+    <fieldset class="form-step" data-step="1"><legend class="visually-hidden">Contact details</legend><div class="field-grid">
+      <div class="field"><label for="name">Your Name <span aria-hidden="true">*</span></label><input id="name" name="name" autocomplete="name" maxlength="200" required /></div>
+      <div class="field"><label for="email">Email <span aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div>
+      <div class="field"><label for="phone">Phone Number</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" aria-describedby="phone-hint" /><p class="form-hint" id="phone-hint">Optional for any response preference.</p></div>
+      <div class="field"><label for="preferredReply">Preferred method of response</label><select id="preferredReply" name="preferredReply"><option value="text" selected>Text</option><option value="email">Email</option><option value="phone">Phone Call</option></select></div>
+    </div><div class="form-actions form-actions-end"><button class="button" type="button" data-next-step="2">Last Step</button></div></fieldset>
+    <fieldset class="form-step" data-step="2" hidden><legend class="visually-hidden">Event details</legend><div class="field-grid">
+      <div class="field"><label for="eventType">Event type <span aria-hidden="true">*</span></label><select id="eventType" name="eventType" required><option value="">Choose one</option><option value="private">Private gathering</option><option value="celebration">Celebration</option><option value="corporate">Corporate reception</option><option value="wedding">Wedding</option><option value="other">Other</option></select></div>
+      <div class="field"><label for="city">Location of Event <span aria-hidden="true">*</span></label><input id="city" name="city" autocomplete="address-level2" maxlength="200" required /></div>
+      <div class="field"><label for="eventDate">Event Date <span aria-hidden="true">*</span></label><div class="date-input-wrap"><input id="eventDate" name="eventDate" inputmode="numeric" autocomplete="off" placeholder="MM-DD-YY or MM-DD-YYYY" maxlength="10" aria-describedby="event-date-hint" required /><button class="date-picker-button" id="eventDatePickerButton" type="button" aria-label="Open calendar picker">▣</button><input class="visually-hidden date-picker-source" id="eventDatePicker" type="date" tabindex="-1" aria-hidden="true" /></div><p class="form-hint" id="event-date-hint">Use MM-DD-YY or MM-DD-YYYY.</p></div>
+      <fieldset class="field field-choice-group"><legend>Is it outdoors? <span aria-hidden="true">*</span></legend><div class="choice-row"><label><input type="radio" name="setting" value="outdoor" required /> <span>Yes</span></label><label><input type="radio" name="setting" value="indoor" /> <span>No</span></label></div></fieldset>
+      <div class="field"><label for="durationMinutes">Approximate performance time</label><select id="durationMinutes" name="durationMinutes" required><option value="60">About 1 hour</option><option value="120" selected>About 2 hours</option><option value="180">About 3 hours</option><option value="240">About 4 hours</option></select></div>
+      <div class="field"><label for="equipment">Sound or equipment needs</label><select id="equipment" name="equipment"><option value="PA required" selected>PA required</option><option value="PA is provided">PA is provided</option></select></div>
+      <div class="field"><label for="budgetCents">Estimated Budget (optional)</label><input id="budgetCents" name="budgetCents" type="text" inputmode="decimal" autocomplete="off" maxlength="32" /><p class="form-hint">Planning context only; it is not a quote or a charge.</p><p class="form-hint" id="legacy-budget-context" hidden></p></div>
+      <div class="field field-wide"><label for="musicRequests">Special Requests (optional)</label><textarea id="musicRequests" name="musicRequests" rows="3" maxlength="800"></textarea></div>
+    </div><div class="review-card" aria-labelledby="review-title"><div class="review-heading"><h3 id="review-title">Your inquiry at a glance</h3><button class="text-button" type="button" data-back-step="1">Edit contact</button></div><dl id="inquiry-summary"></dl></div>
+    <label class="check-row consent-row" for="consent"><input id="consent" name="consent" type="checkbox" required /><span>I agree to be contacted about this event inquiry. <span aria-hidden="true">*</span></span></label><label class="check-row" for="marketingConsent"><input id="marketingConsent" name="marketingConsent" type="checkbox" /><span>Also send occasional music and public-show updates. Optional and unchecked.</span></label>
+    <div class="form-actions"><button class="button button-secondary" type="button" data-back-step="1">Back</button><button class="button" id="submit-inquiry" type="submit">That’s It</button></div></fieldset>
   </form>
 </section>
-
 <script>
-  /**
-   * Coordinates form steps, browser-local recovery, and the validated inquiry API boundary.
-   * The server remains authoritative for validation and persistence.
-   */
-  import type { InquiryInput } from "../../../../packages/contracts/index";
-
-  type InquiryResponse = {
-    id: string;
-    token: string;
-    status: string;
-    missingFields: string[];
-  };
-
-  type ValidationErrorResponse = {
-    error: "validation";
-    message: string;
-    fields: Array<{ path: string; message: string }>;
-  };
-
-  type InquiryInspection = {
-    inquiryId: string;
-    status: string;
-    input: InquiryInput;
-    shows: unknown[];
-  };
-
-  type ResumeRecord = {
-    id: string;
-    token: string;
-    status: string;
-    requestKey: string;
-  };
-
-  const STORAGE_KEY = "justin-demo-inquiry-draft-v1";
-  const RESUME_KEY = "justin-demo-inquiry-resume-v1";
-  const CENTRAL_TIME_ZONE = "America/Chicago";
-  const planner = document.querySelector<HTMLFormElement>("#event-planner");
-  const alertBox = document.querySelector<HTMLDivElement>("#form-alert");
-  const progressLabel = document.querySelector<HTMLSpanElement>("#progress-label");
-  const saveState = document.querySelector<HTMLSpanElement>("#save-state");
-  const summary = document.querySelector<HTMLDListElement>("#inquiry-summary");
-  const preferredReply = document.querySelector<HTMLSelectElement>("#preferredReply");
-  const phone = document.querySelector<HTMLInputElement>("#phone");
-  const phoneOptional = document.querySelector<HTMLSpanElement>("#phone-optional");
-  const budgetInput = document.querySelector<HTMLInputElement>("#budgetCents");
-  const legacyBudgetContext = document.querySelector<HTMLParagraphElement>("#legacy-budget-context");
-  const dateFlexible = document.querySelector<HTMLInputElement>("#dateFlexible");
-  const eventDate = document.querySelector<HTMLInputElement>("#eventDate");
-  const submitButton = document.querySelector<HTMLButtonElement>("#submit-inquiry");
-  const inquiryTimezone = document.querySelector<HTMLInputElement>("#timezone");
-  let resumedInput: InquiryInput | null = null;
-  let resumedLegacyBudget: string | null = null;
-  let budgetWasEdited = false;
-  let plannerWasEdited = false;
-
-  function requirePlannerElements(): void {
-    if (
-      !planner ||
-      !alertBox ||
-      !progressLabel ||
-      !saveState ||
-      !summary ||
-      !preferredReply ||
-      !phone ||
-      !phoneOptional ||
-      !budgetInput ||
-      !legacyBudgetContext ||
-      !dateFlexible ||
-      !eventDate ||
-      !submitButton
-    ) {
-      throw new Error(
-        "Event planner did not initialize because a required form element is missing. Rebuild the web app and inspect EventPlanner.astro."
-      );
-    }
+  import type { InquiryInput } from '../../../../packages/contracts/index';
+  import { formatInquiryDate, insertDateDashes, parseInquiryDate } from '../lib/inquiry-date';
+  type InquiryResponse = { id: string; token: string; status: string; missingFields: string[] };
+  type ValidationResponse = { error: 'validation'; message: string; fields: Array<{ path: string; message: string }> };
+  type Inspection = { inquiryId: string; status: string; input: InquiryInput; shows: unknown[] };
+  type ResumeRecord = { id: string; token: string; status: string; requestKey: string };
+  type PendingCreate = { key: string; payload: InquiryInput; created?: ResumeRecord };
+  const STORAGE_KEY = 'justin-demo-inquiry-draft-v1'; const RESUME_KEY = 'justin-demo-inquiry-resume-v1'; const RECEIPT_KEY = 'justin-demo-inquiry-receipt-v1'; const IDEMPOTENCY_KEY = 'justin-demo-inquiry-idempotency-v1'; const PHONE_ERROR = 'Enter a complete 10-digit phone number or clear this field.'; const CENTRAL_TIME_ZONE = 'America/Chicago';
+  const planner = document.querySelector<HTMLFormElement>('#event-planner'); const alertBox = document.querySelector<HTMLDivElement>('#form-alert'); const progressLabel = document.querySelector<HTMLSpanElement>('#progress-label'); const saveState = document.querySelector<HTMLSpanElement>('#save-state'); const summary = document.querySelector<HTMLDListElement>('#inquiry-summary'); const phone = document.querySelector<HTMLInputElement>('#phone'); const eventDate = document.querySelector<HTMLInputElement>('#eventDate'); const datePicker = document.querySelector<HTMLInputElement>('#eventDatePicker'); const datePickerButton = document.querySelector<HTMLButtonElement>('#eventDatePickerButton'); const budgetInput = document.querySelector<HTMLInputElement>('#budgetCents'); const legacyBudgetContext = document.querySelector<HTMLParagraphElement>('#legacy-budget-context'); const submitButton = document.querySelector<HTMLButtonElement>('#submit-inquiry'); let resumedInput: InquiryInput | null = null; let resumedLegacyBudget: string | null = null; let budgetWasEdited = false; let plannerWasEdited = false; let resumeReady = true;
+  function showAlert(message: string, kind: 'error' | 'success'): void { if (!alertBox) return; alertBox.hidden = false; alertBox.className = `form-alert form-alert-${kind}`; alertBox.textContent = message; alertBox.focus(); } function clearAlert(): void { if (alertBox) { alertBox.hidden = true; alertBox.textContent = ''; } } function control(name: string): HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null { const value = planner?.elements.namedItem(name); return value instanceof HTMLInputElement || value instanceof HTMLSelectElement || value instanceof HTMLTextAreaElement ? value : null; } function value(name: string): string { return control(name)?.value.trim() ?? ''; }
+  function phoneIsValid(): boolean {
+    if (!phone) return false;
+    const raw = phone.value.trim();
+    if (!raw) { phone.setCustomValidity(''); return true; }
+    const compact = raw.replace(/[() .-]/g, '');
+    const valid = /^\d{10}$/.test(compact) || /^1\d{10}$/.test(compact) || /^\+1\d{10}$/.test(compact);
+    phone.setCustomValidity(valid ? '' : PHONE_ERROR);
+    return valid;
   }
-
-  function showAlert(message: string, kind: "error" | "success"): void {
-    if (!alertBox) return;
-    alertBox.hidden = false;
-    alertBox.className = `form-alert form-alert-${kind}`;
-    alertBox.textContent = message;
-    alertBox.focus();
-  }
-
-  function clearAlert(): void {
-    if (!alertBox) return;
-    alertBox.hidden = true;
-    alertBox.textContent = "";
-  }
-
-  function updateConditionalFields(): void {
-    if (!preferredReply || !phone || !phoneOptional || !dateFlexible || !eventDate) return;
-    const phoneRequired = preferredReply.value === "text" || preferredReply.value === "phone";
-    phone.required = phoneRequired;
-    if (!phoneRequired) phone.setCustomValidity("");
-    phoneOptional.textContent = phoneRequired ? "*" : "(optional)";
-    eventDate.required = !dateFlexible.checked;
-    eventDate.disabled = dateFlexible.checked;
-  }
-
-  function controlValue(name: string): string {
-    if (!planner) return "";
-    const control = planner.elements.namedItem(name);
-    if (control instanceof HTMLInputElement || control instanceof HTMLSelectElement || control instanceof HTMLTextAreaElement) {
-      return control.value.trim();
-    }
-    return "";
-  }
-
-  function renderSummary(): void {
-    if (!summary || !dateFlexible) return;
-    const eventType = document.querySelector<HTMLSelectElement>("#eventType");
-    const setting = document.querySelector<HTMLSelectElement>("#setting");
-    const preferredReplySelect = document.querySelector<HTMLSelectElement>("#preferredReply");
-    const performanceTime = document.querySelector<HTMLSelectElement>("#durationMinutes");
-    const equipment = document.querySelector<HTMLSelectElement>("#equipment");
-    const budget = controlValue("budgetCents");
-    const rows = [
-      ["Contact", `${controlValue("name")} · ${controlValue("email")}`],
-      ["Preferred reply", preferredReplySelect?.selectedOptions[0]?.text ?? "Email"],
-      ["Event", eventType && eventType.selectedOptions[0] ? eventType.selectedOptions[0].text : ""],
-      ["Date", dateFlexible.checked ? "Flexible / not chosen" : controlValue("eventDate")],
-      ["Location", [controlValue("venue"), controlValue("city")].filter(Boolean).join(", ")],
-      ["Setting", setting && setting.selectedOptions[0] ? setting.selectedOptions[0].text : "Not sure yet"],
-      ["Guests", controlValue("guestCount")],
-      ["Performance time", performanceTime?.selectedOptions[0]?.text ?? ""],
-      ["Sound / equipment", equipment?.selectedOptions[0]?.text ?? "Not sure yet"],
-      ["Budget", budget ? `$${budget}` : resumedLegacyBudget ?? ""],
-      ["Special requests", controlValue("musicRequests")]
-    ];
-    summary.replaceChildren();
-    for (const [term, value] of rows) {
-      const wrapper = document.createElement("div");
-      const dt = document.createElement("dt");
-      const dd = document.createElement("dd");
-      dt.textContent = term;
-      dd.textContent = value || "Not provided";
-      wrapper.append(dt, dd);
-      summary.append(wrapper);
-    }
-  }
-
-  function showStep(step: number, focusControl = true): void {
-    if (!planner || !progressLabel) return;
-    const steps = planner.querySelectorAll<HTMLElement>("[data-step]");
-    const progressItems = planner.querySelectorAll<HTMLElement>("[data-progress-step]");
-    for (const panel of steps) panel.hidden = Number(panel.dataset.step) !== step;
-    for (const item of progressItems) {
-      const itemStep = Number(item.dataset.progressStep);
-      item.classList.toggle("is-current", itemStep === step);
-      item.classList.toggle("is-complete", itemStep < step);
-    }
-    planner.dataset.currentStep = String(step);
-    progressLabel.textContent = `Step ${step} of 2`;
-    if (step === 2) renderSummary();
-    const activeControl = planner.querySelector<HTMLElement>(
-      `[data-step="${step}"] input, [data-step="${step}"] select, [data-step="${step}"] textarea`
-    );
-    if (activeControl && focusControl) activeControl.focus();
-    clearAlert();
-  }
-
-  function applyServerValidation(value: unknown): boolean {
-    if (!planner || !isValidationErrorResponse(value)) return false;
-    let firstControl: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null = null;
-    for (const issue of value.fields) {
-      const control = planner.elements.namedItem(issue.path);
-      if (
-        control instanceof HTMLInputElement ||
-        control instanceof HTMLSelectElement ||
-        control instanceof HTMLTextAreaElement
-      ) {
-        control.setCustomValidity(issue.message);
-        if (firstControl === null) firstControl = control;
-      }
-    }
-    if (firstControl === null) return false;
-    const panel = firstControl.closest<HTMLElement>("[data-step]");
-    const step = panel === null ? Number.NaN : Number(panel.dataset.step);
-    if (Number.isFinite(step)) showStep(step, false);
-    showAlert(value.message, "error");
-    firstControl.focus();
-    firstControl.reportValidity();
-    return true;
-  }
-
-  function validateStep(step: number): boolean {
-    if (!planner) return false;
-    updateConditionalFields();
-    const panel = planner.querySelector<HTMLElement>(`[data-step="${step}"]`);
-    if (!panel) return false;
-    if (step === 2 && !validateBudget()) return false;
-    const controls = panel.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
-      "input, select, textarea"
-    );
-    for (const control of controls) {
-      if (!control.checkValidity()) {
-        control.reportValidity();
-        return false;
-      }
-    }
-    return true;
-  }
-
-  function parseBudgetCents(value: string): number | null {
-    const trimmed = value.trim();
-    if (!trimmed) return null;
-    if (!/^(?:0|[1-9][0-9]*)(?:\.[0-9]{1,2})?$/.test(trimmed)) {
-      throw new Error("Enter a whole-dollar amount or up to two decimal places.");
-    }
-    const [dollars, decimals = ""] = trimmed.split(".");
-    const cents = Number.parseInt(`${dollars}${decimals.padEnd(2, "0")}`, 10);
-    if (!Number.isSafeInteger(cents) || cents > 9_999_999_999) {
-      throw new Error("Enter an amount no greater than $99,999,999.99.");
-    }
-    return cents;
-  }
-
-  function validateBudget(): boolean {
-    if (!budgetInput) return false;
-    try {
-      parseBudgetCents(budgetInput.value);
-      budgetInput.setCustomValidity("");
-      return true;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Enter a valid estimated budget.";
-      budgetInput.setCustomValidity(message);
-      budgetInput.reportValidity();
-      return false;
-    }
-  }
-
+  function parseBudgetCents(raw: string): number | null { const trimmed = raw.trim(); if (!trimmed) return null; if (!/^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(trimmed)) throw new Error('Enter a whole-dollar amount or up to two decimal places.'); const [dollars, decimals = ''] = trimmed.split('.'); const cents = Number.parseInt(`${dollars}${decimals.padEnd(2, '0')}`, 10); if (!Number.isSafeInteger(cents) || cents > 9_999_999_999) throw new Error('Enter an amount no greater than $99,999,999.99.'); return cents; }
+  function validateDate(): boolean {
+    if (!eventDate) return false;
+    const historicalFlexible = resumedInput?.date === 'flexible' && eventDate.value.trim() === 'Flexible';
+    const valid = historicalFlexible || parseInquiryDate(eventDate.value) !== null;
+    eventDate.setCustomValidity(valid ? '' : 'Enter a real date in MM-DD-YY or MM-DD-YYYY format.');
+    return valid;
+  } function validateBudget(): boolean { if (!budgetInput) return false; try { parseBudgetCents(budgetInput.value); budgetInput.setCustomValidity(''); return true; } catch (error) { budgetInput.setCustomValidity(error instanceof Error ? error.message : 'Enter a valid estimated budget.'); budgetInput.reportValidity(); return false; } }
+  function renderSummary(): void { if (!summary) return; const selected = (name: string) => { const el = control(name); return el instanceof HTMLSelectElement ? el.selectedOptions[0]?.text ?? '' : ''; }; const setting = planner?.querySelector<HTMLInputElement>('input[name="setting"]:checked'); const rows = [['Contact', `${value('name')} · ${value('email')}`], ['Preferred method', selected('preferredReply')], ['Event type', selected('eventType')], ['Event Date', value('eventDate')], ['Location', value('city')], ['Outdoors', setting?.value === 'outdoor' ? 'Yes' : setting?.value === 'indoor' ? 'No' : ''], ['Performance time', selected('durationMinutes')], ['Sound / equipment', selected('equipment')], ['Estimated budget', value('budgetCents') ? `$${value('budgetCents')}` : resumedLegacyBudget ?? ''], ['Special requests', value('musicRequests')]]; summary.replaceChildren(...rows.map(([term, text]) => { const wrapper = document.createElement('div'); const dt = document.createElement('dt'); const dd = document.createElement('dd'); dt.textContent = term; dd.textContent = text || 'Not provided'; wrapper.append(dt, dd); return wrapper; })); }
+  function showStep(step: number, focus = true): void { if (!planner || !progressLabel) return; planner.querySelectorAll<HTMLElement>('[data-step]').forEach((panel) => { panel.hidden = Number(panel.dataset.step) !== step; }); planner.querySelectorAll<HTMLElement>('[data-progress-step]').forEach((item) => { const n = Number(item.dataset.progressStep); item.classList.toggle('is-current', n === step); item.classList.toggle('is-complete', n < step); }); planner.dataset.currentStep = String(step); progressLabel.textContent = `Step ${step} of 2`; if (step === 2) renderSummary(); if (focus) planner.querySelector<HTMLElement>(`[data-step="${step}"] input, [data-step="${step}"] select, [data-step="${step}"] textarea`)?.focus(); clearAlert(); }
+  function validateStep(step: number): boolean { if (!planner) return false; if (step === 1 && !phoneIsValid()) { phone?.focus(); phone?.reportValidity(); return false; } if (step === 2 && (!validateDate() || !validateBudget())) return false; const panel = planner.querySelector<HTMLElement>(`[data-step="${step}"]`); if (!panel) return false; for (const field of panel.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input,select,textarea')) if (!field.checkValidity()) { field.reportValidity(); return false; } return true; }
   function saveDraft(): void {
     if (!planner || !saveState) return;
     const saved: Record<string, string | boolean> = {};
-    const controls = planner.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
-      "input[name], select[name], textarea[name]"
-    );
-    for (const control of controls) {
-      saved[control.name] = control instanceof HTMLInputElement && control.type === "checkbox" ? control.checked : control.value;
-    }
+    planner.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('[name]').forEach((field) => {
+      if (field instanceof HTMLInputElement && field.type === 'radio') {
+        if (field.checked) saved[field.name] = field.value;
+        else if (!(field.name in saved)) saved[field.name] = '';
+      } else if (field instanceof HTMLInputElement && field.type === 'checkbox') {
+        saved[field.name] = field.checked;
+      } else {
+        saved[field.name] = field.value;
+      }
+    });
     saved.__budgetWasEdited = budgetWasEdited;
-    try {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-      saveState.textContent = "Saved in this browser";
-    } catch (error) {
-      saveState.textContent = "Browser saving unavailable";
-      console.error("Inquiry draft could not be saved. Check browser storage permissions.", error);
-    }
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+    saveState.textContent = 'Saved in this browser';
   }
-
   function restoreDraft(): void {
     if (!planner || !saveState) return;
-    try {
-      const raw = sessionStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const saved = JSON.parse(raw) as Record<string, unknown>;
-      for (const [name, value] of Object.entries(saved)) {
-        const control = planner.elements.namedItem(name);
-        if (control instanceof HTMLInputElement && control.type === "checkbox") {
-          control.checked = value === true;
-        } else if (
-          typeof value === "string" &&
-          (control instanceof HTMLInputElement || control instanceof HTMLSelectElement || control instanceof HTMLTextAreaElement)
-        ) {
-          control.value = value;
-        }
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    let saved: Record<string, unknown>;
+    try { saved = JSON.parse(raw) as Record<string, unknown>; }
+    catch { sessionStorage.removeItem(STORAGE_KEY); return; }
+    Object.entries(saved).forEach(([name, savedValue]) => {
+      const named = planner.elements.namedItem(name);
+      if (named instanceof RadioNodeList) {
+        if (typeof savedValue === 'string') named.value = savedValue;
+      } else if (named instanceof HTMLInputElement && named.type === 'checkbox') {
+        named.checked = savedValue === true;
+      } else if (typeof savedValue === 'string' && (named instanceof HTMLInputElement || named instanceof HTMLSelectElement || named instanceof HTMLTextAreaElement)) {
+        named.value = name === 'eventDate' && /^\d{4}-\d{2}-\d{2}$/.test(savedValue)
+          ? formatInquiryDate(savedValue)
+          : savedValue;
       }
-      plannerWasEdited = true;
-      budgetWasEdited = saved.__budgetWasEdited === true;
-      saveState.textContent = "Draft resumed in this browser";
-    } catch (error) {
-      saveState.textContent = "Saved draft could not be read";
-      console.error("Inquiry draft recovery failed. Clear the saved browser draft and retry.", error);
-    }
+    });
+    plannerWasEdited = Object.keys(saved).some((name) => !name.startsWith('__'));
+    budgetWasEdited = saved.__budgetWasEdited === true;
+    saveState.textContent = 'Draft resumed in this browser';
   }
-
-  function setControlValue(name: string, value: string): void {
-    if (!planner) return;
-    const control = planner.elements.namedItem(name);
-    if (
-      control instanceof HTMLInputElement ||
-      control instanceof HTMLSelectElement ||
-      control instanceof HTMLTextAreaElement
-    ) {
-      control.value = value;
-    }
+  function makeRequestKey(): string { return crypto.randomUUID ? crypto.randomUUID() : `web-${Date.now()}-${Math.random().toString(36).slice(2)}`; }
+  function makeIdempotencyKey(): string {
+    const bytes = new Uint8Array(32);
+    crypto.getRandomValues(bytes);
+    let binary = '';
+    bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+    return btoa(binary).replaceAll('+', '-').replaceAll('/', '_').replaceAll('=', '');
   }
-
-  function formatBudgetInput(cents: number): string {
-    const dollars = Math.trunc(cents / 100).toString();
-    const minor = (cents % 100).toString().padStart(2, "0");
-    return `${dollars}.${minor}`;
+  function readPendingCreate(): PendingCreate | null {
+    const raw = sessionStorage.getItem(IDEMPOTENCY_KEY);
+    if (!raw) return null;
+    try {
+      const saved = JSON.parse(raw) as Partial<PendingCreate>;
+      if (typeof saved.key !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(saved.key) || !saved.payload || typeof saved.payload !== 'object') return null;
+      return { key: saved.key, payload: saved.payload as InquiryInput, created: saved.created };
+    } catch { return null; }
   }
-
-  function captureResumedBudget(input: InquiryInput, overwriteInput: boolean): void {
-    if (!budgetInput || !legacyBudgetContext) return;
+  function pendingCreate(payload: InquiryInput): PendingCreate {
+    const saved = readPendingCreate();
+    if (saved) return saved;
+    const pending = { key: makeIdempotencyKey(), payload };
+    sessionStorage.setItem(IDEMPOTENCY_KEY, JSON.stringify(pending));
+    return pending;
+  }
+  function samePayload(left: InquiryInput, right: InquiryInput): boolean {
+    return JSON.stringify(left) === JSON.stringify(right);
+  }
+  function saveCreatedPending(pending: PendingCreate, receipt: ResumeRecord): void {
+    sessionStorage.setItem(IDEMPOTENCY_KEY, JSON.stringify({ ...pending, created: receipt }));
+    sessionStorage.setItem(RESUME_KEY, JSON.stringify(receipt));
+  }
+  function rememberResumedInput(input: InquiryInput): void {
     resumedInput = input;
-    if (input.budgetCents === null) {
-      resumedLegacyBudget = input.budget.trim() === "" || input.budget === "unsure"
-        ? null
-        : input.budget;
-      if (overwriteInput) budgetInput.value = "";
-      const showLegacyContext =
-        !budgetWasEdited && resumedLegacyBudget !== null && budgetInput.value.trim() === "";
-      legacyBudgetContext.hidden = !showLegacyContext;
-      legacyBudgetContext.textContent = showLegacyContext
-        ? `Previous budget selection: ${resumedLegacyBudget}. Leave the amount blank to keep this context.`
-        : "";
-      return;
+    resumedLegacyBudget = input.budgetCents === null && input.budget.trim() && input.budget !== 'unsure' ? input.budget : null;
+    if (legacyBudgetContext) {
+      legacyBudgetContext.textContent = resumedLegacyBudget ? `Previous budget answer: ${resumedLegacyBudget}. Enter a new amount only to replace it.` : '';
+      legacyBudgetContext.hidden = !resumedLegacyBudget || budgetWasEdited;
     }
-    resumedLegacyBudget = null;
-    if (overwriteInput || (!budgetWasEdited && budgetInput.value.trim() === "")) {
-      budgetInput.value = formatBudgetInput(input.budgetCents);
-    }
-    legacyBudgetContext.hidden = true;
-    legacyBudgetContext.textContent = "";
   }
-
-  function applySubmittedInput(input: InquiryInput): void {
-    if (!dateFlexible || !eventDate || !budgetInput || !legacyBudgetContext || !planner) return;
-    for (const [name, value] of [
-      ["name", input.name],
-      ["email", input.email],
-      ["phone", input.phone],
-      ["preferredReply", input.preferredReply],
-      ["company", input.company],
-      ["eventType", input.eventType],
-      ["city", input.city],
-      ["venue", input.venue],
-      ["setting", input.setting],
-      ["durationMinutes", String(input.durationMinutes)],
-      ["musicRequests", input.musicRequests],
-      ["equipment", input.equipment]
-    ]) {
-      setControlValue(name, value);
-    }
-    setControlValue("guestCount", input.guestCount === null ? "" : String(input.guestCount));
-    dateFlexible.checked = input.date === "flexible";
-    eventDate.value = input.date === "flexible" ? "" : input.date;
-    const consent = planner.elements.namedItem("consent");
+  function applyResumedInput(input: InquiryInput): void {
+    rememberResumedInput(input);
+    [['name', input.name], ['email', input.email], ['phone', input.phone], ['preferredReply', input.preferredReply], ['eventType', input.eventType], ['city', input.city], ['durationMinutes', String(input.durationMinutes)], ['musicRequests', input.musicRequests], ['equipment', input.equipment]].forEach(([name, fieldValue]) => {
+      const field = control(name);
+      if (field) field.value = fieldValue;
+    });
+    const setting = planner?.querySelector<HTMLInputElement>(`input[name="setting"][value="${input.setting}"]`);
+    if (setting) setting.checked = true;
+    if (eventDate) eventDate.value = input.date === 'flexible' ? 'Flexible' : formatInquiryDate(input.date);
+    if (datePicker && input.date !== 'flexible') datePicker.value = input.date;
+    if (budgetInput) budgetInput.value = input.budgetCents === null ? '' : (input.budgetCents / 100).toFixed(2);
+    const consent = control('consent');
     if (consent instanceof HTMLInputElement) consent.checked = input.consent;
-    const marketing = planner.elements.namedItem("marketingConsent");
+    const marketing = control('marketingConsent');
     if (marketing instanceof HTMLInputElement) marketing.checked = input.marketingConsent;
-
-    budgetWasEdited = false;
-    captureResumedBudget(input, true);
-    updateConditionalFields();
     renderSummary();
   }
-
-  async function restoreSubmittedInquiry(record: ResumeRecord): Promise<void> {
-    if (!saveState) return;
+  async function restoreSubmitted(record: ResumeRecord): Promise<void> {
+    resumeReady = false;
     try {
-      const response = await fetch(`/api/inquiries/${encodeURIComponent(record.id)}`, {
-        headers: { Authorization: `Bearer ${record.token}`, Accept: "application/json" }
-      });
-      const body = await responseJson(response, "Inquiry resume API");
-      if (!response.ok || !isInquiryInspection(body)) {
-        throw new Error(`Inquiry resume API returned HTTP ${response.status} without a valid record.`);
+      const response = await fetch(`/api/inquiries/${encodeURIComponent(record.id)}`, { headers: { Authorization: `Bearer ${record.token}`, Accept: 'application/json' } });
+      const body = await response.json() as Inspection;
+      if (!response.ok || !body.input) throw new Error('Resume failed');
+      if (!plannerWasEdited) applyResumedInput(body.input);
+      else {
+        rememberResumedInput(body.input);
+        if (body.input.date === 'flexible' && eventDate && eventDate.value.trim() === '') eventDate.value = 'Flexible';
       }
-      record.status = body.status;
-      persistResumeRecord(record);
-      if (!plannerWasEdited) applySubmittedInput(body.input);
-      else captureResumedBudget(body.input, false);
-      saveState.textContent = plannerWasEdited
-        ? "Saved inquiry available; current edits kept"
-        : "Submitted inquiry resumed securely";
-    } catch (error) {
-      console.error("Submitted inquiry could not be resumed. Verify its saved token and /api/inquiries.", error);
-      saveState.textContent = "Submitted inquiry could not be resumed";
+      resumeReady = true;
+      if (saveState) saveState.textContent = plannerWasEdited ? 'Saved inquiry available; current edits kept' : 'Submitted inquiry resumed securely';
+    } catch {
+      if (saveState) saveState.textContent = 'Submitted inquiry could not be resumed';
     }
   }
-
-  function nullableInteger(name: string): number | null {
-    const value = controlValue(name);
-    if (!value) return null;
-    const parsed = Number.parseInt(value, 10);
-    return Number.isFinite(parsed) ? parsed : null;
-  }
-
   function buildPayload(): InquiryInput {
-    if (!dateFlexible || !planner) {
-      throw new Error("Cannot build inquiry payload because the event planner is unavailable.");
-    }
+    const budgetCents = parseBudgetCents(value('budgetCents'));
+    const selectedSetting = planner?.querySelector<HTMLInputElement>('input[name="setting"]:checked');
+    const old = resumedInput;
     const params = new URLSearchParams(window.location.search);
-    const budgetCents = parseBudgetCents(controlValue("budgetCents"));
-    const preserveLegacyBudget =
-      resumedLegacyBudget !== null && !budgetWasEdited && budgetCents === null;
     return {
-      name: controlValue("name"),
-      email: controlValue("email"),
-      phone: controlValue("phone"),
-      preferredReply: controlValue("preferredReply") === "text"
-        ? "text"
-        : controlValue("preferredReply") === "phone"
-          ? "phone"
-          : "email",
-      company: controlValue("company"),
-      eventType: controlValue("eventType") as InquiryInput["eventType"],
-      date: dateFlexible.checked ? "flexible" : controlValue("eventDate"),
-      city: controlValue("city"),
-      venue: controlValue("venue"),
-      address: "",
-      setting: controlValue("setting") as InquiryInput["setting"],
-      guestCount: nullableInteger("guestCount"),
-      startLocal: "",
-      endLocal: "",
-      durationMinutes: Number.parseInt(controlValue("durationMinutes"), 10),
-      timezone: CENTRAL_TIME_ZONE,
-      atmosphere: resumedInput?.atmosphere || "Not specified",
-      musicRequests: controlValue("musicRequests"),
-      scheduleNotes: resumedInput?.scheduleNotes || "",
-      equipment: controlValue("equipment"),
-      access: "unknown",
-      budget: preserveLegacyBudget ? (resumedLegacyBudget ?? "unsure") : "unsure",
-      budgetCents,
-      notes: resumedInput?.notes || "",
-      consent: true,
-      marketingConsent: planner.elements.namedItem("marketingConsent") instanceof HTMLInputElement
-        ? (planner.elements.namedItem("marketingConsent") as HTMLInputElement).checked
-        : false,
-      source: "form",
-      utm: {
-        source: params.get("utm_source") || resumedInput?.utm.source,
-        medium: params.get("utm_medium") || resumedInput?.utm.medium,
-        campaign: params.get("utm_campaign") || resumedInput?.utm.campaign
-      }
+      name: value('name'), email: value('email'), phone: value('phone'),
+      preferredReply: value('preferredReply') as InquiryInput['preferredReply'], company: old?.company ?? '',
+      eventType: value('eventType') as InquiryInput['eventType'], date: parseInquiryDate(value('eventDate')) ?? (old?.date === 'flexible' ? 'flexible' : ''), city: value('city'), venue: old?.venue ?? '', address: old?.address ?? '',
+      setting: (selectedSetting?.value ?? old?.setting ?? 'unknown') as InquiryInput['setting'], guestCount: old?.guestCount ?? null, startLocal: old?.startLocal ?? '', endLocal: old?.endLocal ?? '', durationMinutes: Number(value('durationMinutes')), timezone: old?.timezone || CENTRAL_TIME_ZONE,
+      atmosphere: old?.atmosphere ?? 'Not specified', musicRequests: value('musicRequests'), scheduleNotes: old?.scheduleNotes ?? '', equipment: value('equipment') || old?.equipment || 'PA required', access: old?.access ?? 'unknown', budget: resumedLegacyBudget && !budgetWasEdited && budgetCents === null ? resumedLegacyBudget : 'unsure', budgetCents, notes: old?.notes ?? '', consent: true,
+      marketingConsent: (control('marketingConsent') as HTMLInputElement | null)?.checked ?? false, source: old?.source || 'form',
+      utm: { source: params.get('utm_source') || old?.utm.source, medium: params.get('utm_medium') || old?.utm.medium, campaign: params.get('utm_campaign') || old?.utm.campaign },
     };
   }
-
-  function isInquiryResponse(value: unknown): value is InquiryResponse {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    return (
-      typeof record.id === "string" &&
-      typeof record.token === "string" &&
-      typeof record.status === "string" &&
-      Array.isArray(record.missingFields)
-    );
-  }
-
-  function isValidationErrorResponse(value: unknown): value is ValidationErrorResponse {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    return (
-      record.error === "validation" &&
-      typeof record.message === "string" &&
-      Array.isArray(record.fields) &&
-      record.fields.every((field) => {
-        if (typeof field !== "object" || field === null) return false;
-        const issue = field as Record<string, unknown>;
-        return typeof issue.path === "string" && typeof issue.message === "string";
-      })
-    );
-  }
-
-  function isInquiryInspection(value: unknown): value is InquiryInspection {
-    if (typeof value !== "object" || value === null) return false;
-    const record = value as Record<string, unknown>;
-    if (typeof record.input !== "object" || record.input === null) return false;
-    const input = record.input as Record<string, unknown>;
-    return (
-      typeof record.inquiryId === "string" &&
-      typeof record.status === "string" &&
-      Array.isArray(record.shows) &&
-      typeof input.name === "string" &&
-      typeof input.email === "string" &&
-      typeof input.preferredReply === "string" &&
-      typeof input.budget === "string" &&
-      (input.budgetCents === null || Number.isSafeInteger(input.budgetCents))
-    );
-  }
-
-  function makeRequestKey(): string {
-    if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
-    return `web-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-  }
-
   function readResumeRecord(): ResumeRecord | null {
     try {
-      const raw = sessionStorage.getItem(RESUME_KEY);
-      if (!raw) return null;
-      const value: unknown = JSON.parse(raw);
-      if (typeof value !== "object" || value === null) return null;
-      const record = value as Record<string, unknown>;
-      if (typeof record.id !== "string" || typeof record.token !== "string" || typeof record.status !== "string") {
-        return null;
-      }
-      const requestKey = typeof record.requestKey === "string" ? record.requestKey : makeRequestKey();
-      return { id: record.id, token: record.token, status: record.status, requestKey };
-    } catch (error) {
-      console.error("Inquiry resume record could not be read. Clear session storage and retry.", error);
-      return null;
-    }
+      const parsed = JSON.parse(sessionStorage.getItem(RESUME_KEY) || 'null') as ResumeRecord | null;
+      return parsed && typeof parsed.id === 'string' && typeof parsed.token === 'string' ? parsed : null;
+    } catch { return null; }
   }
-
-  function persistResumeRecord(record: ResumeRecord): void {
-    sessionStorage.setItem(RESUME_KEY, JSON.stringify(record));
-  }
-
-  async function responseJson(response: Response, context: string): Promise<unknown> {
-    try {
-      return await response.json();
-    } catch (error) {
-      throw new Error(`${context} returned HTTP ${response.status} without JSON.`, { cause: error });
-    }
-  }
-
   async function submitInquiry(): Promise<void> {
     if (!planner || !submitButton) return;
     submitButton.disabled = true;
-    submitButton.textContent = "Sending…";
-    clearAlert();
     try {
-      const existingResume = readResumeRecord();
-      const response = await fetch(
-        existingResume === null
-          ? planner.action
-          : `/api/inquiries/${encodeURIComponent(existingResume.id)}`,
-        {
-        method: existingResume === null ? "POST" : "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          ...(existingResume === null
-            ? {}
-            : { Authorization: `Bearer ${existingResume.token}` })
-        },
-        body: JSON.stringify(buildPayload())
+      const existing = readResumeRecord();
+      if (existing && !resumeReady) {
+        showAlert('Your saved inquiry could not be loaded safely. Please refresh before trying again.', 'error');
+        submitButton.disabled = false;
+        return;
+      }
+      const currentPayload = buildPayload();
+      const pending = existing ? readPendingCreate() : pendingCreate(currentPayload);
+      const pendingCreated = pending?.created;
+      if (existing && pendingCreated?.id === existing.id && pendingCreated.token === existing.token) {
+        const updateResponse = await fetch(`/api/inquiries/${encodeURIComponent(existing.id)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${existing.token}` },
+          body: JSON.stringify(currentPayload),
+        });
+        if (!updateResponse.ok) throw new Error('LATEST_EDITS_NOT_APPLIED');
+        sessionStorage.setItem(RECEIPT_KEY, existing.id);
+        sessionStorage.removeItem(IDEMPOTENCY_KEY);
+        sessionStorage.removeItem(STORAGE_KEY);
+        window.location.replace('/inquiry-received/');
+        return;
+      }
+      let requestUrl: string;
+      let requestMethod: 'POST' | 'PUT';
+      let requestHeaders: Record<string, string>;
+      let requestPayload: InquiryInput;
+      if (existing) {
+        requestUrl = `/api/inquiries/${encodeURIComponent(existing.id)}`;
+        requestMethod = 'PUT';
+        requestHeaders = { 'Content-Type': 'application/json', Authorization: `Bearer ${existing.token}` };
+        requestPayload = currentPayload;
+      } else {
+        if (!pending) throw new Error('Pending inquiry state is missing; refresh and try again.');
+        requestUrl = planner.action;
+        requestMethod = 'POST';
+        requestHeaders = { 'Content-Type': 'application/json', 'Idempotency-Key': pending.key };
+        requestPayload = pending.payload;
+      }
+      const response = await fetch(requestUrl, {
+        method: requestMethod,
+        headers: requestHeaders,
+        body: JSON.stringify(requestPayload),
       });
-      const responseBody = await responseJson(response, "Inquiry API");
+      const body = await response.json() as unknown;
       if (!response.ok) {
-        if (applyServerValidation(responseBody)) {
+        const invalid = body as ValidationResponse;
+        if (invalid.error === 'validation' && Array.isArray(invalid.fields)) {
+          if (!existing) sessionStorage.removeItem(IDEMPOTENCY_KEY);
+          invalid.fields.forEach((issue) => control(issue.path)?.setCustomValidity(issue.message));
+          const first = control(invalid.fields[0]?.path ?? '');
+          const panel = first?.closest<HTMLElement>('[data-step]');
+          if (panel) showStep(Number(panel.dataset.step), false);
+          showAlert(invalid.message, 'error');
+          first?.focus();
+          first?.reportValidity();
           submitButton.disabled = false;
-          submitButton.textContent = "Send inquiry";
           return;
         }
-        throw new Error(`Inquiry API returned HTTP ${response.status} without actionable field errors.`);
+        throw new Error(`HTTP ${response.status}`);
       }
-      if (!isInquiryResponse(responseBody)) {
-        throw new Error(`Inquiry API returned HTTP ${response.status} without a valid persisted record.`);
+      const receipt = body as InquiryResponse;
+      if (!receipt.id || !receipt.token) throw new Error('Invalid inquiry response');
+      const receiptRecord = { id: receipt.id, token: receipt.token, status: receipt.status, requestKey: makeRequestKey() };
+      if (!existing && pending) saveCreatedPending(pending, receiptRecord);
+      else sessionStorage.setItem(RESUME_KEY, JSON.stringify(receiptRecord));
+      if (!existing && pending && !samePayload(currentPayload, pending.payload)) {
+        const updateResponse = await fetch(`/api/inquiries/${encodeURIComponent(receipt.id)}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${receipt.token}` },
+          body: JSON.stringify(currentPayload),
+        });
+        if (!updateResponse.ok) throw new Error('LATEST_EDITS_NOT_APPLIED');
+        sessionStorage.removeItem(IDEMPOTENCY_KEY);
       }
-      persistResumeRecord({
-        id: responseBody.id,
-        token: responseBody.token,
-        status: responseBody.status,
-        requestKey: existingResume?.requestKey ?? makeRequestKey()
-      });
+      sessionStorage.setItem(RECEIPT_KEY, receipt.id);
       sessionStorage.removeItem(STORAGE_KEY);
-      planner.replaceChildren();
-      const confirmation = document.createElement("div");
-      confirmation.className = "submission-confirmation";
-      confirmation.tabIndex = -1;
-      const heading = document.createElement("h3");
-      heading.textContent = "Your inquiry is saved";
-      const copy = document.createElement("p");
-      copy.textContent =
-        "Justin or his team will follow up using your selected reply method to confirm availability, format, and pricing. This browser holds the secure resume details for your inquiry.";
-      const reference = document.createElement("p");
-      reference.className = "reference-code";
-      reference.textContent = `Inquiry reference: ${responseBody.id}`;
-      confirmation.append(heading, copy, reference);
-      planner.append(confirmation);
-      confirmation.focus();
+      sessionStorage.removeItem(IDEMPOTENCY_KEY);
+      window.location.replace('/inquiry-received/');
     } catch (error) {
-      console.error("Inquiry submission failed at /api/inquiries. Verify API health and request schema.", error);
-      showAlert(
-        "We could not save the inquiry to the booking service. Your answers remain saved in this browser. Please try again; no booking or charge was created.",
-        "error"
-      );
+      showAlert(error instanceof Error && error.message === 'LATEST_EDITS_NOT_APPLIED'
+        ? 'Your inquiry was saved, but your latest edits were not applied. Please try again.'
+        : 'We could not save the inquiry. Your answers remain saved in this browser. Please try again.', 'error');
       submitButton.disabled = false;
-      submitButton.textContent = "Try sending again";
     }
   }
-
-  try {
-    requirePlannerElements();
-    const activePlanner = planner;
-    if (!activePlanner) {
-      throw new Error("Event planner form is missing after initialization checks.");
-    }
-    restoreDraft();
-    if (inquiryTimezone) inquiryTimezone.value = CENTRAL_TIME_ZONE;
-    updateConditionalFields();
-    showStep(1, false);
-    const existingResume = readResumeRecord();
-    if (existingResume) {
-      void restoreSubmittedInquiry(existingResume);
-    }
-    activePlanner.addEventListener("input", (event) => {
-      plannerWasEdited = true;
-      const editedControl = event.target;
-      if (
-        editedControl instanceof HTMLInputElement ||
-        editedControl instanceof HTMLSelectElement ||
-        editedControl instanceof HTMLTextAreaElement
-      ) {
-        editedControl.setCustomValidity("");
-      }
-      if (budgetInput && event.target === budgetInput) {
-        budgetWasEdited = true;
-        if (legacyBudgetContext) {
-          legacyBudgetContext.hidden = true;
-          legacyBudgetContext.textContent = "";
-        }
-      }
-      updateConditionalFields();
-      saveDraft();
-      if (activePlanner.dataset.currentStep === "2") renderSummary();
-    });
-    activePlanner.addEventListener("change", () => {
-      plannerWasEdited = true;
-      updateConditionalFields();
-      saveDraft();
-      if (activePlanner.dataset.currentStep === "2") renderSummary();
-    });
-    activePlanner.querySelectorAll<HTMLButtonElement>("[data-next-step]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const currentStep = Number(activePlanner.dataset.currentStep || "1");
-        const nextStep = Number(button.dataset.nextStep);
-        if (validateStep(currentStep) && Number.isFinite(nextStep)) showStep(nextStep);
-      });
-    });
-    activePlanner.querySelectorAll<HTMLButtonElement>("[data-back-step]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const backStep = Number(button.dataset.backStep);
-        if (Number.isFinite(backStep)) showStep(backStep);
-      });
-    });
-    activePlanner.addEventListener("submit", (event) => {
-      event.preventDefault();
-      if (validateStep(2)) void submitInquiry();
-    });
-  } catch (error) {
-    console.error("Event planner initialization failed. Inspect the required element IDs.", error);
-    showAlert(
-      "The step-by-step planner could not start. Reload the page or use the contact links below.",
-      "error"
-    );
-  }
+  try { if (!planner || !phone || !eventDate || !budgetInput || !submitButton) throw new Error('Planner controls missing'); restoreDraft(); const resume = readResumeRecord(); if (resume) void restoreSubmitted(resume); showStep(1, false); eventDate.addEventListener('input', () => { eventDate.value = insertDateDashes(eventDate.value); eventDate.setCustomValidity(''); saveDraft(); }); eventDate.addEventListener('blur', validateDate); datePickerButton?.addEventListener('click', () => { if (typeof datePicker?.showPicker === 'function') datePicker.showPicker(); else datePicker?.focus(); }); datePicker?.addEventListener('change', () => { if (datePicker.value) eventDate.value = formatInquiryDate(datePicker.value); eventDate.dispatchEvent(new Event('input', { bubbles: true })); }); planner.addEventListener('input', (event) => { plannerWasEdited = true; const field = event.target; if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement || field instanceof HTMLTextAreaElement) field.setCustomValidity(''); if (field === phone) phoneIsValid(); if (field === budgetInput) { budgetWasEdited = true; if (legacyBudgetContext) legacyBudgetContext.hidden = true; } saveDraft(); if (planner.dataset.currentStep === '2') renderSummary(); }); planner.addEventListener('change', () => { plannerWasEdited = true; saveDraft(); if (planner.dataset.currentStep === '2') renderSummary(); }); planner.querySelectorAll<HTMLButtonElement>('[data-next-step]').forEach((button) => button.addEventListener('click', () => { if (validateStep(1)) showStep(2); })); planner.querySelectorAll<HTMLButtonElement>('[data-back-step]').forEach((button) => button.addEventListener('click', () => showStep(1))); planner.addEventListener('submit', (event) => { event.preventDefault(); if (validateStep(2)) void submitInquiry(); }); } catch (error) { console.error('Event planner initialization failed.', error); }
 </script>

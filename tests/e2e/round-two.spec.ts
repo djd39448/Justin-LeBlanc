@@ -191,10 +191,11 @@ async function routePublicEvents(page: Page, mode: PublicEventsMode): Promise<vo
 async function fillPlannerThroughReview(page: Page): Promise<void> {
   await page.locator('#name').fill('Alex Planner');
   await page.locator('#email').fill('alex@example.test');
-  await page.getByRole('button', { name: 'Continue to event', exact: true }).click();
+  await page.getByRole('button', { name: 'Last Step', exact: true }).click();
   await page.locator('#eventType').selectOption('private');
   await page.locator('#city').fill('Houston');
-  await page.locator('#dateFlexible').check();
+  await page.locator('#eventDate').fill('111426');
+  await page.locator('input[name="setting"][value="indoor"]').check();
   await expect(page.locator('[data-step="2"]')).toBeVisible();
 }
 
@@ -209,7 +210,7 @@ test.describe('round-two homepage conversion surface', () => {
     await expect(page.locator('main h1')).toHaveText('Justin LeBlanc');
     await expect(page.getByText(OPENING_LINE, { exact: true })).toBeVisible();
     const businessPhoneLinks = page.locator('a[href="tel:+18323039116"]');
-    await expect(businessPhoneLinks).toHaveCount(2);
+    await expect(businessPhoneLinks).toHaveCount(1);
     await expect(businessPhoneLinks.first()).toHaveText('(832) 303-9116');
     await expect(page.locator('link[rel~="icon"]')).toHaveCount(0);
     await expect(page.locator('.voice-card, .chat-card, .package-grid')).toHaveCount(0);
@@ -279,7 +280,7 @@ test.describe('round-two homepage conversion surface', () => {
 
     const evidenceDirectory = join(
       process.cwd(),
-      'docs/evidence/public-form-simplification-2026-09-23',
+      'docs/evidence/public-form-round-three/regression',
     );
     mkdirSync(evidenceDirectory, { recursive: true });
     await page.screenshot({
@@ -368,7 +369,6 @@ test.describe('round-two homepage conversion surface', () => {
     await expect(page.locator('[data-progress-step]')).toHaveCount(2);
     await expect(page.locator('#progress-label')).toHaveText('Step 1 of 2');
     await fillPlannerThroughReview(page);
-    await page.locator('#venue').fill('The Blue Room');
     await page.locator('#budgetCents').fill('1500');
     await page.locator('#musicRequests').fill('A favorite first-dance song.');
     await page.locator('#consent').check();
@@ -378,14 +378,18 @@ test.describe('round-two homepage conversion surface', () => {
       'data-back-step',
       '1',
     );
-    await expect(page.locator('label[for="city"]')).toContainText('Location of the event');
-    await expect(page.locator('label[for="durationMinutes"]')).toHaveText('Performance time');
-    await expect(page.locator('label[for="equipment"]')).toHaveText('Sound / equipment needs');
-    await expect(page.locator('label[for="budgetCents"]')).toHaveText('Budget (optional)');
-    await expect(page.locator('label[for="musicRequests"]')).toHaveText(
-      'Special requests (optional)',
+    await expect(page.locator('label[for="city"]')).toContainText('Location of Event');
+    await expect(page.locator('label[for="durationMinutes"]')).toHaveText(
+      'Approximate performance time',
     );
-    await expect(page.locator('#inquiry-summary')).toContainText('The Blue Room, Houston');
+    await expect(page.locator('label[for="equipment"]')).toHaveText('Sound or equipment needs');
+    await expect(page.locator('label[for="budgetCents"]')).toHaveText(
+      'Estimated Budget (optional)',
+    );
+    await expect(page.locator('label[for="musicRequests"]')).toHaveText(
+      'Special Requests (optional)',
+    );
+    await expect(page.locator('#inquiry-summary')).toContainText('Houston');
     await expect(page.locator('#inquiry-summary')).toContainText('$1500');
     await expect(page.locator('#inquiry-summary')).toContainText('A favorite first-dance song.');
 
@@ -429,7 +433,7 @@ test.describe('round-two homepage conversion surface', () => {
 
     const evidenceDirectory = join(
       process.cwd(),
-      'docs/evidence/public-form-simplification-2026-09-23',
+      'docs/evidence/public-form-round-three/regression',
     );
     mkdirSync(evidenceDirectory, { recursive: true });
     await page.screenshot({
@@ -486,7 +490,7 @@ test.describe('round-two homepage conversion surface', () => {
           fields: [
             {
               path: 'phone',
-              message: 'Phone is required when Preferred Reply is Text or Phone Call.',
+              message: 'Enter a complete 10-digit phone number or clear this field.',
             },
           ],
         }),
@@ -497,11 +501,12 @@ test.describe('round-two homepage conversion surface', () => {
     await page.locator('#name').fill('Alex Planner');
     await page.locator('#email').fill('alex@example.test');
     await page.locator('#preferredReply').selectOption('phone');
-    await page.locator('#phone').fill('1');
-    await page.getByRole('button', { name: 'Continue to event', exact: true }).click();
+    await page.locator('#phone').fill('8323039116');
+    await page.getByRole('button', { name: 'Last Step', exact: true }).click();
     await page.locator('#eventType').selectOption('private');
     await page.locator('#city').fill('Houston');
-    await page.locator('#dateFlexible').check();
+    await page.locator('#eventDate').fill('111426');
+    await page.locator('input[name="setting"][value="indoor"]').check();
     await page.locator('#consent').check();
     await page.locator('#submit-inquiry').click();
 
@@ -510,10 +515,10 @@ test.describe('round-two homepage conversion surface', () => {
     await expect(phone).toBeFocused();
     await expect
       .poll(() => phone.evaluate((element) => (element as HTMLInputElement).validationMessage))
-      .toBe('Phone is required when Preferred Reply is Text or Phone Call.');
+      .toBe('Enter a complete 10-digit phone number or clear this field.');
     await expect(page.locator('#form-alert')).toContainText('Check the highlighted fields.');
 
-    await page.locator('#preferredReply').selectOption('email');
+    await phone.fill('');
     await expect
       .poll(() => phone.evaluate((element) => (element as HTMLInputElement).validationMessage))
       .toBe('');
@@ -567,7 +572,7 @@ test.describe('round-two homepage conversion surface', () => {
     await expect(toggle).toHaveAttribute('aria-expanded', 'false');
   });
 
-  test('enforces preferred-reply phone rules and budget grammar', async ({ page }, testInfo) => {
+  test('keeps phone optional and enforces the budget grammar', async ({ page }, testInfo) => {
     test.skip(
       projectWidth(testInfo) === 360,
       'Run the long-form budget interaction at the 390px mobile acceptance viewport.',
@@ -600,9 +605,9 @@ test.describe('round-two homepage conversion surface', () => {
     const phone = page.locator('#phone');
     expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(false);
     await page.locator('#preferredReply').selectOption('text');
-    expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(true);
+    expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(false);
     await page.locator('#preferredReply').selectOption('phone');
-    expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(true);
+    expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(false);
     await page.locator('#preferredReply').selectOption('email');
     expect(await phone.evaluate((element) => (element as HTMLInputElement).required)).toBe(false);
 
@@ -650,12 +655,9 @@ test.describe('round-two homepage conversion surface', () => {
       element.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
     });
     await expect.poll(() => submittedBudgetCents).toBe(75_050);
-    await expect(page.locator('.submission-confirmation')).toContainText('Your inquiry is saved');
-    await expect(page.locator('.submission-confirmation')).toContainText(
-      'will follow up using your selected reply method',
-    );
-    await expect(page.locator('.submission-confirmation')).toContainText(
-      'Inquiry reference: inq_e2e',
+    await expect(page).toHaveURL(/\/inquiry-received\/$/);
+    await expect(page.locator('body')).toContainText(
+      'Your request has been received. I’ll contact you as soon as I’m available.',
     );
     await expect(page.locator('#schedule-card, #schedule-form')).toHaveCount(0);
     expect(publicSchedulingRequestCount).toBe(0);
@@ -764,7 +766,7 @@ test.describe('round-two homepage conversion surface', () => {
     await expect(page.locator('#save-state')).toHaveText('Submitted inquiry resumed securely');
     await expect(page.locator('#budgetCents')).toHaveValue('');
 
-    await page.getByRole('button', { name: 'Continue to event', exact: true }).click();
+    await page.getByRole('button', { name: 'Last Step', exact: true }).click();
     await expect(page.locator('#legacy-budget-context')).toContainText('750–1,000');
     await expect(page.locator('#legacy-budget-context')).toBeVisible();
     await page.locator('#budgetCents').fill('750.50');
