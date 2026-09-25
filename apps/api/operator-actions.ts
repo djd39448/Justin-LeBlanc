@@ -8,6 +8,7 @@ import { CustomerSchema, LineItemSchema } from '../../packages/contracts/index.j
 import { seedDemo } from './demo-seed.js';
 import { runImapReplyJob } from './jobs/imap.js';
 import { runMorningJob } from './jobs/morning.js';
+import { markInquiryFollowedUp } from './jobs/inquiry-followups.js';
 import type { Runtime } from './runtime.js';
 
 const id = z.string().min(1).max(200);
@@ -40,6 +41,8 @@ const ActionSchema = z.discriminatedUnion('action', [
     consultationStart: z.iso.datetime({ offset: true }).optional(),
   }),
   z.object({ action: z.literal('holds-expire') }),
+  z.object({ action: z.literal('inquiry-followed-up'), id, revision, actor: id.optional() }),
+  z.object({ action: z.literal('inquiry-followups') }),
   z.object({
     action: z.literal('morning'),
     asOfLocalDate: z.iso.date().optional(),
@@ -79,6 +82,10 @@ export async function operatorAction(runtime: Runtime, raw: unknown): Promise<un
       return runtime.booking.rescheduleShow({ ...input, actor });
     case 'holds-expire':
       return runtime.booking.expireHolds();
+    case 'inquiry-followed-up':
+      return markInquiryFollowedUp(runtime.store, input.id, input.revision, input.actor ?? actor);
+    case 'inquiry-followups':
+      return runtime.runInquiryFollowups();
     case 'morning':
       if (!runtime.config.MORNING_SCAN_ENABLED) throw new Error('Morning scan is disabled.');
       return runMorningJob(runtime.store, runtime.billing, {

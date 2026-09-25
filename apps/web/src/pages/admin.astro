@@ -73,7 +73,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <div class="admin-panel-heading"><div><p class="eyebrow">Intake</p><h2 id="inquiries-title">Inquiries</h2></div></div>
         <div class="admin-table-wrap"><table class="admin-table">
           <caption class="visually-hidden">Current inquiries</caption>
-          <thead><tr><th>Reference</th><th>Event</th><th>Contact</th><th>Status</th><th>Revision</th></tr></thead>
+          <thead><tr><th>Reference</th><th>Event</th><th>Contact</th><th>Status</th><th>Follow-up</th><th>Revision</th><th>Action</th></tr></thead>
           <tbody id="inquiries-body"></tbody>
         </table></div>
       </section>
@@ -354,11 +354,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     for (const inquiry of state.inquiries) {
       const input = nestedRecord(inquiry.data, "input");
       const tr = document.createElement("tr");
+      const followUp = nestedRecord(inquiry.data, "followUp");
+      const followedAt = recordText(followUp, "followedUpAt", "");
+      const action = document.createElement("td");
+      if (followedAt) action.textContent = `Completed ${formatDate(followedAt)}`;
+      else action.append(actionButton("Mark followed up", () => void runAction("inquiry-followed-up", { id: inquiry.id, revision: inquiry.revision })));
       tr.append(tableCell(inquiry.id), tableCell(`${recordText(input, "eventType")} · ${recordText(input, "city")}`),
-        tableCell(`${recordText(input, "name")} · ${recordText(input, "email")}`), statusCell(recordText(inquiry.data, "status")), tableCell(String(inquiry.revision)));
+        tableCell(`${recordText(input, "name")} · ${recordText(input, "email")}`), statusCell(recordText(inquiry.data, "status")),
+        tableCell(recordText(followUp, "dueAt")), tableCell(String(inquiry.revision)), action);
       tbody.append(tr);
     }
-    if (state.inquiries.length === 0) appendEmpty(tbody, 5, "No inquiries in this demo tenant.");
+    if (state.inquiries.length === 0) appendEmpty(tbody, 7, "No inquiries in this demo tenant.");
   }
 
   function renderConsultations(state: AdminState): void {

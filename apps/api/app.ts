@@ -76,8 +76,11 @@ export function createApp(runtime: Runtime): Hono {
   app.use('/api/bookings', rateLimit(runtime.store, 10));
   app.use('/api/availability', rateLimit(runtime.store, 20));
   app.post('/api/inquiries', async (c) => {
+    const body = (await c.req.json()) as Record<string, unknown>;
     const receipt = runtime.booking.upsertInquiry({
-      input: InquiryInputSchema.parse(await c.req.json()),
+      input: InquiryInputSchema.parse(body),
+      idempotencyKey: c.req.header('Idempotency-Key'),
+      providedFields: new Set(Object.keys(body)),
     });
     return c.json(
       {
@@ -93,10 +96,12 @@ export function createApp(runtime: Runtime): Hono {
     c.json(runtime.booking.inspectInquiry(c.req.param('id'), resumeToken(c))),
   );
   app.put('/api/inquiries/:id', async (c) => {
+    const body = (await c.req.json()) as Record<string, unknown>;
     const receipt = runtime.booking.upsertInquiry({
-      input: InquiryInputSchema.parse(await c.req.json()),
+      input: InquiryInputSchema.parse(body),
       inquiryId: c.req.param('id'),
       resumeToken: resumeToken(c),
+      providedFields: new Set(Object.keys(body)),
     });
     return c.json({
       id: receipt.inquiryId,
@@ -156,6 +161,7 @@ export function createApp(runtime: Runtime): Hono {
           'billing-followups',
           'outbox-dispatch',
           'holds-expire',
+          'inquiry-followups',
         ]),
       })
       .parse(await c.req.json());

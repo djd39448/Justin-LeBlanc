@@ -1,6 +1,7 @@
 /** Validates shared booking records. Dependencies: Zod. Consumers: API, domain, documents.
  * Why: every channel uses identical bounded data and explicit demo assumptions. */
 import { z } from 'zod';
+import { PhoneSchema } from './phone.js';
 
 export const TENANT = 'justin-demo';
 export const POLICY_VERSION = 'demo-2026-09-21.1';
@@ -30,7 +31,7 @@ export const InquiryInputSchema = z
       .email()
       .max(254)
       .transform((v) => v.toLowerCase()),
-    phone: z.string().trim().max(30).default(''),
+    phone: PhoneSchema.default(''),
     preferredReply: z.enum(['email', 'text', 'phone']).default('email'),
     company: short.default(''),
     eventType: z.enum(['private', 'celebration', 'corporate', 'wedding', 'other']),
@@ -59,16 +60,14 @@ export const InquiryInputSchema = z
       .object({ source: short.optional(), medium: short.optional(), campaign: short.optional() })
       .default({}),
   })
-  .superRefine((v, ctx) => {
-    if ((v.preferredReply === 'text' || v.preferredReply === 'phone') && v.phone.length < 7)
-      ctx.addIssue({
-        code: 'custom',
-        path: ['phone'],
-        message: 'Phone is required when Preferred Reply is Text or Phone Call.',
-      });
-  });
+  ;
 /** Canonical parsed inquiry shape; raw JSON may omit budgetCents and receives the null default. */
 export type InquiryInput = z.infer<typeof InquiryInputSchema>;
+/** Historical rows may contain legacy phone text; new writes remain strict. */
+export const InquiryStoredInputSchema = InquiryInputSchema.safeExtend({
+  phone: z.string().trim().max(30).default(''),
+});
+export type InquiryStoredInput = z.infer<typeof InquiryStoredInputSchema>;
 export const CustomerSchema = z.object({
   name: short.min(1),
   email: z.email(),
@@ -83,10 +82,20 @@ export const CustomerSchema = z.object({
 export type Customer = z.infer<typeof CustomerSchema>;
 export const InquirySchema = z.object({
   customerId: z.string(),
-  input: InquiryInputSchema,
+  input: InquiryStoredInputSchema,
   status: z.enum(['new', 'qualified', 'consultation_scheduled', 'consultation_completed']),
   tokenHash: z.string(),
   followupQuestions: z.array(note).default([]),
+  followUp: z
+    .object({
+      receivedAt: InstantSchema,
+      dueAt: InstantSchema,
+      initialAlertQueuedAt: InstantSchema.nullable().default(null),
+      followedUpAt: InstantSchema.nullable().default(null),
+      reminder20QueuedAt: InstantSchema.nullable().default(null),
+      overdue24QueuedAt: InstantSchema.nullable().default(null),
+    })
+    .optional(),
 });
 export type Inquiry = z.infer<typeof InquirySchema>;
 export const LineItemSchema = z.object({

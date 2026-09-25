@@ -16,6 +16,8 @@ export const ConfigSchema = z.object({
   OPERATOR_EMAIL: z.email(),
   PERFORMER_EMAIL: z.email(),
   CLIENT_TEST_EMAIL: z.email(),
+  INQUIRY_NOTIFICATIONS_ENABLED: bool.default(false),
+  INQUIRY_NOTIFICATION_EMAIL: z.string().default(''),
   SMTP_HOST: z.string().default('smtp.gmail.com'),
   SMTP_PORT: z.coerce.number().default(465),
   SMTP_USER: z.string().default(''),
@@ -68,4 +70,10 @@ export function assertRecipients(config: Config, recipients: string[]): void {
     throw new Error(
       'Recipient blocked at provider boundary; configure only verified demo inboxes.',
     );
+}
+export function assertInquiryNotificationRecipients(config: Config, mail: { to: string[]; cc: string[]; bcc: string[] }): void {
+  const recipient = config.INQUIRY_NOTIFICATION_EMAIL.trim().toLowerCase();
+  const allowed = new Set(config.DEMO_RECIPIENT_ALLOWLIST.split(',').map((v) => v.trim().toLowerCase()));
+  if (!config.INQUIRY_NOTIFICATIONS_ENABLED || recipient.length === 0 || !allowed.has(recipient) || mail.to.length !== 1 || mail.to[0]?.toLowerCase() !== recipient || mail.cc.length !== 0 || mail.bcc.length !== 0)
+    throw new Error('Inquiry notification recipient policy blocked this message.');
 }

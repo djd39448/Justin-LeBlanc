@@ -60,6 +60,7 @@ try {
     }
     if (runtime.config.BOOKING_WRITES_ENABLED)
       await run('expire-holds', async () => runtime.booking.expireHolds(), true);
+    await run('inquiry-followups', () => runtime.runInquiryFollowups(), true);
     if (runtime.store.effects('pending').length > 0)
       await run('outbox', () => runtime.outbox.dispatchPending(10), true);
     if (!stopping) await delay(15_000);

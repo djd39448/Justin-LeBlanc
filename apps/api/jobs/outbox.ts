@@ -198,8 +198,10 @@ export class OutboxDispatcher {
       return prepared.pdfPath;
     }
     if (effect.kind.startsWith('email.')) {
+      const mail = MailEffectSchema.parse(payload);
+      this.assertMailPolicy(effect.kind, mail.recipientPolicy);
       const sent = await withProviderTimeout(
-        this.smtp.send(MailEffectSchema.parse(payload)),
+        this.smtp.send(mail),
         effect.id,
       );
       return sent.providerMessageId;
@@ -220,7 +222,8 @@ export class OutboxDispatcher {
       return;
     }
     if (effect.kind.startsWith('email.')) {
-      MailEffectSchema.parse(payload);
+      const mail = MailEffectSchema.parse(payload);
+      this.assertMailPolicy(effect.kind, mail.recipientPolicy);
       return;
     }
     if (effect.kind === 'calendar.upsert') {
@@ -234,6 +237,11 @@ export class OutboxDispatcher {
     throw new Error(
       `No outbox adapter handles ${effect.kind}; register a handler before retrying it.`,
     );
+  }
+
+  private assertMailPolicy(kind: string, policy: 'demo' | 'inquiry_notification'): void {
+    const inquiry = ['email.inquiry_received', 'email.inquiry_due_soon', 'email.inquiry_overdue'].includes(kind);
+    if (inquiry !== (policy === 'inquiry_notification')) throw new Error('Email effect recipient policy does not match its effect kind.');
   }
 
   private async reconcile(

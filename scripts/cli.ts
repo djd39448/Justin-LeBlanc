@@ -36,6 +36,22 @@ program
     })),
   );
 program
+  .command('inquiry-followed-up')
+  .description('Mark one inquiry as followed up after the operator has contacted the customer')
+  .requiredOption('--id <inquiryId>', 'Inquiry reference')
+  .requiredOption('--revision <revision>', 'Current inquiry revision')
+  .option('--actor <actor>', 'Audit identity', 'operator')
+  .action((opts: { id: string; revision: string; actor: string }) =>
+    withRuntime((r) =>
+      operatorAction(r, {
+        action: 'inquiry-followed-up',
+        id: opts.id,
+        revision: Number.parseInt(opts.revision, 10),
+        actor: opts.actor,
+      }),
+    ),
+  );
+program
   .command('action')
   .description('Execute one validated operator action from a JSON file; see RUNBOOK for examples')
   .requiredOption('--file <path>', 'Action JSON; never put a bearer token here')

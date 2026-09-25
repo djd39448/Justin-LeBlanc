@@ -10,6 +10,7 @@ import { createHash, randomBytes, randomUUID, timingSafeEqual } from 'node:crypt
 import { z } from 'zod';
 
 import { MailEffectSchema } from '../../apps/api/adapters/email.js';
+import { buildInquiryMail, idempotencyHash, inquiryEffectId, type InquiryNotificationOptions } from '../../apps/api/inquiry-notifications.js';
 import { Store } from '../../apps/api/store.js';
 import {
   ConsultationSchema,
@@ -17,6 +18,7 @@ import {
   CustomerSchema,
   InquiryInputSchema,
   InquirySchema,
+  InquiryStoredInputSchema,
   InstantSchema,
   LineItemSchema,
   POLICY_VERSION,
@@ -88,6 +90,8 @@ export interface UpsertInquiryRequest {
   input: InquiryInput;
   inquiryId?: string;
   resumeToken?: string;
+  idempotencyKey?: string;
+  providedFields?: ReadonlySet<string>;
 }
 
 export interface InquiryReceipt {
@@ -218,6 +222,7 @@ export class BookingService {
     private readonly availabilityProvider: AvailabilityProvider,
     private readonly recipients: BookingRecipients,
     private readonly authorizeSchedule?: (inquiry: Inquiry) => void,
+    private readonly inquiryNotifications?: InquiryNotificationOptions,
   ) {}
 
   /**
@@ -226,6 +231,8 @@ export class BookingService {
    */
   upsertInquiry(request: UpsertInquiryRequest): InquiryReceipt {
     const input = InquiryInputSchema.parse(request.input);
+    if (request.idempotencyKey !== undefined && !/^[A-Za-z0-9_-]{43}$/.test(request.idempotencyKey))
+      throw new Error('Idempotency-Key must be exactly 43 base64url characters.');
     if (request.inquiryId !== undefined || request.resumeToken !== undefined) {
       if (request.inquiryId === undefined || request.resumeToken === undefined) {
         throw new Error('Both inquiryId and resumeToken are required to resume an inquiry.');
@@ -239,17 +246,23 @@ export class BookingService {
         const inquiry = this.store.get('inquiries', inquiryId, InquirySchema);
         assertInquiryToken(inquiry, resumeToken);
         const customer = this.store.get('customers', inquiry.data.customerId, CustomerSchema);
+        const provided = request.providedFields;
+        const priorInput = inquiry.data.input;
+        const mergedInput = provided === undefined ? input : InquiryStoredInputSchema.parse({
+          ...priorInput,
+          ...Object.fromEntries([...provided].map((key) => [key, (input as unknown as Record<string, unknown>)[key]])),
+        });
         const nextCustomer: Customer = {
           ...customer.data,
-          name: input.name,
-          email: input.email,
-          phone: input.phone,
-          company: input.company,
+          name: mergedInput.name,
+          email: mergedInput.email,
+          phone: mergedInput.phone,
+          company: mergedInput.company,
         };
         this.store.update('customers', customer.id, customer.revision, nextCustomer);
         const updated = this.store.update('inquiries', inquiry.id, inquiry.revision, {
           ...inquiry.data,
-          input,
+          input: mergedInput,
         });
         this.store.audit('public_token', 'inquiry.updated', inquiry.id, {
           source: input.source,
@@ -263,8 +276,18 @@ export class BookingService {
       });
     }
 
-    const resumeToken = randomBytes(32).toString('base64url');
+    const resumeToken = request.idempotencyKey ?? randomBytes(32).toString('base64url');
     return this.store.transaction(() => {
+      if (request.idempotencyKey !== undefined) {
+        const processedId = `inquiry-idempotency:${idempotencyHash(request.idempotencyKey)}`;
+        const inputHash = idempotencyHash(JSON.stringify(input));
+        const prior = this.store.find('processed_events', processedId, z.object({ kind: z.literal('inquiry_create'), inquiryId: z.string(), inputHash: z.string() }));
+        if (prior !== undefined) {
+          if (prior.data.inputHash !== inputHash) throw new Error('Idempotency-Key was already used for a different inquiry payload.');
+          const existing = this.store.get('inquiries', prior.data.inquiryId, InquirySchema);
+          return { inquiryId: existing.id, resumeToken, status: existing.data.status };
+        }
+      }
       const customerId = randomUUID();
       const inquiryId = randomUUID();
       this.store.insert<Customer>('customers', customerId, {
@@ -278,13 +301,32 @@ export class BookingService {
         poRequired: false,
         poNumber: '',
       });
+      const receivedAt = new Date().toISOString();
       const inquiry = this.store.insert<Inquiry>('inquiries', inquiryId, {
         customerId,
         input,
         status: 'new',
         tokenHash: hashToken(resumeToken),
         followupQuestions: [],
+        followUp: {
+          receivedAt,
+          dueAt: new Date(Date.parse(receivedAt) + 24 * 60 * 60_000).toISOString(),
+          initialAlertQueuedAt: null,
+          followedUpAt: null,
+          reminder20QueuedAt: null,
+          overdue24QueuedAt: null,
+        },
       });
+      if (request.idempotencyKey !== undefined)
+        this.store.insert('processed_events', `inquiry-idempotency:${idempotencyHash(request.idempotencyKey)}`, {
+          kind: 'inquiry_create', inquiryId: inquiry.id, inputHash: idempotencyHash(JSON.stringify(input)),
+        });
+      if (this.inquiryNotifications?.enabled && this.inquiryNotifications.recipient) {
+        const mail = buildInquiryMail({ inquiryId, intake: input, receivedAt: inquiry.createdAt, dueAt: inquiry.data.followUp!.dueAt, kind: 'received', options: this.inquiryNotifications });
+        this.store.enqueue(inquiryEffectId(inquiryId, 'received'), 'email.inquiry_received', inquiryId, mail);
+        inquiry.data.followUp!.initialAlertQueuedAt = inquiry.createdAt;
+        this.store.update('inquiries', inquiry.id, inquiry.revision, inquiry.data);
+      }
       this.store.audit('public', 'inquiry.created', inquiry.id, { source: input.source });
       return { inquiryId, resumeToken, status: inquiry.data.status };
     });

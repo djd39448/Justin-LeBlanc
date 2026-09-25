@@ -19,11 +19,12 @@ import { simpleParser } from 'mailparser';
 import nodemailer, { type Transporter } from 'nodemailer';
 import { z } from 'zod';
 
-import { assertRecipients, type Config } from '../config.js';
+import { assertInquiryNotificationRecipients, assertRecipients, type Config } from '../config.js';
 
 const AddressSchema = z.email().transform((value) => value.toLowerCase());
 export const MailEffectSchema = z.object({
   version: z.literal(1),
+  recipientPolicy: z.enum(['demo', 'inquiry_notification']).default('demo'),
   messageId: z.string().regex(/^<[^<>\s]+>$/),
   envelopeFrom: AddressSchema,
   to: z.array(AddressSchema).min(1).max(3),
@@ -151,7 +152,8 @@ export class SmtpEmailAdapter {
   /** Sends one validated effect; a network error becomes uncertain rather than retryable. */
   async send(input: MailEffect): Promise<{ providerMessageId: string }> {
     const effect = MailEffectSchema.parse(input);
-    assertRecipients(this.config, [...effect.to, ...effect.cc, ...effect.bcc]);
+    if (effect.recipientPolicy === 'inquiry_notification') assertInquiryNotificationRecipients(this.config, effect);
+    else assertRecipients(this.config, [...effect.to, ...effect.cc, ...effect.bcc]);
     try {
       const result = await this.transport.sendMail({
         from: effect.envelopeFrom,
@@ -175,7 +177,9 @@ export class SmtpEmailAdapter {
       return { providerMessageId: result.messageId };
     } catch (error) {
       if (error instanceof UncertainEmailSendError) throw error;
-      const message = error instanceof Error ? error.message : String(error);
+      const message = effect.recipientPolicy === 'inquiry_notification'
+        ? 'Inquiry notification provider outcome is uncertain; reconcile by Message-ID before retry.'
+        : error instanceof Error ? error.message : String(error);
       throw new UncertainEmailSendError(effect.messageId, message);
     }
   }
