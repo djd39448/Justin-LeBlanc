@@ -1,24 +1,25 @@
 # Current implementation handoff
 
-## Round-three handoff boundary
+## Round-three handoff boundary — live
 
-Round-three is implemented locally on `codex/justin-inquiry-round-three`, based on the verified
-remote main head. The public experience is exactly two inquiry steps and ends at
+Round-three is live from main/runtime SHA `5674a2fe63a384ff833db956d18a0db81d43f669`. The public
+experience is exactly two inquiry steps and ends at
 `/inquiry-received/`; it has no public availability, scheduling, hold, or booking action. Phone
 and date rules, replacement-update compatibility, idempotency, Justin-only inquiry outbox mail,
-and the durable 20-hour/24-hour follow-up lifecycle are part of this release. The branch is not
-yet a deployment, email-delivery, or ChatGPT-automation claim. The full local gate and feature CI
-passed. Windows backup/integrity passed, but an Administrator shell is required to stop the
-orphaned S4U children, repair with exact `npm ci`, and complete the disabled-first restart. The old
-API and tunnel remain healthy; the owned worker is currently down and the protected notification
-keys remain absent.
+and the durable 20-hour/24-hour follow-up lifecycle are part of this release. Pages deployment
+`47db4b6d-660c-4ced-97c1-e87e390db778` is live; runtime rollback is
+`8f765d8aa92e10df4baf6c6ce13f6acbfff2e2a1` and the immediate frontend rollback is
+`73a78aec-f10a-4b95-b494-fd191ecccbd6`. SMTP/provider acceptance is recorded, not inbox receipt;
+Justin's mailbox and ChatGPT notification remain pending account-side authorization/observation.
 
-The two-step, inquiry-only public planner is live at
+## Historical round-two public-form handoff
+
+The two-step, inquiry-only public planner was released at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision
 `c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and
 `origin/codex/justin-round-two`. Pages production deployment
-`73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the release;
-`a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. The public browser ends
+`73a78aec-f10a-4b95-b494-fd191ecccbd6` served that release;
+`a3152e61-ed47-41a7-9595-ebd42e694245` was its immediate rollback target. The public browser ends
 after inquiry/human-follow-up confirmation and contains no consultation, availability, booking, or
 tentative-hold surface, while the protected backend remains intact. See
 [the public-form evidence](docs/evidence/public-form-simplification-2026-09-23.md) and

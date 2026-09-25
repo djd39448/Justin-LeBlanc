@@ -1,27 +1,28 @@
 # Progress
 
-## Round-three inquiry release — implemented locally, release pending
+## Round-three inquiry release — live
 
-As of 2026-09-24, the round-three branch contains the approved two-step inquiry-only planner,
-strict phone and composite-date validation, receipt/idempotency handling, Justin-only durable
-notification effects, 20-hour/24-hour follow-up state, and authenticated operator/admin
-completion controls. Local verification and feature CI pass. Windows backup and integrity evidence
-also pass, but the old S4U runtime could not be replaced from a non-elevated shell: the old API and
-tunnel remain healthy, the worker is down, and protected notification configuration remains
-unchanged. An Administrator recovery/restart is the current release blocker; this is not yet a
-round-three deployment or provider-delivery claim.
+Main/runtime SHA `5674a2fe63a384ff833db956d18a0db81d43f669` is live. Exact Windows `npm ci`,
+verification, backup/restore, three-path health, worker/task, Pages, canonical form, and one
+synthetic inquiry/outbox acceptance are recorded in the round-three evidence. The SMTP provider
+accepted the one Justin-only effect; this does not prove inbox receipt. Justin's mailbox and
+ChatGPT notification remain pending account-side authorization/observation. Pages deployment
+`47db4b6d-660c-4ced-97c1-e87e390db778` is live; `73a78aec-f10a-4b95-b494-fd191ecccbd6` is the
+immediate frontend rollback, and runtime rollback is
+`8f765d8aa92e10df4baf6c6ce13f6acbfff2e2a1`.
 
-Updated 2026-09-23. **The two-step, inquiry-only public planner is live at
+## Historical round-two public-form release
+
+Updated 2026-09-23. **The two-step, inquiry-only public planner was live at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision
 `c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and
 `origin/codex/justin-round-two`. Cloudflare Pages deployment
-`73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the release; deployment
-`a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. The dedicated Public Shows Calendar
-remains disabled for the next QA pass, so Where I'm Playing temporarily renders one verified public
-date without requesting Calendar data. Full voice booking and recovery after an actual
-reboot/sign-out remain unverified.**
+`73a78aec-f10a-4b95-b494-fd191ecccbd6` served the release; deployment
+`a3152e61-ed47-41a7-9595-ebd42e694245` was the immediate rollback target. The dedicated Public Shows Calendar
+remained disabled, so Where I'm Playing rendered one verified public date without requesting
+Calendar data.**
 
-## Public-form simplification — live
+### Round-two implementation record
 
 The verified implementation commit is `c6abf12015bcb6ef179985a08919cd3319026915`, on `origin/main`
 and the pushed feature branch. Release evidence is in
@@ -78,7 +79,7 @@ with zero findings, and the secret scan was clean. Feature CI run
 [35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed.
 
 - [x] Isolated repository, approved specification, provider isolation preflight, runtime architecture, durable SQLite state, backups, exports, and restore integrity.
-- [x] Responsive public site, inquiry flow, operator workspace, readable reference content, structured metadata, and noindex controls. Production deployment `73a78aec` serves the inquiry-only frontend, the canonical hostname and `/plan-your-event/` return HTTP 200, and `/admin` retains no-store/noindex. Deployment `a3152e61` is the immediate rollback target.
+- [x] Responsive public site, inquiry flow, operator workspace, readable reference content, structured metadata, and noindex controls. Round-two deployment `73a78aec` served the inquiry-only frontend, and `a3152e61` was its immediate rollback target at that time.
 - [x] Billing-policy KB parity: Retell v4, API and chat use `2026-09-21.4` / `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`; all three health paths returned HTTP 200 with all capabilities enabled after restart.
 - [x] Deterministic booking, money, state transitions, authentication, recipient gates, outbox leases, uncertainty reconciliation, and operator CLI.
 - [x] Public/assistant booking authorization before availability or hold creation, including replay-token validation, plus an independent attendee allowlist at the final Calendar provider boundary.
@@ -96,4 +97,4 @@ with zero findings, and the secret scan was clean. Feature CI run
 
 The provider queue was empty after the live booking cancellation and invoice replay. A confirmed event's attendee copy can still cause a safe false rejection when a requested reschedule overlaps the current interval; free/busy lacks event identity, so the adapter deliberately does not subtract that interval.
 
-[Main CI run 35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed for `c6abf12015bcb6ef179985a08919cd3319026915`, after feature CI run [35905466911](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905466911) also passed. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current release evidence is in [the public-form record](docs/evidence/public-form-simplification-2026-09-23.md).
+[Main CI run 35905771617](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905771617) passed for `c6abf12015bcb6ef179985a08919cd3319026915`, after feature CI run [35905466911](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35905466911) also passed. Historical evidence is indexed in [acceptance results](docs/evidence/acceptance-results.md); current release evidence is in [the round-three record](docs/evidence/inquiry-round-three-2026-09-24.md).

@@ -1,7 +1,9 @@
 # Justin ChatGPT inquiry-notification setup
 
-Status: pending Justin account authorization and an observed synthetic test. This document is an
-account-side setup guide, not evidence that the integration is enabled or live.
+Status: backend/provider acceptance is observed for the one synthetic inquiry; Justin account
+authorization, Gmail inbox receipt, event-trigger task creation, and ChatGPT notification remain
+pending observation. This document is an account-side setup guide, not evidence that the ChatGPT
+layer is active.
 
 ChatGPT's supported route is a Gmail event-triggered task in Justin's own eligible ChatGPT
 account. The backend remains authoritative: it sends the `[JLM Inquiry]` email, and ChatGPT only
@@ -20,10 +22,11 @@ account, plan, client, and rollout.
    `[JLM Inquiry]`. Keep notifications enabled through the account's normal notification control.
 4. Paste the task prompt below verbatim. The task must not reply, forward, delete, archive, mark
    read/unread, label, or otherwise mutate Gmail.
-5. After backend deployment, send exactly one clearly synthetic inquiry through the release
-   smoke procedure. Confirm that the Gmail message is present and that the notification contains
-   only one of the three approved sentences below. Record the observed result privately; do not
-   put customer PII, the inbox address, or tokens in repository evidence.
+5. Do not submit another inquiry for this release: the one authorized synthetic was already sent.
+   After authorization, check whether that existing message is present and whether the task emits
+   only one of the three approved sentences below. A future inquiry-based retest requires fresh
+   explicit authorization. Record the observed result privately; do not put customer PII, the inbox
+   address, or tokens in repository evidence.
 
 If Gmail connection, the event-triggered task feature, or notification permission is unavailable,
 leave this layer pending. The website, backend, outbox, and follow-up lifecycle can still be
@@ -40,7 +43,7 @@ Watch the connected Gmail inbox for new messages whose subject begins with [JLM 
 - Justin account authorization: **PENDING — root to fill after authorization**
 - Event-trigger task created: **PENDING — root to fill after observation**
 - Synthetic notification observed: **PENDING — root to fill with timestamp/result**
-- Provider delivery status: **PENDING — do not infer from local tests**
+- Provider delivery status: **OBSERVED — one first-attempt SMTP/provider acceptance; inbox receipt was not observed**
 
 The backend's protected `INQUIRY_NOTIFICATIONS_ENABLED` and `INQUIRY_NOTIFICATION_EMAIL` values,
 dedicated inquiry-only SMTP gate, deterministic outbox, and 20-hour/24-hour lifecycle are

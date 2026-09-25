@@ -1,13 +1,15 @@
 # Acceptance and evidence matrix
 
-## Round-three acceptance boundary — implementation status
+## Round-three acceptance boundary — live
 
-Round-three is implemented, passed its local verification pass, and awaits release. Required proof covers
+Round-three is live from main/runtime SHA `5674a2fe63a384ff833db956d18a0db81d43f669`. Required proof covers
 the exact two-step UI, phone/date boundaries, legacy replacement preservation, receipt privacy,
 idempotency, Justin-only recipient gate, deterministic outbox effects, 20-hour/24-hour lifecycle,
 operator/admin completion, responsive/accessibility behavior, public-output audit, and secret scan.
-Do not infer deployment IDs, provider delivery, or ChatGPT activation here; root must replace the
-remaining placeholders in [round-three evidence](evidence/inquiry-round-three-2026-09-24.md).
+The exact test, deployment, and provider-acceptance evidence is recorded in
+[round-three evidence](evidence/inquiry-round-three-2026-09-24.md). SMTP/provider acceptance is
+not inbox receipt; Justin mailbox receipt and ChatGPT activation remain pending authorization and
+observation.
 
 Implementation and verification status: see the dated [A01–A26 results](evidence/acceptance-results.md). Calendar-driven automatic invoicing is implemented, CI-verified and loaded in the running services; a fresh live Calendar-to-inbox walkthrough remains pending. The delivered $700 reply-driven invoice is historical evidence for the superseded policy. Retell v4, API and chat share billing-policy KB `2026-09-21.4`. Phone verification of completed booking and native `end_call` remains pending; recovery after an actual reboot/sign-out remains untested. Do not mark a row passed without linked evidence.
 

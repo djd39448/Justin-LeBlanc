@@ -1,8 +1,9 @@
 # Demo Operations Runbook
 
-## Round-three release and operations boundary
+## Round-three release and operations boundary — live
 
-Round-three is implemented locally but is not a deployment claim. Before release, back up the
+Round-three is live from main/runtime SHA `5674a2fe63a384ff833db956d18a0db81d43f669`. Before a future
+change, back up the
 SQLite database and documents, inspect pending/uncertain outbox effects, deploy the additive API
 and worker support first, set protected inquiry configuration, verify owned-service health, then
 deploy the dependent Pages frontend. Use the pinned Wrangler version and only the Justin Pages
@@ -13,11 +14,15 @@ The protected runtime names are `INQUIRY_NOTIFICATIONS_ENABLED` and
 Justin-only through its separate exact-recipient gate. The worker evaluates 20-hour due-soon and
 24-hour overdue thresholds from durable state; an authenticated operator can complete an inquiry
 through the dedicated `jlm-demo inquiry-followed-up --id ... --revision ... --actor ...` command,
-with the same operation exposed in admin. Fill release backup, SHA, health, synthetic inquiry,
-delivery, and rollback fields in the round-three evidence record after observation.
+with the same operation exposed in admin. Full release backup, SHA, health, synthetic inquiry,
+delivery, and rollback evidence is recorded in the round-three evidence record. SMTP/provider
+acceptance is not inbox receipt; do not claim Justin mailbox or ChatGPT delivery without
+account-side observation.
 
-For this release, install only `codex/justin-inquiry-round-three` and require its tip to match the
-exact SHA recorded in the dated evidence before restarting anything:
+The completed round-three runtime install used exact application revision
+`5674a2fe63a384ff833db956d18a0db81d43f669`. The feature branch can later gain documentation-only
+commits, so reproduce this release from the recorded revision rather than assuming the branch tip
+still matches. Before restarting anything:
 
 ```powershell
 $configPath = 'C:\Users\trustcore-rdp\.config\jlm-demo\runtime.env'
@@ -25,8 +30,7 @@ $privateRoot = 'C:\Users\trustcore-rdp\.config\jlm-demo'
 
 git fetch origin
 git status --short
-git switch codex/justin-inquiry-round-three
-git pull --ff-only origin codex/justin-inquiry-round-three
+git switch --detach 5674a2fe63a384ff833db956d18a0db81d43f669
 git rev-parse HEAD
 node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
   --directory (Join-Path $privateRoot 'backups')
@@ -47,8 +51,7 @@ elevated stop/start path to enable notifications and repeat the health/outbox ch
 commands later in this document are retained as historical release evidence; do not use their
 branch name for round three.
 
-Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Public-form release and live
-smoke: 2026-09-23.
+Last runtime, Pages, and live smoke verification: 2026-09-25 UTC.
 This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new
 provider resources, or customer communication.
 
@@ -56,21 +59,21 @@ provider resources, or customer communication.
 
 | Component       | State                                                                                              | Operator note                                                                                                    |
 | --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Website         | Two-step inquiry-only planner live at `https://justinleblancmusic.50by50.dev`; exact-host HTTP 200 | Production deployment `73a78aec`; deployment `a3152e61` is the immediate rollback target                         |
-| API             | Local, public tunnel, and website-proxy health returned HTTP 200                                   | Booking, chat, voice, and billing capabilities remain true; health exposes no voice-agent number                 |
-| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                             | Startup logs show successful reconciliation, morning, IMAP, and billing-followup jobs                            |
+| Website         | Two-step inquiry-only planner live at `https://justinleblancmusic.50by50.dev`; exact-host HTTP 200 | Production deployment `47db4b6d`; deployment `73a78aec` is the immediate rollback target                         |
+| API             | Local, public tunnel, and website-proxy health returned HTTP 200                                   | Booking, chat, voice, billing, and inquiry-notification capabilities are true                                    |
+| Worker          | Running as the S4U/Limited boot task `jlm-demo-worker`                                             | One synthetic inquiry email was accepted; the outbox has zero unresolved effects or leases                       |
 | API task        | Running as the S4U/Limited boot task `jlm-demo-api`                                                | Local, direct-tunnel, and website-proxy health passed after the upgrade                                          |
 | Tunnel task     | `jlm-demo-tunnel` running with four QUIC connections                                               | Protected token file is outside Git; route is `jlm-demo-api.50by50.dev` to `127.0.0.1:4318`                      |
 | Windows startup | All three tasks running S4U/Limited with exact `MSFT_TaskBootTrigger` triggers                     | Registration and task execution passed; actual sign-out/reboot recovery remains untested                         |
-| Email           | Automatic morning invoice path implemented and CI-verified; fresh live delivery pending            | Old-policy $700 invoice reached client/operator but does not prove the current path                              |
+| Email           | One round-three inquiry email received first-attempt SMTP/provider acceptance                      | Inbox receipt remains unobserved; automatic invoice-path live delivery is still pending                          |
 | Google Calendar | Dedicated calendar created; live booking lifecycle passed                                          | Consultation/hold, invitations, brief, confirmation, reschedule, and cancellation completed with no open effects |
 | Public Shows    | Calendar disabled; exact fixed 503 returned through local, tunnel, and website paths               | Static frontend shows one verified public date; dedicated Calendar setup is deferred to the next QA pass         |
 | Retell          | **(832) 501-3799** plus published version-4 agent/LLM                                              | KB `.4` read-back verified; same protected identities, six custom tools plus native `end_call`                   |
-| Backup          | Seeded backup restored into a new directory and passed SQLite integrity checking                   | This proves the checked backup was readable and internally consistent; retain the source backup privately        |
+| Backup          | Fresh pre-release backup restored non-destructively and passed SQLite integrity checking           | Retain the source backup privately; runtime rollback revision is recorded in round-three evidence                |
 
-Public inquiry, chat, scheduling, voice admission, and billing reach enabled backend gates. At the
+Public inquiry, chat, scheduling, voice admission, billing, and inquiry notification reach enabled backend gates. At the
 latest verification, local, direct-tunnel, and website-proxy health returned HTTP 200 with
-`ok: true`, KB `2026-09-21.4`, and all four capabilities enabled. The response omitted the
+`ok: true`, KB `2026-09-21.4`, and all five capabilities enabled. The response omitted the
 voice-agent phone field. The public frontend independently displays Justin's human business number,
 **(832) 303-9116**. All three `/api/public-events` paths returned HTTP 503 with the fixed sanitized body
 and approved no-store/retry headers. Actual recovery after sign-out or reboot remains untested.
@@ -98,9 +101,9 @@ was inspected and disqualified because it mixes private-event records and street
 A separate Public Shows Calendar/configuration is not yet available. Provider failure must fail
 closed; never work around it by exposing an unfiltered Calendar.
 
-The API/additive inquiry contract and Pages safety bridge remain deployed. Production Pages
-deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the inquiry-only frontend;
-deployment `a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. Where I'm
+The API/additive inquiry contract and Pages safety bridge remained deployed. Round-two Pages
+deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` served the inquiry-only frontend;
+deployment `a3152e61-ed47-41a7-9595-ebd42e694245` was the immediate rollback target at that time. Where I'm
 Playing renders one manually curated public date—**Solo Sunday with Justin LeBlanc**, Sep 27, 2026,
 5:00–8:00 PM Central, at The Blue Lion Brunchery & Pub in The Woodlands, TX—from a public Woodlands
 Online source. The listing omits the street address, is filtered at build time, expires in the

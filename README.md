@@ -1,16 +1,21 @@
 # Justin LeBlanc — private event booking demo
 
-## Round-three inquiry release — implemented locally, not deployed
+## Round-three inquiry release — live
 
-The 2026-09-24 round-three work is implemented and locally verified on the feature branch. It
-replaces the public planner with the exact two-step inquiry flow, strict optional phone/date
-handling, a safe receipt route, deterministic inquiry idempotency, Justin-only inquiry outbox
-notifications, and the durable 20-hour/24-hour follow-up lifecycle. It does not add public
-scheduling or booking controls. Deployment, provider delivery, and Justin's ChatGPT account-side
-notification remain pending until release evidence is recorded. See
+The 2026-09-24 round-three work is live from main/runtime SHA
+`5674a2fe63a384ff833db956d18a0db81d43f669`. It replaces the public planner with the exact
+two-step inquiry flow, strict optional phone/date handling, a safe noindex receipt route,
+deterministic inquiry idempotency, Justin-only inquiry outbox notifications, and the durable
+20-hour/24-hour follow-up lifecycle. It does not add public scheduling or booking controls.
+SMTP/provider acceptance is recorded, but inbox receipt is not inferred; Justin's ChatGPT
+account-side notification remains pending authorization and observed testing. See
 [the round-three specification](docs/INQUIRY_ROUND_THREE_SPEC.md),
 [setup for the optional ChatGPT task](docs/CHATGPT_INQUIRY_NOTIFICATION_SETUP.md), and
-[release evidence placeholders](docs/evidence/inquiry-round-three-2026-09-24.md).
+[release evidence](docs/evidence/inquiry-round-three-2026-09-24.md).
+
+Cloudflare Pages deployment `47db4b6d-660c-4ced-97c1-e87e390db778` is live. Deployment
+`73a78aec-f10a-4b95-b494-fd191ecccbd6` is the immediate frontend rollback target; the prior
+runtime revision is `8f765d8aa92e10df4baf6c6ce13f6acbfff2e2a1`.
 
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
@@ -18,9 +23,9 @@ The existing website and application are deployed. Public health, inquiry intake
 
 The local API and worker run against persistent SQLite. Booking uses a consultation, a buffered tentative hold, an agreed quote, and operator confirmation. Shared-KB chat and voice use the same deterministic tools. Current billing policy treats an app-tagged confirmed Calendar performance that ended on the prior Houston date as played, then snapshots the agreed quote and complete billing record and delivers through a durable outbox to exact allowlisted To/BCC recipients. Demo prices are illustrative, and recipients/callers are explicitly allowlisted.
 
-## Public-form simplification — live
+## Historical round-two public-form simplification
 
-The two-step, inquiry-only public planner is live at the canonical URL from implementation commit
+The two-step, inquiry-only public planner was first released at the canonical URL from implementation commit
 `c6abf12015bcb6ef179985a08919cd3319026915`, which is on both `origin/main` and
 `origin/codex/justin-round-two`. Step 1 captures contact and Preferred Reply. Step 2 retains the
 event fields, uses **Location of the event**, and keeps **Performance time**,
@@ -37,9 +42,9 @@ the [public Woodlands Online listing](https://www.woodlandsonline.com/evps/evite
 expires in the browser after its end time. The frontend makes no Calendar request; the separate
 `/api/public-events` integration remains disabled and returns its exact safe 503.
 
-Cloudflare Pages production deployment
-`73a78aec-f10a-4b95-b494-fd191ecccbd6` is live; deployment
-`a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback target. Final verification passed
+Round-two Cloudflare Pages deployment
+`73a78aec-f10a-4b95-b494-fd191ecccbd6` served that release; deployment
+`a3152e61-ed47-41a7-9595-ebd42e694245` was its immediate rollback target. Final verification passed
 with **146 unit/integration tests in 24 files**, lint/typecheck clean, 21 Astro files with zero
 diagnostics, nine built pages, 34 Playwright passes (26 intentional viewport skips) across five
 viewports, a zero-finding 15-file public-output audit, and a clean secret scan. Feature CI
@@ -49,11 +54,11 @@ viewports, a zero-finding 15-file public-output audit, and a clean secret scan. 
 [the public-form specification](docs/PUBLIC_FORM_SIMPLIFICATION_SPEC.md), and
 [the dated round-two evidence](docs/evidence/round-two-2026-09-22.md).
 
-## Current release and prior provider evidence
+## Historical round-two and prior provider evidence
 
 - [CI run 35633834649](https://github.com/djd39448/Justin-LeBlanc/actions/runs/35633834649) passed for `58d1c0ce5cd7fc8b675b0a89443bfa82bcfd9b10` at 17:44:56 UTC: **103 tests in 19 files**, lint, typecheck, 20 Astro files with zero errors/warnings, and nine built pages.
-- Current site deployment `73a78aec` serves the inquiry-only two-step planner. The canonical hostname and `/plan-your-event/` return HTTP 200, and `/admin` retains no-store and noindex. Deployment `a3152e61` is the immediate frontend rollback target. See [public-form evidence](docs/evidence/public-form-simplification-2026-09-23.md) and [historical photo evidence](docs/evidence/user-photos.json).
-- Local, direct-tunnel, and website-proxy health report booking, chat, voice, and billing capabilities on. The API, worker, and tunnel tasks are running.
+- Round-two site deployment `73a78aec` served the inquiry-only two-step planner, with `a3152e61` as its rollback target at that time. See [public-form evidence](docs/evidence/public-form-simplification-2026-09-23.md) and [historical photo evidence](docs/evidence/user-photos.json).
+- At round-two verification, local, direct-tunnel, and website-proxy health reported booking, chat, voice, and billing capabilities on. The API, worker, and tunnel tasks were running.
 - Retell agent/LLM v4 is published and read-back verified on the same protected identities with KB `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`, six unchanged custom tools and native `end_call`. At about 17:45 UTC all three health paths returned HTTP 200 with that KB, all capabilities enabled and the Houston number; all tasks were Running/S4U.
 - A live synthetic Calendar flow passed consultation and tentative-hold creation, invitation and private brief delivery, operator confirmation, reschedule, and cancellation. Tentative holds stay transparent until confirmation so an attendee copy does not collide with the same canonical hold.
 - Historical old-policy evidence: an authenticated `YES` issued one immutable $700 demo invoice, reconciled its Sent copy, and verified the client and operator copies. This does not prove the new Calendar-driven automatic invoice flow.
@@ -89,7 +94,7 @@ node --env-file=C:/private/jlm-demo/runtime.env --import tsx scripts/cli.ts --js
 
 ## Documentation
 
-- [Current progress](PROGRESS.md), [handoff](docs/HANDOFF.md), [operations runbook](docs/RUNBOOK.md), [public-form evidence](docs/evidence/public-form-simplification-2026-09-23.md), [round-two evidence](docs/evidence/round-two-2026-09-22.md).
+- [Current progress](PROGRESS.md), [handoff](docs/HANDOFF.md), [operations runbook](docs/RUNBOOK.md), [round-three evidence](docs/evidence/inquiry-round-three-2026-09-24.md), [public-form evidence](docs/evidence/public-form-simplification-2026-09-23.md), and [round-two evidence](docs/evidence/round-two-2026-09-22.md).
 - [Resource inventory and deployment/restart commands](docs/resource-inventory.md).
 - [Public-form specification](docs/PUBLIC_FORM_SIMPLIFICATION_SPEC.md), [round-two build specification](docs/ROUND_TWO_BUILD_SPEC.md), [baseline build specification](docs/BUILD_SPEC.md), [decisions](docs/DECISIONS.md), [workflows](docs/WORKFLOWS.md), [architecture](docs/ARCHITECTURE.md).
 - [Design research](docs/design-research.md), [campaign drafts](docs/campaign-drafts.md), [document QA](docs/evidence/documents/README.md).

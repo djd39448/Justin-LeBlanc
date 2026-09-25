@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026-09-24 — Round-three inquiry implementation
+## 2026-09-25 — Round-three inquiry release
 
 - Implemented the exact two-step inquiry-only planner, optional strict phone validation, composite
   event-date input, safe receipt route, and browser idempotency handling.
@@ -8,8 +8,9 @@
   the durable outbox, 20-hour/24-hour follow-up lifecycle, and authenticated CLI/admin completion.
 - Added the release specification, local verification evidence, and account-side ChatGPT/Gmail
   setup.
-- Local gates pass; deployment, provider delivery, and ChatGPT activation remain pending until
-  observed and recorded.
+- Live from main/runtime SHA `5674a2fe63a384ff833db956d18a0db81d43f669`; SMTP/provider acceptance
+  was observed for one synthetic inquiry. Inbox receipt, Justin account authorization, and ChatGPT
+  notification observation remain pending.
 
 ## 2026-09-22 — Round-two specification revision
 

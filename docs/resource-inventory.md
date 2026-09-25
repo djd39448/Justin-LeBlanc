@@ -1,52 +1,53 @@
 # Isolated resource inventory and resume commands
 
-## Round-three resource status — local only
+## Round-three resource status — live
 
-The round-three feature branch adds no external resource and does not alter TrustCore, Telnyx,
+The round-three main/runtime release adds no external resource and does not alter TrustCore, Telnyx,
 Calendar, DNS, or existing mail identities. It uses the existing Justin API/worker, SQLite,
 durable outbox, and Justin Pages project only. Protected inquiry configuration is runtime-only;
 the recipient value is intentionally absent from this inventory. Deployment SHA, backup path,
-owned-service restart, synthetic inquiry, mail receipt, and rollback identifiers remain labeled
-placeholders in the round-three evidence record until root observes them.
+owned-service restart, synthetic inquiry, and rollback evidence are recorded in the round-three
+evidence record. Production Pages deployment is `47db4b6d-660c-4ced-97c1-e87e390db778`, with
+`73a78aec-f10a-4b95-b494-fd191ecccbd6` as the immediate frontend rollback. SMTP/provider
+acceptance is recorded; inbox receipt remains unobserved.
 
-Recorded 2026-09-21; round-two source status updated 2026-09-22; public-form deployment updated
-2026-09-23. This inventory contains identifiers and variable names, never credentials. Existing
-resources are read-only references. Calendar-driven invoicing is implemented, CI-verified and
-loaded in the running services; fresh eligible delivery, full voice booking, and recovery after an
-actual reboot/sign-out remain unverified. Corrected public-form implementation commit
-`c6abf12015bcb6ef179985a08919cd3319026915` is on both `origin/main` and
-`origin/codex/justin-round-two`; its static frontend is deployed without a runtime restart or
-Windows-checkout sync.
+This inventory contains identifiers and variable names, never credentials. Existing resources are
+read-only references. Calendar-driven invoicing is implemented, CI-verified, and loaded in the
+running services; fresh eligible delivery, full voice booking, and recovery after an actual
+reboot/sign-out remain unverified. Historical round-two records were updated through 2026-09-23;
+that public-form implementation was commit `c6abf12015bcb6ef179985a08919cd3319026915` on
+`origin/main` and `origin/codex/justin-round-two`, and its static frontend deployment did not require
+a runtime restart or Windows-checkout sync.
 
 ## Created and running
 
-| Resource                  | Identifier / location                                                                          | Verified state                                                                    |
-| ------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Private GitHub repository | `djd39448/Justin-LeBlanc`, branch `main`                                                       | Commit `c6abf12015bcb6ef179985a08919cd3319026915`; main and feature CI passed     |
-| Cloudflare account        | `b393d8ff72d57912119b872640d3511f`                                                             | Existing authorized account                                                       |
-| Existing DNS zone         | `50by50.dev`, `2ad6b3d042155b73baca25bea5b3be2d`                                               | Two Justin-only CNAMEs added; existing records unchanged                          |
-| New Pages project         | `50by50-justinleblancmusic`, ID `7c9bb5e4-3b90-4d1f-954e-43d87400ea30`                         | Separate project, static site and API proxy                                       |
-| Custom hostname           | `justinleblancmusic.50by50.dev`, binding `bd4ec301-091e-4bee-a4cd-bf0030e56e7a`                | HTTPS 200, noindex/security headers                                               |
-| Latest checked deployment | `73a78aec-f10a-4b95-b494-fd191ecccbd6`, `https://73a78aec.50by50-justinleblancmusic.pages.dev` | Inquiry-only frontend live; canonical HTTP 200; `/admin` no-store/noindex         |
-| New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                         | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections        |
-| New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`, version 4                                                  | Same protected identity; six custom tools plus native `end_call`                  |
-| New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 4                                                  | Published `gpt-4.1-mini` configuration with KB `2026-09-21.4`                     |
-| Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                               | Created and verified through live consultation/show lifecycle                     |
-| Houston demo number       | **(832) 501-3799**                                                                             | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools |
-| Shared KB                 | `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`     | Retell/API/chat parity verified after restart                                     |
-| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                          | Running S4U/Limited boot task; all three health paths passed post-upgrade         |
-| Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`                   | Running; token never stored in Git or command arguments                           |
-| Local worker              | task `jlm-demo-worker`                                                                         | Running S4U/Limited boot task; startup jobs completed successfully                |
-| Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                          | SQLite WAL; synthetic booking and historical old-policy invoice retained          |
-| Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                                | Outside Git, restricted host ACLs                                                 |
+| Resource                  | Identifier / location                                                                          | Verified state                                                                                               |
+| ------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Private GitHub repository | `djd39448/Justin-LeBlanc`, branch `main`                                                       | Runtime release `5674a2fe63a384ff833db956d18a0db81d43f669`; main and feature CI passed                       |
+| Cloudflare account        | `b393d8ff72d57912119b872640d3511f`                                                             | Existing authorized account                                                                                  |
+| Existing DNS zone         | `50by50.dev`, `2ad6b3d042155b73baca25bea5b3be2d`                                               | Two Justin-only CNAMEs added; existing records unchanged                                                     |
+| New Pages project         | `50by50-justinleblancmusic`, ID `7c9bb5e4-3b90-4d1f-954e-43d87400ea30`                         | Separate project, static site and API proxy                                                                  |
+| Custom hostname           | `justinleblancmusic.50by50.dev`, binding `bd4ec301-091e-4bee-a4cd-bf0030e56e7a`                | HTTPS 200, noindex/security headers                                                                          |
+| Latest checked deployment | `47db4b6d-660c-4ced-97c1-e87e390db778`, `https://47db4b6d.50by50-justinleblancmusic.pages.dev` | Inquiry-only frontend live; canonical HTTP 200; `/admin` no-store/noindex                                    |
+| New Cloudflare tunnel     | `jlm-demo-api`, `e692323b-f1d0-494b-8529-113bd188104b`                                         | `jlm-demo-api.50by50.dev` → `http://127.0.0.1:4318`; four QUIC connections                                   |
+| New Retell agent          | `agent_ee62bd9b73af71d0b42a877f00`, version 4                                                  | Same protected identity; six custom tools plus native `end_call`                                             |
+| New Retell LLM            | `llm_8b63e841b1bbf015da8acca1ccfe`, version 4                                                  | Published `gpt-4.1-mini` configuration with KB `2026-09-21.4`                                                |
+| Dedicated Calendar        | Private configured Calendar ID; omitted from Git                                               | Created and verified through live consultation/show lifecycle                                                |
+| Houston demo number       | **(832) 501-3799**                                                                             | Fourth call proved repaired inquiry, availability, follow-up, and lifecycle tools                            |
+| Shared KB                 | `2026-09-21.4`, SHA-256 `63f6cc2c6ac6d9066a490513f50e9c3f48de9c4d6acbc2f17cde92e4880b9c96`     | Retell/API/chat parity verified after restart                                                                |
+| Local API                 | `127.0.0.1:4318`, task `jlm-demo-api`                                                          | Running S4U/Limited boot task; all three health paths passed post-upgrade                                    |
+| Tunnel task               | task `jlm-demo-tunnel`, protected token in `<private-root>/tunnel-token.txt`                   | Running; token never stored in Git or command arguments                                                      |
+| Local worker              | task `jlm-demo-worker`                                                                         | Running S4U/Limited boot task; startup jobs completed successfully                                           |
+| Persistent database       | `<private-root>/data/jlm-demo.sqlite`                                                          | SQLite WAL; synthetic demo records retained; 21 accepted and zero unresolved effects after round-three smoke |
+| Private storage           | `<private-root>/documents`, `/backups`, `/logs`                                                | Outside Git, restricted host ACLs                                                                            |
 
 On this host, `<private-root>` is `C:/Users/trustcore-rdp/.config/jlm-demo` and the configuration is `runtime.env` there. Do not print or commit populated files. Private resource manifests are `retell-provision.json` and `retell-number.json`; read them before retrying provisioning.
 
-## Round-two Public Shows resource — static fallback live, Calendar deferred
+## Historical round-two Public Shows resource — static fallback retained, Calendar deferred
 
 Round two has a tested isolated reader and `/api/public-events` route, but the integration remains
 disabled and returns the exact safe 503. Dave explicitly authorized a static exception for the
-current frontend: one manually curated public listing for **Solo Sunday with Justin LeBlanc**, Sep
+round-three frontend: one manually curated public listing for **Solo Sunday with Justin LeBlanc**, Sep
 27, 2026, 5:00–8:00 PM Central, at The Blue Lion Brunchery & Pub in The Woodlands, TX. It links to
 the public Woodlands Online source, omits the street address, is filtered at build time, and expires
 client-side after its end. The frontend makes no Calendar request. Set up the dedicated Public
@@ -62,10 +63,10 @@ Shows Calendar during the next QA pass.
   public web output and public phone-bearing payloads. The separate public human business number is
   **(832) 303-9116**.
 
-No owner-confirmed Public Shows Calendar ID, OAuth change, or live cache is recorded. The static
-Pages release did not require a runtime install/restart or Windows-checkout sync. Cloudflare Pages
-deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` serves the inquiry-only frontend. Deployment
-`a3152e61-ed47-41a7-9595-ebd42e694245` is the immediate rollback deployment. See
+No owner-confirmed Public Shows Calendar ID, OAuth change, or live cache is recorded. The round-two
+static Pages release did not require a runtime install/restart or Windows-checkout sync. Cloudflare
+Pages deployment `73a78aec-f10a-4b95-b494-fd191ecccbd6` served that release and is now the immediate
+frontend rollback. Deployment `a3152e61-ed47-41a7-9595-ebd42e694245` remains an older fallback. See
 [public-form release evidence](evidence/public-form-simplification-2026-09-23.md).
 
 ## Verified resources and remaining limitations
@@ -88,11 +89,10 @@ The upgrade script changes only existing owned demo tasks, stores private XML ba
 
 ## Deployment and configuration
 
-Node 24.14.0/npm 11.9.0 were used. Dependencies are pinned by `package-lock.json`. The corrected
-public-form release passed 146 unit/integration tests in 24 files, 21 clean Astro files, nine pages,
-34 Playwright passes with 26 intentional skips across five viewports, a zero-finding 15-file
-public-output audit, and the clean secret scan. Feature CI run 35905466911 and main CI run
-35905771617 passed. Build/deploy
+Node 24.14.0/npm 11.9.0 were used. Dependencies are pinned by `package-lock.json`. The round-three
+release passed 160 unit/integration tests in 26 files, 23 clean Astro files, ten pages, responsive
+browser coverage across five viewports, a zero-finding 16-file public-output audit, and the clean
+secret scan. Feature CI run 36083511550 and main CI run 36083745550 passed. Build/deploy
 only this Pages project:
 
 ```powershell
@@ -105,7 +105,7 @@ npx --yes wrangler@4.90.0 pages deploy apps/web/dist `
 
 `wrangler.jsonc` sets only this project and its `API_ORIGIN`. Runtime variable names are documented in `.env.example`. Secrets include `ADMIN_TOKEN`, `JOB_AUTH_SECRET`, SMTP password, Google client secret/refresh token, `OPENAI_API_KEY`, and `RETELL_API_KEY`. Identity allowlists and actual recipient addresses also stay private. Public UI never embeds them.
 
-Current checked public capabilities are booking, chat, voice, and billing on. Limits are 100 chat requests/day, 10 admitted voice calls/day, two concurrent voice calls and five minutes per call. Voice association requires a verified signed call. The final SMTP adapter checks every To/Cc/Bcc recipient. Restart the owned services after changing configuration and verify all three health paths before reporting a gate state.
+Current checked public capabilities are booking, chat, voice, billing, and inquiry notifications on. Limits are 100 chat requests/day, 10 admitted voice calls/day, two concurrent voice calls and five minutes per call. Voice association requires a verified signed call. The final SMTP adapter checks every To/Cc/Bcc recipient. Restart the owned services after changing configuration and verify all three health paths before reporting a gate state.
 
 The official downloaded `cloudflared.exe` is private, version 2026.9.1. Its SHA-256 matched the release digest: `2837888cc0f5d58f15b6dc478376de90b4d3ba5241c7947455d1e0a0df429712`. The `jlm-demo-tunnel` task is running with the protected token file and reported four QUIC connections. Resource isolation at 17:44:13 UTC confirmed all baseline provider resources unchanged.
 
@@ -117,4 +117,4 @@ For a website rollback, choose a previously verified deployment **inside `50by50
 
 For client transfer, export private records/documents through the CLI, take a consistent backup, create separate client-owned provider resources and credentials, replace every demo identity/allowlist, and rerun full acceptance before switching traffic. Synthetic demo invoices are not client accounting records. The checked-in repository contains no actual private export.
 
-Evidence: [public-form release](evidence/public-form-simplification-2026-09-23.md), [round-two local implementation](evidence/round-two-2026-09-22.md), [resource isolation](evidence/resource-isolation.json), [hosting](evidence/hosting-verification.json), [public API smoke](evidence/public-api-smoke.json), [live booking](evidence/live-booking-acceptance.json), [historical old-policy invoice](evidence/live-invoice-acceptance.json), [calendar invoice workflow](evidence/calendar-invoice-workflow.json), [operator receipts](evidence/operator-mail-receipts.json), [live voice](evidence/live-voice-acceptance.json), [call completion and v3 release](evidence/consultation-call-completion.json), [voice tool repair](evidence/voice-tool-repair.json), [Central voice release](evidence/retell-central-release.json), [Houston number](evidence/retell-number-provisioned.json), [startup reconciliation](evidence/startup-reconciliation.json), [resume ledger](evidence/resume-ledger-reconciliation.json), and [operations/restore](evidence/operations-verification.json).
+Evidence: [round-three inquiry release](evidence/inquiry-round-three-2026-09-24.md), [public-form release](evidence/public-form-simplification-2026-09-23.md), [round-two local implementation](evidence/round-two-2026-09-22.md), [resource isolation](evidence/resource-isolation.json), [hosting](evidence/hosting-verification.json), [public API smoke](evidence/public-api-smoke.json), [live booking](evidence/live-booking-acceptance.json), [historical old-policy invoice](evidence/live-invoice-acceptance.json), [calendar invoice workflow](evidence/calendar-invoice-workflow.json), [operator receipts](evidence/operator-mail-receipts.json), [live voice](evidence/live-voice-acceptance.json), [call completion and v3 release](evidence/consultation-call-completion.json), [voice tool repair](evidence/voice-tool-repair.json), [Central voice release](evidence/retell-central-release.json), [Houston number](evidence/retell-number-provisioned.json), [startup reconciliation](evidence/startup-reconciliation.json), [resume ledger](evidence/resume-ledger-reconciliation.json), and [operations/restore](evidence/operations-verification.json).

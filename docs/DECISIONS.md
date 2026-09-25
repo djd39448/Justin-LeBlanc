@@ -2,7 +2,8 @@
 
 ## Round-three inquiry decisions — 2026-09-24
 
-These decisions apply to the current implementation; they do not assert deployment.
+These decisions apply to the live round-three release. Provider acceptance does not imply inbox
+receipt, and the account-side ChatGPT layer remains pending authorization/observation.
 
 | Area           | Decision                                                                                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -12,16 +13,16 @@ These decisions apply to the current implementation; they do not assert deployme
 | Date/phone     | Composite readable date input normalizes to ISO; phone accepts blank or a valid 10-digit US number (or leading-1 11-digit form) and uses the exact owner error. Historical formatting is not rewritten. |
 | Notification   | Three inquiry email effects use deterministic IDs and the durable outbox, with a dedicated exact-single-recipient Justin gate. Invoice/performer recipient policy is unchanged.                         |
 | Follow-up      | New inquiries track received/due/completed state; jobs emit one due-soon effect at 20 hours and one overdue effect at 24 hours, with completion and replay suppression.                                 |
-| ChatGPT        | Gmail event-triggered ChatGPT Work task is an account-side optional layer. It remains pending Justin authorization and observed synthetic output.                                                       |
+| ChatGPT        | Gmail event-triggered ChatGPT Work task is an account-side optional layer. Justin authorization and observed synthetic output remain pending.                                                           |
 
 These defaults let the build proceed. Justin must approve real business terms before launch.
 
-## Public-form simplification owner decisions — 2026-09-23
+## Historical public-form simplification owner decisions — 2026-09-23
 
 These decisions supersede the 2026-09-22 public-form structure, field, label, browser-scheduling,
 and post-submit decisions only where they conflict. They do not supersede the preserved private
 booking, consultation, tentative-hold, Calendar, operator, assistant, invoice, security, or
-provider-isolation decisions. They are implemented and live in commit
+provider-isolation decisions. They were first implemented in commit
 `c6abf12015bcb6ef179985a08919cd3319026915` and Pages deployment
 `73a78aec-f10a-4b95-b494-fd191ecccbd6`. See
 [PUBLIC_FORM_SIMPLIFICATION_SPEC.md](PUBLIC_FORM_SIMPLIFICATION_SPEC.md) and

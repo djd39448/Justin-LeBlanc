@@ -1,3 +1,7 @@
+import { mkdtemp, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import { MailEffectSchema } from '../apps/api/adapters/email.js';
@@ -199,6 +203,62 @@ describe('round-three inquiry backend', () => {
     await runInquiryFollowups(store, config(true), t24);
     expect(store.effects().filter((e) => e.kind.startsWith('email.inquiry_'))).toHaveLength(3);
     store.close();
+  });
+
+  it('persists follow-up thresholds across SQLite reopens without duplicate alerts', async () => {
+    const directory = await mkdtemp(join(tmpdir(), 'jlm-inquiry-followups-'));
+    const database = join(directory, 'state.sqlite');
+    let store: Store | undefined;
+    try {
+      store = new Store(database);
+      const first = makeService(store, true).upsertInquiry({ input: intake() });
+      const created = store.get('inquiries', first.inquiryId, InquirySchema);
+      if (!created.data.followUp) throw new Error('missing state');
+      const receivedAt = Date.parse(created.data.followUp.receivedAt);
+      const t20 = new Date(receivedAt + 20 * 60 * 60_000);
+      expect(await runInquiryFollowups(store, config(true), t20)).toMatchObject({
+        dueSoon: 1,
+        overdue: 0,
+      });
+      store.close();
+      store = undefined;
+
+      store = new Store(database);
+      expect(
+        await runInquiryFollowups(store, config(true), new Date(t20.getTime() + 60_000)),
+      ).toMatchObject({ dueSoon: 0, overdue: 0 });
+      let reopened = store.get('inquiries', first.inquiryId, InquirySchema);
+      expect(reopened.data.followUp).toMatchObject({
+        reminder20QueuedAt: t20.toISOString(),
+        overdue24QueuedAt: null,
+      });
+      const t24 = new Date(receivedAt + 24 * 60 * 60_000);
+      expect(await runInquiryFollowups(store, config(true), t24)).toMatchObject({
+        dueSoon: 0,
+        overdue: 1,
+      });
+      store.close();
+      store = undefined;
+
+      store = new Store(database);
+      expect(
+        await runInquiryFollowups(store, config(true), new Date(t24.getTime() + 60_000)),
+      ).toMatchObject({ dueSoon: 0, overdue: 0 });
+      reopened = store.get('inquiries', first.inquiryId, InquirySchema);
+      expect(reopened.data.followUp).toMatchObject({
+        reminder20QueuedAt: t20.toISOString(),
+        overdue24QueuedAt: t24.toISOString(),
+      });
+      expect(
+        store.effects().filter((effect) => effect.kind === 'email.inquiry_due_soon'),
+      ).toHaveLength(1);
+      expect(
+        store.effects().filter((effect) => effect.kind === 'email.inquiry_overdue'),
+      ).toHaveLength(1);
+    } finally {
+      if (store !== undefined) store.close();
+      await rm(directory, { recursive: true, force: true });
+    }
   });
 
   it('completion before 20h suppresses alerts and preserves timestamp on replay', async () => {
