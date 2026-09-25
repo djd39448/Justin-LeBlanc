@@ -16,6 +16,30 @@ through the dedicated `jlm-demo inquiry-followed-up --id ... --revision ... --ac
 with the same operation exposed in admin. Fill release backup, SHA, health, synthetic inquiry,
 delivery, and rollback fields in the round-three evidence record after observation.
 
+For this release, install only `codex/justin-inquiry-round-three` and require its tip to match the
+exact SHA recorded in the dated evidence before restarting anything:
+
+```powershell
+$configPath = 'C:\Users\trustcore-rdp\.config\jlm-demo\runtime.env'
+$privateRoot = 'C:\Users\trustcore-rdp\.config\jlm-demo'
+
+git fetch origin
+git status --short
+git switch codex/justin-inquiry-round-three
+git pull --ff-only origin codex/justin-inquiry-round-three
+git rev-parse HEAD
+node "--env-file=$configPath" --import tsx scripts/cli.ts --json backup `
+  --directory (Join-Path $privateRoot 'backups')
+npm ci
+npm run verify
+```
+
+Set both protected inquiry keys in one no-echo edit, first with notifications disabled. Restart
+only the owned Justin tasks with `scripts/stop-services.ps1`, verify the new health capability on
+all three paths, then enable notifications and repeat the owned-service health/outbox check. The
+round-two commands later in this document are retained as historical release evidence; do not use
+their branch name for round three.
+
 Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Public-form release and live
 smoke: 2026-09-23.
 This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new
@@ -44,7 +68,10 @@ voice-agent phone field. The public frontend independently displays Justin's hum
 **(832) 303-9116**. All three `/api/public-events` paths returned HTTP 503 with the fixed sanitized body
 and approved no-store/retry headers. Actual recovery after sign-out or reboot remains untested.
 
-## Public-form release boundary — inquiry-only frontend live, Calendar disabled
+## Historical round-two public-form release boundary — inquiry-only frontend live, Calendar disabled
+
+This section records the prior `codex/justin-round-two` release. Its branch-specific commands are
+not the current round-three procedure.
 
 Verified implementation commit `c6abf12015bcb6ef179985a08919cd3319026915` is on both
 `origin/main` and `origin/codex/justin-round-two`. It implements the approved
