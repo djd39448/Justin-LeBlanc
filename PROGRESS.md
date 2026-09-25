@@ -1,5 +1,14 @@
 # Progress
 
+## Round-three inquiry release — implemented locally, release pending
+
+As of 2026-09-24, the round-three branch contains the approved two-step inquiry-only planner,
+strict phone and composite-date validation, receipt/idempotency handling, Justin-only durable
+notification effects, 20-hour/24-hour follow-up state, and authenticated operator/admin
+completion controls. Local verification and deployment evidence are intentionally recorded as
+passed in the dated evidence record; deployment fields remain pending. This is not yet a
+deployment or provider-delivery claim.
+
 Updated 2026-09-23. **The two-step, inquiry-only public planner is live at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision
 `c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and

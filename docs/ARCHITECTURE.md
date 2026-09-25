@@ -1,5 +1,19 @@
 # Architecture and data contracts
 
+## Round-three inquiry boundary
+
+The public planner is a two-step inquiry client only. The browser validates optional phone input,
+normalizes a composite event date to the existing ISO contract, preserves a saved idempotency key,
+and receives a no-PII receipt route. No resume token or customer content appears in the receipt
+URL or browser analytics. The backend keeps one canonical inquiry record and preserves retired
+legacy values on replacement updates.
+
+Inquiry notifications are separate email effect kinds with a purpose-specific final SMTP gate:
+the configured Justin address is the sole To recipient and CC/BCC are empty. Effects use the
+existing deterministic outbox/Message-ID/Sent reconciliation path. A durable follow-up record
+drives exactly one due-soon effect at 20 hours and one overdue effect at 24 hours, with completion
+and replay suppression. These effects do not share billing recipient policy or state.
+
 ## Selected direction
 
 Standalone portable TypeScript repository; Astro static-first website with small interactive

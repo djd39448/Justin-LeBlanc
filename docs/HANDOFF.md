@@ -1,5 +1,14 @@
 # Demo handoff
 
+## Round-three status — local implementation only
+
+The current round-three implementation is the two-step inquiry-only planner plus its protected
+backend notification/follow-up support. It passed the local release gates and awaits runtime,
+Pages, and synthetic-production evidence. Do not describe it as deployed, provider
+delivered, or ChatGPT-active until the evidence placeholders are replaced by observed results.
+The account-side Gmail task instructions are in
+[CHATGPT_INQUIRY_NOTIFICATION_SETUP.md](CHATGPT_INQUIRY_NOTIFICATION_SETUP.md).
+
 Status date: 2026-09-23. The isolated baseline is deployed and its web, chat, private Calendar,
 email, and voice transport paths have real provider evidence. The two-step, inquiry-only public
 planner is live from commit `c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and

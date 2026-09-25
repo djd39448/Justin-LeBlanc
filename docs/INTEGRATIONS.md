@@ -1,5 +1,15 @@
 # Integration inventory and isolation plan
 
+## Round-three integration boundary — not yet deployed
+
+The release adds protected runtime variables `INQUIRY_NOTIFICATIONS_ENABLED` and
+`INQUIRY_NOTIFICATION_EMAIL` (the real value is never committed), three inquiry-only outbox
+effect kinds, and a dedicated final SMTP recipient gate. Existing invoice, performer, customer,
+and BCC policies are not widened. The Gmail/ChatGPT layer is account-side and optional: Justin
+must authorize an eligible Gmail event-triggered ChatGPT Work task and observe a synthetic result;
+the website does not call a personal-ChatGPT push API. See
+[the setup procedure](CHATGPT_INQUIRY_NOTIFICATION_SETUP.md).
+
 Current implementation status and exact resource IDs are maintained in [resource-inventory.md](resource-inventory.md) and [acceptance results](evidence/acceptance-results.md). The source observations below are the original planning baseline, not the final live-readiness result.
 
 Inspected local source on 2026-09-21. This proves code exists, not deployed/account readiness.

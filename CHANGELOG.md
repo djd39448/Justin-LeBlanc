@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-09-24 — Round-three inquiry implementation
+
+- Implemented the exact two-step inquiry-only planner, optional strict phone validation, composite
+  event-date input, safe receipt route, and browser idempotency handling.
+- Added legacy replacement preservation, Justin-only deterministic inquiry notifications through
+  the durable outbox, 20-hour/24-hour follow-up lifecycle, and authenticated CLI/admin completion.
+- Added the release specification, local verification evidence, and account-side ChatGPT/Gmail
+  setup.
+- Local gates pass; deployment, provider delivery, and ChatGPT activation remain pending until
+  observed and recorded.
+
 ## 2026-09-22 — Round-two specification revision
 
 - Made the homepage conversion-first: the planner begins in the opening experience rather than at

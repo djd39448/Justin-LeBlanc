@@ -1,5 +1,14 @@
 # Isolated resource inventory and resume commands
 
+## Round-three resource status — local only
+
+The round-three feature branch adds no external resource and does not alter TrustCore, Telnyx,
+Calendar, DNS, or existing mail identities. It uses the existing Justin API/worker, SQLite,
+durable outbox, and Justin Pages project only. Protected inquiry configuration is runtime-only;
+the recipient value is intentionally absent from this inventory. Deployment SHA, backup path,
+owned-service restart, synthetic inquiry, mail receipt, and rollback identifiers remain labeled
+placeholders in the round-three evidence record until root observes them.
+
 Recorded 2026-09-21; round-two source status updated 2026-09-22; public-form deployment updated
 2026-09-23. This inventory contains identifiers and variable names, never credentials. Existing
 resources are read-only references. Calendar-driven invoicing is implemented, CI-verified and

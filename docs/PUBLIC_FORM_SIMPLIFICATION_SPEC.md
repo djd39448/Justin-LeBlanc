@@ -1,5 +1,12 @@
 # Public form simplification specification
 
+> **Superseded for conflicting details (2026-09-24):** The approved
+> [round-three specification](INQUIRY_ROUND_THREE_SPEC.md) now controls phone/date rules,
+> equipment/outdoors controls, receipt copy, idempotency, inquiry notifications, and follow-up
+> behavior. This document remains historical context for the simplification direction and for
+> all non-conflicting brand, privacy, accessibility, and backend-preservation requirements; it is
+> not deployment evidence.
+
 Status: implemented, verified, and live
 Date: 2026-09-23
 Owner: Dave Dobbins

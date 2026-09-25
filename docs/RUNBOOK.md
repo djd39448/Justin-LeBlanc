@@ -1,5 +1,21 @@
 # Demo Operations Runbook
 
+## Round-three release and operations boundary
+
+Round-three is implemented locally but is not a deployment claim. Before release, back up the
+SQLite database and documents, inspect pending/uncertain outbox effects, deploy the additive API
+and worker support first, set protected inquiry configuration, verify owned-service health, then
+deploy the dependent Pages frontend. Use the pinned Wrangler version and only the Justin Pages
+project. Never reset SQLite or resend an uncertain message by hand.
+
+The protected runtime names are `INQUIRY_NOTIFICATIONS_ENABLED` and
+`INQUIRY_NOTIFICATION_EMAIL`; the repository contains only an empty placeholder. Inquiry mail is
+Justin-only through its separate exact-recipient gate. The worker evaluates 20-hour due-soon and
+24-hour overdue thresholds from durable state; an authenticated operator can complete an inquiry
+through the dedicated `jlm-demo inquiry-followed-up --id ... --revision ... --actor ...` command,
+with the same operation exposed in admin. Fill release backup, SHA, health, synthetic inquiry,
+delivery, and rollback fields in the round-three evidence record after observation.
+
 Last runtime verification: 2026-09-22 at approximately 21:26 UTC. Public-form release and live
 smoke: 2026-09-23.
 This runbook covers the isolated Justin LeBlanc demo. It does not authorize production traffic, new

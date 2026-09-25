@@ -1,5 +1,17 @@
 # Justin LeBlanc — private event booking demo
 
+## Round-three inquiry release — implemented locally, not deployed
+
+The 2026-09-24 round-three work is implemented and locally verified on the feature branch. It
+replaces the public planner with the exact two-step inquiry flow, strict optional phone/date
+handling, a safe receipt route, deterministic inquiry idempotency, Justin-only inquiry outbox
+notifications, and the durable 20-hour/24-hour follow-up lifecycle. It does not add public
+scheduling or booking controls. Deployment, provider delivery, and Justin's ChatGPT account-side
+notification remain pending until release evidence is recorded. See
+[the round-three specification](docs/INQUIRY_ROUND_THREE_SPEC.md),
+[setup for the optional ChatGPT task](docs/CHATGPT_INQUIRY_NOTIFICATION_SETUP.md), and
+[release evidence placeholders](docs/evidence/inquiry-round-three-2026-09-24.md).
+
 Website: **https://justinleblancmusic.50by50.dev**. Private repository: [djd39448/Justin-LeBlanc](https://github.com/djd39448/Justin-LeBlanc).
 
 The existing website and application are deployed. Public health, inquiry intake/resume, chat, and the dedicated private Google Calendar booking lifecycle have passed through the isolated demo stack. Automatic 08:00 America/Chicago invoicing from eligible completed Calendar performances is implemented, tested and loaded in the running services; a fresh live end-to-end invoice delivery remains pending. The earlier reply-driven $700 invoice remains historical old-policy evidence. Retell v4, API and chat share billing-policy KB `2026-09-21.4`. Full voice booking, native hangup, and recovery after an actual reboot or sign-out remain unverified.

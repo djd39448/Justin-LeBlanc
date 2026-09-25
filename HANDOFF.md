@@ -1,5 +1,15 @@
 # Current implementation handoff
 
+## Round-three handoff boundary
+
+Round-three is implemented locally on `codex/justin-inquiry-round-three`, based on the verified
+remote main head. The public experience is exactly two inquiry steps and ends at
+`/inquiry-received/`; it has no public availability, scheduling, hold, or booking action. Phone
+and date rules, replacement-update compatibility, idempotency, Justin-only inquiry outbox mail,
+and the durable 20-hour/24-hour follow-up lifecycle are part of this release. The branch is not
+yet a deployment, email-delivery, or ChatGPT-automation claim. The full local gate passed; root
+should fill the remaining runtime fields after release.
+
 The two-step, inquiry-only public planner is live at
 `https://justinleblancmusic.50by50.dev/` from verified frontend revision
 `c6abf12015bcb6ef179985a08919cd3319026915`, on both `origin/main` and

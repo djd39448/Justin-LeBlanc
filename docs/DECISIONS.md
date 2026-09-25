@@ -1,5 +1,19 @@
 # Decisions and provisional demo policies
 
+## Round-three inquiry decisions — 2026-09-24
+
+These decisions apply to the current implementation; they do not assert deployment.
+
+| Area           | Decision                                                                                                                                                                                                |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Public journey | Exactly two inquiry steps, then `/inquiry-received/`; no public scheduling, availability, holds, or booking.                                                                                            |
+| Contact        | `Your Name`, `Email`, optional `Phone Number`, then `Text`, `Email`, `Phone Call` with Text default. Email is the private fallback when no phone is supplied.                                           |
+| Event details  | Keep event type, stable city, date, outdoors, duration, two equipment choices, optional budget, and optional special requests; retired values remain preserved on legacy replacement updates.           |
+| Date/phone     | Composite readable date input normalizes to ISO; phone accepts blank or a valid 10-digit US number (or leading-1 11-digit form) and uses the exact owner error. Historical formatting is not rewritten. |
+| Notification   | Three inquiry email effects use deterministic IDs and the durable outbox, with a dedicated exact-single-recipient Justin gate. Invoice/performer recipient policy is unchanged.                         |
+| Follow-up      | New inquiries track received/due/completed state; jobs emit one due-soon effect at 20 hours and one overdue effect at 24 hours, with completion and replay suppression.                                 |
+| ChatGPT        | Gmail event-triggered ChatGPT Work task is an account-side optional layer. It remains pending Justin authorization and observed synthetic output.                                                       |
+
 These defaults let the build proceed. Justin must approve real business terms before launch.
 
 ## Public-form simplification owner decisions — 2026-09-23

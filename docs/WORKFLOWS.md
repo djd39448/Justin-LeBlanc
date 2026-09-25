@@ -1,5 +1,20 @@
 # Booking and invoicing workflows
 
+## Round-three public inquiry workflow
+
+The browser collects contact details in step 1 and event details in step 2, shows recap and
+consents, then persists one canonical inquiry and navigates to `/inquiry-received/`. It never
+checks availability, schedules a consultation, places a hold, books a date, or promises pricing.
+A high-entropy browser idempotency key is saved before the first request and reused on retry;
+same-key replays return the same inquiry without a second initial alert. Legacy replacement
+updates explicitly merge retired fields so historical data remains readable.
+
+After persistence, the backend may enqueue one Justin-only `email.inquiry_received` effect. The
+follow-up job uses durable state and an injected clock: one `email.inquiry_due_soon` at 20 hours
+and one `email.inquiry_overdue` at 24 hours while incomplete. Completion and replay suppress
+duplicates. This lifecycle is separate from billing. The authenticated CLI command
+`inquiry-followed-up` and the admin action share the same audited domain operation.
+
 ## Shared rules
 
 One inquiry ID across form/chat/voice; customer ID across multiple shows. Every mutation records

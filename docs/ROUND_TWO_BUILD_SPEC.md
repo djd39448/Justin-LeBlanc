@@ -1,5 +1,12 @@
 # Round-two brand and conversion build specification
 
+> **Superseded for conflicting inquiry details (2026-09-24):** The approved
+> [round-three specification](INQUIRY_ROUND_THREE_SPEC.md) controls the current public inquiry
+> field order, phone/date behavior, receipt, idempotency, Justin-only notification effects, and
+> 20-hour/24-hour follow-up lifecycle. This round-two document remains historical context for
+> brand, conversion, preserved private capabilities, and non-conflicting deployment safeguards;
+> neither its historical status text nor this note claims that round three is deployed.
+
 Status: owner-approved requirements, not yet implemented
 Date: 2026-09-22
 Owner: Dave Dobbins
