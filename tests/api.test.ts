@@ -159,6 +159,29 @@ describe('HTTP boundaries', () => {
     expect(other.status).toBe(400);
     expect(await other.text()).not.toContain('client@example.com');
   });
+  it('redacts malformed inquiry JSON from both the response and ordinary logs', async () => {
+    const { app } = fixture();
+    const logged: string[] = [];
+    const consoleError = vi.spyOn(console, 'error').mockImplementation((value) => {
+      logged.push(String(value));
+    });
+    try {
+      const response = await app.request('/api/inquiries', {
+        method: 'POST',
+        body: '{"name":"Private Name","email":"private@example.test",',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      expect(response.status).toBe(400);
+      const body = await response.text();
+      expect(body).not.toContain('Private Name');
+      expect(body).not.toContain('private@example.test');
+      expect(logged.join('\n')).not.toContain('Private Name');
+      expect(logged.join('\n')).not.toContain('private@example.test');
+      expect(logged.join('\n')).toContain('customer input is redacted');
+    } finally {
+      consoleError.mockRestore();
+    }
+  });
   it('keeps follow-ups behind job authentication and the invoice email gate', async () => {
     const { app, runtime } = fixture();
     const request = (token: string) =>

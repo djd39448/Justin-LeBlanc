@@ -10,7 +10,12 @@ import { createHash, randomBytes, randomUUID, timingSafeEqual } from 'node:crypt
 import { z } from 'zod';
 
 import { MailEffectSchema } from '../../apps/api/adapters/email.js';
-import { buildInquiryMail, idempotencyHash, inquiryEffectId, type InquiryNotificationOptions } from '../../apps/api/inquiry-notifications.js';
+import {
+  buildInquiryMail,
+  idempotencyHash,
+  inquiryEffectId,
+  type InquiryNotificationOptions,
+} from '../../apps/api/inquiry-notifications.js';
 import { Store } from '../../apps/api/store.js';
 import {
   ConsultationSchema,
@@ -248,10 +253,18 @@ export class BookingService {
         const customer = this.store.get('customers', inquiry.data.customerId, CustomerSchema);
         const provided = request.providedFields;
         const priorInput = inquiry.data.input;
-        const mergedInput = provided === undefined ? input : InquiryStoredInputSchema.parse({
-          ...priorInput,
-          ...Object.fromEntries([...provided].map((key) => [key, (input as unknown as Record<string, unknown>)[key]])),
-        });
+        const mergedInput =
+          provided === undefined
+            ? input
+            : InquiryStoredInputSchema.parse({
+                ...priorInput,
+                ...Object.fromEntries(
+                  [...provided].map((key) => [
+                    key,
+                    (input as unknown as Record<string, unknown>)[key],
+                  ]),
+                ),
+              });
         const nextCustomer: Customer = {
           ...customer.data,
           name: mergedInput.name,
@@ -281,9 +294,18 @@ export class BookingService {
       if (request.idempotencyKey !== undefined) {
         const processedId = `inquiry-idempotency:${idempotencyHash(request.idempotencyKey)}`;
         const inputHash = idempotencyHash(JSON.stringify(input));
-        const prior = this.store.find('processed_events', processedId, z.object({ kind: z.literal('inquiry_create'), inquiryId: z.string(), inputHash: z.string() }));
+        const prior = this.store.find(
+          'processed_events',
+          processedId,
+          z.object({
+            kind: z.literal('inquiry_create'),
+            inquiryId: z.string(),
+            inputHash: z.string(),
+          }),
+        );
         if (prior !== undefined) {
-          if (prior.data.inputHash !== inputHash) throw new Error('Idempotency-Key was already used for a different inquiry payload.');
+          if (prior.data.inputHash !== inputHash)
+            throw new Error('Idempotency-Key was already used for a different inquiry payload.');
           const existing = this.store.get('inquiries', prior.data.inquiryId, InquirySchema);
           return { inquiryId: existing.id, resumeToken, status: existing.data.status };
         }
@@ -302,30 +324,51 @@ export class BookingService {
         poNumber: '',
       });
       const receivedAt = new Date().toISOString();
+      const followUp = {
+        receivedAt,
+        dueAt: new Date(Date.parse(receivedAt) + 24 * 60 * 60_000).toISOString(),
+        initialAlertQueuedAt: null,
+        followedUpAt: null,
+        reminder20QueuedAt: null,
+        overdue24QueuedAt: null,
+      };
       const inquiry = this.store.insert<Inquiry>('inquiries', inquiryId, {
         customerId,
         input,
         status: 'new',
         tokenHash: hashToken(resumeToken),
         followupQuestions: [],
-        followUp: {
-          receivedAt,
-          dueAt: new Date(Date.parse(receivedAt) + 24 * 60 * 60_000).toISOString(),
-          initialAlertQueuedAt: null,
-          followedUpAt: null,
-          reminder20QueuedAt: null,
-          overdue24QueuedAt: null,
-        },
+        followUp,
       });
       if (request.idempotencyKey !== undefined)
-        this.store.insert('processed_events', `inquiry-idempotency:${idempotencyHash(request.idempotencyKey)}`, {
-          kind: 'inquiry_create', inquiryId: inquiry.id, inputHash: idempotencyHash(JSON.stringify(input)),
-        });
+        this.store.insert(
+          'processed_events',
+          `inquiry-idempotency:${idempotencyHash(request.idempotencyKey)}`,
+          {
+            kind: 'inquiry_create',
+            inquiryId: inquiry.id,
+            inputHash: idempotencyHash(JSON.stringify(input)),
+          },
+        );
       if (this.inquiryNotifications?.enabled && this.inquiryNotifications.recipient) {
-        const mail = buildInquiryMail({ inquiryId, intake: input, receivedAt: inquiry.createdAt, dueAt: inquiry.data.followUp!.dueAt, kind: 'received', options: this.inquiryNotifications });
-        this.store.enqueue(inquiryEffectId(inquiryId, 'received'), 'email.inquiry_received', inquiryId, mail);
-        inquiry.data.followUp!.initialAlertQueuedAt = inquiry.createdAt;
-        this.store.update('inquiries', inquiry.id, inquiry.revision, inquiry.data);
+        const mail = buildInquiryMail({
+          inquiryId,
+          intake: input,
+          receivedAt,
+          dueAt: followUp.dueAt,
+          kind: 'received',
+          options: this.inquiryNotifications,
+        });
+        this.store.enqueue(
+          inquiryEffectId(inquiryId, 'received'),
+          'email.inquiry_received',
+          inquiryId,
+          mail,
+        );
+        this.store.update('inquiries', inquiry.id, inquiry.revision, {
+          ...inquiry.data,
+          followUp: { ...followUp, initialAlertQueuedAt: receivedAt },
+        });
       }
       this.store.audit('public', 'inquiry.created', inquiry.id, { source: input.source });
       return { inquiryId, resumeToken, status: inquiry.data.status };

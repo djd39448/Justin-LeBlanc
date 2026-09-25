@@ -47,6 +47,7 @@ export function createApp(runtime: Runtime): Hono {
         chat: runtime.config.AI_ENABLED,
         voice: runtime.config.VOICE_ENABLED,
         billing: runtime.config.INVOICE_SEND_ENABLED,
+        inquiryNotifications: runtime.config.INQUIRY_NOTIFICATIONS_ENABLED,
       },
     }),
   );
@@ -178,6 +179,24 @@ export function createApp(runtime: Runtime): Hono {
         },
         400,
       );
+    if (c.req.path === '/api/inquiries' || c.req.path.startsWith('/api/inquiries/')) {
+      console.error(
+        JSON.stringify({
+          event: 'inquiry_request_failed',
+          path: c.req.path,
+          error: error.name,
+          remedy:
+            'Inspect the bounded inquiry request and server audit; customer input is redacted.',
+        }),
+      );
+      return c.json(
+        {
+          error: 'operation_failed',
+          message: 'We could not save the inquiry. Check the form and try again.',
+        },
+        400,
+      );
+    }
     const secrets = [
       runtime.config.OPENAI_API_KEY,
       runtime.config.RETELL_API_KEY,

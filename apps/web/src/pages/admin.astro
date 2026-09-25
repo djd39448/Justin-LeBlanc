@@ -355,13 +355,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       const input = nestedRecord(inquiry.data, "input");
       const tr = document.createElement("tr");
       const followUp = nestedRecord(inquiry.data, "followUp");
+      const hasFollowUp = typeof inquiry.data.followUp === "object" && inquiry.data.followUp !== null;
       const followedAt = recordText(followUp, "followedUpAt", "");
       const action = document.createElement("td");
-      if (followedAt) action.textContent = `Completed ${formatDate(followedAt)}`;
+      if (!hasFollowUp) action.textContent = "Legacy record";
+      else if (followedAt) action.textContent = `Completed ${formatDate(followedAt)}`;
       else action.append(actionButton("Mark followed up", () => void runAction("inquiry-followed-up", { id: inquiry.id, revision: inquiry.revision })));
       tr.append(tableCell(inquiry.id), tableCell(`${recordText(input, "eventType")} · ${recordText(input, "city")}`),
         tableCell(`${recordText(input, "name")} · ${recordText(input, "email")}`), statusCell(recordText(inquiry.data, "status")),
-        tableCell(recordText(followUp, "dueAt")), tableCell(String(inquiry.revision)), action);
+        tableCell(hasFollowUp ? formatDate(recordText(followUp, "dueAt")) : "Not enrolled"), tableCell(String(inquiry.revision)), action);
       tbody.append(tr);
     }
     if (state.inquiries.length === 0) appendEmpty(tbody, 7, "No inquiries in this demo tenant.");

@@ -31,6 +31,7 @@ program
       booking: r.config.BOOKING_WRITES_ENABLED,
       chat: r.config.AI_ENABLED,
       voice: r.config.VOICE_ENABLED,
+      inquiryNotifications: r.config.INQUIRY_NOTIFICATIONS_ENABLED,
       pending: r.store.effects('pending').length,
       uncertain: r.store.effects('uncertain').length,
     })),

@@ -1,6 +1,7 @@
 /** Validates shared booking records. Dependencies: Zod. Consumers: API, domain, documents.
  * Why: every channel uses identical bounded data and explicit demo assumptions. */
 import { z } from 'zod';
+
 import { PhoneSchema } from './phone.js';
 
 export const TENANT = 'justin-demo';
@@ -24,43 +25,41 @@ export const TimezoneSchema = z.string().refine((value) => {
     return false;
   }
 }, 'Use a valid IANA timezone.');
-export const InquiryInputSchema = z
-  .object({
-    name: short.min(1),
-    email: z
-      .email()
-      .max(254)
-      .transform((v) => v.toLowerCase()),
-    phone: PhoneSchema.default(''),
-    preferredReply: z.enum(['email', 'text', 'phone']).default('email'),
-    company: short.default(''),
-    eventType: z.enum(['private', 'celebration', 'corporate', 'wedding', 'other']),
-    date: z.union([z.iso.date(), z.literal('flexible')]),
-    city: short.min(1),
-    venue: short.default(''),
-    address: short.default(''),
-    setting: z.enum(['indoor', 'outdoor', 'unknown']).default('unknown'),
-    guestCount: z.number().int().min(1).max(10000).nullable().default(null),
-    startLocal: short.default(''),
-    endLocal: short.default(''),
-    durationMinutes: z.number().int().min(30).max(720),
-    timezone: TimezoneSchema.default('America/Chicago'),
-    atmosphere: short.min(1),
-    musicRequests: note.default(''),
-    scheduleNotes: note.default(''),
-    equipment: note.default('unknown'),
-    access: note.default('unknown'),
-    budget: short.default('unsure'),
-    budgetCents: BudgetCentsSchema,
-    notes: note.default(''),
-    consent: z.literal(true),
-    marketingConsent: z.boolean().default(false),
-    source: z.enum(['form', 'chat', 'voice', 'operator']).default('form'),
-    utm: z
-      .object({ source: short.optional(), medium: short.optional(), campaign: short.optional() })
-      .default({}),
-  })
-  ;
+export const InquiryInputSchema = z.object({
+  name: short.min(1),
+  email: z
+    .email()
+    .max(254)
+    .transform((v) => v.toLowerCase()),
+  phone: PhoneSchema.default(''),
+  preferredReply: z.enum(['email', 'text', 'phone']).default('email'),
+  company: short.default(''),
+  eventType: z.enum(['private', 'celebration', 'corporate', 'wedding', 'other']),
+  date: z.union([z.iso.date(), z.literal('flexible')]),
+  city: short.min(1),
+  venue: short.default(''),
+  address: short.default(''),
+  setting: z.enum(['indoor', 'outdoor', 'unknown']).default('unknown'),
+  guestCount: z.number().int().min(1).max(10000).nullable().default(null),
+  startLocal: short.default(''),
+  endLocal: short.default(''),
+  durationMinutes: z.number().int().min(30).max(720),
+  timezone: TimezoneSchema.default('America/Chicago'),
+  atmosphere: short.min(1),
+  musicRequests: note.default(''),
+  scheduleNotes: note.default(''),
+  equipment: note.default('unknown'),
+  access: note.default('unknown'),
+  budget: short.default('unsure'),
+  budgetCents: BudgetCentsSchema,
+  notes: note.default(''),
+  consent: z.literal(true),
+  marketingConsent: z.boolean().default(false),
+  source: z.enum(['form', 'chat', 'voice', 'operator']).default('form'),
+  utm: z
+    .object({ source: short.optional(), medium: short.optional(), campaign: short.optional() })
+    .default({}),
+});
 /** Canonical parsed inquiry shape; raw JSON may omit budgetCents and receives the null default. */
 export type InquiryInput = z.infer<typeof InquiryInputSchema>;
 /** Historical rows may contain legacy phone text; new writes remain strict. */

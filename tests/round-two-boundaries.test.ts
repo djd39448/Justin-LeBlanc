@@ -63,7 +63,7 @@ function apiFixture(): { app: ReturnType<typeof createApp> } {
 
 describe('round-two HTTP inquiry boundaries', () => {
   it.each(['text', 'phone'] as const)(
-    'maps missing phone to phone for %s',
+    'allows %s reply preference to omit phone',
     async (preferredReply) => {
       const { app } = apiFixture();
       const response = await app.request('/api/inquiries', {
@@ -71,10 +71,9 @@ describe('round-two HTTP inquiry boundaries', () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...intake, preferredReply, phone: '   ' }),
       });
-      expect(response.status).toBe(400);
-      const body = (await response.json()) as { fields: { path: string }[] };
-      expect(body.fields).toEqual(
-        expect.arrayContaining([expect.objectContaining({ path: 'phone' })]),
+      expect(response.status).toBe(201);
+      expect((await response.json()) as { id: string; token: string }).toEqual(
+        expect.objectContaining({ id: expect.any(String), token: expect.any(String) }),
       );
     },
   );

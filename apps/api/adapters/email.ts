@@ -152,7 +152,8 @@ export class SmtpEmailAdapter {
   /** Sends one validated effect; a network error becomes uncertain rather than retryable. */
   async send(input: MailEffect): Promise<{ providerMessageId: string }> {
     const effect = MailEffectSchema.parse(input);
-    if (effect.recipientPolicy === 'inquiry_notification') assertInquiryNotificationRecipients(this.config, effect);
+    if (effect.recipientPolicy === 'inquiry_notification')
+      assertInquiryNotificationRecipients(this.config, effect);
     else assertRecipients(this.config, [...effect.to, ...effect.cc, ...effect.bcc]);
     try {
       const result = await this.transport.sendMail({
@@ -177,9 +178,12 @@ export class SmtpEmailAdapter {
       return { providerMessageId: result.messageId };
     } catch (error) {
       if (error instanceof UncertainEmailSendError) throw error;
-      const message = effect.recipientPolicy === 'inquiry_notification'
-        ? 'Inquiry notification provider outcome is uncertain; reconcile by Message-ID before retry.'
-        : error instanceof Error ? error.message : String(error);
+      const message =
+        effect.recipientPolicy === 'inquiry_notification'
+          ? 'Inquiry notification provider outcome is uncertain; reconcile by Message-ID before retry.'
+          : error instanceof Error
+            ? error.message
+            : String(error);
       throw new UncertainEmailSendError(effect.messageId, message);
     }
   }

@@ -23,6 +23,67 @@ afterEach(() => {
 });
 
 describe('outbox dispatcher', () => {
+  it('dispatches registered inquiry mail only while its dedicated switch is enabled', async () => {
+    const enabledStore = makeStore();
+    enqueueInquiryMail(enabledStore);
+    let sends = 0;
+    const sender = {
+      send: async () => {
+        sends += 1;
+        return { providerMessageId: '<inquiry-received.example@example.test>' };
+      },
+    };
+    const enabled = createDispatcher(
+      enabledStore,
+      {
+        ...config(false),
+        INQUIRY_NOTIFICATIONS_ENABLED: true,
+        INQUIRY_NOTIFICATION_EMAIL: 'justin@example.test',
+      },
+      sender,
+    );
+    expect((await enabled.dispatchPending()).accepted).toBe(1);
+    expect(sends).toBe(1);
+
+    const disabledStore = makeStore();
+    enqueueInquiryMail(disabledStore);
+    const disabled = createDispatcher(disabledStore, config(false), sender);
+    expect((await disabled.dispatchPending()).skipped).toBe(1);
+    expect(disabledStore.effects('pending')).toHaveLength(1);
+    expect(sends).toBe(1);
+  });
+
+  it('does not let disabled inquiry mail starve a later enabled effect', async () => {
+    const store = makeStore();
+    enqueueInquiryMail(store);
+    enqueueBookingMail(store);
+    let sends = 0;
+    const dispatcher = createDispatcher(
+      store,
+      {
+        ...config(true),
+        INQUIRY_NOTIFICATIONS_ENABLED: false,
+      },
+      {
+        send: async () => {
+          sends += 1;
+          return { providerMessageId: '<booking@example.test>' };
+        },
+      },
+    );
+
+    expect(await dispatcher.dispatchPending(1)).toEqual({
+      accepted: 1,
+      uncertain: 0,
+      failed: 0,
+      skipped: 1,
+    });
+    expect(sends).toBe(1);
+    expect(store.effects('pending').map((effect) => effect.kind)).toEqual([
+      'email.inquiry_received',
+    ]);
+  });
+
   it('gates reminders with invoice email independently of the morning scan', async () => {
     const store = makeStore();
     enqueueBookingMail(store, 'email.performance_reminder');
@@ -202,6 +263,25 @@ function enqueueBookingMail(store: Store, kind = 'email.booking_confirmation'): 
     attachments: [],
   });
   store.enqueue('mail:booking:show-1', kind, 'show-1', mail);
+}
+
+function enqueueInquiryMail(store: Store): void {
+  const mail = MailEffectSchema.parse({
+    version: 1,
+    recipientPolicy: 'inquiry_notification',
+    messageId: '<inquiry-received.example@example.test>',
+    envelopeFrom: 'sender@example.test',
+    to: ['justin@example.test'],
+    cc: [],
+    bcc: [],
+    replyTo: 'sender@example.test',
+    subject: '[JLM Inquiry] New booking inquiry',
+    text: 'Synthetic inquiry alert',
+    html: '<p>Synthetic inquiry alert</p>',
+    headers: {},
+    attachments: [],
+  });
+  store.enqueue('email:inquiry:example:received', 'email.inquiry_received', 'example', mail);
 }
 
 function config(bookingEnabled: boolean): Config {

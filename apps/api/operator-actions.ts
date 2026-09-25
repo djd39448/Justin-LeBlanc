@@ -7,8 +7,8 @@ import { CustomerSchema, LineItemSchema } from '../../packages/contracts/index.j
 
 import { seedDemo } from './demo-seed.js';
 import { runImapReplyJob } from './jobs/imap.js';
-import { runMorningJob } from './jobs/morning.js';
 import { markInquiryFollowedUp } from './jobs/inquiry-followups.js';
+import { runMorningJob } from './jobs/morning.js';
 import type { Runtime } from './runtime.js';
 
 const id = z.string().min(1).max(200);

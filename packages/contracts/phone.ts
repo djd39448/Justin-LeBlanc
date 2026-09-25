@@ -14,6 +14,5 @@ export const PhoneSchema = z
     const valid = compact.startsWith('+1')
       ? /^\+1\d{10}$/.test(compact)
       : /^\d{10}$/.test(compact) || /^1\d{10}$/.test(compact);
-    if (!valid)
-      ctx.addIssue({ code: 'custom', message: PHONE_VALIDATION_MESSAGE });
+    if (!valid) ctx.addIssue({ code: 'custom', message: PHONE_VALIDATION_MESSAGE });
   });

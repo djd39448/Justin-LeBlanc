@@ -68,8 +68,10 @@ export class OutboxDispatcher {
   async dispatchPending(maximum = 25): Promise<OutboxBatchResult> {
     return this.withBatchLease(async (renew) => {
       const result = emptyResult();
-      const effects = this.store.effects('pending').slice(0, maximum);
+      const effects = this.store.effects('pending');
+      let attempted = 0;
       for (const effect of effects) {
+        if (attempted >= maximum) break;
         renew();
         try {
           this.assertKillSwitch(effect);
@@ -80,6 +82,7 @@ export class OutboxDispatcher {
           }
           throw error;
         }
+        attempted += 1;
         if (!this.store.claimEffect(effect.id)) {
           result.skipped += 1;
           continue;
@@ -200,10 +203,7 @@ export class OutboxDispatcher {
     if (effect.kind.startsWith('email.')) {
       const mail = MailEffectSchema.parse(payload);
       this.assertMailPolicy(effect.kind, mail.recipientPolicy);
-      const sent = await withProviderTimeout(
-        this.smtp.send(mail),
-        effect.id,
-      );
+      const sent = await withProviderTimeout(this.smtp.send(mail), effect.id);
       return sent.providerMessageId;
     }
     if (effect.kind.startsWith('calendar.')) {
@@ -240,8 +240,13 @@ export class OutboxDispatcher {
   }
 
   private assertMailPolicy(kind: string, policy: 'demo' | 'inquiry_notification'): void {
-    const inquiry = ['email.inquiry_received', 'email.inquiry_due_soon', 'email.inquiry_overdue'].includes(kind);
-    if (inquiry !== (policy === 'inquiry_notification')) throw new Error('Email effect recipient policy does not match its effect kind.');
+    const inquiry = [
+      'email.inquiry_received',
+      'email.inquiry_due_soon',
+      'email.inquiry_overdue',
+    ].includes(kind);
+    if (inquiry !== (policy === 'inquiry_notification'))
+      throw new Error('Email effect recipient policy does not match its effect kind.');
   }
 
   private async reconcile(
@@ -267,7 +272,12 @@ export class OutboxDispatcher {
   }
 
   private assertKillSwitch(effect: Effect): void {
-    if (['email.inquiry_received', 'email.inquiry_due_soon', 'email.inquiry_overdue'].includes(effect.kind) && !this.config.INQUIRY_NOTIFICATIONS_ENABLED)
+    if (
+      ['email.inquiry_received', 'email.inquiry_due_soon', 'email.inquiry_overdue'].includes(
+        effect.kind,
+      ) &&
+      !this.config.INQUIRY_NOTIFICATIONS_ENABLED
+    )
       throw new DisabledEffectError('Inquiry notification is disabled at the provider boundary.');
     if (
       (effect.kind === 'email.invoice' ||
@@ -318,6 +328,9 @@ export class OutboxDispatcher {
         'email.performance_reminder',
         'email.booking_confirmation',
         'email.event_brief',
+        'email.inquiry_received',
+        'email.inquiry_due_soon',
+        'email.inquiry_overdue',
       ].includes(effect.kind)
     ) {
       throw new DisabledEffectError(

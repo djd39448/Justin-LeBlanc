@@ -12,8 +12,8 @@ import { OpenAIChatAssistant } from './assistants/openai.js';
 import { EventBriefService } from './billing/brief.js';
 import { BillingService } from './billing/service.js';
 import { assertRecipients, type Config } from './config.js';
-import { OutboxDispatcher } from './jobs/outbox.js';
 import { runInquiryFollowups } from './jobs/inquiry-followups.js';
+import { OutboxDispatcher } from './jobs/outbox.js';
 import { Store } from './store.js';
 
 /** Creates service objects; no external effect occurs until an explicit service operation. */
@@ -68,7 +68,7 @@ export function createRuntime(config: Config) {
     {
       enabled: config.INQUIRY_NOTIFICATIONS_ENABLED && config.INQUIRY_NOTIFICATION_EMAIL.length > 0,
       recipient: config.INQUIRY_NOTIFICATION_EMAIL,
-      sender: config.SMTP_USER || config.OPERATOR_EMAIL,
+      sender: config.OPERATOR_EMAIL,
       replyTo: config.OPERATOR_EMAIL,
       hostname: new URL(config.PUBLIC_SITE_URL).hostname,
     },

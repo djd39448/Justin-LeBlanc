@@ -45,13 +45,10 @@ describe('round-two inquiry contract', () => {
     ).toBe(MAX_BUDGET_CENTS);
   });
 
-  it.each(['text', 'phone'] as const)(
-    'accepts blank phone for %s preference',
-    (preferredReply) => {
-      const result = InquiryInputSchema.safeParse({ ...baseInput, phone: '  ', preferredReply });
-      expect(result.success).toBe(true);
-    },
-  );
+  it.each(['text', 'phone'] as const)('accepts blank phone for %s preference', (preferredReply) => {
+    const result = InquiryInputSchema.safeParse({ ...baseInput, phone: '  ', preferredReply });
+    expect(result.success).toBe(true);
+  });
 
   it('accepts text with a phone number and rejects invalid budget cents', () => {
     const parsed = InquiryInputSchema.parse({
