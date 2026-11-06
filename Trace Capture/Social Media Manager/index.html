@@ -683,6 +683,59 @@
         margin-top: 24px;
       }
 
+      .operating-strip {
+        display: grid;
+        gap: 12px;
+        margin: 24px 0;
+        scroll-margin-top: 96px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .operating-card {
+        display: grid;
+        min-height: 154px;
+        align-content: start;
+        gap: 7px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: rgba(255, 255, 255, 0.025);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .operating-card:hover,
+      .operating-card:focus-visible {
+        border-color: rgba(102, 229, 214, 0.42);
+        background: rgba(102, 229, 214, 0.065);
+      }
+
+      .operating-card-code,
+      .operating-card-action {
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .operating-card strong {
+        font-size: 17px;
+      }
+
+      .operating-card small {
+        color: var(--ink-soft);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .operating-card-action {
+        align-self: end;
+        margin-top: 8px;
+        color: var(--amber);
+      }
+
       .two-loop {
         display: grid;
         gap: 18px;
@@ -1086,6 +1139,27 @@
         font-size: 10px;
         font-weight: 850;
         letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .prompt-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+      }
+
+      .prompt-source {
+        margin-bottom: 6px;
+        padding: 4px 7px;
+        border: 1px solid rgba(255, 198, 109, 0.25);
+        border-radius: 999px;
+        background: rgba(255, 198, 109, 0.07);
+        color: var(--amber);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
       }
 
@@ -1578,7 +1652,8 @@
         .stage-grid,
         .two-loop,
         .docs-grid,
-        .error-strip {
+        .error-strip,
+        .operating-strip {
           grid-template-columns: 1fr;
         }
 
@@ -1757,6 +1832,7 @@
           <a href="#docs">Docs</a>
           <a href="#standards">Standards</a>
           <a href="#prompts">Prompts</a>
+          <a href="#run">Run</a>
           <a href="#ready">Ready?</a>
           <button class="top-action" id="print-button" type="button">Print / PDF</button>
         </nav>
@@ -2219,6 +2295,27 @@
             </div>
           </aside>
 
+          <div class="operating-strip" id="run" aria-label="Build operating controls">
+            <button class="operating-card" type="button" data-open-prompt="cost-routing">
+              <span class="operating-card-code">Route</span>
+              <strong>Thin orchestrator, cheapest capable executor</strong>
+              <small>Tools → local → low-cost worker → strongest available conductor.</small>
+              <span class="operating-card-action">Open routing prompt →</span>
+            </button>
+            <button class="operating-card" type="button" data-open-prompt="usage-checkpoint">
+              <span class="operating-card-code">Guard</span>
+              <strong>25% reserve · 75% stop</strong>
+              <small>Check before dispatch and after each batch. Shared means shared.</small>
+              <span class="operating-card-action">Open usage prompt →</span>
+            </button>
+            <button class="operating-card" type="button" data-open-prompt="overnight-kickoff">
+              <span class="operating-card-code">Persist</span>
+              <strong>Autonomous, not unbounded</strong>
+              <small>Keep moving on safe work; checkpoint, reconcile, and stop at authority.</small>
+              <span class="operating-card-action">Open overnight prompt →</span>
+            </button>
+          </div>
+
           <div class="prompt-filters" aria-label="Filter prompts by stage">
             <button
               class="filter-button"
@@ -2255,6 +2352,14 @@
             <button
               class="filter-button"
               type="button"
+              data-prompt-filter="operate"
+              aria-pressed="false"
+            >
+              Operate
+            </button>
+            <button
+              class="filter-button"
+              type="button"
               data-prompt-filter="prove"
               aria-pressed="false"
             >
@@ -2272,7 +2377,10 @@
             <article class="prompt-display" id="prompt-display" role="tabpanel" tabindex="0">
               <div class="prompt-display-top">
                 <div>
-                  <p id="prompt-category">Align</p>
+                  <div class="prompt-meta">
+                    <p id="prompt-category">Align</p>
+                    <span class="prompt-source" id="prompt-source" hidden></span>
+                  </div>
                   <h3 id="prompt-title">Brain-dump mirror</h3>
                 </div>
                 <button class="button small" id="copy-prompt" type="button">Copy prompt</button>
@@ -2307,6 +2415,9 @@
                   <option value="architecture">Architecture brief</option>
                   <option value="spec">Build specification</option>
                   <option value="kickoff">Agent kickoff</option>
+                  <option value="routing">Cost-aware routing plan</option>
+                  <option value="usage">Usage checkpoint</option>
+                  <option value="overnight">Autonomous overnight kickoff</option>
                 </select>
               </div>
               <fieldset class="options">
@@ -2448,8 +2559,8 @@ Your composed prompt will appear here.</pre>
                 ><input type="checkbox" /><span
                   ><strong>Authority + safety</strong
                   ><span
-                    >Credentials, external writes, privacy, and human approval boundaries are
-                    named.</span
+                    >Credentials, external writes, privacy, cost ceiling, and human approval
+                    boundaries are named.</span
                   ></span
                 ><code>SAFE</code></label
               >
@@ -2884,6 +2995,78 @@ Your composed prompt will appear here.</pre>
             why: 'It makes the unit of progress a coherent, verified, reversible behavior rather than a pile of edited files.',
           },
           {
+            id: 'cost-routing',
+            category: 'operate',
+            categoryLabel: 'Operate · Route',
+            source: 'Current rule + session pattern',
+            title: 'Cheapest-capable routing charter',
+            text: 'Act as a thin, cost-aware conductor: plan, dispatch, reconcile structured results, synthesize, and sign off. First map the task graph and confirm which tools, hosts, and models are actually available; never pretend a requested route exists. Every worker call must name its route and reasoning effort rather than relying on an accidental default. Send deterministic search, transforms, formatting, and repeatable checks to scripts or repo tools. Send extraction and drafting to a qualified local model. Send bounded ordinary implementation to the lowest-cost capable cloud worker. Keep architecture, shared contracts, ambiguous failures, security, money, auth, integration, adversarial review, release judgment, and final acceptance with the strongest available conductor. Default cheap; escalate only when risk, failure, or ambiguity justifies it. Give each worker a compact context pack, exclusive ownership, acceptance test, output path, and stop condition. Parallelize only independent work. Inspect every diff and rerun only the decisive integration gates before work counts. Do not duplicate reviews or rerun a passed check without a change, failure, or new concern. Record the route actually used, exposed usage, and any work omitted to stay inside the budget.',
+            why: 'It spends reasoning where judgment changes the outcome, keeps mechanical work cheap, and makes the real route auditable instead of aspirational.',
+          },
+          {
+            id: 'token-tight-worker',
+            category: 'operate',
+            categoryLabel: 'Operate · Route',
+            source: 'Current rule',
+            title: 'Token-tight worker brief',
+            text: 'Complete this bounded task only: [TASK]. You exclusively own [FILES OR SUBSYSTEM]. Read [NAMED SOURCES] directly; do not request repeated context. Preserve [SHARED CONTRACTS] and do not edit out-of-scope files. Produce [EXACT OUTPUT] and prove [ACCEPTANCE TEST]. Run only the affected checks once, repeating only after a change or failure. If blocked, return the exact blocker after completing every independent step. Reply compactly with: outcome, changed files, checks and evidence, unresolved risk, and the next integration action. Do not create filler work, duplicate another worker, or ask a question unless its answer materially changes scope, safety, or the contract.',
+            why: 'A small context window, exclusive ownership, and a fixed reply contract reduce both token waste and integration collisions.',
+          },
+          {
+            id: 'usage-checkpoint',
+            category: 'operate',
+            categoryLabel: 'Operate · Budget',
+            source: 'Current rule',
+            title: 'Shared-usage checkpoint',
+            text: 'Before substantial dispatch—and again after this worker batch—inspect every exposed shared cloud allowance and identify the tightest one. Report the allowance and window, percent used, remaining headroom, protected reserve, active routes, batch usage or cost when exposed, and the routing decision. Preserve at least 25% of the tightest shared allowance. At 75% used, stop discretionary cloud dispatch; reconcile in-flight work and continue only with deterministic tools, qualified local capacity, or the minimum work required for safe completion, review, recovery, and handoff. Treat unknown usage as constrained, not unlimited. Do not redeem reset credits automatically, assume another computer has a separate allowance, use paid polling, or invent filler work. Reconcile interrupted jobs before retrying and record the actual route and usage.',
+            why: 'It turns quota from a surprise into a dispatch gate while protecting enough capacity for integration, verification, and a clean handoff.',
+          },
+          {
+            id: 'batch-closeout',
+            category: 'operate',
+            categoryLabel: 'Operate · Budget',
+            source: 'Operational pattern',
+            title: 'Batch closeout ledger',
+            text: 'Close this batch with one compact ledger. For each worker or tool record: assigned scope, actual route, outcome, evidence, exposed usage, interrupted or uncertain work, retries avoided, and remaining budget. Reconcile every interrupted job before proposing a retry. State whether the 25% reserve remains intact, whether the 75%-used stop rule applies, and the next cheapest capable route. Do not poll completed work, repeat passed checks, or launch a follow-on batch until shared contracts and integration results are reconciled.',
+            why: 'It makes usage monitoring part of delivery and prevents an interrupted or merely quiet job from being paid for twice.',
+          },
+          {
+            id: 'overnight-kickoff',
+            category: 'operate',
+            categoryLabel: 'Operate · Autonomy',
+            source: 'Historical session pattern',
+            title: 'Autonomous overnight kickoff',
+            text: 'Treat the approved plan as one continuous unsupervised assignment. Read the authoritative architecture, build spec, decisions, progress, and handoff first; do not reopen settled choices. Work through the Definition of Done in priority order: build → verify with real artifacts → adversarial review → fix → re-verify → document → hand off. Do not stop at a plan, scaffold, mock-only demo, or partial frontend. Choose reasonable reversible defaults for routine in-scope ambiguity and record them. Give parallel workers bounded exclusive ownership, launch long workers nonblocking, react to completion instead of paid polling, and reconcile failures or uncertain effects before retrying. Commit each verified rollback-safe unit and persist progress, evidence, changelog, and handoff at meaningful milestones. Check usage before substantial dispatch and after each batch; preserve 25%, stop discretionary cloud work at 75% used, and never consume reset credits automatically. If something truly needs the owner, add a Morning Unblock entry with the item, exact blocker, work completed up to the boundary, and one required owner action; leave that mechanism inert, then continue every independent item. Stop only when every reachable Definition of Done item is proven and a fresh-context reviewer cannot refute it, the stated deadline passes, the quota gate fires, or a genuine safety, authority, spend, credential, destructive-action, or scope-changing blocker prevents all useful work. Finish with a loop-until-dry audit, save final checkpoints, write the morning report, and explicitly end the loop. Overnight autonomy does not broaden permission. Never fabricate success or call offline proof live.',
+            why: 'It gives a long-running agent persistence, memory, and clear stop conditions without turning “keep going” into unlimited authority.',
+          },
+          {
+            id: 'crash-safe-checkpoint',
+            category: 'operate',
+            categoryLabel: 'Operate · Autonomy',
+            source: 'Operational playbook',
+            title: 'Crash-safe milestone checkpoint',
+            text: 'At every meaningful milestone, persist a restartable checkpoint with: goal and governing spec, branch and revision, completed scope, current process or deployment state, commands and results, proof level, pending or uncertain external effects, worker routes and usage, assumptions, exact blocker, rollback target, and the next safe command. Save durable remote session IDs and result paths when coordination crosses sessions or machines. Make the repository—not chat memory—the source a successor can resume from.',
+            why: 'It lets an overnight run survive a crash, compaction, handoff, or sleeping owner without rediscovery or unsafe repetition.',
+          },
+          {
+            id: 'resume-reconcile',
+            category: 'operate',
+            categoryLabel: 'Operate · Recover',
+            source: 'Current rule + handoff pattern',
+            title: 'Resume without repeating',
+            text: 'Resume from the existing checkout and handoff. Before acting, reconcile Git status, running processes, deployments, durable records, accepted or uncertain external effects, active workers, usage, and previously passed evidence. Preserve valid work. Do not rebuild, reprovision, rerun passed suites, reset accepted effects, or resend an uncertain operation blindly. Continue from the first unproven step, correct any stale claim you find, and record the exact state that justified the next action.',
+            why: 'It prevents duplicate cost, duplicate side effects, and the common mistake of treating an interrupted session as an empty workspace.',
+          },
+          {
+            id: 'morning-report',
+            category: 'operate',
+            categoryLabel: 'Operate · Report',
+            source: 'Historical session pattern',
+            title: 'Morning proof report',
+            text: 'Write an operator-grade MORNING report with: executive outcome; artifact or demo links; branch, revision, commits, pushes, and deployments; what is implemented, offline-tested, provider-accepted, live-observed, blocked, or pending; exact checks and sanitized evidence; worker and model routes; usage and reserve status; assumptions and defaults; external actions deliberately not taken; unresolved or uncertain effects; rollback; owner-required actions; and the first three things I should inspect. Do not call partial work complete or upgrade a mock, local result, provider acceptance, or confident narrative into live proof.',
+            why: 'It makes the overnight result inspectable in minutes and preserves the distinction between progress, proof, and production reality.',
+          },
+          {
             id: 'acceptance',
             category: 'prove',
             categoryLabel: 'Prove · Acceptance',
@@ -2917,6 +3100,12 @@ Your composed prompt will appear here.</pre>
           spec: 'Produce a build specification covering scope, requirements, contracts, workflows, validation, compatibility, edge cases, preservation rules, non-goals, test boundaries, acceptance, deployment order, and rollback.',
           kickoff:
             'Produce a clean-session kickoff covering repo/base/branch, mandatory read order, authority, locked decisions, baseline, allowed and forbidden actions, build sequence, verification commands, evidence, documentation updates, rollback, deliverables, and stop conditions.',
+          routing:
+            'Produce a cost-aware routing plan. Decompose the work, map each subtask to the cheapest capable tool or model, name the required reasoning effort, bound ownership and output, identify decisive conductor checks, protect the usage reserve, and explain every premium escalation.',
+          usage:
+            'Produce a usage checkpoint covering the tightest shared allowance, percent used, protected reserve, active and completed routes, batch usage where exposed, interrupted work, retries avoided, the 75%-used dispatch gate, and the next allowed actions.',
+          overnight:
+            'Produce an autonomous overnight kickoff covering source-of-truth read order, Definition of Done, continuous work loop, bounded delegation, usage controls, restartable milestones, routine defaults, exact stop boundaries, Morning Unblock entries, final audit, and morning proof report.',
         };
 
         const guardrailText = {
@@ -2934,6 +3123,7 @@ Your composed prompt will appear here.</pre>
         const standardDetail = document.querySelector('#standard-detail');
         const promptList = document.querySelector('#prompt-list');
         const promptCategory = document.querySelector('#prompt-category');
+        const promptSource = document.querySelector('#prompt-source');
         const promptTitle = document.querySelector('#prompt-title');
         const promptText = document.querySelector('#prompt-text');
         const promptWhy = document.querySelector('#prompt-why');
@@ -3079,6 +3269,8 @@ Your composed prompt will appear here.</pre>
             button.tabIndex = selected ? 0 : -1;
           });
           promptCategory.textContent = prompt.categoryLabel;
+          promptSource.textContent = prompt.source || '';
+          promptSource.hidden = !prompt.source;
           promptTitle.textContent = prompt.title;
           promptText.textContent = prompt.text;
           promptWhy.textContent = prompt.why;
@@ -3122,6 +3314,24 @@ Your composed prompt will appear here.</pre>
           });
         });
 
+        document.querySelectorAll('[data-open-prompt]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const targetPrompt = prompts.find((prompt) => prompt.id === button.dataset.openPrompt);
+            const operateFilter = document.querySelector('[data-prompt-filter="operate"]');
+            if (!targetPrompt || !operateFilter) return;
+            operateFilter.click();
+            renderPrompt(targetPrompt);
+            const promptDisplay = document.querySelector('#prompt-display');
+            promptDisplay.scrollIntoView({
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth',
+              block: 'center',
+            });
+            promptDisplay.focus({ preventScroll: true });
+          });
+        });
+
         function showToast(message) {
           toast.textContent = message;
           toast.classList.add('show');
@@ -3158,6 +3368,15 @@ Your composed prompt will appear here.</pre>
         const brainDump = document.querySelector('#brain-dump');
         const artifactSelect = document.querySelector('#artifact-select');
         const composedText = document.querySelector('#composed-text');
+        const noCodeGuardrail = document.querySelector('[data-guardrail="no-code"]');
+        const proofGuardrail = document.querySelector('[data-guardrail="proof"]');
+
+        artifactSelect.addEventListener('change', () => {
+          if (artifactSelect.value !== 'overnight') return;
+          noCodeGuardrail.checked = false;
+          proofGuardrail.checked = true;
+          showToast('Execution guardrails set for the overnight kickoff.');
+        });
 
         function composePrompt() {
           const dump = brainDump.value.trim() || '[Paste the idea or project context here.]';
@@ -3193,6 +3412,9 @@ Your composed prompt will appear here.</pre>
         document.querySelector('#clear-composer').addEventListener('click', () => {
           brainDump.value = '';
           artifactSelect.value = 'mirror';
+          document.querySelectorAll('[data-guardrail]').forEach((input) => {
+            input.checked = input.dataset.guardrail !== 'proof';
+          });
           composedText.textContent = 'Your composed prompt will appear here.';
           showToast('Composer cleared.');
           brainDump.focus();
