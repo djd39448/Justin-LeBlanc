@@ -103,8 +103,10 @@
 
   function locate(seconds) {
     let index = 0;
+    // Allow 1 ms of media seek quantization at chapter boundaries; audio itself is unchanged.
+    const mediaTime = seconds + 0.001;
     data.scenes.forEach((scene, i) => {
-      if (seconds >= scene.start) index = i;
+      if (mediaTime >= scene.start) index = i;
     });
     return index;
   }
@@ -209,12 +211,12 @@
     reduced = reduce;
     const index = locate(seconds),
       scene = data.scenes[index],
-      time = seconds - scene.start;
+      time = Math.max(0, seconds - scene.start);
     const opening = scene.kind === 'approved-opening';
     $('approved-opening').style.display = opening ? 'block' : 'none';
     $('board').style.display = opening ? 'none' : 'block';
     if (opening) {
-      window.renderApprovedOpening(seconds, reduced);
+      window.renderApprovedOpening(scene.start + time, reduced);
       selected = -1;
       return index;
     }
@@ -248,7 +250,7 @@
   window.frameKey = (seconds) => {
     const index = locate(seconds),
       scene = data.scenes[index],
-      local = seconds - scene.start;
+      local = Math.max(0, seconds - scene.start);
     if (scene.kind === 'approved-opening') return `opening:${seconds.toFixed(6)}`;
     const anchors = [
       0,

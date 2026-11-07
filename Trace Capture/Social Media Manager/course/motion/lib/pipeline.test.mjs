@@ -5,13 +5,76 @@
  * Why: a wrong anchor or broken media range silently damages synchronization or seeking.
  */
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 
 import { test } from 'vitest';
 
 import { anchorTime, compileScene } from './audio.cjs';
-import { parsePresentation } from './common.cjs';
+import { IDS, parsePresentation, readPresentation } from './common.cjs';
 import { comparePixels } from './frame-comparison.cjs';
 import { byteRange } from './server.cjs';
+
+test('chapter seeking tolerates media quantization only within the 1 ms boundary allowance', () => {
+  const scene = (start) => ({
+    start,
+    kind: 'sequence',
+    items: [{ at: 0 }],
+    conclusion: { at: 3 },
+  });
+  for (const [boundary, browserTime] of [
+    [292.59755102040816, 292.597551],
+    [170.68408163265306, 170.684081],
+    [266.71020408163264, 266.710203],
+  ]) {
+    const window = { COURSE_DATA: { scenes: [scene(0), scene(boundary)] } };
+    runInNewContext(readFileSync(new URL('../visuals.js', import.meta.url), 'utf8'), { window });
+    assert.match(window.frameKey(boundary - 0.002), /^0:/);
+    assert.match(window.frameKey(browserTime), /^1:/);
+    assert.match(window.frameKey(boundary), /^1:/);
+    assert.match(window.frameKey(boundary + 0.001), /^1:/);
+  }
+});
+
+test('all retained course chapter boundaries select correctly at browser precision', () => {
+  const source = readFileSync(new URL('../visuals.js', import.meta.url), 'utf8');
+  let checked = 0;
+  for (const lesson of IDS) {
+    const data = readPresentation(lesson);
+    const window = { COURSE_DATA: data };
+    runInNewContext(source, { window });
+    data.scenes.forEach((scene, index) => {
+      if (scene.kind === 'approved-opening') return;
+      const browserTime = Math.floor(scene.start * 1e6) / 1e6;
+      assert.equal(
+        window.frameKey(browserTime).split(':')[0],
+        String(index),
+        `${lesson}/${scene.id}`,
+      );
+      checked++;
+    });
+  }
+  assert.equal(checked, 128);
+});
+
+test('approved opening receives its exact chapter start after a truncated media seek', () => {
+  const data = readPresentation('01');
+  const boundary = data.scenes[1].start;
+  let renderedTime;
+  const window = {
+    COURSE_DATA: data,
+    renderApprovedOpening: (time) => {
+      renderedTime = time;
+    },
+  };
+  const document = { getElementById: () => ({ style: {} }) };
+  runInNewContext(readFileSync(new URL('../visuals.js', import.meta.url), 'utf8'), {
+    window,
+    document,
+  });
+  assert.equal(window.drawCourse(Math.floor(boundary * 1e6) / 1e6, false), 1);
+  assert.equal(renderedTime, boundary);
+});
 
 const words = [
   { text: 'An', start: 0, end: 0.2 },

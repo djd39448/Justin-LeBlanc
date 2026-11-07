@@ -31,3 +31,15 @@ See `rollout-evidence.json` and each lesson’s `render-report.json` for measure
 ## Repository-wide checks
 
 The course’s nine regression tests now run under the repository’s Vitest runner and pass. Older supporting-course lint issues were corrected without running synthesis or historical rendering. Repository-wide ESLint and TypeScript checks pass. The broader test run reports 164 passes and six failures in unchanged `tests/booking.test.ts`: its October 1/2, 2026 consultation fixtures are now in the past, so the booking service rejects them. This belongs to the separate Justin booking application and was not changed for the course rollout. Do not describe the full repository verification as green.
+
+## Follow-up browser recheck — 2026-11-07
+
+Dave asked to open the finished course and double-check it. The visible file was `motion/presentation-template.html`, which is a source template rather than a generated lesson. The review opened the actual course and generated presentations using the range-capable local server.
+
+Browser observations covered course navigation, Lesson 02 MP4 playback/pause and keyboard seeking, loaded 1280 × 720 video without media errors, visible captions, HTML conversation reveals, the Lesson 08 usage gauge, chapter navigation, fullscreen seeking, caption toggling, and reduced motion. No console errors were observed on the inspected presentation.
+
+This pass found a real paused-seek boundary bug: the browser reports a quantized `audio.currentTime` slightly below a compiled exact sample boundary, so a chapter selection could retain the previous chapter. One observed value was 266.710203 seconds versus an intended 266.71020408163264 seconds. The chapter selector now allows 1 millisecond for media seek quantization and clamps the selected scene’s local time to zero; the approved opening receives the normalized chapter start too. The audio files and speech timing are unchanged.
+
+After correction, all 130 chapter selections were exercised in the browser while paused, across every lesson. The selected option and rendered visual label matched on every one, including both approved-opening chapters. The regression suite now has 12 passing tests, covering the observed fractional cases, all 128 non-opening chapter boundaries, and exact start forwarding into the original opening renderer. Final exports are rerun against the corrected source fingerprints and recorded in the rollout evidence.
+
+This is a browser interaction and boundary review, not a claim to have watched all 67 minutes continuously. The course preview is left running for Dave’s requested browser review.
