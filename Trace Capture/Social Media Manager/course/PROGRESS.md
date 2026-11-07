@@ -1,5 +1,13 @@
 # Progress
 
+## 2026-11-07 — requested browser recheck
+
+- Opened the finished course in the visible in-app browser, with generated lesson presentations and a local media server. Verified real MP4 playback, pause/keyboard seeking, captions, HTML animation, fullscreen controls, chapter navigation, and reduced motion.
+- Found and fixed a paused chapter-selection bug caused by media timestamps falling just below exact audio sample boundaries. Chapter lookup now allows 1 ms of seek quantization and passes a normalized start into the approved opening. Audio files and narration timing are preserved.
+- Exercised all 130 chapter selections in the browser after the fix: every dropdown and displayed visual chapter matched while paused. The course regression suite now has 12 passing tests, including all compiled chapter boundaries and the original opening.
+- The shared visual source changed, so all ten MP4s were re-exported and verified against updated fingerprints. All ten output hashes, full decodes, and AAC packet comparisons pass; all 507 original files are unchanged. Final evidence and the catalog are reconciled. The refreshed videos total 143,444,866 bytes and remain 66 minutes 58 seconds long.
+- Local preview on port 4175 is left running for Dave’s requested browser review. Follow-up usage checks: 53% at dispatch, 54% after the browser/regression work; no reset credits or voice-provider requests.
+
 ## 2026-11-07 — approved animated rollout
 
 - Dave approved the animated style preview and authorized applying it to all ten HTML presentations and videos, preserving Brian’s existing narration.

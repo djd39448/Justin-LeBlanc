@@ -23,7 +23,7 @@
   "bytes": 14891179,
   "sha256": "16f6104d6499950c65ddb5b54448e4237e23e30adc8846a659f977f075ff3fb1",
   "sourceFingerprint": {
-    "sha256": "f5d626d51cf8544d6d93b1e22875831e2174345a043c2a11d1bde961a6128631",
+    "sha256": "ce5cdb9244babbc70273cd950385639aa19a27b535293582a6f82b68e1c9f78e",
     "files": [
       {
         "path": "motion/approved-opening.js",
@@ -51,7 +51,7 @@
       },
       {
         "path": "motion/visuals.js",
-        "sha256": "6ec390fabacdb55e1fbc2aa0c9c09813db6a88778a7a9b4d8cf772336c29d310"
+        "sha256": "e082716c20a04e31759438a74775bc3a5cdf9a0ff72b3f0a360649286eab590a"
       },
       {
         "path": "pilot/presentation-data.js",
@@ -301,21 +301,24 @@
         "scene": "07",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       }
     ],
     "sameTimeAfterSeeking": "pixel-identical",
     "seekComparison": {
       "accepted": true,
       "changedPixels": 0,
-      "maximumChannelDelta": 0
+      "maximumChannelDelta": 0,
+      "summedAbsoluteChannelDelta": 0
     },
     "rasterizationTolerance": {
       "maximumChangedPixels": 4,
-      "maximumChannelDelta": 2
+      "maximumChannelDelta": 16,
+      "maximumSummedAbsoluteChannelDelta": 40
     }
   },
-  "renderSeconds": 115.865,
+  "renderSeconds": 117.136,
   "renderer": "Deterministic30fps HTML animation with cached unchanged reading holds",
   "browserErrors": []
 }

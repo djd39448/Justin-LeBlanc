@@ -20,10 +20,10 @@
   "exportedAacPacketsMatchRetained": true,
   "aacPacketSha256": "bc1bf32975d542cd4c23e987a1adbc839dbe1828b703d81d7c6bf0655c1e285a",
   "fullDecode": "passed",
-  "bytes": 13986200,
-  "sha256": "4835df2c09553c42d929a445083efe54b764af4a33916b70ba354b99a0784db7",
+  "bytes": 13983308,
+  "sha256": "d0a72c599cc5591efbf2af9b12cf825c279d5dd687b10777b0e0be640b0d80a9",
   "sourceFingerprint": {
-    "sha256": "16b2299de8c831f553848e6021db56480f4b47b67c65f59a0ef4654d4ac2d23a",
+    "sha256": "31704169dd1315ca2c179f6776256868c93b13ff1a8a14aa7e2b9367b62579f9",
     "files": [
       {
         "path": "motion/approved-opening.js",
@@ -51,7 +51,7 @@
       },
       {
         "path": "motion/visuals.js",
-        "sha256": "6ec390fabacdb55e1fbc2aa0c9c09813db6a88778a7a9b4d8cf772336c29d310"
+        "sha256": "e082716c20a04e31759438a74775bc3a5cdf9a0ff72b3f0a360649286eab590a"
       },
       {
         "path": "productions/03/presentation-data.js",
@@ -114,8 +114,8 @@
     "uniqueCrops": 6
   },
   "encodedFrames": 12442,
-  "browserCaptures": 2958,
-  "heldFrames": 9484,
+  "browserCaptures": 2959,
+  "heldFrames": 9483,
   "sampledFrameHashes": [
     {
       "time": 0,
@@ -293,33 +293,38 @@
         "scene": "01",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       },
       {
         "scene": "07",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       },
       {
         "scene": "13",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       }
     ],
     "sameTimeAfterSeeking": "pixel-identical",
     "seekComparison": {
       "accepted": true,
       "changedPixels": 0,
-      "maximumChannelDelta": 0
+      "maximumChannelDelta": 0,
+      "summedAbsoluteChannelDelta": 0
     },
     "rasterizationTolerance": {
       "maximumChangedPixels": 4,
-      "maximumChannelDelta": 2
+      "maximumChannelDelta": 16,
+      "maximumSummedAbsoluteChannelDelta": 40
     }
   },
-  "renderSeconds": 95.646,
+  "renderSeconds": 93.722,
   "renderer": "Deterministic30fps HTML animation with cached unchanged reading holds",
   "browserErrors": []
 }

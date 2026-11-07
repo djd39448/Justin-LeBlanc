@@ -2,7 +2,9 @@
 
 ## Current state
 
-Dave accepted the course and Brian narration, approved the animated style preview, and authorized the full ten-lesson rollout. All ten HTML presentations now use the approved paper/teal/ink visual language with narration-synchronized reveals, diagrams, document examples, conversations, routing, usage gauges, and checkpoints. All ten MP4s are complete and verified, totaling 66 minutes 58 seconds and 143.45 MB at 1280 × 720, 30 fps. Their source fingerprints and output hashes match the saved reports.
+The follow-up browser recheck found a fractional-timestamp paused-seek bug and corrected it. All 130 chapter selections now pass in the live browser, and 12 course regression tests pass. All ten video exports have been refreshed and verified against the corrected visual source; the final catalog, source fingerprints, output hashes, and evidence are reconciled. The local preview server on port 4175 is intentionally running for Dave’s requested browser review; check for that listener before starting another.
+
+Dave accepted the course and Brian narration, approved the animated style preview, and authorized the full ten-lesson rollout. All ten HTML presentations now use the approved paper/teal/ink visual language with narration-synchronized reveals, diagrams, document examples, conversations, routing, usage gauges, and checkpoints. All ten MP4s are complete and verified, totaling 66 minutes 58 seconds and 143.44 MB at 1280 × 720, 30 fps. Their source fingerprints and output hashes match the saved reports.
 
 Begin at `index.html`. Each lesson page links to its video, interactive HTML presentation, transcript, and captions. The browser player includes seeking, chapter navigation, captions, reduced motion, and fullscreen controls. Keep the complete `course/` folder together because presentations share local runtime and illustration assets.
 

@@ -23,7 +23,7 @@
   "bytes": 13228831,
   "sha256": "7943197c2e62c781bd71d67f903391987b1299431653f49a3c44d4c877d851e6",
   "sourceFingerprint": {
-    "sha256": "6493495e4f6d32dbc6cf8f300a411ae33505937d09dc641cdfdb10d0b48e01f8",
+    "sha256": "3fc5b0c73050e5261c4451e3bae690264d6d31c17073650efb6cc48c86e0544f",
     "files": [
       {
         "path": "motion/approved-opening.js",
@@ -51,7 +51,7 @@
       },
       {
         "path": "motion/visuals.js",
-        "sha256": "6ec390fabacdb55e1fbc2aa0c9c09813db6a88778a7a9b4d8cf772336c29d310"
+        "sha256": "e082716c20a04e31759438a74775bc3a5cdf9a0ff72b3f0a360649286eab590a"
       },
       {
         "path": "productions/04/presentation-data.js",
@@ -316,7 +316,7 @@
       "maximumSummedAbsoluteChannelDelta": 40
     }
   },
-  "renderSeconds": 85.481,
+  "renderSeconds": 93.116,
   "renderer": "Deterministic30fps HTML animation with cached unchanged reading holds",
   "browserErrors": []
 }

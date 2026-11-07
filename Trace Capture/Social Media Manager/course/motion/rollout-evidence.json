@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "recordedAt": "2026-11-07T17:33:03.182Z",
+  "recordedAt": "2026-11-07T23:19:38.801Z",
   "approval": "Dave approved the animated style preview and full ten-lesson rollout; preserve existing Brian narration.",
   "status": "verified",
   "lessons": 10,
@@ -16,11 +16,11 @@
   "teachingCallouts": 19,
   "narrationSeconds": 4018.2073469387756,
   "videoSeconds": 4018.3663420000003,
-  "bytes": 143449792,
+  "bytes": 143444866,
   "encodedFrames": 120551,
-  "browserCaptures": 31284,
-  "heldFrames": 89267,
-  "renderSeconds": 959.2220000000001,
+  "browserCaptures": 31287,
+  "heldFrames": 89264,
+  "renderSeconds": 974.0419999999999,
   "stableHoldChecks": 20,
   "sameTimeSeekChecks": 10,
   "withinSceneMotionSamples": 60,
@@ -30,90 +30,90 @@
       "lesson": "01",
       "duration": 433.166667,
       "bytes": 14891179,
-      "renderSeconds": 115.865,
+      "renderSeconds": 117.136,
       "sha256": "16f6104d6499950c65ddb5b54448e4237e23e30adc8846a659f977f075ff3fb1",
-      "sourceFingerprint": "f5d626d51cf8544d6d93b1e22875831e2174345a043c2a11d1bde961a6128631",
+      "sourceFingerprint": "ce5cdb9244babbc70273cd950385639aa19a27b535293582a6f82b68e1c9f78e",
       "report": "pilot/render-report.json"
     },
     {
       "lesson": "02",
       "duration": 421.5,
-      "bytes": 14021269,
-      "renderSeconds": 94.609,
-      "sha256": "fa29a623194a75ebe3fca6744c35a837e507f11e17ad5ec7ded84183622bb83c",
-      "sourceFingerprint": "71e76aa77b2f3f80f81455e69a1038e237389d2c5089bb2f510163ae3efdfa3c",
+      "bytes": 14019235,
+      "renderSeconds": 87.734,
+      "sha256": "1401b847ef973079b72ac720c928bba82247f3d885fcd24f51d0e62a62c1ea64",
+      "sourceFingerprint": "a0610615aa8022985586a7c49a2001d3161176c22d26f66c5ff47df64e40997e",
       "report": "productions/02/render-report.json"
     },
     {
       "lesson": "03",
       "duration": 414.733333,
-      "bytes": 13986200,
-      "renderSeconds": 95.646,
-      "sha256": "4835df2c09553c42d929a445083efe54b764af4a33916b70ba354b99a0784db7",
-      "sourceFingerprint": "16b2299de8c831f553848e6021db56480f4b47b67c65f59a0ef4654d4ac2d23a",
+      "bytes": 13983308,
+      "renderSeconds": 93.722,
+      "sha256": "d0a72c599cc5591efbf2af9b12cf825c279d5dd687b10777b0e0be640b0d80a9",
+      "sourceFingerprint": "31704169dd1315ca2c179f6776256868c93b13ff1a8a14aa7e2b9367b62579f9",
       "report": "productions/03/render-report.json"
     },
     {
       "lesson": "04",
       "duration": 391.033333,
       "bytes": 13228831,
-      "renderSeconds": 85.481,
+      "renderSeconds": 93.116,
       "sha256": "7943197c2e62c781bd71d67f903391987b1299431653f49a3c44d4c877d851e6",
-      "sourceFingerprint": "6493495e4f6d32dbc6cf8f300a411ae33505937d09dc641cdfdb10d0b48e01f8",
+      "sourceFingerprint": "3fc5b0c73050e5261c4451e3bae690264d6d31c17073650efb6cc48c86e0544f",
       "report": "productions/04/render-report.json"
     },
     {
       "lesson": "05",
       "duration": 396.066667,
       "bytes": 13909149,
-      "renderSeconds": 91.619,
+      "renderSeconds": 94.621,
       "sha256": "85408adbcb761af9c08d771929e39f4c0ebad0d2292b42585a9ec80b614864e4",
-      "sourceFingerprint": "23ba395bcdd6a66cd57632ab520fe8970b580613723d0a4b4e756d7c5dcd0902",
+      "sourceFingerprint": "fc2e057f212603397b3040b1fc6fc3a5d273f4da672ecaa9e6f29641c0babc90",
       "report": "productions/05/render-report.json"
     },
     {
       "lesson": "06",
       "duration": 389.066667,
       "bytes": 14182196,
-      "renderSeconds": 97.633,
+      "renderSeconds": 101.111,
       "sha256": "c205c686573b9275ccb819a5530fbbcc24738336cc2478bb3ef9bd63527e105a",
-      "sourceFingerprint": "12e3e2774b85d3381d4d7a14ab8d2da1cc5e57699d8bc4d587a6a82950f0b01f",
+      "sourceFingerprint": "234e90026af417ea689f2223ce2912d3848666dc9a527ec4fc4c6bab34a25dd4",
       "report": "productions/06/render-report.json"
     },
     {
       "lesson": "07",
       "duration": 380.466667,
       "bytes": 13613136,
-      "renderSeconds": 86.958,
+      "renderSeconds": 92.681,
       "sha256": "7e6ce328a866e023f2e437bf10ee5f144f6f371d4f922da2146747bdc91cb2c7",
-      "sourceFingerprint": "43dbbe21ca5d918a81ed1d211a360dba2b12737aa955709d9ff784847e612322",
+      "sourceFingerprint": "32f228f02c54af2984992746d1fc852588a8edb98fc046c998b48e733600d43a",
       "report": "productions/07/render-report.json"
     },
     {
       "lesson": "08",
       "duration": 415.733008,
       "bytes": 16122986,
-      "renderSeconds": 96.716,
+      "renderSeconds": 100.68,
       "sha256": "4c9864f3a513e8ae8bb7865b110e7f91a96b63d8c4afb5f5c5dbd49c4df4cd3e",
-      "sourceFingerprint": "8fa3e779542ca7837dc76db6b13514ed761b2af04207a61ff7573117eb7a5c5b",
+      "sourceFingerprint": "d185e8503eb4132ac37ab5031efdcd02fc4532de574d76e8945b1cc3b76d2595",
       "report": "productions/08/render-report.json"
     },
     {
       "lesson": "09",
       "duration": 396.2,
       "bytes": 14948862,
-      "renderSeconds": 96.162,
+      "renderSeconds": 93.817,
       "sha256": "6f29b6e3c0528a4560d1338deaa7ba6ed263e68191a716c0e27a02ec51b39241",
-      "sourceFingerprint": "a57812b6e52bbd32c79a112ee1da87796397cfc13e7cfa649a63f87122b664b2",
+      "sourceFingerprint": "a6445e5b1d1534c2e3076413c8658fdaf8680f11f4004ac66cb9b10cafa02fa2",
       "report": "productions/09/render-report.json"
     },
     {
       "lesson": "10",
       "duration": 380.4,
       "bytes": 14545984,
-      "renderSeconds": 98.533,
+      "renderSeconds": 99.424,
       "sha256": "cca8e46ebaa5a1492bfb9c19ba62939a47cfa7f079b84d087cff04936c0db95a",
-      "sourceFingerprint": "56c90f1970d9d8d0f3d78ab0c58bdee527e5ea7cfe05cfabd2e59868ac8a6802",
+      "sourceFingerprint": "0f6576b41380858fa83e509a46bb99b948b7c35c15af2f4635a62dbd6fa575c1",
       "report": "productions/10/render-report.json"
     }
   ],
@@ -231,7 +231,7 @@
   "tests": {
     "course": {
       "runner": "Vitest",
-      "passed": 9,
+      "passed": 12,
       "failed": 0
     },
     "repository": {
@@ -240,7 +240,8 @@
       "unitTestsPassed": 164,
       "unitTestsFailed": 6,
       "failureScope": "Unchanged tests/booking.test.ts uses October 1/2, 2026 consultations which are past at execution time.",
-      "build": "passed: 23 Astro files, no diagnostics; 10 pages built"
+      "build": "passed: 23 Astro files, no diagnostics; 10 pages built",
+      "note": "Repository-wide counts are the earlier pre-fix run; only the affected course suite, lint and browser checks were rerun for this isolated fix. The six unrelated booking-fixture failures remain recorded."
     },
     "targetedFormatting": "passed",
     "secretScan": "clean"
@@ -265,5 +266,96 @@
   "rollback": {
     "priorCourseCommit": "53c76c5",
     "instruction": "Restore only intended course files; preserve unrelated work and original narration."
+  },
+  "browserRecheck": {
+    "date": "2026-11-07",
+    "status": "passed",
+    "observedIssue": "Paused chapter seeks could show the previous chapter because browser media timestamps fall just below exact sample boundaries.",
+    "fix": "1 ms chapter-boundary tolerance and normalized local/start time including the approved opening; audio unchanged.",
+    "nativeVideo": {
+      "lesson": "02",
+      "width": 1280,
+      "height": 720,
+      "duration": 421.5,
+      "playback": "passed",
+      "pause": "passed",
+      "keyboardSeek": "passed",
+      "captions": "visible",
+      "mediaError": null
+    },
+    "interactive": [
+      "conversation reveal playback",
+      "usage gauge playback",
+      "chapter navigation",
+      "fullscreen with five-second seek controls",
+      "captions toggle",
+      "reduced motion"
+    ],
+    "chapterSelections": {
+      "total": 130,
+      "defects": 0,
+      "perLesson": [
+        {
+          "lesson": "01",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "02",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "03",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "04",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "05",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "06",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "07",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "08",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "09",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        },
+        {
+          "lesson": "10",
+          "chapters": 13,
+          "selectedOptionAndVisualLabelMatched": true
+        }
+      ]
+    },
+    "continuousFullCourseHumanWatchThrough": false,
+    "preview": {
+      "url": "http://127.0.0.1:4175/",
+      "leftRunningForUser": true
+    },
+    "usagePercentUsed": {
+      "opening": 53,
+      "latest": 54
+    },
+    "additionalVoiceRequests": 0
   }
 }

@@ -23,7 +23,7 @@
   "bytes": 13909149,
   "sha256": "85408adbcb761af9c08d771929e39f4c0ebad0d2292b42585a9ec80b614864e4",
   "sourceFingerprint": {
-    "sha256": "23ba395bcdd6a66cd57632ab520fe8970b580613723d0a4b4e756d7c5dcd0902",
+    "sha256": "fc2e057f212603397b3040b1fc6fc3a5d273f4da672ecaa9e6f29641c0babc90",
     "files": [
       {
         "path": "motion/approved-opening.js",
@@ -51,7 +51,7 @@
       },
       {
         "path": "motion/visuals.js",
-        "sha256": "6ec390fabacdb55e1fbc2aa0c9c09813db6a88778a7a9b4d8cf772336c29d310"
+        "sha256": "e082716c20a04e31759438a74775bc3a5cdf9a0ff72b3f0a360649286eab590a"
       },
       {
         "path": "productions/05/presentation-data.js",
@@ -285,33 +285,38 @@
         "scene": "01",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       },
       {
         "scene": "07",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       },
       {
         "scene": "13",
         "accepted": true,
         "changedPixels": 0,
-        "maximumChannelDelta": 0
+        "maximumChannelDelta": 0,
+        "summedAbsoluteChannelDelta": 0
       }
     ],
     "sameTimeAfterSeeking": "pixel-identical",
     "seekComparison": {
       "accepted": true,
       "changedPixels": 0,
-      "maximumChannelDelta": 0
+      "maximumChannelDelta": 0,
+      "summedAbsoluteChannelDelta": 0
     },
     "rasterizationTolerance": {
       "maximumChangedPixels": 4,
-      "maximumChannelDelta": 2
+      "maximumChannelDelta": 16,
+      "maximumSummedAbsoluteChannelDelta": 40
     }
   },
-  "renderSeconds": 91.619,
+  "renderSeconds": 94.621,
   "renderer": "Deterministic30fps HTML animation with cached unchanged reading holds",
   "browserErrors": []
 }
