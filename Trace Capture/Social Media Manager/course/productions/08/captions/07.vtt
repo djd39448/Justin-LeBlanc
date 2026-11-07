@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.123
+Start with the exact project and working directory,
+
+00:00:03.448 --> 00:00:06.850
+expected base revision, and instructions to preserve
+
+00:00:06.943 --> 00:00:08.173
+unrelated changes.
+
+00:00:08.777 --> 00:00:11.981
+List the documents in their authority order and summarize
+
+00:00:12.005 --> 00:00:13.909
+the decisions that are already settled.
+
+00:00:14.606 --> 00:00:18.449
+Describe the approved outcome, exclusions, allowed and
+
+00:00:18.495 --> 00:00:22.442
+forbidden actions, work sequence, acceptance checks,
+
+00:00:22.884 --> 00:00:24.335
+evidence, and handoff.
+
+00:00:25.031 --> 00:00:28.143
+If a new session cannot locate a file or reconcile a dirty
+
+00:00:28.189 --> 00:00:32.276
+workspace, it should report the specific issue rather than
+
+00:00:32.334 --> 00:00:33.797
+assume it can discard work.

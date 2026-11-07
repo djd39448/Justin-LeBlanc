@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.995
+Imagine that six months from now the tracker fails and a
+
+00:00:03.065 --> 00:00:04.528
+new agent must diagnose it.
+
+00:00:05.039 --> 00:00:08.905
+Names like saveInquiry and listNewInquiries communicate
+
+00:00:08.940 --> 00:00:10.681
+purpose more clearly than doStuff.
+
+00:00:11.285 --> 00:00:14.686
+A module with a narrow responsibility is easier to locate
+
+00:00:14.733 --> 00:00:18.517
+and change than one that handles validation, storage,
+
+00:00:18.901 --> 00:00:21.373
+email, and presentation in a single block.
+
+00:00:22.070 --> 00:00:25.216
+Ask the agent for a map of dependencies and side effects.
+
+00:00:25.599 --> 00:00:28.641
+You do not need to prescribe every formatting preference
+
+00:00:28.815 --> 00:00:31.730
+to require that future readers can follow the system.

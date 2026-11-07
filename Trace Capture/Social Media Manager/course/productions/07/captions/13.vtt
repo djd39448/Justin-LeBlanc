@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.023 --> 00:00:02.949
+Ask the agent to pair each important standard with a
+
+00:00:03.030 --> 00:00:04.377
+concrete observation.
+
+00:00:04.760 --> 00:00:07.930
+For example, rather than saying "errors are handled," show
+
+00:00:07.988 --> 00:00:11.204
+the test or code path that demonstrates a failed save does
+
+00:00:11.238 --> 00:00:12.783
+not produce a success message.
+
+00:00:13.386 --> 00:00:16.718
+Rather than saying "security is complete," describe which
+
+00:00:16.811 --> 00:00:19.969
+access boundary was checked, in which environment, and
+
+00:00:20.016 --> 00:00:21.595
+what remains outside the test.
+
+00:00:22.036 --> 00:00:25.066
+Where the reviewer cannot reproduce or inspect a claim,
+
+00:00:25.310 --> 00:00:27.167
+mark the confidence accordingly.
+
+00:00:27.864 --> 00:00:30.767
+This practice applies even if you do not personally read
+
+00:00:30.790 --> 00:00:31.777
+the implementation.

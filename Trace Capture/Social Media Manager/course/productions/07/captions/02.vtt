@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.286
+A silent failure happens when something goes wrong but the
+
+00:00:03.379 --> 00:00:04.853
+system hides the problem.
+
+00:00:05.550 --> 00:00:09.369
+Imagine the inquiry tracker says "Thank you" even though
+
+00:00:09.392 --> 00:00:10.681
+the record was not saved.
+
+00:00:11.122 --> 00:00:14.385
+That is worse than a visible failure because both visitor
+
+00:00:14.466 --> 00:00:16.858
+and owner believe the inquiry exists.
+
+00:00:17.462 --> 00:00:20.527
+A helpful diagnostic states what failed, where it
+
+00:00:20.585 --> 00:00:23.975
+happened, and what action may help, without exposing
+
+00:00:24.045 --> 00:00:27.853
+passwords, private customer content, or secret keys.
+
+00:00:28.363 --> 00:00:31.254
+The user-facing message and operator log can contain
+
+00:00:31.347 --> 00:00:32.706
+different levels of detail.

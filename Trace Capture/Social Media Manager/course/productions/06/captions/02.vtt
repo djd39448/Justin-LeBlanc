@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.959
+For the tracker, compare "validate the form" with:
+
+00:00:04.238 --> 00:00:08.173
+"Require a contact name and one preferred contact method.
+
+00:00:08.684 --> 00:00:11.877
+If either is missing, explain the missing field and keep
+
+00:00:11.923 --> 00:00:12.934
+the entered values.
+
+00:00:13.375 --> 00:00:16.719
+Do not save an incomplete inquiry." This is a proposed
+
+00:00:16.765 --> 00:00:19.575
+example; the real owner must approve the fields.
+
+00:00:20.016 --> 00:00:23.186
+It tells the agent what to accept, reject, and show the
+
+00:00:23.220 --> 00:00:23.720
+visitor.
+
+00:00:24.323 --> 00:00:27.156
+It also creates several test cases without prescribing
+
+00:00:27.249 --> 00:00:28.236
+every line of code.

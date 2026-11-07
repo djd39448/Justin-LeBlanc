@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.392
+You can use multiple agents for independent tasks,
+
+00:00:02.601 --> 00:00:04.470
+provided each has a clear assignment.
+
+00:00:04.911 --> 00:00:08.673
+Give a worker an outcome, relevant source files, exclusive
+
+00:00:08.696 --> 00:00:11.900
+file or subsystem ownership, constraints, acceptance
+
+00:00:11.935 --> 00:00:14.280
+checks, and a compact reply format.
+
+00:00:14.884 --> 00:00:17.821
+Define shared interfaces before separate workers depend on
+
+00:00:17.867 --> 00:00:18.193
+them.
+
+00:00:18.796 --> 00:00:21.803
+If one worker implements validation while another works on
+
+00:00:21.850 --> 00:00:24.566
+a view, their contract for the inquiry record must be
+
+00:00:24.601 --> 00:00:25.054
+agreed.
+
+00:00:25.437 --> 00:00:28.467
+A dispatched task is not complete until its result is
+
+00:00:28.514 --> 00:00:29.559
+collected and reviewed.

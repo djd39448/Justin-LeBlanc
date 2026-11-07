@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.023 --> 00:00:03.413
+After a batch, collect each worker's result, inspect the
+
+00:00:03.471 --> 00:00:06.931
+changes and relevant checks, and update the shared state.
+
+00:00:07.372 --> 00:00:10.182
+If a worker disappears, determine whether it left a
+
+00:00:10.252 --> 00:00:13.247
+commit, modified files, or is still running.
+
+00:00:13.572 --> 00:00:16.173
+An interrupted operation may already have produced an
+
+00:00:16.220 --> 00:00:17.125
+external effect.
+
+00:00:17.566 --> 00:00:19.935
+Investigate before resending or repeating it.
+
+00:00:20.318 --> 00:00:23.069
+Avoid paying another worker to reproduce work that was
+
+00:00:23.127 --> 00:00:26.343
+already completed, and do not assume a dispatched task
+
+00:00:26.390 --> 00:00:29.675
+succeeded merely because no error appeared in the chat.

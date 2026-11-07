@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.972
+Write down the fields, which are required, how invalid
+
+00:00:03.030 --> 00:00:05.724
+values are identified, and what the person sees.
+
+00:00:06.049 --> 00:00:09.567
+"The form should be friendly" is a preference, but it does
+
+00:00:09.683 --> 00:00:12.574
+not define how an empty required field behaves.
+
+00:00:13.177 --> 00:00:15.998
+A stronger criterion says the field is named in a clear
+
+00:00:16.056 --> 00:00:18.819
+message and the previously entered values remain
+
+00:00:18.866 --> 00:00:19.446
+available.
+
+00:00:19.888 --> 00:00:22.709
+Also say whether the failed submission creates a record.
+
+00:00:23.150 --> 00:00:25.600
+These details give the developer room to choose the
+
+00:00:25.658 --> 00:00:28.351
+interface while preserving the important behavior.

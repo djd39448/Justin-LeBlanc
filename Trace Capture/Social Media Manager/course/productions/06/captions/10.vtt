@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.193
+What existing data and behavior must remain intact?
+
+00:00:03.634 --> 00:00:07.210
+If an older inquiry already has a status, a new view
+
+00:00:07.256 --> 00:00:08.173
+should not erase it.
+
+00:00:08.499 --> 00:00:11.471
+If the deployment fails, the plan should identify the
+
+00:00:11.552 --> 00:00:14.571
+earlier version or reversal procedure and the point at
+
+00:00:14.605 --> 00:00:15.778
+which rollback is safe.
+
+00:00:16.219 --> 00:00:19.017
+Some changes, such as sending a real message, cannot be
+
+00:00:19.075 --> 00:00:22.547
+unsent; they need special care and explicit authorization.
+
+00:00:23.243 --> 00:00:26.645
+Label an untested recovery plan as a plan, then rehearse
+
+00:00:26.691 --> 00:00:28.235
+it when appropriate and allowed.

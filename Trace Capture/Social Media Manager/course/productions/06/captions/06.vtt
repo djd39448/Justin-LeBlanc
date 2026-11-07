@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:02.914
+Before handing the plan to an agent, ask whether a fresh
+
+00:00:02.984 --> 00:00:06.467
+person could explain what is in scope, which decisions are
+
+00:00:06.502 --> 00:00:09.752
+settled, how success will be checked, and when to stop.
+
+00:00:10.449 --> 00:00:13.398
+Separate an approved plan from authorization to execute
+
+00:00:13.421 --> 00:00:13.621
+it.
+
+00:00:14.037 --> 00:00:18.472
+The kickoff will identify the repository, baseline, read
+
+00:00:18.541 --> 00:00:23.058
+order, allowed actions, forbidden actions, work sequence,
+
+00:00:23.383 --> 00:00:24.776
+proof, and handoff.
+
+00:00:25.380 --> 00:00:27.098
+We will build that briefing in Lesson 8.
+
+00:00:27.702 --> 00:00:31.591
+A good spec reduces guessing without making safe, routine
+
+00:00:31.626 --> 00:00:33.588
+implementation choices impossible.

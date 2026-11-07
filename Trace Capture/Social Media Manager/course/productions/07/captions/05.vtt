@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.229
+Implemented means present in the code.
+
+00:00:02.670 --> 00:00:05.898
+Offline-tested means tested in a controlled environment.
+
+00:00:06.281 --> 00:00:09.067
+Provider-accepted means an outside service accepted a
+
+00:00:09.137 --> 00:00:09.787
+request.
+
+00:00:10.484 --> 00:00:13.363
+Live-observed means the intended real-world effect was
+
+00:00:13.456 --> 00:00:14.571
+actually observed.
+
+00:00:15.267 --> 00:00:16.695
+These are different claims.
+
+00:00:17.078 --> 00:00:20.689
+For example, a fake email provider returning success
+
+00:00:20.759 --> 00:00:24.195
+proves the application handled the fake response; it does
+
+00:00:24.277 --> 00:00:25.414
+not prove delivery.
+
+00:00:25.739 --> 00:00:28.944
+A provider accepting a real message does not necessarily
+
+00:00:29.013 --> 00:00:30.743
+prove the intended person received it.

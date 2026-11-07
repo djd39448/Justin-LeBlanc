@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.566
+A spec must say what remains unchanged.
+
+00:00:03.007 --> 00:00:06.699
+If the existing public website is out of scope, explicitly
+
+00:00:06.757 --> 00:00:07.372
+preserve it.
+
+00:00:07.697 --> 00:00:10.774
+If sending email is not authorized, say that the tracker
+
+00:00:10.867 --> 00:00:13.038
+records status without sending messages.
+
+00:00:13.479 --> 00:00:17.670
+Name external dependencies, privacy expectations, and what
+
+00:00:17.752 --> 00:00:20.085
+happens when an integration cannot be reached.
+
+00:00:20.526 --> 00:00:23.382
+Write a concrete rollback: the way to return to the
+
+00:00:23.440 --> 00:00:26.122
+previous known state if the change fails.
+
+00:00:26.564 --> 00:00:29.745
+Do not pretend an untested rollback has already worked.

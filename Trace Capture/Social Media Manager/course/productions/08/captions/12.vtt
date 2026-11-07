@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.023 --> 00:00:03.831
+Ask workers to return the task outcome, changed files,
+
+00:00:03.959 --> 00:00:08.580
+commands and results, evidence location, open risks, and
+
+00:00:08.626 --> 00:00:10.066
+the next integration action.
+
+00:00:10.670 --> 00:00:14.245
+This makes their output easy to compare and reduces long
+
+00:00:14.303 --> 00:00:15.732
+conversational handoffs.
+
+00:00:16.173 --> 00:00:18.773
+It does not replace the conductor's responsibility to
+
+00:00:18.843 --> 00:00:21.942
+inspect meaningful changes and verify the integration.
+
+00:00:22.453 --> 00:00:25.716
+The goal of token efficiency is to spend attention where
+
+00:00:25.739 --> 00:00:28.723
+it changes the outcome while keeping enough capacity to
+
+00:00:28.781 --> 00:00:29.860
+finish responsibly.

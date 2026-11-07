@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.738
+A coherent slice includes the change, its relevant check,
+
+00:00:04.122 --> 00:00:07.140
+evidence, and an update to the project record.
+
+00:00:07.837 --> 00:00:10.820
+A commit is a saved revision in version control.
+
+00:00:11.517 --> 00:00:14.245
+Small commits can make a problem easier to locate and
+
+00:00:14.303 --> 00:00:14.896
+reverse.
+
+00:00:15.337 --> 00:00:18.042
+They are not automatically proof that behavior works.
+
+00:00:18.483 --> 00:00:21.978
+Keep scope and ownership clear, preserve unrelated work,
+
+00:00:22.036 --> 00:00:23.603
+and run the affected checks.
+
+00:00:24.207 --> 00:00:27.376
+Repeat checks when the underlying code changes, a check
+
+00:00:27.458 --> 00:00:29.861
+fails, or a new concern justifies it.

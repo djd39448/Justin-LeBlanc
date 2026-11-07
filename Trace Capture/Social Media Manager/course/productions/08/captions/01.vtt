@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.773
+A kickoff is a compact, executable briefing for a new
+
+00:00:03.831 --> 00:00:04.772
+agent or session.
+
+00:00:05.375 --> 00:00:09.021
+It identifies the project location and baseline, required
+
+00:00:09.091 --> 00:00:13.131
+reading, document authority, settled decisions, goal,
+
+00:00:13.212 --> 00:00:17.438
+scope, permissions, sequence, checks, and handoff.
+
+00:00:18.042 --> 00:00:21.234
+Imagine handing the tracker project to someone who has not
+
+00:00:21.269 --> 00:00:22.825
+attended any previous meeting.
+
+00:00:23.208 --> 00:00:25.669
+They should be able to locate the spec, know that
+
+00:00:25.727 --> 00:00:28.909
+automatic sending is out of scope, and identify the first
+
+00:00:28.943 --> 00:00:29.698
+safe task.
+
+00:00:30.139 --> 00:00:32.752
+They should not have to reconstruct decisions from a long
+
+00:00:32.822 --> 00:00:33.739
+chat transcript.

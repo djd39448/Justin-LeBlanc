@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:03.135
+Before implementation, list what must exist before
+
+00:00:03.170 --> 00:00:04.539
+something else can be completed.
+
+00:00:04.865 --> 00:00:08.243
+The view depends on an agreed record format; tests depend
+
+00:00:08.301 --> 00:00:09.822
+on defined expected behavior.
+
+00:00:10.426 --> 00:00:13.514
+Workers may draft a view and validation logic in parallel
+
+00:00:13.665 --> 00:00:16.637
+after the shared format is agreed, but they should not
+
+00:00:16.695 --> 00:00:18.634
+edit the same files without coordination.
+
+00:00:19.017 --> 00:00:21.304
+The conductor collects each result and checks the
+
+00:00:21.351 --> 00:00:22.349
+integrated behavior.
+
+00:00:22.732 --> 00:00:25.124
+This is how parallel work saves time without turning
+
+00:00:25.205 --> 00:00:27.237
+shared interfaces into a guessing game.

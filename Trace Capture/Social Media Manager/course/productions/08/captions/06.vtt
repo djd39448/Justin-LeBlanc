@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:03.181
+Try: "Implement the tracker validation described in the
+
+00:00:03.216 --> 00:00:04.029
+approved spec.
+
+00:00:04.412 --> 00:00:07.082
+You own the validation module and its tests.
+
+00:00:07.523 --> 00:00:09.532
+Do not change the shared record contract.
+
+00:00:09.857 --> 00:00:11.146
+Use synthetic data.
+
+00:00:11.471 --> 00:00:12.829
+Run the affected checks.
+
+00:00:13.154 --> 00:00:17.206
+Return changed files, results, open risks, and the next
+
+00:00:17.252 --> 00:00:20.631
+integration action." That worker has a bounded objective
+
+00:00:20.677 --> 00:00:22.001
+and a concrete output.
+
+00:00:22.326 --> 00:00:24.811
+The conductor still reads the result and integrates it
+
+00:00:24.845 --> 00:00:28.038
+against the whole project rather than treating parallelism
+
+00:00:28.119 --> 00:00:29.176
+as automatic proof.

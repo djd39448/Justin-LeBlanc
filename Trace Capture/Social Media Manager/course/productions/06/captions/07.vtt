@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.426
+For the tracker, the overall outcome might be that an
+
+00:00:02.485 --> 00:00:05.143
+owner can find and manage inquiries received through a web
+
+00:00:05.213 --> 00:00:05.584
+form.
+
+00:00:06.026 --> 00:00:08.626
+That sentence does not yet specify every field or
+
+00:00:08.673 --> 00:00:09.543
+validation rule.
+
+00:00:10.054 --> 00:00:13.514
+Add a scope section identifying the first release, such as
+
+00:00:13.595 --> 00:00:16.149
+public form submission and a private status list.
+
+00:00:16.660 --> 00:00:20.944
+Add non-goals such as email import, automatic replies, or
+
+00:00:21.014 --> 00:00:23.696
+payments if those are not part of the approved work.
+
+00:00:24.393 --> 00:00:26.529
+These boundaries protect both the owner and the
+
+00:00:26.610 --> 00:00:28.619
+implementation agent from assumptions.

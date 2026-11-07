@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.740
+Acceptance criteria are conditions that can be observed.
+
+00:00:03.181 --> 00:00:06.885
+Assign stable identifiers such as A-01, and connect each
+
+00:00:06.931 --> 00:00:08.115
+to one or more checks.
+
+00:00:08.626 --> 00:00:12.028
+A-01 might say a valid fictional inquiry appears once in
+
+00:00:12.063 --> 00:00:12.817
+the owner list.
+
+00:00:13.259 --> 00:00:16.011
+A test could submit a valid synthetic record and retrieve
+
+00:00:16.034 --> 00:00:16.234
+it.
+
+00:00:16.730 --> 00:00:19.482
+Record the scope of the evidence: a local test
+
+00:00:19.540 --> 00:00:22.768
+demonstrates local behavior; it does not prove that a live
+
+00:00:22.802 --> 00:00:23.963
+provider is configured.
+
+00:00:24.347 --> 00:00:27.319
+Include negative paths, such as missing fields,
+
+00:00:27.597 --> 00:00:30.059
+unauthorized access, and a storage failure.

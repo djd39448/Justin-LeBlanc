@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:02.415
+A negative test verifies behavior when something should
+
+00:00:02.450 --> 00:00:03.088
+not happen.
+
+00:00:03.529 --> 00:00:06.873
+For example, submit an inquiry without a contact method.
+
+00:00:07.314 --> 00:00:09.810
+Confirm the system rejects it and does not create a
+
+00:00:09.868 --> 00:00:10.275
+record.
+
+00:00:10.716 --> 00:00:13.723
+Attempt to open the owner view without authorization and
+
+00:00:13.781 --> 00:00:15.325
+verify access is denied.
+
+00:00:15.766 --> 00:00:19.307
+Simulate a storage failure and verify the public form does
+
+00:00:19.424 --> 00:00:20.770
+not display success.
+
+00:00:21.212 --> 00:00:24.068
+These checks often catch mistakes that a single successful
+
+00:00:24.126 --> 00:00:25.043
+example misses.

@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.065
+If the requested premium model is not available, the
+
+00:00:03.123 --> 00:00:06.548
+conductor must report the actual model and evaluate
+
+00:00:06.571 --> 00:00:08.975
+whether it is capable of the required judgment.
+
+00:00:09.416 --> 00:00:12.446
+It can use available tools for independent work and ask
+
+00:00:12.492 --> 00:00:15.221
+for help where a genuine capability or authority gap
+
+00:00:15.291 --> 00:00:15.871
+remains.
+
+00:00:16.254 --> 00:00:19.203
+It should not claim that a model was used simply because a
+
+00:00:19.261 --> 00:00:20.318
+prompt requested it.
+
+00:00:20.922 --> 00:00:24.079
+The same applies to usage monitoring: an instruction to
+
+00:00:24.137 --> 00:00:27.377
+check a quota is not proof that the host exposes a quota.
+
+00:00:27.888 --> 00:00:30.163
+Honest reporting is part of the routing contract.

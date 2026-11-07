@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.833
+Imagine you are the agent seeing the project for the first
+
+00:00:02.868 --> 00:00:03.309
+time.
+
+00:00:03.750 --> 00:00:05.712
+Which document tells you what to build?
+
+00:00:06.153 --> 00:00:09.253
+Which decision explains why email import was deferred?
+
+00:00:09.694 --> 00:00:12.666
+Can you identify a task that can be completed and tested
+
+00:00:12.945 --> 00:00:14.977
+without waiting for an unrelated task?
+
+00:00:15.418 --> 00:00:18.019
+Can you state when to stop if access is missing?
+
+00:00:18.460 --> 00:00:21.804
+If the answer to any of these is unclear, add a specific
+
+00:00:21.885 --> 00:00:23.522
+reference or boundary to the plan.
+
+00:00:23.963 --> 00:00:27.144
+The goal is to remove consequential ambiguity while
+
+00:00:27.179 --> 00:00:30.012
+leaving room for reasonable implementation choices.

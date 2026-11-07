@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.682
+Ask the agent to walk through one valid inquiry, one
+
+00:00:02.717 --> 00:00:06.049
+invalid inquiry, and one storage failure against the spec.
+
+00:00:06.560 --> 00:00:09.706
+Where it has to guess, add the missing rule or label it as
+
+00:00:09.752 --> 00:00:11.633
+an intentional implementation choice.
+
+00:00:12.074 --> 00:00:15.093
+Check that acceptance covers the non-goals too: if
+
+00:00:15.162 --> 00:00:18.285
+automatic email is forbidden, a test or inspection should
+
+00:00:18.332 --> 00:00:20.700
+show that submitting an inquiry does not trigger it.
+
+00:00:21.141 --> 00:00:23.986
+A good contract helps the team build the agreed outcome
+
+00:00:24.160 --> 00:00:26.482
+and recognize when work is still incomplete.

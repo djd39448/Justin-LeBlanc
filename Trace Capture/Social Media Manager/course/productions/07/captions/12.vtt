@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.146
+An evidence note can say: at this revision, the local
+
+00:00:03.193 --> 00:00:06.734
+validation suite ran and its stated cases passed; a
+
+00:00:06.850 --> 00:00:09.218
+separate live-provider check has not been run.
+
+00:00:09.601 --> 00:00:12.388
+Include the command and sanitized output when appropriate.
+
+00:00:12.771 --> 00:00:15.511
+If a screenshot shows a private list, use fictional
+
+00:00:15.569 --> 00:00:16.057
+records.
+
+00:00:16.440 --> 00:00:19.122
+The result should let another person verify the level of
+
+00:00:19.191 --> 00:00:22.640
+confidence without needing the original agent's memory or
+
+00:00:22.698 --> 00:00:24.636
+a polished summary that hides gaps.

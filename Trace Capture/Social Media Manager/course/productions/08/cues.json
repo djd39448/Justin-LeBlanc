@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "08",
+  "generatedFrom": "../../lessons/08.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "The clean kickoff",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 34067,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "A fresh agent gets the context, boundaries, and checks it needs."
+    },
+    {
+      "id": "02",
+      "title": "Bound parallel work",
+      "narrationSegmentId": "02",
+      "startMs": 34067,
+      "endMs": 63933,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "Independent workers need exclusive ownership and a shared interface."
+    },
+    {
+      "id": "03",
+      "title": "Route by capability",
+      "narrationSegmentId": "03",
+      "startMs": 63933,
+      "endMs": 100533,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Use the cheapest executor capable of each specific task."
+    },
+    {
+      "id": "04",
+      "title": "Monitor shared usage",
+      "narrationSegmentId": "04",
+      "startMs": 100533,
+      "endMs": 143200,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "Check the tightest exposed allowance before dispatch and after batches."
+    },
+    {
+      "id": "05",
+      "title": "Avoid wasted work",
+      "narrationSegmentId": "05",
+      "startMs": 143200,
+      "endMs": 170733,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "Record results and reconcile interrupted work before retrying."
+    },
+    {
+      "id": "06",
+      "title": "A worker brief",
+      "narrationSegmentId": "06",
+      "startMs": 170733,
+      "endMs": 200225,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "A compact brief names ownership, limits, acceptance, and the reply format."
+    },
+    {
+      "id": "07",
+      "title": "What goes in a kickoff",
+      "narrationSegmentId": "07",
+      "startMs": 200225,
+      "endMs": 234314,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "Give the new session its starting point and authoritative documents."
+    },
+    {
+      "id": "08",
+      "title": "Parallel with boundaries",
+      "narrationSegmentId": "08",
+      "startMs": 234314,
+      "endMs": 265248,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "Two workers can proceed when their files and shared contract are clear."
+    },
+    {
+      "id": "09",
+      "title": "Choose the route",
+      "narrationSegmentId": "09",
+      "startMs": 265248,
+      "endMs": 292650,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Match the task's judgment and risk to the available executor."
+    },
+    {
+      "id": "10",
+      "title": "A quota example",
+      "narrationSegmentId": "10",
+      "startMs": 292650,
+      "endMs": 325277,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "Dave's configurable policy changes dispatch choices as usage rises."
+    },
+    {
+      "id": "11",
+      "title": "Reconcile the batch",
+      "narrationSegmentId": "11",
+      "startMs": 325277,
+      "endMs": 355210,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "A dispatched worker is not complete until its work and checks are inspected."
+    },
+    {
+      "id": "12",
+      "title": "A compact response",
+      "narrationSegmentId": "12",
+      "startMs": 355210,
+      "endMs": 385410,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "A consistent worker report makes integration quicker and clearer."
+    },
+    {
+      "id": "13",
+      "title": "Unavailable route",
+      "narrationSegmentId": "13",
+      "startMs": 385410,
+      "endMs": 415816,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Report what is actually available and continue the safe independent work."
+    }
+  ]
+}

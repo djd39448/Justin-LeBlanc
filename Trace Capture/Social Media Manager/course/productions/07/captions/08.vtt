@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.796
+If a required field is missing, a visitor can see "Enter a
+
+00:00:03.855 --> 00:00:06.966
+way for us to contact you." If the storage service is
+
+00:00:07.036 --> 00:00:10.344
+down, the owner may need an operational log naming the
+
+00:00:10.391 --> 00:00:13.177
+failing component and a safe troubleshooting action.
+
+00:00:13.874 --> 00:00:17.032
+Logs should avoid recording sensitive contact details,
+
+00:00:17.183 --> 00:00:20.840
+credentials, or raw external payloads unnecessarily.
+
+00:00:21.281 --> 00:00:24.404
+The point is not to make every error public; it is to
+
+00:00:24.497 --> 00:00:27.388
+ensure the right person can understand and respond to the
+
+00:00:27.434 --> 00:00:27.899
+failure.

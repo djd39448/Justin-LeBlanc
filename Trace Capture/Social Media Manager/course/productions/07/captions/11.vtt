@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.053
+A reviewer can ask: which requirement does this change
+
+00:00:03.088 --> 00:00:03.541
+implement?
+
+00:00:03.924 --> 00:00:05.352
+What inputs does it accept?
+
+00:00:05.735 --> 00:00:07.082
+What happens on failure?
+
+00:00:07.407 --> 00:00:08.777
+Which tests changed?
+
+00:00:09.160 --> 00:00:11.587
+Are secrets or private data exposed?
+
+00:00:12.028 --> 00:00:13.677
+Is there an obvious rollback?
+
+00:00:14.060 --> 00:00:16.649
+Does the documentation still agree with the behavior?
+
+00:00:17.252 --> 00:00:20.283
+A small verified commit keeps these questions manageable.
+
+00:00:20.724 --> 00:00:23.986
+Avoid rerunning the same complete suite repeatedly when
+
+00:00:24.044 --> 00:00:27.167
+nothing relevant has changed, but do run checks again when
+
+00:00:27.202 --> 00:00:30.082
+a change or failure makes earlier results stale.

@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.081 --> 00:00:03.622
+Record the route actually used, available usage, results,
+
+00:00:03.669 --> 00:00:04.748
+and the next action.
+
+00:00:05.259 --> 00:00:08.766
+Avoid filler delegation, paid polling, and repeating a
+
+00:00:08.824 --> 00:00:11.738
+check that already passed unless the code changes, a
+
+00:00:11.831 --> 00:00:14.745
+failure occurs, or a new concern arises.
+
+00:00:15.128 --> 00:00:17.996
+If a worker was interrupted, find out whether it finished
+
+00:00:18.042 --> 00:00:19.935
+or changed anything before retrying.
+
+00:00:20.538 --> 00:00:22.616
+Never automatically use reset credits.
+
+00:00:23.000 --> 00:00:25.565
+Account settings, host permissions, and the owner's
+
+00:00:25.612 --> 00:00:27.237
+instructions remain authoritative.

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "06",
+  "generatedFrom": "../../lessons/06.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "A build contract",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 35067,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "Turn an agreed design into behavior an agent can implement and test."
+    },
+    {
+      "id": "02",
+      "title": "Make it concrete",
+      "narrationSegmentId": "02",
+      "startMs": 35067,
+      "endMs": 63566,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "A useful form requirement says what to accept, reject, and preserve."
+    },
+    {
+      "id": "03",
+      "title": "Design acceptance",
+      "narrationSegmentId": "03",
+      "startMs": 63566,
+      "endMs": 93899,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Connect each observable requirement to a check and evidence."
+    },
+    {
+      "id": "04",
+      "title": "Preserve boundaries",
+      "narrationSegmentId": "04",
+      "startMs": 93899,
+      "endMs": 123966,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "Name existing behavior and external systems the change must protect."
+    },
+    {
+      "id": "05",
+      "title": "Order the work",
+      "narrationSegmentId": "05",
+      "startMs": 123966,
+      "endMs": 154921,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "Workers need agreed interfaces and exclusive ownership to work safely."
+    },
+    {
+      "id": "06",
+      "title": "Ready for kickoff?",
+      "narrationSegmentId": "06",
+      "startMs": 154921,
+      "endMs": 188787,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "A fresh agent needs a bounded plan, acceptance checks, and authority."
+    },
+    {
+      "id": "07",
+      "title": "Name the outcome",
+      "narrationSegmentId": "07",
+      "startMs": 188787,
+      "endMs": 217654,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "Describe what the owner can actually do at the end of the workflow."
+    },
+    {
+      "id": "08",
+      "title": "Inputs and errors",
+      "narrationSegmentId": "08",
+      "startMs": 217654,
+      "endMs": 246258,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "Specify how valid and invalid requests behave at the form boundary."
+    },
+    {
+      "id": "09",
+      "title": "Proof you can trace",
+      "narrationSegmentId": "09",
+      "startMs": 246258,
+      "endMs": 276191,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Use a stable requirement ID to link behavior, test, and result."
+    },
+    {
+      "id": "10",
+      "title": "Compatibility and undo",
+      "narrationSegmentId": "10",
+      "startMs": 276191,
+      "endMs": 304658,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "A change contract should explain what stays intact and how to recover."
+    },
+    {
+      "id": "11",
+      "title": "Dependency graph",
+      "narrationSegmentId": "11",
+      "startMs": 304658,
+      "endMs": 332191,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "Establish shared data before parallel components rely on it."
+    },
+    {
+      "id": "12",
+      "title": "Walk three cases",
+      "narrationSegmentId": "12",
+      "startMs": 332191,
+      "endMs": 358940,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "Use examples to reveal gaps in the specification before implementation."
+    },
+    {
+      "id": "13",
+      "title": "Fresh-agent check",
+      "narrationSegmentId": "13",
+      "startMs": 358940,
+      "endMs": 389163,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Can a new reader find the contract, rationale, first task, and stop condition?"
+    }
+  ]
+}

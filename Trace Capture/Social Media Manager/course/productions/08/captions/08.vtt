@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:02.937
+Worker one can own the validation module and its tests.
+
+00:00:03.320 --> 00:00:05.538
+Worker two can own the owner-view files.
+
+00:00:05.863 --> 00:00:08.603
+Their shared contract defines the inquiry identifier,
+
+00:00:08.812 --> 00:00:10.286
+fields, and status values.
+
+00:00:10.670 --> 00:00:13.363
+The conductor owns the shared contract and integration.
+
+00:00:13.967 --> 00:00:17.101
+Each worker gets a compact description, the relevant
+
+00:00:17.160 --> 00:00:20.782
+sources, an acceptance check, and the instruction to
+
+00:00:20.875 --> 00:00:23.499
+report changed files and unresolved risk.
+
+00:00:24.102 --> 00:00:27.365
+If a worker needs to change the shared contract, it should
+
+00:00:27.423 --> 00:00:30.674
+coordinate that boundary rather than silently diverge.

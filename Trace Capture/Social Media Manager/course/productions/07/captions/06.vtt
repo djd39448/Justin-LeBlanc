@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.135
+An evidence record identifies the version, commands or
+
+00:00:03.193 --> 00:00:07.663
+observations, results, time, and sanitized artifacts.
+
+00:00:08.173 --> 00:00:11.610
+Missing access is a blocker or an unverified gap, not a
+
+00:00:11.656 --> 00:00:12.156
+pass.
+
+00:00:12.759 --> 00:00:16.184
+Ask what happens when a change fails, how to restore the
+
+00:00:16.242 --> 00:00:19.446
+earlier state, and whether the restoration was actually
+
+00:00:19.516 --> 00:00:20.085
+rehearsed.
+
+00:00:20.781 --> 00:00:24.171
+Good review is proportionate to risk: protect critical
+
+00:00:24.241 --> 00:00:26.853
+boundaries while avoiding repeated full reviews that add
+
+00:00:26.911 --> 00:00:28.514
+cost without new information.

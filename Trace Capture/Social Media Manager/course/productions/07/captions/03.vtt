@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.403
+A test is a repeatable check of a claim.
+
+00:00:02.844 --> 00:00:05.712
+Boundary tests exercise the points where data enters,
+
+00:00:05.921 --> 00:00:07.256
+leaves, or changes state.
+
+00:00:07.697 --> 00:00:11.587
+For the tracker, try valid and invalid submissions, an
+
+00:00:11.714 --> 00:00:14.385
+unauthorized attempt to view records, and a storage
+
+00:00:14.431 --> 00:00:14.919
+failure.
+
+00:00:15.523 --> 00:00:17.612
+Use synthetic data for examples.
+
+00:00:18.054 --> 00:00:22.094
+Test both the result and important non-effects: an invalid
+
+00:00:22.140 --> 00:00:25.832
+submission should not create a record, and a failed save
+
+00:00:25.890 --> 00:00:27.667
+should not show false success.
+
+00:00:28.270 --> 00:00:31.475
+Ask the agent to explain which requirement each test
+
+00:00:31.510 --> 00:00:32.195
+supports.

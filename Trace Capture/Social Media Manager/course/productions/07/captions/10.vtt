@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:02.961
+A local test may replace a provider with a fake response.
+
+00:00:03.402 --> 00:00:06.037
+That can prove your application reacts correctly to that
+
+00:00:06.107 --> 00:00:09.741
+response, but it cannot prove the real provider accepts
+
+00:00:09.776 --> 00:00:11.645
+your account or delivers a message.
+
+00:00:12.341 --> 00:00:15.511
+A provider's acceptance is a stronger but still different
+
+00:00:15.557 --> 00:00:18.007
+observation from a real user seeing the effect.
+
+00:00:18.611 --> 00:00:20.886
+Record the environment and the exact claim.
+
+00:00:21.269 --> 00:00:24.346
+"Not yet tested" is a useful status when it keeps the next
+
+00:00:24.392 --> 00:00:26.192
+person from assuming proof exists.

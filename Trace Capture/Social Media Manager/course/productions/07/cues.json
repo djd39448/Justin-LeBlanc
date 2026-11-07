@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "07",
+  "generatedFrom": "../../lessons/07.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "Standards for readers",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 25933,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "Clear responsibilities and names help the next human or agent."
+    },
+    {
+      "id": "02",
+      "title": "No silent failure",
+      "narrationSegmentId": "02",
+      "startMs": 25933,
+      "endMs": 58867,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "A failed save should never appear to the visitor as success."
+    },
+    {
+      "id": "03",
+      "title": "Test the boundary",
+      "narrationSegmentId": "03",
+      "startMs": 58867,
+      "endMs": 91285,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Check inputs, outputs, authorization, and important non-effects."
+    },
+    {
+      "id": "04",
+      "title": "Small verified slices",
+      "narrationSegmentId": "04",
+      "startMs": 91285,
+      "endMs": 121485,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "A coherent change pairs implementation with checks and evidence."
+    },
+    {
+      "id": "05",
+      "title": "Levels of proof",
+      "narrationSegmentId": "05",
+      "startMs": 121485,
+      "endMs": 152492,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "Each evidence level says only what was actually observed."
+    },
+    {
+      "id": "06",
+      "title": "Evidence and recovery",
+      "narrationSegmentId": "06",
+      "startMs": 152492,
+      "endMs": 181292,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "A result needs context; a failure needs a realistic recovery path."
+    },
+    {
+      "id": "07",
+      "title": "Readable code",
+      "narrationSegmentId": "07",
+      "startMs": 181292,
+      "endMs": 213292,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "Purposeful names and narrow responsibilities make future diagnosis easier."
+    },
+    {
+      "id": "08",
+      "title": "A useful error",
+      "narrationSegmentId": "08",
+      "startMs": 213292,
+      "endMs": 241492,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "Different readers need a clear remedy without exposing private data."
+    },
+    {
+      "id": "09",
+      "title": "Test what must not happen",
+      "narrationSegmentId": "09",
+      "startMs": 241492,
+      "endMs": 266825,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Negative tests prove important effects are prevented."
+    },
+    {
+      "id": "10",
+      "title": "Where was it tested?",
+      "narrationSegmentId": "10",
+      "startMs": 266825,
+      "endMs": 293292,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "A fake provider and a live observation support different claims."
+    },
+    {
+      "id": "11",
+      "title": "Review the change",
+      "narrationSegmentId": "11",
+      "startMs": 293292,
+      "endMs": 323646,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "Connect the change to its requirement, checks, risks, and rollback."
+    },
+    {
+      "id": "12",
+      "title": "Follow the evidence",
+      "narrationSegmentId": "12",
+      "startMs": 323646,
+      "endMs": 348540,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "A useful record lets another person assess the proof level."
+    },
+    {
+      "id": "13",
+      "title": "Show the proof",
+      "narrationSegmentId": "13",
+      "startMs": 348540,
+      "endMs": 380566,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Ask for the specific observation behind a broad quality claim."
+    }
+  ]
+}
