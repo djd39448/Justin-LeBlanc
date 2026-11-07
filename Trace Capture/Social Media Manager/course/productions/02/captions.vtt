@@ -1,0 +1,445 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.125
+Picture the inquiry tracker from Lesson 1.
+
+00:00:02.508 --> 00:00:05.956
+Its owner says: "Requests are in too many places, I forget
+
+00:00:05.991 --> 00:00:09.938
+to respond, and I need help." That sentence is valuable,
+
+00:00:10.263 --> 00:00:12.562
+but it contains several possible products.
+
+00:00:12.887 --> 00:00:16.277
+We could build a shared inbox, a spreadsheet, an automated
+
+00:00:16.324 --> 00:00:18.866
+email service, or an inquiry dashboard.
+
+00:00:19.377 --> 00:00:22.256
+Your first job is to express the real problem in your own
+
+00:00:22.314 --> 00:00:22.860
+language.
+
+00:00:23.185 --> 00:00:27.167
+Include frustration, examples, constraints, and things you
+
+00:00:27.237 --> 00:00:28.224
+have not decided.
+
+00:00:28.607 --> 00:00:30.987
+You do not need to sort it into the perfect order.
+
+00:00:31.497 --> 00:00:34.040
+Ask the agent to hold its response until you say you are
+
+00:00:34.075 --> 00:00:34.528
+finished.
+
+00:00:34.823 --> 00:00:37.784
+Once you finish, ask the agent to organize the material
+
+00:00:37.853 --> 00:00:42.509
+into a goal, people, desired experience, constraints,
+
+00:00:42.683 --> 00:00:47.002
+known facts, assumptions, questions, and non-goals.
+
+00:00:47.606 --> 00:00:50.822
+A non-goal is something the project intentionally does not
+
+00:00:50.857 --> 00:00:51.379
+attempt.
+
+00:00:51.820 --> 00:00:55.303
+This organized response is a readback: a statement of what
+
+00:00:55.338 --> 00:00:56.685
+the agent believes you meant.
+
+00:00:57.068 --> 00:00:58.868
+It is not yet your architecture.
+
+00:00:59.251 --> 00:01:01.004
+It gives you a surface to correct.
+
+00:01:01.445 --> 00:01:04.382
+Tell the agent, "Repeat this back before choosing tools or
+
+00:01:04.429 --> 00:01:05.125
+writing code.
+
+00:01:05.567 --> 00:01:08.260
+Point out contradictions and wait for my correction."
+
+00:01:08.579 --> 00:01:11.737
+Compare "make a dashboard" with a description of an
+
+00:01:11.818 --> 00:01:15.743
+observable journey: "An event organizer submits a form.
+
+00:01:16.068 --> 00:01:19.957
+The performer opens a private list, sees a new inquiry,
+
+00:01:20.108 --> 00:01:23.266
+and marks it handled after replying." The second
+
+00:01:23.324 --> 00:01:27.086
+description names a person, an action, and a result.
+
+00:01:27.597 --> 00:01:30.696
+If the agent adds "the system automatically sends a
+
+00:01:30.766 --> 00:01:34.063
+reply," you can say, "No, I will write the response
+
+00:01:34.110 --> 00:01:37.837
+myself." That correction is easy before the agent chooses
+
+00:01:37.883 --> 00:01:40.542
+a mail provider and builds an automatic sender.
+
+00:01:40.877 --> 00:01:44.662
+A fact might be: "There is already a website form," if
+
+00:01:44.720 --> 00:01:46.079
+someone has inspected it.
+
+00:01:46.590 --> 00:01:50.479
+An assumption might be: "The form stores every message,"
+
+00:01:50.688 --> 00:01:51.849
+if no one has checked.
+
+00:01:52.360 --> 00:01:55.936
+An unknown might be: "Can an inquiry be submitted without
+
+00:01:55.970 --> 00:01:59.523
+an email address?" This distinction is not a test of your
+
+00:01:59.581 --> 00:02:00.068
+memory.
+
+00:02:00.393 --> 00:02:03.888
+It is a way to make uncertainty visible so the team can
+
+00:02:03.958 --> 00:02:05.525
+research the right things.
+
+00:02:06.222 --> 00:02:09.972
+Contradictions deserve attention too: asking for automatic
+
+00:02:10.030 --> 00:02:13.385
+outreach and also saying no messages should leave without
+
+00:02:13.408 --> 00:02:15.335
+approval needs clarification.
+
+00:02:15.677 --> 00:02:19.137
+Read the proposed journey and ask: does this describe what
+
+00:02:19.184 --> 00:02:20.763
+I want the user to experience?
+
+00:02:21.204 --> 00:02:22.725
+Correct it in ordinary language.
+
+00:02:23.166 --> 00:02:25.325
+When it is right, explicitly say so.
+
+00:02:25.836 --> 00:02:28.762
+This is an alignment gate, a check that the shared
+
+00:02:28.808 --> 00:02:30.631
+understanding is ready for design.
+
+00:02:31.072 --> 00:02:33.661
+The gate applies when you are still deciding what to
+
+00:02:33.731 --> 00:02:36.715
+build; it should not make you repeat yourself when you
+
+00:02:36.796 --> 00:02:39.548
+have already agreed and authorized a later task.
+
+00:02:40.244 --> 00:02:43.356
+Save the agreed readback so the next session can find it.
+
+00:02:43.692 --> 00:02:46.896
+Try: "I am going to describe the idea in pieces.
+
+00:02:47.140 --> 00:02:49.485
+Hold the context until I say done.
+
+00:02:49.927 --> 00:02:54.327
+Then repeat back the goal, people, observable journey,
+
+00:02:54.652 --> 00:02:59.447
+constraints, verified facts, assumptions, unknowns, and
+
+00:02:59.516 --> 00:03:00.294
+non-goals.
+
+00:03:00.805 --> 00:03:02.593
+Identify contradictions.
+
+00:03:03.034 --> 00:03:05.043
+Do not choose the architecture yet.
+
+00:03:05.426 --> 00:03:08.804
+Wait for my corrections." The prompt is a starting point,
+
+00:03:08.920 --> 00:03:10.081
+not magic words.
+
+00:03:10.407 --> 00:03:13.170
+The important pattern is that you retain the authority to
+
+00:03:13.251 --> 00:03:15.585
+correct the agent's interpretation before an
+
+00:03:15.643 --> 00:03:17.709
+interpretation becomes implementation.
+
+00:03:18.002 --> 00:03:20.475
+Here is what the first few turns might sound like.
+
+00:03:20.858 --> 00:03:24.712
+The owner says, "I lose event inquiries and want one list.
+
+00:03:25.037 --> 00:03:28.718
+I prefer to reply personally." The agent asks to hear the
+
+00:03:28.776 --> 00:03:29.705
+rest and waits.
+
+00:03:30.030 --> 00:03:32.932
+The owner explains that requests arrive through a website
+
+00:03:33.001 --> 00:03:36.252
+and sometimes through email, that only the owner should
+
+00:03:36.287 --> 00:03:39.898
+see contact details, and that the first version can start
+
+00:03:39.956 --> 00:03:40.861
+with the website.
+
+00:03:41.303 --> 00:03:43.706
+The agent then summarizes those points.
+
+00:03:44.147 --> 00:03:47.375
+It does not quietly interpret "help me reply" as
+
+00:03:47.456 --> 00:03:49.395
+permission to send an automatic message.
+
+00:03:49.724 --> 00:03:53.277
+The agent says, "The system imports all your email into a
+
+00:03:53.346 --> 00:03:56.806
+shared dashboard." The owner corrects it: "Only the
+
+00:03:56.864 --> 00:04:00.219
+website form is in the first version; I have not decided
+
+00:04:00.278 --> 00:04:01.264
+on email imports.
+
+00:04:01.589 --> 00:04:05.479
+The list is private, not shared." A good agent updates the
+
+00:04:05.549 --> 00:04:08.068
+readback and keeps those two distinctions visible.
+
+00:04:08.509 --> 00:04:11.633
+If the owner says "That is right," capture the resulting
+
+00:04:11.691 --> 00:04:12.132
+journey.
+
+00:04:12.515 --> 00:04:14.883
+If the owner says "Almost," keep listening.
+
+00:04:15.266 --> 00:04:18.018
+A correction is a normal part of the process, not a
+
+00:04:18.088 --> 00:04:20.073
+failure of the owner to prompt perfectly.
+
+00:04:20.406 --> 00:04:23.576
+Write the journey as a short sequence: an organizer opens
+
+00:04:23.611 --> 00:04:26.885
+the public form; they enter contact and event details;
+
+00:04:27.268 --> 00:04:31.297
+they submit; the system either confirms a successful save
+
+00:04:31.575 --> 00:04:34.942
+or explains a failure; the owner later opens a private
+
+00:04:34.977 --> 00:04:38.077
+list; the owner reviews the inquiry and changes its
+
+00:04:38.100 --> 00:04:38.715
+status.
+
+00:04:39.156 --> 00:04:42.152
+Each sentence describes behavior that someone can later
+
+00:04:42.210 --> 00:04:42.628
+check.
+
+00:04:43.232 --> 00:04:46.320
+Ask what happens if the user abandons the form, if
+
+00:04:46.389 --> 00:04:50.186
+required contact details are missing, and if saving fails.
+
+00:04:50.569 --> 00:04:53.646
+You need not decide every implementation detail at this
+
+00:04:53.704 --> 00:04:54.064
+point.
+
+00:04:54.395 --> 00:04:57.646
+Imagine the owner says, "The website probably saves
+
+00:04:57.680 --> 00:05:00.780
+submissions." Mark that as an assumption until someone
+
+00:05:00.815 --> 00:05:02.034
+checks the actual system.
+
+00:05:02.638 --> 00:05:05.958
+If the agent finds a form in the repository, it can report
+
+00:05:05.993 --> 00:05:07.352
+that the form code exists.
+
+00:05:07.793 --> 00:05:11.275
+It cannot conclude, just from the file, that the live site
+
+00:05:11.345 --> 00:05:13.168
+saves submissions successfully.
+
+00:05:13.679 --> 00:05:16.221
+Ask it to describe precisely what it saw.
+
+00:05:16.732 --> 00:05:20.192
+This habit makes later research efficient: you can target
+
+00:05:20.227 --> 00:05:22.537
+the uncertain claims that would materially affect the
+
+00:05:22.595 --> 00:05:23.326
+architecture.
+
+00:05:23.661 --> 00:05:27.388
+An owner can say, "I want this to feel like a tidy inbox,"
+
+00:05:27.713 --> 00:05:30.534
+while also saying they do not want a copy of their email.
+
+00:05:31.231 --> 00:05:34.272
+The phrase conveys the experience but not the full feature
+
+00:05:34.307 --> 00:05:34.714
+list.
+
+00:05:35.155 --> 00:05:38.011
+Ask the agent to translate the metaphor into observable
+
+00:05:38.046 --> 00:05:40.844
+behavior and identify choices that remain.
+
+00:05:41.227 --> 00:05:43.433
+The owner decides what the metaphor means.
+
+00:05:43.758 --> 00:05:46.347
+This is particularly useful when an idea contains
+
+00:05:46.405 --> 00:05:50.434
+examples, comparisons, or partial solutions that could
+
+00:05:50.469 --> 00:05:52.175
+otherwise become hidden requirements.
+
+00:05:52.551 --> 00:05:55.047
+The output of this stage can be a small document or
+
+00:05:55.117 --> 00:05:59.180
+section: purpose, people, agreed journey,
+
+00:05:59.622 --> 00:06:04.451
+constraints, non-goals, verified facts, assumptions,
+
+00:06:04.834 --> 00:06:06.437
+and outstanding questions.
+
+00:06:06.878 --> 00:06:10.500
+Add a date and a clear status such as agreed or still
+
+00:06:10.546 --> 00:06:11.405
+being discussed.
+
+00:06:12.009 --> 00:06:14.029
+Keep it accessible to future sessions.
+
+00:06:14.470 --> 00:06:17.849
+Later, when the system changes, update or supersede the
+
+00:06:17.907 --> 00:06:21.135
+relevant decision rather than rely on someone remembering
+
+00:06:21.169 --> 00:06:21.878
+what was said.
+
+00:06:22.574 --> 00:06:25.117
+Now you have something concrete enough to research and
+
+00:06:25.152 --> 00:06:25.674
+design.
+
+00:06:26.018 --> 00:06:28.921
+You can also do the mirror exercise with a friend or by
+
+00:06:28.990 --> 00:06:30.407
+reading your own notes aloud.
+
+00:06:30.917 --> 00:06:33.565
+Ask the listener to describe the desired experience
+
+00:06:33.599 --> 00:06:35.085
+without naming a technology.
+
+00:06:35.527 --> 00:06:38.870
+If they cannot tell whether the owner manually replies or
+
+00:06:38.928 --> 00:06:41.831
+the software sends messages, add that distinction.
+
+00:06:42.272 --> 00:06:45.129
+If they ask how long records remain available and you do
+
+00:06:45.210 --> 00:06:47.729
+not know, mark it as an open decision.
+
+00:06:48.112 --> 00:06:51.084
+The purpose is shared understanding, not proving how much
+
+00:06:51.166 --> 00:06:52.942
+technical terminology you know.
+
+00:06:53.545 --> 00:06:55.473
+You can move forward when the central journey and
+
+00:06:55.519 --> 00:06:58.572
+decision-changing boundaries are clear, and continue to
+
+00:06:58.619 --> 00:07:01.347
+resolve smaller questions at the appropriate stage.

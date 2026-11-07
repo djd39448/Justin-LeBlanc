@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "02",
+  "generatedFrom": "../../lessons/02.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "The idea cloud",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 34800,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "A messy problem can suggest several very different products."
+    },
+    {
+      "id": "02",
+      "title": "Ask for a mirror",
+      "narrationSegmentId": "02",
+      "startMs": 34800,
+      "endMs": 68498,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "A readback arranges your thoughts so you can correct them."
+    },
+    {
+      "id": "03",
+      "title": "Behavior, not a feature",
+      "narrationSegmentId": "03",
+      "startMs": 68498,
+      "endMs": 100831,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Describe who acts, what they do, and what they see."
+    },
+    {
+      "id": "04",
+      "title": "Fact, guess, unknown",
+      "narrationSegmentId": "04",
+      "startMs": 100831,
+      "endMs": 135631,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "Label what was checked and what still needs investigation."
+    },
+    {
+      "id": "05",
+      "title": "The alignment gate",
+      "narrationSegmentId": "05",
+      "startMs": 135631,
+      "endMs": 163634,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "The owner corrects the readback until the experience matches their intent."
+    },
+    {
+      "id": "06",
+      "title": "A prompt to begin",
+      "narrationSegmentId": "06",
+      "startMs": 163634,
+      "endMs": 197932,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "Ask the agent to hold the idea, organize it, and wait for correction."
+    },
+    {
+      "id": "07",
+      "title": "One conversation",
+      "narrationSegmentId": "07",
+      "startMs": 197932,
+      "endMs": 229666,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "Owner and agent move from a rough problem toward a shared understanding."
+    },
+    {
+      "id": "08",
+      "title": "Correct the mirror",
+      "narrationSegmentId": "08",
+      "startMs": 229666,
+      "endMs": 260360,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "A mistaken readback is an invitation to clarify scope."
+    },
+    {
+      "id": "09",
+      "title": "Show the journey",
+      "narrationSegmentId": "09",
+      "startMs": 260360,
+      "endMs": 294360,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Lay out a sequence someone can observe from beginning to end."
+    },
+    {
+      "id": "10",
+      "title": "Keep claims honest",
+      "narrationSegmentId": "10",
+      "startMs": 294360,
+      "endMs": 323626,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "A form in source code does not prove a live submission is saved."
+    },
+    {
+      "id": "11",
+      "title": "Translate the metaphor",
+      "narrationSegmentId": "11",
+      "startMs": 323626,
+      "endMs": 352493,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "A tidy inbox is a feeling; the owner decides which behaviors it means."
+    },
+    {
+      "id": "12",
+      "title": "Save the readback",
+      "narrationSegmentId": "12",
+      "startMs": 352493,
+      "endMs": 385960,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "A short dated record gives the next session a reliable starting point."
+    },
+    {
+      "id": "13",
+      "title": "Practice the mirror",
+      "narrationSegmentId": "13",
+      "startMs": 385960,
+      "endMs": 421693,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Ask a friend or a new agent to explain the journey back to you."
+    }
+  ]
+}

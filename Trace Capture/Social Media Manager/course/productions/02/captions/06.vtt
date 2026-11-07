@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:03.262
+Try: "I am going to describe the idea in pieces.
+
+00:00:03.506 --> 00:00:05.851
+Hold the context until I say done.
+
+00:00:06.293 --> 00:00:10.693
+Then repeat back the goal, people, observable journey,
+
+00:00:11.018 --> 00:00:15.813
+constraints, verified facts, assumptions, unknowns, and
+
+00:00:15.882 --> 00:00:16.660
+non-goals.
+
+00:00:17.171 --> 00:00:18.959
+Identify contradictions.
+
+00:00:19.400 --> 00:00:21.409
+Do not choose the architecture yet.
+
+00:00:21.792 --> 00:00:25.170
+Wait for my corrections." The prompt is a starting point,
+
+00:00:25.286 --> 00:00:26.447
+not magic words.
+
+00:00:26.773 --> 00:00:29.536
+The important pattern is that you retain the authority to
+
+00:00:29.617 --> 00:00:31.951
+correct the agent's interpretation before an
+
+00:00:32.009 --> 00:00:34.075
+interpretation becomes implementation.

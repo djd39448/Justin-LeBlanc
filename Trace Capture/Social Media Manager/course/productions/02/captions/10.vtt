@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.286
+Imagine the owner says, "The website probably saves
+
+00:00:03.320 --> 00:00:06.420
+submissions." Mark that as an assumption until someone
+
+00:00:06.455 --> 00:00:07.674
+checks the actual system.
+
+00:00:08.278 --> 00:00:11.598
+If the agent finds a form in the repository, it can report
+
+00:00:11.633 --> 00:00:12.992
+that the form code exists.
+
+00:00:13.433 --> 00:00:16.915
+It cannot conclude, just from the file, that the live site
+
+00:00:16.985 --> 00:00:18.808
+saves submissions successfully.
+
+00:00:19.319 --> 00:00:21.861
+Ask it to describe precisely what it saw.
+
+00:00:22.372 --> 00:00:25.832
+This habit makes later research efficient: you can target
+
+00:00:25.867 --> 00:00:28.177
+the uncertain claims that would materially affect the
+
+00:00:28.235 --> 00:00:28.966
+architecture.

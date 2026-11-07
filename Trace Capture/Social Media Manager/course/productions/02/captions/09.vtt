@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:03.216
+Write the journey as a short sequence: an organizer opens
+
+00:00:03.251 --> 00:00:06.525
+the public form; they enter contact and event details;
+
+00:00:06.908 --> 00:00:10.937
+they submit; the system either confirms a successful save
+
+00:00:11.215 --> 00:00:14.582
+or explains a failure; the owner later opens a private
+
+00:00:14.617 --> 00:00:17.717
+list; the owner reviews the inquiry and changes its
+
+00:00:17.740 --> 00:00:18.355
+status.
+
+00:00:18.796 --> 00:00:21.792
+Each sentence describes behavior that someone can later
+
+00:00:21.850 --> 00:00:22.268
+check.
+
+00:00:22.872 --> 00:00:25.960
+Ask what happens if the user abandons the form, if
+
+00:00:26.029 --> 00:00:29.826
+required contact details are missing, and if saving fails.
+
+00:00:30.209 --> 00:00:33.286
+You need not decide every implementation detail at this
+
+00:00:33.344 --> 00:00:33.704
+point.
