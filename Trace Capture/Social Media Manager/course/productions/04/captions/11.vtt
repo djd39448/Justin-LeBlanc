@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:04.191
+Imagine a user clicks submit twice or a response is lost
+
+00:00:04.249 --> 00:00:05.689
+after the server saves the record.
+
+00:00:06.072 --> 00:00:08.626
+The client may not know whether a retry will create a
+
+00:00:08.673 --> 00:00:09.230
+duplicate.
+
+00:00:09.671 --> 00:00:13.375
+The design can use an operation identifier, a uniqueness
+
+00:00:13.444 --> 00:00:16.869
+rule, or another suitable method; the correct choice
+
+00:00:16.904 --> 00:00:18.692
+depends on the existing system.
+
+00:00:19.203 --> 00:00:22.546
+Document the intended effect and how an uncertain outcome
+
+00:00:22.569 --> 00:00:23.556
+will be reconciled.
+
+00:00:24.067 --> 00:00:27.736
+"Just retry" is not enough when an operation can send a
+
+00:00:27.806 --> 00:00:31.219
+message, charge money, or create a duplicate record.

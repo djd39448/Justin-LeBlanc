@@ -1,0 +1,454 @@
+WEBVTT
+
+00:00:00.070 --> 00:00:02.775
+Documentation works best when each document answers a
+
+00:00:02.833 --> 00:00:03.669
+clear question.
+
+00:00:04.365 --> 00:00:07.790
+A README is the front door: what is this project and where
+
+00:00:07.814 --> 00:00:08.522
+do I start?
+
+00:00:09.218 --> 00:00:13.444
+Session instructions, often named AGENTS.md, explain
+
+00:00:13.526 --> 00:00:14.930
+applicable working rules.
+
+00:00:15.627 --> 00:00:18.529
+A decision ledger says which important choices were made
+
+00:00:18.553 --> 00:00:19.145
+and why.
+
+00:00:19.586 --> 00:00:22.326
+An architecture document explains how parts fit together.
+
+00:00:22.651 --> 00:00:25.925
+A workflow document explains behavior over time, including
+
+00:00:25.971 --> 00:00:26.447
+failure.
+
+00:00:26.958 --> 00:00:29.431
+These documents serve different readers and should not
+
+00:00:29.489 --> 00:00:31.033
+silently contradict one another.
+
+00:00:31.325 --> 00:00:34.019
+The architecture shows responsibility and structure.
+
+00:00:34.460 --> 00:00:37.478
+The build specification states exactly what behavior must
+
+00:00:37.525 --> 00:00:40.845
+be delivered, including validation, boundaries, and
+
+00:00:40.880 --> 00:00:42.053
+acceptance criteria.
+
+00:00:42.656 --> 00:00:45.825
+The build plan arranges work into an order: what depends
+
+00:00:45.884 --> 00:00:49.529
+on what, who owns each part, and how completion will be
+
+00:00:49.564 --> 00:00:50.028
+checked.
+
+00:00:50.632 --> 00:00:53.488
+For our tracker, the architecture says a service validates
+
+00:00:53.534 --> 00:00:54.603
+and stores an inquiry.
+
+00:00:54.986 --> 00:00:57.830
+The spec defines the required fields and what the user
+
+00:00:57.900 --> 00:00:58.689
+sees on error.
+
+00:00:59.072 --> 00:01:02.300
+The plan says which part to implement and verify first.
+
+00:01:02.596 --> 00:01:05.893
+A progress log tells us what happened recently, what is
+
+00:01:05.951 --> 00:01:08.064
+underway, and what comes next.
+
+00:01:08.668 --> 00:01:11.582
+A changelog records meaningful changes over time.
+
+00:01:11.965 --> 00:01:14.937
+An evidence record captures what was actually checked,
+
+00:01:15.262 --> 00:01:16.806
+with the version and result.
+
+00:01:17.248 --> 00:01:20.684
+A runbook explains how to operate, inspect, and recover
+
+00:01:20.742 --> 00:01:21.369
+the system.
+
+00:01:21.973 --> 00:01:25.769
+A handoff is a concise restart point: the current state,
+
+00:01:25.851 --> 00:01:30.216
+known gaps, important decisions, exact blockers, and next
+
+00:01:30.251 --> 00:01:30.994
+safe action.
+
+00:01:31.598 --> 00:01:34.210
+A log is not proof by itself unless it points to
+
+00:01:34.280 --> 00:01:35.301
+appropriate evidence.
+
+00:01:35.649 --> 00:01:37.379
+Documents have different authority.
+
+00:01:37.704 --> 00:01:41.338
+A more recent, explicitly approved narrow specification
+
+00:01:41.616 --> 00:01:44.971
+can supersede an older requirement where they conflict;
+
+00:01:45.575 --> 00:01:47.909
+other older requirements may still apply.
+
+00:01:48.420 --> 00:01:51.275
+A progress report can describe what someone believes is
+
+00:01:51.345 --> 00:01:55.513
+done, but it cannot turn an untested feature into verified
+
+00:01:55.548 --> 00:01:56.151
+behavior.
+
+00:01:56.755 --> 00:01:59.855
+A kickoff can authorize an agent to act within its stated
+
+00:01:59.913 --> 00:02:00.401
+scope.
+
+00:02:00.842 --> 00:02:04.116
+When instructions conflict, ask the agent to identify the
+
+00:02:04.186 --> 00:02:07.611
+actual source and the precise conflict rather than quietly
+
+00:02:07.680 --> 00:02:09.457
+choose whichever text is convenient.
+
+00:02:09.814 --> 00:02:12.496
+Not every tiny project needs a separate file for every
+
+00:02:12.554 --> 00:02:13.111
+concept.
+
+00:02:13.552 --> 00:02:15.572
+The important part is that an agent can find the
+
+00:02:15.607 --> 00:02:20.158
+decisions, scope, tests, operational steps, and current
+
+00:02:20.205 --> 00:02:20.646
+state.
+
+00:02:21.087 --> 00:02:24.640
+A small project might combine sections; a larger one may
+
+00:02:24.710 --> 00:02:25.453
+separate them.
+
+00:02:26.265 --> 00:02:29.133
+Use the simplest organization that keeps responsibilities
+
+00:02:29.179 --> 00:02:29.621
+clear.
+
+00:02:29.946 --> 00:02:32.604
+A naming convention helps, but a filename does not
+
+00:02:32.651 --> 00:02:35.228
+guarantee that a document is current or authoritative.
+
+00:02:35.669 --> 00:02:37.121
+Read its content and date.
+
+00:02:37.425 --> 00:02:40.943
+Imagine the tracker changes from three statuses to two.
+
+00:02:41.384 --> 00:02:44.774
+Update the relevant decision and spec, implement the
+
+00:02:44.820 --> 00:02:47.897
+change when authorized, record what changed in the
+
+00:02:47.932 --> 00:02:52.088
+changelog, record test results in evidence, and refresh
+
+00:02:52.169 --> 00:02:53.644
+progress and handoff.
+
+00:02:54.154 --> 00:02:56.651
+The architecture may not need to change if component
+
+00:02:56.685 --> 00:02:58.288
+responsibilities remain the same.
+
+00:02:58.613 --> 00:03:02.084
+This is why each document has one job: we can update the
+
+00:03:02.119 --> 00:03:04.789
+places whose truth actually changed without rewriting
+
+00:03:04.836 --> 00:03:05.474
+every page.
+
+00:03:05.825 --> 00:03:09.110
+A tiny project might start with a README, a decisions
+
+00:03:09.157 --> 00:03:12.965
+section, a combined architecture and specification, a
+
+00:03:13.058 --> 00:03:14.567
+plan, and a handoff.
+
+00:03:15.171 --> 00:03:18.131
+As the project grows, separate documents when readers need
+
+00:03:18.178 --> 00:03:20.013
+different levels of detail or authority.
+
+00:03:20.454 --> 00:03:23.147
+The aim is not to create files for their own sake.
+
+00:03:23.531 --> 00:03:25.794
+Ask whether a new contributor can find the current
+
+00:03:25.841 --> 00:03:29.382
+behavior, the reason behind a decision, what remains to
+
+00:03:29.452 --> 00:03:31.402
+build, and how to verify a change.
+
+00:03:31.843 --> 00:03:34.653
+If those answers are clear, the structure is doing its
+
+00:03:34.699 --> 00:03:35.152
+job.
+
+00:03:35.523 --> 00:03:38.159
+Suppose an older build spec says the owner can choose
+
+00:03:38.182 --> 00:03:39.784
+among three inquiry statuses.
+
+00:03:40.167 --> 00:03:42.803
+A later approved narrow spec says to use only New and
+
+00:03:42.861 --> 00:03:43.325
+Handled.
+
+00:03:43.766 --> 00:03:46.111
+The later decision controls that conflict.
+
+00:03:46.494 --> 00:03:49.490
+An older privacy rule that does not conflict can still
+
+00:03:49.525 --> 00:03:50.047
+apply.
+
+00:03:50.430 --> 00:03:53.240
+A helpful agent points to both documents and states
+
+00:03:53.298 --> 00:03:55.005
+exactly which clause changed.
+
+00:03:55.446 --> 00:03:58.824
+It does not discard every older requirement merely because
+
+00:03:58.859 --> 00:04:00.206
+a newer document exists.
+
+00:04:00.525 --> 00:04:04.263
+A progress log may say "validation implementation is
+
+00:04:04.321 --> 00:04:08.501
+underway; failure-path test remains." A changelog may
+
+00:04:08.571 --> 00:04:11.717
+later say "added validation and clear missing-field
+
+00:04:11.763 --> 00:04:16.001
+errors." Evidence records the actual check, revision, and
+
+00:04:16.071 --> 00:04:16.639
+result.
+
+00:04:17.080 --> 00:04:19.913
+These entries answer different questions and can refer to
+
+00:04:19.994 --> 00:04:20.610
+one another.
+
+00:04:20.993 --> 00:04:23.942
+They should not claim a deployment or live result until it
+
+00:04:23.988 --> 00:04:25.300
+has actually occurred.
+
+00:04:25.997 --> 00:04:28.946
+Keeping these roles distinct lets a reviewer find the
+
+00:04:28.992 --> 00:04:31.825
+current blocker without reading the entire project
+
+00:04:31.871 --> 00:04:32.394
+history.
+
+00:04:32.725 --> 00:04:35.384
+At the end of a session, tell the next reader the branch
+
+00:04:35.500 --> 00:04:39.470
+or revision, current work state, authoritative documents,
+
+00:04:39.679 --> 00:04:44.079
+tests run, unverified areas, running services if relevant,
+
+00:04:44.323 --> 00:04:46.320
+and exact next safe step.
+
+00:04:47.017 --> 00:04:49.525
+Mention any uncertain external effect that needs
+
+00:04:49.571 --> 00:04:50.512
+reconciliation.
+
+00:04:50.953 --> 00:04:53.739
+If the previous session ended after a provider request was
+
+00:04:53.786 --> 00:04:57.083
+sent, that uncertainty matters more than a long narrative
+
+00:04:57.118 --> 00:04:58.882
+about how hard the task was.
+
+00:04:59.393 --> 00:05:02.156
+A handoff is a practical starting point, not a
+
+00:05:02.226 --> 00:05:03.677
+congratulatory summary.
+
+00:05:03.925 --> 00:05:06.827
+Imagine the tracker owner changes the required contact
+
+00:05:06.874 --> 00:05:07.280
+method.
+
+00:05:07.721 --> 00:05:10.090
+First record the decision and update the approved
+
+00:05:10.113 --> 00:05:11.053
+specification.
+
+00:05:11.495 --> 00:05:14.118
+Then adapt the plan and implement within the granted
+
+00:05:14.165 --> 00:05:14.652
+scope.
+
+00:05:15.094 --> 00:05:18.809
+Add or update tests for both accepted and rejected inputs.
+
+00:05:19.320 --> 00:05:22.223
+Record the check and revision in evidence, update
+
+00:05:22.269 --> 00:05:25.427
+progress, and mention the material behavior change in the
+
+00:05:25.462 --> 00:05:26.182
+changelog.
+
+00:05:26.785 --> 00:05:29.978
+If the change affects data flow or responsibilities,
+
+00:05:30.222 --> 00:05:31.836
+update the architecture too.
+
+00:05:32.277 --> 00:05:35.028
+If it does not, leave unrelated sections alone.
+
+00:05:35.325 --> 00:05:38.529
+If the README says a feature is live while the handoff
+
+00:05:38.587 --> 00:05:41.919
+says deployment is pending, do not pick one sentence
+
+00:05:41.954 --> 00:05:43.394
+because it sounds more confident.
+
+00:05:43.835 --> 00:05:46.505
+Inspect dated evidence and current state where authorized.
+
+00:05:46.946 --> 00:05:49.721
+Report the contradiction and correct the stale description
+
+00:05:49.767 --> 00:05:50.894
+when the task permits.
+
+00:05:51.404 --> 00:05:55.154
+If the evidence is insufficient, label the status unknown.
+
+00:05:55.758 --> 00:05:58.289
+Documents are useful because they make information
+
+00:05:58.347 --> 00:06:01.760
+inspectable; they cannot substitute for the observation
+
+00:06:01.795 --> 00:06:02.898
+they claim to represent.
+
+00:06:03.214 --> 00:06:05.977
+Give a partner only your document map and a short project
+
+00:06:06.012 --> 00:06:06.488
+folder.
+
+00:06:06.929 --> 00:06:10.122
+Ask where they would find the original goal, an approved
+
+00:06:10.145 --> 00:06:13.547
+decision, a failed check, and the next safe action.
+
+00:06:14.151 --> 00:06:17.552
+If they cannot answer, the information may be missing,
+
+00:06:17.877 --> 00:06:20.385
+hidden, or duplicated inconsistently.
+
+00:06:21.082 --> 00:06:22.730
+Revise the map and try again.
+
+00:06:23.055 --> 00:06:26.538
+In a real project, a fresh agent can do a similar review,
+
+00:06:26.747 --> 00:06:29.952
+but label that as an agent review rather than claiming a
+
+00:06:30.021 --> 00:06:31.681
+human learner tested the material.
+
+00:06:32.378 --> 00:06:35.152
+The goal is that a newcomer can navigate without your oral
+
+00:06:35.222 --> 00:06:35.954
+explanation.

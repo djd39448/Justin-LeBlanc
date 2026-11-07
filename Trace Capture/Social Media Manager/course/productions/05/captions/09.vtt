@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.773
+A progress log may say "validation implementation is
+
+00:00:03.831 --> 00:00:08.011
+underway; failure-path test remains." A changelog may
+
+00:00:08.081 --> 00:00:11.227
+later say "added validation and clear missing-field
+
+00:00:11.273 --> 00:00:15.511
+errors." Evidence records the actual check, revision, and
+
+00:00:15.581 --> 00:00:16.149
+result.
+
+00:00:16.590 --> 00:00:19.423
+These entries answer different questions and can refer to
+
+00:00:19.504 --> 00:00:20.120
+one another.
+
+00:00:20.503 --> 00:00:23.452
+They should not claim a deployment or live result until it
+
+00:00:23.498 --> 00:00:24.810
+has actually occurred.
+
+00:00:25.507 --> 00:00:28.456
+Keeping these roles distinct lets a reviewer find the
+
+00:00:28.502 --> 00:00:31.335
+current blocker without reading the entire project
+
+00:00:31.381 --> 00:00:31.904
+history.

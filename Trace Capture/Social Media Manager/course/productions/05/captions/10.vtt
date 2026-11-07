@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.694
+At the end of a session, tell the next reader the branch
+
+00:00:02.810 --> 00:00:06.780
+or revision, current work state, authoritative documents,
+
+00:00:06.989 --> 00:00:11.389
+tests run, unverified areas, running services if relevant,
+
+00:00:11.633 --> 00:00:13.630
+and exact next safe step.
+
+00:00:14.327 --> 00:00:16.835
+Mention any uncertain external effect that needs
+
+00:00:16.881 --> 00:00:17.822
+reconciliation.
+
+00:00:18.263 --> 00:00:21.049
+If the previous session ended after a provider request was
+
+00:00:21.096 --> 00:00:24.393
+sent, that uncertainty matters more than a long narrative
+
+00:00:24.428 --> 00:00:26.192
+about how hard the task was.
+
+00:00:26.703 --> 00:00:29.466
+A handoff is a practical starting point, not a
+
+00:00:29.536 --> 00:00:30.987
+congratulatory summary.

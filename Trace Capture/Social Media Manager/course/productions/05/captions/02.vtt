@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.752
+The architecture shows responsibility and structure.
+
+00:00:03.193 --> 00:00:06.211
+The build specification states exactly what behavior must
+
+00:00:06.258 --> 00:00:09.578
+be delivered, including validation, boundaries, and
+
+00:00:09.613 --> 00:00:10.786
+acceptance criteria.
+
+00:00:11.389 --> 00:00:14.558
+The build plan arranges work into an order: what depends
+
+00:00:14.617 --> 00:00:18.262
+on what, who owns each part, and how completion will be
+
+00:00:18.297 --> 00:00:18.761
+checked.
+
+00:00:19.365 --> 00:00:22.221
+For our tracker, the architecture says a service validates
+
+00:00:22.267 --> 00:00:23.336
+and stores an inquiry.
+
+00:00:23.719 --> 00:00:26.563
+The spec defines the required fields and what the user
+
+00:00:26.633 --> 00:00:27.422
+sees on error.
+
+00:00:27.805 --> 00:00:31.033
+The plan says which part to implement and verify first.

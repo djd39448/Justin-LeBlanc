@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.553
+Imagine the tracker changes from three statuses to two.
+
+00:00:03.994 --> 00:00:07.384
+Update the relevant decision and spec, implement the
+
+00:00:07.430 --> 00:00:10.507
+change when authorized, record what changed in the
+
+00:00:10.542 --> 00:00:14.698
+changelog, record test results in evidence, and refresh
+
+00:00:14.779 --> 00:00:16.254
+progress and handoff.
+
+00:00:16.764 --> 00:00:19.261
+The architecture may not need to change if component
+
+00:00:19.295 --> 00:00:20.898
+responsibilities remain the same.
+
+00:00:21.223 --> 00:00:24.694
+This is why each document has one job: we can update the
+
+00:00:24.729 --> 00:00:27.399
+places whose truth actually changed without rewriting
+
+00:00:27.446 --> 00:00:28.084
+every page.

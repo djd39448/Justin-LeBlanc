@@ -29,7 +29,7 @@ for (const lesson of lessons) {
 ${media}
 <section class="card" aria-labelledby="objectives"><h2 id="objectives">What you’ll learn</h2><p>${escape(lesson.objective)}</p><p class="meta">Prerequisite: previous lessons. Practice: ${lesson.id === '10' ? 'approximately 2–4 hours, depending on your project and prior work' : '15–20 minutes'}.</p></section>
 <section aria-labelledby="plan"><h2 id="plan">Lesson plan</h2><ol>${plan}</ol></section>
-<article class="script" id="lecture-script" aria-labelledby="lecture"><h2 id="lecture">Lecture draft</h2>${script}</article>
+<article class="script" id="lecture-script" aria-labelledby="lecture"><h2 id="lecture">Lecture script</h2>${script}</article>
 <section aria-labelledby="exercise"><h2 id="exercise">Try it yourself</h2><p>${escape(lesson.exercise)}</p></section>
 <details><summary>See a completed fictional example</summary><p>${escape(sampleAnswers[lesson.id])}</p></details>
 <details><summary>Self-check rubric</summary><p>Check each item and revise anything a fresh reader would have to guess.</p><ul>${rubric}</ul></details>

@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "03",
+  "generatedFrom": "../../lessons/03.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "Research reality",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 29533,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "Check the existing form before choosing what to build around it."
+    },
+    {
+      "id": "02",
+      "title": "Four evidence labels",
+      "narrationSegmentId": "02",
+      "startMs": 29533,
+      "endMs": 62400,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "Different labels prevent a plan from being mistaken for current reality."
+    },
+    {
+      "id": "03",
+      "title": "Trace one inquiry",
+      "narrationSegmentId": "03",
+      "startMs": 62400,
+      "endMs": 93146,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Follow a form submission through validation, storage, and its outcome."
+    },
+    {
+      "id": "04",
+      "title": "Compare the options",
+      "narrationSegmentId": "04",
+      "startMs": 93146,
+      "endMs": 123213,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "The form-only release and an email importer have different tradeoffs."
+    },
+    {
+      "id": "05",
+      "title": "Decision ledger",
+      "narrationSegmentId": "05",
+      "startMs": 123213,
+      "endMs": 161900,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "Record the choice, rationale, status, and when it should be revisited."
+    },
+    {
+      "id": "06",
+      "title": "Turn unknowns into work",
+      "narrationSegmentId": "06",
+      "startMs": 161900,
+      "endMs": 190452,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "Keep planning possible while naming what still needs to be checked."
+    },
+    {
+      "id": "07",
+      "title": "Evidence walkthrough",
+      "narrationSegmentId": "07",
+      "startMs": 190452,
+      "endMs": 223852,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "A local test can prove a source-level claim without proving the live site."
+    },
+    {
+      "id": "08",
+      "title": "Ask a focused question",
+      "narrationSegmentId": "08",
+      "startMs": 223852,
+      "endMs": 254807,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "Targeted research produces a useful answer and a traceable source."
+    },
+    {
+      "id": "09",
+      "title": "Fair comparison",
+      "narrationSegmentId": "09",
+      "startMs": 254807,
+      "endMs": 285030,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Give each choice its benefits, limits, dependencies, and risks."
+    },
+    {
+      "id": "10",
+      "title": "Owner decisions",
+      "narrationSegmentId": "10",
+      "startMs": 285030,
+      "endMs": 313529,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "The owner decides material changes to scope, access, or real-world effects."
+    },
+    {
+      "id": "11",
+      "title": "A reusable decision",
+      "narrationSegmentId": "11",
+      "startMs": 313529,
+      "endMs": 348063,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "A future teammate should understand what was chosen and why."
+    },
+    {
+      "id": "12",
+      "title": "New facts, new plan",
+      "narrationSegmentId": "12",
+      "startMs": 348063,
+      "endMs": 376996,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "A changed observation can overturn an assumption and alter the design."
+    },
+    {
+      "id": "13",
+      "title": "Decide with uncertainty",
+      "narrationSegmentId": "13",
+      "startMs": 376996,
+      "endMs": 414796,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Label a provisional choice and explain what would change it."
+    }
+  ]
+}

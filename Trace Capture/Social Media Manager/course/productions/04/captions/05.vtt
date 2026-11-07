@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.146
+Suppose the visitor presses submit twice because the
+
+00:00:03.204 --> 00:00:04.191
+network was slow.
+
+00:00:04.574 --> 00:00:07.872
+Without a design for duplicates, the owner may receive two
+
+00:00:07.964 --> 00:00:08.522
+records.
+
+00:00:08.963 --> 00:00:12.283
+Idempotency means repeating the same operation safely
+
+00:00:12.608 --> 00:00:14.780
+without duplicating its intended effect.
+
+00:00:15.221 --> 00:00:17.334
+There are different ways to achieve it, and the right
+
+00:00:17.357 --> 00:00:18.809
+approach depends on the system.
+
+00:00:19.192 --> 00:00:22.152
+The architecture should name the problem, the proposed
+
+00:00:22.199 --> 00:00:25.716
+identity or retry rule, and how the system reconciles an
+
+00:00:25.833 --> 00:00:28.689
+uncertain result before doing the operation again.

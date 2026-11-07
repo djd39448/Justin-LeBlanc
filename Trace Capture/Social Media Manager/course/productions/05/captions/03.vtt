@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.332
+A progress log tells us what happened recently, what is
+
+00:00:03.390 --> 00:00:05.503
+underway, and what comes next.
+
+00:00:06.107 --> 00:00:09.021
+A changelog records meaningful changes over time.
+
+00:00:09.404 --> 00:00:12.376
+An evidence record captures what was actually checked,
+
+00:00:12.701 --> 00:00:14.245
+with the version and result.
+
+00:00:14.687 --> 00:00:18.123
+A runbook explains how to operate, inspect, and recover
+
+00:00:18.181 --> 00:00:18.808
+the system.
+
+00:00:19.412 --> 00:00:23.208
+A handoff is a concise restart point: the current state,
+
+00:00:23.290 --> 00:00:27.655
+known gaps, important decisions, exact blockers, and next
+
+00:00:27.690 --> 00:00:28.433
+safe action.
+
+00:00:29.037 --> 00:00:31.649
+A log is not proof by itself unless it points to
+
+00:00:31.719 --> 00:00:32.740
+appropriate evidence.

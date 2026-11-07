@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:03.204
+Before architecture, review the facts that materially
+
+00:00:03.262 --> 00:00:04.296
+affect the design.
+
+00:00:04.737 --> 00:00:05.886
+Which are verified?
+
+00:00:06.165 --> 00:00:08.104
+Which can be safely assumed for planning?
+
+00:00:08.545 --> 00:00:09.892
+Which require a decision?
+
+00:00:10.333 --> 00:00:13.468
+If you cannot access the live form, you can design around
+
+00:00:13.502 --> 00:00:16.974
+a clearly labeled assumption, but you must not claim its
+
+00:00:17.067 --> 00:00:18.507
+live behavior is proven.
+
+00:00:19.110 --> 00:00:22.187
+A useful research report ends with the exact evidence
+
+00:00:22.233 --> 00:00:26.633
+found, contradictions, recommended options, and the
+
+00:00:26.680 --> 00:00:28.270
+decisions that remain with the owner.

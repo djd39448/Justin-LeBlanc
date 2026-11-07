@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.844
+Start with the organizer submitting a fictional request.
+
+00:00:03.170 --> 00:00:05.155
+The form sends the fields to a service.
+
+00:00:05.538 --> 00:00:08.557
+The service checks required information and either rejects
+
+00:00:08.603 --> 00:00:11.494
+it with a useful explanation or saves one record.
+
+00:00:11.935 --> 00:00:14.767
+The owner then opens the private list and marks that
+
+00:00:14.814 --> 00:00:15.557
+record handled.
+
+00:00:15.998 --> 00:00:17.624
+Draw arrows for these moves.
+
+00:00:17.798 --> 00:00:20.990
+Identify the source of truth: the authoritative record
+
+00:00:21.025 --> 00:00:22.569
+that determines current status.
+
+00:00:23.011 --> 00:00:26.610
+If a copy or summary exists elsewhere, say how it stays
+
+00:00:26.668 --> 00:00:28.212
+consistent with that record.

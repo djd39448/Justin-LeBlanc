@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:02.252
+Suppose option one uses the form only.
+
+00:00:02.635 --> 00:00:05.759
+It is narrower and avoids an email integration, but the
+
+00:00:05.840 --> 00:00:08.115
+owner must handle email inquiries separately.
+
+00:00:08.557 --> 00:00:10.739
+Option two adds an email importer.
+
+00:00:11.122 --> 00:00:15.418
+It may reduce manual work, but requires access, a matching
+
+00:00:15.476 --> 00:00:18.680
+strategy, privacy decisions, and failure handling.
+
+00:00:19.284 --> 00:00:22.001
+A decision is easier when each option includes both
+
+00:00:22.059 --> 00:00:23.417
+benefits and costs.
+
+00:00:23.858 --> 00:00:26.285
+A recommendation should say why it fits the current
+
+00:00:26.319 --> 00:00:29.408
+outcome, not simply claim that one approach is best for
+
+00:00:29.466 --> 00:00:29.942
+everyone.

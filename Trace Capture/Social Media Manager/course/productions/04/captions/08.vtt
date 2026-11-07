@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:01.753
+Now imagine the store is unavailable.
+
+00:00:02.136 --> 00:00:04.540
+The validation service cannot truthfully report a
+
+00:00:04.598 --> 00:00:05.596
+successful save.
+
+00:00:06.037 --> 00:00:08.255
+It returns a failure the form can display.
+
+00:00:08.696 --> 00:00:11.424
+The visitor sees an explanation and an appropriate next
+
+00:00:11.447 --> 00:00:15.024
+step; the owner sees an operator diagnostic that avoids
+
+00:00:15.058 --> 00:00:16.951
+exposing the visitor's private details.
+
+00:00:17.392 --> 00:00:20.573
+Once storage returns, the visitor can retry under the
+
+00:00:20.631 --> 00:00:22.280
+agreed duplicate-handling rule.
+
+00:00:22.884 --> 00:00:25.891
+Drawing this path reveals a design need that a diagram of
+
+00:00:25.960 --> 00:00:27.632
+only successful arrows would miss.

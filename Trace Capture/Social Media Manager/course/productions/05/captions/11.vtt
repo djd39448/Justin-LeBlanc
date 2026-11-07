@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.937
+Imagine the tracker owner changes the required contact
+
+00:00:02.984 --> 00:00:03.390
+method.
+
+00:00:03.831 --> 00:00:06.200
+First record the decision and update the approved
+
+00:00:06.223 --> 00:00:07.163
+specification.
+
+00:00:07.605 --> 00:00:10.228
+Then adapt the plan and implement within the granted
+
+00:00:10.275 --> 00:00:10.762
+scope.
+
+00:00:11.204 --> 00:00:14.919
+Add or update tests for both accepted and rejected inputs.
+
+00:00:15.430 --> 00:00:18.333
+Record the check and revision in evidence, update
+
+00:00:18.379 --> 00:00:21.537
+progress, and mention the material behavior change in the
+
+00:00:21.572 --> 00:00:22.292
+changelog.
+
+00:00:22.895 --> 00:00:26.088
+If the change affects data flow or responsibilities,
+
+00:00:26.332 --> 00:00:27.946
+update the architecture too.
+
+00:00:28.387 --> 00:00:31.138
+If it does not, leave unrelated sections alone.

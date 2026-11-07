@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.390
+Imagine the tracker owner believes an existing form saves
+
+00:00:03.425 --> 00:00:04.191
+submissions.
+
+00:00:04.632 --> 00:00:08.115
+If the agent designs a new database around that assumption
+
+00:00:08.197 --> 00:00:11.784
+without checking, the resulting plan may miss a system
+
+00:00:11.935 --> 00:00:14.211
+that already contains valuable information.
+
+00:00:14.908 --> 00:00:18.692
+A reality scan looks at the repository, documents, and the
+
+00:00:18.762 --> 00:00:21.734
+actual workflow the task permits the agent to inspect.
+
+00:00:22.338 --> 00:00:25.426
+Ask the agent to report what it examined and what it could
+
+00:00:25.461 --> 00:00:26.251
+not access.
+
+00:00:26.634 --> 00:00:29.316
+The goal is to ground design in the current world.

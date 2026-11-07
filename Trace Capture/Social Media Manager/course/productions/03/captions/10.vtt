@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.415
+Some decisions can be made using ordinary project
+
+00:00:02.450 --> 00:00:03.135
+conventions.
+
+00:00:03.576 --> 00:00:06.525
+Others change what the product does or what access it
+
+00:00:06.571 --> 00:00:07.094
+needs.
+
+00:00:07.535 --> 00:00:10.205
+The owner should decide whether the first release imports
+
+00:00:10.252 --> 00:00:13.816
+an inbox, sends messages, or handles real customer
+
+00:00:13.862 --> 00:00:14.536
+information.
+
+00:00:15.139 --> 00:00:18.135
+The agent can recommend a safe default and do independent
+
+00:00:18.181 --> 00:00:19.667
+work while the answer is pending.
+
+00:00:20.271 --> 00:00:23.812
+Ask only the question that changes the design: "Should the
+
+00:00:23.870 --> 00:00:26.622
+first version include email import, or should it track
+
+00:00:26.703 --> 00:00:28.224
+form submissions only?"

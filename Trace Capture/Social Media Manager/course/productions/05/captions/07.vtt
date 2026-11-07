@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.320
+A tiny project might start with a README, a decisions
+
+00:00:03.367 --> 00:00:07.175
+section, a combined architecture and specification, a
+
+00:00:07.268 --> 00:00:08.777
+plan, and a handoff.
+
+00:00:09.381 --> 00:00:12.341
+As the project grows, separate documents when readers need
+
+00:00:12.388 --> 00:00:14.223
+different levels of detail or authority.
+
+00:00:14.664 --> 00:00:17.357
+The aim is not to create files for their own sake.
+
+00:00:17.741 --> 00:00:20.004
+Ask whether a new contributor can find the current
+
+00:00:20.051 --> 00:00:23.592
+behavior, the reason behind a decision, what remains to
+
+00:00:23.662 --> 00:00:25.612
+build, and how to verify a change.
+
+00:00:26.053 --> 00:00:28.863
+If those answers are clear, the structure is doing its
+
+00:00:28.909 --> 00:00:29.362
+job.

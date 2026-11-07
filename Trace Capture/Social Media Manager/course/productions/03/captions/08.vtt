@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.023 --> 00:00:02.926
+"Research everything" is expensive and hard to verify.
+
+00:00:03.367 --> 00:00:07.070
+Ask targeted questions: Where does the form send data?
+
+00:00:07.674 --> 00:00:09.752
+Where is the authoritative inquiry record?
+
+00:00:10.194 --> 00:00:12.051
+What happens when saving fails?
+
+00:00:12.376 --> 00:00:14.779
+Is email import actually implemented?
+
+00:00:15.383 --> 00:00:18.414
+The agent can inspect the relevant files and summarize
+
+00:00:18.437 --> 00:00:19.610
+with paths and evidence.
+
+00:00:20.051 --> 00:00:23.116
+If it cannot access a necessary system, it should state
+
+00:00:23.151 --> 00:00:24.416
+the exact limitation.
+
+00:00:24.799 --> 00:00:27.342
+This keeps the research proportional to the decision at
+
+00:00:27.400 --> 00:00:30.685
+hand and avoids drowning the owner in unrelated detail.

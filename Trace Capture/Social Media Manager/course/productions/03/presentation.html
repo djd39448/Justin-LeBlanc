@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Lesson 3 · Research and decisions</title>
+  <style>
+    :root { color-scheme:dark; --ink:#eef7f6; --muted:#a2b6c1; --cyan:#78e9d8; --amber:#ffc779; --navy:#07131e; }
+    * { box-sizing:border-box }
+    body { margin:0; background:#050e17; color:var(--ink); font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif }
+    .stage { width:100%; min-height:min(100svh,56.25vw); aspect-ratio:16/9; position:relative; overflow:hidden; display:flex; flex-direction:column; padding:4.1% 6%; background:radial-gradient(circle at 90% 20%,#1b464755,transparent 34%),radial-gradient(circle at 20% 90%,#4a341d3f,transparent 37%),#07131e }
+    .stage:before { content:''; position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px); background-size:36px 36px; mask-image:linear-gradient(130deg,#000,transparent 90%) }
+    .top,.content,.bottom { position:relative; z-index:1 }
+    .top,.bottom { display:flex; justify-content:space-between; align-items:center; gap:1rem; font-weight:750; letter-spacing:.12em; font-size:clamp(.65rem,1vw,1rem); text-transform:uppercase }
+    .top span:first-child { color:var(--cyan) }.top span:last-child,.bottom { color:var(--muted) }
+    .content { display:grid; grid-template-columns:1.05fr .95fr; gap:6%; align-items:center; flex:1; padding:2% 0 }
+    .eyebrow { color:var(--amber); font-size:clamp(.7rem,1.1vw,1.1rem); font-weight:800; letter-spacing:.14em; text-transform:uppercase; margin:0 0 1rem }
+    h1 { font:500 clamp(2rem,4.8vw,5.8rem)/1.04 Georgia,serif; letter-spacing:-.045em; margin:0 0 1.5rem; max-width:13ch }
+    .summary { max-width:38ch; color:#c3d2d8; font-size:clamp(.85rem,1.55vw,1.45rem); line-height:1.5; margin:0 }
+    .diagram { display:grid; gap:clamp(.5rem,1vw,1rem); align-content:center }
+    #diagram { display:grid; gap:clamp(.5rem,1vw,1rem) }
+    .diagram-art { width:100%; max-height:120px; margin-bottom:.2rem; overflow:visible }
+    .diagram-art .beam { stroke-dasharray:7 9; animation:dash 10s linear infinite }
+    .node { display:flex; gap:1rem; align-items:center; padding:clamp(.7rem,1.3vw,1.3rem); background:#102934dd; border:1px solid #78e9d84d; border-radius:14px; font-size:clamp(.78rem,1.5vw,1.35rem); font-weight:700; animation:rise .6s both }
+    .node:nth-child(2) { animation-delay:.15s; border-color:#ffc77966 }.node:nth-child(3) { animation-delay:.3s }
+    .node i { display:grid; place-items:center; flex:none; width:2em; height:2em; border-radius:.55em; background:#78e9d81f; color:var(--cyan); font-size:.8em; font-style:normal }
+    .node:nth-child(2) i { background:#ffc7791c; color:var(--amber) }
+    .bottom { border-top:1px solid #ffffff22; padding-top:1.2rem }
+    .controls { max-width:1100px; margin:auto; padding:1rem 1.2rem 2rem; display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap }
+    button,a { color:inherit;font:inherit }.controls button,.controls a { min-height:44px; padding:.65rem 1rem;border:1px solid #78e9d866;border-radius:10px;background:#102934;text-decoration:none;cursor:pointer }.controls button:hover,.controls a:hover { background:#1b4647 }
+    .controls audio { flex:1; min-width:230px; max-width:550px }.status { color:var(--muted); font-size:.9rem }
+    :focus-visible { outline:3px solid var(--amber);outline-offset:3px }
+    @keyframes rise { from { opacity:0;transform:translateY(16px) } to { opacity:1;transform:translateY(0) } }
+    @keyframes dash { to { stroke-dashoffset:-64 } }
+    @media(max-width:700px) { .stage { min-height:520px;aspect-ratio:auto;padding:1.5rem }.content { grid-template-columns:1fr;gap:1rem }.diagram { gap:.5rem }.bottom { padding-top:.7rem } h1{font-size:2.5rem} }
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important}}
+    body.capture .controls { display:none } body.capture .stage { width:1280px;height:720px;min-height:720px;aspect-ratio:16/9 } body.capture .node { animation:none }
+  </style>
+</head>
+<body>
+  <main class="stage" aria-labelledby="slide-title">
+    <header class="top"><span>Cloud → Contract → Code</span><span>Lesson 03 / Research and decisions</span></header>
+    <div class="content">
+      <div><p class="eyebrow" id="kicker">A practical build system</p><h1 id="slide-title">The whole system</h1><p class="summary" id="summary"></p></div>
+      <div class="diagram"><svg class="diagram-art" viewBox="0 0 500 105" role="img" aria-label="An idea moves through an agreement to become a working system"><path class="beam" d="M100 52 H400" fill="none" stroke="#78e9d8" stroke-width="2" opacity=".5"/><g transform="translate(46 8)"><rect width="90" height="90" rx="24" fill="#123138" stroke="#78e9d8" stroke-opacity=".45"/><path d="M22 58h46a12 12 0 0 0-2-24 19 19 0 0 0-36-2 13 13 0 0 0-8 26Z" fill="none" stroke="#78e9d8" stroke-width="3" stroke-linecap="round"/></g><g transform="translate(205 8)"><rect width="90" height="90" rx="24" fill="#332b1c" stroke="#ffc779" stroke-opacity=".5"/><path d="M29 20h32v48H29zM37 33h16M37 42h16M37 51h10" fill="none" stroke="#ffc779" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g><g transform="translate(365 8)"><rect width="90" height="90" rx="24" fill="#123138" stroke="#78e9d8" stroke-opacity=".45"/><path d="M22 24h46v42H22zM22 34h46M34 46l-6 5 6 5M56 46l6 5-6 5" fill="none" stroke="#78e9d8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg><div id="diagram" role="list" aria-label="Key points"></div></div>
+    </div>
+    <footer class="bottom"><span>Start with the idea. Finish with evidence.</span><span id="count"></span></footer>
+  </main>
+  <nav class="controls" aria-label="Presentation controls">
+    <button id="previous" type="button">← Previous</button><button id="next" type="button">Next →</button>
+    <audio id="player" controls preload="none"><track id="captions" kind="captions" srclang="en" label="English" default></audio>
+    <a href="transcript.md">Transcript</a><a href="../../lessons/03.html">Lesson and exercise</a><span class="status" id="status" role="status"></span>
+  </nav>
+  <script src="scene-data.js"></script>
+  <script>
+    (() => {
+      'use strict';
+      const scenes = window.PILOT_SCENES || [];
+      const qs = new URLSearchParams(location.search);
+      if (qs.has('capture')) document.body.classList.add('capture');
+      let current = Math.max(0,Math.min(scenes.length-1,Number(qs.get('scene')) || 0));
+      const title=document.getElementById('slide-title'),summary=document.getElementById('summary'),kicker=document.getElementById('kicker'),diagram=document.getElementById('diagram'),count=document.getElementById('count'),player=document.getElementById('player'),track=document.getElementById('captions'),status=document.getElementById('status');
+      function show(index) {
+        if (!scenes.length) { summary.textContent='The presentation is awaiting its scene data.'; return; }
+        current=Math.max(0,Math.min(index,scenes.length-1));const scene=scenes[current];
+        title.textContent=scene.title;summary.textContent=scene.visual;kicker.textContent=`PART ${String(current+1).padStart(2,'0')} · RESEARCH AND DECISIONS`;
+        diagram.replaceChildren();
+        (scene.points || []).forEach((point,i)=>{const node=document.createElement('div');node.className='node';node.setAttribute('role','listitem');const marker=document.createElement('i');marker.textContent=String(i+1).padStart(2,'0');const label=document.createElement('span');label.textContent=point;node.append(marker,label);diagram.append(node)});
+        count.textContent=`${String(current+1).padStart(2,'0')} / ${String(scenes.length).padStart(2,'0')}`;
+        player.src=`audio/${scene.id}.mp3`;track.src=`captions/${scene.id}.vtt`;player.load();
+        document.getElementById('previous').disabled=current===0;document.getElementById('next').disabled=current===scenes.length-1;status.textContent=`Scene ${current+1} of ${scenes.length}. Press play to begin; narration advances automatically.`;
+      }
+      document.getElementById('previous').addEventListener('click',()=>show(current-1));
+      document.getElementById('next').addEventListener('click',()=>show(current+1));
+      player.addEventListener('ended',()=>{
+        if(current>=scenes.length-1){status.textContent='Lesson complete. Use Previous to review a scene.';return;}
+        show(current+1);
+        player.play().catch(()=>{status.textContent=`Scene ${current+1} ready. Press play to continue.`;});
+      });
+      show(current);
+    })();
+  </script>
+</body>
+</html>

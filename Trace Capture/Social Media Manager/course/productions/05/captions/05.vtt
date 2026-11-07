@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.717
+Not every tiny project needs a separate file for every
+
+00:00:02.775 --> 00:00:03.332
+concept.
+
+00:00:03.773 --> 00:00:05.793
+The important part is that an agent can find the
+
+00:00:05.828 --> 00:00:10.379
+decisions, scope, tests, operational steps, and current
+
+00:00:10.426 --> 00:00:10.867
+state.
+
+00:00:11.308 --> 00:00:14.861
+A small project might combine sections; a larger one may
+
+00:00:14.931 --> 00:00:15.674
+separate them.
+
+00:00:16.486 --> 00:00:19.354
+Use the simplest organization that keeps responsibilities
+
+00:00:19.400 --> 00:00:19.842
+clear.
+
+00:00:20.167 --> 00:00:22.825
+A naming convention helps, but a filename does not
+
+00:00:22.872 --> 00:00:25.449
+guarantee that a document is current or authoritative.
+
+00:00:25.890 --> 00:00:27.342
+Read its content and date.

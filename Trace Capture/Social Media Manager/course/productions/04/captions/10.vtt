@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.891
+The owner may want a count of new inquiries and a detail
+
+00:00:02.937 --> 00:00:03.297
+view.
+
+00:00:03.808 --> 00:00:06.954
+These are two views of one authoritative record, not
+
+00:00:07.001 --> 00:00:09.334
+independent systems that each decide the status.
+
+00:00:09.776 --> 00:00:13.421
+If a count is cached, explain how it is refreshed and what
+
+00:00:13.479 --> 00:00:14.733
+happens if it is stale.
+
+00:00:15.174 --> 00:00:18.355
+A source of truth simplifies disagreements: when the count
+
+00:00:18.413 --> 00:00:21.560
+and detail view differ, the design says which record
+
+00:00:21.606 --> 00:00:23.580
+governs and how to repair the summary.
+
+00:00:24.021 --> 00:00:26.413
+It also helps tests target the right behavior.

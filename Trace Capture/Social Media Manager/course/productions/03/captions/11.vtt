@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:04.865
+A useful ledger entry has a title, date, context, accepted
+
+00:00:04.911 --> 00:00:08.603
+choice, alternatives considered, rationale,
+
+00:00:09.044 --> 00:00:11.622
+consequences, and an explicit status.
+
+00:00:12.132 --> 00:00:15.697
+A reopen condition might be "the owner approves inbox
+
+00:00:15.778 --> 00:00:19.052
+access and supplies representative synthetic export
+
+00:00:19.086 --> 00:00:23.278
+examples." If a later decision replaces it, preserve the
+
+00:00:23.370 --> 00:00:25.518
+earlier entry and link the new decision.
+
+00:00:26.122 --> 00:00:29.268
+This history is useful because future contributors can
+
+00:00:29.338 --> 00:00:32.368
+understand both what was chosen and why a seemingly
+
+00:00:32.438 --> 00:00:34.284
+attractive alternative was deferred.

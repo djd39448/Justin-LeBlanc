@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.125
+Who is allowed to mark an inquiry handled?
+
+00:00:02.566 --> 00:00:05.201
+The private view should not infer permission merely
+
+00:00:05.248 --> 00:00:07.291
+because someone knows a record identifier.
+
+00:00:07.674 --> 00:00:11.285
+An access mechanism should verify the user's identity and
+
+00:00:11.343 --> 00:00:13.480
+check the operation against trusted rules.
+
+00:00:13.990 --> 00:00:16.696
+Keep the decision as a concrete responsibility in the
+
+00:00:16.742 --> 00:00:17.462
+architecture.
+
+00:00:17.903 --> 00:00:21.374
+The exact identity provider can remain undecided until the
+
+00:00:21.421 --> 00:00:24.010
+project is ready to choose it; the need for an
+
+00:00:24.079 --> 00:00:26.564
+authorization boundary does not have to wait for a brand
+
+00:00:26.622 --> 00:00:26.994
+name.

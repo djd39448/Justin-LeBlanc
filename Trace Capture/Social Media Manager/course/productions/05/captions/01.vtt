@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.070 --> 00:00:02.775
+Documentation works best when each document answers a
+
+00:00:02.833 --> 00:00:03.669
+clear question.
+
+00:00:04.365 --> 00:00:07.790
+A README is the front door: what is this project and where
+
+00:00:07.814 --> 00:00:08.522
+do I start?
+
+00:00:09.218 --> 00:00:13.444
+Session instructions, often named AGENTS.md, explain
+
+00:00:13.526 --> 00:00:14.930
+applicable working rules.
+
+00:00:15.627 --> 00:00:18.529
+A decision ledger says which important choices were made
+
+00:00:18.553 --> 00:00:19.145
+and why.
+
+00:00:19.586 --> 00:00:22.326
+An architecture document explains how parts fit together.
+
+00:00:22.651 --> 00:00:25.925
+A workflow document explains behavior over time, including
+
+00:00:25.971 --> 00:00:26.447
+failure.
+
+00:00:26.958 --> 00:00:29.431
+These documents serve different readers and should not
+
+00:00:29.489 --> 00:00:31.033
+silently contradict one another.

@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.023 --> 00:00:02.752
+Once the responsibilities and paths are understandable,
+
+00:00:03.193 --> 00:00:06.409
+the build specification can define the exact behavior at
+
+00:00:06.455 --> 00:00:07.094
+each point.
+
+00:00:07.477 --> 00:00:11.865
+The diagram may say "validate inquiry"; the spec explains
+
+00:00:11.993 --> 00:00:15.720
+which fields are required, what error appears, and whether
+
+00:00:15.778 --> 00:00:17.543
+a failed submission creates a record.
+
+00:00:18.146 --> 00:00:19.412
+Keep the two consistent.
+
+00:00:19.795 --> 00:00:23.092
+If the specification reveals an unaddressed failure path,
+
+00:00:23.789 --> 00:00:25.182
+revise the architecture.
+
+00:00:25.879 --> 00:00:28.526
+Architecture is a working model that helps people make
+
+00:00:28.561 --> 00:00:31.730
+decisions, and it can evolve as long as changes are
+
+00:00:31.777 --> 00:00:33.866
+recorded and agreed at the appropriate level.

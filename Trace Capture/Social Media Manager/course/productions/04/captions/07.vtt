@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.786
+Draw the organizer and owner outside the system boundary.
+
+00:00:03.111 --> 00:00:07.372
+Inside it, draw a public form, validation service, inquiry
+
+00:00:07.430 --> 00:00:09.404
+store, and private owner view.
+
+00:00:10.008 --> 00:00:13.015
+Label an arrow from the form to validation "submitted
+
+00:00:13.061 --> 00:00:16.648
+fields," and an arrow to the store "validated inquiry."
+
+00:00:17.090 --> 00:00:20.456
+The store returns a saved identifier, which lets the form
+
+00:00:20.526 --> 00:00:21.838
+show a real confirmation.
+
+00:00:22.163 --> 00:00:24.810
+The private view reads that record and can request an
+
+00:00:24.857 --> 00:00:26.029
+allowed status change.
+
+00:00:26.470 --> 00:00:29.919
+A text description alongside the diagram makes the same
+
+00:00:29.953 --> 00:00:31.765
+information available to a screen reader.

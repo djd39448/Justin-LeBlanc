@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.286
+Architecture describes how parts of a system fit together
+
+00:00:03.611 --> 00:00:05.851
+and what each part is responsible for.
+
+00:00:06.455 --> 00:00:09.601
+You can think of it as a map of rooms and doors, not a
+
+00:00:09.671 --> 00:00:11.494
+shopping list of software brands.
+
+00:00:12.005 --> 00:00:15.488
+For the inquiry tracker, a form collects details, a
+
+00:00:15.604 --> 00:00:19.133
+service validates them, storage keeps an inquiry record,
+
+00:00:19.458 --> 00:00:22.071
+and a private view shows the owner what needs attention.
+
+00:00:22.454 --> 00:00:25.705
+A useful map says which part can change a record and how
+
+00:00:25.821 --> 00:00:27.539
+information moves among parts.

@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.081 --> 00:00:04.191
+Create four columns: verified, planned, assumed, and
+
+00:00:04.272 --> 00:00:04.795
+unknown.
+
+00:00:05.120 --> 00:00:08.847
+"The repository contains a form component" may be verified
+
+00:00:08.882 --> 00:00:09.532
+from code.
+
+00:00:09.741 --> 00:00:12.794
+"The form currently receives live submissions" requires
+
+00:00:12.829 --> 00:00:14.640
+stronger evidence than code alone.
+
+00:00:15.023 --> 00:00:16.614
+A roadmap item is planned.
+
+00:00:17.055 --> 00:00:19.644
+A belief that has not been checked is an assumption.
+
+00:00:20.027 --> 00:00:22.674
+If access is missing, call it unknown.
+
+00:00:23.057 --> 00:00:26.192
+A timestamp or revision helps another person know what the
+
+00:00:26.261 --> 00:00:27.562
+observation applies to.
+
+00:00:28.165 --> 00:00:31.254
+A clean-looking document does not magically turn a future
+
+00:00:31.289 --> 00:00:32.612
+goal into a live system.

@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.030
+Suppose the team can either use the existing form only or
+
+00:00:03.146 --> 00:00:04.400
+add an email importer.
+
+00:00:04.725 --> 00:00:08.522
+Ask for each option's benefits, effort, dependencies,
+
+00:00:08.800 --> 00:00:11.413
+risks, and an explicit recommendation.
+
+00:00:12.016 --> 00:00:15.000
+The simplest choice may be to use the form first and defer
+
+00:00:15.070 --> 00:00:15.499
+import.
+
+00:00:15.941 --> 00:00:18.309
+That is not a promise never to build import.
+
+00:00:18.750 --> 00:00:20.782
+It gives the first version a bounded outcome.
+
+00:00:21.293 --> 00:00:24.172
+Ask the owner questions that genuinely affect scope,
+
+00:00:24.555 --> 00:00:28.363
+architecture, risk, or cost, instead of interrupting over
+
+00:00:28.479 --> 00:00:29.768
+every routine detail.

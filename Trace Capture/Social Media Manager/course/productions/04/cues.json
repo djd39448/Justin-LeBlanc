@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "04",
+  "generatedFrom": "../../lessons/04.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "A map of jobs",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 27800,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "Architecture shows what each part owns and how the parts connect."
+    },
+    {
+      "id": "02",
+      "title": "Follow an inquiry",
+      "narrationSegmentId": "02",
+      "startMs": 27800,
+      "endMs": 56299,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "Trace one request from the organizer to a saved record and owner view."
+    },
+    {
+      "id": "03",
+      "title": "State over time",
+      "narrationSegmentId": "03",
+      "startMs": 56299,
+      "endMs": 87306,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "A workflow names states, allowed transitions, and failure behavior."
+    },
+    {
+      "id": "04",
+      "title": "Trust boundaries",
+      "narrationSegmentId": "04",
+      "startMs": 87306,
+      "endMs": 120706,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "Check data and access where information crosses a boundary."
+    },
+    {
+      "id": "05",
+      "title": "Safe retries",
+      "narrationSegmentId": "05",
+      "startMs": 120706,
+      "endMs": 149706,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "A repeated submission should not accidentally create duplicate effects."
+    },
+    {
+      "id": "06",
+      "title": "Useful detail",
+      "narrationSegmentId": "06",
+      "startMs": 149706,
+      "endMs": 184639,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "A small map can explain responsibilities without choosing every technology."
+    },
+    {
+      "id": "07",
+      "title": "Draw the system",
+      "narrationSegmentId": "07",
+      "startMs": 184639,
+      "endMs": 216639,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "Label the boxes and arrows that carry an inquiry through the system."
+    },
+    {
+      "id": "08",
+      "title": "When storage fails",
+      "narrationSegmentId": "08",
+      "startMs": 216639,
+      "endMs": 244537,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "A failure path must preserve truth and offer a useful next step."
+    },
+    {
+      "id": "09",
+      "title": "Who may act?",
+      "narrationSegmentId": "09",
+      "startMs": 244537,
+      "endMs": 271804,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Knowing a record ID is not proof someone can change it."
+    },
+    {
+      "id": "10",
+      "title": "One source of truth",
+      "narrationSegmentId": "10",
+      "startMs": 271804,
+      "endMs": 298501,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "A count and detail view both refer to the same inquiry records."
+    },
+    {
+      "id": "11",
+      "title": "Repeat without harm",
+      "narrationSegmentId": "11",
+      "startMs": 298501,
+      "endMs": 329926,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "A lost response makes a retry uncertain; design the intended effect explicitly."
+    },
+    {
+      "id": "12",
+      "title": "Test the map",
+      "narrationSegmentId": "12",
+      "startMs": 329926,
+      "endMs": 356993,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "Ask a person to follow the arrows and explain the failure path."
+    },
+    {
+      "id": "13",
+      "title": "From map to spec",
+      "narrationSegmentId": "13",
+      "startMs": 356993,
+      "endMs": 391126,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "The architecture names validation; the specification defines its exact rules."
+    }
+  ]
+}

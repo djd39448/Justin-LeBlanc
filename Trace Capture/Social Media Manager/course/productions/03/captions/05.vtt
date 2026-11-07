@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.738
+A decision ledger records context, decision,
+
+00:00:04.122 --> 00:00:09.067
+rationale, alternatives, consequences, status, and
+
+00:00:09.114 --> 00:00:11.552
+a condition that would justify reopening it.
+
+00:00:11.935 --> 00:00:15.430
+For example: "Provisionally use the website form for
+
+00:00:15.488 --> 00:00:19.087
+version one, subject to confirming it exists and works.
+
+00:00:19.470 --> 00:00:21.003
+Defer email import.
+
+00:00:21.386 --> 00:00:24.381
+Revisit when the owner has a tested export and approves
+
+00:00:24.404 --> 00:00:28.479
+the scope." Mark a choice as accepted, provisional,
+
+00:00:28.654 --> 00:00:30.105
+deferred, or rejected.
+
+00:00:30.546 --> 00:00:34.609
+If a decision changes later, add a dated supersession note
+
+00:00:34.818 --> 00:00:37.814
+rather than silently pretending the old decision never
+
+00:00:37.883 --> 00:00:38.464
+existed.

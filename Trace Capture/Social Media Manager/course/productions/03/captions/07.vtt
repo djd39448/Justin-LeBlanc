@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.390
+For the tracker, a responsible investigator might open the
+
+00:00:03.437 --> 00:00:06.246
+form source, identify the handler that receives
+
+00:00:06.269 --> 00:00:09.067
+submissions, and inspect any existing test.
+
+00:00:09.451 --> 00:00:12.794
+The result could be: "A form component exists at this
+
+00:00:12.875 --> 00:00:17.055
+revision; a local test covers required fields." That does
+
+00:00:17.125 --> 00:00:19.795
+not prove the deployed site uses the same revision.
+
+00:00:20.120 --> 00:00:23.696
+If deployment information is unavailable, record that gap.
+
+00:00:24.021 --> 00:00:27.957
+A screenshot, a source file, a test result, and a live
+
+00:00:28.003 --> 00:00:29.930
+observation support different claims.
+
+00:00:30.371 --> 00:00:33.065
+The reader should never have to guess which one was used.

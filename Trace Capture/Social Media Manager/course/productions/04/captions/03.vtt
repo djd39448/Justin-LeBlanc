@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.088
+A workflow is a sequence of states and transitions.
+
+00:00:03.471 --> 00:00:06.966
+A state is a condition, such as new or handled.
+
+00:00:07.291 --> 00:00:09.927
+A transition is the action that changes it.
+
+00:00:10.530 --> 00:00:14.141
+List who can perform each transition and what happens if
+
+00:00:14.199 --> 00:00:14.838
+it fails.
+
+00:00:15.279 --> 00:00:19.446
+For example, if saving a submitted form fails, do not show
+
+00:00:19.504 --> 00:00:20.805
+a false success message.
+
+00:00:21.316 --> 00:00:24.079
+Show a useful error and preserve the user's input where
+
+00:00:24.114 --> 00:00:24.729
+possible.
+
+00:00:25.170 --> 00:00:28.932
+A clear workflow helps test more than the happy path, the
+
+00:00:29.025 --> 00:00:30.755
+sequence where nothing goes wrong.

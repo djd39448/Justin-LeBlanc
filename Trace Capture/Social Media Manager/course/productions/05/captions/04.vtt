@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.070 --> 00:00:01.800
+Documents have different authority.
+
+00:00:02.125 --> 00:00:05.759
+A more recent, explicitly approved narrow specification
+
+00:00:06.037 --> 00:00:09.392
+can supersede an older requirement where they conflict;
+
+00:00:09.996 --> 00:00:12.330
+other older requirements may still apply.
+
+00:00:12.841 --> 00:00:15.696
+A progress report can describe what someone believes is
+
+00:00:15.766 --> 00:00:19.934
+done, but it cannot turn an untested feature into verified
+
+00:00:19.969 --> 00:00:20.572
+behavior.
+
+00:00:21.176 --> 00:00:24.276
+A kickoff can authorize an agent to act within its stated
+
+00:00:24.334 --> 00:00:24.822
+scope.
+
+00:00:25.263 --> 00:00:28.537
+When instructions conflict, ask the agent to identify the
+
+00:00:28.607 --> 00:00:32.032
+actual source and the precise conflict rather than quietly
+
+00:00:32.101 --> 00:00:33.878
+choose whichever text is convenient.
