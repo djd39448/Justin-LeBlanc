@@ -1,0 +1,79 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.450
+Imagine you have an idea for a small tool.
+
+00:00:02.775 --> 00:00:06.095
+You are a performer, and event organizers contact you by
+
+00:00:06.177 --> 00:00:08.150
+email, text, and web form.
+
+00:00:08.661 --> 00:00:11.738
+You want one place where you can see each inquiry and what
+
+00:00:11.784 --> 00:00:12.690
+needs a reply.
+
+00:00:13.201 --> 00:00:16.312
+You tell an AI agent, "Build me something that keeps track
+
+00:00:16.370 --> 00:00:19.725
+of my inquiries." The agent may immediately write code.
+
+00:00:20.050 --> 00:00:21.339
+That feels like progress.
+
+00:00:21.943 --> 00:00:23.777
+But what exactly is an inquiry?
+
+00:00:24.056 --> 00:00:25.402
+Who uses the tool?
+
+00:00:25.646 --> 00:00:26.947
+Should it send messages?
+
+00:00:27.330 --> 00:00:30.372
+What happens when two messages describe the same event?
+
+00:00:31.068 --> 00:00:33.715
+Until those questions are settled, a fast build can make
+
+00:00:33.739 --> 00:00:35.735
+the wrong assumptions very efficiently.
+
+00:00:36.029 --> 00:00:39.175
+This course teaches a different starting point: slow down
+
+00:00:39.291 --> 00:00:42.171
+long enough to make the important decisions visible.
+
+00:00:42.612 --> 00:00:45.271
+Then give the agent a clear path to build and prove the
+
+00:00:45.317 --> 00:00:45.863
+result.
+
+00:00:46.559 --> 00:00:48.997
+We call the journey cloud to contract to code.
+
+00:00:49.439 --> 00:00:51.726
+The cloud is the messy idea you start with.
+
+00:00:52.167 --> 00:00:55.325
+The contract is the shared description of what must happen
+
+00:00:55.395 --> 00:00:56.939
+and how we will know it works.
+
+00:00:57.543 --> 00:00:59.900
+The code is the implementation that follows.
+
+00:01:00.283 --> 00:01:02.709
+The aim is not to make you a programmer overnight.
+
+00:01:03.034 --> 00:01:05.879
+It is to help you lead the conversation and recognize
+
+00:01:05.914 --> 00:01:08.328
+whether the resulting work matches what you asked for.
