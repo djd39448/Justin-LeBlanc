@@ -1,5 +1,13 @@
 # Progress
 
+## 2026-11-07 — animated style preview
+
+- Dave accepted the course and Brian narration, then requested more engaging visual teaching and authorized a 60–90-second style preview before a course-wide rollout.
+- Created `style-preview/` from the first two retained narration clips: approximately 69 seconds, seven varied compositions, an original fictional performer illustration, phrase-timed reveals, moving inquiry examples, and a progressively explained diagram.
+- A deterministic HTML timeline drives both the browser presentation and the 30 fps MP4 export. The package includes captions, transcript, source timing and fingerprints, a range-capable local server, reproduction commands, and review evidence.
+- Browser checks covered playback, seeking, captions, reduced motion, fullscreen controls, and an emulated phone viewport. Independent review led to fixes for duplicate-example ambiguity, caption clearance, contrast, and controls. See `style-preview/review-notes.md` and `render-report.json` for details.
+- The revised visual style is awaiting Dave's review. Original course lessons/videos remain in place; the new style has not been applied to the full course.
+
 ## 2026-11-07 — pilot accepted
 
 - Dave approved the Lesson 1 pilot and authorized the remaining course production.

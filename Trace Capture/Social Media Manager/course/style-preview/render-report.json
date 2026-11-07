@@ -1,0 +1,152 @@
+{
+  "status": "verified",
+  "duration": 68.666667,
+  "expectedAudioDuration": 68.64979591836735,
+  "video": {
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "audio": {
+    "codec": "aac",
+    "sampleRate": "44100",
+    "channels": 1
+  },
+  "captions": "mov_text",
+  "originalAudioHashesMatched": true,
+  "decodedNarrationHashMatched": true,
+  "fullDecode": "passed",
+  "bytes": 3101904,
+  "sha256": "803fa5c278aeae73c96c6267cc9d3d484f16189de982c86122185c3412ca64ee",
+  "renderSeconds": 36.87,
+  "renderer": "Deterministic HTML frames at 30 fps; no still-image zoom substitution",
+  "capturedFrames": 2060,
+  "sampledFrameHashes": [
+    {
+      "time": 0,
+      "sha256": "2e8cff93e6108b0e462d9fb1ac19fe733d94a80f16fd4587c005ab4eac866365"
+    },
+    {
+      "time": 3,
+      "sha256": "e74259573775e16544fdea65003850785b154dd8ca944742eb5adeb3eb047b86"
+    },
+    {
+      "time": 6,
+      "sha256": "0120ca77452705106ef8ffeb2e1fcfc8e6ff5270feae7d090a908b2763ab7874"
+    },
+    {
+      "time": 9,
+      "sha256": "3a3a8b30e5406ce55614052fe51a094f3aeb71a829ba9b9bc2ee4edcf07488ef"
+    },
+    {
+      "time": 12,
+      "sha256": "0f8d921a4dda6908f961eb200bdd091055beeb23faff7f5b62556708eb81cd28"
+    },
+    {
+      "time": 15,
+      "sha256": "35a256261b36a4b913cbb64659d767a4336e221a5d809a9cb660f53e08e5fcd4"
+    },
+    {
+      "time": 18,
+      "sha256": "f5dbecebaa8cf4c2105244e2124427317ed8b8969c9e64529fd3f88cbe054201"
+    },
+    {
+      "time": 21,
+      "sha256": "7e09259154e6c6824cb92656f874f43ee3b5fdc508616d8182a664308a7c829b"
+    },
+    {
+      "time": 24,
+      "sha256": "e492d634f321b5592289cdca231f50577e984ece6d40fbcc29430818b52fc2b0"
+    },
+    {
+      "time": 27,
+      "sha256": "336c599c86fb45319400083dcbc5bb73c7ed32aa81a75055ee77f8a2e6f6fd82"
+    },
+    {
+      "time": 30,
+      "sha256": "a34d30540795c1fc3869da7957d5edf37bb6e7aea0952b67b62d11144d1c6520"
+    },
+    {
+      "time": 33,
+      "sha256": "225f195c88950d701e51dfcfd4d0bee527a0567ec478556d2ca5a9ece5a51aad"
+    },
+    {
+      "time": 36,
+      "sha256": "6d5f0d75e5952471a9a54421fcb8932ecedc2f6e4d36656028b7dafa4adc34e4"
+    },
+    {
+      "time": 39,
+      "sha256": "0112ced660f26d1fed21ee0b75ed454676d2a6c314cadff7087c6dbbea073b15"
+    },
+    {
+      "time": 42,
+      "sha256": "12556514666b11a0c1b32092b381d2acaaddd29fa73584eff69700a7145bb894"
+    },
+    {
+      "time": 45,
+      "sha256": "a6a426e7092ee0ef62c4bbf227f2811cbf9c329373db06a2e51e5fa5f35c7b98"
+    },
+    {
+      "time": 48,
+      "sha256": "421081ffe3aeb83750d2ed336382c4397d7b67ee7b96d888c11e7ea690dfff0c"
+    },
+    {
+      "time": 51,
+      "sha256": "b4af85e7890225a70761b31bffc5a036c2ad7498ffcf31718dcc52dd044a16d6"
+    },
+    {
+      "time": 54,
+      "sha256": "7b194ddd10efa0549970c76095c255daf85829984852cff645a2dde8fdf62f03"
+    },
+    {
+      "time": 57,
+      "sha256": "9b54203722f58bdd44e02a140bb9036bdb164e1d10679e0647378691087f48ca"
+    },
+    {
+      "time": 60,
+      "sha256": "be48b02276de6fc16db29a1bb4d0e6a906f6155b386c0a6bee1ef6bc3a84d354"
+    },
+    {
+      "time": 63,
+      "sha256": "3d5ffa45a7d14ea2edbfd0528de08a6a4a6f81c56aab5c4e563b4a3e52cb5654"
+    },
+    {
+      "time": 66,
+      "sha256": "b593517c457f642c69abfd352f8223b9b190d26635a12d9b6cc8f684c4f169cb"
+    }
+  ],
+  "browserErrors": [],
+  "exportedAacPacketsMatchRetained": true,
+  "aacPacketSha256": "212b5c5a147b5ed9b74ea4920f3373ec5bc0faaa83fbf59bfcfefd3efd13460a",
+  "motionVerification": {
+    "method": "Decoded central content crops exclude footer/progress bar and subtitle area; 0.2-second samples during channel/tracker reveals",
+    "samples": [
+      {
+        "time": 6.2,
+        "sha256": "220888697a017cd1e2b801785dfce0581d625fbe05035099256b3b5a379e0daa"
+      },
+      {
+        "time": 6.4,
+        "sha256": "bac77a090887c5194bf63b43342d885628599c2698c05430653ce07b5762a74d"
+      },
+      {
+        "time": 6.6,
+        "sha256": "b748177dec98e0fd42dbabee3d9bff2bafd86be432920f0958067ebb576203f9"
+      },
+      {
+        "time": 9,
+        "sha256": "1e2910ef80e0b37524a243b33142035d9956616bcf700e7cb949a9535bce4331"
+      },
+      {
+        "time": 9.2,
+        "sha256": "fa247c33591d568f579ad6d5d19aaab6b683eb51d5a911a3eba6b4cbf8d69696"
+      },
+      {
+        "time": 9.4,
+        "sha256": "f06bb2f58cf0bba6a06d27f00d4a56f69aa5e07557420570f225f3efe0dc294e"
+      }
+    ],
+    "uniqueCrops": 6
+  }
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<!-- Animated course style study. Dependencies: preview.css, preview.js, metadata.js and
+     retained media. Consumed by learners and the deterministic MP4 renderer. Kept separate
+     so the approved course is unaffected while Dave reviews the proposed visual direction. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A clearer way to build · Animated style preview</title>
+    <link rel="stylesheet" href="preview.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <span class="brand">Cloud → Contract → Code</span>
+      <span>Lesson 01 · Visual style preview</span>
+    </header>
+    <main>
+      <div id="viewport">
+        <div
+          id="stage"
+          role="img"
+          aria-label="An animated explanation of how scattered inquiries become a clear software idea. A complete transcript and visual description follow the player."
+        >
+          <section class="scene paper" id="arrival">
+            <div class="eyebrow">START WITH A REAL PROBLEM</div>
+            <h1>One small idea.<br /><em>A lot coming in.</em></h1>
+            <img class="performer arrival-person" src="assets/performer.png" alt="" />
+            <div class="message email" id="email">
+              <span class="channel">EMAIL</span><strong>Are you available?</strong>
+              <p>Summer celebration · June 12</p>
+            </div>
+            <div class="message text" id="text">
+              <span class="channel">TEXT</span><strong>Following up!</strong>
+              <p>About our June 12 event…</p>
+            </div>
+            <div class="message form" id="form">
+              <span class="channel">WEB FORM</span><strong>A new inquiry</strong>
+              <p>Private event · July 18</p>
+            </div>
+            <span class="example-note">Illustrative inquiry tracker</span>
+          </section>
+          <section class="scene paper" id="gather">
+            <div class="eyebrow">THE DESIRED EXPERIENCE</div>
+            <h1>One place to see<br /><em>what needs a reply.</em></h1>
+            <img class="performer gather-person" src="assets/performer.png" alt="" />
+            <div class="tracker" id="tracker">
+              <div class="tracker-heading">Your inquiries <span>Example</span></div>
+              <div class="tracker-row">
+                <div><strong>Summer celebration</strong><small>June 12 · Email</small></div>
+                <span class="reply-label">Needs a reply</span>
+              </div>
+              <div class="tracker-row">
+                <div><strong>Following up!</strong><small>June 12 · Text message</small></div>
+                <span class="reply-label">Needs a reply</span>
+              </div>
+              <div class="tracker-row">
+                <div><strong>Private event</strong><small>July 18 · Web form</small></div>
+                <span class="reply-label">Needs a reply</span>
+              </div>
+            </div>
+            <div id="reply-underline" class="underline"></div>
+          </section>
+          <section class="scene ink" id="rush">
+            <div class="eyebrow">THE TEMPTATION</div>
+            <div id="prompt">
+              <span class="speaker">YOU → AI AGENT</span>
+              <blockquote>
+                “Build me something<br />that keeps track<br />of my inquiries.”
+              </blockquote>
+            </div>
+            <div class="code-window" id="code-window">
+              <div class="window-top"><i></i><i></i><i></i><span>Agent starts building</span></div>
+              <div class="code-lines">
+                <p data-code="0"><b>create</b> inquiry_tracker</p>
+                <p data-code="1">&nbsp; collect(request)</p>
+                <p data-code="2">&nbsp; save(inquiry)</p>
+                <p data-code="3">&nbsp; send_reply(<mark>?</mark>)</p>
+              </div>
+              <div class="code-progress"><span id="code-progress"></span></div>
+              <span class="code-note">Illustrative pseudocode</span>
+            </div>
+            <div class="rush-caption" id="rush-caption">
+              Activity <span>feels like progress.</span>
+            </div>
+          </section>
+          <section class="scene paper" id="questions">
+            <div class="eyebrow coral">PAUSE THE BUILD</div>
+            <h1>But what do<br /><em>we actually mean?</em></h1>
+            <div class="question-list">
+              <p id="q0"><span>01</span> What counts as an inquiry?</p>
+              <p id="q1"><span>02</span> Who uses the tool?</p>
+              <p id="q2"><span>03</span> Should it send messages?</p>
+              <p id="q3"><span>04</span> What about duplicates?</p>
+            </div>
+            <div class="question-picture" id="inquiry-picture">
+              <span class="large-question">?</span>
+              <div class="specimen">
+                <span class="channel">ONE MESSAGE</span
+                ><strong>A question?<br />A follow-up?<br />A new event?</strong>
+              </div>
+            </div>
+            <div class="question-picture" id="people-picture">
+              <img class="performer" src="assets/performer.png" alt="" /><strong
+                >The performer?<br /><span>The organizer?</span></strong
+              >
+            </div>
+            <div class="question-picture" id="send-picture">
+              <span class="channel">REPLY DRAFT</span><strong>Thanks for<br />your inquiry.</strong>
+              <div class="unsent">Send automatically?</div>
+              <small>No sending decision yet</small>
+            </div>
+            <div class="question-picture" id="duplicate-picture">
+              <div class="duplicate">
+                <span class="channel">EMAIL</span><strong>June 12</strong
+                ><span>Summer celebration</span>
+              </div>
+              <div class="duplicate second">
+                <span class="channel">TEXT</span><strong>June 12</strong><span>Following up…</span>
+              </div>
+              <div class="same-event">Same event?</div>
+            </div>
+            <div class="assumption-banner" id="assumption-banner">
+              <strong>Fast build.</strong><span>Unresolved assumptions.</span>
+            </div>
+          </section>
+          <section class="scene teal" id="decisions">
+            <div class="eyebrow">A BETTER STARTING POINT</div>
+            <h1>Make the important<br /><em>decisions visible.</em></h1>
+            <div class="decision-row">
+              <div id="d0"><span>01</span><strong>Define the behavior</strong></div>
+              <div id="d1"><span>02</span><strong>Agree on the outcome</strong></div>
+            </div>
+            <div class="build-path" id="build-path">
+              <span>Clear decisions</span><b>→</b><span>Build</span><b>→</b
+              ><span class="proof">Prove the result</span>
+            </div>
+          </section>
+          <section class="scene paper" id="journey">
+            <div class="eyebrow">THE JOURNEY</div>
+            <h1>Cloud <span>→</span> Contract <span>→</span> Code</h1>
+            <div class="journey-nodes">
+              <div class="journey-node" id="cloud-node">
+                <span class="step-label">01 · CLOUD</span>
+                <div class="idea-cluster">
+                  <span>Inquiries?</span><span>Replies?</span><span>One place.</span>
+                </div>
+                <strong>The messy idea</strong>
+              </div>
+              <div class="journey-node" id="contract-node">
+                <span class="step-label">02 · CONTRACT</span>
+                <div class="contract-paper">
+                  <span>OUR AGREEMENT</span>
+                  <div id="contract-behavior">What must happen</div>
+                  <div id="contract-proof">How we know it works</div>
+                </div>
+                <strong>The shared description</strong>
+              </div>
+              <div class="journey-node" id="implementation-node">
+                <span class="step-label">03 · CODE</span>
+                <div class="mini-app">
+                  <div>INQUIRY TRACKER</div>
+                  <p>Summer celebration <i></i></p>
+                  <p>Private event <i></i></p>
+                </div>
+                <strong>The implementation</strong>
+              </div>
+            </div>
+            <svg class="journey-connectors" viewBox="0 0 1280 720" aria-hidden="true">
+              <path id="path1" d="M405 375 H452" />
+              <path id="path2" d="M825 375 H872" />
+            </svg>
+            <p id="journey-focus" class="journey-focus">
+              Give the idea a shape everyone understands.
+            </p>
+          </section>
+          <section class="scene teal" id="lead">
+            <div class="eyebrow">YOUR ROLE</div>
+            <h1>Lead the conversation.<br /><em>Recognize the result.</em></h1>
+            <img class="performer lead-person" src="assets/performer.png" alt="" />
+            <div class="comparison" id="comparison">
+              <div id="intended">
+                <span>WHAT YOU ASKED FOR</span
+                ><strong>See every inquiry.<br />Know what needs a reply.</strong>
+              </div>
+              <div class="compare-line" id="compare-line">Compare</div>
+              <div id="observed">
+                <span>WHAT THE AGENT BUILDS</span
+                ><strong>Does the behavior<br />match your intention?</strong>
+              </div>
+            </div>
+          </section>
+          <div id="caption" aria-hidden="true"></div>
+          <div class="stage-footer">
+            <span>CLOUD → CONTRACT → CODE</span><span id="scene-label">The idea</span>
+          </div>
+          <div class="stage-progress"><span id="stage-progress"></span></div>
+        </div>
+        <div class="fullscreen-controls">
+          <button id="full-play" type="button">Play preview</button
+          ><button id="full-back" type="button">Back 5s</button
+          ><button id="full-forward" type="button">Forward 5s</button
+          ><button id="full-exit" type="button">Exit full screen</button>
+        </div>
+      </div>
+      <div id="mobile-caption" aria-hidden="true"></div>
+      <div class="transport">
+        <div class="transport-top">
+          <button id="play" type="button">Play preview</button
+          ><output id="clock">0:00 / 1:09</output
+          ><input
+            id="seek"
+            type="range"
+            min="0"
+            max="69"
+            value="0"
+            step="0.05"
+            aria-label="Seek preview"
+          /><button id="cc" type="button" aria-pressed="true">Captions</button
+          ><button id="fullscreen" type="button">Full screen</button>
+        </div>
+        <div class="transport-bottom">
+          <nav aria-label="Preview chapters">
+            <button data-jump="0">The idea</button
+            ><button data-jump="13.201">The quick start</button
+            ><button data-jump="21.943">The questions</button
+            ><button data-jump="second">A clearer path</button>
+          </nav>
+          <label><input id="motion" type="checkbox" /> Reduce motion</label>
+        </div>
+        <p id="status" role="status">Brian’s original narration · Press play to begin</p>
+      </div>
+      <audio id="audio" src="narration.m4a" preload="metadata"></audio>
+      <section class="review-note">
+        <div>
+          <p class="overline">STYLE STUDY · 01</p>
+          <h2>A visual explanation,<br />one idea at a time.</h2>
+        </div>
+        <div>
+          <p>
+            This preview pairs the first two sections of Brian’s approved narration with progressive
+            diagrams, illustrated examples, and phrase-timed reveals.
+          </p>
+          <p>
+            <a href="style-preview.mp4">Watch or download the MP4</a> ·
+            <a href="captions.vtt">Captions</a> · <a href="transcript.md">Transcript</a>
+          </p>
+          <details>
+            <summary>Visual description</summary>
+            <p>
+              A fictional performer receives email, text, and web form inquiries. An illustrative
+              tracker organizes them. A prompt leads to coding before important questions are
+              answered. Four questions appear in order: inquiry definition, users, sending messages,
+              and duplicate events. A new composition makes decisions visible, then expands cloud,
+              contract, and code as Brian defines them. The ending asks the learner to compare
+              intended behavior with what was built.
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <script src="metadata.js"></script>
+    <script src="preview.js"></script>
+  </body>
+</html>
