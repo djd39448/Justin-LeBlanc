@@ -1,0 +1,321 @@
+{
+  "status": "verified",
+  "lesson": "01",
+  "duration": 433.166667,
+  "expectedAudioDuration": 433.16244897959183,
+  "video": {
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": 30
+  },
+  "audio": {
+    "codec": "aac",
+    "sampleRate": "44100",
+    "channels": 1
+  },
+  "captions": "English mov_text",
+  "originalSourceHashesMatched": true,
+  "originalAudioClips": 13,
+  "exportedAacPacketsMatchRetained": true,
+  "aacPacketSha256": "72c9875a43e77206770f82a9948c259fab5785168ac29303d9ef2d67432171c2",
+  "fullDecode": "passed",
+  "bytes": 14891179,
+  "sha256": "16f6104d6499950c65ddb5b54448e4237e23e30adc8846a659f977f075ff3fb1",
+  "sourceFingerprint": {
+    "sha256": "f5d626d51cf8544d6d93b1e22875831e2174345a043c2a11d1bde961a6128631",
+    "files": [
+      {
+        "path": "motion/approved-opening.js",
+        "sha256": "defb126308a75060e08e5a4193443a95d79d673d9a47f687f9d969193f1e48d3"
+      },
+      {
+        "path": "motion/assets/performer.png",
+        "sha256": "6d0deb7f9ab9ab6e39ef22db817a250c6c9996d325489356c3fa2e1d846db3ab"
+      },
+      {
+        "path": "motion/player.js",
+        "sha256": "044a402b1dd9d3270b0d471f11f0edf4724f4a075b0213978779049a667452bb"
+      },
+      {
+        "path": "motion/presentation-template.html",
+        "sha256": "ef41edb571ead47404ac302df66065cfc0037d975748807f1b8f70bb4eac23f0"
+      },
+      {
+        "path": "motion/presentation.css",
+        "sha256": "0bf2676596b566f92fdc7f2392b7e73f482f6e3dd8bb7a5ffee4b8ac5acafd72"
+      },
+      {
+        "path": "motion/storyboards/01.json",
+        "sha256": "fa15d77321c48b78eb4254e8117724219ed9f664e878552ad49306694e146a9e"
+      },
+      {
+        "path": "motion/visuals.js",
+        "sha256": "6ec390fabacdb55e1fbc2aa0c9c09813db6a88778a7a9b4d8cf772336c29d310"
+      },
+      {
+        "path": "pilot/presentation-data.js",
+        "sha256": "33c1a22f78df2d8a3e28d3eb0fb390715ed686f588ee3e5552a385f7939a77ba"
+      },
+      {
+        "path": "pilot/presentation.html",
+        "sha256": "7d34b9e230c6dc0914c8c040e33e5dbfe060232c68c17b1473e2a3a28b2a3035"
+      },
+      {
+        "path": "style-preview/assets/performer.png",
+        "sha256": "6d0deb7f9ab9ab6e39ef22db817a250c6c9996d325489356c3fa2e1d846db3ab"
+      },
+      {
+        "path": "style-preview/index.html",
+        "sha256": "c4749128507342b4e18fe535b199aa5e10f75ae900ce7ed9f5531a8576f8b1de"
+      },
+      {
+        "path": "style-preview/metadata.js",
+        "sha256": "8c2e99aa85e4f07d795257bcbe4666b0b4b99d8c3a50831d01a87ac6959964a8"
+      },
+      {
+        "path": "style-preview/preview.css",
+        "sha256": "9ec476f62852a29f5f4ef70453fb759c4441398d573331ece0b05681fae8341b"
+      },
+      {
+        "path": "style-preview/preview.js",
+        "sha256": "82d0f202f2d834cbeba7c49e8a9128ff7f07046cf9ef84974e3d466a4b94eaf7"
+      }
+    ]
+  },
+  "motionVerification": {
+    "method": "Decoded central content crops exclude footer, progress and subtitle area; 0.2-second samples during two anchored reveals.",
+    "samples": [
+      {
+        "time": 70.85079591836734,
+        "sha256": "3c5fd5fd5c1b181a8998913f9d6fc1fb3020c33acfb54246a15e372415e229fc"
+      },
+      {
+        "time": 71.05079591836734,
+        "sha256": "c49864d18923f9a4e7ad389884c39a2524ebb6327064f1c1eb55e0113fc9555a"
+      },
+      {
+        "time": 71.25079591836734,
+        "sha256": "15a31e2506ebd509ed2372a2db36c670f873936045ec584869c84096541932d2"
+      },
+      {
+        "time": 78.26979591836734,
+        "sha256": "0281b11ed9506a808cb1c9cc8da8b2d1472771a9f70c350a90f5b4353204b564"
+      },
+      {
+        "time": 78.46979591836734,
+        "sha256": "7a4a9c40bafdb21462a0f1cc7162100313c818695000e3f6e16c185c384cdc54"
+      },
+      {
+        "time": 78.66979591836734,
+        "sha256": "2a8527de56e9eb3b961f7dcc6ee6adb1192ab601b97040838213486ca56d48c4"
+      }
+    ],
+    "uniqueCrops": 6
+  },
+  "encodedFrames": 12995,
+  "browserCaptures": 4687,
+  "heldFrames": 8308,
+  "sampledFrameHashes": [
+    {
+      "time": 0,
+      "sha256": "1c64617ae66a9232a0d5ecd342f62341e343c160a3eb67b928332d5203760c6b"
+    },
+    {
+      "time": 10,
+      "sha256": "0277059bba5ae061d4bdf46514f252f28c9416303e23feb762fe1c819bbea981"
+    },
+    {
+      "time": 20,
+      "sha256": "04a0a76f872e6c190a6560d7d79483e57255b4af382b067b6b4c930d3ac6b208"
+    },
+    {
+      "time": 30,
+      "sha256": "1d4e552b6ec4755df9197823a2273f57e1657a002808ace042e1de242e0ee6c2"
+    },
+    {
+      "time": 40,
+      "sha256": "a601c6af634d1750ca9463539229a81c660e12162c82074243cba25cc0668cc0"
+    },
+    {
+      "time": 50,
+      "sha256": "e646d7be3132021f906619850600a75f56aa3c28e7252d2b64c52ae41eae6c66"
+    },
+    {
+      "time": 60,
+      "sha256": "2182ebed6551ba2e2fc0e7ceae37ca14b6faa0a70fdd78e6265a213ff1b0e55f"
+    },
+    {
+      "time": 70,
+      "sha256": "79952219bf15dd3823d1a92ef06edc94b32a0e061e11150d52fcd22122042e8d"
+    },
+    {
+      "time": 80,
+      "sha256": "51ee332572ab89e646634c64397586b4f6e99672a034f3e76a4d17c360fb313d"
+    },
+    {
+      "time": 90,
+      "sha256": "adbb3fdf1c90be20b56499b58ac6fdbe892fc9b9a4f34cd696ac0f980a9f56f4"
+    },
+    {
+      "time": 100,
+      "sha256": "76e95c17abf39d884790c53a7f53bd8fc3a5278ad20bcc9d637352991b62f1d1"
+    },
+    {
+      "time": 110,
+      "sha256": "9ba056c7790209e5028217be506c3a3b7b03376f246283a2fe78a70ae1bf7abc"
+    },
+    {
+      "time": 120,
+      "sha256": "f6551b39bff1bd60106f212692516de2a83738e5f3092f926903b1a2ed7c920d"
+    },
+    {
+      "time": 130,
+      "sha256": "410e5408084246dfc548800d8748a372940d8b69310e14c51a63899d1427a590"
+    },
+    {
+      "time": 140,
+      "sha256": "0b7ff73106e656d8db92ea1c231e9847b11259b318130cd623c294bddda6fc14"
+    },
+    {
+      "time": 150,
+      "sha256": "d18487e86a973b159e63184f7285f05e4922d090355e8d20c983a662767614cd"
+    },
+    {
+      "time": 160,
+      "sha256": "2f0cb1c57c2d2f0683eab4affc5863d5e74d946cb405878ea4354345d4edfb2c"
+    },
+    {
+      "time": 170,
+      "sha256": "5be5a7ae18e2a29f46837734754b8032d5d697d8631d72f26059dfa0c12a5d1c"
+    },
+    {
+      "time": 180,
+      "sha256": "7c1e86aa6834ba73edf8f2955638595d339ecb6a57d6f8815eaa7fc6609fd630"
+    },
+    {
+      "time": 190,
+      "sha256": "2798777d0420c4f57931fa5228509a78ad779a6d434e2c3a2467499d7cf64a0f"
+    },
+    {
+      "time": 200,
+      "sha256": "393e6cb1a1a2d68613a26ce04ba766d6e344252893026800eca4c926fedf48bc"
+    },
+    {
+      "time": 210,
+      "sha256": "e3bb25671eefa5361b311365100be0ca6c059635831665dc9ef3ec57bd0fd599"
+    },
+    {
+      "time": 220,
+      "sha256": "7b5bd6e049df6da903d1a8fa574e0239861c7c57f1060b757303fd4002a9640a"
+    },
+    {
+      "time": 230,
+      "sha256": "a26aac1680a7486fe326210afa6655a98dc66f3698d897186db0792cec33c908"
+    },
+    {
+      "time": 240,
+      "sha256": "afe4a9bc3a389a5b1a7d00a710cff2fdcc3560435b373609f95b57c114f8178a"
+    },
+    {
+      "time": 250,
+      "sha256": "88c8c2f01207900a3cc0720d3c524e02b138d1a2537c524729b97aa0d1960a0c"
+    },
+    {
+      "time": 260,
+      "sha256": "00b355e83e27687add51e061dc9ba9da8c1366330183f780d6fc628d7aa46220"
+    },
+    {
+      "time": 270,
+      "sha256": "e37b45369f53ceb7f2f6803b46a2e5f8be4fbac7c065acdebd57764711f1210c"
+    },
+    {
+      "time": 280,
+      "sha256": "b75c03b2c530dbb50a5c1fe8466b650d58ed680cd4a5b892b660844d896c51f4"
+    },
+    {
+      "time": 290,
+      "sha256": "ee6855d7e4c9ee114813d9908c26222534f17609aec12f667b4e255865d52bd1"
+    },
+    {
+      "time": 300,
+      "sha256": "d6a81c7d68c7fe3dcd62f3207d03823050cc8e04880363d2380ec219bb0111f0"
+    },
+    {
+      "time": 310,
+      "sha256": "2b5487e00d51c0f5e13a8622068ad9c3262acc47b25ccacde58b25d1c8d329ac"
+    },
+    {
+      "time": 320,
+      "sha256": "b196d538d919fba816ac2476923f29ec8723bf691e967163d8e37b967077d0d4"
+    },
+    {
+      "time": 330,
+      "sha256": "b196d538d919fba816ac2476923f29ec8723bf691e967163d8e37b967077d0d4"
+    },
+    {
+      "time": 340,
+      "sha256": "344d9d2a5af1a54b4879cca9825fc48a8eccd711ba0df577f4a99215a96001bc"
+    },
+    {
+      "time": 350,
+      "sha256": "23bbcd6ed2064a64d7b2d561604a85efdcff12ecda4a447e45ed4ddfbb6917ef"
+    },
+    {
+      "time": 360,
+      "sha256": "1036ec2d40bba13122db3d2256f8e32f68d091d594efd2bb53fc8a2bfb1a6fe2"
+    },
+    {
+      "time": 370,
+      "sha256": "d18a39a6c963987bdd4184a32bb9aa37c9cf29811e367e3ac40432d4a9e4a6e9"
+    },
+    {
+      "time": 380,
+      "sha256": "0678dad1792696d4293b445d1bd70318b0f13670cd0375bacefcc035d87bea33"
+    },
+    {
+      "time": 390,
+      "sha256": "0680bfceb414aac51ffcfba2fe892f741ff207fb38f0f2b3740f03eea201c66b"
+    },
+    {
+      "time": 400,
+      "sha256": "ed1380267d9301f4f9e13dd25eafed119ad9c7338bc8d371195b44b0c1a79cbd"
+    },
+    {
+      "time": 410,
+      "sha256": "e34b588925979c497f61c51c4e3b358ec9382807f1976faefc2d64b7a74b0924"
+    },
+    {
+      "time": 420,
+      "sha256": "e344f42e4b8bf0c863a8dd1ccdce0ff182c4bd3252fed2b9c06e08ec042c1de1"
+    },
+    {
+      "time": 430,
+      "sha256": "1d3736780f2aa51fddb156defdfcc6faf1bcdaeec6b4e97a61a868e76a646023"
+    }
+  ],
+  "timelineAudit": {
+    "stableHoldChecks": 1,
+    "holdComparisons": [
+      {
+        "scene": "07",
+        "accepted": true,
+        "changedPixels": 0,
+        "maximumChannelDelta": 0
+      }
+    ],
+    "sameTimeAfterSeeking": "pixel-identical",
+    "seekComparison": {
+      "accepted": true,
+      "changedPixels": 0,
+      "maximumChannelDelta": 0
+    },
+    "rasterizationTolerance": {
+      "maximumChangedPixels": 4,
+      "maximumChannelDelta": 2
+    }
+  },
+  "renderSeconds": 115.865,
+  "renderer": "Deterministic30fps HTML animation with cached unchanged reading holds",
+  "browserErrors": []
+}
