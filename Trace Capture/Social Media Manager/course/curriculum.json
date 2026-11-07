@@ -5,8 +5,8 @@
   "caseStudy": "Fictional inquiry tracker",
   "lessonDefaults": {
     "lectureStatus": "draft for review",
-    "videoStatus": "pending pilot approval and production",
-    "presentationStatus": "pending pilot approval and production",
+    "videoStatus": "production pending",
+    "presentationStatus": "production pending",
     "accessStatus": "not protected; host access integration not configured"
   },
   "lessons": [

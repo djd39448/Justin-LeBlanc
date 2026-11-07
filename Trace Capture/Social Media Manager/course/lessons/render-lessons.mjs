@@ -1,5 +1,6 @@
 /** Render standalone lesson HTML from the canonical lesson-source.mjs records. */
 import { writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { lessons } from './lesson-source.mjs';
@@ -16,11 +17,16 @@ for (const lesson of lessons) {
   const plan = lesson.sections.map(([heading]) => `<li>${escape(heading)}</li>`).join('');
   const rubric = lesson.rubric.map((item) => `<li>${escape(item)}</li>`).join('');
   const next = lesson.next ? `<a href="${lesson.next}.html">Next lesson →</a>` : '<a href="../index.html">Return to course overview →</a>';
+  const production = join(directory, '..', 'productions', lesson.id);
+  const hasVideo = ['presentation.html', `lesson-${lesson.id}.mp4`, 'captions.vtt', 'transcript.md'].every((asset) => existsSync(join(production, asset)));
+  const media = hasVideo
+    ? `<section class="card" aria-labelledby="watch"><h2 id="watch">Watch the lesson</h2><video controls playsinline preload="metadata" style="display:block;width:100%;height:auto;border-radius:10px"><source src="../productions/${lesson.id}/lesson-${lesson.id}.mp4" type="video/mp4"><track src="../productions/${lesson.id}/captions.vtt" kind="captions" srclang="en" label="English" default>Your browser cannot play this video. <a href="../productions/${lesson.id}/lesson-${lesson.id}.mp4">Download the video</a>.</video><p><a href="../productions/${lesson.id}/presentation.html">Open the interactive HTML presentation →</a> &nbsp;·&nbsp; <a href="../productions/${lesson.id}/transcript.md">Read the transcript</a></p></section>`
+    : '<aside><strong>Production in progress:</strong> The narrated video and animated presentation are not yet available. The lecture and exercise are ready to read.</aside>';
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${lesson.id} · ${escape(lesson.title)} | Cloud to Code</title><style>${css}</style></head><body><main>
 <nav aria-label="Course navigation"><a href="../index.html">← Course overview</a></nav>
 <p class="eyebrow">Lesson ${lesson.id} · Cloud to Code</p><h1>${escape(lesson.title)}.</h1><p class="lede">${escape(lesson.objective)}</p>
-<aside><strong>Draft lesson:</strong> The narrated video and animated presentation are not yet approved or available. This page contains an editable lecture draft and practice exercise.</aside>
+${media}
 <section class="card" aria-labelledby="objectives"><h2 id="objectives">What you’ll learn</h2><p>${escape(lesson.objective)}</p><p class="meta">Prerequisite: previous lessons. Practice: ${lesson.id === '10' ? 'approximately 2–4 hours, depending on your project and prior work' : '15–20 minutes'}.</p></section>
 <section aria-labelledby="plan"><h2 id="plan">Lesson plan</h2><ol>${plan}</ol></section>
 <article class="script" id="lecture-script" aria-labelledby="lecture"><h2 id="lecture">Lecture draft</h2>${script}</article>

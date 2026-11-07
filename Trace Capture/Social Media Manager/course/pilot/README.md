@@ -1,6 +1,6 @@
 # Lesson 1 pilot: The whole system
 
-Status: generated locally, awaiting Dave's pilot review. This is a production sample, not evidence of a published course or completed paywall.
+Status: Dave approved the pilot on 2026-11-07 and authorized production of the remaining lessons. This is not evidence of a published course or completed paywall.
 
 ## Open the lesson
 
@@ -14,7 +14,7 @@ The presentation is editable HTML/CSS/JavaScript. Its live browser view animates
 
 ## Narration and rights
 
-The voice is ElevenLabs Brian via fal.ai's multilingual-v2 TTS endpoint. It was generated from 13 consecutive paragraphs (6,921 characters) in the canonical Lesson 1 lecture, using the user's existing configured service. No raw service response or credentials are included. The provider returned character alignment, retained under `alignment/`, from which captions were constructed; the normalized alignment text matches all 13 source paragraphs. Actual service charges were not exposed by the generation response. Commercial use rights and the account's applicable terms remain to be verified before selling or publishing.
+The voice is ElevenLabs Brian via fal.ai's multilingual-v2 TTS endpoint. It was generated from 13 consecutive paragraphs (6,921 characters) in the canonical Lesson 1 lecture, using the user's existing configured service. No raw service response or credentials are included. The provider returned character alignment, retained under `alignment/`, from which captions were constructed; the normalized alignment text matches all 13 source paragraphs. Actual service charges were not exposed by the generation response. [fal states](https://fal.ai/elevenlabs) that ElevenLabs content generated through its API may be used commercially; the account's applicable terms and any voice-specific restrictions should still be confirmed before selling or publishing.
 
 The diagram illustrations are original inline SVG/CSS created for this pilot; no third-party image or music assets were used. A listener still needs to review pronunciation, voice quality, script-to-audio parity, caption wording/timing, and the overall pacing. The measured 7:13 duration is shorter than the proposed 8–15 minute range and should be reviewed for fit, not silently called compliant.
 

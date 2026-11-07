@@ -1,5 +1,11 @@
 # Progress
 
+## 2026-11-07 — pilot accepted
+
+- Dave approved the Lesson 1 pilot and authorized the remaining course production.
+- fal's [ElevenLabs page](https://fal.ai/elevenlabs) states that content generated through its API can be used commercially; confirm the account's terms and any voice-specific restrictions before launch. [Published Multilingual v2 pricing](https://fal.ai/pricing) is $0.10 per 1,000 characters at this checkpoint; actual account charges are not exposed.
+- Producing lessons 2–10 from the approved Brian voice and visual model. Checkpoint the actual state rather than assuming generation or a paywall is complete.
+
 ## 2026-11-07 — first pilot and lesson drafts
 
 - Created the course homepage, lesson navigation, responsive styling, and browser-local self-reported completion controls.
