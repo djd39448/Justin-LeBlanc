@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.322
+Write the report for a person who was asleep while the
+
+00:00:02.357 --> 00:00:03.030
+work happened.
+
+00:00:03.471 --> 00:00:06.792
+Put the outcome and artifact links first, followed by what
+
+00:00:06.838 --> 00:00:09.996
+is built, verified, unverified, or blocked.
+
+00:00:10.437 --> 00:00:13.839
+Include checks and evidence, the actual route and usage if
+
+00:00:13.897 --> 00:00:18.646
+exposed, decisions taken, unresolved effects, rollback,
+
+00:00:18.727 --> 00:00:19.772
+and the next action.
+
+00:00:20.376 --> 00:00:22.976
+Make the first few things to inspect easy to find.
+
+00:00:23.418 --> 00:00:26.703
+If the job ran out of time, report partial completion
+
+00:00:26.819 --> 00:00:30.012
+accurately rather than stretching the definition of done.

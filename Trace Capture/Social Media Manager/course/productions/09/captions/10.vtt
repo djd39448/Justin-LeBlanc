@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.392
+A timeout does not always mean nothing happened.
+
+00:00:02.833 --> 00:00:06.397
+If a real provider request may have succeeded, inspect the
+
+00:00:06.432 --> 00:00:09.451
+provider's record or a durable operation log through
+
+00:00:09.509 --> 00:00:11.889
+authorized read-only means before retrying.
+
+00:00:12.492 --> 00:00:15.883
+If the outcome remains uncertain, report that state and
+
+00:00:15.918 --> 00:00:17.996
+the exact action needed to resolve it.
+
+00:00:18.599 --> 00:00:21.514
+An idempotency key or similar design can make repeated
+
+00:00:21.572 --> 00:00:24.590
+requests safer, but it must actually be supported and
+
+00:00:24.648 --> 00:00:25.066
+used.
+
+00:00:25.449 --> 00:00:28.131
+Do not claim an operation is safe to repeat based on a
+
+00:00:28.178 --> 00:00:28.781
+name alone.

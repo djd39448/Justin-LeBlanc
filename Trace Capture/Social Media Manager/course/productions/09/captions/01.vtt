@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.438
+An autonomous build lets an agent continue through an
+
+00:00:02.508 --> 00:00:05.190
+authorized sequence without asking for routine
+
+00:00:05.236 --> 00:00:06.606
+confirmation at every step.
+
+00:00:07.117 --> 00:00:09.218
+It does not grant unlimited permission.
+
+00:00:09.601 --> 00:00:12.945
+Define the goal, the approved scope, the definition of
+
+00:00:13.014 --> 00:00:15.998
+done, a deadline if relevant, and what actions are
+
+00:00:16.033 --> 00:00:16.486
+allowed.
+
+00:00:16.927 --> 00:00:19.214
+For the tracker, autonomous work might include
+
+00:00:19.249 --> 00:00:21.281
+implementing and testing a local feature.
+
+00:00:21.722 --> 00:00:24.996
+It does not automatically authorize sending real messages,
+
+00:00:25.321 --> 00:00:28.642
+buying a service, granting credentials, or changing an
+
+00:00:28.700 --> 00:00:29.652
+unrelated system.

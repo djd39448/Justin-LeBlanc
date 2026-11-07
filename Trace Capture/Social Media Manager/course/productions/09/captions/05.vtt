@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.181
+Check visible shared usage before substantial dispatch and
+
+00:00:03.216 --> 00:00:04.017
+after batches.
+
+00:00:04.458 --> 00:00:08.173
+Dave's example reserves 25 percent and stops discretionary
+
+00:00:08.220 --> 00:00:11.831
+cloud dispatch at 75 percent used; your own policy can
+
+00:00:11.877 --> 00:00:12.295
+differ.
+
+00:00:12.620 --> 00:00:15.360
+At the threshold, continue safe independent work through
+
+00:00:15.395 --> 00:00:18.448
+available deterministic or local means and preserve
+
+00:00:18.495 --> 00:00:22.489
+capacity for essential completion, recovery, and handoff.
+
+00:00:23.092 --> 00:00:26.866
+If usage is unknown, avoid discretionary cloud dispatch
+
+00:00:26.924 --> 00:00:30.151
+and retain only the minimum authorized cloud work needed
+
+00:00:30.476 --> 00:00:32.392
+for safe completion and handoff.
+
+00:00:32.903 --> 00:00:35.968
+The exact behavior must respect the actual platform and
+
+00:00:36.003 --> 00:00:36.989
+the owner's permissions.

@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.123
+After a verified slice, record the revision, changed
+
+00:00:03.158 --> 00:00:07.430
+behavior, tests and outcomes, current status, next task,
+
+00:00:07.639 --> 00:00:08.754
+and relevant usage.
+
+00:00:09.451 --> 00:00:12.771
+If an external operation occurred, record its known or
+
+00:00:12.841 --> 00:00:15.105
+uncertain state without exposing secrets.
+
+00:00:15.708 --> 00:00:18.599
+A checkpoint can be a progress file or another durable
+
+00:00:18.645 --> 00:00:20.248
+record appropriate to the project.
+
+00:00:20.689 --> 00:00:23.881
+It should be updated before context is lost, not only at
+
+00:00:23.916 --> 00:00:24.648
+the very end.
+
+00:00:25.089 --> 00:00:28.224
+Small verified commits can supplement the checkpoint when
+
+00:00:28.247 --> 00:00:30.325
+the repository workflow permits them.

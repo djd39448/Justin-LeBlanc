@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:04.981
+A useful loop is plan, build, review, fix, verify, and
+
+00:00:05.039 --> 00:00:05.608
+record.
+
+00:00:06.049 --> 00:00:09.056
+Work in small slices, and persist a checkpoint at
+
+00:00:09.114 --> 00:00:10.205
+meaningful milestones.
+
+00:00:10.716 --> 00:00:13.433
+A checkpoint is durable information that survives a
+
+00:00:13.514 --> 00:00:17.810
+session ending: current revision, completed work, checks,
+
+00:00:17.961 --> 00:00:22.036
+active processes, uncertain effects, usage where visible,
+
+00:00:22.419 --> 00:00:25.066
+rollback information, and the next safe action.
+
+00:00:25.763 --> 00:00:28.549
+A fresh agent should be able to resume from it without
+
+00:00:28.584 --> 00:00:30.151
+treating the workspace as empty.

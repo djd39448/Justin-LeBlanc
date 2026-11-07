@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:01.892
+Inspect your architecture diagram.
+
+00:00:02.276 --> 00:00:04.307
+Does each component have a clear job?
+
+00:00:04.690 --> 00:00:07.256
+Can you trace a valid request from beginning to end?
+
+00:00:07.767 --> 00:00:09.404
+What is the authoritative record?
+
+00:00:09.729 --> 00:00:11.796
+Where do untrusted inputs enter?
+
+00:00:12.121 --> 00:00:14.478
+Who may view or change private data?
+
+00:00:14.919 --> 00:00:17.671
+Now trace a failure, such as a storage outage.
+
+00:00:18.054 --> 00:00:21.455
+A diagram can be simple, but the explanation should make
+
+00:00:21.490 --> 00:00:23.557
+responsibilities and recovery visible.
+
+00:00:23.998 --> 00:00:27.330
+If the diagram requires facts you have not checked, label
+
+00:00:27.400 --> 00:00:28.503
+them as assumptions.

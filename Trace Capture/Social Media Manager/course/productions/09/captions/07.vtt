@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.529
+Start with the approved definition of done: for example,
+
+00:00:03.576 --> 00:00:06.978
+implement the fictional tracker locally, cover the agreed
+
+00:00:07.001 --> 00:00:10.368
+acceptance cases, and produce a restartable handoff.
+
+00:00:11.064 --> 00:00:15.220
+State the authorized workspace, the documents to read, any
+
+00:00:15.290 --> 00:00:17.589
+deadline, and a compact work loop.
+
+00:00:18.285 --> 00:00:21.397
+Tell the agent to make reasonable reversible decisions
+
+00:00:21.432 --> 00:00:23.046
+within scope and record them.
+
+00:00:23.649 --> 00:00:26.389
+Also state which decisions require the owner.
+
+00:00:26.714 --> 00:00:30.395
+A phrase like "do not stop" cannot authorize buying
+
+00:00:30.464 --> 00:00:32.937
+services or altering unrelated systems.

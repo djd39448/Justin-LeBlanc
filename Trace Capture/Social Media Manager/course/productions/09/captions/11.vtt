@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.496
+Before a batch, inspect exposed account usage.
+
+00:00:02.937 --> 00:00:06.072
+After the batch, record its outcomes and current usage if
+
+00:00:06.118 --> 00:00:06.653
+visible.
+
+00:00:07.094 --> 00:00:10.820
+Dave's default reserves 25 percent and stops discretionary
+
+00:00:10.867 --> 00:00:14.814
+cloud dispatch at 75 percent used; it is not a universal
+
+00:00:14.872 --> 00:00:15.766
+platform rule.
+
+00:00:16.277 --> 00:00:18.401
+Do not consume reset credits automatically.
+
+00:00:18.575 --> 00:00:21.861
+If usage cannot be checked, keep the state unknown and use
+
+00:00:21.896 --> 00:00:22.906
+conservative routes.
+
+00:00:23.231 --> 00:00:27.596
+A reserve exists so integration, review, safe recovery,
+
+00:00:27.620 --> 00:00:29.779
+and handoff are not stranded at the end.

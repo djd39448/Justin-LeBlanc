@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "10",
+  "generatedFrom": "../../lessons/10.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "Your final project",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 23823,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "Use a manageable idea to demonstrate the complete process."
+    },
+    {
+      "id": "02",
+      "title": "Capture and align",
+      "narrationSegmentId": "02",
+      "startMs": 23823,
+      "endMs": 53090,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "Turn a raw idea into an agreed journey with explicit unknowns."
+    },
+    {
+      "id": "03",
+      "title": "Research and decide",
+      "narrationSegmentId": "03",
+      "startMs": 53090,
+      "endMs": 82373,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Show what evidence exists and why consequential choices were made."
+    },
+    {
+      "id": "04",
+      "title": "Map and specify",
+      "narrationSegmentId": "04",
+      "startMs": 82373,
+      "endMs": 116439,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "A simple diagram and a precise contract explain how the system should work."
+    },
+    {
+      "id": "05",
+      "title": "Plan the kickoff",
+      "narrationSegmentId": "05",
+      "startMs": 116439,
+      "endMs": 150111,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "Give a fresh agent an ordered, bounded assignment and clear checks."
+    },
+    {
+      "id": "06",
+      "title": "Review it cold",
+      "narrationSegmentId": "06",
+      "startMs": 150111,
+      "endMs": 179916,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "Test whether someone without the conversation can find the first safe action."
+    },
+    {
+      "id": "07",
+      "title": "Choose a small scope",
+      "narrationSegmentId": "07",
+      "startMs": 179916,
+      "endMs": 208520,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "A focused first version is easier to specify and verify."
+    },
+    {
+      "id": "08",
+      "title": "Assess the readback",
+      "narrationSegmentId": "08",
+      "startMs": 208520,
+      "endMs": 237254,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "A complete journey identifies the actor, trigger, actions, and result."
+    },
+    {
+      "id": "09",
+      "title": "Assess the design",
+      "narrationSegmentId": "09",
+      "startMs": 237254,
+      "endMs": 265988,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Trace both a valid request and a storage failure across the map."
+    },
+    {
+      "id": "10",
+      "title": "Assess the contract",
+      "narrationSegmentId": "10",
+      "startMs": 265988,
+      "endMs": 292455,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "A fresh reader should be able to say exactly how each requirement is proven."
+    },
+    {
+      "id": "11",
+      "title": "Assess the handoff",
+      "narrationSegmentId": "11",
+      "startMs": 292455,
+      "endMs": 320788,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "The next agent needs authority, baseline, evidence, and a safe next step."
+    },
+    {
+      "id": "12",
+      "title": "Use the feedback",
+      "narrationSegmentId": "12",
+      "startMs": 320788,
+      "endMs": 350593,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "Record what a reader had to guess, then revise and check again."
+    },
+    {
+      "id": "13",
+      "title": "Transfer the work",
+      "narrationSegmentId": "13",
+      "startMs": 350593,
+      "endMs": 380460,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Keep stable decisions and environment-specific assumptions visible."
+    }
+  ]
+}

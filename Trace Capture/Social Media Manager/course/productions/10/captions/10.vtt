@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.461
+Choose three requirements and ask a fresh reader to
+
+00:00:02.519 --> 00:00:04.087
+describe how each would be proven.
+
+00:00:04.528 --> 00:00:06.931
+Add acceptance criteria where answers differ.
+
+00:00:07.314 --> 00:00:10.995
+Include a success path, invalid data, and at least one
+
+00:00:11.041 --> 00:00:12.794
+failure or authorization case.
+
+00:00:13.235 --> 00:00:14.837
+List what the build must preserve.
+
+00:00:15.220 --> 00:00:18.146
+Describe a safe order of work and a proposed rollback.
+
+00:00:18.657 --> 00:00:21.072
+If implementation needs a provider or an owner's
+
+00:00:21.107 --> 00:00:24.427
+permission, state that boundary explicitly rather than
+
+00:00:24.485 --> 00:00:26.157
+silently assume it will be available.

@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:03.135
+In the morning, the owner or a fresh agent should compare
+
+00:00:03.170 --> 00:00:05.190
+the handoff with the actual workspace.
+
+00:00:05.631 --> 00:00:09.311
+Check the revision, working changes, running jobs, and
+
+00:00:09.381 --> 00:00:11.308
+evidence before choosing the next action.
+
+00:00:11.912 --> 00:00:15.163
+If the handoff says a test passed but later code changes
+
+00:00:15.232 --> 00:00:18.727
+touched that behavior, the earlier result may no longer be
+
+00:00:18.762 --> 00:00:19.331
+sufficient.
+
+00:00:19.772 --> 00:00:23.440
+If an external operation is uncertain, reconcile it first.
+
+00:00:23.824 --> 00:00:27.249
+This short reality check preserves valid progress while
+
+00:00:27.283 --> 00:00:29.884
+preventing duplicate work or duplicate effects.

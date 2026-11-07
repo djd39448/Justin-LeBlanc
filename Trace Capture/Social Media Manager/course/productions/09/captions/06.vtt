@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.844
+At the end, report the outcome and links, revision,
+
+00:00:03.170 --> 00:00:07.070
+completed and pending work, tests and evidence, actual
+
+00:00:07.163 --> 00:00:11.784
+model routes and exposed usage, assumptions, blockers,
+
+00:00:12.167 --> 00:00:16.045
+uncertain external effects, rollback, and the next safe
+
+00:00:16.091 --> 00:00:16.591
+action.
+
+00:00:17.288 --> 00:00:19.842
+Label offline and live evidence correctly.
+
+00:00:20.225 --> 00:00:22.768
+Include the first few things the owner should inspect.
+
+00:00:23.209 --> 00:00:26.111
+If a deadline or blocker ends the run early, say so
+
+00:00:26.169 --> 00:00:26.703
+plainly.
+
+00:00:27.087 --> 00:00:30.628
+Completion is a proven state, not a confident sentence.

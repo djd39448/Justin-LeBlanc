@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.194
+Suppose an agent was interrupted after submitting a
+
+00:00:02.252 --> 00:00:03.320
+request to a provider.
+
+00:00:03.704 --> 00:00:05.828
+You may not know whether the provider accepted it.
+
+00:00:06.211 --> 00:00:08.545
+Blindly resending can duplicate the effect.
+
+00:00:08.986 --> 00:00:12.260
+First inspect the job, logs, and durable records;
+
+00:00:12.701 --> 00:00:13.897
+reconcile what happened.
+
+00:00:14.338 --> 00:00:17.078
+The same principle applies to a worker that may have
+
+00:00:17.113 --> 00:00:19.191
+committed changes before a session ended.
+
+00:00:19.632 --> 00:00:24.183
+Preserve valid work, identify the first unproven step, and
+
+00:00:24.241 --> 00:00:27.144
+only retry when the operation is safe to repeat.

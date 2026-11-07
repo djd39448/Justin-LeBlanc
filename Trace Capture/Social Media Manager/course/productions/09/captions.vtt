@@ -1,0 +1,418 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.438
+An autonomous build lets an agent continue through an
+
+00:00:02.508 --> 00:00:05.190
+authorized sequence without asking for routine
+
+00:00:05.236 --> 00:00:06.606
+confirmation at every step.
+
+00:00:07.117 --> 00:00:09.218
+It does not grant unlimited permission.
+
+00:00:09.601 --> 00:00:12.945
+Define the goal, the approved scope, the definition of
+
+00:00:13.014 --> 00:00:15.998
+done, a deadline if relevant, and what actions are
+
+00:00:16.033 --> 00:00:16.486
+allowed.
+
+00:00:16.927 --> 00:00:19.214
+For the tracker, autonomous work might include
+
+00:00:19.249 --> 00:00:21.281
+implementing and testing a local feature.
+
+00:00:21.722 --> 00:00:24.996
+It does not automatically authorize sending real messages,
+
+00:00:25.321 --> 00:00:28.642
+buying a service, granting credentials, or changing an
+
+00:00:28.700 --> 00:00:29.652
+unrelated system.
+
+00:00:29.968 --> 00:00:34.914
+A useful loop is plan, build, review, fix, verify, and
+
+00:00:34.972 --> 00:00:35.541
+record.
+
+00:00:35.982 --> 00:00:38.989
+Work in small slices, and persist a checkpoint at
+
+00:00:39.047 --> 00:00:40.138
+meaningful milestones.
+
+00:00:40.649 --> 00:00:43.366
+A checkpoint is durable information that survives a
+
+00:00:43.447 --> 00:00:47.743
+session ending: current revision, completed work, checks,
+
+00:00:47.894 --> 00:00:51.969
+active processes, uncertain effects, usage where visible,
+
+00:00:52.352 --> 00:00:54.999
+rollback information, and the next safe action.
+
+00:00:55.696 --> 00:00:58.482
+A fresh agent should be able to resume from it without
+
+00:00:58.517 --> 00:01:00.084
+treating the workspace as empty.
+
+00:01:00.374 --> 00:01:01.860
+Some decisions need the owner.
+
+00:01:02.185 --> 00:01:05.250
+Write a Morning Unblock item containing the exact blocker,
+
+00:01:05.529 --> 00:01:08.478
+what was completed up to the boundary, and one action the
+
+00:01:08.524 --> 00:01:09.337
+owner must take.
+
+00:01:09.778 --> 00:01:12.692
+Keep that feature inactive if necessary and continue
+
+00:01:12.750 --> 00:01:14.317
+independent authorized work.
+
+00:01:14.828 --> 00:01:17.858
+If all remaining work requires approval or crosses a
+
+00:01:17.951 --> 00:01:20.889
+safety boundary, stop and report the blocker.
+
+00:01:21.585 --> 00:01:24.755
+Do not invent credentials or pretend a mock integration is
+
+00:01:24.871 --> 00:01:26.879
+live just to keep the loop moving.
+
+00:01:27.174 --> 00:01:29.333
+Suppose an agent was interrupted after submitting a
+
+00:01:29.391 --> 00:01:30.459
+request to a provider.
+
+00:01:30.843 --> 00:01:32.967
+You may not know whether the provider accepted it.
+
+00:01:33.350 --> 00:01:35.684
+Blindly resending can duplicate the effect.
+
+00:01:36.125 --> 00:01:39.399
+First inspect the job, logs, and durable records;
+
+00:01:39.840 --> 00:01:41.036
+reconcile what happened.
+
+00:01:41.477 --> 00:01:44.217
+The same principle applies to a worker that may have
+
+00:01:44.252 --> 00:01:46.330
+committed changes before a session ended.
+
+00:01:46.771 --> 00:01:51.322
+Preserve valid work, identify the first unproven step, and
+
+00:01:51.380 --> 00:01:54.283
+only retry when the operation is safe to repeat.
+
+00:01:54.576 --> 00:01:57.722
+Check visible shared usage before substantial dispatch and
+
+00:01:57.757 --> 00:01:58.558
+after batches.
+
+00:01:58.999 --> 00:02:02.714
+Dave's example reserves 25 percent and stops discretionary
+
+00:02:02.761 --> 00:02:06.372
+cloud dispatch at 75 percent used; your own policy can
+
+00:02:06.418 --> 00:02:06.836
+differ.
+
+00:02:07.161 --> 00:02:09.901
+At the threshold, continue safe independent work through
+
+00:02:09.936 --> 00:02:12.989
+available deterministic or local means and preserve
+
+00:02:13.036 --> 00:02:17.030
+capacity for essential completion, recovery, and handoff.
+
+00:02:17.633 --> 00:02:21.407
+If usage is unknown, avoid discretionary cloud dispatch
+
+00:02:21.465 --> 00:02:24.692
+and retain only the minimum authorized cloud work needed
+
+00:02:25.017 --> 00:02:26.933
+for safe completion and handoff.
+
+00:02:27.444 --> 00:02:30.509
+The exact behavior must respect the actual platform and
+
+00:02:30.544 --> 00:02:31.530
+the owner's permissions.
+
+00:02:31.800 --> 00:02:34.609
+At the end, report the outcome and links, revision,
+
+00:02:34.935 --> 00:02:38.835
+completed and pending work, tests and evidence, actual
+
+00:02:38.928 --> 00:02:43.549
+model routes and exposed usage, assumptions, blockers,
+
+00:02:43.932 --> 00:02:47.810
+uncertain external effects, rollback, and the next safe
+
+00:02:47.856 --> 00:02:48.356
+action.
+
+00:02:49.053 --> 00:02:51.607
+Label offline and live evidence correctly.
+
+00:02:51.990 --> 00:02:54.533
+Include the first few things the owner should inspect.
+
+00:02:54.974 --> 00:02:57.876
+If a deadline or blocker ends the run early, say so
+
+00:02:57.934 --> 00:02:58.468
+plainly.
+
+00:02:58.852 --> 00:03:02.393
+Completion is a proven state, not a confident sentence.
+
+00:03:02.734 --> 00:03:06.228
+Start with the approved definition of done: for example,
+
+00:03:06.275 --> 00:03:09.677
+implement the fictional tracker locally, cover the agreed
+
+00:03:09.700 --> 00:03:13.067
+acceptance cases, and produce a restartable handoff.
+
+00:03:13.763 --> 00:03:17.919
+State the authorized workspace, the documents to read, any
+
+00:03:17.989 --> 00:03:20.288
+deadline, and a compact work loop.
+
+00:03:20.984 --> 00:03:24.096
+Tell the agent to make reasonable reversible decisions
+
+00:03:24.131 --> 00:03:25.745
+within scope and record them.
+
+00:03:26.348 --> 00:03:29.088
+Also state which decisions require the owner.
+
+00:03:29.413 --> 00:03:33.094
+A phrase like "do not stop" cannot authorize buying
+
+00:03:33.163 --> 00:03:35.636
+services or altering unrelated systems.
+
+00:03:35.883 --> 00:03:38.971
+After a verified slice, record the revision, changed
+
+00:03:39.006 --> 00:03:43.278
+behavior, tests and outcomes, current status, next task,
+
+00:03:43.487 --> 00:03:44.602
+and relevant usage.
+
+00:03:45.299 --> 00:03:48.619
+If an external operation occurred, record its known or
+
+00:03:48.689 --> 00:03:50.953
+uncertain state without exposing secrets.
+
+00:03:51.556 --> 00:03:54.447
+A checkpoint can be a progress file or another durable
+
+00:03:54.493 --> 00:03:56.096
+record appropriate to the project.
+
+00:03:56.537 --> 00:03:59.729
+It should be updated before context is lost, not only at
+
+00:03:59.764 --> 00:04:00.496
+the very end.
+
+00:04:00.937 --> 00:04:04.072
+Small verified commits can supplement the checkpoint when
+
+00:04:04.095 --> 00:04:06.173
+the repository workflow permits them.
+
+00:04:06.494 --> 00:04:09.118
+Imagine the private view can be built locally but the
+
+00:04:09.165 --> 00:04:12.474
+chosen identity provider requires a credential the owner
+
+00:04:12.532 --> 00:04:13.542
+has not granted.
+
+00:04:13.983 --> 00:04:17.570
+Record "Owner action: provide or approve the named access"
+
+00:04:17.779 --> 00:04:19.927
+and leave the real integration inactive.
+
+00:04:20.368 --> 00:04:24.002
+Continue documentation, synthetic tests, and independent
+
+00:04:24.049 --> 00:04:26.405
+interface work that does not require the credential.
+
+00:04:26.916 --> 00:04:29.970
+When nothing useful remains within scope, stop with the
+
+00:04:30.016 --> 00:04:31.061
+precise blocker.
+
+00:04:31.758 --> 00:04:35.159
+Never label the real identity integration complete because
+
+00:04:35.183 --> 00:04:36.471
+a fake test passed.
+
+00:04:36.816 --> 00:04:39.173
+A timeout does not always mean nothing happened.
+
+00:04:39.614 --> 00:04:43.178
+If a real provider request may have succeeded, inspect the
+
+00:04:43.213 --> 00:04:46.232
+provider's record or a durable operation log through
+
+00:04:46.290 --> 00:04:48.670
+authorized read-only means before retrying.
+
+00:04:49.273 --> 00:04:52.664
+If the outcome remains uncertain, report that state and
+
+00:04:52.699 --> 00:04:54.777
+the exact action needed to resolve it.
+
+00:04:55.380 --> 00:04:58.295
+An idempotency key or similar design can make repeated
+
+00:04:58.353 --> 00:05:01.371
+requests safer, but it must actually be supported and
+
+00:05:01.429 --> 00:05:01.847
+used.
+
+00:05:02.230 --> 00:05:04.912
+Do not claim an operation is safe to repeat based on a
+
+00:05:04.959 --> 00:05:05.562
+name alone.
+
+00:05:05.913 --> 00:05:08.351
+Before a batch, inspect exposed account usage.
+
+00:05:08.792 --> 00:05:11.927
+After the batch, record its outcomes and current usage if
+
+00:05:11.973 --> 00:05:12.508
+visible.
+
+00:05:12.949 --> 00:05:16.675
+Dave's default reserves 25 percent and stops discretionary
+
+00:05:16.722 --> 00:05:20.669
+cloud dispatch at 75 percent used; it is not a universal
+
+00:05:20.727 --> 00:05:21.621
+platform rule.
+
+00:05:22.132 --> 00:05:24.256
+Do not consume reset credits automatically.
+
+00:05:24.430 --> 00:05:27.716
+If usage cannot be checked, keep the state unknown and use
+
+00:05:27.751 --> 00:05:28.761
+conservative routes.
+
+00:05:29.086 --> 00:05:33.451
+A reserve exists so integration, review, safe recovery,
+
+00:05:33.475 --> 00:05:35.634
+and handoff are not stranded at the end.
+
+00:05:35.957 --> 00:05:38.244
+Write the report for a person who was asleep while the
+
+00:05:38.279 --> 00:05:38.952
+work happened.
+
+00:05:39.393 --> 00:05:42.714
+Put the outcome and artifact links first, followed by what
+
+00:05:42.760 --> 00:05:45.918
+is built, verified, unverified, or blocked.
+
+00:05:46.359 --> 00:05:49.761
+Include checks and evidence, the actual route and usage if
+
+00:05:49.819 --> 00:05:54.568
+exposed, decisions taken, unresolved effects, rollback,
+
+00:05:54.649 --> 00:05:55.694
+and the next action.
+
+00:05:56.298 --> 00:05:58.898
+Make the first few things to inspect easy to find.
+
+00:05:59.340 --> 00:06:02.625
+If the job ran out of time, report partial completion
+
+00:06:02.741 --> 00:06:05.934
+accurately rather than stretching the definition of done.
+
+00:06:06.233 --> 00:06:09.333
+In the morning, the owner or a fresh agent should compare
+
+00:06:09.368 --> 00:06:11.388
+the handoff with the actual workspace.
+
+00:06:11.829 --> 00:06:15.509
+Check the revision, working changes, running jobs, and
+
+00:06:15.579 --> 00:06:17.506
+evidence before choosing the next action.
+
+00:06:18.110 --> 00:06:21.361
+If the handoff says a test passed but later code changes
+
+00:06:21.430 --> 00:06:24.925
+touched that behavior, the earlier result may no longer be
+
+00:06:24.960 --> 00:06:25.529
+sufficient.
+
+00:06:25.970 --> 00:06:29.638
+If an external operation is uncertain, reconcile it first.
+
+00:06:30.022 --> 00:06:33.447
+This short reality check preserves valid progress while
+
+00:06:33.481 --> 00:06:36.082
+preventing duplicate work or duplicate effects.
