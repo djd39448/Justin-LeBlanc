@@ -1,0 +1,411 @@
+{
+  "lesson": "01",
+  "scenes": [
+    {
+      "kind": "approved-opening",
+      "tone": "paper",
+      "items": [],
+      "intro": "The approved animated opening is preserved.",
+      "id": "01",
+      "title": "One messy idea"
+    },
+    {
+      "kind": "approved-opening",
+      "tone": "paper",
+      "items": [],
+      "intro": "The approved cloud, contract and code sequence is preserved.",
+      "id": "02",
+      "title": "Cloud → contract → code"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Conversation",
+          "detail": "Spill → mirror → research → decide → agree",
+          "anchor": "the conversation loop"
+        },
+        {
+          "label": "Delivery",
+          "detail": "Baseline → build → verify → prove → carry forward",
+          "anchor": "the delivery loop"
+        },
+        {
+          "label": "Research contradiction",
+          "detail": "Return to the readback in the conversation loop.",
+          "anchor": "discover a contradiction"
+        },
+        {
+          "label": "Failed check",
+          "detail": "Return to the change in the delivery loop; correct and recheck.",
+          "anchor": "A failed test can"
+        }
+      ],
+      "conclusion": {
+        "text": "The map allows a return path.",
+        "anchor": "The order gives us"
+      },
+      "intro": "Two connected loops: agreement guides delivery; new evidence can send us back.",
+      "id": "03",
+      "title": "Two loops"
+    },
+    {
+      "kind": "conversation",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Owner",
+          "detail": "Here is the outcome I want.",
+          "anchor": "what you are trying to accomplish"
+        },
+        {
+          "label": "Owner",
+          "detail": "Three places to check. Inquiries get lost.",
+          "anchor": "I have three places"
+        },
+        {
+          "label": "Owner",
+          "detail": "Show what needs a response.",
+          "anchor": "I need to see"
+        },
+        {
+          "label": "Open question",
+          "detail": "Should this send email automatically?",
+          "anchor": "I am not sure"
+        }
+      ],
+      "conclusion": {
+        "text": "Uncertainty belongs in the conversation.",
+        "anchor": "That uncertainty matters"
+      },
+      "intro": "A useful brain dump can contain frustration, examples and unanswered questions.",
+      "id": "04",
+      "title": "Start with a brain dump"
+    },
+    {
+      "kind": "conversation",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Agent",
+          "detail": "Let me repeat the goal and experience.",
+          "anchor": "Ask the agent to repeat back"
+        },
+        {
+          "label": "Readback",
+          "detail": "Organizer submits → performer reviews → marks status",
+          "anchor": "An organizer submits details"
+        },
+        {
+          "label": "Owner correction",
+          "detail": "I choose what to send.",
+          "anchor": "I want to decide"
+        },
+        {
+          "label": "Boundary",
+          "detail": "Do not send emails automatically.",
+          "anchor": "Do not send emails automatically"
+        }
+      ],
+      "conclusion": {
+        "text": "Describe actions the owner can recognize.",
+        "anchor": "behavior you can recognize"
+      },
+      "intro": "The mirror makes assumptions visible while they are still easy to correct.",
+      "id": "05",
+      "title": "Mirror the idea"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Check the condition",
+          "detail": "Does the readback match the intended experience?",
+          "anchor": "check whether a condition is true"
+        },
+        {
+          "label": "Owner recognizes it",
+          "detail": "Confirm, or keep correcting.",
+          "anchor": "the owner recognizes the readback"
+        },
+        {
+          "label": "Design can follow",
+          "detail": "Architecture rests on agreed behavior.",
+          "anchor": "This gate matters because"
+        },
+        {
+          "label": "Already authorized?",
+          "detail": "Continue from the current stage.",
+          "anchor": "When a task is already agreed"
+        }
+      ],
+      "conclusion": {
+        "text": "Use the gate at the stage that needs it.",
+        "anchor": "continue from the current stage"
+      },
+      "intro": "Agreement is a checkpoint, not a reason to restart settled work.",
+      "id": "06",
+      "title": "The alignment gate"
+    },
+    {
+      "kind": "evidence",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Inspect",
+          "detail": "What already exists?",
+          "anchor": "looks at what already exists"
+        },
+        {
+          "label": "Existing capability",
+          "detail": "The form stores event details.",
+          "anchor": "an inquiry form already stores"
+        },
+        {
+          "label": "Missing capability",
+          "detail": "No shared view has been found.",
+          "anchor": "there is no shared view"
+        },
+        {
+          "label": "Planned capability",
+          "detail": "Automatic email appears only in a plan.",
+          "anchor": "a document says automatic email"
+        }
+      ],
+      "conclusion": {
+        "text": "A plan and a running feature support different claims.",
+        "anchor": "Those are different claims"
+      },
+      "intro": "Keep observed behavior separate from planned behavior.",
+      "id": "07",
+      "title": "Research reality"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Option A",
+          "detail": "Use the existing form in version one.",
+          "anchor": "only from the existing form"
+        },
+        {
+          "label": "Option B",
+          "detail": "Also import old email.",
+          "anchor": "or also import old emails"
+        },
+        {
+          "label": "Evaluate",
+          "detail": "Benefits, costs and a recommendation.",
+          "anchor": "options, tradeoffs, and a recommendation"
+        },
+        {
+          "label": "Record the choice",
+          "detail": "Keep the reason and a reopen condition.",
+          "anchor": "A decision ledger is a simple record"
+        }
+      ],
+      "conclusion": {
+        "text": "Future agents can see why a choice was made.",
+        "anchor": "It keeps a future agent"
+      },
+      "intro": "Compare decisions that actually change the design.",
+      "id": "08",
+      "title": "Make decisions visible"
+    },
+    {
+      "kind": "document",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Form",
+          "detail": "Collects information",
+          "anchor": "a form collects information"
+        },
+        {
+          "label": "Record",
+          "detail": "Stores the inquiry",
+          "anchor": "a record stores it"
+        },
+        {
+          "label": "Private view",
+          "detail": "Displays it to the owner",
+          "anchor": "a private view displays it"
+        },
+        {
+          "label": "Workflow",
+          "detail": "Includes changes and failures over time",
+          "anchor": "A workflow describes what happens"
+        },
+        {
+          "label": "Specification",
+          "detail": "Defines inputs, errors and acceptance",
+          "anchor": "A build specification turns"
+        }
+      ],
+      "conclusion": {
+        "text": "“Find an inquiry and mark it handled” is testable.",
+        "anchor": "A user can find"
+      },
+      "intro": "Map responsibilities, then attach observable behavior to each boundary.",
+      "id": "09",
+      "title": "Architecture → specification",
+      "callouts": [
+        {
+          "text": "Acceptance is an observable condition, not a vague quality claim.",
+          "anchor": "Acceptance criteria are observable conditions"
+        }
+      ]
+    },
+    {
+      "kind": "document",
+      "tone": "ink",
+      "items": [
+        {
+          "label": "Baseline",
+          "detail": "Files, revision and running behavior",
+          "anchor": "establishing the baseline"
+        },
+        {
+          "label": "Authorized scope",
+          "detail": "Which work may begin?",
+          "anchor": "We then authorize the relevant work"
+        },
+        {
+          "label": "External boundaries",
+          "detail": "Deployment, spending and sending need authority.",
+          "anchor": "Agreement on a design"
+        },
+        {
+          "label": "KICKOFF",
+          "detail": "Location, decisions, order and verification",
+          "anchor": "A kickoff is the concise instruction"
+        },
+        {
+          "label": "Existing authority",
+          "detail": "Honor permission already granted.",
+          "anchor": "If you already authorized"
+        }
+      ],
+      "conclusion": {
+        "text": "A new agent should know what it may do next.",
+        "anchor": "rather than ask for it again"
+      },
+      "intro": "A kickoff connects the agreed plan to permission and a starting point.",
+      "id": "10",
+      "title": "Authorize the build"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Slice 1",
+          "detail": "Save a fictional inquiry and retrieve it.",
+          "anchor": "first save a fictional inquiry"
+        },
+        {
+          "label": "Slice 2",
+          "detail": "Show its status.",
+          "anchor": "Next show its status"
+        },
+        {
+          "label": "Check and record",
+          "detail": "Each slice leaves evidence of its change.",
+          "anchor": "Each slice includes an appropriate check"
+        },
+        {
+          "label": "Progress + history",
+          "detail": "Current work and meaningful changes",
+          "anchor": "A progress log tracks"
+        },
+        {
+          "label": "Handoff",
+          "detail": "Done, uncertain, next safe step",
+          "anchor": "A handoff tells the next"
+        }
+      ],
+      "conclusion": {
+        "text": "The next session may not have the conversation.",
+        "anchor": "These documents are useful"
+      },
+      "intro": "Finish one complete, checkable behavior at a time.",
+      "id": "11",
+      "title": "Build in small slices"
+    },
+    {
+      "kind": "evidence",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Implemented",
+          "detail": "The capability exists in code.",
+          "anchor": "means the capability exists"
+        },
+        {
+          "label": "Offline-tested",
+          "detail": "A controlled check passed.",
+          "anchor": "means a check passed"
+        },
+        {
+          "label": "Provider-accepted",
+          "detail": "An outside service accepted a request.",
+          "anchor": "means an outside service accepted"
+        },
+        {
+          "label": "Live-observed",
+          "detail": "The real behavior was observed.",
+          "anchor": "means the real behavior was actually"
+        }
+      ],
+      "conclusion": {
+        "text": "A simulated email is not proof of real receipt.",
+        "anchor": "a test that simulates sending"
+      },
+      "intro": "Each observation supports a specific claim, not every stronger claim.",
+      "id": "12",
+      "title": "Evidence has levels",
+      "callouts": [
+        {
+          "text": "Keep the test, screenshot, command result or live observation behind the claim.",
+          "anchor": "a test result, a sanitized screenshot"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Keep one example",
+          "detail": "Return to the same inquiry tracker.",
+          "anchor": "keep returning to the same tracker"
+        },
+        {
+          "label": "Define the behavior",
+          "detail": "Practice without writing code.",
+          "anchor": "practice defining what should happen"
+        },
+        {
+          "label": "Prepare the artifacts",
+          "detail": "Give the next agent enough context.",
+          "anchor": "a set of artifacts"
+        },
+        {
+          "label": "Make decisions visible",
+          "detail": "Agreement and proof guide the build.",
+          "anchor": "capture the idea, reach agreement"
+        }
+      ],
+      "conclusion": {
+        "text": "Ask for proof at the level you actually need.",
+        "anchor": "ask for proof at the level"
+      },
+      "intro": "Carry one small idea through the conversation and into a verifiable build.",
+      "id": "13",
+      "title": "Your turn"
+    }
+  ]
+}

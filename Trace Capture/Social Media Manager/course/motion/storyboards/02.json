@@ -1,0 +1,461 @@
+{
+  "lesson": "02",
+  "scenes": [
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "The frustration",
+          "detail": "Requests are scattered; replies get missed.",
+          "anchor": "Requests are in too many places"
+        },
+        {
+          "label": "Possible product",
+          "detail": "Shared inbox, spreadsheet or dashboard?",
+          "anchor": "We could build a shared inbox"
+        },
+        {
+          "label": "What matters",
+          "detail": "Your examples, constraints and undecided choices",
+          "anchor": "Include frustration, examples, constraints"
+        },
+        {
+          "label": "Owner leads",
+          "detail": "Let the whole idea arrive before the response.",
+          "anchor": "Ask the agent to hold its response"
+        }
+      ],
+      "conclusion": {
+        "text": "Start with the problem in your own language.",
+        "anchor": "until you say you are finished"
+      },
+      "intro": "The same rough request can lead to several very different products.",
+      "id": "01",
+      "title": "The idea cloud"
+    },
+    {
+      "kind": "document",
+      "tone": "ink",
+      "items": [
+        {
+          "label": "Purpose and people",
+          "detail": "Who needs what outcome?",
+          "anchor": "into a goal, people, desired experience"
+        },
+        {
+          "label": "Boundaries",
+          "detail": "Facts, assumptions, questions and non-goals",
+          "anchor": "constraints, known facts, assumptions"
+        },
+        {
+          "label": "Readback",
+          "detail": "The agent’s interpretation, ready to correct",
+          "anchor": "This organized response is a readback"
+        },
+        {
+          "label": "Instruction",
+          "detail": "Repeat back before tools or code.",
+          "anchor": "Repeat this back before choosing tools"
+        }
+      ],
+      "conclusion": {
+        "text": "Correction comes before architecture.",
+        "anchor": "wait for my correction"
+      },
+      "intro": "Turn the brain dump into a small document that can be corrected.",
+      "id": "02",
+      "title": "Ask for a mirror"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Organizer",
+          "detail": "Submits the form",
+          "anchor": "An event organizer submits a form"
+        },
+        {
+          "label": "Performer",
+          "detail": "Opens a private list",
+          "anchor": "The performer opens a private list"
+        },
+        {
+          "label": "Status",
+          "detail": "Marks it handled after replying",
+          "anchor": "marks it handled after replying"
+        },
+        {
+          "label": "Correction",
+          "detail": "The owner writes the response.",
+          "anchor": "No, I will write the response myself"
+        }
+      ],
+      "conclusion": {
+        "text": "A journey exposes assumptions that a feature name hides.",
+        "anchor": "That correction is easy"
+      },
+      "intro": "Show who acts, what they do, and the result they see.",
+      "id": "03",
+      "title": "Behavior, not a feature"
+    },
+    {
+      "kind": "evidence",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Verified fact",
+          "detail": "An inspected website form exists.",
+          "anchor": "A fact might be"
+        },
+        {
+          "label": "Assumption",
+          "detail": "Every message is stored — not checked yet.",
+          "anchor": "An assumption might be"
+        },
+        {
+          "label": "Unknown",
+          "detail": "Can the form accept no email address?",
+          "anchor": "An unknown might be"
+        },
+        {
+          "label": "Contradiction",
+          "detail": "Automatic outreach, but approval before every send?",
+          "anchor": "Contradictions deserve attention too"
+        }
+      ],
+      "conclusion": {
+        "text": "Make uncertainty visible so research has a target.",
+        "anchor": "needs clarification"
+      },
+      "intro": "A claim’s label matters as much as the claim itself.",
+      "id": "04",
+      "title": "Fact, guess, unknown",
+      "callouts": [
+        {
+          "text": "Make uncertainty visible so the right questions get researched.",
+          "anchor": "make uncertainty visible"
+        }
+      ]
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Read the journey",
+          "detail": "Does it describe the desired experience?",
+          "anchor": "Read the proposed journey"
+        },
+        {
+          "label": "Correct it",
+          "detail": "Use ordinary language.",
+          "anchor": "Correct it in ordinary language"
+        },
+        {
+          "label": "Confirm it",
+          "detail": "The shared understanding is ready for design.",
+          "anchor": "When it is right"
+        },
+        {
+          "label": "Preserve it",
+          "detail": "Save the agreed readback for the next session.",
+          "anchor": "Save the agreed readback"
+        }
+      ],
+      "conclusion": {
+        "text": "Already agreed work can continue from its current stage.",
+        "anchor": "the next session can find it"
+      },
+      "intro": "An alignment check is useful while deciding what to build.",
+      "id": "05",
+      "title": "The alignment gate",
+      "callouts": [
+        {
+          "text": "Use the gate while deciding what to build; do not restart agreed work.",
+          "anchor": "The gate applies when you"
+        }
+      ]
+    },
+    {
+      "kind": "conversation",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Owner",
+          "detail": "I will describe the idea in pieces.",
+          "anchor": "describe the idea in pieces"
+        },
+        {
+          "label": "Agent waits",
+          "detail": "Hold the context until I say done.",
+          "anchor": "Hold the context until I say done"
+        },
+        {
+          "label": "Readback request",
+          "detail": "Reflect the goal, journey and boundaries.",
+          "anchor": "Then repeat back the goal"
+        },
+        {
+          "label": "Owner retains control",
+          "detail": "Identify contradictions; wait for corrections.",
+          "anchor": "Identify contradictions. Do not choose"
+        }
+      ],
+      "conclusion": {
+        "text": "The pattern matters more than memorizing the prompt.",
+        "anchor": "The important pattern is"
+      },
+      "intro": "Use a conversational instruction, not a magic formula.",
+      "id": "06",
+      "title": "A prompt to begin"
+    },
+    {
+      "kind": "conversation",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Owner",
+          "detail": "I lose inquiries. I prefer to reply personally.",
+          "anchor": "The owner says"
+        },
+        {
+          "label": "Agent",
+          "detail": "Keep going; I will wait.",
+          "anchor": "The agent asks to hear the rest"
+        },
+        {
+          "label": "Owner",
+          "detail": "Only I should see the contact details.",
+          "anchor": "only the owner should see"
+        },
+        {
+          "label": "Version one",
+          "detail": "Start with the website.",
+          "anchor": "the first version can start"
+        },
+        {
+          "label": "Readback",
+          "detail": "Summarize without assuming automatic sending.",
+          "anchor": "The agent then summarizes those points"
+        }
+      ],
+      "conclusion": {
+        "text": "“Help me reply” does not authorize automatic messages.",
+        "anchor": "It does not quietly interpret"
+      },
+      "intro": "Listen to the whole context before turning a preference into a feature.",
+      "id": "07",
+      "title": "One conversation"
+    },
+    {
+      "kind": "conversation",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Agent assumption",
+          "detail": "Import all email into a shared dashboard.",
+          "anchor": "The agent says"
+        },
+        {
+          "label": "Owner correction",
+          "detail": "Version one uses only the website form.",
+          "anchor": "Only the website form"
+        },
+        {
+          "label": "Owner correction",
+          "detail": "Email import is undecided; the list is private.",
+          "anchor": "I have not decided on email imports"
+        },
+        {
+          "label": "Updated readback",
+          "detail": "Keep both corrected boundaries visible.",
+          "anchor": "A good agent updates the readback"
+        },
+        {
+          "label": "Agreement",
+          "detail": "“That is right” closes this round.",
+          "anchor": "If the owner says “That is right,”"
+        }
+      ],
+      "conclusion": {
+        "text": "Corrections are part of the process.",
+        "anchor": "A correction is a normal part"
+      },
+      "intro": "Make the correction explicit before the wrong interpretation becomes work.",
+      "id": "08",
+      "title": "Correct the mirror"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Open the form",
+          "detail": "The organizer enters contact and event details.",
+          "anchor": "an organizer opens the public form"
+        },
+        {
+          "label": "Submit",
+          "detail": "Attempt to save the inquiry.",
+          "anchor": "they submit; the system"
+        },
+        {
+          "label": "Report the result",
+          "detail": "Confirm a saved record, or explain failure.",
+          "anchor": "either confirms a successful save"
+        },
+        {
+          "label": "Owner reviews",
+          "detail": "Open the private list and change status.",
+          "anchor": "the owner later opens a private list"
+        },
+        {
+          "label": "Check the exceptions",
+          "detail": "Abandoned form, missing details, failed save",
+          "anchor": "Ask what happens if the user"
+        }
+      ],
+      "conclusion": {
+        "text": "These are behaviors someone can later check.",
+        "anchor": "You need not decide every"
+      },
+      "intro": "Include the failure path while the journey is still simple.",
+      "id": "09",
+      "title": "Show the journey"
+    },
+    {
+      "kind": "evidence",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Claim",
+          "detail": "“The website probably saves submissions.”",
+          "anchor": "The website probably saves submissions"
+        },
+        {
+          "label": "Assumption label",
+          "detail": "Keep it unverified until checked.",
+          "anchor": "Mark that as an assumption"
+        },
+        {
+          "label": "Code observation",
+          "detail": "A form file exists in the repository.",
+          "anchor": "If the agent finds a form"
+        },
+        {
+          "label": "Live claim",
+          "detail": "A file alone does not prove successful live saving.",
+          "anchor": "It cannot conclude, just from the file"
+        }
+      ],
+      "conclusion": {
+        "text": "Ask what was actually observed.",
+        "anchor": "Ask it to describe precisely"
+      },
+      "intro": "Evidence from one environment does not automatically describe another.",
+      "id": "10",
+      "title": "Keep claims honest"
+    },
+    {
+      "kind": "comparison",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Metaphor",
+          "detail": "“A tidy inbox” describes a feeling.",
+          "anchor": "I want this to feel"
+        },
+        {
+          "label": "Boundary",
+          "detail": "It does not mean copying all email.",
+          "anchor": "they do not want a copy"
+        },
+        {
+          "label": "Translate",
+          "detail": "What observable behavior creates that feeling?",
+          "anchor": "translate the metaphor into observable behavior"
+        },
+        {
+          "label": "Owner decides",
+          "detail": "Keep remaining choices explicit.",
+          "anchor": "The owner decides what the metaphor means"
+        }
+      ],
+      "conclusion": {
+        "text": "An analogy should not become a hidden requirement.",
+        "anchor": "could otherwise become hidden requirements"
+      },
+      "intro": "Use a metaphor to discuss the experience, then define its meaning.",
+      "id": "11",
+      "title": "Translate the metaphor"
+    },
+    {
+      "kind": "document",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "AGREED EXPERIENCE",
+          "detail": "Purpose, people, journey and boundaries",
+          "anchor": "a small document or section"
+        },
+        {
+          "label": "Date and status",
+          "detail": "Agreed, or still under discussion?",
+          "anchor": "Add a date and a clear status"
+        },
+        {
+          "label": "Location",
+          "detail": "Future sessions can find the readback.",
+          "anchor": "Keep it accessible to future sessions"
+        },
+        {
+          "label": "Revision",
+          "detail": "Update or supersede a changed decision.",
+          "anchor": "update or supersede the relevant decision"
+        }
+      ],
+      "conclusion": {
+        "text": "The idea is now concrete enough to research and design.",
+        "anchor": "Now you have something concrete"
+      },
+      "intro": "The readback is a durable starting point, not a transcript of every turn.",
+      "id": "12",
+      "title": "Save the readback"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Tell it back",
+          "detail": "Describe the experience without technology names.",
+          "anchor": "Ask the listener to describe"
+        },
+        {
+          "label": "Clarify responsibility",
+          "detail": "Who writes and sends the reply?",
+          "anchor": "If they cannot tell whether"
+        },
+        {
+          "label": "Mark an unknown",
+          "detail": "Record retention remains an open decision.",
+          "anchor": "If they ask how long records"
+        },
+        {
+          "label": "Ready to continue",
+          "detail": "Central journey and important boundaries are clear.",
+          "anchor": "You can move forward when"
+        }
+      ],
+      "conclusion": {
+        "text": "Resolve smaller questions at the appropriate stage.",
+        "anchor": "continue to resolve smaller questions"
+      },
+      "intro": "Test shared understanding with another listener or your own notes.",
+      "id": "13",
+      "title": "Practice the mirror"
+    }
+  ]
+}

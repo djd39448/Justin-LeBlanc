@@ -1,0 +1,462 @@
+{
+  "lesson": "04",
+  "scenes": [
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "Architecture is a map of responsibilities, not a list of software brands.",
+      "items": [
+        {
+          "label": "Public form",
+          "detail": "Collects event and contact details",
+          "anchor": "a form collects details"
+        },
+        {
+          "label": "Validation service",
+          "detail": "Checks submitted information",
+          "anchor": "a service validates them"
+        },
+        {
+          "label": "Inquiry store",
+          "detail": "Keeps the authoritative record",
+          "anchor": "storage keeps an inquiry record"
+        },
+        {
+          "label": "Private view",
+          "detail": "Shows the owner what needs attention",
+          "anchor": "a private view shows the owner"
+        }
+      ],
+      "conclusion": {
+        "text": "Name who can change the record and how information moves.",
+        "anchor": "A useful map says which part"
+      },
+      "id": "01",
+      "title": "A map of jobs",
+      "callouts": [
+        {
+          "text": "Think in responsibilities and connections before choosing software brands.",
+          "anchor": "a map of rooms and doors"
+        }
+      ]
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "Follow one inquiry from submission to the owner’s next action.",
+      "items": [
+        {
+          "label": "Organizer",
+          "detail": "Submits a fictional request",
+          "anchor": "the organizer submitting a fictional request"
+        },
+        {
+          "label": "Form",
+          "detail": "Sends fields to a service",
+          "anchor": "The form sends the fields"
+        },
+        {
+          "label": "Service",
+          "detail": "Reject missing information, or save one record",
+          "anchor": "The service checks required information"
+        },
+        {
+          "label": "Owner",
+          "detail": "Reviews the list and marks the record handled",
+          "anchor": "The owner then opens the private list"
+        }
+      ],
+      "conclusion": {
+        "text": "Copies and summaries must stay consistent with that record.",
+        "anchor": "If a copy or summary exists elsewhere"
+      },
+      "id": "02",
+      "title": "Follow an inquiry",
+      "callouts": [
+        {
+          "text": "Source of truth: one authoritative inquiry record determines current status.",
+          "anchor": "Identify the source of truth"
+        }
+      ]
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "intro": "A state change needs an actor, a rule and a failure outcome.",
+      "items": [
+        {
+          "label": "State",
+          "detail": "New or handled describes a condition.",
+          "anchor": "A state is a condition"
+        },
+        {
+          "label": "Transition",
+          "detail": "An allowed action changes the state.",
+          "anchor": "A transition is the action"
+        },
+        {
+          "label": "Actor and failure",
+          "detail": "Who may act? What if the action fails?",
+          "anchor": "List who can perform each transition"
+        },
+        {
+          "label": "Failed save",
+          "detail": "Show an error; preserve input where possible.",
+          "anchor": "Show a useful error and preserve"
+        }
+      ],
+      "conclusion": {
+        "text": "The workflow must explain more than the happy path.",
+        "anchor": "A clear workflow helps test more"
+      },
+      "id": "03",
+      "title": "State over time"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "Keep the responsibility for trust at an explicit system boundary.",
+      "items": [
+        {
+          "label": "Public input",
+          "detail": "Visitor text begins outside the trusted boundary.",
+          "anchor": "A public visitor can enter text"
+        },
+        {
+          "label": "Validate",
+          "detail": "Check it before relying on it.",
+          "anchor": "the system must validate that text"
+        },
+        {
+          "label": "Private view",
+          "detail": "Require appropriate access.",
+          "anchor": "A private owner view should require"
+        },
+        {
+          "label": "Trusted rules",
+          "detail": "Permissions and external effects need deterministic checks.",
+          "anchor": "Those important rules need deterministic checks"
+        }
+      ],
+      "conclusion": {
+        "text": "An AI-generated guess must not decide access or external effects.",
+        "anchor": "the same permitted input produces"
+      },
+      "id": "04",
+      "title": "Trust boundaries",
+      "callouts": [
+        {
+          "text": "Name who may read or change a record, and what can leave the system.",
+          "anchor": "whether any information leaves the system"
+        }
+      ]
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "paper",
+      "intro": "Two requests should not accidentally mean two intended effects.",
+      "items": [
+        {
+          "label": "Submit twice",
+          "detail": "A slow network leads to repeated clicks.",
+          "anchor": "the visitor presses submit twice"
+        },
+        {
+          "label": "Duplicate risk",
+          "detail": "Two requests may create two records.",
+          "anchor": "the owner may receive two records"
+        },
+        {
+          "label": "Idempotency",
+          "detail": "Repeat the operation without duplicating its effect.",
+          "anchor": "Idempotency means repeating the same operation"
+        },
+        {
+          "label": "Design rule",
+          "detail": "Choose identity, retries and uncertain-result reconciliation.",
+          "anchor": "The architecture should name the problem"
+        }
+      ],
+      "conclusion": {
+        "text": "Reconcile an uncertain outcome before doing the operation again.",
+        "anchor": "before doing the operation again"
+      },
+      "id": "05",
+      "title": "Safe retries"
+    },
+    {
+      "kind": "document",
+      "tone": "ink",
+      "intro": "Include the details that let a beginner follow the design.",
+      "items": [
+        {
+          "label": "System map",
+          "detail": "Components, data flow and source of truth",
+          "anchor": "a simple diagram, component responsibilities"
+        },
+        {
+          "label": "Boundaries and recovery",
+          "detail": "Permissions, integrations, failures and recovery",
+          "anchor": "user permissions, external integrations"
+        },
+        {
+          "label": "Alternatives",
+          "detail": "Record important options without choosing every framework.",
+          "anchor": "It also notes important alternatives"
+        },
+        {
+          "label": "Trace the paths",
+          "detail": "Explain one success and one failure in plain language.",
+          "anchor": "trace one successful inquiry and one failed"
+        }
+      ],
+      "conclusion": {
+        "text": "Correct contradictions before writing the build contract.",
+        "anchor": "If the explanation contradicts the agreed journey"
+      },
+      "id": "06",
+      "title": "Useful detail"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "The organizer and owner sit outside the system; the record connects its parts.",
+      "items": [
+        {
+          "label": "Public form",
+          "detail": "Collect submitted fields inside the system.",
+          "anchor": "a public form, validation service"
+        },
+        {
+          "label": "Validation",
+          "detail": "Check the submitted information.",
+          "anchor": "from the form to validation"
+        },
+        {
+          "label": "Inquiry store",
+          "detail": "Accept a validated inquiry.",
+          "anchor": "an arrow to the store"
+        },
+        {
+          "label": "Saved identifier",
+          "detail": "Confirmation follows the actual save.",
+          "anchor": "The store returns a saved identifier"
+        },
+        {
+          "label": "Private view",
+          "detail": "Read the record and request allowed status changes.",
+          "anchor": "The private view reads that record"
+        }
+      ],
+      "conclusion": {
+        "text": "Provide a text description alongside the diagram.",
+        "anchor": "A text description alongside the diagram"
+      },
+      "id": "07",
+      "title": "Draw the system"
+    },
+    {
+      "kind": "flow",
+      "tone": "ink",
+      "intro": "Trace what the user and operator see when storage fails.",
+      "items": [
+        {
+          "label": "Store unavailable",
+          "detail": "The inquiry has not been saved.",
+          "anchor": "the store is unavailable"
+        },
+        {
+          "label": "Validation service",
+          "detail": "Cannot truthfully return success.",
+          "anchor": "cannot truthfully report a successful save"
+        },
+        {
+          "label": "Public form",
+          "detail": "Show an explanation and a next step.",
+          "anchor": "The visitor sees an explanation"
+        },
+        {
+          "label": "Operator",
+          "detail": "Receive diagnostics without private visitor details.",
+          "anchor": "the owner sees an operator diagnostic"
+        },
+        {
+          "label": "Retry",
+          "detail": "Use the agreed duplicate-handling rule.",
+          "anchor": "Once storage returns, the visitor can retry"
+        }
+      ],
+      "conclusion": {
+        "text": "A failure path reveals needs that success-only arrows hide.",
+        "anchor": "Drawing this path reveals a design need"
+      },
+      "id": "08",
+      "title": "When storage fails"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "paper",
+      "intro": "Who may act is a concrete architectural responsibility.",
+      "items": [
+        {
+          "label": "Requested action",
+          "detail": "Mark an inquiry handled.",
+          "anchor": "Who is allowed to mark an inquiry handled"
+        },
+        {
+          "label": "Insufficient proof",
+          "detail": "Knowing a record ID is not permission.",
+          "anchor": "merely because someone knows a record identifier"
+        },
+        {
+          "label": "Verify and authorize",
+          "detail": "Check identity and the operation against trusted rules.",
+          "anchor": "An access mechanism should verify"
+        },
+        {
+          "label": "Named responsibility",
+          "detail": "The boundary exists before a provider is selected.",
+          "anchor": "The exact identity provider can remain undecided"
+        }
+      ],
+      "conclusion": {
+        "text": "A security boundary does not depend on choosing a brand.",
+        "anchor": "wait for a brand name"
+      },
+      "id": "09",
+      "title": "Who may act?"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "A dashboard count is a view of the truth, not a second authority.",
+      "items": [
+        {
+          "label": "Two views",
+          "detail": "A new-inquiry count and a detail view",
+          "anchor": "count of new inquiries"
+        },
+        {
+          "label": "One record",
+          "detail": "Both views read one authoritative status.",
+          "anchor": "two views of one authoritative record"
+        },
+        {
+          "label": "Cached summary",
+          "detail": "Define refresh behavior and stale-data handling.",
+          "anchor": "If a count is cached"
+        },
+        {
+          "label": "Repair a disagreement",
+          "detail": "Use the governing record to fix the summary.",
+          "anchor": "when the count and detail view differ"
+        }
+      ],
+      "conclusion": {
+        "text": "Tests can target the authoritative behavior.",
+        "anchor": "It also helps tests target"
+      },
+      "id": "10",
+      "title": "One source of truth"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "intro": "A retry must account for work that may already have happened.",
+      "items": [
+        {
+          "label": "Uncertain result",
+          "detail": "A response is lost after the server saves.",
+          "anchor": "response is lost after the server saves"
+        },
+        {
+          "label": "Retry risk",
+          "detail": "The client does not know whether saving succeeded.",
+          "anchor": "The client may not know"
+        },
+        {
+          "label": "Identity rule",
+          "detail": "Operation ID, uniqueness rule or another suitable method",
+          "anchor": "The design can use an operation identifier"
+        },
+        {
+          "label": "Reconcile",
+          "detail": "Document the intended effect and resolve uncertainty.",
+          "anchor": "Document the intended effect"
+        }
+      ],
+      "conclusion": {
+        "text": "“Just retry” can duplicate a record or an external effect.",
+        "anchor": "“Just retry” is not enough"
+      },
+      "id": "11",
+      "title": "Repeat without harm"
+    },
+    {
+      "kind": "sequence",
+      "tone": "paper",
+      "intro": "A diagram succeeds when another person can explain what it means.",
+      "items": [
+        {
+          "label": "Follow the arrows",
+          "detail": "Explain submission through confirmation.",
+          "anchor": "follow the arrows and explain"
+        },
+        {
+          "label": "Find the boundaries",
+          "detail": "Where is access checked? Where can storage fail?",
+          "anchor": "Then ask where access is checked"
+        },
+        {
+          "label": "Repair the explanation",
+          "detail": "Add a missing label or note.",
+          "anchor": "If the answers cannot be found"
+        },
+        {
+          "label": "Keep it understandable",
+          "detail": "A few boxes, arrows and plain-language descriptions",
+          "anchor": "A few boxes, arrows, and a plain-language"
+        }
+      ],
+      "conclusion": {
+        "text": "The map should support a conversation a beginner can follow.",
+        "anchor": "a better design conversation"
+      },
+      "id": "12",
+      "title": "Test the map"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "intro": "The specification makes each architectural responsibility precise.",
+      "items": [
+        {
+          "label": "Architecture",
+          "detail": "“Validate inquiry” names a responsibility.",
+          "anchor": "The diagram may say"
+        },
+        {
+          "label": "Specification",
+          "detail": "Required fields, error text and save behavior",
+          "anchor": "the spec explains which fields are required"
+        },
+        {
+          "label": "Reconcile gaps",
+          "detail": "A newly found failure path changes the map.",
+          "anchor": "If the specification reveals an unaddressed failure path"
+        },
+        {
+          "label": "Evolve deliberately",
+          "detail": "Record and agree changes at the appropriate level.",
+          "anchor": "Architecture is a working model"
+        }
+      ],
+      "conclusion": {
+        "text": "The map and behavior contract must stay consistent.",
+        "anchor": "as long as changes are recorded and agreed"
+      },
+      "id": "13",
+      "title": "From map to spec"
+    }
+  ]
+}

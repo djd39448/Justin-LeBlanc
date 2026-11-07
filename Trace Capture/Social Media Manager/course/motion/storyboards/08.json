@@ -1,0 +1,504 @@
+{
+  "lesson": "08",
+  "scenes": [
+    {
+      "id": "01",
+      "kind": "document",
+      "tone": "teal",
+      "title": "Brief the agent who missed every meeting",
+      "intro": "A kickoff makes the next safe action findable.",
+      "items": [
+        {
+          "label": "KICKOFF.md",
+          "detail": "A compact briefing a new session can execute.",
+          "anchor": "A kickoff is a compact"
+        },
+        {
+          "label": "Starting point",
+          "detail": "Project, baseline, required reading, and authority.",
+          "anchor": "It identifies the project location and baseline"
+        },
+        {
+          "label": "Allowed work",
+          "detail": "Scope, permissions, sequence, checks, and handoff.",
+          "anchor": "goal, scope, permissions, sequence"
+        },
+        {
+          "label": "Tracker example",
+          "detail": "Locate the spec; automatic sending is out of scope.",
+          "anchor": "They should be able to locate the spec"
+        },
+        {
+          "label": "First safe task",
+          "detail": "Start from the briefing rather than reconstructing chat.",
+          "anchor": "and identify the first safe task"
+        }
+      ],
+      "conclusion": {
+        "text": "Preserve the decisions so a new session can act on them.",
+        "anchor": "reconstruct decisions from a long chat transcript"
+      }
+    },
+    {
+      "id": "02",
+      "kind": "routing",
+      "tone": "paper",
+      "title": "Give each worker a bounded job",
+      "intro": "Parallel work needs ownership and an agreed interface.",
+      "items": [
+        {
+          "label": "Assignment",
+          "detail": "Independent task with a clear outcome.",
+          "anchor": "multiple agents for independent tasks"
+        },
+        {
+          "label": "Worker brief",
+          "detail": "Sources, exclusive ownership, limits, checks, reply format.",
+          "anchor": "Give a worker an outcome"
+        },
+        {
+          "label": "Shared interface",
+          "detail": "Define it before separate workers depend on it.",
+          "anchor": "Define shared interfaces before separate workers"
+        },
+        {
+          "label": "Validation ↔ view",
+          "detail": "Both workers use the same inquiry record contract.",
+          "anchor": "If one worker implements validation"
+        },
+        {
+          "label": "Conductor review",
+          "detail": "Collect and review the actual result.",
+          "anchor": "A dispatched task is not complete"
+        }
+      ],
+      "conclusion": {
+        "text": "Dispatch is the beginning of a task, not evidence of completion.",
+        "anchor": "until its result is collected and reviewed"
+      }
+    },
+    {
+      "id": "03",
+      "kind": "routing",
+      "tone": "ink",
+      "title": "Choose the cheapest capable route",
+      "intro": "Assign work according to its needs and the available capability.",
+      "items": [
+        {
+          "label": "Ordinary tools",
+          "detail": "Search, format, and run repeatable checks.",
+          "anchor": "Route deterministic tasks such as searching"
+        },
+        {
+          "label": "Qualified local model",
+          "detail": "Bounded extraction or drafting.",
+          "anchor": "Use a qualified local model"
+        },
+        {
+          "label": "Lower-cost worker",
+          "detail": "Ordinary implementation with a clear boundary.",
+          "anchor": "a capable lower-cost worker"
+        },
+        {
+          "label": "Strongest conductor",
+          "detail": "Architecture, ambiguity, sensitive boundaries, integration.",
+          "anchor": "Reserve the strongest available conductor"
+        },
+        {
+          "label": "Availability check",
+          "detail": "Confirm the models and tools actually exist.",
+          "anchor": "Verify what models and tools are actually available"
+        }
+      ],
+      "conclusion": {
+        "text": "Lower cost helps only when the route can do the job reliably.",
+        "anchor": "if the route can do the job reliably"
+      }
+    },
+    {
+      "id": "04",
+      "kind": "document",
+      "tone": "paper",
+      "title": "Monitor the allowance you actually share",
+      "intro": "Dave’s example is a configurable policy, not a provider rule.",
+      "items": [
+        {
+          "label": "Before and after batches",
+          "detail": "Inspect usage and the tightest shared allowance.",
+          "anchor": "Before substantial dispatch and after a batch"
+        },
+        {
+          "label": "Reserve · 25%",
+          "detail": "Keep capacity for completion and recovery.",
+          "anchor": "keeps a 25 percent reserve"
+        },
+        {
+          "label": "Cutoff · 75% used",
+          "detail": "Stop discretionary cloud dispatch at the threshold.",
+          "anchor": "stops discretionary cloud dispatch at 75 percent used"
+        },
+        {
+          "label": "Shared account",
+          "detail": "Mac and Windows may use the same allowance.",
+          "anchor": "Mac and Windows may share"
+        },
+        {
+          "label": "Unknown usage",
+          "detail": "Report unknown; use conservative routes.",
+          "anchor": "If usage is unavailable"
+        }
+      ],
+      "conclusion": {
+        "text": "A monitoring instruction does not create a measurement or enforcement tool.",
+        "anchor": "Do not invent a measurement"
+      },
+      "callouts": [
+        {
+          "text": "When usage is unknown, prefer deterministic tools or qualified local capacity.",
+          "anchor": "deterministic tools or qualified local capacity"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "kind": "checkpoint",
+      "tone": "teal",
+      "title": "Spend effort once, then preserve it",
+      "intro": "Track the actual route and reconcile interrupted work.",
+      "items": [
+        {
+          "label": "Record the outcome",
+          "detail": "Route, exposed usage, results, next action.",
+          "anchor": "Record the route actually used"
+        },
+        {
+          "label": "Avoid waste",
+          "detail": "No filler delegation or needless repeated checks.",
+          "anchor": "Avoid filler delegation"
+        },
+        {
+          "label": "Interrupted worker",
+          "detail": "Inspect whether it completed or changed anything.",
+          "anchor": "If a worker was interrupted"
+        },
+        {
+          "label": "Reset credits",
+          "detail": "Never redeem them automatically.",
+          "anchor": "Never automatically use reset credits"
+        }
+      ],
+      "conclusion": {
+        "text": "Actual permissions and the owner’s instructions govern the work.",
+        "anchor": "the owner's instructions remain authoritative"
+      }
+    },
+    {
+      "id": "06",
+      "kind": "conversation",
+      "tone": "paper",
+      "title": "A compact brief for one worker",
+      "intro": "A concrete assignment gives parallel work a useful boundary.",
+      "items": [
+        {
+          "label": "Conductor",
+          "detail": "Implement validation from the approved spec.",
+          "anchor": "Implement the tracker validation described"
+        },
+        {
+          "label": "Ownership",
+          "detail": "Own the validation module and its tests.",
+          "anchor": "You own the validation module"
+        },
+        {
+          "label": "Constraint",
+          "detail": "Keep the shared record contract unchanged.",
+          "anchor": "Do not change the shared record contract"
+        },
+        {
+          "label": "Verification",
+          "detail": "Use synthetic data and run affected checks.",
+          "anchor": "Use synthetic data"
+        },
+        {
+          "label": "Reply contract",
+          "detail": "Changed files, results, risks, next integration action.",
+          "anchor": "Return changed files, results"
+        }
+      ],
+      "conclusion": {
+        "text": "The conductor must still read the result and integrate it.",
+        "anchor": "The conductor still reads the result"
+      }
+    },
+    {
+      "id": "07",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Make the kickoff executable",
+      "intro": "The briefing connects an exact starting point to a bounded outcome.",
+      "items": [
+        {
+          "label": "Workspace + baseline",
+          "detail": "Identify the project, directory, and base revision.",
+          "anchor": "Start with the exact project"
+        },
+        {
+          "label": "Preserve unrelated work",
+          "detail": "Keep existing changes safe.",
+          "anchor": "instructions to preserve unrelated changes"
+        },
+        {
+          "label": "Authority + decisions",
+          "detail": "Order the documents and summarize settled choices.",
+          "anchor": "List the documents in their authority order"
+        },
+        {
+          "label": "Execution contract",
+          "detail": "Outcome, exclusions, actions, sequence, checks, handoff.",
+          "anchor": "Describe the approved outcome"
+        },
+        {
+          "label": "Workspace problem",
+          "detail": "Report a missing file or dirty-state conflict precisely.",
+          "anchor": "If a new session cannot locate a file"
+        }
+      ],
+      "conclusion": {
+        "text": "A workspace problem is a reason to investigate, not discard work.",
+        "anchor": "rather than assume it can discard work"
+      }
+    },
+    {
+      "id": "08",
+      "kind": "routing",
+      "tone": "paper",
+      "title": "Separate ownership; share one contract",
+      "intro": "Parallel workers should not silently invent different interfaces.",
+      "items": [
+        {
+          "label": "Worker 1",
+          "detail": "Validation module and tests.",
+          "anchor": "Worker one can own the validation module"
+        },
+        {
+          "label": "Worker 2",
+          "detail": "Owner-view files.",
+          "anchor": "Worker two can own the owner-view files"
+        },
+        {
+          "label": "Shared record",
+          "detail": "Inquiry ID, fields, and status values.",
+          "anchor": "Their shared contract defines the inquiry identifier"
+        },
+        {
+          "label": "Conductor",
+          "detail": "Shared contract and integration.",
+          "anchor": "The conductor owns the shared contract"
+        },
+        {
+          "label": "Boundary change",
+          "detail": "Coordinate any proposed change to that contract.",
+          "anchor": "a worker needs to change the shared contract"
+        }
+      ],
+      "conclusion": {
+        "text": "Coordinate shared boundaries before the implementations diverge.",
+        "anchor": "rather than silently diverge"
+      },
+      "callouts": [
+        {
+          "text": "Each worker needs relevant sources, an acceptance check, and a concise report.",
+          "anchor": "the relevant sources, an acceptance check"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "kind": "routing",
+      "tone": "teal",
+      "title": "Match judgment to the work",
+      "intro": "Use the available executor that can reliably complete the task.",
+      "items": [
+        {
+          "label": "Script",
+          "detail": "Count missing files or run a deterministic check.",
+          "anchor": "A script can count missing files"
+        },
+        {
+          "label": "Qualified local model",
+          "detail": "Summarize a bounded source or draft low-risk text.",
+          "anchor": "A qualified local model may summarize"
+        },
+        {
+          "label": "Lower-cost cloud worker",
+          "detail": "Implement a well-specified isolated component.",
+          "anchor": "A lower-cost cloud worker may implement"
+        },
+        {
+          "label": "Conductor",
+          "detail": "Resolve conflicts, security boundaries, and integration.",
+          "anchor": "The strongest available conductor can handle"
+        },
+        {
+          "label": "Escalation",
+          "detail": "Check availability; escalate if risk or difficulty grows.",
+          "anchor": "Test model availability before relying on a route"
+        }
+      ],
+      "conclusion": {
+        "text": "Route choices can change when the work proves harder than expected.",
+        "anchor": "the work proves harder or riskier than expected"
+      }
+    },
+    {
+      "id": "10",
+      "kind": "meter",
+      "tone": "paper",
+      "title": "Watch the dispatch decision change",
+      "intro": "Illustrative usage under Dave’s configurable reserve policy.",
+      "items": [
+        {
+          "label": "60% used",
+          "detail": "Plan the next batch with remaining headroom.",
+          "anchor": "a shared allowance is 60 percent used",
+          "value": 60
+        },
+        {
+          "label": "75% cutoff",
+          "detail": "Threshold for discretionary cloud dispatch.",
+          "anchor": "the 75 percent discretionary-dispatch cutoff"
+        },
+        {
+          "label": "25% reserve",
+          "detail": "Protect capacity for finishing the work.",
+          "anchor": "the 25 percent reserve in mind"
+        },
+        {
+          "label": "76% used",
+          "detail": "Stop discretionary cloud dispatch.",
+          "anchor": "Suppose it is 76 percent used",
+          "value": 76
+        },
+        {
+          "label": "Essential completion",
+          "detail": "Preserve capacity for completion and handoff.",
+          "anchor": "preserves capacity for essential completion and handoff"
+        }
+      ],
+      "conclusion": {
+        "text": "If the platform exposes no usage figure, report that fact.",
+        "anchor": "If the platform exposes no usage figure"
+      }
+    },
+    {
+      "id": "11",
+      "kind": "checkpoint",
+      "tone": "ink",
+      "title": "Reconcile before another dispatch",
+      "intro": "The worker’s actual state matters more than the chat’s silence.",
+      "items": [
+        {
+          "label": "Collect results",
+          "detail": "Inspect changes, checks, and shared state.",
+          "anchor": "After a batch, collect each worker's result"
+        },
+        {
+          "label": "Missing worker",
+          "detail": "Check commits, modified files, and running jobs.",
+          "anchor": "If a worker disappears"
+        },
+        {
+          "label": "External uncertainty",
+          "detail": "An interrupted operation may already have had an effect.",
+          "anchor": "An interrupted operation may already"
+        },
+        {
+          "label": "Investigate first",
+          "detail": "Do not resend before reconciling what happened.",
+          "anchor": "Investigate before resending or repeating it"
+        },
+        {
+          "label": "Preserve completed work",
+          "detail": "Do not pay for the same work twice.",
+          "anchor": "Avoid paying another worker to reproduce work"
+        }
+      ],
+      "conclusion": {
+        "text": "No error in the chat is not proof that a dispatched task succeeded.",
+        "anchor": "merely because no error appeared in the chat"
+      }
+    },
+    {
+      "id": "12",
+      "kind": "document",
+      "tone": "paper",
+      "title": "Make worker reports easy to integrate",
+      "intro": "A consistent reply format keeps attention on consequential work.",
+      "items": [
+        {
+          "label": "Outcome + files",
+          "detail": "State the result and changed files.",
+          "anchor": "return the task outcome, changed files"
+        },
+        {
+          "label": "Checks + evidence",
+          "detail": "Give commands, results, and evidence location.",
+          "anchor": "commands and results, evidence location"
+        },
+        {
+          "label": "Risks + next action",
+          "detail": "Name open risks and the integration step.",
+          "anchor": "open risks, and the next integration action"
+        },
+        {
+          "label": "Conductor responsibility",
+          "detail": "Inspect meaningful changes and verify integration.",
+          "anchor": "the conductor's responsibility to inspect meaningful changes"
+        }
+      ],
+      "conclusion": {
+        "text": "Token efficiency preserves enough capacity to finish responsibly.",
+        "anchor": "keeping enough capacity to finish responsibly"
+      }
+    },
+    {
+      "id": "13",
+      "kind": "comparison",
+      "tone": "teal",
+      "title": "Requested is not the same as available",
+      "intro": "Describe actual capabilities and keep the reporting honest.",
+      "items": [
+        {
+          "label": "Requested premium model",
+          "detail": "The model may not be available.",
+          "anchor": "If the requested premium model is not available"
+        },
+        {
+          "label": "Actual route",
+          "detail": "Report the real model and assess its capability.",
+          "anchor": "report the actual model"
+        },
+        {
+          "label": "Independent work",
+          "detail": "Use available tools; identify genuine gaps.",
+          "anchor": "It can use available tools for independent work"
+        },
+        {
+          "label": "Usage visibility",
+          "detail": "A quota-check instruction is not proof of quota access.",
+          "anchor": "an instruction to check a quota"
+        }
+      ],
+      "conclusion": {
+        "text": "Honest reporting is part of the routing contract.",
+        "anchor": "Honest reporting is part of the routing contract"
+      },
+      "callouts": [
+        {
+          "text": "A requested model is not evidence of the model actually used.",
+          "anchor": "It should not claim that a model"
+        }
+      ]
+    }
+  ]
+}

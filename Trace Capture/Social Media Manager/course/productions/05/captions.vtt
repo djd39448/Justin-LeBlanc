@@ -39,416 +39,416 @@ These documents serve different readers and should not
 00:00:29.489 --> 00:00:31.033
 silently contradict one another.
 
-00:00:31.325 --> 00:00:34.019
+00:00:31.300 --> 00:00:33.994
 The architecture shows responsibility and structure.
 
-00:00:34.460 --> 00:00:37.478
+00:00:34.435 --> 00:00:37.453
 The build specification states exactly what behavior must
 
-00:00:37.525 --> 00:00:40.845
+00:00:37.500 --> 00:00:40.820
 be delivered, including validation, boundaries, and
 
-00:00:40.880 --> 00:00:42.053
+00:00:40.855 --> 00:00:42.028
 acceptance criteria.
 
-00:00:42.656 --> 00:00:45.825
+00:00:42.631 --> 00:00:45.800
 The build plan arranges work into an order: what depends
 
-00:00:45.884 --> 00:00:49.529
+00:00:45.859 --> 00:00:49.504
 on what, who owns each part, and how completion will be
 
-00:00:49.564 --> 00:00:50.028
+00:00:49.539 --> 00:00:50.003
 checked.
 
-00:00:50.632 --> 00:00:53.488
+00:00:50.607 --> 00:00:53.463
 For our tracker, the architecture says a service validates
 
-00:00:53.534 --> 00:00:54.603
+00:00:53.509 --> 00:00:54.578
 and stores an inquiry.
 
-00:00:54.986 --> 00:00:57.830
+00:00:54.961 --> 00:00:57.805
 The spec defines the required fields and what the user
 
-00:00:57.900 --> 00:00:58.689
+00:00:57.875 --> 00:00:58.664
 sees on error.
 
-00:00:59.072 --> 00:01:02.300
+00:00:59.047 --> 00:01:02.275
 The plan says which part to implement and verify first.
 
-00:01:02.596 --> 00:01:05.893
+00:01:02.572 --> 00:01:05.869
 A progress log tells us what happened recently, what is
 
-00:01:05.951 --> 00:01:08.064
+00:01:05.927 --> 00:01:08.040
 underway, and what comes next.
 
-00:01:08.668 --> 00:01:11.582
+00:01:08.644 --> 00:01:11.558
 A changelog records meaningful changes over time.
 
-00:01:11.965 --> 00:01:14.937
+00:01:11.941 --> 00:01:14.913
 An evidence record captures what was actually checked,
 
-00:01:15.262 --> 00:01:16.806
+00:01:15.238 --> 00:01:16.782
 with the version and result.
 
-00:01:17.248 --> 00:01:20.684
+00:01:17.224 --> 00:01:20.660
 A runbook explains how to operate, inspect, and recover
 
-00:01:20.742 --> 00:01:21.369
+00:01:20.718 --> 00:01:21.345
 the system.
 
-00:01:21.973 --> 00:01:25.769
+00:01:21.949 --> 00:01:25.745
 A handoff is a concise restart point: the current state,
 
-00:01:25.851 --> 00:01:30.216
+00:01:25.827 --> 00:01:30.192
 known gaps, important decisions, exact blockers, and next
 
-00:01:30.251 --> 00:01:30.994
+00:01:30.227 --> 00:01:30.970
 safe action.
 
-00:01:31.598 --> 00:01:34.210
+00:01:31.574 --> 00:01:34.186
 A log is not proof by itself unless it points to
 
-00:01:34.280 --> 00:01:35.301
+00:01:34.256 --> 00:01:35.277
 appropriate evidence.
 
-00:01:35.649 --> 00:01:37.379
+00:01:35.626 --> 00:01:37.356
 Documents have different authority.
 
-00:01:37.704 --> 00:01:41.338
+00:01:37.681 --> 00:01:41.315
 A more recent, explicitly approved narrow specification
 
-00:01:41.616 --> 00:01:44.971
+00:01:41.593 --> 00:01:44.948
 can supersede an older requirement where they conflict;
 
-00:01:45.575 --> 00:01:47.909
+00:01:45.552 --> 00:01:47.886
 other older requirements may still apply.
 
-00:01:48.420 --> 00:01:51.275
+00:01:48.397 --> 00:01:51.252
 A progress report can describe what someone believes is
 
-00:01:51.345 --> 00:01:55.513
+00:01:51.322 --> 00:01:55.490
 done, but it cannot turn an untested feature into verified
 
-00:01:55.548 --> 00:01:56.151
+00:01:55.525 --> 00:01:56.128
 behavior.
 
-00:01:56.755 --> 00:01:59.855
+00:01:56.732 --> 00:01:59.832
 A kickoff can authorize an agent to act within its stated
 
-00:01:59.913 --> 00:02:00.401
+00:01:59.890 --> 00:02:00.378
 scope.
 
-00:02:00.842 --> 00:02:04.116
+00:02:00.819 --> 00:02:04.093
 When instructions conflict, ask the agent to identify the
 
-00:02:04.186 --> 00:02:07.611
+00:02:04.163 --> 00:02:07.588
 actual source and the precise conflict rather than quietly
 
-00:02:07.680 --> 00:02:09.457
+00:02:07.657 --> 00:02:09.434
 choose whichever text is convenient.
 
-00:02:09.814 --> 00:02:12.496
+00:02:09.759 --> 00:02:12.441
 Not every tiny project needs a separate file for every
 
-00:02:12.554 --> 00:02:13.111
+00:02:12.499 --> 00:02:13.056
 concept.
 
-00:02:13.552 --> 00:02:15.572
+00:02:13.497 --> 00:02:15.517
 The important part is that an agent can find the
 
-00:02:15.607 --> 00:02:20.158
+00:02:15.552 --> 00:02:20.103
 decisions, scope, tests, operational steps, and current
 
-00:02:20.205 --> 00:02:20.646
+00:02:20.150 --> 00:02:20.591
 state.
 
-00:02:21.087 --> 00:02:24.640
+00:02:21.032 --> 00:02:24.585
 A small project might combine sections; a larger one may
 
-00:02:24.710 --> 00:02:25.453
+00:02:24.655 --> 00:02:25.398
 separate them.
 
-00:02:26.265 --> 00:02:29.133
+00:02:26.210 --> 00:02:29.078
 Use the simplest organization that keeps responsibilities
 
-00:02:29.179 --> 00:02:29.621
+00:02:29.124 --> 00:02:29.566
 clear.
 
-00:02:29.946 --> 00:02:32.604
+00:02:29.891 --> 00:02:32.549
 A naming convention helps, but a filename does not
 
-00:02:32.651 --> 00:02:35.228
+00:02:32.596 --> 00:02:35.173
 guarantee that a document is current or authoritative.
 
-00:02:35.669 --> 00:02:37.121
+00:02:35.614 --> 00:02:37.066
 Read its content and date.
 
-00:02:37.425 --> 00:02:40.943
+00:02:37.371 --> 00:02:40.889
 Imagine the tracker changes from three statuses to two.
 
-00:02:41.384 --> 00:02:44.774
+00:02:41.330 --> 00:02:44.720
 Update the relevant decision and spec, implement the
 
-00:02:44.820 --> 00:02:47.897
+00:02:44.766 --> 00:02:47.843
 change when authorized, record what changed in the
 
-00:02:47.932 --> 00:02:52.088
+00:02:47.878 --> 00:02:52.034
 changelog, record test results in evidence, and refresh
 
-00:02:52.169 --> 00:02:53.644
+00:02:52.115 --> 00:02:53.590
 progress and handoff.
 
-00:02:54.154 --> 00:02:56.651
+00:02:54.100 --> 00:02:56.597
 The architecture may not need to change if component
 
-00:02:56.685 --> 00:02:58.288
+00:02:56.631 --> 00:02:58.234
 responsibilities remain the same.
 
-00:02:58.613 --> 00:03:02.084
+00:02:58.559 --> 00:03:02.030
 This is why each document has one job: we can update the
 
-00:03:02.119 --> 00:03:04.789
+00:03:02.065 --> 00:03:04.735
 places whose truth actually changed without rewriting
 
-00:03:04.836 --> 00:03:05.474
+00:03:04.782 --> 00:03:05.420
 every page.
 
-00:03:05.825 --> 00:03:09.110
+00:03:05.739 --> 00:03:09.024
 A tiny project might start with a README, a decisions
 
-00:03:09.157 --> 00:03:12.965
+00:03:09.071 --> 00:03:12.879
 section, a combined architecture and specification, a
 
-00:03:13.058 --> 00:03:14.567
+00:03:12.972 --> 00:03:14.481
 plan, and a handoff.
 
-00:03:15.171 --> 00:03:18.131
+00:03:15.085 --> 00:03:18.045
 As the project grows, separate documents when readers need
 
-00:03:18.178 --> 00:03:20.013
+00:03:18.092 --> 00:03:19.927
 different levels of detail or authority.
 
-00:03:20.454 --> 00:03:23.147
+00:03:20.368 --> 00:03:23.061
 The aim is not to create files for their own sake.
 
-00:03:23.531 --> 00:03:25.794
+00:03:23.445 --> 00:03:25.708
 Ask whether a new contributor can find the current
 
-00:03:25.841 --> 00:03:29.382
+00:03:25.755 --> 00:03:29.296
 behavior, the reason behind a decision, what remains to
 
-00:03:29.452 --> 00:03:31.402
+00:03:29.366 --> 00:03:31.316
 build, and how to verify a change.
 
-00:03:31.843 --> 00:03:34.653
+00:03:31.757 --> 00:03:34.567
 If those answers are clear, the structure is doing its
 
-00:03:34.699 --> 00:03:35.152
+00:03:34.613 --> 00:03:35.066
 job.
 
-00:03:35.523 --> 00:03:38.159
+00:03:35.438 --> 00:03:38.074
 Suppose an older build spec says the owner can choose
 
-00:03:38.182 --> 00:03:39.784
+00:03:38.097 --> 00:03:39.699
 among three inquiry statuses.
 
-00:03:40.167 --> 00:03:42.803
+00:03:40.082 --> 00:03:42.718
 A later approved narrow spec says to use only New and
 
-00:03:42.861 --> 00:03:43.325
+00:03:42.776 --> 00:03:43.240
 Handled.
 
-00:03:43.766 --> 00:03:46.111
+00:03:43.681 --> 00:03:46.026
 The later decision controls that conflict.
 
-00:03:46.494 --> 00:03:49.490
+00:03:46.409 --> 00:03:49.405
 An older privacy rule that does not conflict can still
 
-00:03:49.525 --> 00:03:50.047
+00:03:49.440 --> 00:03:49.962
 apply.
 
-00:03:50.430 --> 00:03:53.240
+00:03:50.345 --> 00:03:53.155
 A helpful agent points to both documents and states
 
-00:03:53.298 --> 00:03:55.005
+00:03:53.213 --> 00:03:54.920
 exactly which clause changed.
 
-00:03:55.446 --> 00:03:58.824
+00:03:55.361 --> 00:03:58.739
 It does not discard every older requirement merely because
 
-00:03:58.859 --> 00:04:00.206
+00:03:58.774 --> 00:04:00.121
 a newer document exists.
 
-00:04:00.525 --> 00:04:04.263
+00:04:00.440 --> 00:04:04.178
 A progress log may say "validation implementation is
 
-00:04:04.321 --> 00:04:08.501
+00:04:04.236 --> 00:04:08.416
 underway; failure-path test remains." A changelog may
 
-00:04:08.571 --> 00:04:11.717
+00:04:08.486 --> 00:04:11.632
 later say "added validation and clear missing-field
 
-00:04:11.763 --> 00:04:16.001
+00:04:11.678 --> 00:04:15.916
 errors." Evidence records the actual check, revision, and
 
-00:04:16.071 --> 00:04:16.639
+00:04:15.986 --> 00:04:16.554
 result.
 
-00:04:17.080 --> 00:04:19.913
+00:04:16.995 --> 00:04:19.828
 These entries answer different questions and can refer to
 
-00:04:19.994 --> 00:04:20.610
+00:04:19.909 --> 00:04:20.525
 one another.
 
-00:04:20.993 --> 00:04:23.942
+00:04:20.908 --> 00:04:23.857
 They should not claim a deployment or live result until it
 
-00:04:23.988 --> 00:04:25.300
+00:04:23.903 --> 00:04:25.215
 has actually occurred.
 
-00:04:25.997 --> 00:04:28.946
+00:04:25.912 --> 00:04:28.861
 Keeping these roles distinct lets a reviewer find the
 
-00:04:28.992 --> 00:04:31.825
+00:04:28.907 --> 00:04:31.740
 current blocker without reading the entire project
 
-00:04:31.871 --> 00:04:32.394
+00:04:31.786 --> 00:04:32.309
 history.
 
-00:04:32.725 --> 00:04:35.384
+00:04:32.623 --> 00:04:35.282
 At the end of a session, tell the next reader the branch
 
-00:04:35.500 --> 00:04:39.470
+00:04:35.398 --> 00:04:39.368
 or revision, current work state, authoritative documents,
 
-00:04:39.679 --> 00:04:44.079
+00:04:39.577 --> 00:04:43.977
 tests run, unverified areas, running services if relevant,
 
-00:04:44.323 --> 00:04:46.320
+00:04:44.221 --> 00:04:46.218
 and exact next safe step.
 
-00:04:47.017 --> 00:04:49.525
+00:04:46.915 --> 00:04:49.423
 Mention any uncertain external effect that needs
 
-00:04:49.571 --> 00:04:50.512
+00:04:49.469 --> 00:04:50.410
 reconciliation.
 
-00:04:50.953 --> 00:04:53.739
+00:04:50.851 --> 00:04:53.637
 If the previous session ended after a provider request was
 
-00:04:53.786 --> 00:04:57.083
+00:04:53.684 --> 00:04:56.981
 sent, that uncertainty matters more than a long narrative
 
-00:04:57.118 --> 00:04:58.882
+00:04:57.016 --> 00:04:58.780
 about how hard the task was.
 
-00:04:59.393 --> 00:05:02.156
+00:04:59.291 --> 00:05:02.054
 A handoff is a practical starting point, not a
 
-00:05:02.226 --> 00:05:03.677
+00:05:02.124 --> 00:05:03.575
 congratulatory summary.
 
-00:05:03.925 --> 00:05:06.827
+00:05:03.813 --> 00:05:06.715
 Imagine the tracker owner changes the required contact
 
-00:05:06.874 --> 00:05:07.280
+00:05:06.762 --> 00:05:07.168
 method.
 
-00:05:07.721 --> 00:05:10.090
+00:05:07.609 --> 00:05:09.978
 First record the decision and update the approved
 
-00:05:10.113 --> 00:05:11.053
+00:05:10.001 --> 00:05:10.941
 specification.
 
-00:05:11.495 --> 00:05:14.118
+00:05:11.383 --> 00:05:14.006
 Then adapt the plan and implement within the granted
 
-00:05:14.165 --> 00:05:14.652
+00:05:14.053 --> 00:05:14.540
 scope.
 
-00:05:15.094 --> 00:05:18.809
+00:05:14.982 --> 00:05:18.697
 Add or update tests for both accepted and rejected inputs.
 
-00:05:19.320 --> 00:05:22.223
+00:05:19.208 --> 00:05:22.111
 Record the check and revision in evidence, update
 
-00:05:22.269 --> 00:05:25.427
+00:05:22.157 --> 00:05:25.315
 progress, and mention the material behavior change in the
 
-00:05:25.462 --> 00:05:26.182
+00:05:25.350 --> 00:05:26.070
 changelog.
 
-00:05:26.785 --> 00:05:29.978
+00:05:26.673 --> 00:05:29.866
 If the change affects data flow or responsibilities,
 
-00:05:30.222 --> 00:05:31.836
+00:05:30.110 --> 00:05:31.724
 update the architecture too.
 
-00:05:32.277 --> 00:05:35.028
+00:05:32.165 --> 00:05:34.916
 If it does not, leave unrelated sections alone.
 
-00:05:35.325 --> 00:05:38.529
+00:05:35.186 --> 00:05:38.390
 If the README says a feature is live while the handoff
 
-00:05:38.587 --> 00:05:41.919
+00:05:38.448 --> 00:05:41.780
 says deployment is pending, do not pick one sentence
 
-00:05:41.954 --> 00:05:43.394
+00:05:41.815 --> 00:05:43.255
 because it sounds more confident.
 
-00:05:43.835 --> 00:05:46.505
+00:05:43.696 --> 00:05:46.366
 Inspect dated evidence and current state where authorized.
 
-00:05:46.946 --> 00:05:49.721
+00:05:46.807 --> 00:05:49.582
 Report the contradiction and correct the stale description
 
-00:05:49.767 --> 00:05:50.894
+00:05:49.628 --> 00:05:50.755
 when the task permits.
 
-00:05:51.404 --> 00:05:55.154
+00:05:51.265 --> 00:05:55.015
 If the evidence is insufficient, label the status unknown.
 
-00:05:55.758 --> 00:05:58.289
+00:05:55.619 --> 00:05:58.150
 Documents are useful because they make information
 
-00:05:58.347 --> 00:06:01.760
+00:05:58.208 --> 00:06:01.621
 inspectable; they cannot substitute for the observation
 
-00:06:01.795 --> 00:06:02.898
+00:06:01.656 --> 00:06:02.759
 they claim to represent.
 
-00:06:03.214 --> 00:06:05.977
+00:06:03.056 --> 00:06:05.819
 Give a partner only your document map and a short project
 
-00:06:06.012 --> 00:06:06.488
+00:06:05.854 --> 00:06:06.330
 folder.
 
-00:06:06.929 --> 00:06:10.122
+00:06:06.771 --> 00:06:09.964
 Ask where they would find the original goal, an approved
 
-00:06:10.145 --> 00:06:13.547
+00:06:09.987 --> 00:06:13.389
 decision, a failed check, and the next safe action.
 
-00:06:14.151 --> 00:06:17.552
+00:06:13.993 --> 00:06:17.394
 If they cannot answer, the information may be missing,
 
-00:06:17.877 --> 00:06:20.385
+00:06:17.719 --> 00:06:20.227
 hidden, or duplicated inconsistently.
 
-00:06:21.082 --> 00:06:22.730
+00:06:20.924 --> 00:06:22.572
 Revise the map and try again.
 
-00:06:23.055 --> 00:06:26.538
+00:06:22.897 --> 00:06:26.380
 In a real project, a fresh agent can do a similar review,
 
-00:06:26.747 --> 00:06:29.952
+00:06:26.589 --> 00:06:29.794
 but label that as an agent review rather than claiming a
 
-00:06:30.021 --> 00:06:31.681
+00:06:29.863 --> 00:06:31.523
 human learner tested the material.
 
-00:06:32.378 --> 00:06:35.152
+00:06:32.220 --> 00:06:34.994
 The goal is that a newcomer can navigate without your oral
 
-00:06:35.222 --> 00:06:35.954
+00:06:35.064 --> 00:06:35.796
 explanation.

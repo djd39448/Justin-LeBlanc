@@ -1,0 +1,456 @@
+{
+  "lesson": "07",
+  "scenes": [
+    {
+      "id": "01",
+      "kind": "document",
+      "tone": "teal",
+      "title": "Standards are for the next reader",
+      "intro": "Judge whether another person can understand and change the software.",
+      "items": [
+        {
+          "label": "Responsibility",
+          "detail": "One module has a clear job.",
+          "anchor": "whether a module has a clear responsibility"
+        },
+        {
+          "label": "Names",
+          "detail": "Names explain intent.",
+          "anchor": "whether names explain intent"
+        },
+        {
+          "label": "Boundaries",
+          "detail": "Inputs are checked where they enter.",
+          "anchor": "whether inputs are checked at boundaries"
+        },
+        {
+          "label": "Findability",
+          "detail": "The next person can locate the behavior.",
+          "anchor": "whether the next person can find the behavior"
+        }
+      ],
+      "conclusion": {
+        "text": "The system should not depend on the original author’s memory.",
+        "anchor": "on the original author's memory"
+      }
+    },
+    {
+      "id": "02",
+      "kind": "comparison",
+      "tone": "paper",
+      "title": "A failed save must look like a failure",
+      "intro": "Compare the visitor’s impression with what actually happened.",
+      "items": [
+        {
+          "label": "False success",
+          "detail": "“Thank you” appears even though nothing was saved.",
+          "anchor": "Imagine the inquiry tracker says"
+        },
+        {
+          "label": "False belief",
+          "detail": "Visitor and owner both think the inquiry exists.",
+          "anchor": "both visitor and owner believe"
+        },
+        {
+          "label": "Useful diagnostic",
+          "detail": "Say what failed, where, and what may help.",
+          "anchor": "A helpful diagnostic states what failed"
+        },
+        {
+          "label": "Safe detail",
+          "detail": "Keep passwords and private content out of the message.",
+          "anchor": "without exposing passwords"
+        }
+      ],
+      "conclusion": {
+        "text": "The visitor and operator may need different levels of detail.",
+        "anchor": "can contain different levels of detail"
+      }
+    },
+    {
+      "id": "03",
+      "kind": "flow",
+      "tone": "paper",
+      "title": "Test the edges of the system",
+      "intro": "Check where information enters, leaves, and changes state.",
+      "items": [
+        {
+          "label": "Submission boundary",
+          "detail": "Try valid and invalid inquiries.",
+          "anchor": "try valid and invalid submissions"
+        },
+        {
+          "label": "Access boundary",
+          "detail": "Try an unauthorized view of private records.",
+          "anchor": "an unauthorized attempt to view records"
+        },
+        {
+          "label": "Storage boundary",
+          "detail": "Simulate failure using synthetic data.",
+          "anchor": "and a storage failure"
+        },
+        {
+          "label": "Non-effects",
+          "detail": "Invalid input saves nothing; failure shows no false success.",
+          "anchor": "Test both the result and important non-effects"
+        }
+      ],
+      "conclusion": {
+        "text": "Connect each test to the requirement it supports.",
+        "anchor": "explain which requirement each test supports"
+      }
+    },
+    {
+      "id": "04",
+      "kind": "checkpoint",
+      "tone": "ink",
+      "title": "A slice includes its proof",
+      "intro": "A saved revision is useful, but it is not proof by itself.",
+      "items": [
+        {
+          "label": "Complete slice",
+          "detail": "Change + relevant check + evidence + project record.",
+          "anchor": "A coherent slice includes the change"
+        },
+        {
+          "label": "Saved revision",
+          "detail": "A commit records a version.",
+          "anchor": "A commit is a saved revision"
+        },
+        {
+          "label": "Limit of the claim",
+          "detail": "Small commits do not automatically prove behavior.",
+          "anchor": "They are not automatically proof"
+        },
+        {
+          "label": "Focused verification",
+          "detail": "Preserve unrelated work and run affected checks.",
+          "anchor": "Keep scope and ownership clear"
+        },
+        {
+          "label": "When to repeat",
+          "detail": "Rerun after changes, failures, or a new concern.",
+          "anchor": "Repeat checks when the underlying code changes"
+        }
+      ],
+      "conclusion": {
+        "text": "Repeat verification when earlier evidence may have become stale.",
+        "anchor": "or a new concern justifies it"
+      }
+    },
+    {
+      "id": "05",
+      "kind": "evidence",
+      "tone": "paper",
+      "title": "Four observations, four different claims",
+      "intro": "Treat these as distinct evidence types, not an automatic ladder.",
+      "items": [
+        {
+          "label": "Implemented",
+          "detail": "The capability is present in code.",
+          "anchor": "Implemented means present in the code"
+        },
+        {
+          "label": "Offline-tested",
+          "detail": "A controlled environment exercised the behavior.",
+          "anchor": "Offline-tested means tested in a controlled environment"
+        },
+        {
+          "label": "Provider-accepted",
+          "detail": "An outside service accepted a request.",
+          "anchor": "Provider-accepted means an outside service accepted"
+        },
+        {
+          "label": "Live-observed",
+          "detail": "The intended real-world effect was observed.",
+          "anchor": "Live-observed means the intended real-world effect"
+        }
+      ],
+      "conclusion": {
+        "text": "Provider acceptance does not necessarily prove a person received the message.",
+        "anchor": "necessarily prove the intended person received it"
+      },
+      "callouts": [
+        {
+          "text": "A fake provider response proves response handling—not real delivery.",
+          "anchor": "a fake email provider returning success"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "kind": "document",
+      "tone": "teal",
+      "title": "Keep evidence and recovery inspectable",
+      "intro": "A review record should reveal both confidence and gaps.",
+      "items": [
+        {
+          "label": "Evidence note",
+          "detail": "Revision, commands, results, time, sanitized artifacts.",
+          "anchor": "An evidence record identifies the version"
+        },
+        {
+          "label": "Missing access",
+          "detail": "A blocker or unverified gap—not a pass.",
+          "anchor": "Missing access is a blocker"
+        },
+        {
+          "label": "Restore earlier state",
+          "detail": "Explain what happens if the change fails.",
+          "anchor": "Ask what happens when a change fails"
+        },
+        {
+          "label": "Recovery rehearsal",
+          "detail": "Say whether restoration was actually rehearsed.",
+          "anchor": "whether the restoration was actually rehearsed"
+        }
+      ],
+      "conclusion": {
+        "text": "Review in proportion to risk and new information.",
+        "anchor": "avoiding repeated full reviews that add cost"
+      }
+    },
+    {
+      "id": "07",
+      "kind": "comparison",
+      "tone": "paper",
+      "title": "Make the code explain its purpose",
+      "intro": "Future diagnosis starts with names and responsibilities.",
+      "items": [
+        {
+          "label": "Six months later",
+          "detail": "A new agent must locate the failing behavior.",
+          "anchor": "six months from now the tracker fails"
+        },
+        {
+          "label": "Purposeful names",
+          "detail": "saveInquiry / listNewInquiries communicate intent.",
+          "anchor": "Names like saveInquiry and listNewInquiries"
+        },
+        {
+          "label": "Narrow module",
+          "detail": "Separate validation, storage, email, and presentation.",
+          "anchor": "A module with a narrow responsibility"
+        },
+        {
+          "label": "Dependency map",
+          "detail": "Show dependencies and side effects.",
+          "anchor": "Ask the agent for a map of dependencies"
+        }
+      ],
+      "conclusion": {
+        "text": "Require clarity without prescribing every formatting preference.",
+        "anchor": "require that future readers can follow the system"
+      }
+    },
+    {
+      "id": "08",
+      "kind": "conversation",
+      "tone": "ink",
+      "title": "Give the right person the right error",
+      "intro": "Visitor feedback and operator diagnostics serve different jobs.",
+      "items": [
+        {
+          "label": "Visitor",
+          "detail": "“Enter a way for us to contact you.”",
+          "anchor": "If a required field is missing"
+        },
+        {
+          "label": "Operator",
+          "detail": "Identify the failed storage component and safe next step.",
+          "anchor": "If the storage service is down"
+        },
+        {
+          "label": "Privacy boundary",
+          "detail": "Avoid unnecessary contact details and credentials in logs.",
+          "anchor": "Logs should avoid recording sensitive contact details"
+        },
+        {
+          "label": "Right audience",
+          "detail": "Do not make every diagnostic public.",
+          "anchor": "not to make every error public"
+        }
+      ],
+      "conclusion": {
+        "text": "The person responsible should be able to understand and respond.",
+        "anchor": "the right person can understand and respond"
+      }
+    },
+    {
+      "id": "09",
+      "kind": "evidence",
+      "tone": "paper",
+      "title": "Prove the forbidden effects stay absent",
+      "intro": "A successful example cannot cover every important boundary.",
+      "items": [
+        {
+          "label": "Missing contact method",
+          "detail": "Submit an inquiry without a way to reply.",
+          "anchor": "submit an inquiry without a contact method"
+        },
+        {
+          "label": "No saved record",
+          "detail": "Confirm rejection and absence of a record.",
+          "anchor": "Confirm the system rejects it"
+        },
+        {
+          "label": "Unauthorized access",
+          "detail": "The owner view denies an unauthorized visitor.",
+          "anchor": "Attempt to open the owner view without authorization"
+        },
+        {
+          "label": "Failed storage",
+          "detail": "The public form must not show success.",
+          "anchor": "Simulate a storage failure"
+        }
+      ],
+      "conclusion": {
+        "text": "Negative checks reveal failures a happy-path demo can miss.",
+        "anchor": "a single successful example misses"
+      }
+    },
+    {
+      "id": "10",
+      "kind": "evidence",
+      "tone": "teal",
+      "title": "Where was the claim tested?",
+      "intro": "Match the environment to the observation.",
+      "items": [
+        {
+          "label": "Local fake",
+          "detail": "The application handles a simulated response.",
+          "anchor": "A local test may replace a provider"
+        },
+        {
+          "label": "Real provider",
+          "detail": "Local behavior does not prove account access or delivery.",
+          "anchor": "it cannot prove the real provider accepts"
+        },
+        {
+          "label": "Real user",
+          "detail": "Acceptance and observed effect are different observations.",
+          "anchor": "A provider's acceptance is a stronger"
+        },
+        {
+          "label": "Evidence label",
+          "detail": "Record environment, exact claim, and untested gaps.",
+          "anchor": "Record the environment and the exact claim"
+        }
+      ],
+      "conclusion": {
+        "text": "“Not yet tested” prevents someone from assuming proof exists.",
+        "anchor": "keeps the next person from assuming proof exists"
+      }
+    },
+    {
+      "id": "11",
+      "kind": "sequence",
+      "tone": "paper",
+      "title": "Review one coherent change",
+      "intro": "Ask focused questions while the change is small enough to assess.",
+      "items": [
+        {
+          "label": "Requirement",
+          "detail": "Which behavior does the change implement?",
+          "anchor": "which requirement does this change implement"
+        },
+        {
+          "label": "Inputs and failures",
+          "detail": "What is accepted; what happens when it fails?",
+          "anchor": "What inputs does it accept"
+        },
+        {
+          "label": "Tests and privacy",
+          "detail": "Which checks changed; could private data be exposed?",
+          "anchor": "Which tests changed"
+        },
+        {
+          "label": "Recovery and documents",
+          "detail": "Can it be reversed, and do the docs still agree?",
+          "anchor": "Is there an obvious rollback"
+        },
+        {
+          "label": "Freshness",
+          "detail": "Repeat checks when a change makes earlier results stale.",
+          "anchor": "but do run checks again"
+        }
+      ],
+      "conclusion": {
+        "text": "Use new evidence when the behavior or risk changes.",
+        "anchor": "a change or failure makes earlier results stale"
+      },
+      "callouts": [
+        {
+          "text": "A small verified change keeps the review questions manageable.",
+          "anchor": "verified commit keeps these questions manageable"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Write a record someone else can inspect",
+      "intro": "A useful evidence note contains context rather than confidence alone.",
+      "items": [
+        {
+          "label": "Revision + local suite",
+          "detail": "Record which revision and cases passed.",
+          "anchor": "at this revision, the local validation suite ran"
+        },
+        {
+          "label": "Explicit gap",
+          "detail": "The separate live-provider check has not run.",
+          "anchor": "a separate live-provider check has not been run"
+        },
+        {
+          "label": "Reproducible record",
+          "detail": "Include the command and sanitized output.",
+          "anchor": "Include the command and sanitized output"
+        },
+        {
+          "label": "Safe screenshot",
+          "detail": "Use fictional records for a private-list example.",
+          "anchor": "If a screenshot shows a private list"
+        }
+      ],
+      "conclusion": {
+        "text": "The reader should assess confidence without hidden context.",
+        "anchor": "a polished summary that hides gaps"
+      }
+    },
+    {
+      "id": "13",
+      "kind": "conversation",
+      "tone": "teal",
+      "title": "Ask to see the observation",
+      "intro": "Replace broad quality claims with specific evidence.",
+      "items": [
+        {
+          "label": "Reviewer",
+          "detail": "Pair the standard with a concrete observation.",
+          "anchor": "pair each important standard with a concrete observation"
+        },
+        {
+          "label": "Instead of “handled”",
+          "detail": "Show the failed-save test or code path.",
+          "anchor": "rather than saying “errors are handled”"
+        },
+        {
+          "label": "Instead of “secure”",
+          "detail": "Name the access boundary, environment, and test limits.",
+          "anchor": "Rather than saying “security is complete”"
+        },
+        {
+          "label": "Confidence",
+          "detail": "Mark claims that cannot be reproduced or inspected.",
+          "anchor": "the reviewer cannot reproduce or inspect a claim"
+        }
+      ],
+      "conclusion": {
+        "text": "You can ask for meaningful proof without reading every line of code.",
+        "anchor": "if you do not personally read the implementation"
+      }
+    }
+  ]
+}

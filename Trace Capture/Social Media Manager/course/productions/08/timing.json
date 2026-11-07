@@ -1,0 +1,6830 @@
+{
+  "version": 2,
+  "lesson": "08",
+  "voice": "ElevenLabs Brian (unchanged retained recordings)",
+  "sampleRate": 44100,
+  "channels": 1,
+  "duration": 415.7126530612245,
+  "samples": 18332928,
+  "decodedPcmSha256": "2933a7ed517c646410515551113dd39e1ddf0d0d419fd3bff936e52bde1aeb2d",
+  "narrationM4aSha256": "b8726140a410a687a789a82575f710e8fece1a0dbb431f9819110ba96423fd8d",
+  "segments": [
+    {
+      "id": "01",
+      "source": "productions/08/audio/01.mp3",
+      "sha256": "f889cdc4e2988981d196c3b6bb0c3e25be8d055fbb84af78f4805673d7cfc298",
+      "sourceTextSha256": "30d86624a6477a9a7ad7841bf6d566ef9387ffc006ac05391622bab69ac98c1e",
+      "start": 0,
+      "end": 34.037551020408166,
+      "duration": 34.037551020408166,
+      "samples": 1501056,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.093
+        },
+        {
+          "text": "kickoff",
+          "start": 0.209,
+          "end": 0.65
+        },
+        {
+          "text": "is",
+          "start": 0.72,
+          "end": 0.813
+        },
+        {
+          "text": "a",
+          "start": 0.871,
+          "end": 0.894
+        },
+        {
+          "text": "compact,",
+          "start": 0.975,
+          "end": 1.846
+        },
+        {
+          "text": "executable",
+          "start": 1.916,
+          "end": 2.717
+        },
+        {
+          "text": "briefing",
+          "start": 2.752,
+          "end": 3.181
+        },
+        {
+          "text": "for",
+          "start": 3.355,
+          "end": 3.529
+        },
+        {
+          "text": "a",
+          "start": 3.564,
+          "end": 3.587
+        },
+        {
+          "text": "new",
+          "start": 3.646,
+          "end": 3.773
+        },
+        {
+          "text": "agent",
+          "start": 3.831,
+          "end": 4.11
+        },
+        {
+          "text": "or",
+          "start": 4.156,
+          "end": 4.214
+        },
+        {
+          "text": "session.",
+          "start": 4.272,
+          "end": 4.772
+        },
+        {
+          "text": "It",
+          "start": 5.375,
+          "end": 5.515
+        },
+        {
+          "text": "identifies",
+          "start": 5.573,
+          "end": 6.211
+        },
+        {
+          "text": "the",
+          "start": 6.246,
+          "end": 6.316
+        },
+        {
+          "text": "project",
+          "start": 6.362,
+          "end": 6.745
+        },
+        {
+          "text": "location",
+          "start": 6.78,
+          "end": 7.256
+        },
+        {
+          "text": "and",
+          "start": 7.303,
+          "end": 7.384
+        },
+        {
+          "text": "baseline,",
+          "start": 7.43,
+          "end": 8.081
+        },
+        {
+          "text": "required",
+          "start": 8.522,
+          "end": 9.021
+        },
+        {
+          "text": "reading,",
+          "start": 9.091,
+          "end": 9.625
+        },
+        {
+          "text": "document",
+          "start": 9.799,
+          "end": 10.263
+        },
+        {
+          "text": "authority,",
+          "start": 10.298,
+          "end": 10.925
+        },
+        {
+          "text": "settled",
+          "start": 11.169,
+          "end": 11.517
+        },
+        {
+          "text": "decisions,",
+          "start": 11.552,
+          "end": 12.33
+        },
+        {
+          "text": "goal,",
+          "start": 12.608,
+          "end": 13.131
+        },
+        {
+          "text": "scope,",
+          "start": 13.212,
+          "end": 13.769
+        },
+        {
+          "text": "permissions,",
+          "start": 14.095,
+          "end": 14.919
+        },
+        {
+          "text": "sequence,",
+          "start": 15.07,
+          "end": 15.778
+        },
+        {
+          "text": "checks,",
+          "start": 16.022,
+          "end": 16.602
+        },
+        {
+          "text": "and",
+          "start": 16.649,
+          "end": 16.811
+        },
+        {
+          "text": "handoff.",
+          "start": 16.881,
+          "end": 17.438
+        },
+        {
+          "text": "Imagine",
+          "start": 18.042,
+          "end": 18.541
+        },
+        {
+          "text": "handing",
+          "start": 18.599,
+          "end": 18.947
+        },
+        {
+          "text": "the",
+          "start": 19.005,
+          "end": 19.075
+        },
+        {
+          "text": "tracker",
+          "start": 19.121,
+          "end": 19.47
+        },
+        {
+          "text": "project",
+          "start": 19.539,
+          "end": 19.981
+        },
+        {
+          "text": "to",
+          "start": 20.015,
+          "end": 20.073
+        },
+        {
+          "text": "someone",
+          "start": 20.155,
+          "end": 20.596
+        },
+        {
+          "text": "who",
+          "start": 20.619,
+          "end": 20.782
+        },
+        {
+          "text": "has",
+          "start": 20.828,
+          "end": 20.933
+        },
+        {
+          "text": "not",
+          "start": 21.025,
+          "end": 21.234
+        },
+        {
+          "text": "attended",
+          "start": 21.269,
+          "end": 21.687
+        },
+        {
+          "text": "any",
+          "start": 21.768,
+          "end": 21.942999999999998
+        },
+        {
+          "text": "previous",
+          "start": 22.001,
+          "end": 22.372
+        },
+        {
+          "text": "meeting.",
+          "start": 22.419,
+          "end": 22.825
+        },
+        {
+          "text": "They",
+          "start": 23.208,
+          "end": 23.371
+        },
+        {
+          "text": "should",
+          "start": 23.394,
+          "end": 23.58
+        },
+        {
+          "text": "be",
+          "start": 23.614,
+          "end": 23.672
+        },
+        {
+          "text": "able",
+          "start": 23.707,
+          "end": 23.858
+        },
+        {
+          "text": "to",
+          "start": 23.881,
+          "end": 23.928
+        },
+        {
+          "text": "locate",
+          "start": 23.986,
+          "end": 24.311
+        },
+        {
+          "text": "the",
+          "start": 24.334,
+          "end": 24.404
+        },
+        {
+          "text": "spec,",
+          "start": 24.439,
+          "end": 24.973
+        },
+        {
+          "text": "know",
+          "start": 25.298000000000002,
+          "end": 25.472
+        },
+        {
+          "text": "that",
+          "start": 25.53,
+          "end": 25.669
+        },
+        {
+          "text": "automatic",
+          "start": 25.727,
+          "end": 26.192
+        },
+        {
+          "text": "sending",
+          "start": 26.25,
+          "end": 26.563000000000002
+        },
+        {
+          "text": "is",
+          "start": 26.621000000000002,
+          "end": 26.703
+        },
+        {
+          "text": "out",
+          "start": 26.749000000000002,
+          "end": 26.854
+        },
+        {
+          "text": "of",
+          "start": 26.887999999999998,
+          "end": 26.935000000000002
+        },
+        {
+          "text": "scope,",
+          "start": 26.97,
+          "end": 27.423000000000002
+        },
+        {
+          "text": "and",
+          "start": 27.747999999999998,
+          "end": 27.91
+        },
+        {
+          "text": "identify",
+          "start": 27.98,
+          "end": 28.514
+        },
+        {
+          "text": "the",
+          "start": 28.572,
+          "end": 28.642
+        },
+        {
+          "text": "first",
+          "start": 28.688000000000002,
+          "end": 28.909
+        },
+        {
+          "text": "safe",
+          "start": 28.942999999999998,
+          "end": 29.164
+        },
+        {
+          "text": "task.",
+          "start": 29.186999999999998,
+          "end": 29.698
+        },
+        {
+          "text": "They",
+          "start": 30.139,
+          "end": 30.279
+        },
+        {
+          "text": "should",
+          "start": 30.314,
+          "end": 30.5
+        },
+        {
+          "text": "not",
+          "start": 30.569,
+          "end": 30.72
+        },
+        {
+          "text": "have",
+          "start": 30.778,
+          "end": 30.929
+        },
+        {
+          "text": "to",
+          "start": 30.964,
+          "end": 31.022
+        },
+        {
+          "text": "reconstruct",
+          "start": 31.115,
+          "end": 31.742
+        },
+        {
+          "text": "decisions",
+          "start": 31.788,
+          "end": 32.253
+        },
+        {
+          "text": "from",
+          "start": 32.288,
+          "end": 32.415
+        },
+        {
+          "text": "a",
+          "start": 32.462,
+          "end": 32.485
+        },
+        {
+          "text": "long",
+          "start": 32.543,
+          "end": 32.752
+        },
+        {
+          "text": "chat",
+          "start": 32.822,
+          "end": 33.054
+        },
+        {
+          "text": "transcript.",
+          "start": 33.112,
+          "end": 33.739
+        }
+      ],
+      "spoken": "A kickoff is a compact, executable briefing for a new agent or session. It identifies the project location and baseline, required reading, document authority, settled decisions, goal, scope, permissions, sequence, checks, and handoff. Imagine handing the tracker project to someone who has not attended any previous meeting. They should be able to locate the spec, know that automatic sending is out of scope, and identify the first safe task. They should not have to reconstruct decisions from a long chat transcript.",
+      "captions": [
+        {
+          "start": 0.035,
+          "end": 3.773,
+          "text": "A kickoff is a compact, executable briefing for a new"
+        },
+        {
+          "start": 3.831,
+          "end": 4.772,
+          "text": "agent or session."
+        },
+        {
+          "start": 5.375,
+          "end": 9.021,
+          "text": "It identifies the project location and baseline, required"
+        },
+        {
+          "start": 9.091,
+          "end": 13.131,
+          "text": "reading, document authority, settled decisions, goal,"
+        },
+        {
+          "start": 13.212,
+          "end": 17.438,
+          "text": "scope, permissions, sequence, checks, and handoff."
+        },
+        {
+          "start": 18.042,
+          "end": 21.234,
+          "text": "Imagine handing the tracker project to someone who has not"
+        },
+        {
+          "start": 21.269,
+          "end": 22.825,
+          "text": "attended any previous meeting."
+        },
+        {
+          "start": 23.208,
+          "end": 25.669,
+          "text": "They should be able to locate the spec, know that"
+        },
+        {
+          "start": 25.727,
+          "end": 28.909,
+          "text": "automatic sending is out of scope, and identify the first"
+        },
+        {
+          "start": 28.943,
+          "end": 29.698,
+          "text": "safe task."
+        },
+        {
+          "start": 30.139,
+          "end": 32.752,
+          "text": "They should not have to reconstruct decisions from a long"
+        },
+        {
+          "start": 32.822,
+          "end": 33.739,
+          "text": "chat transcript."
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source": "productions/08/audio/02.mp3",
+      "sha256": "100be9ca75bcb26de9605d86d59358ad4eb95566c1c2d6a3018bbed5b7388118",
+      "sourceTextSha256": "0e1ac6485af2c0107c71cf1b1316db61545b5949162981ade3393dc7847cec5d",
+      "start": 34.037551020408166,
+      "end": 63.89551020408163,
+      "duration": 29.85795918367347,
+      "samples": 1316736,
+      "words": [
+        {
+          "text": "You",
+          "start": 0.058,
+          "end": 0.163
+        },
+        {
+          "text": "can",
+          "start": 0.209,
+          "end": 0.313
+        },
+        {
+          "text": "use",
+          "start": 0.372,
+          "end": 0.511
+        },
+        {
+          "text": "multiple",
+          "start": 0.569,
+          "end": 0.998
+        },
+        {
+          "text": "agents",
+          "start": 1.045,
+          "end": 1.335
+        },
+        {
+          "text": "for",
+          "start": 1.37,
+          "end": 1.463
+        },
+        {
+          "text": "independent",
+          "start": 1.509,
+          "end": 1.927
+        },
+        {
+          "text": "tasks,",
+          "start": 1.95,
+          "end": 2.392
+        },
+        {
+          "text": "provided",
+          "start": 2.601,
+          "end": 3.03
+        },
+        {
+          "text": "each",
+          "start": 3.111,
+          "end": 3.297
+        },
+        {
+          "text": "has",
+          "start": 3.332,
+          "end": 3.471
+        },
+        {
+          "text": "a",
+          "start": 3.518,
+          "end": 3.553
+        },
+        {
+          "text": "clear",
+          "start": 3.622,
+          "end": 3.843
+        },
+        {
+          "text": "assignment.",
+          "start": 3.889,
+          "end": 4.47
+        },
+        {
+          "text": "Give",
+          "start": 4.911,
+          "end": 5.097
+        },
+        {
+          "text": "a",
+          "start": 5.132,
+          "end": 5.155
+        },
+        {
+          "text": "worker",
+          "start": 5.224,
+          "end": 5.503
+        },
+        {
+          "text": "an",
+          "start": 5.55,
+          "end": 5.619
+        },
+        {
+          "text": "outcome,",
+          "start": 5.666,
+          "end": 6.235
+        },
+        {
+          "text": "relevant",
+          "start": 6.676,
+          "end": 7.082
+        },
+        {
+          "text": "source",
+          "start": 7.14,
+          "end": 7.407
+        },
+        {
+          "text": "files,",
+          "start": 7.454,
+          "end": 8.011
+        },
+        {
+          "text": "exclusive",
+          "start": 8.139,
+          "end": 8.673
+        },
+        {
+          "text": "file",
+          "start": 8.696,
+          "end": 8.998
+        },
+        {
+          "text": "or",
+          "start": 9.033,
+          "end": 9.102
+        },
+        {
+          "text": "subsystem",
+          "start": 9.16,
+          "end": 9.636
+        },
+        {
+          "text": "ownership,",
+          "start": 9.683,
+          "end": 10.24
+        },
+        {
+          "text": "constraints,",
+          "start": 10.484,
+          "end": 11.227
+        },
+        {
+          "text": "acceptance",
+          "start": 11.378,
+          "end": 11.9
+        },
+        {
+          "text": "checks,",
+          "start": 11.935,
+          "end": 12.376
+        },
+        {
+          "text": "and",
+          "start": 12.55,
+          "end": 12.69
+        },
+        {
+          "text": "a",
+          "start": 12.736,
+          "end": 12.759
+        },
+        {
+          "text": "compact",
+          "start": 12.841,
+          "end": 13.34
+        },
+        {
+          "text": "reply",
+          "start": 13.386,
+          "end": 13.665000000000001
+        },
+        {
+          "text": "format.",
+          "start": 13.746,
+          "end": 14.280000000000001
+        },
+        {
+          "text": "Define",
+          "start": 14.884,
+          "end": 15.313
+        },
+        {
+          "text": "shared",
+          "start": 15.371,
+          "end": 15.662
+        },
+        {
+          "text": "interfaces",
+          "start": 15.696000000000002,
+          "end": 16.254
+        },
+        {
+          "text": "before",
+          "start": 16.312,
+          "end": 16.59
+        },
+        {
+          "text": "separate",
+          "start": 16.648,
+          "end": 16.997
+        },
+        {
+          "text": "workers",
+          "start": 17.02,
+          "end": 17.345
+        },
+        {
+          "text": "depend",
+          "start": 17.391000000000002,
+          "end": 17.693
+        },
+        {
+          "text": "on",
+          "start": 17.751,
+          "end": 17.821
+        },
+        {
+          "text": "them.",
+          "start": 17.867,
+          "end": 18.193
+        },
+        {
+          "text": "If",
+          "start": 18.796,
+          "end": 18.947000000000003
+        },
+        {
+          "text": "one",
+          "start": 19.028,
+          "end": 19.237000000000002
+        },
+        {
+          "text": "worker",
+          "start": 19.272,
+          "end": 19.551000000000002
+        },
+        {
+          "text": "implements",
+          "start": 19.621000000000002,
+          "end": 20.073
+        },
+        {
+          "text": "validation",
+          "start": 20.12,
+          "end": 20.782
+        },
+        {
+          "text": "while",
+          "start": 20.874000000000002,
+          "end": 21.107
+        },
+        {
+          "text": "another",
+          "start": 21.141000000000002,
+          "end": 21.42
+        },
+        {
+          "text": "works",
+          "start": 21.467,
+          "end": 21.698999999999998
+        },
+        {
+          "text": "on",
+          "start": 21.734,
+          "end": 21.803
+        },
+        {
+          "text": "a",
+          "start": 21.85,
+          "end": 21.873
+        },
+        {
+          "text": "view,",
+          "start": 21.931,
+          "end": 22.372
+        },
+        {
+          "text": "their",
+          "start": 22.581000000000003,
+          "end": 22.755000000000003
+        },
+        {
+          "text": "contract",
+          "start": 22.802,
+          "end": 23.266
+        },
+        {
+          "text": "for",
+          "start": 23.301000000000002,
+          "end": 23.394
+        },
+        {
+          "text": "the",
+          "start": 23.429000000000002,
+          "end": 23.498
+        },
+        {
+          "text": "inquiry",
+          "start": 23.545,
+          "end": 23.847
+        },
+        {
+          "text": "record",
+          "start": 23.905,
+          "end": 24.183
+        },
+        {
+          "text": "must",
+          "start": 24.253,
+          "end": 24.439
+        },
+        {
+          "text": "be",
+          "start": 24.485,
+          "end": 24.566000000000003
+        },
+        {
+          "text": "agreed.",
+          "start": 24.601,
+          "end": 25.054000000000002
+        },
+        {
+          "text": "A",
+          "start": 25.437,
+          "end": 25.53
+        },
+        {
+          "text": "dispatched",
+          "start": 25.658,
+          "end": 26.215
+        },
+        {
+          "text": "task",
+          "start": 26.238,
+          "end": 26.563000000000002
+        },
+        {
+          "text": "is",
+          "start": 26.621000000000002,
+          "end": 26.714
+        },
+        {
+          "text": "not",
+          "start": 26.807000000000002,
+          "end": 26.993000000000002
+        },
+        {
+          "text": "complete",
+          "start": 27.051000000000002,
+          "end": 27.504
+        },
+        {
+          "text": "until",
+          "start": 27.562,
+          "end": 27.829
+        },
+        {
+          "text": "its",
+          "start": 27.875,
+          "end": 27.98
+        },
+        {
+          "text": "result",
+          "start": 28.026,
+          "end": 28.351
+        },
+        {
+          "text": "is",
+          "start": 28.398000000000003,
+          "end": 28.467
+        },
+        {
+          "text": "collected",
+          "start": 28.514000000000003,
+          "end": 28.932000000000002
+        },
+        {
+          "text": "and",
+          "start": 28.978,
+          "end": 29.048000000000002
+        },
+        {
+          "text": "reviewed.",
+          "start": 29.094,
+          "end": 29.559
+        }
+      ],
+      "spoken": "You can use multiple agents for independent tasks, provided each has a clear assignment. Give a worker an outcome, relevant source files, exclusive file or subsystem ownership, constraints, acceptance checks, and a compact reply format. Define shared interfaces before separate workers depend on them. If one worker implements validation while another works on a view, their contract for the inquiry record must be agreed. A dispatched task is not complete until its result is collected and reviewed.",
+      "captions": [
+        {
+          "start": 34.095551020408166,
+          "end": 36.42955102040817,
+          "text": "You can use multiple agents for independent tasks,"
+        },
+        {
+          "start": 36.638551020408165,
+          "end": 38.507551020408165,
+          "text": "provided each has a clear assignment."
+        },
+        {
+          "start": 38.94855102040817,
+          "end": 42.71055102040817,
+          "text": "Give a worker an outcome, relevant source files, exclusive"
+        },
+        {
+          "start": 42.733551020408164,
+          "end": 45.937551020408165,
+          "text": "file or subsystem ownership, constraints, acceptance"
+        },
+        {
+          "start": 45.97255102040817,
+          "end": 48.31755102040817,
+          "text": "checks, and a compact reply format."
+        },
+        {
+          "start": 48.92155102040817,
+          "end": 51.85855102040817,
+          "text": "Define shared interfaces before separate workers depend on"
+        },
+        {
+          "start": 51.904551020408164,
+          "end": 52.23055102040817,
+          "text": "them."
+        },
+        {
+          "start": 52.833551020408166,
+          "end": 55.84055102040817,
+          "text": "If one worker implements validation while another works on"
+        },
+        {
+          "start": 55.88755102040817,
+          "end": 58.60355102040816,
+          "text": "a view, their contract for the inquiry record must be"
+        },
+        {
+          "start": 58.638551020408165,
+          "end": 59.09155102040816,
+          "text": "agreed."
+        },
+        {
+          "start": 59.47455102040817,
+          "end": 62.504551020408165,
+          "text": "A dispatched task is not complete until its result is"
+        },
+        {
+          "start": 62.55155102040817,
+          "end": 63.59655102040817,
+          "text": "collected and reviewed."
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source": "productions/08/audio/03.mp3",
+      "sha256": "959bfb7741c5e301791cdd11c4600385d47b2dc4cd25d0aca23b27dc7c7dfaf9",
+      "sourceTextSha256": "7ea97cd2a1a1c536943901d1d2347071d0cf3d435b2c28bf2ef9dfcbe45e16d0",
+      "start": 63.89551020408163,
+      "end": 100.4930612244898,
+      "duration": 36.59755102040816,
+      "samples": 1613952,
+      "words": [
+        {
+          "text": "Route",
+          "start": 0.035,
+          "end": 0.325
+        },
+        {
+          "text": "deterministic",
+          "start": 0.372,
+          "end": 1.126
+        },
+        {
+          "text": "tasks",
+          "start": 1.184,
+          "end": 1.521
+        },
+        {
+          "text": "such",
+          "start": 1.556,
+          "end": 1.73
+        },
+        {
+          "text": "as",
+          "start": 1.776,
+          "end": 1.858
+        },
+        {
+          "text": "searching,",
+          "start": 1.927,
+          "end": 2.624
+        },
+        {
+          "text": "formatting,",
+          "start": 2.868,
+          "end": 3.692
+        },
+        {
+          "text": "or",
+          "start": 3.866,
+          "end": 4.005
+        },
+        {
+          "text": "repeatable",
+          "start": 4.087,
+          "end": 4.656
+        },
+        {
+          "text": "checks",
+          "start": 4.69,
+          "end": 4.992
+        },
+        {
+          "text": "to",
+          "start": 5.027,
+          "end": 5.085
+        },
+        {
+          "text": "ordinary",
+          "start": 5.166,
+          "end": 5.55
+        },
+        {
+          "text": "tools",
+          "start": 5.596,
+          "end": 5.84
+        },
+        {
+          "text": "when",
+          "start": 5.875,
+          "end": 5.991
+        },
+        {
+          "text": "possible.",
+          "start": 6.037,
+          "end": 6.606
+        },
+        {
+          "text": "Use",
+          "start": 7.21,
+          "end": 7.43
+        },
+        {
+          "text": "a",
+          "start": 7.465,
+          "end": 7.488
+        },
+        {
+          "text": "qualified",
+          "start": 7.558,
+          "end": 8.069
+        },
+        {
+          "text": "local",
+          "start": 8.115,
+          "end": 8.382
+        },
+        {
+          "text": "model",
+          "start": 8.44,
+          "end": 8.707
+        },
+        {
+          "text": "for",
+          "start": 8.766,
+          "end": 8.882
+        },
+        {
+          "text": "suitable",
+          "start": 8.928,
+          "end": 9.276
+        },
+        {
+          "text": "extraction",
+          "start": 9.311,
+          "end": 9.88
+        },
+        {
+          "text": "or",
+          "start": 9.973,
+          "end": 10.077
+        },
+        {
+          "text": "drafting,",
+          "start": 10.136,
+          "end": 10.797
+        },
+        {
+          "text": "and",
+          "start": 11.006,
+          "end": 11.169
+        },
+        {
+          "text": "a",
+          "start": 11.204,
+          "end": 11.238
+        },
+        {
+          "text": "capable",
+          "start": 11.297,
+          "end": 11.749
+        },
+        {
+          "text": "lower-cost",
+          "start": 11.807,
+          "end": 12.376
+        },
+        {
+          "text": "worker",
+          "start": 12.446,
+          "end": 12.771
+        },
+        {
+          "text": "for",
+          "start": 12.841,
+          "end": 12.98
+        },
+        {
+          "text": "bounded",
+          "start": 13.038,
+          "end": 13.421
+        },
+        {
+          "text": "ordinary",
+          "start": 13.502,
+          "end": 13.943
+        },
+        {
+          "text": "implementation.",
+          "start": 13.978,
+          "end": 14.849
+        },
+        {
+          "text": "Reserve",
+          "start": 15.546,
+          "end": 16.01
+        },
+        {
+          "text": "the",
+          "start": 16.045,
+          "end": 16.126
+        },
+        {
+          "text": "strongest",
+          "start": 16.184,
+          "end": 16.695
+        },
+        {
+          "text": "available",
+          "start": 16.753,
+          "end": 17.183
+        },
+        {
+          "text": "conductor",
+          "start": 17.217,
+          "end": 17.682000000000002
+        },
+        {
+          "text": "for",
+          "start": 17.740000000000002,
+          "end": 17.856
+        },
+        {
+          "text": "architecture,",
+          "start": 17.926000000000002,
+          "end": 18.82
+        },
+        {
+          "text": "difficult",
+          "start": 19.261,
+          "end": 19.795
+        },
+        {
+          "text": "ambiguity,",
+          "start": 19.876,
+          "end": 20.805
+        },
+        {
+          "text": "sensitive",
+          "start": 21.13,
+          "end": 21.618000000000002
+        },
+        {
+          "text": "boundaries,",
+          "start": 21.652,
+          "end": 22.256
+        },
+        {
+          "text": "integration,",
+          "start": 22.697000000000003,
+          "end": 23.487000000000002
+        },
+        {
+          "text": "and",
+          "start": 23.545,
+          "end": 23.695999999999998
+        },
+        {
+          "text": "final",
+          "start": 23.753999999999998,
+          "end": 23.998
+        },
+        {
+          "text": "judgment.",
+          "start": 24.056,
+          "end": 24.52
+        },
+        {
+          "text": "Verify",
+          "start": 25.124000000000002,
+          "end": 25.646
+        },
+        {
+          "text": "what",
+          "start": 25.704,
+          "end": 25.855
+        },
+        {
+          "text": "models",
+          "start": 25.925,
+          "end": 26.25
+        },
+        {
+          "text": "and",
+          "start": 26.285,
+          "end": 26.366
+        },
+        {
+          "text": "tools",
+          "start": 26.413,
+          "end": 26.68
+        },
+        {
+          "text": "are",
+          "start": 26.714,
+          "end": 26.819000000000003
+        },
+        {
+          "text": "actually",
+          "start": 26.854,
+          "end": 27.144
+        },
+        {
+          "text": "available.",
+          "start": 27.179000000000002,
+          "end": 27.771
+        },
+        {
+          "text": "A",
+          "start": 28.212,
+          "end": 28.305
+        },
+        {
+          "text": "prompt",
+          "start": 28.421,
+          "end": 28.793
+        },
+        {
+          "text": "cannot",
+          "start": 28.851,
+          "end": 29.164
+        },
+        {
+          "text": "create",
+          "start": 29.222,
+          "end": 29.524
+        },
+        {
+          "text": "a",
+          "start": 29.547,
+          "end": 29.582
+        },
+        {
+          "text": "model,",
+          "start": 29.652,
+          "end": 30.186
+        },
+        {
+          "text": "a",
+          "start": 30.36,
+          "end": 30.429000000000002
+        },
+        {
+          "text": "capability,",
+          "start": 30.511,
+          "end": 31.3
+        },
+        {
+          "text": "or",
+          "start": 31.347,
+          "end": 31.498
+        },
+        {
+          "text": "a",
+          "start": 31.556,
+          "end": 31.579
+        },
+        {
+          "text": "budget.",
+          "start": 31.625,
+          "end": 32.101
+        },
+        {
+          "text": "Lower",
+          "start": 32.705,
+          "end": 32.984
+        },
+        {
+          "text": "cost",
+          "start": 33.042,
+          "end": 33.332
+        },
+        {
+          "text": "is",
+          "start": 33.378,
+          "end": 33.471000000000004
+        },
+        {
+          "text": "useful",
+          "start": 33.552,
+          "end": 33.947
+        },
+        {
+          "text": "only",
+          "start": 34.04,
+          "end": 34.33
+        },
+        {
+          "text": "if",
+          "start": 34.388,
+          "end": 34.47
+        },
+        {
+          "text": "the",
+          "start": 34.516,
+          "end": 34.586
+        },
+        {
+          "text": "route",
+          "start": 34.655,
+          "end": 34.876
+        },
+        {
+          "text": "can",
+          "start": 34.911,
+          "end": 35.027
+        },
+        {
+          "text": "do",
+          "start": 35.073,
+          "end": 35.166
+        },
+        {
+          "text": "the",
+          "start": 35.213,
+          "end": 35.282000000000004
+        },
+        {
+          "text": "job",
+          "start": 35.329,
+          "end": 35.538000000000004
+        },
+        {
+          "text": "reliably.",
+          "start": 35.596000000000004,
+          "end": 36.269
+        }
+      ],
+      "spoken": "Route deterministic tasks such as searching, formatting, or repeatable checks to ordinary tools when possible. Use a qualified local model for suitable extraction or drafting, and a capable lower-cost worker for bounded ordinary implementation. Reserve the strongest available conductor for architecture, difficult ambiguity, sensitive boundaries, integration, and final judgment. Verify what models and tools are actually available. A prompt cannot create a model, a capability, or a budget. Lower cost is useful only if the route can do the job reliably.",
+      "captions": [
+        {
+          "start": 63.93051020408163,
+          "end": 67.58751020408164,
+          "text": "Route deterministic tasks such as searching, formatting,"
+        },
+        {
+          "start": 67.76151020408163,
+          "end": 70.50151020408163,
+          "text": "or repeatable checks to ordinary tools when possible."
+        },
+        {
+          "start": 71.10551020408163,
+          "end": 73.97251020408163,
+          "text": "Use a qualified local model for suitable extraction or"
+        },
+        {
+          "start": 74.03151020408163,
+          "end": 77.31651020408162,
+          "text": "drafting, and a capable lower-cost worker for bounded"
+        },
+        {
+          "start": 77.39751020408163,
+          "end": 78.74451020408164,
+          "text": "ordinary implementation."
+        },
+        {
+          "start": 79.44151020408162,
+          "end": 81.75151020408163,
+          "text": "Reserve the strongest available conductor for"
+        },
+        {
+          "start": 81.82151020408163,
+          "end": 86.15151020408163,
+          "text": "architecture, difficult ambiguity, sensitive boundaries,"
+        },
+        {
+          "start": 86.59251020408163,
+          "end": 88.41551020408163,
+          "text": "integration, and final judgment."
+        },
+        {
+          "start": 89.01951020408163,
+          "end": 91.66651020408163,
+          "text": "Verify what models and tools are actually available."
+        },
+        {
+          "start": 92.10751020408163,
+          "end": 95.99651020408163,
+          "text": "A prompt cannot create a model, a capability, or a budget."
+        },
+        {
+          "start": 96.60051020408163,
+          "end": 99.43351020408163,
+          "text": "Lower cost is useful only if the route can do the job"
+        },
+        {
+          "start": 99.49151020408164,
+          "end": 100.16451020408164,
+          "text": "reliably."
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source": "productions/08/audio/04.mp3",
+      "sha256": "d8698c127d549ca2a56d9b9f6fbecc5be26ea5a89c39b67283b0af95a0d8844a",
+      "sourceTextSha256": "b4af189cf9d03f1a52ec9a50e52517200ebd2c47c6e7a816251096f3f7752077",
+      "start": 100.4930612244898,
+      "end": 143.15102040816328,
+      "duration": 42.65795918367347,
+      "samples": 1881216,
+      "words": [
+        {
+          "text": "Before",
+          "start": 0.058,
+          "end": 0.395
+        },
+        {
+          "text": "substantial",
+          "start": 0.453,
+          "end": 1.08
+        },
+        {
+          "text": "dispatch",
+          "start": 1.161,
+          "end": 1.753
+        },
+        {
+          "text": "and",
+          "start": 1.788,
+          "end": 1.858
+        },
+        {
+          "text": "after",
+          "start": 1.892,
+          "end": 2.09
+        },
+        {
+          "text": "a",
+          "start": 2.136,
+          "end": 2.171
+        },
+        {
+          "text": "batch",
+          "start": 2.218,
+          "end": 2.438
+        },
+        {
+          "text": "of",
+          "start": 2.485,
+          "end": 2.543
+        },
+        {
+          "text": "work,",
+          "start": 2.601,
+          "end": 3.007
+        },
+        {
+          "text": "inspect",
+          "start": 3.286,
+          "end": 3.738
+        },
+        {
+          "text": "any",
+          "start": 3.82,
+          "end": 4.075
+        },
+        {
+          "text": "available",
+          "start": 4.133,
+          "end": 4.598
+        },
+        {
+          "text": "usage",
+          "start": 4.656,
+          "end": 4.969
+        },
+        {
+          "text": "information",
+          "start": 5.004,
+          "end": 5.596
+        },
+        {
+          "text": "and",
+          "start": 5.747,
+          "end": 5.944
+        },
+        {
+          "text": "identify",
+          "start": 6.002,
+          "end": 6.513
+        },
+        {
+          "text": "the",
+          "start": 6.583,
+          "end": 6.653
+        },
+        {
+          "text": "tightest",
+          "start": 6.711,
+          "end": 7.094
+        },
+        {
+          "text": "shared",
+          "start": 7.117,
+          "end": 7.338
+        },
+        {
+          "text": "allowance.",
+          "start": 7.361,
+          "end": 7.906
+        },
+        {
+          "text": "Dave's",
+          "start": 8.348,
+          "end": 8.684
+        },
+        {
+          "text": "example",
+          "start": 8.719,
+          "end": 9.149
+        },
+        {
+          "text": "policy",
+          "start": 9.183,
+          "end": 9.613
+        },
+        {
+          "text": "keeps",
+          "start": 9.683,
+          "end": 9.915
+        },
+        {
+          "text": "a",
+          "start": 9.95,
+          "end": 9.973
+        },
+        {
+          "text": "25",
+          "start": 10.043,
+          "end": 10.495
+        },
+        {
+          "text": "percent",
+          "start": 10.577,
+          "end": 10.879
+        },
+        {
+          "text": "reserve",
+          "start": 10.925,
+          "end": 11.459
+        },
+        {
+          "text": "and",
+          "start": 11.575,
+          "end": 11.819
+        },
+        {
+          "text": "stops",
+          "start": 11.865,
+          "end": 12.144
+        },
+        {
+          "text": "discretionary",
+          "start": 12.202,
+          "end": 12.852
+        },
+        {
+          "text": "cloud",
+          "start": 12.91,
+          "end": 13.154
+        },
+        {
+          "text": "dispatch",
+          "start": 13.201,
+          "end": 13.665000000000001
+        },
+        {
+          "text": "at",
+          "start": 13.711,
+          "end": 13.781
+        },
+        {
+          "text": "75",
+          "start": 13.897,
+          "end": 14.385000000000002
+        },
+        {
+          "text": "percent",
+          "start": 14.443000000000001,
+          "end": 14.733
+        },
+        {
+          "text": "used.",
+          "start": 14.791,
+          "end": 15.128
+        },
+        {
+          "text": "These",
+          "start": 15.639000000000001,
+          "end": 15.836
+        },
+        {
+          "text": "are",
+          "start": 15.871,
+          "end": 15.975000000000001
+        },
+        {
+          "text": "configurable",
+          "start": 16.01,
+          "end": 16.637
+        },
+        {
+          "text": "personal",
+          "start": 16.683,
+          "end": 17.078
+        },
+        {
+          "text": "rules,",
+          "start": 17.136,
+          "end": 17.461000000000002
+        },
+        {
+          "text": "not",
+          "start": 17.519000000000002,
+          "end": 17.717
+        },
+        {
+          "text": "limits",
+          "start": 17.798000000000002,
+          "end": 18.1
+        },
+        {
+          "text": "that",
+          "start": 18.123,
+          "end": 18.239
+        },
+        {
+          "text": "every",
+          "start": 18.274,
+          "end": 18.425
+        },
+        {
+          "text": "provider",
+          "start": 18.483,
+          "end": 18.831
+        },
+        {
+          "text": "imposes.",
+          "start": 18.878,
+          "end": 19.481
+        },
+        {
+          "text": "Mac",
+          "start": 19.923000000000002,
+          "end": 20.155
+        },
+        {
+          "text": "and",
+          "start": 20.213,
+          "end": 20.283
+        },
+        {
+          "text": "Windows",
+          "start": 20.352,
+          "end": 20.700000000000003
+        },
+        {
+          "text": "may",
+          "start": 20.759,
+          "end": 20.886000000000003
+        },
+        {
+          "text": "share",
+          "start": 20.944000000000003,
+          "end": 21.142
+        },
+        {
+          "text": "the",
+          "start": 21.176000000000002,
+          "end": 21.246000000000002
+        },
+        {
+          "text": "same",
+          "start": 21.281,
+          "end": 21.455000000000002
+        },
+        {
+          "text": "account",
+          "start": 21.478,
+          "end": 21.722
+        },
+        {
+          "text": "allowance.",
+          "start": 21.757,
+          "end": 22.256
+        },
+        {
+          "text": "If",
+          "start": 22.697000000000003,
+          "end": 22.848
+        },
+        {
+          "text": "usage",
+          "start": 22.941000000000003,
+          "end": 23.289
+        },
+        {
+          "text": "is",
+          "start": 23.324,
+          "end": 23.406
+        },
+        {
+          "text": "unavailable,",
+          "start": 23.464,
+          "end": 24.207
+        },
+        {
+          "text": "report",
+          "start": 24.416,
+          "end": 24.741
+        },
+        {
+          "text": "it",
+          "start": 24.776000000000003,
+          "end": 24.845
+        },
+        {
+          "text": "as",
+          "start": 24.903,
+          "end": 24.985
+        },
+        {
+          "text": "unknown,",
+          "start": 25.066000000000003,
+          "end": 25.681
+        },
+        {
+          "text": "avoid",
+          "start": 25.855,
+          "end": 26.227
+        },
+        {
+          "text": "discretionary",
+          "start": 26.273000000000003,
+          "end": 26.912
+        },
+        {
+          "text": "cloud",
+          "start": 26.958,
+          "end": 27.214
+        },
+        {
+          "text": "dispatch,",
+          "start": 27.259999999999998,
+          "end": 27.921999999999997
+        },
+        {
+          "text": "and",
+          "start": 28.247,
+          "end": 28.398
+        },
+        {
+          "text": "continue",
+          "start": 28.468,
+          "end": 28.955
+        },
+        {
+          "text": "useful",
+          "start": 29.014,
+          "end": 29.339
+        },
+        {
+          "text": "work",
+          "start": 29.407999999999998,
+          "end": 29.628999999999998
+        },
+        {
+          "text": "with",
+          "start": 29.674999999999997,
+          "end": 29.802999999999997
+        },
+        {
+          "text": "deterministic",
+          "start": 29.848999999999997,
+          "end": 30.5
+        },
+        {
+          "text": "tools",
+          "start": 30.546,
+          "end": 30.86
+        },
+        {
+          "text": "or",
+          "start": 30.906,
+          "end": 30.976
+        },
+        {
+          "text": "qualified",
+          "start": 31.022,
+          "end": 31.451999999999998
+        },
+        {
+          "text": "local",
+          "start": 31.485999999999997,
+          "end": 31.707
+        },
+        {
+          "text": "capacity.",
+          "start": 31.753999999999998,
+          "end": 32.449999999999996
+        },
+        {
+          "text": "Keep",
+          "start": 32.891,
+          "end": 33.135
+        },
+        {
+          "text": "only",
+          "start": 33.216,
+          "end": 33.472
+        },
+        {
+          "text": "the",
+          "start": 33.53,
+          "end": 33.599
+        },
+        {
+          "text": "minimum",
+          "start": 33.681,
+          "end": 34.064
+        },
+        {
+          "text": "authorized",
+          "start": 34.134,
+          "end": 34.632999999999996
+        },
+        {
+          "text": "cloud",
+          "start": 34.668,
+          "end": 34.923
+        },
+        {
+          "text": "work",
+          "start": 34.969,
+          "end": 35.132
+        },
+        {
+          "text": "needed",
+          "start": 35.19,
+          "end": 35.411
+        },
+        {
+          "text": "for",
+          "start": 35.445,
+          "end": 35.55
+        },
+        {
+          "text": "safe",
+          "start": 35.608,
+          "end": 35.829
+        },
+        {
+          "text": "completion",
+          "start": 35.863,
+          "end": 36.385999999999996
+        },
+        {
+          "text": "and",
+          "start": 36.456,
+          "end": 36.605999999999995
+        },
+        {
+          "text": "handoff.",
+          "start": 36.676,
+          "end": 37.21
+        },
+        {
+          "text": "Do",
+          "start": 37.650999999999996,
+          "end": 37.802
+        },
+        {
+          "text": "not",
+          "start": 37.884,
+          "end": 38.022999999999996
+        },
+        {
+          "text": "invent",
+          "start": 38.069,
+          "end": 38.394
+        },
+        {
+          "text": "a",
+          "start": 38.452,
+          "end": 38.486999999999995
+        },
+        {
+          "text": "measurement",
+          "start": 38.58,
+          "end": 39.01
+        },
+        {
+          "text": "or",
+          "start": 39.079,
+          "end": 39.184
+        },
+        {
+          "text": "claim",
+          "start": 39.254,
+          "end": 39.486
+        },
+        {
+          "text": "a",
+          "start": 39.544,
+          "end": 39.567
+        },
+        {
+          "text": "hard",
+          "start": 39.637,
+          "end": 39.833999999999996
+        },
+        {
+          "text": "stop",
+          "start": 39.879999999999995,
+          "end": 40.182
+        },
+        {
+          "text": "is",
+          "start": 40.251999999999995,
+          "end": 40.345
+        },
+        {
+          "text": "enforced",
+          "start": 40.403,
+          "end": 40.844
+        },
+        {
+          "text": "when",
+          "start": 40.879,
+          "end": 41.03
+        },
+        {
+          "text": "no",
+          "start": 41.099999999999994,
+          "end": 41.227
+        },
+        {
+          "text": "tool",
+          "start": 41.297,
+          "end": 41.541
+        },
+        {
+          "text": "can",
+          "start": 41.599,
+          "end": 41.714999999999996
+        },
+        {
+          "text": "enforce",
+          "start": 41.760999999999996,
+          "end": 42.132999999999996
+        },
+        {
+          "text": "it.",
+          "start": 42.168,
+          "end": 42.364999999999995
+        }
+      ],
+      "spoken": "Before substantial dispatch and after a batch of work, inspect any available usage information and identify the tightest shared allowance. Dave's example policy keeps a 25 percent reserve and stops discretionary cloud dispatch at 75 percent used. These are configurable personal rules, not limits that every provider imposes. Mac and Windows may share the same account allowance. If usage is unavailable, report it as unknown, avoid discretionary cloud dispatch, and continue useful work with deterministic tools or qualified local capacity. Keep only the minimum authorized cloud work needed for safe completion and handoff. Do not invent a measurement or claim a hard stop is enforced when no tool can enforce it.",
+      "captions": [
+        {
+          "start": 100.5510612244898,
+          "end": 103.5000612244898,
+          "text": "Before substantial dispatch and after a batch of work,"
+        },
+        {
+          "start": 103.7790612244898,
+          "end": 107.1460612244898,
+          "text": "inspect any available usage information and identify the"
+        },
+        {
+          "start": 107.20406122448979,
+          "end": 108.3990612244898,
+          "text": "tightest shared allowance."
+        },
+        {
+          "start": 108.84106122448979,
+          "end": 112.6370612244898,
+          "text": "Dave's example policy keeps a 25 percent reserve and stops"
+        },
+        {
+          "start": 112.69506122448979,
+          "end": 115.6210612244898,
+          "text": "discretionary cloud dispatch at 75 percent used."
+        },
+        {
+          "start": 116.13206122448979,
+          "end": 118.7320612244898,
+          "text": "These are configurable personal rules, not limits that"
+        },
+        {
+          "start": 118.7670612244898,
+          "end": 119.97406122448979,
+          "text": "every provider imposes."
+        },
+        {
+          "start": 120.4160612244898,
+          "end": 122.7490612244898,
+          "text": "Mac and Windows may share the same account allowance."
+        },
+        {
+          "start": 123.1900612244898,
+          "end": 126.7200612244898,
+          "text": "If usage is unavailable, report it as unknown, avoid"
+        },
+        {
+          "start": 126.76606122448979,
+          "end": 130.12206122448978,
+          "text": "discretionary cloud dispatch, and continue useful work"
+        },
+        {
+          "start": 130.1680612244898,
+          "end": 132.94306122448978,
+          "text": "with deterministic tools or qualified local capacity."
+        },
+        {
+          "start": 133.38406122448978,
+          "end": 136.0430612244898,
+          "text": "Keep only the minimum authorized cloud work needed for"
+        },
+        {
+          "start": 136.1010612244898,
+          "end": 137.7030612244898,
+          "text": "safe completion and handoff."
+        },
+        {
+          "start": 138.1440612244898,
+          "end": 140.8380612244898,
+          "text": "Do not invent a measurement or claim a hard stop is"
+        },
+        {
+          "start": 140.89606122448978,
+          "end": 142.8580612244898,
+          "text": "enforced when no tool can enforce it."
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source": "productions/08/audio/05.mp3",
+      "sha256": "d180e0e1d0cf9223cf85a8a7dd9369de18d509de50e675acd58e991a7f2bc70b",
+      "sourceTextSha256": "ed74004fcf017290b556121b5f20c86c4ad28d98bca7ef0e9d055979e3a9783d",
+      "start": 143.15102040816328,
+      "end": 170.68408163265306,
+      "duration": 27.533061224489796,
+      "samples": 1214208,
+      "words": [
+        {
+          "text": "Record",
+          "start": 0.081,
+          "end": 0.337
+        },
+        {
+          "text": "the",
+          "start": 0.36,
+          "end": 0.43
+        },
+        {
+          "text": "route",
+          "start": 0.464,
+          "end": 0.65
+        },
+        {
+          "text": "actually",
+          "start": 0.685,
+          "end": 1.057
+        },
+        {
+          "text": "used,",
+          "start": 1.126,
+          "end": 1.591
+        },
+        {
+          "text": "available",
+          "start": 1.672,
+          "end": 2.171
+        },
+        {
+          "text": "usage,",
+          "start": 2.229,
+          "end": 2.798
+        },
+        {
+          "text": "results,",
+          "start": 2.972,
+          "end": 3.622
+        },
+        {
+          "text": "and",
+          "start": 3.669,
+          "end": 3.82
+        },
+        {
+          "text": "the",
+          "start": 3.866,
+          "end": 3.936
+        },
+        {
+          "text": "next",
+          "start": 3.982,
+          "end": 4.18
+        },
+        {
+          "text": "action.",
+          "start": 4.249,
+          "end": 4.748
+        },
+        {
+          "text": "Avoid",
+          "start": 5.259,
+          "end": 5.654
+        },
+        {
+          "text": "filler",
+          "start": 5.712,
+          "end": 5.968
+        },
+        {
+          "text": "delegation,",
+          "start": 6.026,
+          "end": 6.827
+        },
+        {
+          "text": "paid",
+          "start": 6.978,
+          "end": 7.21
+        },
+        {
+          "text": "polling,",
+          "start": 7.268,
+          "end": 7.86
+        },
+        {
+          "text": "and",
+          "start": 8.011,
+          "end": 8.162
+        },
+        {
+          "text": "repeating",
+          "start": 8.231,
+          "end": 8.684
+        },
+        {
+          "text": "a",
+          "start": 8.731,
+          "end": 8.766
+        },
+        {
+          "text": "check",
+          "start": 8.824,
+          "end": 9.079
+        },
+        {
+          "text": "that",
+          "start": 9.125,
+          "end": 9.242
+        },
+        {
+          "text": "already",
+          "start": 9.3,
+          "end": 9.625
+        },
+        {
+          "text": "passed",
+          "start": 9.683,
+          "end": 10.066
+        },
+        {
+          "text": "unless",
+          "start": 10.124,
+          "end": 10.403
+        },
+        {
+          "text": "the",
+          "start": 10.426,
+          "end": 10.495
+        },
+        {
+          "text": "code",
+          "start": 10.542,
+          "end": 10.762
+        },
+        {
+          "text": "changes,",
+          "start": 10.797,
+          "end": 11.494
+        },
+        {
+          "text": "a",
+          "start": 11.668,
+          "end": 11.738
+        },
+        {
+          "text": "failure",
+          "start": 11.831,
+          "end": 12.179
+        },
+        {
+          "text": "occurs,",
+          "start": 12.214,
+          "end": 12.899
+        },
+        {
+          "text": "or",
+          "start": 13.224,
+          "end": 13.363
+        },
+        {
+          "text": "a",
+          "start": 13.41,
+          "end": 13.444
+        },
+        {
+          "text": "new",
+          "start": 13.502,
+          "end": 13.63
+        },
+        {
+          "text": "concern",
+          "start": 13.688,
+          "end": 14.036
+        },
+        {
+          "text": "arises.",
+          "start": 14.071,
+          "end": 14.745
+        },
+        {
+          "text": "If",
+          "start": 15.128,
+          "end": 15.267
+        },
+        {
+          "text": "a",
+          "start": 15.337,
+          "end": 15.36
+        },
+        {
+          "text": "worker",
+          "start": 15.453,
+          "end": 15.742999999999999
+        },
+        {
+          "text": "was",
+          "start": 15.801,
+          "end": 15.905999999999999
+        },
+        {
+          "text": "interrupted,",
+          "start": 15.963999999999999,
+          "end": 16.602999999999998
+        },
+        {
+          "text": "find",
+          "start": 16.811999999999998,
+          "end": 17.055
+        },
+        {
+          "text": "out",
+          "start": 17.102,
+          "end": 17.206
+        },
+        {
+          "text": "whether",
+          "start": 17.241,
+          "end": 17.462
+        },
+        {
+          "text": "it",
+          "start": 17.508,
+          "end": 17.578
+        },
+        {
+          "text": "finished",
+          "start": 17.647,
+          "end": 17.996
+        },
+        {
+          "text": "or",
+          "start": 18.041999999999998,
+          "end": 18.122999999999998
+        },
+        {
+          "text": "changed",
+          "start": 18.181,
+          "end": 18.483
+        },
+        {
+          "text": "anything",
+          "start": 18.518,
+          "end": 18.89
+        },
+        {
+          "text": "before",
+          "start": 18.948,
+          "end": 19.215
+        },
+        {
+          "text": "retrying.",
+          "start": 19.284,
+          "end": 19.935
+        },
+        {
+          "text": "Never",
+          "start": 20.538,
+          "end": 20.805
+        },
+        {
+          "text": "automatically",
+          "start": 20.863,
+          "end": 21.467
+        },
+        {
+          "text": "use",
+          "start": 21.525,
+          "end": 21.688
+        },
+        {
+          "text": "reset",
+          "start": 21.746,
+          "end": 22.036
+        },
+        {
+          "text": "credits.",
+          "start": 22.094,
+          "end": 22.616
+        },
+        {
+          "text": "Account",
+          "start": 23,
+          "end": 23.371
+        },
+        {
+          "text": "settings,",
+          "start": 23.441,
+          "end": 23.859
+        },
+        {
+          "text": "host",
+          "start": 23.905,
+          "end": 24.137
+        },
+        {
+          "text": "permissions,",
+          "start": 24.183999999999997,
+          "end": 24.811
+        },
+        {
+          "text": "and",
+          "start": 25.02,
+          "end": 25.171
+        },
+        {
+          "text": "the",
+          "start": 25.206,
+          "end": 25.275
+        },
+        {
+          "text": "owner's",
+          "start": 25.333,
+          "end": 25.564999999999998
+        },
+        {
+          "text": "instructions",
+          "start": 25.612000000000002,
+          "end": 26.122999999999998
+        },
+        {
+          "text": "remain",
+          "start": 26.192,
+          "end": 26.448
+        },
+        {
+          "text": "authoritative.",
+          "start": 26.494,
+          "end": 27.237000000000002
+        }
+      ],
+      "spoken": "Record the route actually used, available usage, results, and the next action. Avoid filler delegation, paid polling, and repeating a check that already passed unless the code changes, a failure occurs, or a new concern arises. If a worker was interrupted, find out whether it finished or changed anything before retrying. Never automatically use reset credits. Account settings, host permissions, and the owner's instructions remain authoritative.",
+      "captions": [
+        {
+          "start": 143.23202040816327,
+          "end": 146.7730204081633,
+          "text": "Record the route actually used, available usage, results,"
+        },
+        {
+          "start": 146.8200204081633,
+          "end": 147.89902040816327,
+          "text": "and the next action."
+        },
+        {
+          "start": 148.4100204081633,
+          "end": 151.91702040816327,
+          "text": "Avoid filler delegation, paid polling, and repeating a"
+        },
+        {
+          "start": 151.9750204081633,
+          "end": 154.88902040816328,
+          "text": "check that already passed unless the code changes, a"
+        },
+        {
+          "start": 154.98202040816327,
+          "end": 157.89602040816328,
+          "text": "failure occurs, or a new concern arises."
+        },
+        {
+          "start": 158.27902040816326,
+          "end": 161.14702040816329,
+          "text": "If a worker was interrupted, find out whether it finished"
+        },
+        {
+          "start": 161.19302040816328,
+          "end": 163.08602040816328,
+          "text": "or changed anything before retrying."
+        },
+        {
+          "start": 163.6890204081633,
+          "end": 165.76702040816326,
+          "text": "Never automatically use reset credits."
+        },
+        {
+          "start": 166.15102040816328,
+          "end": 168.71602040816327,
+          "text": "Account settings, host permissions, and the owner's"
+        },
+        {
+          "start": 168.76302040816327,
+          "end": 170.38802040816327,
+          "text": "instructions remain authoritative."
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source": "productions/08/audio/06.mp3",
+      "sha256": "47c80cd386ecf942c8840a821e6a24bdeddc1a1133c67721585a9d66d8aec595",
+      "sourceTextSha256": "be56445db0f839ad0d6612740a96d4fb40ee16dcdd6ca01f1c4d156312bb5582",
+      "start": 170.68408163265306,
+      "end": 200.17632653061224,
+      "duration": 29.492244897959182,
+      "samples": 1300608,
+      "words": [
+        {
+          "text": "Try:",
+          "start": 0.058,
+          "end": 0.604
+        },
+        {
+          "text": "\"Implement",
+          "start": 0.813,
+          "end": 1.44
+        },
+        {
+          "text": "the",
+          "start": 1.474,
+          "end": 1.544
+        },
+        {
+          "text": "tracker",
+          "start": 1.591,
+          "end": 1.904
+        },
+        {
+          "text": "validation",
+          "start": 1.962,
+          "end": 2.519
+        },
+        {
+          "text": "described",
+          "start": 2.577,
+          "end": 3.007
+        },
+        {
+          "text": "in",
+          "start": 3.042,
+          "end": 3.088
+        },
+        {
+          "text": "the",
+          "start": 3.111,
+          "end": 3.181
+        },
+        {
+          "text": "approved",
+          "start": 3.216,
+          "end": 3.529
+        },
+        {
+          "text": "spec.",
+          "start": 3.553,
+          "end": 4.029
+        },
+        {
+          "text": "You",
+          "start": 4.412,
+          "end": 4.551
+        },
+        {
+          "text": "own",
+          "start": 4.667,
+          "end": 4.899
+        },
+        {
+          "text": "the",
+          "start": 4.946,
+          "end": 5.016
+        },
+        {
+          "text": "validation",
+          "start": 5.062,
+          "end": 5.631
+        },
+        {
+          "text": "module",
+          "start": 5.7,
+          "end": 6.13
+        },
+        {
+          "text": "and",
+          "start": 6.188,
+          "end": 6.316
+        },
+        {
+          "text": "its",
+          "start": 6.374,
+          "end": 6.502
+        },
+        {
+          "text": "tests.",
+          "start": 6.548,
+          "end": 7.082
+        },
+        {
+          "text": "Do",
+          "start": 7.523,
+          "end": 7.639
+        },
+        {
+          "text": "not",
+          "start": 7.721,
+          "end": 7.86
+        },
+        {
+          "text": "change",
+          "start": 7.906,
+          "end": 8.185
+        },
+        {
+          "text": "the",
+          "start": 8.208,
+          "end": 8.278
+        },
+        {
+          "text": "shared",
+          "start": 8.313,
+          "end": 8.545
+        },
+        {
+          "text": "record",
+          "start": 8.591,
+          "end": 8.847
+        },
+        {
+          "text": "contract.",
+          "start": 8.882,
+          "end": 9.532
+        },
+        {
+          "text": "Use",
+          "start": 9.857,
+          "end": 10.112
+        },
+        {
+          "text": "synthetic",
+          "start": 10.147,
+          "end": 10.646
+        },
+        {
+          "text": "data.",
+          "start": 10.693,
+          "end": 11.146
+        },
+        {
+          "text": "Run",
+          "start": 11.471,
+          "end": 11.668
+        },
+        {
+          "text": "the",
+          "start": 11.703,
+          "end": 11.773
+        },
+        {
+          "text": "affected",
+          "start": 11.819,
+          "end": 12.202
+        },
+        {
+          "text": "checks.",
+          "start": 12.249,
+          "end": 12.829
+        },
+        {
+          "text": "Return",
+          "start": 13.154,
+          "end": 13.537
+        },
+        {
+          "text": "changed",
+          "start": 13.607,
+          "end": 13.955
+        },
+        {
+          "text": "files,",
+          "start": 14.002,
+          "end": 14.675
+        },
+        {
+          "text": "results,",
+          "start": 14.884,
+          "end": 15.581000000000001
+        },
+        {
+          "text": "open",
+          "start": 15.662,
+          "end": 15.940000000000001
+        },
+        {
+          "text": "risks,",
+          "start": 16.01,
+          "end": 16.521
+        },
+        {
+          "text": "and",
+          "start": 16.672,
+          "end": 16.834
+        },
+        {
+          "text": "the",
+          "start": 16.881,
+          "end": 16.951
+        },
+        {
+          "text": "next",
+          "start": 17.009,
+          "end": 17.206
+        },
+        {
+          "text": "integration",
+          "start": 17.252000000000002,
+          "end": 17.682000000000002
+        },
+        {
+          "text": "action.\"",
+          "start": 17.728,
+          "end": 18.193
+        },
+        {
+          "text": "That",
+          "start": 18.797,
+          "end": 19.006
+        },
+        {
+          "text": "worker",
+          "start": 19.064,
+          "end": 19.354
+        },
+        {
+          "text": "has",
+          "start": 19.412,
+          "end": 19.54
+        },
+        {
+          "text": "a",
+          "start": 19.586,
+          "end": 19.621000000000002
+        },
+        {
+          "text": "bounded",
+          "start": 19.702,
+          "end": 20.074
+        },
+        {
+          "text": "objective",
+          "start": 20.12,
+          "end": 20.631
+        },
+        {
+          "text": "and",
+          "start": 20.677,
+          "end": 20.805
+        },
+        {
+          "text": "a",
+          "start": 20.84,
+          "end": 20.875
+        },
+        {
+          "text": "concrete",
+          "start": 20.944000000000003,
+          "end": 21.467
+        },
+        {
+          "text": "output.",
+          "start": 21.502000000000002,
+          "end": 22.001
+        },
+        {
+          "text": "The",
+          "start": 22.326,
+          "end": 22.43
+        },
+        {
+          "text": "conductor",
+          "start": 22.489,
+          "end": 22.976
+        },
+        {
+          "text": "still",
+          "start": 23.034,
+          "end": 23.243000000000002
+        },
+        {
+          "text": "reads",
+          "start": 23.313000000000002,
+          "end": 23.51
+        },
+        {
+          "text": "the",
+          "start": 23.533,
+          "end": 23.603
+        },
+        {
+          "text": "result",
+          "start": 23.65,
+          "end": 24.021
+        },
+        {
+          "text": "and",
+          "start": 24.079,
+          "end": 24.172
+        },
+        {
+          "text": "integrates",
+          "start": 24.253,
+          "end": 24.694000000000003
+        },
+        {
+          "text": "it",
+          "start": 24.741,
+          "end": 24.811
+        },
+        {
+          "text": "against",
+          "start": 24.845,
+          "end": 25.078000000000003
+        },
+        {
+          "text": "the",
+          "start": 25.112000000000002,
+          "end": 25.182000000000002
+        },
+        {
+          "text": "whole",
+          "start": 25.228,
+          "end": 25.414
+        },
+        {
+          "text": "project",
+          "start": 25.461,
+          "end": 25.995
+        },
+        {
+          "text": "rather",
+          "start": 26.32,
+          "end": 26.598
+        },
+        {
+          "text": "than",
+          "start": 26.645000000000003,
+          "end": 26.773000000000003
+        },
+        {
+          "text": "treating",
+          "start": 26.831000000000003,
+          "end": 27.167
+        },
+        {
+          "text": "parallelism",
+          "start": 27.249000000000002,
+          "end": 28.038
+        },
+        {
+          "text": "as",
+          "start": 28.119,
+          "end": 28.259
+        },
+        {
+          "text": "automatic",
+          "start": 28.317,
+          "end": 28.711
+        },
+        {
+          "text": "proof.",
+          "start": 28.769,
+          "end": 29.176000000000002
+        }
+      ],
+      "spoken": "Try: “Implement the tracker validation described in the approved spec. You own the validation module and its tests. Do not change the shared record contract. Use synthetic data. Run the affected checks. Return changed files, results, open risks, and the next integration action.” That worker has a bounded objective and a concrete output. The conductor still reads the result and integrates it against the whole project rather than treating parallelism as automatic proof.",
+      "captions": [
+        {
+          "start": 170.74208163265305,
+          "end": 173.86508163265307,
+          "text": "Try: \"Implement the tracker validation described in the"
+        },
+        {
+          "start": 173.90008163265307,
+          "end": 174.71308163265306,
+          "text": "approved spec."
+        },
+        {
+          "start": 175.09608163265307,
+          "end": 177.76608163265306,
+          "text": "You own the validation module and its tests."
+        },
+        {
+          "start": 178.20708163265306,
+          "end": 180.21608163265307,
+          "text": "Do not change the shared record contract."
+        },
+        {
+          "start": 180.54108163265306,
+          "end": 181.83008163265305,
+          "text": "Use synthetic data."
+        },
+        {
+          "start": 182.15508163265307,
+          "end": 183.51308163265307,
+          "text": "Run the affected checks."
+        },
+        {
+          "start": 183.83808163265306,
+          "end": 187.89008163265305,
+          "text": "Return changed files, results, open risks, and the next"
+        },
+        {
+          "start": 187.93608163265307,
+          "end": 191.31508163265306,
+          "text": "integration action.\" That worker has a bounded objective"
+        },
+        {
+          "start": 191.36108163265305,
+          "end": 192.68508163265307,
+          "text": "and a concrete output."
+        },
+        {
+          "start": 193.01008163265305,
+          "end": 195.49508163265307,
+          "text": "The conductor still reads the result and integrates it"
+        },
+        {
+          "start": 195.52908163265306,
+          "end": 198.72208163265307,
+          "text": "against the whole project rather than treating parallelism"
+        },
+        {
+          "start": 198.80308163265306,
+          "end": 199.86008163265305,
+          "text": "as automatic proof."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source": "productions/08/audio/07.mp3",
+      "sha256": "cdcb9a8fc396344eb33fc2c7a87ee6ce20b01386abbe33934f5e29cda582014b",
+      "sourceTextSha256": "77b3f68bd7d3f80e6d70b1caa6d38169004615f8803c4d35acbb8a5a563b631b",
+      "start": 200.17632653061224,
+      "end": 234.2661224489796,
+      "duration": 34.089795918367344,
+      "samples": 1503360,
+      "words": [
+        {
+          "text": "Start",
+          "start": 0.035,
+          "end": 0.348
+        },
+        {
+          "text": "with",
+          "start": 0.383,
+          "end": 0.511
+        },
+        {
+          "text": "the",
+          "start": 0.546,
+          "end": 0.615
+        },
+        {
+          "text": "exact",
+          "start": 0.685,
+          "end": 1.184
+        },
+        {
+          "text": "project",
+          "start": 1.254,
+          "end": 1.869
+        },
+        {
+          "text": "and",
+          "start": 1.916,
+          "end": 1.997
+        },
+        {
+          "text": "working",
+          "start": 2.055,
+          "end": 2.357
+        },
+        {
+          "text": "directory,",
+          "start": 2.403,
+          "end": 3.123
+        },
+        {
+          "text": "expected",
+          "start": 3.448,
+          "end": 4.098
+        },
+        {
+          "text": "base",
+          "start": 4.156,
+          "end": 4.389
+        },
+        {
+          "text": "revision,",
+          "start": 4.435,
+          "end": 5.05
+        },
+        {
+          "text": "and",
+          "start": 5.375,
+          "end": 5.526
+        },
+        {
+          "text": "instructions",
+          "start": 5.596,
+          "end": 6.235
+        },
+        {
+          "text": "to",
+          "start": 6.281,
+          "end": 6.351
+        },
+        {
+          "text": "preserve",
+          "start": 6.432,
+          "end": 6.85
+        },
+        {
+          "text": "unrelated",
+          "start": 6.943,
+          "end": 7.477
+        },
+        {
+          "text": "changes.",
+          "start": 7.523,
+          "end": 8.173
+        },
+        {
+          "text": "List",
+          "start": 8.777,
+          "end": 9.091
+        },
+        {
+          "text": "the",
+          "start": 9.137,
+          "end": 9.207
+        },
+        {
+          "text": "documents",
+          "start": 9.276,
+          "end": 9.787
+        },
+        {
+          "text": "in",
+          "start": 9.822,
+          "end": 9.88
+        },
+        {
+          "text": "their",
+          "start": 9.915,
+          "end": 10.043
+        },
+        {
+          "text": "authority",
+          "start": 10.077,
+          "end": 10.484
+        },
+        {
+          "text": "order",
+          "start": 10.542,
+          "end": 10.797
+        },
+        {
+          "text": "and",
+          "start": 11.076,
+          "end": 11.32
+        },
+        {
+          "text": "summarize",
+          "start": 11.413,
+          "end": 11.981
+        },
+        {
+          "text": "the",
+          "start": 12.005,
+          "end": 12.074
+        },
+        {
+          "text": "decisions",
+          "start": 12.121,
+          "end": 12.597
+        },
+        {
+          "text": "that",
+          "start": 12.62,
+          "end": 12.725
+        },
+        {
+          "text": "are",
+          "start": 12.759,
+          "end": 12.875
+        },
+        {
+          "text": "already",
+          "start": 12.934,
+          "end": 13.375
+        },
+        {
+          "text": "settled.",
+          "start": 13.433,
+          "end": 13.908999999999999
+        },
+        {
+          "text": "Describe",
+          "start": 14.606,
+          "end": 15.128
+        },
+        {
+          "text": "the",
+          "start": 15.163,
+          "end": 15.232999999999999
+        },
+        {
+          "text": "approved",
+          "start": 15.279,
+          "end": 15.639
+        },
+        {
+          "text": "outcome,",
+          "start": 15.697,
+          "end": 16.311999999999998
+        },
+        {
+          "text": "exclusions,",
+          "start": 16.695,
+          "end": 17.648
+        },
+        {
+          "text": "allowed",
+          "start": 17.973,
+          "end": 18.355999999999998
+        },
+        {
+          "text": "and",
+          "start": 18.378999999999998,
+          "end": 18.448999999999998
+        },
+        {
+          "text": "forbidden",
+          "start": 18.494999999999997,
+          "end": 18.855
+        },
+        {
+          "text": "actions,",
+          "start": 18.913,
+          "end": 19.552
+        },
+        {
+          "text": "work",
+          "start": 20.061999999999998,
+          "end": 20.305999999999997
+        },
+        {
+          "text": "sequence,",
+          "start": 20.375999999999998,
+          "end": 20.991
+        },
+        {
+          "text": "acceptance",
+          "start": 21.316,
+          "end": 21.874
+        },
+        {
+          "text": "checks,",
+          "start": 21.908,
+          "end": 22.442
+        },
+        {
+          "text": "evidence,",
+          "start": 22.884,
+          "end": 23.511
+        },
+        {
+          "text": "and",
+          "start": 23.534,
+          "end": 23.695999999999998
+        },
+        {
+          "text": "handoff.",
+          "start": 23.766,
+          "end": 24.335
+        },
+        {
+          "text": "If",
+          "start": 25.031,
+          "end": 25.182
+        },
+        {
+          "text": "a",
+          "start": 25.229,
+          "end": 25.264
+        },
+        {
+          "text": "new",
+          "start": 25.333,
+          "end": 25.473
+        },
+        {
+          "text": "session",
+          "start": 25.542,
+          "end": 25.891
+        },
+        {
+          "text": "cannot",
+          "start": 25.96,
+          "end": 26.226999999999997
+        },
+        {
+          "text": "locate",
+          "start": 26.285,
+          "end": 26.61
+        },
+        {
+          "text": "a",
+          "start": 26.634,
+          "end": 26.657
+        },
+        {
+          "text": "file",
+          "start": 26.726999999999997,
+          "end": 27.086
+        },
+        {
+          "text": "or",
+          "start": 27.144,
+          "end": 27.261
+        },
+        {
+          "text": "reconcile",
+          "start": 27.33,
+          "end": 27.829
+        },
+        {
+          "text": "a",
+          "start": 27.863999999999997,
+          "end": 27.887999999999998
+        },
+        {
+          "text": "dirty",
+          "start": 27.933999999999997,
+          "end": 28.143
+        },
+        {
+          "text": "workspace,",
+          "start": 28.189,
+          "end": 28.921
+        },
+        {
+          "text": "it",
+          "start": 29.362000000000002,
+          "end": 29.49
+        },
+        {
+          "text": "should",
+          "start": 29.525,
+          "end": 29.722
+        },
+        {
+          "text": "report",
+          "start": 29.768,
+          "end": 30.117
+        },
+        {
+          "text": "the",
+          "start": 30.151,
+          "end": 30.233
+        },
+        {
+          "text": "specific",
+          "start": 30.279,
+          "end": 30.894
+        },
+        {
+          "text": "issue",
+          "start": 30.976,
+          "end": 31.556
+        },
+        {
+          "text": "rather",
+          "start": 31.765,
+          "end": 32.079
+        },
+        {
+          "text": "than",
+          "start": 32.125,
+          "end": 32.275999999999996
+        },
+        {
+          "text": "assume",
+          "start": 32.334,
+          "end": 32.694
+        },
+        {
+          "text": "it",
+          "start": 32.729,
+          "end": 32.787
+        },
+        {
+          "text": "can",
+          "start": 32.822,
+          "end": 32.926
+        },
+        {
+          "text": "discard",
+          "start": 32.973,
+          "end": 33.343999999999994
+        },
+        {
+          "text": "work.",
+          "start": 33.391,
+          "end": 33.797
+        }
+      ],
+      "spoken": "Start with the exact project and working directory, expected base revision, and instructions to preserve unrelated changes. List the documents in their authority order and summarize the decisions that are already settled. Describe the approved outcome, exclusions, allowed and forbidden actions, work sequence, acceptance checks, evidence, and handoff. If a new session cannot locate a file or reconcile a dirty workspace, it should report the specific issue rather than assume it can discard work.",
+      "captions": [
+        {
+          "start": 200.21132653061224,
+          "end": 203.29932653061223,
+          "text": "Start with the exact project and working directory,"
+        },
+        {
+          "start": 203.62432653061225,
+          "end": 207.02632653061224,
+          "text": "expected base revision, and instructions to preserve"
+        },
+        {
+          "start": 207.11932653061226,
+          "end": 208.34932653061225,
+          "text": "unrelated changes."
+        },
+        {
+          "start": 208.95332653061223,
+          "end": 212.15732653061224,
+          "text": "List the documents in their authority order and summarize"
+        },
+        {
+          "start": 212.18132653061224,
+          "end": 214.08532653061224,
+          "text": "the decisions that are already settled."
+        },
+        {
+          "start": 214.78232653061224,
+          "end": 218.62532653061226,
+          "text": "Describe the approved outcome, exclusions, allowed and"
+        },
+        {
+          "start": 218.67132653061225,
+          "end": 222.61832653061225,
+          "text": "forbidden actions, work sequence, acceptance checks,"
+        },
+        {
+          "start": 223.06032653061226,
+          "end": 224.51132653061225,
+          "text": "evidence, and handoff."
+        },
+        {
+          "start": 225.20732653061225,
+          "end": 228.31932653061224,
+          "text": "If a new session cannot locate a file or reconcile a dirty"
+        },
+        {
+          "start": 228.36532653061224,
+          "end": 232.45232653061225,
+          "text": "workspace, it should report the specific issue rather than"
+        },
+        {
+          "start": 232.51032653061225,
+          "end": 233.97332653061224,
+          "text": "assume it can discard work."
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source": "productions/08/audio/08.mp3",
+      "sha256": "4f526fc103dd3bde73ab10c74b53dc9b447794ee59b3d6a166d4e3f780f2f726",
+      "sourceTextSha256": "e0eb8cb2ca38a295482003ad03b4c001f1111b355fb137c750702d38d0a111f3",
+      "start": 234.2661224489796,
+      "end": 265.1951020408163,
+      "duration": 30.928979591836736,
+      "samples": 1363968,
+      "words": [
+        {
+          "text": "Worker",
+          "start": 0.046,
+          "end": 0.372
+        },
+        {
+          "text": "one",
+          "start": 0.453,
+          "end": 0.65
+        },
+        {
+          "text": "can",
+          "start": 0.685,
+          "end": 0.824
+        },
+        {
+          "text": "own",
+          "start": 0.871,
+          "end": 0.987
+        },
+        {
+          "text": "the",
+          "start": 1.022,
+          "end": 1.091
+        },
+        {
+          "text": "validation",
+          "start": 1.126,
+          "end": 1.66
+        },
+        {
+          "text": "module",
+          "start": 1.707,
+          "end": 2.09
+        },
+        {
+          "text": "and",
+          "start": 2.113,
+          "end": 2.194
+        },
+        {
+          "text": "its",
+          "start": 2.241,
+          "end": 2.357
+        },
+        {
+          "text": "tests.",
+          "start": 2.403,
+          "end": 2.937
+        },
+        {
+          "text": "Worker",
+          "start": 3.32,
+          "end": 3.646
+        },
+        {
+          "text": "two",
+          "start": 3.715,
+          "end": 3.947
+        },
+        {
+          "text": "can",
+          "start": 4.029,
+          "end": 4.168
+        },
+        {
+          "text": "own",
+          "start": 4.238,
+          "end": 4.377
+        },
+        {
+          "text": "the",
+          "start": 4.423,
+          "end": 4.493
+        },
+        {
+          "text": "owner-view",
+          "start": 4.563,
+          "end": 4.957
+        },
+        {
+          "text": "files.",
+          "start": 5.016,
+          "end": 5.538
+        },
+        {
+          "text": "Their",
+          "start": 5.863,
+          "end": 6.049
+        },
+        {
+          "text": "shared",
+          "start": 6.095,
+          "end": 6.362
+        },
+        {
+          "text": "contract",
+          "start": 6.42,
+          "end": 6.943
+        },
+        {
+          "text": "defines",
+          "start": 6.989,
+          "end": 7.349
+        },
+        {
+          "text": "the",
+          "start": 7.372,
+          "end": 7.442
+        },
+        {
+          "text": "inquiry",
+          "start": 7.477,
+          "end": 7.79
+        },
+        {
+          "text": "identifier,",
+          "start": 7.837,
+          "end": 8.603
+        },
+        {
+          "text": "fields,",
+          "start": 8.812,
+          "end": 9.183
+        },
+        {
+          "text": "and",
+          "start": 9.207,
+          "end": 9.288
+        },
+        {
+          "text": "status",
+          "start": 9.334,
+          "end": 9.671
+        },
+        {
+          "text": "values.",
+          "start": 9.729,
+          "end": 10.286
+        },
+        {
+          "text": "The",
+          "start": 10.67,
+          "end": 10.786
+        },
+        {
+          "text": "conductor",
+          "start": 10.844,
+          "end": 11.331
+        },
+        {
+          "text": "owns",
+          "start": 11.401,
+          "end": 11.575
+        },
+        {
+          "text": "the",
+          "start": 11.61,
+          "end": 11.68
+        },
+        {
+          "text": "shared",
+          "start": 11.714,
+          "end": 11.981
+        },
+        {
+          "text": "contract",
+          "start": 12.04,
+          "end": 12.55
+        },
+        {
+          "text": "and",
+          "start": 12.574,
+          "end": 12.642999999999999
+        },
+        {
+          "text": "integration.",
+          "start": 12.69,
+          "end": 13.363
+        },
+        {
+          "text": "Each",
+          "start": 13.966999999999999,
+          "end": 14.187
+        },
+        {
+          "text": "worker",
+          "start": 14.245,
+          "end": 14.536
+        },
+        {
+          "text": "gets",
+          "start": 14.594,
+          "end": 14.756
+        },
+        {
+          "text": "a",
+          "start": 14.790999999999999,
+          "end": 14.814
+        },
+        {
+          "text": "compact",
+          "start": 14.883999999999999,
+          "end": 15.43
+        },
+        {
+          "text": "description,",
+          "start": 15.475999999999999,
+          "end": 16.230999999999998
+        },
+        {
+          "text": "the",
+          "start": 16.509,
+          "end": 16.614
+        },
+        {
+          "text": "relevant",
+          "start": 16.683,
+          "end": 17.101
+        },
+        {
+          "text": "sources,",
+          "start": 17.16,
+          "end": 17.855999999999998
+        },
+        {
+          "text": "an",
+          "start": 18.006999999999998,
+          "end": 18.146
+        },
+        {
+          "text": "acceptance",
+          "start": 18.180999999999997,
+          "end": 18.808
+        },
+        {
+          "text": "check,",
+          "start": 18.843,
+          "end": 19.273
+        },
+        {
+          "text": "and",
+          "start": 19.714,
+          "end": 19.875999999999998
+        },
+        {
+          "text": "the",
+          "start": 19.923,
+          "end": 19.991999999999997
+        },
+        {
+          "text": "instruction",
+          "start": 20.049999999999997,
+          "end": 20.642
+        },
+        {
+          "text": "to",
+          "start": 20.712,
+          "end": 20.782
+        },
+        {
+          "text": "report",
+          "start": 20.875,
+          "end": 21.281
+        },
+        {
+          "text": "changed",
+          "start": 21.339,
+          "end": 21.722
+        },
+        {
+          "text": "files",
+          "start": 21.769,
+          "end": 22.186999999999998
+        },
+        {
+          "text": "and",
+          "start": 22.244999999999997,
+          "end": 22.326
+        },
+        {
+          "text": "unresolved",
+          "start": 22.396,
+          "end": 22.964
+        },
+        {
+          "text": "risk.",
+          "start": 23.011,
+          "end": 23.499
+        },
+        {
+          "text": "If",
+          "start": 24.101999999999997,
+          "end": 24.241999999999997
+        },
+        {
+          "text": "a",
+          "start": 24.299999999999997,
+          "end": 24.334
+        },
+        {
+          "text": "worker",
+          "start": 24.415999999999997,
+          "end": 24.729
+        },
+        {
+          "text": "needs",
+          "start": 24.787,
+          "end": 24.985
+        },
+        {
+          "text": "to",
+          "start": 25.019,
+          "end": 25.089
+        },
+        {
+          "text": "change",
+          "start": 25.159,
+          "end": 25.472
+        },
+        {
+          "text": "the",
+          "start": 25.506999999999998,
+          "end": 25.576999999999998
+        },
+        {
+          "text": "shared",
+          "start": 25.622999999999998,
+          "end": 25.89
+        },
+        {
+          "text": "contract,",
+          "start": 25.936999999999998,
+          "end": 26.691
+        },
+        {
+          "text": "it",
+          "start": 27.016,
+          "end": 27.144
+        },
+        {
+          "text": "should",
+          "start": 27.179,
+          "end": 27.365
+        },
+        {
+          "text": "coordinate",
+          "start": 27.423000000000002,
+          "end": 28.143
+        },
+        {
+          "text": "that",
+          "start": 28.177,
+          "end": 28.328
+        },
+        {
+          "text": "boundary",
+          "start": 28.398,
+          "end": 28.793
+        },
+        {
+          "text": "rather",
+          "start": 28.874000000000002,
+          "end": 29.128999999999998
+        },
+        {
+          "text": "than",
+          "start": 29.186999999999998,
+          "end": 29.35
+        },
+        {
+          "text": "silently",
+          "start": 29.558999999999997,
+          "end": 30.058
+        },
+        {
+          "text": "diverge.",
+          "start": 30.104999999999997,
+          "end": 30.674
+        }
+      ],
+      "spoken": "Worker one can own the validation module and its tests. Worker two can own the owner-view files. Their shared contract defines the inquiry identifier, fields, and status values. The conductor owns the shared contract and integration. Each worker gets a compact description, the relevant sources, an acceptance check, and the instruction to report changed files and unresolved risk. If a worker needs to change the shared contract, it should coordinate that boundary rather than silently diverge.",
+      "captions": [
+        {
+          "start": 234.31212244897958,
+          "end": 237.2031224489796,
+          "text": "Worker one can own the validation module and its tests."
+        },
+        {
+          "start": 237.58612244897958,
+          "end": 239.8041224489796,
+          "text": "Worker two can own the owner-view files."
+        },
+        {
+          "start": 240.1291224489796,
+          "end": 242.8691224489796,
+          "text": "Their shared contract defines the inquiry identifier,"
+        },
+        {
+          "start": 243.0781224489796,
+          "end": 244.5521224489796,
+          "text": "fields, and status values."
+        },
+        {
+          "start": 244.93612244897957,
+          "end": 247.6291224489796,
+          "text": "The conductor owns the shared contract and integration."
+        },
+        {
+          "start": 248.2331224489796,
+          "end": 251.3671224489796,
+          "text": "Each worker gets a compact description, the relevant"
+        },
+        {
+          "start": 251.42612244897958,
+          "end": 255.0481224489796,
+          "text": "sources, an acceptance check, and the instruction to"
+        },
+        {
+          "start": 255.1411224489796,
+          "end": 257.7651224489796,
+          "text": "report changed files and unresolved risk."
+        },
+        {
+          "start": 258.3681224489796,
+          "end": 261.63112244897957,
+          "text": "If a worker needs to change the shared contract, it should"
+        },
+        {
+          "start": 261.68912244897956,
+          "end": 264.9401224489796,
+          "text": "coordinate that boundary rather than silently diverge."
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source": "productions/08/audio/09.mp3",
+      "sha256": "a562b5ad06fc33f4d8c1e009d82e379b7d930d205b4379afaab125a2408ade1b",
+      "sourceTextSha256": "cdf4ab46f09d1a50d950ede317a444ad18a6bf725bc0d405b220eb30e5213d31",
+      "start": 265.1951020408163,
+      "end": 292.59755102040816,
+      "duration": 27.40244897959184,
+      "samples": 1208448,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.093
+        },
+        {
+          "text": "script",
+          "start": 0.174,
+          "end": 0.441
+        },
+        {
+          "text": "can",
+          "start": 0.464,
+          "end": 0.569
+        },
+        {
+          "text": "count",
+          "start": 0.615,
+          "end": 0.813
+        },
+        {
+          "text": "missing",
+          "start": 0.859,
+          "end": 1.126
+        },
+        {
+          "text": "files",
+          "start": 1.184,
+          "end": 1.533
+        },
+        {
+          "text": "or",
+          "start": 1.579,
+          "end": 1.649
+        },
+        {
+          "text": "run",
+          "start": 1.707,
+          "end": 1.846
+        },
+        {
+          "text": "a",
+          "start": 1.892,
+          "end": 1.916
+        },
+        {
+          "text": "deterministic",
+          "start": 1.985,
+          "end": 2.647
+        },
+        {
+          "text": "check",
+          "start": 2.705,
+          "end": 2.937
+        },
+        {
+          "text": "without",
+          "start": 2.972,
+          "end": 3.204
+        },
+        {
+          "text": "a",
+          "start": 3.239,
+          "end": 3.262
+        },
+        {
+          "text": "language",
+          "start": 3.32,
+          "end": 3.611
+        },
+        {
+          "text": "model.",
+          "start": 3.646,
+          "end": 4.04
+        },
+        {
+          "text": "A",
+          "start": 4.481,
+          "end": 4.551
+        },
+        {
+          "text": "qualified",
+          "start": 4.632,
+          "end": 5.12
+        },
+        {
+          "text": "local",
+          "start": 5.166,
+          "end": 5.433
+        },
+        {
+          "text": "model",
+          "start": 5.503,
+          "end": 5.759
+        },
+        {
+          "text": "may",
+          "start": 5.817,
+          "end": 5.933
+        },
+        {
+          "text": "summarize",
+          "start": 5.991,
+          "end": 6.502
+        },
+        {
+          "text": "a",
+          "start": 6.536,
+          "end": 6.571
+        },
+        {
+          "text": "bounded",
+          "start": 6.629,
+          "end": 6.978
+        },
+        {
+          "text": "source",
+          "start": 7.036,
+          "end": 7.372
+        },
+        {
+          "text": "or",
+          "start": 7.407,
+          "end": 7.5
+        },
+        {
+          "text": "draft",
+          "start": 7.57,
+          "end": 7.895
+        },
+        {
+          "text": "a",
+          "start": 7.941,
+          "end": 7.964
+        },
+        {
+          "text": "low-risk",
+          "start": 8.022,
+          "end": 8.382
+        },
+        {
+          "text": "passage.",
+          "start": 8.417,
+          "end": 9.009
+        },
+        {
+          "text": "A",
+          "start": 9.451,
+          "end": 9.532
+        },
+        {
+          "text": "lower-cost",
+          "start": 9.648,
+          "end": 10.217
+        },
+        {
+          "text": "cloud",
+          "start": 10.263,
+          "end": 10.53
+        },
+        {
+          "text": "worker",
+          "start": 10.577,
+          "end": 10.844
+        },
+        {
+          "text": "may",
+          "start": 10.902,
+          "end": 11.029
+        },
+        {
+          "text": "implement",
+          "start": 11.099,
+          "end": 11.54
+        },
+        {
+          "text": "a",
+          "start": 11.598,
+          "end": 11.645
+        },
+        {
+          "text": "well-specified",
+          "start": 11.738,
+          "end": 12.549999999999999
+        },
+        {
+          "text": "isolated",
+          "start": 12.597,
+          "end": 13.037999999999998
+        },
+        {
+          "text": "component.",
+          "start": 13.072999999999999,
+          "end": 13.629999999999999
+        },
+        {
+          "text": "The",
+          "start": 14.071,
+          "end": 14.187
+        },
+        {
+          "text": "strongest",
+          "start": 14.234,
+          "end": 14.674999999999999
+        },
+        {
+          "text": "available",
+          "start": 14.721,
+          "end": 15.161999999999999
+        },
+        {
+          "text": "conductor",
+          "start": 15.197,
+          "end": 15.707999999999998
+        },
+        {
+          "text": "can",
+          "start": 15.765999999999998,
+          "end": 15.905999999999999
+        },
+        {
+          "text": "handle",
+          "start": 15.975,
+          "end": 16.265
+        },
+        {
+          "text": "conflicting",
+          "start": 16.311999999999998,
+          "end": 16.858
+        },
+        {
+          "text": "requirements,",
+          "start": 16.939,
+          "end": 17.682
+        },
+        {
+          "text": "security",
+          "start": 18.064999999999998,
+          "end": 18.529
+        },
+        {
+          "text": "boundaries,",
+          "start": 18.587,
+          "end": 19.087
+        },
+        {
+          "text": "and",
+          "start": 19.156,
+          "end": 19.33
+        },
+        {
+          "text": "integration",
+          "start": 19.387999999999998,
+          "end": 19.875999999999998
+        },
+        {
+          "text": "judgment.",
+          "start": 19.923,
+          "end": 20.352
+        },
+        {
+          "text": "Test",
+          "start": 20.793,
+          "end": 21.118
+        },
+        {
+          "text": "model",
+          "start": 21.2,
+          "end": 21.467
+        },
+        {
+          "text": "availability",
+          "start": 21.512999999999998,
+          "end": 22.116999999999997
+        },
+        {
+          "text": "before",
+          "start": 22.174999999999997,
+          "end": 22.43
+        },
+        {
+          "text": "relying",
+          "start": 22.476999999999997,
+          "end": 22.837
+        },
+        {
+          "text": "on",
+          "start": 22.883,
+          "end": 22.941
+        },
+        {
+          "text": "a",
+          "start": 22.976,
+          "end": 22.999
+        },
+        {
+          "text": "route,",
+          "start": 23.057,
+          "end": 23.429
+        },
+        {
+          "text": "and",
+          "start": 23.753999999999998,
+          "end": 23.915999999999997
+        },
+        {
+          "text": "escalate",
+          "start": 23.985999999999997,
+          "end": 24.439
+        },
+        {
+          "text": "when",
+          "start": 24.462,
+          "end": 24.59
+        },
+        {
+          "text": "the",
+          "start": 24.613,
+          "end": 24.683
+        },
+        {
+          "text": "work",
+          "start": 24.717,
+          "end": 24.903
+        },
+        {
+          "text": "proves",
+          "start": 24.95,
+          "end": 25.192999999999998
+        },
+        {
+          "text": "harder",
+          "start": 25.252,
+          "end": 25.576999999999998
+        },
+        {
+          "text": "or",
+          "start": 25.692999999999998,
+          "end": 25.844
+        },
+        {
+          "text": "riskier",
+          "start": 25.912999999999997,
+          "end": 26.32
+        },
+        {
+          "text": "than",
+          "start": 26.366,
+          "end": 26.482
+        },
+        {
+          "text": "expected.",
+          "start": 26.529,
+          "end": 27.131999999999998
+        }
+      ],
+      "spoken": "A script can count missing files or run a deterministic check without a language model. A qualified local model may summarize a bounded source or draft a low-risk passage. A lower-cost cloud worker may implement a well-specified isolated component. The strongest available conductor can handle conflicting requirements, security boundaries, and integration judgment. Test model availability before relying on a route, and escalate when the work proves harder or riskier than expected.",
+      "captions": [
+        {
+          "start": 265.23010204081635,
+          "end": 267.8421020408163,
+          "text": "A script can count missing files or run a deterministic"
+        },
+        {
+          "start": 267.9001020408163,
+          "end": 269.23510204081634,
+          "text": "check without a language model."
+        },
+        {
+          "start": 269.6761020408163,
+          "end": 272.6951020408163,
+          "text": "A qualified local model may summarize a bounded source or"
+        },
+        {
+          "start": 272.7651020408163,
+          "end": 274.20410204081634,
+          "text": "draft a low-risk passage."
+        },
+        {
+          "start": 274.64610204081634,
+          "end": 277.74510204081633,
+          "text": "A lower-cost cloud worker may implement a well-specified"
+        },
+        {
+          "start": 277.7921020408163,
+          "end": 278.8251020408163,
+          "text": "isolated component."
+        },
+        {
+          "start": 279.26610204081635,
+          "end": 282.0531020408163,
+          "text": "The strongest available conductor can handle conflicting"
+        },
+        {
+          "start": 282.13410204081634,
+          "end": 285.0711020408163,
+          "text": "requirements, security boundaries, and integration"
+        },
+        {
+          "start": 285.1181020408163,
+          "end": 285.5471020408163,
+          "text": "judgment."
+        },
+        {
+          "start": 285.98810204081633,
+          "end": 289.1111020408163,
+          "text": "Test model availability before relying on a route, and"
+        },
+        {
+          "start": 289.1811020408163,
+          "end": 291.6771020408163,
+          "text": "escalate when the work proves harder or riskier than"
+        },
+        {
+          "start": 291.7241020408163,
+          "end": 292.3271020408163,
+          "text": "expected."
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source": "productions/08/audio/10.mp3",
+      "sha256": "d93209172a9c11ef5458a498bc88c60a9400af19d095a0281b0064cab1b19804",
+      "sourceTextSha256": "55849ea63211f5a0f5d1972f72d5644d2c0c23f392f6a62bca26e349cd569d76",
+      "start": 292.59755102040816,
+      "end": 325.2244897959184,
+      "duration": 32.626938775510204,
+      "samples": 1438848,
+      "words": [
+        {
+          "text": "Suppose",
+          "start": 0.035,
+          "end": 0.557
+        },
+        {
+          "text": "a",
+          "start": 0.604,
+          "end": 0.639
+        },
+        {
+          "text": "shared",
+          "start": 0.72,
+          "end": 1.022
+        },
+        {
+          "text": "allowance",
+          "start": 1.057,
+          "end": 1.533
+        },
+        {
+          "text": "is",
+          "start": 1.579,
+          "end": 1.683
+        },
+        {
+          "text": "60",
+          "start": 1.753,
+          "end": 2.113
+        },
+        {
+          "text": "percent",
+          "start": 2.194,
+          "end": 2.519
+        },
+        {
+          "text": "used.",
+          "start": 2.589,
+          "end": 3.053
+        },
+        {
+          "text": "Under",
+          "start": 3.437,
+          "end": 3.657
+        },
+        {
+          "text": "Dave's",
+          "start": 3.715,
+          "end": 3.959
+        },
+        {
+          "text": "example,",
+          "start": 3.994,
+          "end": 4.632
+        },
+        {
+          "text": "there",
+          "start": 4.783,
+          "end": 4.957
+        },
+        {
+          "text": "is",
+          "start": 4.992,
+          "end": 5.062
+        },
+        {
+          "text": "still",
+          "start": 5.108,
+          "end": 5.352
+        },
+        {
+          "text": "room",
+          "start": 5.433,
+          "end": 5.677
+        },
+        {
+          "text": "before",
+          "start": 5.735,
+          "end": 5.991
+        },
+        {
+          "text": "the",
+          "start": 6.014,
+          "end": 6.084
+        },
+        {
+          "text": "75",
+          "start": 6.177,
+          "end": 6.78
+        },
+        {
+          "text": "percent",
+          "start": 6.873,
+          "end": 7.233
+        },
+        {
+          "text": "discretionary-dispatch",
+          "start": 7.291,
+          "end": 8.417
+        },
+        {
+          "text": "cutoff,",
+          "start": 8.464,
+          "end": 9.044
+        },
+        {
+          "text": "but",
+          "start": 9.369,
+          "end": 9.532
+        },
+        {
+          "text": "the",
+          "start": 9.555,
+          "end": 9.625
+        },
+        {
+          "text": "conductor",
+          "start": 9.671,
+          "end": 10.147
+        },
+        {
+          "text": "should",
+          "start": 10.205,
+          "end": 10.379
+        },
+        {
+          "text": "plan",
+          "start": 10.414,
+          "end": 10.612
+        },
+        {
+          "text": "the",
+          "start": 10.658,
+          "end": 10.728
+        },
+        {
+          "text": "next",
+          "start": 10.786,
+          "end": 10.995
+        },
+        {
+          "text": "batch",
+          "start": 11.064,
+          "end": 11.32
+        },
+        {
+          "text": "with",
+          "start": 11.355,
+          "end": 11.471
+        },
+        {
+          "text": "the",
+          "start": 11.505,
+          "end": 11.575
+        },
+        {
+          "text": "25",
+          "start": 11.645,
+          "end": 12.132
+        },
+        {
+          "text": "percent",
+          "start": 12.214,
+          "end": 12.504
+        },
+        {
+          "text": "reserve",
+          "start": 12.55,
+          "end": 12.852
+        },
+        {
+          "text": "in",
+          "start": 12.887,
+          "end": 12.933
+        },
+        {
+          "text": "mind.",
+          "start": 12.98,
+          "end": 13.352
+        },
+        {
+          "text": "Suppose",
+          "start": 13.956,
+          "end": 14.397
+        },
+        {
+          "text": "it",
+          "start": 14.432,
+          "end": 14.501000000000001
+        },
+        {
+          "text": "is",
+          "start": 14.548,
+          "end": 14.629000000000001
+        },
+        {
+          "text": "76",
+          "start": 14.722000000000001,
+          "end": 15.291
+        },
+        {
+          "text": "percent",
+          "start": 15.372,
+          "end": 15.662
+        },
+        {
+          "text": "used.",
+          "start": 15.72,
+          "end": 16.069
+        },
+        {
+          "text": "The",
+          "start": 16.452,
+          "end": 16.568
+        },
+        {
+          "text": "example",
+          "start": 16.626,
+          "end": 17.067
+        },
+        {
+          "text": "policy",
+          "start": 17.114,
+          "end": 17.543
+        },
+        {
+          "text": "stops",
+          "start": 17.659,
+          "end": 18.054000000000002
+        },
+        {
+          "text": "discretionary",
+          "start": 18.124000000000002,
+          "end": 18.843
+        },
+        {
+          "text": "cloud",
+          "start": 18.89,
+          "end": 19.145
+        },
+        {
+          "text": "dispatch",
+          "start": 19.18,
+          "end": 19.749000000000002
+        },
+        {
+          "text": "and",
+          "start": 19.795,
+          "end": 19.877000000000002
+        },
+        {
+          "text": "preserves",
+          "start": 19.935000000000002,
+          "end": 20.318
+        },
+        {
+          "text": "capacity",
+          "start": 20.364,
+          "end": 20.945
+        },
+        {
+          "text": "for",
+          "start": 21.003,
+          "end": 21.119
+        },
+        {
+          "text": "essential",
+          "start": 21.177,
+          "end": 21.525
+        },
+        {
+          "text": "completion",
+          "start": 21.572000000000003,
+          "end": 22.106
+        },
+        {
+          "text": "and",
+          "start": 22.28,
+          "end": 22.489
+        },
+        {
+          "text": "handoff.",
+          "start": 22.559,
+          "end": 23.104
+        },
+        {
+          "text": "It",
+          "start": 23.615000000000002,
+          "end": 23.743000000000002
+        },
+        {
+          "text": "does",
+          "start": 23.778,
+          "end": 23.929000000000002
+        },
+        {
+          "text": "not",
+          "start": 24.009999999999998,
+          "end": 24.195999999999998
+        },
+        {
+          "text": "assert",
+          "start": 24.242,
+          "end": 24.544
+        },
+        {
+          "text": "that",
+          "start": 24.579,
+          "end": 24.695
+        },
+        {
+          "text": "every",
+          "start": 24.73,
+          "end": 24.892
+        },
+        {
+          "text": "provider",
+          "start": 24.939,
+          "end": 25.322000000000003
+        },
+        {
+          "text": "has",
+          "start": 25.368000000000002,
+          "end": 25.508000000000003
+        },
+        {
+          "text": "the",
+          "start": 25.542,
+          "end": 25.612000000000002
+        },
+        {
+          "text": "same",
+          "start": 25.67,
+          "end": 25.948999999999998
+        },
+        {
+          "text": "window",
+          "start": 26.006999999999998,
+          "end": 26.367
+        },
+        {
+          "text": "or",
+          "start": 26.692,
+          "end": 26.843
+        },
+        {
+          "text": "that",
+          "start": 26.901,
+          "end": 27.017
+        },
+        {
+          "text": "a",
+          "start": 27.052,
+          "end": 27.086
+        },
+        {
+          "text": "percentage",
+          "start": 27.156,
+          "end": 27.771
+        },
+        {
+          "text": "represents",
+          "start": 27.817999999999998,
+          "end": 28.282
+        },
+        {
+          "text": "money.",
+          "start": 28.352,
+          "end": 28.747
+        },
+        {
+          "text": "If",
+          "start": 29.188000000000002,
+          "end": 29.327
+        },
+        {
+          "text": "the",
+          "start": 29.374,
+          "end": 29.443
+        },
+        {
+          "text": "platform",
+          "start": 29.490000000000002,
+          "end": 29.943
+        },
+        {
+          "text": "exposes",
+          "start": 29.989,
+          "end": 30.453
+        },
+        {
+          "text": "no",
+          "start": 30.523,
+          "end": 30.628
+        },
+        {
+          "text": "usage",
+          "start": 30.709,
+          "end": 30.999
+        },
+        {
+          "text": "figure,",
+          "start": 31.045,
+          "end": 31.498
+        },
+        {
+          "text": "say",
+          "start": 31.742,
+          "end": 31.963
+        },
+        {
+          "text": "so.",
+          "start": 32.021,
+          "end": 32.391999999999996
+        }
+      ],
+      "spoken": "Suppose a shared allowance is 60 percent used. Under Dave's example, there is still room before the 75 percent discretionary-dispatch cutoff, but the conductor should plan the next batch with the 25 percent reserve in mind. Suppose it is 76 percent used. The example policy stops discretionary cloud dispatch and preserves capacity for essential completion and handoff. It does not assert that every provider has the same window or that a percentage represents money. If the platform exposes no usage figure, say so.",
+      "captions": [
+        {
+          "start": 292.6325510204082,
+          "end": 295.65055102040816,
+          "text": "Suppose a shared allowance is 60 percent used."
+        },
+        {
+          "start": 296.0345510204082,
+          "end": 299.37755102040813,
+          "text": "Under Dave's example, there is still room before the 75"
+        },
+        {
+          "start": 299.47055102040815,
+          "end": 302.74455102040815,
+          "text": "percent discretionary-dispatch cutoff, but the conductor"
+        },
+        {
+          "start": 302.80255102040815,
+          "end": 305.53055102040815,
+          "text": "should plan the next batch with the 25 percent reserve in"
+        },
+        {
+          "start": 305.5775510204082,
+          "end": 305.94955102040814,
+          "text": "mind."
+        },
+        {
+          "start": 306.5535510204082,
+          "end": 308.6665510204082,
+          "text": "Suppose it is 76 percent used."
+        },
+        {
+          "start": 309.04955102040816,
+          "end": 312.47455102040817,
+          "text": "The example policy stops discretionary cloud dispatch and"
+        },
+        {
+          "start": 312.53255102040816,
+          "end": 315.70155102040815,
+          "text": "preserves capacity for essential completion and handoff."
+        },
+        {
+          "start": 316.21255102040817,
+          "end": 318.9645510204082,
+          "text": "It does not assert that every provider has the same window"
+        },
+        {
+          "start": 319.28955102040817,
+          "end": 321.3445510204082,
+          "text": "or that a percentage represents money."
+        },
+        {
+          "start": 321.78555102040815,
+          "end": 324.98955102040816,
+          "text": "If the platform exposes no usage figure, say so."
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source": "productions/08/audio/11.mp3",
+      "sha256": "4563072506b9de835939f567d1e76acad1b9b67e88a8ad0b917c7b6202f41423",
+      "sourceTextSha256": "f19205691626bf7ed03fe0b848d072242e65e9e9fc57aa29bbe173d49c167824",
+      "start": 325.2244897959184,
+      "end": 355.134693877551,
+      "duration": 29.910204081632653,
+      "samples": 1319040,
+      "words": [
+        {
+          "text": "After",
+          "start": 0.023,
+          "end": 0.313
+        },
+        {
+          "text": "a",
+          "start": 0.383,
+          "end": 0.418
+        },
+        {
+          "text": "batch,",
+          "start": 0.488,
+          "end": 0.836
+        },
+        {
+          "text": "collect",
+          "start": 0.871,
+          "end": 1.207
+        },
+        {
+          "text": "each",
+          "start": 1.289,
+          "end": 1.486
+        },
+        {
+          "text": "worker's",
+          "start": 1.556,
+          "end": 1.916
+        },
+        {
+          "text": "result,",
+          "start": 1.974,
+          "end": 2.589
+        },
+        {
+          "text": "inspect",
+          "start": 2.868,
+          "end": 3.309
+        },
+        {
+          "text": "the",
+          "start": 3.344,
+          "end": 3.413
+        },
+        {
+          "text": "changes",
+          "start": 3.471,
+          "end": 4.029
+        },
+        {
+          "text": "and",
+          "start": 4.087,
+          "end": 4.226
+        },
+        {
+          "text": "relevant",
+          "start": 4.296,
+          "end": 4.679
+        },
+        {
+          "text": "checks,",
+          "start": 4.714,
+          "end": 5.341
+        },
+        {
+          "text": "and",
+          "start": 5.55,
+          "end": 5.7
+        },
+        {
+          "text": "update",
+          "start": 5.77,
+          "end": 6.072
+        },
+        {
+          "text": "the",
+          "start": 6.095,
+          "end": 6.165
+        },
+        {
+          "text": "shared",
+          "start": 6.2,
+          "end": 6.444
+        },
+        {
+          "text": "state.",
+          "start": 6.478,
+          "end": 6.931
+        },
+        {
+          "text": "If",
+          "start": 7.372,
+          "end": 7.512
+        },
+        {
+          "text": "a",
+          "start": 7.581,
+          "end": 7.605
+        },
+        {
+          "text": "worker",
+          "start": 7.686,
+          "end": 7.976
+        },
+        {
+          "text": "disappears,",
+          "start": 8.034,
+          "end": 8.882
+        },
+        {
+          "text": "determine",
+          "start": 9.091,
+          "end": 9.543
+        },
+        {
+          "text": "whether",
+          "start": 9.567,
+          "end": 9.787
+        },
+        {
+          "text": "it",
+          "start": 9.834,
+          "end": 9.903
+        },
+        {
+          "text": "left",
+          "start": 9.938,
+          "end": 10.112
+        },
+        {
+          "text": "a",
+          "start": 10.159,
+          "end": 10.182
+        },
+        {
+          "text": "commit,",
+          "start": 10.252,
+          "end": 10.751
+        },
+        {
+          "text": "modified",
+          "start": 11.076,
+          "end": 11.575
+        },
+        {
+          "text": "files,",
+          "start": 11.633,
+          "end": 12.132
+        },
+        {
+          "text": "or",
+          "start": 12.214,
+          "end": 12.376
+        },
+        {
+          "text": "is",
+          "start": 12.446,
+          "end": 12.504
+        },
+        {
+          "text": "still",
+          "start": 12.527,
+          "end": 12.748
+        },
+        {
+          "text": "running.",
+          "start": 12.817,
+          "end": 13.247
+        },
+        {
+          "text": "An",
+          "start": 13.572,
+          "end": 13.711
+        },
+        {
+          "text": "interrupted",
+          "start": 13.793,
+          "end": 14.292
+        },
+        {
+          "text": "operation",
+          "start": 14.35,
+          "end": 14.919
+        },
+        {
+          "text": "may",
+          "start": 14.989,
+          "end": 15.151
+        },
+        {
+          "text": "already",
+          "start": 15.209,
+          "end": 15.523
+        },
+        {
+          "text": "have",
+          "start": 15.558,
+          "end": 15.662
+        },
+        {
+          "text": "produced",
+          "start": 15.697000000000001,
+          "end": 16.057000000000002
+        },
+        {
+          "text": "an",
+          "start": 16.103,
+          "end": 16.173000000000002
+        },
+        {
+          "text": "external",
+          "start": 16.22,
+          "end": 16.603
+        },
+        {
+          "text": "effect.",
+          "start": 16.649,
+          "end": 17.125
+        },
+        {
+          "text": "Investigate",
+          "start": 17.566,
+          "end": 18.228
+        },
+        {
+          "text": "before",
+          "start": 18.262999999999998,
+          "end": 18.53
+        },
+        {
+          "text": "resending",
+          "start": 18.588,
+          "end": 19.099
+        },
+        {
+          "text": "or",
+          "start": 19.157,
+          "end": 19.227
+        },
+        {
+          "text": "repeating",
+          "start": 19.285,
+          "end": 19.679000000000002
+        },
+        {
+          "text": "it.",
+          "start": 19.726,
+          "end": 19.935000000000002
+        },
+        {
+          "text": "Avoid",
+          "start": 20.318,
+          "end": 20.864
+        },
+        {
+          "text": "paying",
+          "start": 20.922,
+          "end": 21.177
+        },
+        {
+          "text": "another",
+          "start": 21.223,
+          "end": 21.467
+        },
+        {
+          "text": "worker",
+          "start": 21.525,
+          "end": 21.816000000000003
+        },
+        {
+          "text": "to",
+          "start": 21.874000000000002,
+          "end": 21.943
+        },
+        {
+          "text": "reproduce",
+          "start": 22.036,
+          "end": 22.535
+        },
+        {
+          "text": "work",
+          "start": 22.582,
+          "end": 22.791
+        },
+        {
+          "text": "that",
+          "start": 22.837,
+          "end": 22.942
+        },
+        {
+          "text": "was",
+          "start": 22.977,
+          "end": 23.069000000000003
+        },
+        {
+          "text": "already",
+          "start": 23.127000000000002,
+          "end": 23.394
+        },
+        {
+          "text": "completed,",
+          "start": 23.441000000000003,
+          "end": 24.067999999999998
+        },
+        {
+          "text": "and",
+          "start": 24.393,
+          "end": 24.544
+        },
+        {
+          "text": "do",
+          "start": 24.614,
+          "end": 24.695
+        },
+        {
+          "text": "not",
+          "start": 24.811,
+          "end": 24.973
+        },
+        {
+          "text": "assume",
+          "start": 25.02,
+          "end": 25.333
+        },
+        {
+          "text": "a",
+          "start": 25.368000000000002,
+          "end": 25.391
+        },
+        {
+          "text": "dispatched",
+          "start": 25.461,
+          "end": 25.948999999999998
+        },
+        {
+          "text": "task",
+          "start": 25.984,
+          "end": 26.343
+        },
+        {
+          "text": "succeeded",
+          "start": 26.39,
+          "end": 26.959
+        },
+        {
+          "text": "merely",
+          "start": 27.342,
+          "end": 27.644
+        },
+        {
+          "text": "because",
+          "start": 27.701999999999998,
+          "end": 28.05
+        },
+        {
+          "text": "no",
+          "start": 28.143,
+          "end": 28.352
+        },
+        {
+          "text": "error",
+          "start": 28.433,
+          "end": 28.665
+        },
+        {
+          "text": "appeared",
+          "start": 28.712,
+          "end": 29.002000000000002
+        },
+        {
+          "text": "in",
+          "start": 29.025,
+          "end": 29.072000000000003
+        },
+        {
+          "text": "the",
+          "start": 29.107,
+          "end": 29.176000000000002
+        },
+        {
+          "text": "chat.",
+          "start": 29.211,
+          "end": 29.675
+        }
+      ],
+      "spoken": "After a batch, collect each worker's result, inspect the changes and relevant checks, and update the shared state. If a worker disappears, determine whether it left a commit, modified files, or is still running. An interrupted operation may already have produced an external effect. Investigate before resending or repeating it. Avoid paying another worker to reproduce work that was already completed, and do not assume a dispatched task succeeded merely because no error appeared in the chat.",
+      "captions": [
+        {
+          "start": 325.2474897959184,
+          "end": 328.6374897959184,
+          "text": "After a batch, collect each worker's result, inspect the"
+        },
+        {
+          "start": 328.6954897959184,
+          "end": 332.15548979591836,
+          "text": "changes and relevant checks, and update the shared state."
+        },
+        {
+          "start": 332.5964897959184,
+          "end": 335.4064897959184,
+          "text": "If a worker disappears, determine whether it left a"
+        },
+        {
+          "start": 335.4764897959184,
+          "end": 338.4714897959184,
+          "text": "commit, modified files, or is still running."
+        },
+        {
+          "start": 338.7964897959184,
+          "end": 341.3974897959184,
+          "text": "An interrupted operation may already have produced an"
+        },
+        {
+          "start": 341.44448979591834,
+          "end": 342.3494897959184,
+          "text": "external effect."
+        },
+        {
+          "start": 342.79048979591835,
+          "end": 345.1594897959184,
+          "text": "Investigate before resending or repeating it."
+        },
+        {
+          "start": 345.54248979591836,
+          "end": 348.2934897959184,
+          "text": "Avoid paying another worker to reproduce work that was"
+        },
+        {
+          "start": 348.3514897959184,
+          "end": 351.5674897959184,
+          "text": "already completed, and do not assume a dispatched task"
+        },
+        {
+          "start": 351.61448979591836,
+          "end": 354.8994897959184,
+          "text": "succeeded merely because no error appeared in the chat."
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source": "productions/08/audio/12.mp3",
+      "sha256": "3d17591caf7e3c1487f371720987f7d6f36d05dd14ccb70ee9ebc00391a20959",
+      "sourceTextSha256": "331ea3333e416b679ce888ea24e1a03515183c1f313e8e070d17a3e5d45427c6",
+      "start": 355.134693877551,
+      "end": 385.3061224489796,
+      "duration": 30.17142857142857,
+      "samples": 1330560,
+      "words": [
+        {
+          "text": "Ask",
+          "start": 0.023,
+          "end": 0.29
+        },
+        {
+          "text": "workers",
+          "start": 0.383,
+          "end": 0.766
+        },
+        {
+          "text": "to",
+          "start": 0.813,
+          "end": 0.871
+        },
+        {
+          "text": "return",
+          "start": 0.964,
+          "end": 1.358
+        },
+        {
+          "text": "the",
+          "start": 1.405,
+          "end": 1.474
+        },
+        {
+          "text": "task",
+          "start": 1.509,
+          "end": 1.8
+        },
+        {
+          "text": "outcome,",
+          "start": 1.858,
+          "end": 2.438
+        },
+        {
+          "text": "changed",
+          "start": 2.879,
+          "end": 3.239
+        },
+        {
+          "text": "files,",
+          "start": 3.286,
+          "end": 3.831
+        },
+        {
+          "text": "commands",
+          "start": 3.959,
+          "end": 4.389
+        },
+        {
+          "text": "and",
+          "start": 4.412,
+          "end": 4.493
+        },
+        {
+          "text": "results,",
+          "start": 4.551,
+          "end": 5.178
+        },
+        {
+          "text": "evidence",
+          "start": 5.619,
+          "end": 6.072
+        },
+        {
+          "text": "location,",
+          "start": 6.13,
+          "end": 6.896
+        },
+        {
+          "text": "open",
+          "start": 7.279,
+          "end": 7.605
+        },
+        {
+          "text": "risks,",
+          "start": 7.686,
+          "end": 8.173
+        },
+        {
+          "text": "and",
+          "start": 8.417,
+          "end": 8.58
+        },
+        {
+          "text": "the",
+          "start": 8.626,
+          "end": 8.696
+        },
+        {
+          "text": "next",
+          "start": 8.766,
+          "end": 8.986
+        },
+        {
+          "text": "integration",
+          "start": 9.033,
+          "end": 9.532
+        },
+        {
+          "text": "action.",
+          "start": 9.59,
+          "end": 10.066
+        },
+        {
+          "text": "This",
+          "start": 10.67,
+          "end": 10.89
+        },
+        {
+          "text": "makes",
+          "start": 10.983,
+          "end": 11.204
+        },
+        {
+          "text": "their",
+          "start": 11.227,
+          "end": 11.378
+        },
+        {
+          "text": "output",
+          "start": 11.436,
+          "end": 11.807
+        },
+        {
+          "text": "easy",
+          "start": 11.9,
+          "end": 12.19
+        },
+        {
+          "text": "to",
+          "start": 12.237,
+          "end": 12.283
+        },
+        {
+          "text": "compare",
+          "start": 12.341,
+          "end": 12.992
+        },
+        {
+          "text": "and",
+          "start": 13.119,
+          "end": 13.328
+        },
+        {
+          "text": "reduces",
+          "start": 13.398,
+          "end": 13.932
+        },
+        {
+          "text": "long",
+          "start": 14.013,
+          "end": 14.245
+        },
+        {
+          "text": "conversational",
+          "start": 14.303,
+          "end": 15.023
+        },
+        {
+          "text": "handoffs.",
+          "start": 15.081,
+          "end": 15.732
+        },
+        {
+          "text": "It",
+          "start": 16.173,
+          "end": 16.288
+        },
+        {
+          "text": "does",
+          "start": 16.335,
+          "end": 16.474
+        },
+        {
+          "text": "not",
+          "start": 16.555,
+          "end": 16.764
+        },
+        {
+          "text": "replace",
+          "start": 16.834,
+          "end": 17.194000000000003
+        },
+        {
+          "text": "the",
+          "start": 17.217000000000002,
+          "end": 17.287
+        },
+        {
+          "text": "conductor's",
+          "start": 17.333000000000002,
+          "end": 17.833000000000002
+        },
+        {
+          "text": "responsibility",
+          "start": 17.891000000000002,
+          "end": 18.668
+        },
+        {
+          "text": "to",
+          "start": 18.715,
+          "end": 18.773
+        },
+        {
+          "text": "inspect",
+          "start": 18.843,
+          "end": 19.237000000000002
+        },
+        {
+          "text": "meaningful",
+          "start": 19.307000000000002,
+          "end": 19.679000000000002
+        },
+        {
+          "text": "changes",
+          "start": 19.737000000000002,
+          "end": 20.294
+        },
+        {
+          "text": "and",
+          "start": 20.468,
+          "end": 20.700000000000003
+        },
+        {
+          "text": "verify",
+          "start": 20.77,
+          "end": 21.130000000000003
+        },
+        {
+          "text": "the",
+          "start": 21.176000000000002,
+          "end": 21.246000000000002
+        },
+        {
+          "text": "integration.",
+          "start": 21.281,
+          "end": 21.942
+        },
+        {
+          "text": "The",
+          "start": 22.453000000000003,
+          "end": 22.581000000000003
+        },
+        {
+          "text": "goal",
+          "start": 22.639000000000003,
+          "end": 22.86
+        },
+        {
+          "text": "of",
+          "start": 22.906,
+          "end": 22.964000000000002
+        },
+        {
+          "text": "token",
+          "start": 23.022000000000002,
+          "end": 23.336000000000002
+        },
+        {
+          "text": "efficiency",
+          "start": 23.382,
+          "end": 24.067
+        },
+        {
+          "text": "is",
+          "start": 24.137,
+          "end": 24.288
+        },
+        {
+          "text": "to",
+          "start": 24.334000000000003,
+          "end": 24.392000000000003
+        },
+        {
+          "text": "spend",
+          "start": 24.462000000000003,
+          "end": 24.741
+        },
+        {
+          "text": "attention",
+          "start": 24.787,
+          "end": 25.356
+        },
+        {
+          "text": "where",
+          "start": 25.507,
+          "end": 25.716
+        },
+        {
+          "text": "it",
+          "start": 25.739,
+          "end": 25.797
+        },
+        {
+          "text": "changes",
+          "start": 25.843000000000004,
+          "end": 26.238
+        },
+        {
+          "text": "the",
+          "start": 26.285,
+          "end": 26.354
+        },
+        {
+          "text": "outcome",
+          "start": 26.424,
+          "end": 27.004
+        },
+        {
+          "text": "while",
+          "start": 27.155,
+          "end": 27.399
+        },
+        {
+          "text": "keeping",
+          "start": 27.434,
+          "end": 27.713
+        },
+        {
+          "text": "enough",
+          "start": 27.759,
+          "end": 27.98
+        },
+        {
+          "text": "capacity",
+          "start": 28.026000000000003,
+          "end": 28.618000000000002
+        },
+        {
+          "text": "to",
+          "start": 28.665,
+          "end": 28.723
+        },
+        {
+          "text": "finish",
+          "start": 28.781,
+          "end": 29.036
+        },
+        {
+          "text": "responsibly.",
+          "start": 29.094,
+          "end": 29.86
+        }
+      ],
+      "spoken": "Ask workers to return the task outcome, changed files, commands and results, evidence location, open risks, and the next integration action. This makes their output easy to compare and reduces long conversational handoffs. It does not replace the conductor's responsibility to inspect meaningful changes and verify the integration. The goal of token efficiency is to spend attention where it changes the outcome while keeping enough capacity to finish responsibly.",
+      "captions": [
+        {
+          "start": 355.157693877551,
+          "end": 358.965693877551,
+          "text": "Ask workers to return the task outcome, changed files,"
+        },
+        {
+          "start": 359.093693877551,
+          "end": 363.714693877551,
+          "text": "commands and results, evidence location, open risks, and"
+        },
+        {
+          "start": 363.760693877551,
+          "end": 365.200693877551,
+          "text": "the next integration action."
+        },
+        {
+          "start": 365.804693877551,
+          "end": 369.379693877551,
+          "text": "This makes their output easy to compare and reduces long"
+        },
+        {
+          "start": 369.437693877551,
+          "end": 370.86669387755103,
+          "text": "conversational handoffs."
+        },
+        {
+          "start": 371.307693877551,
+          "end": 373.907693877551,
+          "text": "It does not replace the conductor's responsibility to"
+        },
+        {
+          "start": 373.977693877551,
+          "end": 377.076693877551,
+          "text": "inspect meaningful changes and verify the integration."
+        },
+        {
+          "start": 377.587693877551,
+          "end": 380.850693877551,
+          "text": "The goal of token efficiency is to spend attention where"
+        },
+        {
+          "start": 380.873693877551,
+          "end": 383.857693877551,
+          "text": "it changes the outcome while keeping enough capacity to"
+        },
+        {
+          "start": 383.915693877551,
+          "end": 384.994693877551,
+          "text": "finish responsibly."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "source": "productions/08/audio/13.mp3",
+      "sha256": "67365ebab6355702a50db1f05f976974d9fb2eed1f07aeaaa6a3627da4d6a7f0",
+      "sourceTextSha256": "813039f4b56dc205eabbe3251d2dd9f58b7a482522d1f4df11fa02845b867119",
+      "start": 385.3061224489796,
+      "end": 415.7126530612245,
+      "duration": 30.406530612244897,
+      "samples": 1340928,
+      "words": [
+        {
+          "text": "If",
+          "start": 0.035,
+          "end": 0.163
+        },
+        {
+          "text": "the",
+          "start": 0.209,
+          "end": 0.279
+        },
+        {
+          "text": "requested",
+          "start": 0.36,
+          "end": 0.836
+        },
+        {
+          "text": "premium",
+          "start": 0.882,
+          "end": 1.254
+        },
+        {
+          "text": "model",
+          "start": 1.312,
+          "end": 1.567
+        },
+        {
+          "text": "is",
+          "start": 1.625,
+          "end": 1.695
+        },
+        {
+          "text": "not",
+          "start": 1.765,
+          "end": 1.892
+        },
+        {
+          "text": "available,",
+          "start": 1.927,
+          "end": 2.519
+        },
+        {
+          "text": "the",
+          "start": 2.961,
+          "end": 3.065
+        },
+        {
+          "text": "conductor",
+          "start": 3.123,
+          "end": 3.611
+        },
+        {
+          "text": "must",
+          "start": 3.704,
+          "end": 3.994
+        },
+        {
+          "text": "report",
+          "start": 4.063,
+          "end": 4.423
+        },
+        {
+          "text": "the",
+          "start": 4.458,
+          "end": 4.54
+        },
+        {
+          "text": "actual",
+          "start": 4.632,
+          "end": 5.05
+        },
+        {
+          "text": "model",
+          "start": 5.12,
+          "end": 5.468
+        },
+        {
+          "text": "and",
+          "start": 5.642,
+          "end": 5.84
+        },
+        {
+          "text": "evaluate",
+          "start": 5.886,
+          "end": 6.548
+        },
+        {
+          "text": "whether",
+          "start": 6.571,
+          "end": 6.803
+        },
+        {
+          "text": "it",
+          "start": 6.861,
+          "end": 6.92
+        },
+        {
+          "text": "is",
+          "start": 6.966,
+          "end": 7.047
+        },
+        {
+          "text": "capable",
+          "start": 7.105,
+          "end": 7.639
+        },
+        {
+          "text": "of",
+          "start": 7.686,
+          "end": 7.814
+        },
+        {
+          "text": "the",
+          "start": 7.848,
+          "end": 7.918
+        },
+        {
+          "text": "required",
+          "start": 7.976,
+          "end": 8.417
+        },
+        {
+          "text": "judgment.",
+          "start": 8.452,
+          "end": 8.975
+        },
+        {
+          "text": "It",
+          "start": 9.416,
+          "end": 9.555
+        },
+        {
+          "text": "can",
+          "start": 9.59,
+          "end": 9.718
+        },
+        {
+          "text": "use",
+          "start": 9.787,
+          "end": 9.973
+        },
+        {
+          "text": "available",
+          "start": 10.008,
+          "end": 10.484
+        },
+        {
+          "text": "tools",
+          "start": 10.519,
+          "end": 10.844
+        },
+        {
+          "text": "for",
+          "start": 10.89,
+          "end": 10.995
+        },
+        {
+          "text": "independent",
+          "start": 11.053,
+          "end": 11.564
+        },
+        {
+          "text": "work",
+          "start": 11.61,
+          "end": 11.865
+        },
+        {
+          "text": "and",
+          "start": 12.016,
+          "end": 12.19
+        },
+        {
+          "text": "ask",
+          "start": 12.26,
+          "end": 12.446
+        },
+        {
+          "text": "for",
+          "start": 12.492,
+          "end": 12.608
+        },
+        {
+          "text": "help",
+          "start": 12.678,
+          "end": 12.945
+        },
+        {
+          "text": "where",
+          "start": 13.061,
+          "end": 13.293
+        },
+        {
+          "text": "a",
+          "start": 13.317,
+          "end": 13.352
+        },
+        {
+          "text": "genuine",
+          "start": 13.421,
+          "end": 13.839
+        },
+        {
+          "text": "capability",
+          "start": 13.874,
+          "end": 14.466000000000001
+        },
+        {
+          "text": "or",
+          "start": 14.524000000000001,
+          "end": 14.594
+        },
+        {
+          "text": "authority",
+          "start": 14.629,
+          "end": 14.989
+        },
+        {
+          "text": "gap",
+          "start": 15.035,
+          "end": 15.221
+        },
+        {
+          "text": "remains.",
+          "start": 15.291,
+          "end": 15.871
+        },
+        {
+          "text": "It",
+          "start": 16.254,
+          "end": 16.37
+        },
+        {
+          "text": "should",
+          "start": 16.417,
+          "end": 16.637
+        },
+        {
+          "text": "not",
+          "start": 16.707,
+          "end": 16.893
+        },
+        {
+          "text": "claim",
+          "start": 16.963,
+          "end": 17.241
+        },
+        {
+          "text": "that",
+          "start": 17.299,
+          "end": 17.415
+        },
+        {
+          "text": "a",
+          "start": 17.45,
+          "end": 17.473
+        },
+        {
+          "text": "model",
+          "start": 17.555,
+          "end": 17.822
+        },
+        {
+          "text": "was",
+          "start": 17.88,
+          "end": 18.007
+        },
+        {
+          "text": "used",
+          "start": 18.089,
+          "end": 18.391
+        },
+        {
+          "text": "simply",
+          "start": 18.437,
+          "end": 18.75
+        },
+        {
+          "text": "because",
+          "start": 18.797,
+          "end": 19.134
+        },
+        {
+          "text": "a",
+          "start": 19.168,
+          "end": 19.203
+        },
+        {
+          "text": "prompt",
+          "start": 19.261,
+          "end": 19.54
+        },
+        {
+          "text": "requested",
+          "start": 19.586,
+          "end": 20.062
+        },
+        {
+          "text": "it.",
+          "start": 20.097,
+          "end": 20.318
+        },
+        {
+          "text": "The",
+          "start": 20.922,
+          "end": 21.049
+        },
+        {
+          "text": "same",
+          "start": 21.119,
+          "end": 21.363
+        },
+        {
+          "text": "applies",
+          "start": 21.398,
+          "end": 21.756999999999998
+        },
+        {
+          "text": "to",
+          "start": 21.792,
+          "end": 21.85
+        },
+        {
+          "text": "usage",
+          "start": 21.92,
+          "end": 22.198999999999998
+        },
+        {
+          "text": "monitoring:",
+          "start": 22.245,
+          "end": 22.86
+        },
+        {
+          "text": "an",
+          "start": 23.185000000000002,
+          "end": 23.325
+        },
+        {
+          "text": "instruction",
+          "start": 23.394,
+          "end": 23.963
+        },
+        {
+          "text": "to",
+          "start": 24.021,
+          "end": 24.079
+        },
+        {
+          "text": "check",
+          "start": 24.137,
+          "end": 24.346
+        },
+        {
+          "text": "a",
+          "start": 24.393,
+          "end": 24.416
+        },
+        {
+          "text": "quota",
+          "start": 24.497,
+          "end": 24.846
+        },
+        {
+          "text": "is",
+          "start": 24.915,
+          "end": 24.997
+        },
+        {
+          "text": "not",
+          "start": 25.066000000000003,
+          "end": 25.217
+        },
+        {
+          "text": "proof",
+          "start": 25.287,
+          "end": 25.576999999999998
+        },
+        {
+          "text": "that",
+          "start": 25.634999999999998,
+          "end": 25.750999999999998
+        },
+        {
+          "text": "the",
+          "start": 25.786,
+          "end": 25.856
+        },
+        {
+          "text": "host",
+          "start": 25.925,
+          "end": 26.227
+        },
+        {
+          "text": "exposes",
+          "start": 26.285,
+          "end": 26.773
+        },
+        {
+          "text": "a",
+          "start": 26.819000000000003,
+          "end": 26.843
+        },
+        {
+          "text": "quota.",
+          "start": 26.901,
+          "end": 27.377000000000002
+        },
+        {
+          "text": "Honest",
+          "start": 27.887999999999998,
+          "end": 28.259
+        },
+        {
+          "text": "reporting",
+          "start": 28.317,
+          "end": 28.747
+        },
+        {
+          "text": "is",
+          "start": 28.793,
+          "end": 28.863
+        },
+        {
+          "text": "part",
+          "start": 28.921,
+          "end": 29.072000000000003
+        },
+        {
+          "text": "of",
+          "start": 29.095,
+          "end": 29.141
+        },
+        {
+          "text": "the",
+          "start": 29.165,
+          "end": 29.234
+        },
+        {
+          "text": "routing",
+          "start": 29.269,
+          "end": 29.501
+        },
+        {
+          "text": "contract.",
+          "start": 29.536,
+          "end": 30.163
+        }
+      ],
+      "spoken": "If the requested premium model is not available, the conductor must report the actual model and evaluate whether it is capable of the required judgment. It can use available tools for independent work and ask for help where a genuine capability or authority gap remains. It should not claim that a model was used simply because a prompt requested it. The same applies to usage monitoring: an instruction to check a quota is not proof that the host exposes a quota. Honest reporting is part of the routing contract.",
+      "captions": [
+        {
+          "start": 385.3411224489796,
+          "end": 388.3711224489796,
+          "text": "If the requested premium model is not available, the"
+        },
+        {
+          "start": 388.42912244897957,
+          "end": 391.8541224489796,
+          "text": "conductor must report the actual model and evaluate"
+        },
+        {
+          "start": 391.8771224489796,
+          "end": 394.2811224489796,
+          "text": "whether it is capable of the required judgment."
+        },
+        {
+          "start": 394.7221224489796,
+          "end": 397.7521224489796,
+          "text": "It can use available tools for independent work and ask"
+        },
+        {
+          "start": 397.7981224489796,
+          "end": 400.5271224489796,
+          "text": "for help where a genuine capability or authority gap"
+        },
+        {
+          "start": 400.5971224489796,
+          "end": 401.17712244897956,
+          "text": "remains."
+        },
+        {
+          "start": 401.5601224489796,
+          "end": 404.50912244897955,
+          "text": "It should not claim that a model was used simply because a"
+        },
+        {
+          "start": 404.5671224489796,
+          "end": 405.62412244897956,
+          "text": "prompt requested it."
+        },
+        {
+          "start": 406.2281224489796,
+          "end": 409.3851224489796,
+          "text": "The same applies to usage monitoring: an instruction to"
+        },
+        {
+          "start": 409.4431224489796,
+          "end": 412.6831224489796,
+          "text": "check a quota is not proof that the host exposes a quota."
+        },
+        {
+          "start": 413.19412244897956,
+          "end": 415.4691224489796,
+          "text": "Honest reporting is part of the routing contract."
+        }
+      ]
+    }
+  ],
+  "captions": [
+    {
+      "start": 0.035,
+      "end": 3.773,
+      "text": "A kickoff is a compact, executable briefing for a new"
+    },
+    {
+      "start": 3.831,
+      "end": 4.772,
+      "text": "agent or session."
+    },
+    {
+      "start": 5.375,
+      "end": 9.021,
+      "text": "It identifies the project location and baseline, required"
+    },
+    {
+      "start": 9.091,
+      "end": 13.131,
+      "text": "reading, document authority, settled decisions, goal,"
+    },
+    {
+      "start": 13.212,
+      "end": 17.438,
+      "text": "scope, permissions, sequence, checks, and handoff."
+    },
+    {
+      "start": 18.042,
+      "end": 21.234,
+      "text": "Imagine handing the tracker project to someone who has not"
+    },
+    {
+      "start": 21.269,
+      "end": 22.825,
+      "text": "attended any previous meeting."
+    },
+    {
+      "start": 23.208,
+      "end": 25.669,
+      "text": "They should be able to locate the spec, know that"
+    },
+    {
+      "start": 25.727,
+      "end": 28.909,
+      "text": "automatic sending is out of scope, and identify the first"
+    },
+    {
+      "start": 28.943,
+      "end": 29.698,
+      "text": "safe task."
+    },
+    {
+      "start": 30.139,
+      "end": 32.752,
+      "text": "They should not have to reconstruct decisions from a long"
+    },
+    {
+      "start": 32.822,
+      "end": 33.739,
+      "text": "chat transcript."
+    },
+    {
+      "start": 34.095551020408166,
+      "end": 36.42955102040817,
+      "text": "You can use multiple agents for independent tasks,"
+    },
+    {
+      "start": 36.638551020408165,
+      "end": 38.507551020408165,
+      "text": "provided each has a clear assignment."
+    },
+    {
+      "start": 38.94855102040817,
+      "end": 42.71055102040817,
+      "text": "Give a worker an outcome, relevant source files, exclusive"
+    },
+    {
+      "start": 42.733551020408164,
+      "end": 45.937551020408165,
+      "text": "file or subsystem ownership, constraints, acceptance"
+    },
+    {
+      "start": 45.97255102040817,
+      "end": 48.31755102040817,
+      "text": "checks, and a compact reply format."
+    },
+    {
+      "start": 48.92155102040817,
+      "end": 51.85855102040817,
+      "text": "Define shared interfaces before separate workers depend on"
+    },
+    {
+      "start": 51.904551020408164,
+      "end": 52.23055102040817,
+      "text": "them."
+    },
+    {
+      "start": 52.833551020408166,
+      "end": 55.84055102040817,
+      "text": "If one worker implements validation while another works on"
+    },
+    {
+      "start": 55.88755102040817,
+      "end": 58.60355102040816,
+      "text": "a view, their contract for the inquiry record must be"
+    },
+    {
+      "start": 58.638551020408165,
+      "end": 59.09155102040816,
+      "text": "agreed."
+    },
+    {
+      "start": 59.47455102040817,
+      "end": 62.504551020408165,
+      "text": "A dispatched task is not complete until its result is"
+    },
+    {
+      "start": 62.55155102040817,
+      "end": 63.59655102040817,
+      "text": "collected and reviewed."
+    },
+    {
+      "start": 63.93051020408163,
+      "end": 67.58751020408164,
+      "text": "Route deterministic tasks such as searching, formatting,"
+    },
+    {
+      "start": 67.76151020408163,
+      "end": 70.50151020408163,
+      "text": "or repeatable checks to ordinary tools when possible."
+    },
+    {
+      "start": 71.10551020408163,
+      "end": 73.97251020408163,
+      "text": "Use a qualified local model for suitable extraction or"
+    },
+    {
+      "start": 74.03151020408163,
+      "end": 77.31651020408162,
+      "text": "drafting, and a capable lower-cost worker for bounded"
+    },
+    {
+      "start": 77.39751020408163,
+      "end": 78.74451020408164,
+      "text": "ordinary implementation."
+    },
+    {
+      "start": 79.44151020408162,
+      "end": 81.75151020408163,
+      "text": "Reserve the strongest available conductor for"
+    },
+    {
+      "start": 81.82151020408163,
+      "end": 86.15151020408163,
+      "text": "architecture, difficult ambiguity, sensitive boundaries,"
+    },
+    {
+      "start": 86.59251020408163,
+      "end": 88.41551020408163,
+      "text": "integration, and final judgment."
+    },
+    {
+      "start": 89.01951020408163,
+      "end": 91.66651020408163,
+      "text": "Verify what models and tools are actually available."
+    },
+    {
+      "start": 92.10751020408163,
+      "end": 95.99651020408163,
+      "text": "A prompt cannot create a model, a capability, or a budget."
+    },
+    {
+      "start": 96.60051020408163,
+      "end": 99.43351020408163,
+      "text": "Lower cost is useful only if the route can do the job"
+    },
+    {
+      "start": 99.49151020408164,
+      "end": 100.16451020408164,
+      "text": "reliably."
+    },
+    {
+      "start": 100.5510612244898,
+      "end": 103.5000612244898,
+      "text": "Before substantial dispatch and after a batch of work,"
+    },
+    {
+      "start": 103.7790612244898,
+      "end": 107.1460612244898,
+      "text": "inspect any available usage information and identify the"
+    },
+    {
+      "start": 107.20406122448979,
+      "end": 108.3990612244898,
+      "text": "tightest shared allowance."
+    },
+    {
+      "start": 108.84106122448979,
+      "end": 112.6370612244898,
+      "text": "Dave's example policy keeps a 25 percent reserve and stops"
+    },
+    {
+      "start": 112.69506122448979,
+      "end": 115.6210612244898,
+      "text": "discretionary cloud dispatch at 75 percent used."
+    },
+    {
+      "start": 116.13206122448979,
+      "end": 118.7320612244898,
+      "text": "These are configurable personal rules, not limits that"
+    },
+    {
+      "start": 118.7670612244898,
+      "end": 119.97406122448979,
+      "text": "every provider imposes."
+    },
+    {
+      "start": 120.4160612244898,
+      "end": 122.7490612244898,
+      "text": "Mac and Windows may share the same account allowance."
+    },
+    {
+      "start": 123.1900612244898,
+      "end": 126.7200612244898,
+      "text": "If usage is unavailable, report it as unknown, avoid"
+    },
+    {
+      "start": 126.76606122448979,
+      "end": 130.12206122448978,
+      "text": "discretionary cloud dispatch, and continue useful work"
+    },
+    {
+      "start": 130.1680612244898,
+      "end": 132.94306122448978,
+      "text": "with deterministic tools or qualified local capacity."
+    },
+    {
+      "start": 133.38406122448978,
+      "end": 136.0430612244898,
+      "text": "Keep only the minimum authorized cloud work needed for"
+    },
+    {
+      "start": 136.1010612244898,
+      "end": 137.7030612244898,
+      "text": "safe completion and handoff."
+    },
+    {
+      "start": 138.1440612244898,
+      "end": 140.8380612244898,
+      "text": "Do not invent a measurement or claim a hard stop is"
+    },
+    {
+      "start": 140.89606122448978,
+      "end": 142.8580612244898,
+      "text": "enforced when no tool can enforce it."
+    },
+    {
+      "start": 143.23202040816327,
+      "end": 146.7730204081633,
+      "text": "Record the route actually used, available usage, results,"
+    },
+    {
+      "start": 146.8200204081633,
+      "end": 147.89902040816327,
+      "text": "and the next action."
+    },
+    {
+      "start": 148.4100204081633,
+      "end": 151.91702040816327,
+      "text": "Avoid filler delegation, paid polling, and repeating a"
+    },
+    {
+      "start": 151.9750204081633,
+      "end": 154.88902040816328,
+      "text": "check that already passed unless the code changes, a"
+    },
+    {
+      "start": 154.98202040816327,
+      "end": 157.89602040816328,
+      "text": "failure occurs, or a new concern arises."
+    },
+    {
+      "start": 158.27902040816326,
+      "end": 161.14702040816329,
+      "text": "If a worker was interrupted, find out whether it finished"
+    },
+    {
+      "start": 161.19302040816328,
+      "end": 163.08602040816328,
+      "text": "or changed anything before retrying."
+    },
+    {
+      "start": 163.6890204081633,
+      "end": 165.76702040816326,
+      "text": "Never automatically use reset credits."
+    },
+    {
+      "start": 166.15102040816328,
+      "end": 168.71602040816327,
+      "text": "Account settings, host permissions, and the owner's"
+    },
+    {
+      "start": 168.76302040816327,
+      "end": 170.38802040816327,
+      "text": "instructions remain authoritative."
+    },
+    {
+      "start": 170.74208163265305,
+      "end": 173.86508163265307,
+      "text": "Try: \"Implement the tracker validation described in the"
+    },
+    {
+      "start": 173.90008163265307,
+      "end": 174.71308163265306,
+      "text": "approved spec."
+    },
+    {
+      "start": 175.09608163265307,
+      "end": 177.76608163265306,
+      "text": "You own the validation module and its tests."
+    },
+    {
+      "start": 178.20708163265306,
+      "end": 180.21608163265307,
+      "text": "Do not change the shared record contract."
+    },
+    {
+      "start": 180.54108163265306,
+      "end": 181.83008163265305,
+      "text": "Use synthetic data."
+    },
+    {
+      "start": 182.15508163265307,
+      "end": 183.51308163265307,
+      "text": "Run the affected checks."
+    },
+    {
+      "start": 183.83808163265306,
+      "end": 187.89008163265305,
+      "text": "Return changed files, results, open risks, and the next"
+    },
+    {
+      "start": 187.93608163265307,
+      "end": 191.31508163265306,
+      "text": "integration action.\" That worker has a bounded objective"
+    },
+    {
+      "start": 191.36108163265305,
+      "end": 192.68508163265307,
+      "text": "and a concrete output."
+    },
+    {
+      "start": 193.01008163265305,
+      "end": 195.49508163265307,
+      "text": "The conductor still reads the result and integrates it"
+    },
+    {
+      "start": 195.52908163265306,
+      "end": 198.72208163265307,
+      "text": "against the whole project rather than treating parallelism"
+    },
+    {
+      "start": 198.80308163265306,
+      "end": 199.86008163265305,
+      "text": "as automatic proof."
+    },
+    {
+      "start": 200.21132653061224,
+      "end": 203.29932653061223,
+      "text": "Start with the exact project and working directory,"
+    },
+    {
+      "start": 203.62432653061225,
+      "end": 207.02632653061224,
+      "text": "expected base revision, and instructions to preserve"
+    },
+    {
+      "start": 207.11932653061226,
+      "end": 208.34932653061225,
+      "text": "unrelated changes."
+    },
+    {
+      "start": 208.95332653061223,
+      "end": 212.15732653061224,
+      "text": "List the documents in their authority order and summarize"
+    },
+    {
+      "start": 212.18132653061224,
+      "end": 214.08532653061224,
+      "text": "the decisions that are already settled."
+    },
+    {
+      "start": 214.78232653061224,
+      "end": 218.62532653061226,
+      "text": "Describe the approved outcome, exclusions, allowed and"
+    },
+    {
+      "start": 218.67132653061225,
+      "end": 222.61832653061225,
+      "text": "forbidden actions, work sequence, acceptance checks,"
+    },
+    {
+      "start": 223.06032653061226,
+      "end": 224.51132653061225,
+      "text": "evidence, and handoff."
+    },
+    {
+      "start": 225.20732653061225,
+      "end": 228.31932653061224,
+      "text": "If a new session cannot locate a file or reconcile a dirty"
+    },
+    {
+      "start": 228.36532653061224,
+      "end": 232.45232653061225,
+      "text": "workspace, it should report the specific issue rather than"
+    },
+    {
+      "start": 232.51032653061225,
+      "end": 233.97332653061224,
+      "text": "assume it can discard work."
+    },
+    {
+      "start": 234.31212244897958,
+      "end": 237.2031224489796,
+      "text": "Worker one can own the validation module and its tests."
+    },
+    {
+      "start": 237.58612244897958,
+      "end": 239.8041224489796,
+      "text": "Worker two can own the owner-view files."
+    },
+    {
+      "start": 240.1291224489796,
+      "end": 242.8691224489796,
+      "text": "Their shared contract defines the inquiry identifier,"
+    },
+    {
+      "start": 243.0781224489796,
+      "end": 244.5521224489796,
+      "text": "fields, and status values."
+    },
+    {
+      "start": 244.93612244897957,
+      "end": 247.6291224489796,
+      "text": "The conductor owns the shared contract and integration."
+    },
+    {
+      "start": 248.2331224489796,
+      "end": 251.3671224489796,
+      "text": "Each worker gets a compact description, the relevant"
+    },
+    {
+      "start": 251.42612244897958,
+      "end": 255.0481224489796,
+      "text": "sources, an acceptance check, and the instruction to"
+    },
+    {
+      "start": 255.1411224489796,
+      "end": 257.7651224489796,
+      "text": "report changed files and unresolved risk."
+    },
+    {
+      "start": 258.3681224489796,
+      "end": 261.63112244897957,
+      "text": "If a worker needs to change the shared contract, it should"
+    },
+    {
+      "start": 261.68912244897956,
+      "end": 264.9401224489796,
+      "text": "coordinate that boundary rather than silently diverge."
+    },
+    {
+      "start": 265.23010204081635,
+      "end": 267.8421020408163,
+      "text": "A script can count missing files or run a deterministic"
+    },
+    {
+      "start": 267.9001020408163,
+      "end": 269.23510204081634,
+      "text": "check without a language model."
+    },
+    {
+      "start": 269.6761020408163,
+      "end": 272.6951020408163,
+      "text": "A qualified local model may summarize a bounded source or"
+    },
+    {
+      "start": 272.7651020408163,
+      "end": 274.20410204081634,
+      "text": "draft a low-risk passage."
+    },
+    {
+      "start": 274.64610204081634,
+      "end": 277.74510204081633,
+      "text": "A lower-cost cloud worker may implement a well-specified"
+    },
+    {
+      "start": 277.7921020408163,
+      "end": 278.8251020408163,
+      "text": "isolated component."
+    },
+    {
+      "start": 279.26610204081635,
+      "end": 282.0531020408163,
+      "text": "The strongest available conductor can handle conflicting"
+    },
+    {
+      "start": 282.13410204081634,
+      "end": 285.0711020408163,
+      "text": "requirements, security boundaries, and integration"
+    },
+    {
+      "start": 285.1181020408163,
+      "end": 285.5471020408163,
+      "text": "judgment."
+    },
+    {
+      "start": 285.98810204081633,
+      "end": 289.1111020408163,
+      "text": "Test model availability before relying on a route, and"
+    },
+    {
+      "start": 289.1811020408163,
+      "end": 291.6771020408163,
+      "text": "escalate when the work proves harder or riskier than"
+    },
+    {
+      "start": 291.7241020408163,
+      "end": 292.3271020408163,
+      "text": "expected."
+    },
+    {
+      "start": 292.6325510204082,
+      "end": 295.65055102040816,
+      "text": "Suppose a shared allowance is 60 percent used."
+    },
+    {
+      "start": 296.0345510204082,
+      "end": 299.37755102040813,
+      "text": "Under Dave's example, there is still room before the 75"
+    },
+    {
+      "start": 299.47055102040815,
+      "end": 302.74455102040815,
+      "text": "percent discretionary-dispatch cutoff, but the conductor"
+    },
+    {
+      "start": 302.80255102040815,
+      "end": 305.53055102040815,
+      "text": "should plan the next batch with the 25 percent reserve in"
+    },
+    {
+      "start": 305.5775510204082,
+      "end": 305.94955102040814,
+      "text": "mind."
+    },
+    {
+      "start": 306.5535510204082,
+      "end": 308.6665510204082,
+      "text": "Suppose it is 76 percent used."
+    },
+    {
+      "start": 309.04955102040816,
+      "end": 312.47455102040817,
+      "text": "The example policy stops discretionary cloud dispatch and"
+    },
+    {
+      "start": 312.53255102040816,
+      "end": 315.70155102040815,
+      "text": "preserves capacity for essential completion and handoff."
+    },
+    {
+      "start": 316.21255102040817,
+      "end": 318.9645510204082,
+      "text": "It does not assert that every provider has the same window"
+    },
+    {
+      "start": 319.28955102040817,
+      "end": 321.3445510204082,
+      "text": "or that a percentage represents money."
+    },
+    {
+      "start": 321.78555102040815,
+      "end": 324.98955102040816,
+      "text": "If the platform exposes no usage figure, say so."
+    },
+    {
+      "start": 325.2474897959184,
+      "end": 328.6374897959184,
+      "text": "After a batch, collect each worker's result, inspect the"
+    },
+    {
+      "start": 328.6954897959184,
+      "end": 332.15548979591836,
+      "text": "changes and relevant checks, and update the shared state."
+    },
+    {
+      "start": 332.5964897959184,
+      "end": 335.4064897959184,
+      "text": "If a worker disappears, determine whether it left a"
+    },
+    {
+      "start": 335.4764897959184,
+      "end": 338.4714897959184,
+      "text": "commit, modified files, or is still running."
+    },
+    {
+      "start": 338.7964897959184,
+      "end": 341.3974897959184,
+      "text": "An interrupted operation may already have produced an"
+    },
+    {
+      "start": 341.44448979591834,
+      "end": 342.3494897959184,
+      "text": "external effect."
+    },
+    {
+      "start": 342.79048979591835,
+      "end": 345.1594897959184,
+      "text": "Investigate before resending or repeating it."
+    },
+    {
+      "start": 345.54248979591836,
+      "end": 348.2934897959184,
+      "text": "Avoid paying another worker to reproduce work that was"
+    },
+    {
+      "start": 348.3514897959184,
+      "end": 351.5674897959184,
+      "text": "already completed, and do not assume a dispatched task"
+    },
+    {
+      "start": 351.61448979591836,
+      "end": 354.8994897959184,
+      "text": "succeeded merely because no error appeared in the chat."
+    },
+    {
+      "start": 355.157693877551,
+      "end": 358.965693877551,
+      "text": "Ask workers to return the task outcome, changed files,"
+    },
+    {
+      "start": 359.093693877551,
+      "end": 363.714693877551,
+      "text": "commands and results, evidence location, open risks, and"
+    },
+    {
+      "start": 363.760693877551,
+      "end": 365.200693877551,
+      "text": "the next integration action."
+    },
+    {
+      "start": 365.804693877551,
+      "end": 369.379693877551,
+      "text": "This makes their output easy to compare and reduces long"
+    },
+    {
+      "start": 369.437693877551,
+      "end": 370.86669387755103,
+      "text": "conversational handoffs."
+    },
+    {
+      "start": 371.307693877551,
+      "end": 373.907693877551,
+      "text": "It does not replace the conductor's responsibility to"
+    },
+    {
+      "start": 373.977693877551,
+      "end": 377.076693877551,
+      "text": "inspect meaningful changes and verify the integration."
+    },
+    {
+      "start": 377.587693877551,
+      "end": 380.850693877551,
+      "text": "The goal of token efficiency is to spend attention where"
+    },
+    {
+      "start": 380.873693877551,
+      "end": 383.857693877551,
+      "text": "it changes the outcome while keeping enough capacity to"
+    },
+    {
+      "start": 383.915693877551,
+      "end": 384.994693877551,
+      "text": "finish responsibly."
+    },
+    {
+      "start": 385.3411224489796,
+      "end": 388.3711224489796,
+      "text": "If the requested premium model is not available, the"
+    },
+    {
+      "start": 388.42912244897957,
+      "end": 391.8541224489796,
+      "text": "conductor must report the actual model and evaluate"
+    },
+    {
+      "start": 391.8771224489796,
+      "end": 394.2811224489796,
+      "text": "whether it is capable of the required judgment."
+    },
+    {
+      "start": 394.7221224489796,
+      "end": 397.7521224489796,
+      "text": "It can use available tools for independent work and ask"
+    },
+    {
+      "start": 397.7981224489796,
+      "end": 400.5271224489796,
+      "text": "for help where a genuine capability or authority gap"
+    },
+    {
+      "start": 400.5971224489796,
+      "end": 401.17712244897956,
+      "text": "remains."
+    },
+    {
+      "start": 401.5601224489796,
+      "end": 404.50912244897955,
+      "text": "It should not claim that a model was used simply because a"
+    },
+    {
+      "start": 404.5671224489796,
+      "end": 405.62412244897956,
+      "text": "prompt requested it."
+    },
+    {
+      "start": 406.2281224489796,
+      "end": 409.3851224489796,
+      "text": "The same applies to usage monitoring: an instruction to"
+    },
+    {
+      "start": 409.4431224489796,
+      "end": 412.6831224489796,
+      "text": "check a quota is not proof that the host exposes a quota."
+    },
+    {
+      "start": 413.19412244897956,
+      "end": 415.4691224489796,
+      "text": "Honest reporting is part of the routing contract."
+    }
+  ]
+}

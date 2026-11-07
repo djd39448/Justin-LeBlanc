@@ -1,0 +1,459 @@
+{
+  "lesson": "05",
+  "scenes": [
+    {
+      "kind": "document",
+      "tone": "paper",
+      "intro": "Open the document that answers the question you actually have.",
+      "items": [
+        {
+          "label": "README.md",
+          "detail": "What is this project? Where do I start?",
+          "anchor": "A README is the front door"
+        },
+        {
+          "label": "AGENTS.md",
+          "detail": "Applicable working rules for the session",
+          "anchor": "Session instructions, often named AGENTS.md"
+        },
+        {
+          "label": "DECISIONS.md",
+          "detail": "Important choices and why they were made",
+          "anchor": "A decision ledger says"
+        },
+        {
+          "label": "ARCHITECTURE.md",
+          "detail": "How the parts fit together",
+          "anchor": "An architecture document explains"
+        },
+        {
+          "label": "WORKFLOWS.md",
+          "detail": "Behavior over time, including failure",
+          "anchor": "A workflow document explains"
+        }
+      ],
+      "conclusion": {
+        "text": "Different jobs should not create contradictory descriptions.",
+        "anchor": "These documents serve different readers"
+      },
+      "id": "01",
+      "title": "One file, one job"
+    },
+    {
+      "kind": "document",
+      "tone": "ink",
+      "intro": "Three related documents answer three different design questions.",
+      "items": [
+        {
+          "label": "ARCHITECTURE",
+          "detail": "Responsibility and structure",
+          "anchor": "The architecture shows responsibility and structure"
+        },
+        {
+          "label": "BUILD SPECIFICATION",
+          "detail": "Required behavior, validation and acceptance",
+          "anchor": "The build specification states exactly"
+        },
+        {
+          "label": "BUILD PLAN",
+          "detail": "Dependencies, ownership and completion checks",
+          "anchor": "The build plan arranges work"
+        },
+        {
+          "label": "Tracker example",
+          "detail": "A service validates and stores an inquiry.",
+          "anchor": "For our tracker, the architecture says"
+        },
+        {
+          "label": "Make it actionable",
+          "detail": "Define errors, then order implementation and verification.",
+          "anchor": "The spec defines the required fields"
+        }
+      ],
+      "conclusion": {
+        "text": "The plan tells the agent which part to implement and verify first.",
+        "anchor": "The plan says which part"
+      },
+      "id": "02",
+      "title": "Three design documents"
+    },
+    {
+      "kind": "document",
+      "tone": "paper",
+      "intro": "Execution documents let another person resume and assess the work.",
+      "items": [
+        {
+          "label": "PROGRESS",
+          "detail": "Recent work, current activity and next steps",
+          "anchor": "A progress log tells us"
+        },
+        {
+          "label": "CHANGELOG",
+          "detail": "Meaningful changes over time",
+          "anchor": "A changelog records meaningful changes"
+        },
+        {
+          "label": "EVIDENCE",
+          "detail": "The checked revision and actual result",
+          "anchor": "An evidence record captures"
+        },
+        {
+          "label": "RUNBOOK",
+          "detail": "Operate, inspect and recover the system",
+          "anchor": "A runbook explains how"
+        },
+        {
+          "label": "HANDOFF",
+          "detail": "Current state, gaps, blockers and next safe action",
+          "anchor": "A handoff is a concise restart point"
+        }
+      ],
+      "conclusion": {
+        "text": "A log needs appropriate evidence behind its claims.",
+        "anchor": "A log is not proof by itself"
+      },
+      "id": "03",
+      "title": "Execution memory"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "intro": "Authority comes from the instruction and its scope, not its confident wording.",
+      "items": [
+        {
+          "label": "Approved narrow change",
+          "detail": "Supersedes an older rule where they conflict",
+          "anchor": "A more recent, explicitly approved narrow specification"
+        },
+        {
+          "label": "Older requirements",
+          "detail": "Unchanged requirements may still apply.",
+          "anchor": "other older requirements may still apply"
+        },
+        {
+          "label": "Progress claim",
+          "detail": "“Done” does not establish verified behavior.",
+          "anchor": "A progress report can describe"
+        },
+        {
+          "label": "Kickoff authority",
+          "detail": "Permission is limited to its stated scope.",
+          "anchor": "A kickoff can authorize an agent"
+        }
+      ],
+      "conclusion": {
+        "text": "Name the actual source and precise conflict.",
+        "anchor": "When instructions conflict, ask the agent"
+      },
+      "id": "04",
+      "title": "Document authority"
+    },
+    {
+      "kind": "sequence",
+      "tone": "teal",
+      "intro": "The smallest clear structure is better than a maze of unnecessary files.",
+      "items": [
+        {
+          "label": "Find the essentials",
+          "detail": "Decisions, scope, tests, operations and current state",
+          "anchor": "an agent can find the decisions"
+        },
+        {
+          "label": "Small project",
+          "detail": "Combine related sections when useful.",
+          "anchor": "A small project might combine sections"
+        },
+        {
+          "label": "Growing project",
+          "detail": "Separate content when readers need it.",
+          "anchor": "a larger one may separate them"
+        },
+        {
+          "label": "Check the source",
+          "detail": "A filename does not prove currency or authority.",
+          "anchor": "a filename does not guarantee"
+        }
+      ],
+      "conclusion": {
+        "text": "Read the content and date.",
+        "anchor": "Read its content and date"
+      },
+      "id": "05",
+      "title": "Avoid a paper maze"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "Trace one changed truth through the documents that depend on it.",
+      "items": [
+        {
+          "label": "Decision + spec",
+          "detail": "Change the status rule from three choices to two.",
+          "anchor": "Update the relevant decision and spec"
+        },
+        {
+          "label": "Implementation",
+          "detail": "Make the authorized behavior change.",
+          "anchor": "implement the change when authorized"
+        },
+        {
+          "label": "Changelog",
+          "detail": "Record the meaningful change.",
+          "anchor": "record what changed in the changelog"
+        },
+        {
+          "label": "Evidence",
+          "detail": "Record the actual test result.",
+          "anchor": "record test results in evidence"
+        },
+        {
+          "label": "Progress + handoff",
+          "detail": "Refresh current state and the next step.",
+          "anchor": "refresh progress and handoff"
+        }
+      ],
+      "conclusion": {
+        "text": "Leave architecture alone if responsibilities did not change.",
+        "anchor": "The architecture may not need to change"
+      },
+      "id": "06",
+      "title": "Trace a change"
+    },
+    {
+      "kind": "document",
+      "tone": "paper",
+      "intro": "A small project can keep the full workflow in a compact set of documents.",
+      "items": [
+        {
+          "label": "Front door + decisions",
+          "detail": "Start with the project purpose and its choices.",
+          "anchor": "a README, a decisions section"
+        },
+        {
+          "label": "Design + delivery",
+          "detail": "A combined design/spec, a plan and a handoff",
+          "anchor": "a combined architecture and specification"
+        },
+        {
+          "label": "Grow when useful",
+          "detail": "Separate content for different detail or authority.",
+          "anchor": "As the project grows"
+        },
+        {
+          "label": "New contributor check",
+          "detail": "Can someone find behavior, rationale and verification?",
+          "anchor": "Ask whether a new contributor can find"
+        }
+      ],
+      "conclusion": {
+        "text": "The structure works when those answers are easy to find.",
+        "anchor": "If those answers are clear"
+      },
+      "id": "07",
+      "title": "The smallest useful set"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "intro": "Apply supersession to the actual conflict, not to the entire history.",
+      "items": [
+        {
+          "label": "Older specification",
+          "detail": "Owner can select three inquiry statuses.",
+          "anchor": "an older build spec says"
+        },
+        {
+          "label": "Approved narrow change",
+          "detail": "Use only New and Handled.",
+          "anchor": "A later approved narrow spec says"
+        },
+        {
+          "label": "Rule that survives",
+          "detail": "An unrelated privacy requirement still applies.",
+          "anchor": "An older privacy rule that does not conflict"
+        },
+        {
+          "label": "Explain the difference",
+          "detail": "Point to both sources and the changed clause.",
+          "anchor": "A helpful agent points to both documents"
+        }
+      ],
+      "conclusion": {
+        "text": "A newer document does not erase every older requirement.",
+        "anchor": "It does not discard every older requirement"
+      },
+      "id": "08",
+      "title": "Which rule controls?"
+    },
+    {
+      "kind": "document",
+      "tone": "ink",
+      "intro": "Current state, historical change and proof answer different questions.",
+      "items": [
+        {
+          "label": "PROGRESS",
+          "detail": "Validation underway; failure-path test remains.",
+          "anchor": "A progress log may say"
+        },
+        {
+          "label": "CHANGELOG",
+          "detail": "Added validation and missing-field errors.",
+          "anchor": "A changelog may later say"
+        },
+        {
+          "label": "EVIDENCE",
+          "detail": "Actual check, revision and result",
+          "anchor": "Evidence records the actual check"
+        },
+        {
+          "label": "Deployment status",
+          "detail": "Do not claim a live result before it occurs.",
+          "anchor": "They should not claim a deployment"
+        }
+      ],
+      "conclusion": {
+        "text": "A reviewer can find today’s blocker without rereading every change.",
+        "anchor": "Keeping these roles distinct"
+      },
+      "id": "09",
+      "title": "State vs. history"
+    },
+    {
+      "kind": "document",
+      "tone": "paper",
+      "intro": "Make the next safe action easier to find than the story of the session.",
+      "items": [
+        {
+          "label": "Revision + state",
+          "detail": "Where is the work, and what state is it in?",
+          "anchor": "the branch or revision"
+        },
+        {
+          "label": "Checks + gaps",
+          "detail": "What was tested, and what remains unverified?",
+          "anchor": "tests run, unverified areas"
+        },
+        {
+          "label": "Uncertain effect",
+          "detail": "A dispatched provider request may need reconciliation.",
+          "anchor": "Mention any uncertain external effect"
+        },
+        {
+          "label": "Resume safely",
+          "detail": "Resolve an uncertain request before retrying it.",
+          "anchor": "If the previous session ended"
+        }
+      ],
+      "conclusion": {
+        "text": "A handoff gives the next reader a practical starting point.",
+        "anchor": "A handoff is a practical starting point"
+      },
+      "id": "10",
+      "title": "A restartable handoff"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "intro": "Follow one requirement from approval to implementation and proof.",
+      "items": [
+        {
+          "label": "Decision + specification",
+          "detail": "Record the new required contact method.",
+          "anchor": "First record the decision"
+        },
+        {
+          "label": "Plan + implementation",
+          "detail": "Adapt the plan within granted scope.",
+          "anchor": "Then adapt the plan and implement"
+        },
+        {
+          "label": "Acceptance checks",
+          "detail": "Test accepted and rejected inputs.",
+          "anchor": "Add or update tests"
+        },
+        {
+          "label": "Evidence + history",
+          "detail": "Record checks, revision, progress and behavior change.",
+          "anchor": "Record the check and revision"
+        },
+        {
+          "label": "Architecture, if affected",
+          "detail": "Update changed data flow or responsibilities.",
+          "anchor": "If the change affects data flow"
+        }
+      ],
+      "conclusion": {
+        "text": "Leave unrelated sections alone.",
+        "anchor": "If it does not"
+      },
+      "id": "11",
+      "title": "Follow a requirement"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "intro": "Resolve contradictory claims with evidence, not confident wording.",
+      "items": [
+        {
+          "label": "README claim",
+          "detail": "The feature is live.",
+          "anchor": "If the README says a feature is live"
+        },
+        {
+          "label": "HANDOFF claim",
+          "detail": "Deployment is pending.",
+          "anchor": "the handoff says deployment is pending"
+        },
+        {
+          "label": "Inspect",
+          "detail": "Check dated evidence and current authorized state.",
+          "anchor": "Inspect dated evidence and current state"
+        },
+        {
+          "label": "Unresolved status",
+          "detail": "If evidence is insufficient, call it unknown.",
+          "anchor": "If the evidence is insufficient"
+        }
+      ],
+      "conclusion": {
+        "text": "A document cannot replace the observation it claims to describe.",
+        "anchor": "Documents are useful because"
+      },
+      "id": "12",
+      "title": "Conflicting documents"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "intro": "Test the document structure with someone who was not in the conversation.",
+      "items": [
+        {
+          "label": "Give only the documents",
+          "detail": "Can a partner navigate without your explanation?",
+          "anchor": "Give a partner only your document map"
+        },
+        {
+          "label": "Ask them to find",
+          "detail": "Goal, approved decision, failed check, next safe action",
+          "anchor": "Ask where they would find"
+        },
+        {
+          "label": "Repair the map",
+          "detail": "Find missing, hidden or inconsistent information.",
+          "anchor": "If they cannot answer"
+        },
+        {
+          "label": "Try again",
+          "detail": "A fresh agent review is not human learner testing.",
+          "anchor": "In a real project, a fresh agent"
+        }
+      ],
+      "conclusion": {
+        "text": "A newcomer should be able to navigate without your oral explanation.",
+        "anchor": "The goal is that a newcomer"
+      },
+      "id": "13",
+      "title": "The handoff test"
+    }
+  ]
+}

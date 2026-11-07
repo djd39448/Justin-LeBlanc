@@ -1,0 +1,6685 @@
+{
+  "version": 2,
+  "lesson": "05",
+  "voice": "ElevenLabs Brian (unchanged retained recordings)",
+  "sampleRate": 44100,
+  "channels": 1,
+  "duration": 396.0424489795918,
+  "samples": 17465472,
+  "decodedPcmSha256": "ce064c111eb33a5c03e4125121d15b9e73bbb319262312df643a017cb1b6cf26",
+  "narrationM4aSha256": "b02e306ec8216f67d3fcfc6e476804a1ed5f29c61906744cc0c6ebbf69f18254",
+  "segments": [
+    {
+      "id": "01",
+      "source": "productions/05/audio/01.mp3",
+      "sha256": "6d9011ebedfef0be350d324ba9d435116d5ee94318921b1e05d6f9ebf08b39e7",
+      "sourceTextSha256": "67c8e41751f9ec1cd82ef1b78aa59d15caefd534b01479bfca3d850af819caff",
+      "start": 0,
+      "end": 31.24244897959184,
+      "duration": 31.24244897959184,
+      "samples": 1377792,
+      "words": [
+        {
+          "text": "Documentation",
+          "start": 0.07,
+          "end": 0.917
+        },
+        {
+          "text": "works",
+          "start": 0.952,
+          "end": 1.161
+        },
+        {
+          "text": "best",
+          "start": 1.219,
+          "end": 1.451
+        },
+        {
+          "text": "when",
+          "start": 1.486,
+          "end": 1.625
+        },
+        {
+          "text": "each",
+          "start": 1.66,
+          "end": 1.823
+        },
+        {
+          "text": "document",
+          "start": 1.869,
+          "end": 2.345
+        },
+        {
+          "text": "answers",
+          "start": 2.392,
+          "end": 2.705
+        },
+        {
+          "text": "a",
+          "start": 2.752,
+          "end": 2.775
+        },
+        {
+          "text": "clear",
+          "start": 2.833,
+          "end": 3.03
+        },
+        {
+          "text": "question.",
+          "start": 3.088,
+          "end": 3.669
+        },
+        {
+          "text": "A",
+          "start": 4.365,
+          "end": 4.447
+        },
+        {
+          "text": "README",
+          "start": 4.54,
+          "end": 4.853
+        },
+        {
+          "text": "is",
+          "start": 4.888,
+          "end": 4.969
+        },
+        {
+          "text": "the",
+          "start": 5.016,
+          "end": 5.085
+        },
+        {
+          "text": "front",
+          "start": 5.132,
+          "end": 5.352
+        },
+        {
+          "text": "door:",
+          "start": 5.399,
+          "end": 5.863
+        },
+        {
+          "text": "what",
+          "start": 6.304,
+          "end": 6.525
+        },
+        {
+          "text": "is",
+          "start": 6.606,
+          "end": 6.769
+        },
+        {
+          "text": "this",
+          "start": 6.838,
+          "end": 6.978
+        },
+        {
+          "text": "project",
+          "start": 7.047,
+          "end": 7.512
+        },
+        {
+          "text": "and",
+          "start": 7.546,
+          "end": 7.616
+        },
+        {
+          "text": "where",
+          "start": 7.651,
+          "end": 7.79
+        },
+        {
+          "text": "do",
+          "start": 7.814,
+          "end": 7.872
+        },
+        {
+          "text": "I",
+          "start": 7.953,
+          "end": 7.976
+        },
+        {
+          "text": "start?",
+          "start": 8.046,
+          "end": 8.522
+        },
+        {
+          "text": "Session",
+          "start": 9.218,
+          "end": 9.625
+        },
+        {
+          "text": "instructions,",
+          "start": 9.683,
+          "end": 10.437
+        },
+        {
+          "text": "often",
+          "start": 10.53,
+          "end": 10.844
+        },
+        {
+          "text": "named",
+          "start": 10.902,
+          "end": 11.122
+        },
+        {
+          "text": "AGENTS.md,",
+          "start": 11.204,
+          "end": 12.388
+        },
+        {
+          "text": "explain",
+          "start": 12.992,
+          "end": 13.444
+        },
+        {
+          "text": "applicable",
+          "start": 13.526,
+          "end": 14.048
+        },
+        {
+          "text": "working",
+          "start": 14.094,
+          "end": 14.396
+        },
+        {
+          "text": "rules.",
+          "start": 14.454,
+          "end": 14.93
+        },
+        {
+          "text": "A",
+          "start": 15.627,
+          "end": 15.708
+        },
+        {
+          "text": "decision",
+          "start": 15.801,
+          "end": 16.266000000000002
+        },
+        {
+          "text": "ledger",
+          "start": 16.347,
+          "end": 16.66
+        },
+        {
+          "text": "says",
+          "start": 16.73,
+          "end": 16.974
+        },
+        {
+          "text": "which",
+          "start": 17.09,
+          "end": 17.299
+        },
+        {
+          "text": "important",
+          "start": 17.345,
+          "end": 17.798000000000002
+        },
+        {
+          "text": "choices",
+          "start": 17.833000000000002,
+          "end": 18.158
+        },
+        {
+          "text": "were",
+          "start": 18.193,
+          "end": 18.332
+        },
+        {
+          "text": "made",
+          "start": 18.367,
+          "end": 18.529
+        },
+        {
+          "text": "and",
+          "start": 18.553,
+          "end": 18.622
+        },
+        {
+          "text": "why.",
+          "start": 18.669,
+          "end": 19.145
+        },
+        {
+          "text": "An",
+          "start": 19.586000000000002,
+          "end": 19.737000000000002
+        },
+        {
+          "text": "architecture",
+          "start": 19.783,
+          "end": 20.306
+        },
+        {
+          "text": "document",
+          "start": 20.341,
+          "end": 20.735
+        },
+        {
+          "text": "explains",
+          "start": 20.77,
+          "end": 21.142
+        },
+        {
+          "text": "how",
+          "start": 21.188000000000002,
+          "end": 21.281
+        },
+        {
+          "text": "parts",
+          "start": 21.351,
+          "end": 21.595
+        },
+        {
+          "text": "fit",
+          "start": 21.629,
+          "end": 21.769000000000002
+        },
+        {
+          "text": "together.",
+          "start": 21.804000000000002,
+          "end": 22.326
+        },
+        {
+          "text": "A",
+          "start": 22.651,
+          "end": 22.767
+        },
+        {
+          "text": "workflow",
+          "start": 22.837,
+          "end": 23.243000000000002
+        },
+        {
+          "text": "document",
+          "start": 23.313000000000002,
+          "end": 23.754
+        },
+        {
+          "text": "explains",
+          "start": 23.8,
+          "end": 24.172
+        },
+        {
+          "text": "behavior",
+          "start": 24.23,
+          "end": 24.694000000000003
+        },
+        {
+          "text": "over",
+          "start": 24.764000000000003,
+          "end": 24.938000000000002
+        },
+        {
+          "text": "time,",
+          "start": 24.996000000000002,
+          "end": 25.448999999999998
+        },
+        {
+          "text": "including",
+          "start": 25.519,
+          "end": 25.925
+        },
+        {
+          "text": "failure.",
+          "start": 25.971,
+          "end": 26.447000000000003
+        },
+        {
+          "text": "These",
+          "start": 26.958,
+          "end": 27.179000000000002
+        },
+        {
+          "text": "documents",
+          "start": 27.214,
+          "end": 27.69
+        },
+        {
+          "text": "serve",
+          "start": 27.725,
+          "end": 27.957
+        },
+        {
+          "text": "different",
+          "start": 27.992,
+          "end": 28.282
+        },
+        {
+          "text": "readers",
+          "start": 28.328000000000003,
+          "end": 28.723
+        },
+        {
+          "text": "and",
+          "start": 28.769,
+          "end": 28.932000000000002
+        },
+        {
+          "text": "should",
+          "start": 28.990000000000002,
+          "end": 29.187
+        },
+        {
+          "text": "not",
+          "start": 29.257,
+          "end": 29.431
+        },
+        {
+          "text": "silently",
+          "start": 29.489,
+          "end": 29.907
+        },
+        {
+          "text": "contradict",
+          "start": 29.965,
+          "end": 30.418
+        },
+        {
+          "text": "one",
+          "start": 30.476,
+          "end": 30.592
+        },
+        {
+          "text": "another.",
+          "start": 30.627000000000002,
+          "end": 31.033
+        }
+      ],
+      "spoken": "Documentation works best when each document answers a clear question. A README is the front door: what is this project and where do I start? Session instructions, often named AGENTS.md, explain applicable working rules. A decision ledger says which important choices were made and why. An architecture document explains how parts fit together. A workflow document explains behavior over time, including failure. These documents serve different readers and should not silently contradict one another.",
+      "captions": [
+        {
+          "start": 0.07,
+          "end": 2.775,
+          "text": "Documentation works best when each document answers a"
+        },
+        {
+          "start": 2.833,
+          "end": 3.669,
+          "text": "clear question."
+        },
+        {
+          "start": 4.365,
+          "end": 7.79,
+          "text": "A README is the front door: what is this project and where"
+        },
+        {
+          "start": 7.814,
+          "end": 8.522,
+          "text": "do I start?"
+        },
+        {
+          "start": 9.218,
+          "end": 13.444,
+          "text": "Session instructions, often named AGENTS.md, explain"
+        },
+        {
+          "start": 13.526,
+          "end": 14.93,
+          "text": "applicable working rules."
+        },
+        {
+          "start": 15.627,
+          "end": 18.529,
+          "text": "A decision ledger says which important choices were made"
+        },
+        {
+          "start": 18.553,
+          "end": 19.145,
+          "text": "and why."
+        },
+        {
+          "start": 19.586,
+          "end": 22.326,
+          "text": "An architecture document explains how parts fit together."
+        },
+        {
+          "start": 22.651,
+          "end": 25.925,
+          "text": "A workflow document explains behavior over time, including"
+        },
+        {
+          "start": 25.971,
+          "end": 26.447,
+          "text": "failure."
+        },
+        {
+          "start": 26.958,
+          "end": 29.431,
+          "text": "These documents serve different readers and should not"
+        },
+        {
+          "start": 29.489,
+          "end": 31.033,
+          "text": "silently contradict one another."
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source": "productions/05/audio/02.mp3",
+      "sha256": "f88c3da5c7fa62cc1562f7842f5ebcf7965fa8a3c9fee9f3d78cf99d7763fc00",
+      "sourceTextSha256": "0d41b9b848447cae91dab56a42e4736abeae4a2b2cb440bf5a89a88ad6b02277",
+      "start": 31.24244897959184,
+      "end": 62.537142857142854,
+      "duration": 31.29469387755102,
+      "samples": 1380096,
+      "words": [
+        {
+          "text": "The",
+          "start": 0.058,
+          "end": 0.163
+        },
+        {
+          "text": "architecture",
+          "start": 0.221,
+          "end": 0.836
+        },
+        {
+          "text": "shows",
+          "start": 0.859,
+          "end": 1.091
+        },
+        {
+          "text": "responsibility",
+          "start": 1.161,
+          "end": 2.009
+        },
+        {
+          "text": "and",
+          "start": 2.055,
+          "end": 2.125
+        },
+        {
+          "text": "structure.",
+          "start": 2.159,
+          "end": 2.752
+        },
+        {
+          "text": "The",
+          "start": 3.193,
+          "end": 3.309
+        },
+        {
+          "text": "build",
+          "start": 3.367,
+          "end": 3.553
+        },
+        {
+          "text": "specification",
+          "start": 3.599,
+          "end": 4.423
+        },
+        {
+          "text": "states",
+          "start": 4.493,
+          "end": 4.772
+        },
+        {
+          "text": "exactly",
+          "start": 4.83,
+          "end": 5.399
+        },
+        {
+          "text": "what",
+          "start": 5.445,
+          "end": 5.573
+        },
+        {
+          "text": "behavior",
+          "start": 5.619,
+          "end": 6.014
+        },
+        {
+          "text": "must",
+          "start": 6.06,
+          "end": 6.211
+        },
+        {
+          "text": "be",
+          "start": 6.258,
+          "end": 6.339
+        },
+        {
+          "text": "delivered,",
+          "start": 6.385,
+          "end": 6.896
+        },
+        {
+          "text": "including",
+          "start": 7.221,
+          "end": 7.686
+        },
+        {
+          "text": "validation,",
+          "start": 7.744,
+          "end": 8.626
+        },
+        {
+          "text": "boundaries,",
+          "start": 8.951,
+          "end": 9.474
+        },
+        {
+          "text": "and",
+          "start": 9.497,
+          "end": 9.578
+        },
+        {
+          "text": "acceptance",
+          "start": 9.613,
+          "end": 10.077
+        },
+        {
+          "text": "criteria.",
+          "start": 10.101,
+          "end": 10.786
+        },
+        {
+          "text": "The",
+          "start": 11.389,
+          "end": 11.517
+        },
+        {
+          "text": "build",
+          "start": 11.564,
+          "end": 11.773
+        },
+        {
+          "text": "plan",
+          "start": 11.819,
+          "end": 12.051
+        },
+        {
+          "text": "arranges",
+          "start": 12.098,
+          "end": 12.516
+        },
+        {
+          "text": "work",
+          "start": 12.574,
+          "end": 12.771
+        },
+        {
+          "text": "into",
+          "start": 12.829,
+          "end": 12.98
+        },
+        {
+          "text": "an",
+          "start": 13.05,
+          "end": 13.108
+        },
+        {
+          "text": "order:",
+          "start": 13.154,
+          "end": 13.56
+        },
+        {
+          "text": "what",
+          "start": 13.885,
+          "end": 14.071
+        },
+        {
+          "text": "depends",
+          "start": 14.117,
+          "end": 14.558
+        },
+        {
+          "text": "on",
+          "start": 14.617,
+          "end": 14.767000000000001
+        },
+        {
+          "text": "what,",
+          "start": 14.849,
+          "end": 15.348
+        },
+        {
+          "text": "who",
+          "start": 15.522,
+          "end": 15.708
+        },
+        {
+          "text": "owns",
+          "start": 15.789000000000001,
+          "end": 15.998000000000001
+        },
+        {
+          "text": "each",
+          "start": 16.045,
+          "end": 16.195
+        },
+        {
+          "text": "part,",
+          "start": 16.254,
+          "end": 16.718
+        },
+        {
+          "text": "and",
+          "start": 17.101,
+          "end": 17.264
+        },
+        {
+          "text": "how",
+          "start": 17.322,
+          "end": 17.438000000000002
+        },
+        {
+          "text": "completion",
+          "start": 17.507,
+          "end": 17.995
+        },
+        {
+          "text": "will",
+          "start": 18.03,
+          "end": 18.158
+        },
+        {
+          "text": "be",
+          "start": 18.204,
+          "end": 18.262
+        },
+        {
+          "text": "checked.",
+          "start": 18.297,
+          "end": 18.761
+        },
+        {
+          "text": "For",
+          "start": 19.365000000000002,
+          "end": 19.516000000000002
+        },
+        {
+          "text": "our",
+          "start": 19.574,
+          "end": 19.69
+        },
+        {
+          "text": "tracker,",
+          "start": 19.748,
+          "end": 20.166
+        },
+        {
+          "text": "the",
+          "start": 20.189,
+          "end": 20.259
+        },
+        {
+          "text": "architecture",
+          "start": 20.329,
+          "end": 20.909
+        },
+        {
+          "text": "says",
+          "start": 20.944000000000003,
+          "end": 21.130000000000003
+        },
+        {
+          "text": "a",
+          "start": 21.188000000000002,
+          "end": 21.223
+        },
+        {
+          "text": "service",
+          "start": 21.304000000000002,
+          "end": 21.652
+        },
+        {
+          "text": "validates",
+          "start": 21.698999999999998,
+          "end": 22.221
+        },
+        {
+          "text": "and",
+          "start": 22.267000000000003,
+          "end": 22.349
+        },
+        {
+          "text": "stores",
+          "start": 22.384,
+          "end": 22.662
+        },
+        {
+          "text": "an",
+          "start": 22.697000000000003,
+          "end": 22.755000000000003
+        },
+        {
+          "text": "inquiry.",
+          "start": 22.802,
+          "end": 23.336
+        },
+        {
+          "text": "The",
+          "start": 23.719,
+          "end": 23.846
+        },
+        {
+          "text": "spec",
+          "start": 23.904,
+          "end": 24.195
+        },
+        {
+          "text": "defines",
+          "start": 24.264000000000003,
+          "end": 24.729
+        },
+        {
+          "text": "the",
+          "start": 24.764000000000003,
+          "end": 24.833
+        },
+        {
+          "text": "required",
+          "start": 24.891,
+          "end": 25.367
+        },
+        {
+          "text": "fields",
+          "start": 25.425,
+          "end": 25.82
+        },
+        {
+          "text": "and",
+          "start": 25.867,
+          "end": 25.948
+        },
+        {
+          "text": "what",
+          "start": 25.994,
+          "end": 26.134
+        },
+        {
+          "text": "the",
+          "start": 26.168,
+          "end": 26.238
+        },
+        {
+          "text": "user",
+          "start": 26.308,
+          "end": 26.563000000000002
+        },
+        {
+          "text": "sees",
+          "start": 26.633000000000003,
+          "end": 26.83
+        },
+        {
+          "text": "on",
+          "start": 26.887999999999998,
+          "end": 26.981
+        },
+        {
+          "text": "error.",
+          "start": 27.039,
+          "end": 27.422
+        },
+        {
+          "text": "The",
+          "start": 27.805,
+          "end": 27.922
+        },
+        {
+          "text": "plan",
+          "start": 27.98,
+          "end": 28.235
+        },
+        {
+          "text": "says",
+          "start": 28.316000000000003,
+          "end": 28.537
+        },
+        {
+          "text": "which",
+          "start": 28.653,
+          "end": 28.884999999999998
+        },
+        {
+          "text": "part",
+          "start": 28.942999999999998,
+          "end": 29.152
+        },
+        {
+          "text": "to",
+          "start": 29.187,
+          "end": 29.245
+        },
+        {
+          "text": "implement",
+          "start": 29.326,
+          "end": 29.826
+        },
+        {
+          "text": "and",
+          "start": 29.895000000000003,
+          "end": 30.069000000000003
+        },
+        {
+          "text": "verify",
+          "start": 30.104,
+          "end": 30.476
+        },
+        {
+          "text": "first.",
+          "start": 30.545,
+          "end": 31.033
+        }
+      ],
+      "spoken": "The architecture shows responsibility and structure. The build specification states exactly what behavior must be delivered, including validation, boundaries, and acceptance criteria. The build plan arranges work into an order: what depends on what, who owns each part, and how completion will be checked. For our tracker, the architecture says a service validates and stores an inquiry. The spec defines the required fields and what the user sees on error. The plan says which part to implement and verify first.",
+      "captions": [
+        {
+          "start": 31.300448979591838,
+          "end": 33.99444897959184,
+          "text": "The architecture shows responsibility and structure."
+        },
+        {
+          "start": 34.43544897959184,
+          "end": 37.45344897959184,
+          "text": "The build specification states exactly what behavior must"
+        },
+        {
+          "start": 37.50044897959184,
+          "end": 40.82044897959184,
+          "text": "be delivered, including validation, boundaries, and"
+        },
+        {
+          "start": 40.85544897959184,
+          "end": 42.028448979591836,
+          "text": "acceptance criteria."
+        },
+        {
+          "start": 42.63144897959184,
+          "end": 45.800448979591835,
+          "text": "The build plan arranges work into an order: what depends"
+        },
+        {
+          "start": 45.85944897959184,
+          "end": 49.50444897959184,
+          "text": "on what, who owns each part, and how completion will be"
+        },
+        {
+          "start": 49.53944897959184,
+          "end": 50.00344897959184,
+          "text": "checked."
+        },
+        {
+          "start": 50.60744897959184,
+          "end": 53.46344897959184,
+          "text": "For our tracker, the architecture says a service validates"
+        },
+        {
+          "start": 53.50944897959184,
+          "end": 54.57844897959184,
+          "text": "and stores an inquiry."
+        },
+        {
+          "start": 54.961448979591836,
+          "end": 57.80544897959184,
+          "text": "The spec defines the required fields and what the user"
+        },
+        {
+          "start": 57.87544897959184,
+          "end": 58.66444897959184,
+          "text": "sees on error."
+        },
+        {
+          "start": 59.047448979591834,
+          "end": 62.27544897959184,
+          "text": "The plan says which part to implement and verify first."
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source": "productions/05/audio/03.mp3",
+      "sha256": "77696f78c0535281a2b97113e85efa174895915def099aaa8fca24f5d2e0789e",
+      "sourceTextSha256": "f5ad60645fcd89220067bd994f37b4b734c2a76cec8228b969c7e014d7f74fbe",
+      "start": 62.537142857142854,
+      "end": 95.55591836734693,
+      "duration": 33.01877551020408,
+      "samples": 1456128,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.104
+        },
+        {
+          "text": "progress",
+          "start": 0.221,
+          "end": 0.685
+        },
+        {
+          "text": "log",
+          "start": 0.766,
+          "end": 1.068
+        },
+        {
+          "text": "tells",
+          "start": 1.126,
+          "end": 1.416
+        },
+        {
+          "text": "us",
+          "start": 1.463,
+          "end": 1.544
+        },
+        {
+          "text": "what",
+          "start": 1.591,
+          "end": 1.718
+        },
+        {
+          "text": "happened",
+          "start": 1.776,
+          "end": 2.078
+        },
+        {
+          "text": "recently,",
+          "start": 2.113,
+          "end": 2.717
+        },
+        {
+          "text": "what",
+          "start": 3.042,
+          "end": 3.216
+        },
+        {
+          "text": "is",
+          "start": 3.251,
+          "end": 3.332
+        },
+        {
+          "text": "underway,",
+          "start": 3.39,
+          "end": 4.087
+        },
+        {
+          "text": "and",
+          "start": 4.331,
+          "end": 4.47
+        },
+        {
+          "text": "what",
+          "start": 4.528,
+          "end": 4.667
+        },
+        {
+          "text": "comes",
+          "start": 4.725,
+          "end": 4.981
+        },
+        {
+          "text": "next.",
+          "start": 5.062,
+          "end": 5.503
+        },
+        {
+          "text": "A",
+          "start": 6.107,
+          "end": 6.2
+        },
+        {
+          "text": "changelog",
+          "start": 6.281,
+          "end": 6.885
+        },
+        {
+          "text": "records",
+          "start": 6.966,
+          "end": 7.291
+        },
+        {
+          "text": "meaningful",
+          "start": 7.407,
+          "end": 7.848
+        },
+        {
+          "text": "changes",
+          "start": 7.906,
+          "end": 8.278
+        },
+        {
+          "text": "over",
+          "start": 8.336,
+          "end": 8.487
+        },
+        {
+          "text": "time.",
+          "start": 8.545,
+          "end": 9.021
+        },
+        {
+          "text": "An",
+          "start": 9.404,
+          "end": 9.59
+        },
+        {
+          "text": "evidence",
+          "start": 9.683,
+          "end": 10.112
+        },
+        {
+          "text": "record",
+          "start": 10.17,
+          "end": 10.472
+        },
+        {
+          "text": "captures",
+          "start": 10.53,
+          "end": 10.983
+        },
+        {
+          "text": "what",
+          "start": 11.018,
+          "end": 11.169
+        },
+        {
+          "text": "was",
+          "start": 11.204,
+          "end": 11.308
+        },
+        {
+          "text": "actually",
+          "start": 11.401,
+          "end": 11.819
+        },
+        {
+          "text": "checked,",
+          "start": 11.877,
+          "end": 12.376
+        },
+        {
+          "text": "with",
+          "start": 12.701,
+          "end": 12.864
+        },
+        {
+          "text": "the",
+          "start": 12.899,
+          "end": 12.968
+        },
+        {
+          "text": "version",
+          "start": 13.038,
+          "end": 13.468
+        },
+        {
+          "text": "and",
+          "start": 13.537,
+          "end": 13.665
+        },
+        {
+          "text": "result.",
+          "start": 13.723,
+          "end": 14.245
+        },
+        {
+          "text": "A",
+          "start": 14.687,
+          "end": 14.768
+        },
+        {
+          "text": "runbook",
+          "start": 14.884,
+          "end": 15.290000000000001
+        },
+        {
+          "text": "explains",
+          "start": 15.348,
+          "end": 15.743
+        },
+        {
+          "text": "how",
+          "start": 15.790000000000001,
+          "end": 15.894
+        },
+        {
+          "text": "to",
+          "start": 15.929,
+          "end": 15.975000000000001
+        },
+        {
+          "text": "operate,",
+          "start": 16.068,
+          "end": 16.695
+        },
+        {
+          "text": "inspect,",
+          "start": 16.765,
+          "end": 17.415
+        },
+        {
+          "text": "and",
+          "start": 17.531,
+          "end": 17.682000000000002
+        },
+        {
+          "text": "recover",
+          "start": 17.740000000000002,
+          "end": 18.123
+        },
+        {
+          "text": "the",
+          "start": 18.181,
+          "end": 18.251
+        },
+        {
+          "text": "system.",
+          "start": 18.297,
+          "end": 18.808
+        },
+        {
+          "text": "A",
+          "start": 19.412,
+          "end": 19.505000000000003
+        },
+        {
+          "text": "handoff",
+          "start": 19.621000000000002,
+          "end": 20.039
+        },
+        {
+          "text": "is",
+          "start": 20.097,
+          "end": 20.178
+        },
+        {
+          "text": "a",
+          "start": 20.236,
+          "end": 20.26
+        },
+        {
+          "text": "concise",
+          "start": 20.329,
+          "end": 20.863
+        },
+        {
+          "text": "restart",
+          "start": 20.933,
+          "end": 21.362000000000002
+        },
+        {
+          "text": "point:",
+          "start": 21.421,
+          "end": 21.827
+        },
+        {
+          "text": "the",
+          "start": 22.21,
+          "end": 22.303
+        },
+        {
+          "text": "current",
+          "start": 22.361,
+          "end": 22.651
+        },
+        {
+          "text": "state,",
+          "start": 22.709,
+          "end": 23.208
+        },
+        {
+          "text": "known",
+          "start": 23.29,
+          "end": 23.557000000000002
+        },
+        {
+          "text": "gaps,",
+          "start": 23.615000000000002,
+          "end": 24.149
+        },
+        {
+          "text": "important",
+          "start": 24.3,
+          "end": 24.822000000000003
+        },
+        {
+          "text": "decisions,",
+          "start": 24.869,
+          "end": 25.576999999999998
+        },
+        {
+          "text": "exact",
+          "start": 25.856,
+          "end": 26.355
+        },
+        {
+          "text": "blockers,",
+          "start": 26.401,
+          "end": 27.075000000000003
+        },
+        {
+          "text": "and",
+          "start": 27.249000000000002,
+          "end": 27.4
+        },
+        {
+          "text": "next",
+          "start": 27.469,
+          "end": 27.655
+        },
+        {
+          "text": "safe",
+          "start": 27.69,
+          "end": 27.91
+        },
+        {
+          "text": "action.",
+          "start": 27.957,
+          "end": 28.433
+        },
+        {
+          "text": "A",
+          "start": 29.037,
+          "end": 29.130000000000003
+        },
+        {
+          "text": "log",
+          "start": 29.246000000000002,
+          "end": 29.524
+        },
+        {
+          "text": "is",
+          "start": 29.582,
+          "end": 29.664
+        },
+        {
+          "text": "not",
+          "start": 29.733,
+          "end": 29.896
+        },
+        {
+          "text": "proof",
+          "start": 29.965,
+          "end": 30.186
+        },
+        {
+          "text": "by",
+          "start": 30.244,
+          "end": 30.36
+        },
+        {
+          "text": "itself",
+          "start": 30.418,
+          "end": 30.79
+        },
+        {
+          "text": "unless",
+          "start": 30.871000000000002,
+          "end": 31.138
+        },
+        {
+          "text": "it",
+          "start": 31.173000000000002,
+          "end": 31.243000000000002
+        },
+        {
+          "text": "points",
+          "start": 31.301000000000002,
+          "end": 31.556
+        },
+        {
+          "text": "to",
+          "start": 31.591,
+          "end": 31.649
+        },
+        {
+          "text": "appropriate",
+          "start": 31.719,
+          "end": 32.195
+        },
+        {
+          "text": "evidence.",
+          "start": 32.229,
+          "end": 32.74
+        }
+      ],
+      "spoken": "A progress log tells us what happened recently, what is underway, and what comes next. A changelog records meaningful changes over time. An evidence record captures what was actually checked, with the version and result. A runbook explains how to operate, inspect, and recover the system. A handoff is a concise restart point: the current state, known gaps, important decisions, exact blockers, and next safe action. A log is not proof by itself unless it points to appropriate evidence.",
+      "captions": [
+        {
+          "start": 62.57214285714285,
+          "end": 65.86914285714285,
+          "text": "A progress log tells us what happened recently, what is"
+        },
+        {
+          "start": 65.92714285714285,
+          "end": 68.04014285714285,
+          "text": "underway, and what comes next."
+        },
+        {
+          "start": 68.64414285714285,
+          "end": 71.55814285714285,
+          "text": "A changelog records meaningful changes over time."
+        },
+        {
+          "start": 71.94114285714285,
+          "end": 74.91314285714286,
+          "text": "An evidence record captures what was actually checked,"
+        },
+        {
+          "start": 75.23814285714286,
+          "end": 76.78214285714286,
+          "text": "with the version and result."
+        },
+        {
+          "start": 77.22414285714285,
+          "end": 80.66014285714286,
+          "text": "A runbook explains how to operate, inspect, and recover"
+        },
+        {
+          "start": 80.71814285714285,
+          "end": 81.34514285714286,
+          "text": "the system."
+        },
+        {
+          "start": 81.94914285714285,
+          "end": 85.74514285714285,
+          "text": "A handoff is a concise restart point: the current state,"
+        },
+        {
+          "start": 85.82714285714286,
+          "end": 90.19214285714285,
+          "text": "known gaps, important decisions, exact blockers, and next"
+        },
+        {
+          "start": 90.22714285714285,
+          "end": 90.97014285714286,
+          "text": "safe action."
+        },
+        {
+          "start": 91.57414285714285,
+          "end": 94.18614285714285,
+          "text": "A log is not proof by itself unless it points to"
+        },
+        {
+          "start": 94.25614285714286,
+          "end": 95.27714285714285,
+          "text": "appropriate evidence."
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source": "productions/05/audio/04.mp3",
+      "sha256": "292f220aa56b1ad6008d87f02e0884750814a04b6b8bcff1023522f2b5137d91",
+      "sourceTextSha256": "103a84aa5162503b172bbc9a798cabe352b84120c393a77882e6752ac3267b3f",
+      "start": 95.55591836734693,
+      "end": 129.72408163265305,
+      "duration": 34.16816326530612,
+      "samples": 1506816,
+      "words": [
+        {
+          "text": "Documents",
+          "start": 0.07,
+          "end": 0.604
+        },
+        {
+          "text": "have",
+          "start": 0.639,
+          "end": 0.789
+        },
+        {
+          "text": "different",
+          "start": 0.836,
+          "end": 1.149
+        },
+        {
+          "text": "authority.",
+          "start": 1.184,
+          "end": 1.8
+        },
+        {
+          "text": "A",
+          "start": 2.125,
+          "end": 2.194
+        },
+        {
+          "text": "more",
+          "start": 2.276,
+          "end": 2.461
+        },
+        {
+          "text": "recent,",
+          "start": 2.531,
+          "end": 2.984
+        },
+        {
+          "text": "explicitly",
+          "start": 3.03,
+          "end": 3.855
+        },
+        {
+          "text": "approved",
+          "start": 3.913,
+          "end": 4.412
+        },
+        {
+          "text": "narrow",
+          "start": 4.47,
+          "end": 4.737
+        },
+        {
+          "text": "specification",
+          "start": 4.795,
+          "end": 5.759
+        },
+        {
+          "text": "can",
+          "start": 6.037,
+          "end": 6.223
+        },
+        {
+          "text": "supersede",
+          "start": 6.293,
+          "end": 6.896
+        },
+        {
+          "text": "an",
+          "start": 6.931,
+          "end": 7.001
+        },
+        {
+          "text": "older",
+          "start": 7.094,
+          "end": 7.396
+        },
+        {
+          "text": "requirement",
+          "start": 7.465,
+          "end": 8.15
+        },
+        {
+          "text": "where",
+          "start": 8.324,
+          "end": 8.522
+        },
+        {
+          "text": "they",
+          "start": 8.557,
+          "end": 8.673
+        },
+        {
+          "text": "conflict;",
+          "start": 8.731,
+          "end": 9.392
+        },
+        {
+          "text": "other",
+          "start": 9.996,
+          "end": 10.275
+        },
+        {
+          "text": "older",
+          "start": 10.344,
+          "end": 10.577
+        },
+        {
+          "text": "requirements",
+          "start": 10.646,
+          "end": 11.262
+        },
+        {
+          "text": "may",
+          "start": 11.343,
+          "end": 11.494
+        },
+        {
+          "text": "still",
+          "start": 11.54,
+          "end": 11.738
+        },
+        {
+          "text": "apply.",
+          "start": 11.773,
+          "end": 12.33
+        },
+        {
+          "text": "A",
+          "start": 12.841,
+          "end": 12.922
+        },
+        {
+          "text": "progress",
+          "start": 13.003,
+          "end": 13.41
+        },
+        {
+          "text": "report",
+          "start": 13.468,
+          "end": 13.816
+        },
+        {
+          "text": "can",
+          "start": 13.862,
+          "end": 13.99
+        },
+        {
+          "text": "describe",
+          "start": 14.036,
+          "end": 14.524
+        },
+        {
+          "text": "what",
+          "start": 14.559,
+          "end": 14.698
+        },
+        {
+          "text": "someone",
+          "start": 14.767,
+          "end": 15.139
+        },
+        {
+          "text": "believes",
+          "start": 15.185,
+          "end": 15.534
+        },
+        {
+          "text": "is",
+          "start": 15.592,
+          "end": 15.696
+        },
+        {
+          "text": "done,",
+          "start": 15.766,
+          "end": 16.277
+        },
+        {
+          "text": "but",
+          "start": 16.66,
+          "end": 16.822
+        },
+        {
+          "text": "it",
+          "start": 16.857,
+          "end": 16.927
+        },
+        {
+          "text": "cannot",
+          "start": 16.997,
+          "end": 17.449
+        },
+        {
+          "text": "turn",
+          "start": 17.496000000000002,
+          "end": 17.751
+        },
+        {
+          "text": "an",
+          "start": 17.809,
+          "end": 17.891000000000002
+        },
+        {
+          "text": "untested",
+          "start": 18.007,
+          "end": 18.622
+        },
+        {
+          "text": "feature",
+          "start": 18.692,
+          "end": 19.075
+        },
+        {
+          "text": "into",
+          "start": 19.144,
+          "end": 19.33
+        },
+        {
+          "text": "verified",
+          "start": 19.423000000000002,
+          "end": 19.934
+        },
+        {
+          "text": "behavior.",
+          "start": 19.969,
+          "end": 20.572
+        },
+        {
+          "text": "A",
+          "start": 21.176000000000002,
+          "end": 21.257
+        },
+        {
+          "text": "kickoff",
+          "start": 21.374000000000002,
+          "end": 21.792
+        },
+        {
+          "text": "can",
+          "start": 21.85,
+          "end": 21.977
+        },
+        {
+          "text": "authorize",
+          "start": 22.059,
+          "end": 22.604
+        },
+        {
+          "text": "an",
+          "start": 22.639,
+          "end": 22.709
+        },
+        {
+          "text": "agent",
+          "start": 22.767,
+          "end": 23.057000000000002
+        },
+        {
+          "text": "to",
+          "start": 23.103,
+          "end": 23.162
+        },
+        {
+          "text": "act",
+          "start": 23.253999999999998,
+          "end": 23.487000000000002
+        },
+        {
+          "text": "within",
+          "start": 23.533,
+          "end": 23.765
+        },
+        {
+          "text": "its",
+          "start": 23.811999999999998,
+          "end": 23.905
+        },
+        {
+          "text": "stated",
+          "start": 23.939,
+          "end": 24.276
+        },
+        {
+          "text": "scope.",
+          "start": 24.334,
+          "end": 24.822000000000003
+        },
+        {
+          "text": "When",
+          "start": 25.262999999999998,
+          "end": 25.436999999999998
+        },
+        {
+          "text": "instructions",
+          "start": 25.483,
+          "end": 26.029
+        },
+        {
+          "text": "conflict,",
+          "start": 26.087,
+          "end": 26.679000000000002
+        },
+        {
+          "text": "ask",
+          "start": 26.923000000000002,
+          "end": 27.225
+        },
+        {
+          "text": "the",
+          "start": 27.283,
+          "end": 27.364
+        },
+        {
+          "text": "agent",
+          "start": 27.434,
+          "end": 27.701
+        },
+        {
+          "text": "to",
+          "start": 27.736,
+          "end": 27.794
+        },
+        {
+          "text": "identify",
+          "start": 27.875,
+          "end": 28.386000000000003
+        },
+        {
+          "text": "the",
+          "start": 28.456,
+          "end": 28.537
+        },
+        {
+          "text": "actual",
+          "start": 28.607,
+          "end": 28.955
+        },
+        {
+          "text": "source",
+          "start": 29.025,
+          "end": 29.489
+        },
+        {
+          "text": "and",
+          "start": 29.663,
+          "end": 29.849
+        },
+        {
+          "text": "the",
+          "start": 29.895,
+          "end": 29.965
+        },
+        {
+          "text": "precise",
+          "start": 30.011,
+          "end": 30.511
+        },
+        {
+          "text": "conflict",
+          "start": 30.557000000000002,
+          "end": 31.091
+        },
+        {
+          "text": "rather",
+          "start": 31.149,
+          "end": 31.381
+        },
+        {
+          "text": "than",
+          "start": 31.416,
+          "end": 31.544
+        },
+        {
+          "text": "quietly",
+          "start": 31.614,
+          "end": 32.032000000000004
+        },
+        {
+          "text": "choose",
+          "start": 32.101,
+          "end": 32.415
+        },
+        {
+          "text": "whichever",
+          "start": 32.45,
+          "end": 32.844
+        },
+        {
+          "text": "text",
+          "start": 32.914,
+          "end": 33.169000000000004
+        },
+        {
+          "text": "is",
+          "start": 33.204,
+          "end": 33.285000000000004
+        },
+        {
+          "text": "convenient.",
+          "start": 33.332,
+          "end": 33.878
+        }
+      ],
+      "spoken": "Documents have different authority. A more recent, explicitly approved narrow specification can supersede an older requirement where they conflict; other older requirements may still apply. A progress report can describe what someone believes is done, but it cannot turn an untested feature into verified behavior. A kickoff can authorize an agent to act within its stated scope. When instructions conflict, ask the agent to identify the actual source and the precise conflict rather than quietly choose whichever text is convenient.",
+      "captions": [
+        {
+          "start": 95.62591836734693,
+          "end": 97.35591836734693,
+          "text": "Documents have different authority."
+        },
+        {
+          "start": 97.68091836734693,
+          "end": 101.31491836734693,
+          "text": "A more recent, explicitly approved narrow specification"
+        },
+        {
+          "start": 101.59291836734694,
+          "end": 104.94791836734693,
+          "text": "can supersede an older requirement where they conflict;"
+        },
+        {
+          "start": 105.55191836734693,
+          "end": 107.88591836734693,
+          "text": "other older requirements may still apply."
+        },
+        {
+          "start": 108.39691836734693,
+          "end": 111.25191836734693,
+          "text": "A progress report can describe what someone believes is"
+        },
+        {
+          "start": 111.32191836734694,
+          "end": 115.48991836734693,
+          "text": "done, but it cannot turn an untested feature into verified"
+        },
+        {
+          "start": 115.52491836734694,
+          "end": 116.12791836734694,
+          "text": "behavior."
+        },
+        {
+          "start": 116.73191836734694,
+          "end": 119.83191836734693,
+          "text": "A kickoff can authorize an agent to act within its stated"
+        },
+        {
+          "start": 119.88991836734694,
+          "end": 120.37791836734694,
+          "text": "scope."
+        },
+        {
+          "start": 120.81891836734694,
+          "end": 124.09291836734693,
+          "text": "When instructions conflict, ask the agent to identify the"
+        },
+        {
+          "start": 124.16291836734693,
+          "end": 127.58791836734693,
+          "text": "actual source and the precise conflict rather than quietly"
+        },
+        {
+          "start": 127.65691836734693,
+          "end": 129.43391836734693,
+          "text": "choose whichever text is convenient."
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source": "productions/05/audio/05.mp3",
+      "sha256": "ebaf36540cd137bf59dab2465d7cc39f2e23aeb98cc1b9f2e448c7fb98f6d08f",
+      "sourceTextSha256": "92a6fe59f95b3f6f37e3af320193b13d21d81dca036578d191af83059a3b118c",
+      "start": 129.72408163265305,
+      "end": 157.33551020408163,
+      "duration": 27.611428571428572,
+      "samples": 1217664,
+      "words": [
+        {
+          "text": "Not",
+          "start": 0.035,
+          "end": 0.255
+        },
+        {
+          "text": "every",
+          "start": 0.337,
+          "end": 0.627
+        },
+        {
+          "text": "tiny",
+          "start": 0.685,
+          "end": 0.952
+        },
+        {
+          "text": "project",
+          "start": 1.01,
+          "end": 1.44
+        },
+        {
+          "text": "needs",
+          "start": 1.474,
+          "end": 1.649
+        },
+        {
+          "text": "a",
+          "start": 1.683,
+          "end": 1.718
+        },
+        {
+          "text": "separate",
+          "start": 1.765,
+          "end": 2.067
+        },
+        {
+          "text": "file",
+          "start": 2.101,
+          "end": 2.38
+        },
+        {
+          "text": "for",
+          "start": 2.415,
+          "end": 2.508
+        },
+        {
+          "text": "every",
+          "start": 2.554,
+          "end": 2.717
+        },
+        {
+          "text": "concept.",
+          "start": 2.775,
+          "end": 3.332
+        },
+        {
+          "text": "The",
+          "start": 3.773,
+          "end": 3.901
+        },
+        {
+          "text": "important",
+          "start": 3.947,
+          "end": 4.389
+        },
+        {
+          "text": "part",
+          "start": 4.435,
+          "end": 4.632
+        },
+        {
+          "text": "is",
+          "start": 4.667,
+          "end": 4.748
+        },
+        {
+          "text": "that",
+          "start": 4.783,
+          "end": 4.899
+        },
+        {
+          "text": "an",
+          "start": 4.946,
+          "end": 5.016
+        },
+        {
+          "text": "agent",
+          "start": 5.062,
+          "end": 5.317
+        },
+        {
+          "text": "can",
+          "start": 5.364,
+          "end": 5.48
+        },
+        {
+          "text": "find",
+          "start": 5.526,
+          "end": 5.7
+        },
+        {
+          "text": "the",
+          "start": 5.724,
+          "end": 5.793
+        },
+        {
+          "text": "decisions,",
+          "start": 5.828,
+          "end": 6.536
+        },
+        {
+          "text": "scope,",
+          "start": 6.92,
+          "end": 7.477
+        },
+        {
+          "text": "tests,",
+          "start": 7.918,
+          "end": 8.58
+        },
+        {
+          "text": "operational",
+          "start": 8.789,
+          "end": 9.392
+        },
+        {
+          "text": "steps,",
+          "start": 9.427,
+          "end": 9.868
+        },
+        {
+          "text": "and",
+          "start": 9.903,
+          "end": 10.054
+        },
+        {
+          "text": "current",
+          "start": 10.112,
+          "end": 10.379
+        },
+        {
+          "text": "state.",
+          "start": 10.426,
+          "end": 10.867
+        },
+        {
+          "text": "A",
+          "start": 11.308,
+          "end": 11.378
+        },
+        {
+          "text": "small",
+          "start": 11.459,
+          "end": 11.714
+        },
+        {
+          "text": "project",
+          "start": 11.784,
+          "end": 12.214
+        },
+        {
+          "text": "might",
+          "start": 12.26,
+          "end": 12.423
+        },
+        {
+          "text": "combine",
+          "start": 12.458,
+          "end": 12.806
+        },
+        {
+          "text": "sections;",
+          "start": 12.864,
+          "end": 13.491
+        },
+        {
+          "text": "a",
+          "start": 13.874,
+          "end": 13.944
+        },
+        {
+          "text": "larger",
+          "start": 14.025,
+          "end": 14.35
+        },
+        {
+          "text": "one",
+          "start": 14.42,
+          "end": 14.639999999999999
+        },
+        {
+          "text": "may",
+          "start": 14.697999999999999,
+          "end": 14.860999999999999
+        },
+        {
+          "text": "separate",
+          "start": 14.931,
+          "end": 15.36
+        },
+        {
+          "text": "them.",
+          "start": 15.383,
+          "end": 15.674
+        },
+        {
+          "text": "Use",
+          "start": 16.486,
+          "end": 16.718
+        },
+        {
+          "text": "the",
+          "start": 16.753,
+          "end": 16.835
+        },
+        {
+          "text": "simplest",
+          "start": 16.916,
+          "end": 17.345
+        },
+        {
+          "text": "organization",
+          "start": 17.392,
+          "end": 18.054
+        },
+        {
+          "text": "that",
+          "start": 18.099999999999998,
+          "end": 18.227999999999998
+        },
+        {
+          "text": "keeps",
+          "start": 18.274,
+          "end": 18.506
+        },
+        {
+          "text": "responsibilities",
+          "start": 18.553,
+          "end": 19.354
+        },
+        {
+          "text": "clear.",
+          "start": 19.4,
+          "end": 19.842
+        },
+        {
+          "text": "A",
+          "start": 20.166999999999998,
+          "end": 20.247999999999998
+        },
+        {
+          "text": "naming",
+          "start": 20.329,
+          "end": 20.585
+        },
+        {
+          "text": "convention",
+          "start": 20.631,
+          "end": 21.095
+        },
+        {
+          "text": "helps,",
+          "start": 21.177,
+          "end": 21.618
+        },
+        {
+          "text": "but",
+          "start": 21.688,
+          "end": 21.85
+        },
+        {
+          "text": "a",
+          "start": 21.884999999999998,
+          "end": 21.908
+        },
+        {
+          "text": "filename",
+          "start": 21.977999999999998,
+          "end": 22.488999999999997
+        },
+        {
+          "text": "does",
+          "start": 22.523,
+          "end": 22.651
+        },
+        {
+          "text": "not",
+          "start": 22.686,
+          "end": 22.825
+        },
+        {
+          "text": "guarantee",
+          "start": 22.872,
+          "end": 23.29
+        },
+        {
+          "text": "that",
+          "start": 23.325,
+          "end": 23.429
+        },
+        {
+          "text": "a",
+          "start": 23.475,
+          "end": 23.499
+        },
+        {
+          "text": "document",
+          "start": 23.557,
+          "end": 23.975
+        },
+        {
+          "text": "is",
+          "start": 24.009999999999998,
+          "end": 24.079
+        },
+        {
+          "text": "current",
+          "start": 24.137,
+          "end": 24.451
+        },
+        {
+          "text": "or",
+          "start": 24.509,
+          "end": 24.636
+        },
+        {
+          "text": "authoritative.",
+          "start": 24.695,
+          "end": 25.448999999999998
+        },
+        {
+          "text": "Read",
+          "start": 25.89,
+          "end": 26.088
+        },
+        {
+          "text": "its",
+          "start": 26.122999999999998,
+          "end": 26.226999999999997
+        },
+        {
+          "text": "content",
+          "start": 26.273,
+          "end": 26.703
+        },
+        {
+          "text": "and",
+          "start": 26.761,
+          "end": 26.877
+        },
+        {
+          "text": "date.",
+          "start": 26.947,
+          "end": 27.342
+        }
+      ],
+      "spoken": "Not every tiny project needs a separate file for every concept. The important part is that an agent can find the decisions, scope, tests, operational steps, and current state. A small project might combine sections; a larger one may separate them. Use the simplest organization that keeps responsibilities clear. A naming convention helps, but a filename does not guarantee that a document is current or authoritative. Read its content and date.",
+      "captions": [
+        {
+          "start": 129.75908163265305,
+          "end": 132.44108163265307,
+          "text": "Not every tiny project needs a separate file for every"
+        },
+        {
+          "start": 132.49908163265306,
+          "end": 133.05608163265305,
+          "text": "concept."
+        },
+        {
+          "start": 133.49708163265305,
+          "end": 135.51708163265306,
+          "text": "The important part is that an agent can find the"
+        },
+        {
+          "start": 135.55208163265306,
+          "end": 140.10308163265304,
+          "text": "decisions, scope, tests, operational steps, and current"
+        },
+        {
+          "start": 140.15008163265304,
+          "end": 140.59108163265304,
+          "text": "state."
+        },
+        {
+          "start": 141.03208163265305,
+          "end": 144.58508163265304,
+          "text": "A small project might combine sections; a larger one may"
+        },
+        {
+          "start": 144.65508163265307,
+          "end": 145.39808163265306,
+          "text": "separate them."
+        },
+        {
+          "start": 146.21008163265304,
+          "end": 149.07808163265304,
+          "text": "Use the simplest organization that keeps responsibilities"
+        },
+        {
+          "start": 149.12408163265306,
+          "end": 149.56608163265304,
+          "text": "clear."
+        },
+        {
+          "start": 149.89108163265306,
+          "end": 152.54908163265304,
+          "text": "A naming convention helps, but a filename does not"
+        },
+        {
+          "start": 152.59608163265307,
+          "end": 155.17308163265307,
+          "text": "guarantee that a document is current or authoritative."
+        },
+        {
+          "start": 155.61408163265304,
+          "end": 157.06608163265304,
+          "text": "Read its content and date."
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source": "productions/05/audio/06.mp3",
+      "sha256": "e4ce35aa9993250d9338c32b5b900fc3bc528667e2edd049e798fa7a71fb499c",
+      "sourceTextSha256": "061ac60ec5ceda5e4675a470bb0335b98d618901425606d2ef76c650ca7a0367",
+      "start": 157.33551020408163,
+      "end": 185.70448979591836,
+      "duration": 28.368979591836734,
+      "samples": 1251072,
+      "words": [
+        {
+          "text": "Imagine",
+          "start": 0.035,
+          "end": 0.58
+        },
+        {
+          "text": "the",
+          "start": 0.615,
+          "end": 0.685
+        },
+        {
+          "text": "tracker",
+          "start": 0.731,
+          "end": 1.126
+        },
+        {
+          "text": "changes",
+          "start": 1.184,
+          "end": 1.718
+        },
+        {
+          "text": "from",
+          "start": 1.869,
+          "end": 2.067
+        },
+        {
+          "text": "three",
+          "start": 2.159,
+          "end": 2.392
+        },
+        {
+          "text": "statuses",
+          "start": 2.426,
+          "end": 2.937
+        },
+        {
+          "text": "to",
+          "start": 2.984,
+          "end": 3.053
+        },
+        {
+          "text": "two.",
+          "start": 3.111,
+          "end": 3.553
+        },
+        {
+          "text": "Update",
+          "start": 3.994,
+          "end": 4.47
+        },
+        {
+          "text": "the",
+          "start": 4.493,
+          "end": 4.563
+        },
+        {
+          "text": "relevant",
+          "start": 4.656,
+          "end": 5.085
+        },
+        {
+          "text": "decision",
+          "start": 5.143,
+          "end": 5.619
+        },
+        {
+          "text": "and",
+          "start": 5.689,
+          "end": 5.77
+        },
+        {
+          "text": "spec,",
+          "start": 5.805,
+          "end": 6.374
+        },
+        {
+          "text": "implement",
+          "start": 6.815,
+          "end": 7.279
+        },
+        {
+          "text": "the",
+          "start": 7.314,
+          "end": 7.384
+        },
+        {
+          "text": "change",
+          "start": 7.43,
+          "end": 7.767
+        },
+        {
+          "text": "when",
+          "start": 7.802,
+          "end": 7.93
+        },
+        {
+          "text": "authorized,",
+          "start": 7.976,
+          "end": 8.812
+        },
+        {
+          "text": "record",
+          "start": 9.253,
+          "end": 9.694
+        },
+        {
+          "text": "what",
+          "start": 9.741,
+          "end": 9.892
+        },
+        {
+          "text": "changed",
+          "start": 9.95,
+          "end": 10.31
+        },
+        {
+          "text": "in",
+          "start": 10.344,
+          "end": 10.403
+        },
+        {
+          "text": "the",
+          "start": 10.437,
+          "end": 10.507
+        },
+        {
+          "text": "changelog,",
+          "start": 10.542,
+          "end": 11.297
+        },
+        {
+          "text": "record",
+          "start": 11.738,
+          "end": 12.156
+        },
+        {
+          "text": "test",
+          "start": 12.214,
+          "end": 12.458
+        },
+        {
+          "text": "results",
+          "start": 12.516,
+          "end": 12.864
+        },
+        {
+          "text": "in",
+          "start": 12.91,
+          "end": 12.98
+        },
+        {
+          "text": "evidence,",
+          "start": 13.05,
+          "end": 13.63
+        },
+        {
+          "text": "and",
+          "start": 13.955,
+          "end": 14.129
+        },
+        {
+          "text": "refresh",
+          "start": 14.245,
+          "end": 14.698
+        },
+        {
+          "text": "progress",
+          "start": 14.779,
+          "end": 15.337
+        },
+        {
+          "text": "and",
+          "start": 15.43,
+          "end": 15.592
+        },
+        {
+          "text": "handoff.",
+          "start": 15.661,
+          "end": 16.254
+        },
+        {
+          "text": "The",
+          "start": 16.764,
+          "end": 16.881
+        },
+        {
+          "text": "architecture",
+          "start": 16.939,
+          "end": 17.554000000000002
+        },
+        {
+          "text": "may",
+          "start": 17.6,
+          "end": 17.716
+        },
+        {
+          "text": "not",
+          "start": 17.775,
+          "end": 17.902
+        },
+        {
+          "text": "need",
+          "start": 17.983,
+          "end": 18.216
+        },
+        {
+          "text": "to",
+          "start": 18.251,
+          "end": 18.297
+        },
+        {
+          "text": "change",
+          "start": 18.355,
+          "end": 18.68
+        },
+        {
+          "text": "if",
+          "start": 18.715,
+          "end": 18.773
+        },
+        {
+          "text": "component",
+          "start": 18.831,
+          "end": 19.261
+        },
+        {
+          "text": "responsibilities",
+          "start": 19.295,
+          "end": 20.073
+        },
+        {
+          "text": "remain",
+          "start": 20.12,
+          "end": 20.34
+        },
+        {
+          "text": "the",
+          "start": 20.387,
+          "end": 20.456
+        },
+        {
+          "text": "same.",
+          "start": 20.491,
+          "end": 20.898
+        },
+        {
+          "text": "This",
+          "start": 21.223,
+          "end": 21.408
+        },
+        {
+          "text": "is",
+          "start": 21.466,
+          "end": 21.548000000000002
+        },
+        {
+          "text": "why",
+          "start": 21.606,
+          "end": 21.826
+        },
+        {
+          "text": "each",
+          "start": 21.908,
+          "end": 22.093
+        },
+        {
+          "text": "document",
+          "start": 22.14,
+          "end": 22.558
+        },
+        {
+          "text": "has",
+          "start": 22.604,
+          "end": 22.755000000000003
+        },
+        {
+          "text": "one",
+          "start": 22.836,
+          "end": 23.011
+        },
+        {
+          "text": "job:",
+          "start": 23.057000000000002,
+          "end": 23.545
+        },
+        {
+          "text": "we",
+          "start": 23.87,
+          "end": 23.963
+        },
+        {
+          "text": "can",
+          "start": 23.997,
+          "end": 24.125
+        },
+        {
+          "text": "update",
+          "start": 24.206,
+          "end": 24.59
+        },
+        {
+          "text": "the",
+          "start": 24.624000000000002,
+          "end": 24.694000000000003
+        },
+        {
+          "text": "places",
+          "start": 24.729,
+          "end": 25.124000000000002
+        },
+        {
+          "text": "whose",
+          "start": 25.17,
+          "end": 25.367
+        },
+        {
+          "text": "truth",
+          "start": 25.402,
+          "end": 25.658
+        },
+        {
+          "text": "actually",
+          "start": 25.739,
+          "end": 26.169
+        },
+        {
+          "text": "changed",
+          "start": 26.215,
+          "end": 26.621000000000002
+        },
+        {
+          "text": "without",
+          "start": 26.668,
+          "end": 26.945999999999998
+        },
+        {
+          "text": "rewriting",
+          "start": 26.993000000000002,
+          "end": 27.399
+        },
+        {
+          "text": "every",
+          "start": 27.445999999999998,
+          "end": 27.597
+        },
+        {
+          "text": "page.",
+          "start": 27.643,
+          "end": 28.084
+        }
+      ],
+      "spoken": "Imagine the tracker changes from three statuses to two. Update the relevant decision and spec, implement the change when authorized, record what changed in the changelog, record test results in evidence, and refresh progress and handoff. The architecture may not need to change if component responsibilities remain the same. This is why each document has one job: we can update the places whose truth actually changed without rewriting every page.",
+      "captions": [
+        {
+          "start": 157.37051020408163,
+          "end": 160.88851020408163,
+          "text": "Imagine the tracker changes from three statuses to two."
+        },
+        {
+          "start": 161.32951020408163,
+          "end": 164.71951020408164,
+          "text": "Update the relevant decision and spec, implement the"
+        },
+        {
+          "start": 164.76551020408164,
+          "end": 167.84251020408163,
+          "text": "change when authorized, record what changed in the"
+        },
+        {
+          "start": 167.87751020408163,
+          "end": 172.03351020408164,
+          "text": "changelog, record test results in evidence, and refresh"
+        },
+        {
+          "start": 172.11451020408163,
+          "end": 173.58951020408162,
+          "text": "progress and handoff."
+        },
+        {
+          "start": 174.09951020408164,
+          "end": 176.59651020408162,
+          "text": "The architecture may not need to change if component"
+        },
+        {
+          "start": 176.63051020408165,
+          "end": 178.23351020408163,
+          "text": "responsibilities remain the same."
+        },
+        {
+          "start": 178.55851020408164,
+          "end": 182.02951020408162,
+          "text": "This is why each document has one job: we can update the"
+        },
+        {
+          "start": 182.0645102040816,
+          "end": 184.73451020408163,
+          "text": "places whose truth actually changed without rewriting"
+        },
+        {
+          "start": 184.78151020408163,
+          "end": 185.41951020408163,
+          "text": "every page."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source": "productions/05/audio/07.mp3",
+      "sha256": "d2fbdd176d7fcdec2d877ebebdc15e6318fb19372e487ad6fa3d36995b6a2d4a",
+      "sourceTextSha256": "8edd4f5cc2a7e93640af24ef6e70c1b778aeaefcdaf650711ed197adf2c9cf42",
+      "start": 185.70448979591836,
+      "end": 215.37959183673468,
+      "duration": 29.675102040816327,
+      "samples": 1308672,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.104
+        },
+        {
+          "text": "tiny",
+          "start": 0.186,
+          "end": 0.476
+        },
+        {
+          "text": "project",
+          "start": 0.546,
+          "end": 0.998
+        },
+        {
+          "text": "might",
+          "start": 1.033,
+          "end": 1.184
+        },
+        {
+          "text": "start",
+          "start": 1.219,
+          "end": 1.44
+        },
+        {
+          "text": "with",
+          "start": 1.463,
+          "end": 1.591
+        },
+        {
+          "text": "a",
+          "start": 1.625,
+          "end": 1.66
+        },
+        {
+          "text": "README,",
+          "start": 1.73,
+          "end": 2.322
+        },
+        {
+          "text": "a",
+          "start": 2.647,
+          "end": 2.728
+        },
+        {
+          "text": "decisions",
+          "start": 2.798,
+          "end": 3.32
+        },
+        {
+          "text": "section,",
+          "start": 3.367,
+          "end": 4.005
+        },
+        {
+          "text": "a",
+          "start": 4.284,
+          "end": 4.354
+        },
+        {
+          "text": "combined",
+          "start": 4.435,
+          "end": 4.911
+        },
+        {
+          "text": "architecture",
+          "start": 4.957,
+          "end": 5.573
+        },
+        {
+          "text": "and",
+          "start": 5.596,
+          "end": 5.666
+        },
+        {
+          "text": "specification,",
+          "start": 5.7,
+          "end": 6.722
+        },
+        {
+          "text": "a",
+          "start": 7.105,
+          "end": 7.175
+        },
+        {
+          "text": "plan,",
+          "start": 7.268,
+          "end": 7.837
+        },
+        {
+          "text": "and",
+          "start": 7.906,
+          "end": 8.057
+        },
+        {
+          "text": "a",
+          "start": 8.115,
+          "end": 8.139
+        },
+        {
+          "text": "handoff.",
+          "start": 8.197,
+          "end": 8.777
+        },
+        {
+          "text": "As",
+          "start": 9.381,
+          "end": 9.567
+        },
+        {
+          "text": "the",
+          "start": 9.625,
+          "end": 9.694
+        },
+        {
+          "text": "project",
+          "start": 9.741,
+          "end": 10.159
+        },
+        {
+          "text": "grows,",
+          "start": 10.194,
+          "end": 10.553
+        },
+        {
+          "text": "separate",
+          "start": 10.623,
+          "end": 11.041
+        },
+        {
+          "text": "documents",
+          "start": 11.076,
+          "end": 11.587
+        },
+        {
+          "text": "when",
+          "start": 11.622,
+          "end": 11.784
+        },
+        {
+          "text": "readers",
+          "start": 11.842,
+          "end": 12.121
+        },
+        {
+          "text": "need",
+          "start": 12.179,
+          "end": 12.341
+        },
+        {
+          "text": "different",
+          "start": 12.388,
+          "end": 12.678
+        },
+        {
+          "text": "levels",
+          "start": 12.713,
+          "end": 12.992
+        },
+        {
+          "text": "of",
+          "start": 13.038,
+          "end": 13.084
+        },
+        {
+          "text": "detail",
+          "start": 13.142,
+          "end": 13.479
+        },
+        {
+          "text": "or",
+          "start": 13.526,
+          "end": 13.584
+        },
+        {
+          "text": "authority.",
+          "start": 13.618,
+          "end": 14.223
+        },
+        {
+          "text": "The",
+          "start": 14.664000000000001,
+          "end": 14.792
+        },
+        {
+          "text": "aim",
+          "start": 14.861,
+          "end": 15.035
+        },
+        {
+          "text": "is",
+          "start": 15.093,
+          "end": 15.163
+        },
+        {
+          "text": "not",
+          "start": 15.233,
+          "end": 15.372
+        },
+        {
+          "text": "to",
+          "start": 15.407,
+          "end": 15.465
+        },
+        {
+          "text": "create",
+          "start": 15.546000000000001,
+          "end": 15.895000000000001
+        },
+        {
+          "text": "files",
+          "start": 15.941,
+          "end": 16.336000000000002
+        },
+        {
+          "text": "for",
+          "start": 16.382,
+          "end": 16.487000000000002
+        },
+        {
+          "text": "their",
+          "start": 16.521,
+          "end": 16.661
+        },
+        {
+          "text": "own",
+          "start": 16.707,
+          "end": 16.847
+        },
+        {
+          "text": "sake.",
+          "start": 16.916,
+          "end": 17.357
+        },
+        {
+          "text": "Ask",
+          "start": 17.741,
+          "end": 18.042
+        },
+        {
+          "text": "whether",
+          "start": 18.089000000000002,
+          "end": 18.333000000000002
+        },
+        {
+          "text": "a",
+          "start": 18.391000000000002,
+          "end": 18.426000000000002
+        },
+        {
+          "text": "new",
+          "start": 18.495,
+          "end": 18.623
+        },
+        {
+          "text": "contributor",
+          "start": 18.681,
+          "end": 19.215
+        },
+        {
+          "text": "can",
+          "start": 19.273,
+          "end": 19.389
+        },
+        {
+          "text": "find",
+          "start": 19.436,
+          "end": 19.61
+        },
+        {
+          "text": "the",
+          "start": 19.633000000000003,
+          "end": 19.703
+        },
+        {
+          "text": "current",
+          "start": 19.749000000000002,
+          "end": 20.004
+        },
+        {
+          "text": "behavior,",
+          "start": 20.051000000000002,
+          "end": 20.724
+        },
+        {
+          "text": "the",
+          "start": 20.968,
+          "end": 21.073
+        },
+        {
+          "text": "reason",
+          "start": 21.165,
+          "end": 21.456
+        },
+        {
+          "text": "behind",
+          "start": 21.514,
+          "end": 21.758000000000003
+        },
+        {
+          "text": "a",
+          "start": 21.816000000000003,
+          "end": 21.839
+        },
+        {
+          "text": "decision,",
+          "start": 21.897,
+          "end": 22.582
+        },
+        {
+          "text": "what",
+          "start": 22.791,
+          "end": 22.988
+        },
+        {
+          "text": "remains",
+          "start": 23.058,
+          "end": 23.464
+        },
+        {
+          "text": "to",
+          "start": 23.522,
+          "end": 23.592
+        },
+        {
+          "text": "build,",
+          "start": 23.662,
+          "end": 24.056
+        },
+        {
+          "text": "and",
+          "start": 24.114,
+          "end": 24.265
+        },
+        {
+          "text": "how",
+          "start": 24.323,
+          "end": 24.416
+        },
+        {
+          "text": "to",
+          "start": 24.463,
+          "end": 24.509
+        },
+        {
+          "text": "verify",
+          "start": 24.579,
+          "end": 24.974
+        },
+        {
+          "text": "a",
+          "start": 25.032,
+          "end": 25.055
+        },
+        {
+          "text": "change.",
+          "start": 25.113,
+          "end": 25.612000000000002
+        },
+        {
+          "text": "If",
+          "start": 26.053,
+          "end": 26.193
+        },
+        {
+          "text": "those",
+          "start": 26.239,
+          "end": 26.46
+        },
+        {
+          "text": "answers",
+          "start": 26.494,
+          "end": 26.808
+        },
+        {
+          "text": "are",
+          "start": 26.854,
+          "end": 26.97
+        },
+        {
+          "text": "clear,",
+          "start": 27.017000000000003,
+          "end": 27.493000000000002
+        },
+        {
+          "text": "the",
+          "start": 27.609,
+          "end": 27.725
+        },
+        {
+          "text": "structure",
+          "start": 27.772,
+          "end": 28.282
+        },
+        {
+          "text": "is",
+          "start": 28.34,
+          "end": 28.457
+        },
+        {
+          "text": "doing",
+          "start": 28.503,
+          "end": 28.724
+        },
+        {
+          "text": "its",
+          "start": 28.770000000000003,
+          "end": 28.863
+        },
+        {
+          "text": "job.",
+          "start": 28.909,
+          "end": 29.362000000000002
+        }
+      ],
+      "spoken": "A tiny project might start with a README, a decisions section, a combined architecture and specification, a plan, and a handoff. As the project grows, separate documents when readers need different levels of detail or authority. The aim is not to create files for their own sake. Ask whether a new contributor can find the current behavior, the reason behind a decision, what remains to build, and how to verify a change. If those answers are clear, the structure is doing its job.",
+      "captions": [
+        {
+          "start": 185.73948979591836,
+          "end": 189.02448979591836,
+          "text": "A tiny project might start with a README, a decisions"
+        },
+        {
+          "start": 189.07148979591835,
+          "end": 192.87948979591837,
+          "text": "section, a combined architecture and specification, a"
+        },
+        {
+          "start": 192.97248979591836,
+          "end": 194.48148979591835,
+          "text": "plan, and a handoff."
+        },
+        {
+          "start": 195.08548979591836,
+          "end": 198.04548979591837,
+          "text": "As the project grows, separate documents when readers need"
+        },
+        {
+          "start": 198.09248979591837,
+          "end": 199.92748979591838,
+          "text": "different levels of detail or authority."
+        },
+        {
+          "start": 200.36848979591835,
+          "end": 203.06148979591836,
+          "text": "The aim is not to create files for their own sake."
+        },
+        {
+          "start": 203.44548979591838,
+          "end": 205.70848979591835,
+          "text": "Ask whether a new contributor can find the current"
+        },
+        {
+          "start": 205.75548979591835,
+          "end": 209.29648979591838,
+          "text": "behavior, the reason behind a decision, what remains to"
+        },
+        {
+          "start": 209.36648979591837,
+          "end": 211.31648979591836,
+          "text": "build, and how to verify a change."
+        },
+        {
+          "start": 211.75748979591836,
+          "end": 214.56748979591836,
+          "text": "If those answers are clear, the structure is doing its"
+        },
+        {
+          "start": 214.61348979591835,
+          "end": 215.06648979591836,
+          "text": "job."
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source": "productions/05/audio/08.mp3",
+      "sha256": "9c8a9f55530d21f421942f9b609b11f98d218e1776cc3dda1c1613e9e3ff5c97",
+      "sourceTextSha256": "836feb596d09794e214f0565ccd1742f628e8f91e91376c1195855208ff14c34",
+      "start": 215.37959183673468,
+      "end": 240.40489795918364,
+      "duration": 25.02530612244898,
+      "samples": 1103616,
+      "words": [
+        {
+          "text": "Suppose",
+          "start": 0.058,
+          "end": 0.499
+        },
+        {
+          "text": "an",
+          "start": 0.546,
+          "end": 0.615
+        },
+        {
+          "text": "older",
+          "start": 0.685,
+          "end": 0.929
+        },
+        {
+          "text": "build",
+          "start": 0.987,
+          "end": 1.173
+        },
+        {
+          "text": "spec",
+          "start": 1.196,
+          "end": 1.521
+        },
+        {
+          "text": "says",
+          "start": 1.602,
+          "end": 1.811
+        },
+        {
+          "text": "the",
+          "start": 1.858,
+          "end": 1.927
+        },
+        {
+          "text": "owner",
+          "start": 2.009,
+          "end": 2.206
+        },
+        {
+          "text": "can",
+          "start": 2.252,
+          "end": 2.38
+        },
+        {
+          "text": "choose",
+          "start": 2.426,
+          "end": 2.694
+        },
+        {
+          "text": "among",
+          "start": 2.717,
+          "end": 2.949
+        },
+        {
+          "text": "three",
+          "start": 3.03,
+          "end": 3.239
+        },
+        {
+          "text": "inquiry",
+          "start": 3.274,
+          "end": 3.576
+        },
+        {
+          "text": "statuses.",
+          "start": 3.622,
+          "end": 4.319
+        },
+        {
+          "text": "A",
+          "start": 4.702,
+          "end": 4.783
+        },
+        {
+          "text": "later",
+          "start": 4.865,
+          "end": 5.108
+        },
+        {
+          "text": "approved",
+          "start": 5.166,
+          "end": 5.503
+        },
+        {
+          "text": "narrow",
+          "start": 5.538,
+          "end": 5.793
+        },
+        {
+          "text": "spec",
+          "start": 5.84,
+          "end": 6.13
+        },
+        {
+          "text": "says",
+          "start": 6.211,
+          "end": 6.397
+        },
+        {
+          "text": "to",
+          "start": 6.444,
+          "end": 6.502
+        },
+        {
+          "text": "use",
+          "start": 6.583,
+          "end": 6.769
+        },
+        {
+          "text": "only",
+          "start": 6.815,
+          "end": 7.024
+        },
+        {
+          "text": "New",
+          "start": 7.094,
+          "end": 7.221
+        },
+        {
+          "text": "and",
+          "start": 7.268,
+          "end": 7.338
+        },
+        {
+          "text": "Handled.",
+          "start": 7.396,
+          "end": 7.86
+        },
+        {
+          "text": "The",
+          "start": 8.301,
+          "end": 8.429
+        },
+        {
+          "text": "later",
+          "start": 8.51,
+          "end": 8.754
+        },
+        {
+          "text": "decision",
+          "start": 8.824,
+          "end": 9.288
+        },
+        {
+          "text": "controls",
+          "start": 9.358,
+          "end": 9.799
+        },
+        {
+          "text": "that",
+          "start": 9.834,
+          "end": 9.961
+        },
+        {
+          "text": "conflict.",
+          "start": 10.008,
+          "end": 10.646
+        },
+        {
+          "text": "An",
+          "start": 11.029,
+          "end": 11.18
+        },
+        {
+          "text": "older",
+          "start": 11.262,
+          "end": 11.564
+        },
+        {
+          "text": "privacy",
+          "start": 11.622,
+          "end": 12.121
+        },
+        {
+          "text": "rule",
+          "start": 12.202,
+          "end": 12.481
+        },
+        {
+          "text": "that",
+          "start": 12.516,
+          "end": 12.632
+        },
+        {
+          "text": "does",
+          "start": 12.678,
+          "end": 12.806
+        },
+        {
+          "text": "not",
+          "start": 12.875,
+          "end": 13.073
+        },
+        {
+          "text": "conflict",
+          "start": 13.131,
+          "end": 13.619
+        },
+        {
+          "text": "can",
+          "start": 13.665000000000001,
+          "end": 13.781
+        },
+        {
+          "text": "still",
+          "start": 13.828000000000001,
+          "end": 14.025
+        },
+        {
+          "text": "apply.",
+          "start": 14.06,
+          "end": 14.582
+        },
+        {
+          "text": "A",
+          "start": 14.965,
+          "end": 15.047
+        },
+        {
+          "text": "helpful",
+          "start": 15.198,
+          "end": 15.581
+        },
+        {
+          "text": "agent",
+          "start": 15.65,
+          "end": 15.976
+        },
+        {
+          "text": "points",
+          "start": 16.034,
+          "end": 16.289
+        },
+        {
+          "text": "to",
+          "start": 16.335,
+          "end": 16.405
+        },
+        {
+          "text": "both",
+          "start": 16.486,
+          "end": 16.707
+        },
+        {
+          "text": "documents",
+          "start": 16.777,
+          "end": 17.299
+        },
+        {
+          "text": "and",
+          "start": 17.334,
+          "end": 17.427
+        },
+        {
+          "text": "states",
+          "start": 17.462,
+          "end": 17.775
+        },
+        {
+          "text": "exactly",
+          "start": 17.833,
+          "end": 18.39
+        },
+        {
+          "text": "which",
+          "start": 18.448,
+          "end": 18.611
+        },
+        {
+          "text": "clause",
+          "start": 18.657,
+          "end": 18.959
+        },
+        {
+          "text": "changed.",
+          "start": 19.006,
+          "end": 19.54
+        },
+        {
+          "text": "It",
+          "start": 19.981,
+          "end": 20.097
+        },
+        {
+          "text": "does",
+          "start": 20.132,
+          "end": 20.271
+        },
+        {
+          "text": "not",
+          "start": 20.364,
+          "end": 20.573
+        },
+        {
+          "text": "discard",
+          "start": 20.631,
+          "end": 21.096
+        },
+        {
+          "text": "every",
+          "start": 21.177,
+          "end": 21.467
+        },
+        {
+          "text": "older",
+          "start": 21.548000000000002,
+          "end": 21.781
+        },
+        {
+          "text": "requirement",
+          "start": 21.839,
+          "end": 22.466
+        },
+        {
+          "text": "merely",
+          "start": 22.616,
+          "end": 22.942
+        },
+        {
+          "text": "because",
+          "start": 23,
+          "end": 23.359
+        },
+        {
+          "text": "a",
+          "start": 23.394,
+          "end": 23.429000000000002
+        },
+        {
+          "text": "newer",
+          "start": 23.509999999999998,
+          "end": 23.743000000000002
+        },
+        {
+          "text": "document",
+          "start": 23.801000000000002,
+          "end": 24.172
+        },
+        {
+          "text": "exists.",
+          "start": 24.219,
+          "end": 24.741
+        }
+      ],
+      "spoken": "Suppose an older build spec says the owner can choose among three inquiry statuses. A later approved narrow spec says to use only New and Handled. The later decision controls that conflict. An older privacy rule that does not conflict can still apply. A helpful agent points to both documents and states exactly which clause changed. It does not discard every older requirement merely because a newer document exists.",
+      "captions": [
+        {
+          "start": 215.43759183673467,
+          "end": 218.07359183673466,
+          "text": "Suppose an older build spec says the owner can choose"
+        },
+        {
+          "start": 218.0965918367347,
+          "end": 219.69859183673466,
+          "text": "among three inquiry statuses."
+        },
+        {
+          "start": 220.08159183673467,
+          "end": 222.71759183673467,
+          "text": "A later approved narrow spec says to use only New and"
+        },
+        {
+          "start": 222.77559183673466,
+          "end": 223.2395918367347,
+          "text": "Handled."
+        },
+        {
+          "start": 223.68059183673466,
+          "end": 226.0255918367347,
+          "text": "The later decision controls that conflict."
+        },
+        {
+          "start": 226.40859183673467,
+          "end": 229.40459183673468,
+          "text": "An older privacy rule that does not conflict can still"
+        },
+        {
+          "start": 229.43959183673468,
+          "end": 229.96159183673467,
+          "text": "apply."
+        },
+        {
+          "start": 230.34459183673468,
+          "end": 233.15459183673468,
+          "text": "A helpful agent points to both documents and states"
+        },
+        {
+          "start": 233.21259183673467,
+          "end": 234.91959183673467,
+          "text": "exactly which clause changed."
+        },
+        {
+          "start": 235.36059183673467,
+          "end": 238.73859183673468,
+          "text": "It does not discard every older requirement merely because"
+        },
+        {
+          "start": 238.77359183673468,
+          "end": 240.12059183673466,
+          "text": "a newer document exists."
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source": "productions/05/audio/09.mp3",
+      "sha256": "fc286c2de56956862459d01066d0a1695c74d0253f4d51cd039fb6fb27936fb0",
+      "sourceTextSha256": "0e522a21b4df0b3d412ba14e3ef60c2882fd87862d627a23cd8afc4fa4d97669",
+      "start": 240.40489795918364,
+      "end": 272.5877551020408,
+      "duration": 32.182857142857145,
+      "samples": 1419264,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.104
+        },
+        {
+          "text": "progress",
+          "start": 0.186,
+          "end": 0.592
+        },
+        {
+          "text": "log",
+          "start": 0.65,
+          "end": 0.929
+        },
+        {
+          "text": "may",
+          "start": 0.998,
+          "end": 1.138
+        },
+        {
+          "text": "say",
+          "start": 1.196,
+          "end": 1.509
+        },
+        {
+          "text": "\"validation",
+          "start": 1.95,
+          "end": 2.856
+        },
+        {
+          "text": "implementation",
+          "start": 2.914,
+          "end": 3.646
+        },
+        {
+          "text": "is",
+          "start": 3.692,
+          "end": 3.773
+        },
+        {
+          "text": "underway;",
+          "start": 3.831,
+          "end": 4.516
+        },
+        {
+          "text": "failure-path",
+          "start": 4.841,
+          "end": 5.584
+        },
+        {
+          "text": "test",
+          "start": 5.642,
+          "end": 5.898
+        },
+        {
+          "text": "remains.\"",
+          "start": 5.956,
+          "end": 6.641
+        },
+        {
+          "text": "A",
+          "start": 7.082,
+          "end": 7.175
+        },
+        {
+          "text": "changelog",
+          "start": 7.256,
+          "end": 7.837
+        },
+        {
+          "text": "may",
+          "start": 7.895,
+          "end": 8.011
+        },
+        {
+          "text": "later",
+          "start": 8.081,
+          "end": 8.313
+        },
+        {
+          "text": "say",
+          "start": 8.371,
+          "end": 8.638
+        },
+        {
+          "text": "\"added",
+          "start": 8.963,
+          "end": 9.404
+        },
+        {
+          "text": "validation",
+          "start": 9.451,
+          "end": 10.136
+        },
+        {
+          "text": "and",
+          "start": 10.205,
+          "end": 10.31
+        },
+        {
+          "text": "clear",
+          "start": 10.368,
+          "end": 10.612
+        },
+        {
+          "text": "missing-field",
+          "start": 10.67,
+          "end": 11.227
+        },
+        {
+          "text": "errors.\"",
+          "start": 11.273,
+          "end": 11.773
+        },
+        {
+          "text": "Evidence",
+          "start": 12.214,
+          "end": 12.713
+        },
+        {
+          "text": "records",
+          "start": 12.771,
+          "end": 13.317
+        },
+        {
+          "text": "the",
+          "start": 13.375,
+          "end": 13.468
+        },
+        {
+          "text": "actual",
+          "start": 13.56,
+          "end": 13.978
+        },
+        {
+          "text": "check,",
+          "start": 14.048,
+          "end": 14.524
+        },
+        {
+          "text": "revision,",
+          "start": 14.675,
+          "end": 15.314
+        },
+        {
+          "text": "and",
+          "start": 15.348,
+          "end": 15.511
+        },
+        {
+          "text": "result.",
+          "start": 15.581,
+          "end": 16.149
+        },
+        {
+          "text": "These",
+          "start": 16.59,
+          "end": 16.846
+        },
+        {
+          "text": "entries",
+          "start": 16.892000000000003,
+          "end": 17.275000000000002
+        },
+        {
+          "text": "answer",
+          "start": 17.368000000000002,
+          "end": 17.716
+        },
+        {
+          "text": "different",
+          "start": 17.809,
+          "end": 18.134
+        },
+        {
+          "text": "questions",
+          "start": 18.181,
+          "end": 18.657
+        },
+        {
+          "text": "and",
+          "start": 18.692,
+          "end": 18.773000000000003
+        },
+        {
+          "text": "can",
+          "start": 18.819000000000003,
+          "end": 18.935000000000002
+        },
+        {
+          "text": "refer",
+          "start": 18.994,
+          "end": 19.284000000000002
+        },
+        {
+          "text": "to",
+          "start": 19.365000000000002,
+          "end": 19.423000000000002
+        },
+        {
+          "text": "one",
+          "start": 19.504,
+          "end": 19.632
+        },
+        {
+          "text": "another.",
+          "start": 19.667,
+          "end": 20.12
+        },
+        {
+          "text": "They",
+          "start": 20.503,
+          "end": 20.665
+        },
+        {
+          "text": "should",
+          "start": 20.700000000000003,
+          "end": 20.898000000000003
+        },
+        {
+          "text": "not",
+          "start": 20.967000000000002,
+          "end": 21.141000000000002
+        },
+        {
+          "text": "claim",
+          "start": 21.199,
+          "end": 21.42
+        },
+        {
+          "text": "a",
+          "start": 21.466,
+          "end": 21.490000000000002
+        },
+        {
+          "text": "deployment",
+          "start": 21.548000000000002,
+          "end": 22.105
+        },
+        {
+          "text": "or",
+          "start": 22.175,
+          "end": 22.337000000000003
+        },
+        {
+          "text": "live",
+          "start": 22.43,
+          "end": 22.616
+        },
+        {
+          "text": "result",
+          "start": 22.651000000000003,
+          "end": 23.045
+        },
+        {
+          "text": "until",
+          "start": 23.103,
+          "end": 23.347
+        },
+        {
+          "text": "it",
+          "start": 23.394000000000002,
+          "end": 23.452
+        },
+        {
+          "text": "has",
+          "start": 23.498,
+          "end": 23.626
+        },
+        {
+          "text": "actually",
+          "start": 23.742,
+          "end": 24.218000000000004
+        },
+        {
+          "text": "occurred.",
+          "start": 24.276000000000003,
+          "end": 24.810000000000002
+        },
+        {
+          "text": "Keeping",
+          "start": 25.507,
+          "end": 25.867
+        },
+        {
+          "text": "these",
+          "start": 25.913000000000004,
+          "end": 26.087000000000003
+        },
+        {
+          "text": "roles",
+          "start": 26.145000000000003,
+          "end": 26.401000000000003
+        },
+        {
+          "text": "distinct",
+          "start": 26.459000000000003,
+          "end": 27.051000000000002
+        },
+        {
+          "text": "lets",
+          "start": 27.26,
+          "end": 27.48
+        },
+        {
+          "text": "a",
+          "start": 27.515,
+          "end": 27.55
+        },
+        {
+          "text": "reviewer",
+          "start": 27.631,
+          "end": 28.061
+        },
+        {
+          "text": "find",
+          "start": 28.131,
+          "end": 28.351
+        },
+        {
+          "text": "the",
+          "start": 28.386000000000003,
+          "end": 28.456000000000003
+        },
+        {
+          "text": "current",
+          "start": 28.502000000000002,
+          "end": 28.792
+        },
+        {
+          "text": "blocker",
+          "start": 28.827,
+          "end": 29.28
+        },
+        {
+          "text": "without",
+          "start": 29.605,
+          "end": 29.977000000000004
+        },
+        {
+          "text": "reading",
+          "start": 30.058,
+          "end": 30.348
+        },
+        {
+          "text": "the",
+          "start": 30.395000000000003,
+          "end": 30.464
+        },
+        {
+          "text": "entire",
+          "start": 30.534,
+          "end": 30.917
+        },
+        {
+          "text": "project",
+          "start": 30.952,
+          "end": 31.335
+        },
+        {
+          "text": "history.",
+          "start": 31.381,
+          "end": 31.904000000000003
+        }
+      ],
+      "spoken": "A progress log may say “validation implementation is underway; failure-path test remains.” A changelog may later say “added validation and clear missing-field errors.” Evidence records the actual check, revision, and result. These entries answer different questions and can refer to one another. They should not claim a deployment or live result until it has actually occurred. Keeping these roles distinct lets a reviewer find the current blocker without reading the entire project history.",
+      "captions": [
+        {
+          "start": 240.43989795918364,
+          "end": 244.17789795918364,
+          "text": "A progress log may say \"validation implementation is"
+        },
+        {
+          "start": 244.23589795918363,
+          "end": 248.41589795918364,
+          "text": "underway; failure-path test remains.\" A changelog may"
+        },
+        {
+          "start": 248.48589795918363,
+          "end": 251.63189795918365,
+          "text": "later say \"added validation and clear missing-field"
+        },
+        {
+          "start": 251.67789795918364,
+          "end": 255.91589795918364,
+          "text": "errors.\" Evidence records the actual check, revision, and"
+        },
+        {
+          "start": 255.98589795918363,
+          "end": 256.55389795918364,
+          "text": "result."
+        },
+        {
+          "start": 256.9948979591836,
+          "end": 259.82789795918364,
+          "text": "These entries answer different questions and can refer to"
+        },
+        {
+          "start": 259.90889795918366,
+          "end": 260.52489795918365,
+          "text": "one another."
+        },
+        {
+          "start": 260.90789795918363,
+          "end": 263.85689795918364,
+          "text": "They should not claim a deployment or live result until it"
+        },
+        {
+          "start": 263.90289795918363,
+          "end": 265.21489795918365,
+          "text": "has actually occurred."
+        },
+        {
+          "start": 265.91189795918365,
+          "end": 268.86089795918366,
+          "text": "Keeping these roles distinct lets a reviewer find the"
+        },
+        {
+          "start": 268.90689795918365,
+          "end": 271.7398979591836,
+          "text": "current blocker without reading the entire project"
+        },
+        {
+          "start": 271.78589795918367,
+          "end": 272.30889795918364,
+          "text": "history."
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source": "productions/05/audio/10.mp3",
+      "sha256": "9424d8552b00955dc4b80ff1560a88b400f3ed79bc8f833dc3b93e3108aea4dc",
+      "sourceTextSha256": "eb287df79e269778ac90a1090a6d9b5c02eed7f72d3881224d6c7f10cea2128d",
+      "start": 272.5877551020408,
+      "end": 303.77795918367343,
+      "duration": 31.190204081632654,
+      "samples": 1375488,
+      "words": [
+        {
+          "text": "At",
+          "start": 0.035,
+          "end": 0.163
+        },
+        {
+          "text": "the",
+          "start": 0.197,
+          "end": 0.267
+        },
+        {
+          "text": "end",
+          "start": 0.325,
+          "end": 0.406
+        },
+        {
+          "text": "of",
+          "start": 0.441,
+          "end": 0.488
+        },
+        {
+          "text": "a",
+          "start": 0.534,
+          "end": 0.557
+        },
+        {
+          "text": "session,",
+          "start": 0.615,
+          "end": 1.173
+        },
+        {
+          "text": "tell",
+          "start": 1.324,
+          "end": 1.521
+        },
+        {
+          "text": "the",
+          "start": 1.567,
+          "end": 1.637
+        },
+        {
+          "text": "next",
+          "start": 1.695,
+          "end": 1.881
+        },
+        {
+          "text": "reader",
+          "start": 1.927,
+          "end": 2.125
+        },
+        {
+          "text": "the",
+          "start": 2.183,
+          "end": 2.252
+        },
+        {
+          "text": "branch",
+          "start": 2.299,
+          "end": 2.694
+        },
+        {
+          "text": "or",
+          "start": 2.81,
+          "end": 2.961
+        },
+        {
+          "text": "revision,",
+          "start": 3.042,
+          "end": 3.704
+        },
+        {
+          "text": "current",
+          "start": 4.087,
+          "end": 4.4
+        },
+        {
+          "text": "work",
+          "start": 4.447,
+          "end": 4.632
+        },
+        {
+          "text": "state,",
+          "start": 4.69,
+          "end": 5.155
+        },
+        {
+          "text": "authoritative",
+          "start": 5.399,
+          "end": 6.06
+        },
+        {
+          "text": "documents,",
+          "start": 6.095,
+          "end": 6.78
+        },
+        {
+          "text": "tests",
+          "start": 6.989,
+          "end": 7.314
+        },
+        {
+          "text": "run,",
+          "start": 7.384,
+          "end": 7.872
+        },
+        {
+          "text": "unverified",
+          "start": 8.115,
+          "end": 8.8
+        },
+        {
+          "text": "areas,",
+          "start": 8.835,
+          "end": 9.358
+        },
+        {
+          "text": "running",
+          "start": 9.799,
+          "end": 10.077
+        },
+        {
+          "text": "services",
+          "start": 10.147,
+          "end": 10.635
+        },
+        {
+          "text": "if",
+          "start": 10.693,
+          "end": 10.774
+        },
+        {
+          "text": "relevant,",
+          "start": 10.855,
+          "end": 11.389
+        },
+        {
+          "text": "and",
+          "start": 11.633,
+          "end": 11.784
+        },
+        {
+          "text": "exact",
+          "start": 11.854,
+          "end": 12.33
+        },
+        {
+          "text": "next",
+          "start": 12.504,
+          "end": 12.783
+        },
+        {
+          "text": "safe",
+          "start": 12.841,
+          "end": 13.131
+        },
+        {
+          "text": "step.",
+          "start": 13.166,
+          "end": 13.63
+        },
+        {
+          "text": "Mention",
+          "start": 14.327,
+          "end": 14.698
+        },
+        {
+          "text": "any",
+          "start": 14.779,
+          "end": 15
+        },
+        {
+          "text": "uncertain",
+          "start": 15.093,
+          "end": 15.604
+        },
+        {
+          "text": "external",
+          "start": 15.674,
+          "end": 16.092
+        },
+        {
+          "text": "effect",
+          "start": 16.137999999999998,
+          "end": 16.439999999999998
+        },
+        {
+          "text": "that",
+          "start": 16.463,
+          "end": 16.590999999999998
+        },
+        {
+          "text": "needs",
+          "start": 16.637,
+          "end": 16.835
+        },
+        {
+          "text": "reconciliation.",
+          "start": 16.881,
+          "end": 17.822
+        },
+        {
+          "text": "If",
+          "start": 18.262999999999998,
+          "end": 18.402
+        },
+        {
+          "text": "the",
+          "start": 18.448,
+          "end": 18.518
+        },
+        {
+          "text": "previous",
+          "start": 18.588,
+          "end": 18.959
+        },
+        {
+          "text": "session",
+          "start": 18.994,
+          "end": 19.342
+        },
+        {
+          "text": "ended",
+          "start": 19.412,
+          "end": 19.737
+        },
+        {
+          "text": "after",
+          "start": 19.794999999999998,
+          "end": 20.016
+        },
+        {
+          "text": "a",
+          "start": 20.061999999999998,
+          "end": 20.097
+        },
+        {
+          "text": "provider",
+          "start": 20.144,
+          "end": 20.503
+        },
+        {
+          "text": "request",
+          "start": 20.561,
+          "end": 20.887
+        },
+        {
+          "text": "was",
+          "start": 20.933,
+          "end": 21.049
+        },
+        {
+          "text": "sent,",
+          "start": 21.096,
+          "end": 21.583
+        },
+        {
+          "text": "that",
+          "start": 21.908,
+          "end": 22.105999999999998
+        },
+        {
+          "text": "uncertainty",
+          "start": 22.186999999999998,
+          "end": 22.802
+        },
+        {
+          "text": "matters",
+          "start": 22.895,
+          "end": 23.209
+        },
+        {
+          "text": "more",
+          "start": 23.29,
+          "end": 23.451999999999998
+        },
+        {
+          "text": "than",
+          "start": 23.476,
+          "end": 23.592
+        },
+        {
+          "text": "a",
+          "start": 23.637999999999998,
+          "end": 23.661
+        },
+        {
+          "text": "long",
+          "start": 23.719,
+          "end": 23.939999999999998
+        },
+        {
+          "text": "narrative",
+          "start": 24.009999999999998,
+          "end": 24.393
+        },
+        {
+          "text": "about",
+          "start": 24.427999999999997,
+          "end": 24.659999999999997
+        },
+        {
+          "text": "how",
+          "start": 24.706,
+          "end": 24.869
+        },
+        {
+          "text": "hard",
+          "start": 24.985,
+          "end": 25.217
+        },
+        {
+          "text": "the",
+          "start": 25.252,
+          "end": 25.322
+        },
+        {
+          "text": "task",
+          "start": 25.368,
+          "end": 25.658
+        },
+        {
+          "text": "was.",
+          "start": 25.728,
+          "end": 26.192
+        },
+        {
+          "text": "A",
+          "start": 26.703,
+          "end": 26.784
+        },
+        {
+          "text": "handoff",
+          "start": 26.901,
+          "end": 27.295
+        },
+        {
+          "text": "is",
+          "start": 27.353,
+          "end": 27.435
+        },
+        {
+          "text": "a",
+          "start": 27.481,
+          "end": 27.516
+        },
+        {
+          "text": "practical",
+          "start": 27.585,
+          "end": 28.073
+        },
+        {
+          "text": "starting",
+          "start": 28.143,
+          "end": 28.503
+        },
+        {
+          "text": "point,",
+          "start": 28.561,
+          "end": 28.967
+        },
+        {
+          "text": "not",
+          "start": 29.211,
+          "end": 29.397
+        },
+        {
+          "text": "a",
+          "start": 29.442999999999998,
+          "end": 29.466
+        },
+        {
+          "text": "congratulatory",
+          "start": 29.536,
+          "end": 30.418
+        },
+        {
+          "text": "summary.",
+          "start": 30.476,
+          "end": 30.987
+        }
+      ],
+      "spoken": "At the end of a session, tell the next reader the branch or revision, current work state, authoritative documents, tests run, unverified areas, running services if relevant, and exact next safe step. Mention any uncertain external effect that needs reconciliation. If the previous session ended after a provider request was sent, that uncertainty matters more than a long narrative about how hard the task was. A handoff is a practical starting point, not a congratulatory summary.",
+      "captions": [
+        {
+          "start": 272.6227551020408,
+          "end": 275.2817551020408,
+          "text": "At the end of a session, tell the next reader the branch"
+        },
+        {
+          "start": 275.3977551020408,
+          "end": 279.36775510204075,
+          "text": "or revision, current work state, authoritative documents,"
+        },
+        {
+          "start": 279.57675510204075,
+          "end": 283.9767551020408,
+          "text": "tests run, unverified areas, running services if relevant,"
+        },
+        {
+          "start": 284.22075510204075,
+          "end": 286.21775510204077,
+          "text": "and exact next safe step."
+        },
+        {
+          "start": 286.9147551020408,
+          "end": 289.42275510204075,
+          "text": "Mention any uncertain external effect that needs"
+        },
+        {
+          "start": 289.46875510204075,
+          "end": 290.4097551020408,
+          "text": "reconciliation."
+        },
+        {
+          "start": 290.85075510204075,
+          "end": 293.63675510204075,
+          "text": "If the previous session ended after a provider request was"
+        },
+        {
+          "start": 293.6837551020408,
+          "end": 296.9807551020408,
+          "text": "sent, that uncertainty matters more than a long narrative"
+        },
+        {
+          "start": 297.01575510204077,
+          "end": 298.7797551020408,
+          "text": "about how hard the task was."
+        },
+        {
+          "start": 299.29075510204075,
+          "end": 302.0537551020408,
+          "text": "A handoff is a practical starting point, not a"
+        },
+        {
+          "start": 302.1237551020408,
+          "end": 303.5747551020408,
+          "text": "congratulatory summary."
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source": "productions/05/audio/11.mp3",
+      "sha256": "0c5465b4ca71b49cf364fc6bb60cfabea1974011c8c262706c47d03c64dc66a0",
+      "sourceTextSha256": "7d81e0cb09fab028afbde522b7921433bb87453a1d825388678f2c0942210bd3",
+      "start": 303.77795918367343,
+      "end": 335.1510204081632,
+      "duration": 31.373061224489796,
+      "samples": 1383552,
+      "words": [
+        {
+          "text": "Imagine",
+          "start": 0.035,
+          "end": 0.604
+        },
+        {
+          "text": "the",
+          "start": 0.639,
+          "end": 0.708
+        },
+        {
+          "text": "tracker",
+          "start": 0.743,
+          "end": 1.115
+        },
+        {
+          "text": "owner",
+          "start": 1.184,
+          "end": 1.405
+        },
+        {
+          "text": "changes",
+          "start": 1.463,
+          "end": 1.881
+        },
+        {
+          "text": "the",
+          "start": 1.927,
+          "end": 1.997
+        },
+        {
+          "text": "required",
+          "start": 2.067,
+          "end": 2.45
+        },
+        {
+          "text": "contact",
+          "start": 2.485,
+          "end": 2.937
+        },
+        {
+          "text": "method.",
+          "start": 2.984,
+          "end": 3.39
+        },
+        {
+          "text": "First",
+          "start": 3.831,
+          "end": 4.122
+        },
+        {
+          "text": "record",
+          "start": 4.191,
+          "end": 4.516
+        },
+        {
+          "text": "the",
+          "start": 4.551,
+          "end": 4.621
+        },
+        {
+          "text": "decision",
+          "start": 4.667,
+          "end": 5.132
+        },
+        {
+          "text": "and",
+          "start": 5.201,
+          "end": 5.294
+        },
+        {
+          "text": "update",
+          "start": 5.352,
+          "end": 5.689
+        },
+        {
+          "text": "the",
+          "start": 5.724,
+          "end": 5.793
+        },
+        {
+          "text": "approved",
+          "start": 5.851,
+          "end": 6.2
+        },
+        {
+          "text": "specification.",
+          "start": 6.223,
+          "end": 7.163
+        },
+        {
+          "text": "Then",
+          "start": 7.605,
+          "end": 7.767
+        },
+        {
+          "text": "adapt",
+          "start": 7.814,
+          "end": 8.15
+        },
+        {
+          "text": "the",
+          "start": 8.185,
+          "end": 8.255
+        },
+        {
+          "text": "plan",
+          "start": 8.301,
+          "end": 8.696
+        },
+        {
+          "text": "and",
+          "start": 8.789,
+          "end": 8.94
+        },
+        {
+          "text": "implement",
+          "start": 8.998,
+          "end": 9.439
+        },
+        {
+          "text": "within",
+          "start": 9.497,
+          "end": 9.752
+        },
+        {
+          "text": "the",
+          "start": 9.787,
+          "end": 9.857
+        },
+        {
+          "text": "granted",
+          "start": 9.892,
+          "end": 10.228
+        },
+        {
+          "text": "scope.",
+          "start": 10.275,
+          "end": 10.762
+        },
+        {
+          "text": "Add",
+          "start": 11.204,
+          "end": 11.471
+        },
+        {
+          "text": "or",
+          "start": 11.505,
+          "end": 11.587
+        },
+        {
+          "text": "update",
+          "start": 11.68,
+          "end": 12.086
+        },
+        {
+          "text": "tests",
+          "start": 12.121,
+          "end": 12.423
+        },
+        {
+          "text": "for",
+          "start": 12.457,
+          "end": 12.562
+        },
+        {
+          "text": "both",
+          "start": 12.62,
+          "end": 12.817
+        },
+        {
+          "text": "accepted",
+          "start": 12.875,
+          "end": 13.468
+        },
+        {
+          "text": "and",
+          "start": 13.549,
+          "end": 13.712
+        },
+        {
+          "text": "rejected",
+          "start": 13.781,
+          "end": 14.281
+        },
+        {
+          "text": "inputs.",
+          "start": 14.339,
+          "end": 14.919
+        },
+        {
+          "text": "Record",
+          "start": 15.43,
+          "end": 15.79
+        },
+        {
+          "text": "the",
+          "start": 15.825,
+          "end": 15.894
+        },
+        {
+          "text": "check",
+          "start": 15.929,
+          "end": 16.162
+        },
+        {
+          "text": "and",
+          "start": 16.208,
+          "end": 16.278
+        },
+        {
+          "text": "revision",
+          "start": 16.323999999999998,
+          "end": 16.73
+        },
+        {
+          "text": "in",
+          "start": 16.788,
+          "end": 16.858
+        },
+        {
+          "text": "evidence,",
+          "start": 16.928,
+          "end": 17.485
+        },
+        {
+          "text": "update",
+          "start": 17.926000000000002,
+          "end": 18.333
+        },
+        {
+          "text": "progress,",
+          "start": 18.378999999999998,
+          "end": 19.157
+        },
+        {
+          "text": "and",
+          "start": 19.401,
+          "end": 19.563
+        },
+        {
+          "text": "mention",
+          "start": 19.656,
+          "end": 19.981
+        },
+        {
+          "text": "the",
+          "start": 20.039,
+          "end": 20.109
+        },
+        {
+          "text": "material",
+          "start": 20.144,
+          "end": 20.562
+        },
+        {
+          "text": "behavior",
+          "start": 20.62,
+          "end": 21.038
+        },
+        {
+          "text": "change",
+          "start": 21.096,
+          "end": 21.351
+        },
+        {
+          "text": "in",
+          "start": 21.374,
+          "end": 21.432000000000002
+        },
+        {
+          "text": "the",
+          "start": 21.467,
+          "end": 21.537
+        },
+        {
+          "text": "changelog.",
+          "start": 21.572,
+          "end": 22.292
+        },
+        {
+          "text": "If",
+          "start": 22.895,
+          "end": 23.046
+        },
+        {
+          "text": "the",
+          "start": 23.093,
+          "end": 23.174
+        },
+        {
+          "text": "change",
+          "start": 23.232,
+          "end": 23.58
+        },
+        {
+          "text": "affects",
+          "start": 23.604,
+          "end": 23.939999999999998
+        },
+        {
+          "text": "data",
+          "start": 24.009999999999998,
+          "end": 24.277
+        },
+        {
+          "text": "flow",
+          "start": 24.335,
+          "end": 24.602
+        },
+        {
+          "text": "or",
+          "start": 24.718,
+          "end": 24.869
+        },
+        {
+          "text": "responsibilities,",
+          "start": 24.927,
+          "end": 26.088
+        },
+        {
+          "text": "update",
+          "start": 26.332,
+          "end": 26.738
+        },
+        {
+          "text": "the",
+          "start": 26.761,
+          "end": 26.831
+        },
+        {
+          "text": "architecture",
+          "start": 26.889,
+          "end": 27.481
+        },
+        {
+          "text": "too.",
+          "start": 27.516,
+          "end": 27.945999999999998
+        },
+        {
+          "text": "If",
+          "start": 28.387,
+          "end": 28.526
+        },
+        {
+          "text": "it",
+          "start": 28.584,
+          "end": 28.642
+        },
+        {
+          "text": "does",
+          "start": 28.689,
+          "end": 28.828
+        },
+        {
+          "text": "not,",
+          "start": 28.898,
+          "end": 29.258
+        },
+        {
+          "text": "leave",
+          "start": 29.326999999999998,
+          "end": 29.571
+        },
+        {
+          "text": "unrelated",
+          "start": 29.652,
+          "end": 30.221
+        },
+        {
+          "text": "sections",
+          "start": 30.268,
+          "end": 30.651
+        },
+        {
+          "text": "alone.",
+          "start": 30.697,
+          "end": 31.138
+        }
+      ],
+      "spoken": "Imagine the tracker owner changes the required contact method. First record the decision and update the approved specification. Then adapt the plan and implement within the granted scope. Add or update tests for both accepted and rejected inputs. Record the check and revision in evidence, update progress, and mention the material behavior change in the changelog. If the change affects data flow or responsibilities, update the architecture too. If it does not, leave unrelated sections alone.",
+      "captions": [
+        {
+          "start": 303.81295918367346,
+          "end": 306.71495918367344,
+          "text": "Imagine the tracker owner changes the required contact"
+        },
+        {
+          "start": 306.7619591836734,
+          "end": 307.1679591836734,
+          "text": "method."
+        },
+        {
+          "start": 307.60895918367345,
+          "end": 309.9779591836734,
+          "text": "First record the decision and update the approved"
+        },
+        {
+          "start": 310.00095918367344,
+          "end": 310.94095918367344,
+          "text": "specification."
+        },
+        {
+          "start": 311.38295918367345,
+          "end": 314.00595918367344,
+          "text": "Then adapt the plan and implement within the granted"
+        },
+        {
+          "start": 314.0529591836734,
+          "end": 314.53995918367343,
+          "text": "scope."
+        },
+        {
+          "start": 314.98195918367344,
+          "end": 318.6969591836734,
+          "text": "Add or update tests for both accepted and rejected inputs."
+        },
+        {
+          "start": 319.20795918367344,
+          "end": 322.11095918367346,
+          "text": "Record the check and revision in evidence, update"
+        },
+        {
+          "start": 322.15695918367345,
+          "end": 325.3149591836734,
+          "text": "progress, and mention the material behavior change in the"
+        },
+        {
+          "start": 325.34995918367343,
+          "end": 326.0699591836734,
+          "text": "changelog."
+        },
+        {
+          "start": 326.6729591836734,
+          "end": 329.86595918367345,
+          "text": "If the change affects data flow or responsibilities,"
+        },
+        {
+          "start": 330.1099591836734,
+          "end": 331.72395918367346,
+          "text": "update the architecture too."
+        },
+        {
+          "start": 332.16495918367343,
+          "end": 334.9159591836734,
+          "text": "If it does not, leave unrelated sections alone."
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source": "productions/05/audio/12.mp3",
+      "sha256": "6b0e760ff5968218e9c92fbd69eda3b7675ded3736428968acb4891bfd57c19e",
+      "sourceTextSha256": "a60a6533ecde750d3ed0e826d1c7fe70f09d5c8c3afc56f3392d03d24aa6b20a",
+      "start": 335.1510204081632,
+      "end": 362.99755102040814,
+      "duration": 27.846530612244898,
+      "samples": 1228032,
+      "words": [
+        {
+          "text": "If",
+          "start": 0.035,
+          "end": 0.151
+        },
+        {
+          "text": "the",
+          "start": 0.209,
+          "end": 0.29
+        },
+        {
+          "text": "README",
+          "start": 0.383,
+          "end": 0.824
+        },
+        {
+          "text": "says",
+          "start": 0.859,
+          "end": 1.08
+        },
+        {
+          "text": "a",
+          "start": 1.126,
+          "end": 1.161
+        },
+        {
+          "text": "feature",
+          "start": 1.231,
+          "end": 1.556
+        },
+        {
+          "text": "is",
+          "start": 1.591,
+          "end": 1.672
+        },
+        {
+          "text": "live",
+          "start": 1.788,
+          "end": 2.276
+        },
+        {
+          "text": "while",
+          "start": 2.357,
+          "end": 2.577
+        },
+        {
+          "text": "the",
+          "start": 2.601,
+          "end": 2.67
+        },
+        {
+          "text": "handoff",
+          "start": 2.74,
+          "end": 3.239
+        },
+        {
+          "text": "says",
+          "start": 3.297,
+          "end": 3.518
+        },
+        {
+          "text": "deployment",
+          "start": 3.576,
+          "end": 4.122
+        },
+        {
+          "text": "is",
+          "start": 4.156,
+          "end": 4.226
+        },
+        {
+          "text": "pending,",
+          "start": 4.284,
+          "end": 4.841
+        },
+        {
+          "text": "do",
+          "start": 5.283,
+          "end": 5.433
+        },
+        {
+          "text": "not",
+          "start": 5.526,
+          "end": 5.666
+        },
+        {
+          "text": "pick",
+          "start": 5.724,
+          "end": 5.909
+        },
+        {
+          "text": "one",
+          "start": 5.991,
+          "end": 6.177
+        },
+        {
+          "text": "sentence",
+          "start": 6.223,
+          "end": 6.629
+        },
+        {
+          "text": "because",
+          "start": 6.664,
+          "end": 6.92
+        },
+        {
+          "text": "it",
+          "start": 6.943,
+          "end": 7.001
+        },
+        {
+          "text": "sounds",
+          "start": 7.047,
+          "end": 7.314
+        },
+        {
+          "text": "more",
+          "start": 7.361,
+          "end": 7.5
+        },
+        {
+          "text": "confident.",
+          "start": 7.546,
+          "end": 8.104
+        },
+        {
+          "text": "Inspect",
+          "start": 8.545,
+          "end": 8.998
+        },
+        {
+          "text": "dated",
+          "start": 9.044,
+          "end": 9.3
+        },
+        {
+          "text": "evidence",
+          "start": 9.358,
+          "end": 9.718
+        },
+        {
+          "text": "and",
+          "start": 9.752,
+          "end": 9.834
+        },
+        {
+          "text": "current",
+          "start": 9.88,
+          "end": 10.147
+        },
+        {
+          "text": "state",
+          "start": 10.194,
+          "end": 10.414
+        },
+        {
+          "text": "where",
+          "start": 10.449,
+          "end": 10.588
+        },
+        {
+          "text": "authorized.",
+          "start": 10.612,
+          "end": 11.215
+        },
+        {
+          "text": "Report",
+          "start": 11.656,
+          "end": 12.051
+        },
+        {
+          "text": "the",
+          "start": 12.086,
+          "end": 12.156
+        },
+        {
+          "text": "contradiction",
+          "start": 12.214,
+          "end": 12.968
+        },
+        {
+          "text": "and",
+          "start": 13.038,
+          "end": 13.154
+        },
+        {
+          "text": "correct",
+          "start": 13.212,
+          "end": 13.514
+        },
+        {
+          "text": "the",
+          "start": 13.549,
+          "end": 13.618
+        },
+        {
+          "text": "stale",
+          "start": 13.653,
+          "end": 13.908
+        },
+        {
+          "text": "description",
+          "start": 13.943,
+          "end": 14.431000000000001
+        },
+        {
+          "text": "when",
+          "start": 14.477,
+          "end": 14.593
+        },
+        {
+          "text": "the",
+          "start": 14.628,
+          "end": 14.698
+        },
+        {
+          "text": "task",
+          "start": 14.733,
+          "end": 15
+        },
+        {
+          "text": "permits.",
+          "start": 15.058,
+          "end": 15.604
+        },
+        {
+          "text": "If",
+          "start": 16.114,
+          "end": 16.254
+        },
+        {
+          "text": "the",
+          "start": 16.3,
+          "end": 16.381
+        },
+        {
+          "text": "evidence",
+          "start": 16.474,
+          "end": 16.962
+        },
+        {
+          "text": "is",
+          "start": 17.02,
+          "end": 17.148
+        },
+        {
+          "text": "insufficient,",
+          "start": 17.264,
+          "end": 18.193
+        },
+        {
+          "text": "label",
+          "start": 18.436,
+          "end": 18.738
+        },
+        {
+          "text": "the",
+          "start": 18.796,
+          "end": 18.866
+        },
+        {
+          "text": "status",
+          "start": 18.901,
+          "end": 19.261
+        },
+        {
+          "text": "unknown.",
+          "start": 19.319,
+          "end": 19.864
+        },
+        {
+          "text": "Documents",
+          "start": 20.468,
+          "end": 21.025
+        },
+        {
+          "text": "are",
+          "start": 21.060000000000002,
+          "end": 21.165
+        },
+        {
+          "text": "useful",
+          "start": 21.223,
+          "end": 21.536
+        },
+        {
+          "text": "because",
+          "start": 21.594,
+          "end": 21.908
+        },
+        {
+          "text": "they",
+          "start": 21.942999999999998,
+          "end": 22.07
+        },
+        {
+          "text": "make",
+          "start": 22.152,
+          "end": 22.361
+        },
+        {
+          "text": "information",
+          "start": 22.419,
+          "end": 22.999000000000002
+        },
+        {
+          "text": "inspectable;",
+          "start": 23.057000000000002,
+          "end": 23.777
+        },
+        {
+          "text": "they",
+          "start": 24.218,
+          "end": 24.357
+        },
+        {
+          "text": "cannot",
+          "start": 24.392,
+          "end": 24.717
+        },
+        {
+          "text": "substitute",
+          "start": 24.833,
+          "end": 25.542
+        },
+        {
+          "text": "for",
+          "start": 25.576,
+          "end": 25.669
+        },
+        {
+          "text": "the",
+          "start": 25.716,
+          "end": 25.785
+        },
+        {
+          "text": "observation",
+          "start": 25.867,
+          "end": 26.47
+        },
+        {
+          "text": "they",
+          "start": 26.505000000000003,
+          "end": 26.61
+        },
+        {
+          "text": "claim",
+          "start": 26.645,
+          "end": 26.842
+        },
+        {
+          "text": "to",
+          "start": 26.887999999999998,
+          "end": 26.935000000000002
+        },
+        {
+          "text": "represent.",
+          "start": 26.993000000000002,
+          "end": 27.608
+        }
+      ],
+      "spoken": "If the README says a feature is live while the handoff says deployment is pending, do not pick one sentence because it sounds more confident. Inspect dated evidence and current state where authorized. Report the contradiction and correct the stale description when the task permits. If the evidence is insufficient, label the status unknown. Documents are useful because they make information inspectable; they cannot substitute for the observation they claim to represent.",
+      "captions": [
+        {
+          "start": 335.18602040816324,
+          "end": 338.3900204081632,
+          "text": "If the README says a feature is live while the handoff"
+        },
+        {
+          "start": 338.44802040816325,
+          "end": 341.78002040816324,
+          "text": "says deployment is pending, do not pick one sentence"
+        },
+        {
+          "start": 341.8150204081632,
+          "end": 343.2550204081632,
+          "text": "because it sounds more confident."
+        },
+        {
+          "start": 343.69602040816324,
+          "end": 346.3660204081632,
+          "text": "Inspect dated evidence and current state where authorized."
+        },
+        {
+          "start": 346.8070204081632,
+          "end": 349.5820204081632,
+          "text": "Report the contradiction and correct the stale description"
+        },
+        {
+          "start": 349.6280204081632,
+          "end": 350.7550204081632,
+          "text": "when the task permits."
+        },
+        {
+          "start": 351.2650204081632,
+          "end": 355.0150204081632,
+          "text": "If the evidence is insufficient, label the status unknown."
+        },
+        {
+          "start": 355.61902040816324,
+          "end": 358.15002040816324,
+          "text": "Documents are useful because they make information"
+        },
+        {
+          "start": 358.20802040816324,
+          "end": 361.6210204081632,
+          "text": "inspectable; they cannot substitute for the observation"
+        },
+        {
+          "start": 361.6560204081632,
+          "end": 362.7590204081632,
+          "text": "they claim to represent."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "source": "productions/05/audio/13.mp3",
+      "sha256": "0d66e9398911aebd1716794c04f27da255f0a95f94a36f30352e2bcfd9184027",
+      "sourceTextSha256": "38c1a298f6677a68d49e616d6eb378256aeed20e65ad3eecb8a8184c0e250bc2",
+      "start": 362.99755102040814,
+      "end": 396.0424489795918,
+      "duration": 33.04489795918367,
+      "samples": 1457280,
+      "words": [
+        {
+          "text": "Give",
+          "start": 0.058,
+          "end": 0.244
+        },
+        {
+          "text": "a",
+          "start": 0.279,
+          "end": 0.302
+        },
+        {
+          "text": "partner",
+          "start": 0.372,
+          "end": 0.685
+        },
+        {
+          "text": "only",
+          "start": 0.755,
+          "end": 0.952
+        },
+        {
+          "text": "your",
+          "start": 0.998,
+          "end": 1.103
+        },
+        {
+          "text": "document",
+          "start": 1.161,
+          "end": 1.625
+        },
+        {
+          "text": "map",
+          "start": 1.672,
+          "end": 1.916
+        },
+        {
+          "text": "and",
+          "start": 1.974,
+          "end": 2.043
+        },
+        {
+          "text": "a",
+          "start": 2.078,
+          "end": 2.113
+        },
+        {
+          "text": "short",
+          "start": 2.159,
+          "end": 2.38
+        },
+        {
+          "text": "project",
+          "start": 2.426,
+          "end": 2.821
+        },
+        {
+          "text": "folder.",
+          "start": 2.856,
+          "end": 3.332
+        },
+        {
+          "text": "Ask",
+          "start": 3.773,
+          "end": 4.145
+        },
+        {
+          "text": "where",
+          "start": 4.203,
+          "end": 4.365
+        },
+        {
+          "text": "they",
+          "start": 4.389,
+          "end": 4.493
+        },
+        {
+          "text": "would",
+          "start": 4.528,
+          "end": 4.702
+        },
+        {
+          "text": "find",
+          "start": 4.772,
+          "end": 5.039
+        },
+        {
+          "text": "the",
+          "start": 5.074,
+          "end": 5.143
+        },
+        {
+          "text": "original",
+          "start": 5.201,
+          "end": 5.619
+        },
+        {
+          "text": "goal,",
+          "start": 5.689,
+          "end": 6.223
+        },
+        {
+          "text": "an",
+          "start": 6.397,
+          "end": 6.536
+        },
+        {
+          "text": "approved",
+          "start": 6.571,
+          "end": 6.966
+        },
+        {
+          "text": "decision,",
+          "start": 6.989,
+          "end": 7.709
+        },
+        {
+          "text": "a",
+          "start": 7.953,
+          "end": 8.022
+        },
+        {
+          "text": "failed",
+          "start": 8.139,
+          "end": 8.44
+        },
+        {
+          "text": "check,",
+          "start": 8.487,
+          "end": 8.975
+        },
+        {
+          "text": "and",
+          "start": 9.033,
+          "end": 9.183
+        },
+        {
+          "text": "the",
+          "start": 9.23,
+          "end": 9.3
+        },
+        {
+          "text": "next",
+          "start": 9.369,
+          "end": 9.601
+        },
+        {
+          "text": "safe",
+          "start": 9.636,
+          "end": 9.868
+        },
+        {
+          "text": "action.",
+          "start": 9.915,
+          "end": 10.391
+        },
+        {
+          "text": "If",
+          "start": 10.995,
+          "end": 11.134
+        },
+        {
+          "text": "they",
+          "start": 11.18,
+          "end": 11.32
+        },
+        {
+          "text": "cannot",
+          "start": 11.389,
+          "end": 11.738
+        },
+        {
+          "text": "answer,",
+          "start": 11.796,
+          "end": 12.33
+        },
+        {
+          "text": "the",
+          "start": 12.539,
+          "end": 12.655
+        },
+        {
+          "text": "information",
+          "start": 12.736,
+          "end": 13.398
+        },
+        {
+          "text": "may",
+          "start": 13.468,
+          "end": 13.595
+        },
+        {
+          "text": "be",
+          "start": 13.653,
+          "end": 13.758000000000001
+        },
+        {
+          "text": "missing,",
+          "start": 13.827,
+          "end": 14.396
+        },
+        {
+          "text": "hidden,",
+          "start": 14.721,
+          "end": 15.209
+        },
+        {
+          "text": "or",
+          "start": 15.290000000000001,
+          "end": 15.441
+        },
+        {
+          "text": "duplicated",
+          "start": 15.522,
+          "end": 16.149
+        },
+        {
+          "text": "inconsistently.",
+          "start": 16.231,
+          "end": 17.229
+        },
+        {
+          "text": "Revise",
+          "start": 17.926000000000002,
+          "end": 18.355
+        },
+        {
+          "text": "the",
+          "start": 18.39,
+          "end": 18.46
+        },
+        {
+          "text": "map",
+          "start": 18.506,
+          "end": 18.704
+        },
+        {
+          "text": "and",
+          "start": 18.75,
+          "end": 18.82
+        },
+        {
+          "text": "try",
+          "start": 18.854,
+          "end": 19.04
+        },
+        {
+          "text": "again.",
+          "start": 19.098,
+          "end": 19.574
+        },
+        {
+          "text": "In",
+          "start": 19.899,
+          "end": 20.039
+        },
+        {
+          "text": "a",
+          "start": 20.085,
+          "end": 20.12
+        },
+        {
+          "text": "real",
+          "start": 20.213,
+          "end": 20.422
+        },
+        {
+          "text": "project,",
+          "start": 20.491,
+          "end": 21.072000000000003
+        },
+        {
+          "text": "a",
+          "start": 21.142,
+          "end": 21.211
+        },
+        {
+          "text": "fresh",
+          "start": 21.281,
+          "end": 21.536
+        },
+        {
+          "text": "agent",
+          "start": 21.594,
+          "end": 21.896
+        },
+        {
+          "text": "can",
+          "start": 21.943,
+          "end": 22.047
+        },
+        {
+          "text": "do",
+          "start": 22.094,
+          "end": 22.163
+        },
+        {
+          "text": "a",
+          "start": 22.221,
+          "end": 22.256
+        },
+        {
+          "text": "similar",
+          "start": 22.326,
+          "end": 22.686
+        },
+        {
+          "text": "review,",
+          "start": 22.767000000000003,
+          "end": 23.382
+        },
+        {
+          "text": "but",
+          "start": 23.591,
+          "end": 23.765
+        },
+        {
+          "text": "label",
+          "start": 23.847,
+          "end": 24.172
+        },
+        {
+          "text": "that",
+          "start": 24.241,
+          "end": 24.381
+        },
+        {
+          "text": "as",
+          "start": 24.427,
+          "end": 24.497
+        },
+        {
+          "text": "an",
+          "start": 24.555,
+          "end": 24.625
+        },
+        {
+          "text": "agent",
+          "start": 24.694000000000003,
+          "end": 25.019
+        },
+        {
+          "text": "review",
+          "start": 25.066000000000003,
+          "end": 25.426000000000002
+        },
+        {
+          "text": "rather",
+          "start": 25.867,
+          "end": 26.145000000000003
+        },
+        {
+          "text": "than",
+          "start": 26.18,
+          "end": 26.32
+        },
+        {
+          "text": "claiming",
+          "start": 26.389000000000003,
+          "end": 26.726
+        },
+        {
+          "text": "a",
+          "start": 26.772,
+          "end": 26.796
+        },
+        {
+          "text": "human",
+          "start": 26.865000000000002,
+          "end": 27.121000000000002
+        },
+        {
+          "text": "learner",
+          "start": 27.167,
+          "end": 27.423000000000002
+        },
+        {
+          "text": "tested",
+          "start": 27.481,
+          "end": 27.829
+        },
+        {
+          "text": "the",
+          "start": 27.864,
+          "end": 27.933
+        },
+        {
+          "text": "material.",
+          "start": 27.968,
+          "end": 28.525
+        },
+        {
+          "text": "The",
+          "start": 29.221999999999998,
+          "end": 29.349
+        },
+        {
+          "text": "goal",
+          "start": 29.407,
+          "end": 29.628
+        },
+        {
+          "text": "is",
+          "start": 29.698,
+          "end": 29.767
+        },
+        {
+          "text": "that",
+          "start": 29.802,
+          "end": 29.918
+        },
+        {
+          "text": "a",
+          "start": 29.965,
+          "end": 29.988
+        },
+        {
+          "text": "newcomer",
+          "start": 30.058,
+          "end": 30.487
+        },
+        {
+          "text": "can",
+          "start": 30.544999999999998,
+          "end": 30.685
+        },
+        {
+          "text": "navigate",
+          "start": 30.753999999999998,
+          "end": 31.265
+        },
+        {
+          "text": "without",
+          "start": 31.299999999999997,
+          "end": 31.579
+        },
+        {
+          "text": "your",
+          "start": 31.613,
+          "end": 31.741
+        },
+        {
+          "text": "oral",
+          "start": 31.799,
+          "end": 31.996
+        },
+        {
+          "text": "explanation.",
+          "start": 32.066,
+          "end": 32.798
+        }
+      ],
+      "spoken": "Give a partner only your document map and a short project folder. Ask where they would find the original goal, an approved decision, a failed check, and the next safe action. If they cannot answer, the information may be missing, hidden, or duplicated inconsistently. Revise the map and try again. In a real project, a fresh agent can do a similar review, but label that as an agent review rather than claiming a human learner tested the material. The goal is that a newcomer can navigate without your oral explanation.",
+      "captions": [
+        {
+          "start": 363.05555102040813,
+          "end": 365.81855102040817,
+          "text": "Give a partner only your document map and a short project"
+        },
+        {
+          "start": 365.85355102040813,
+          "end": 366.32955102040813,
+          "text": "folder."
+        },
+        {
+          "start": 366.77055102040816,
+          "end": 369.96355102040815,
+          "text": "Ask where they would find the original goal, an approved"
+        },
+        {
+          "start": 369.9865510204081,
+          "end": 373.38855102040816,
+          "text": "decision, a failed check, and the next safe action."
+        },
+        {
+          "start": 373.99255102040814,
+          "end": 377.39355102040815,
+          "text": "If they cannot answer, the information may be missing,"
+        },
+        {
+          "start": 377.71855102040814,
+          "end": 380.2265510204081,
+          "text": "hidden, or duplicated inconsistently."
+        },
+        {
+          "start": 380.9235510204081,
+          "end": 382.57155102040815,
+          "text": "Revise the map and try again."
+        },
+        {
+          "start": 382.89655102040814,
+          "end": 386.37955102040814,
+          "text": "In a real project, a fresh agent can do a similar review,"
+        },
+        {
+          "start": 386.58855102040815,
+          "end": 389.79355102040813,
+          "text": "but label that as an agent review rather than claiming a"
+        },
+        {
+          "start": 389.86255102040815,
+          "end": 391.5225510204081,
+          "text": "human learner tested the material."
+        },
+        {
+          "start": 392.2195510204081,
+          "end": 394.9935510204081,
+          "text": "The goal is that a newcomer can navigate without your oral"
+        },
+        {
+          "start": 395.0635510204081,
+          "end": 395.79555102040814,
+          "text": "explanation."
+        }
+      ]
+    }
+  ],
+  "captions": [
+    {
+      "start": 0.07,
+      "end": 2.775,
+      "text": "Documentation works best when each document answers a"
+    },
+    {
+      "start": 2.833,
+      "end": 3.669,
+      "text": "clear question."
+    },
+    {
+      "start": 4.365,
+      "end": 7.79,
+      "text": "A README is the front door: what is this project and where"
+    },
+    {
+      "start": 7.814,
+      "end": 8.522,
+      "text": "do I start?"
+    },
+    {
+      "start": 9.218,
+      "end": 13.444,
+      "text": "Session instructions, often named AGENTS.md, explain"
+    },
+    {
+      "start": 13.526,
+      "end": 14.93,
+      "text": "applicable working rules."
+    },
+    {
+      "start": 15.627,
+      "end": 18.529,
+      "text": "A decision ledger says which important choices were made"
+    },
+    {
+      "start": 18.553,
+      "end": 19.145,
+      "text": "and why."
+    },
+    {
+      "start": 19.586,
+      "end": 22.326,
+      "text": "An architecture document explains how parts fit together."
+    },
+    {
+      "start": 22.651,
+      "end": 25.925,
+      "text": "A workflow document explains behavior over time, including"
+    },
+    {
+      "start": 25.971,
+      "end": 26.447,
+      "text": "failure."
+    },
+    {
+      "start": 26.958,
+      "end": 29.431,
+      "text": "These documents serve different readers and should not"
+    },
+    {
+      "start": 29.489,
+      "end": 31.033,
+      "text": "silently contradict one another."
+    },
+    {
+      "start": 31.300448979591838,
+      "end": 33.99444897959184,
+      "text": "The architecture shows responsibility and structure."
+    },
+    {
+      "start": 34.43544897959184,
+      "end": 37.45344897959184,
+      "text": "The build specification states exactly what behavior must"
+    },
+    {
+      "start": 37.50044897959184,
+      "end": 40.82044897959184,
+      "text": "be delivered, including validation, boundaries, and"
+    },
+    {
+      "start": 40.85544897959184,
+      "end": 42.028448979591836,
+      "text": "acceptance criteria."
+    },
+    {
+      "start": 42.63144897959184,
+      "end": 45.800448979591835,
+      "text": "The build plan arranges work into an order: what depends"
+    },
+    {
+      "start": 45.85944897959184,
+      "end": 49.50444897959184,
+      "text": "on what, who owns each part, and how completion will be"
+    },
+    {
+      "start": 49.53944897959184,
+      "end": 50.00344897959184,
+      "text": "checked."
+    },
+    {
+      "start": 50.60744897959184,
+      "end": 53.46344897959184,
+      "text": "For our tracker, the architecture says a service validates"
+    },
+    {
+      "start": 53.50944897959184,
+      "end": 54.57844897959184,
+      "text": "and stores an inquiry."
+    },
+    {
+      "start": 54.961448979591836,
+      "end": 57.80544897959184,
+      "text": "The spec defines the required fields and what the user"
+    },
+    {
+      "start": 57.87544897959184,
+      "end": 58.66444897959184,
+      "text": "sees on error."
+    },
+    {
+      "start": 59.047448979591834,
+      "end": 62.27544897959184,
+      "text": "The plan says which part to implement and verify first."
+    },
+    {
+      "start": 62.57214285714285,
+      "end": 65.86914285714285,
+      "text": "A progress log tells us what happened recently, what is"
+    },
+    {
+      "start": 65.92714285714285,
+      "end": 68.04014285714285,
+      "text": "underway, and what comes next."
+    },
+    {
+      "start": 68.64414285714285,
+      "end": 71.55814285714285,
+      "text": "A changelog records meaningful changes over time."
+    },
+    {
+      "start": 71.94114285714285,
+      "end": 74.91314285714286,
+      "text": "An evidence record captures what was actually checked,"
+    },
+    {
+      "start": 75.23814285714286,
+      "end": 76.78214285714286,
+      "text": "with the version and result."
+    },
+    {
+      "start": 77.22414285714285,
+      "end": 80.66014285714286,
+      "text": "A runbook explains how to operate, inspect, and recover"
+    },
+    {
+      "start": 80.71814285714285,
+      "end": 81.34514285714286,
+      "text": "the system."
+    },
+    {
+      "start": 81.94914285714285,
+      "end": 85.74514285714285,
+      "text": "A handoff is a concise restart point: the current state,"
+    },
+    {
+      "start": 85.82714285714286,
+      "end": 90.19214285714285,
+      "text": "known gaps, important decisions, exact blockers, and next"
+    },
+    {
+      "start": 90.22714285714285,
+      "end": 90.97014285714286,
+      "text": "safe action."
+    },
+    {
+      "start": 91.57414285714285,
+      "end": 94.18614285714285,
+      "text": "A log is not proof by itself unless it points to"
+    },
+    {
+      "start": 94.25614285714286,
+      "end": 95.27714285714285,
+      "text": "appropriate evidence."
+    },
+    {
+      "start": 95.62591836734693,
+      "end": 97.35591836734693,
+      "text": "Documents have different authority."
+    },
+    {
+      "start": 97.68091836734693,
+      "end": 101.31491836734693,
+      "text": "A more recent, explicitly approved narrow specification"
+    },
+    {
+      "start": 101.59291836734694,
+      "end": 104.94791836734693,
+      "text": "can supersede an older requirement where they conflict;"
+    },
+    {
+      "start": 105.55191836734693,
+      "end": 107.88591836734693,
+      "text": "other older requirements may still apply."
+    },
+    {
+      "start": 108.39691836734693,
+      "end": 111.25191836734693,
+      "text": "A progress report can describe what someone believes is"
+    },
+    {
+      "start": 111.32191836734694,
+      "end": 115.48991836734693,
+      "text": "done, but it cannot turn an untested feature into verified"
+    },
+    {
+      "start": 115.52491836734694,
+      "end": 116.12791836734694,
+      "text": "behavior."
+    },
+    {
+      "start": 116.73191836734694,
+      "end": 119.83191836734693,
+      "text": "A kickoff can authorize an agent to act within its stated"
+    },
+    {
+      "start": 119.88991836734694,
+      "end": 120.37791836734694,
+      "text": "scope."
+    },
+    {
+      "start": 120.81891836734694,
+      "end": 124.09291836734693,
+      "text": "When instructions conflict, ask the agent to identify the"
+    },
+    {
+      "start": 124.16291836734693,
+      "end": 127.58791836734693,
+      "text": "actual source and the precise conflict rather than quietly"
+    },
+    {
+      "start": 127.65691836734693,
+      "end": 129.43391836734693,
+      "text": "choose whichever text is convenient."
+    },
+    {
+      "start": 129.75908163265305,
+      "end": 132.44108163265307,
+      "text": "Not every tiny project needs a separate file for every"
+    },
+    {
+      "start": 132.49908163265306,
+      "end": 133.05608163265305,
+      "text": "concept."
+    },
+    {
+      "start": 133.49708163265305,
+      "end": 135.51708163265306,
+      "text": "The important part is that an agent can find the"
+    },
+    {
+      "start": 135.55208163265306,
+      "end": 140.10308163265304,
+      "text": "decisions, scope, tests, operational steps, and current"
+    },
+    {
+      "start": 140.15008163265304,
+      "end": 140.59108163265304,
+      "text": "state."
+    },
+    {
+      "start": 141.03208163265305,
+      "end": 144.58508163265304,
+      "text": "A small project might combine sections; a larger one may"
+    },
+    {
+      "start": 144.65508163265307,
+      "end": 145.39808163265306,
+      "text": "separate them."
+    },
+    {
+      "start": 146.21008163265304,
+      "end": 149.07808163265304,
+      "text": "Use the simplest organization that keeps responsibilities"
+    },
+    {
+      "start": 149.12408163265306,
+      "end": 149.56608163265304,
+      "text": "clear."
+    },
+    {
+      "start": 149.89108163265306,
+      "end": 152.54908163265304,
+      "text": "A naming convention helps, but a filename does not"
+    },
+    {
+      "start": 152.59608163265307,
+      "end": 155.17308163265307,
+      "text": "guarantee that a document is current or authoritative."
+    },
+    {
+      "start": 155.61408163265304,
+      "end": 157.06608163265304,
+      "text": "Read its content and date."
+    },
+    {
+      "start": 157.37051020408163,
+      "end": 160.88851020408163,
+      "text": "Imagine the tracker changes from three statuses to two."
+    },
+    {
+      "start": 161.32951020408163,
+      "end": 164.71951020408164,
+      "text": "Update the relevant decision and spec, implement the"
+    },
+    {
+      "start": 164.76551020408164,
+      "end": 167.84251020408163,
+      "text": "change when authorized, record what changed in the"
+    },
+    {
+      "start": 167.87751020408163,
+      "end": 172.03351020408164,
+      "text": "changelog, record test results in evidence, and refresh"
+    },
+    {
+      "start": 172.11451020408163,
+      "end": 173.58951020408162,
+      "text": "progress and handoff."
+    },
+    {
+      "start": 174.09951020408164,
+      "end": 176.59651020408162,
+      "text": "The architecture may not need to change if component"
+    },
+    {
+      "start": 176.63051020408165,
+      "end": 178.23351020408163,
+      "text": "responsibilities remain the same."
+    },
+    {
+      "start": 178.55851020408164,
+      "end": 182.02951020408162,
+      "text": "This is why each document has one job: we can update the"
+    },
+    {
+      "start": 182.0645102040816,
+      "end": 184.73451020408163,
+      "text": "places whose truth actually changed without rewriting"
+    },
+    {
+      "start": 184.78151020408163,
+      "end": 185.41951020408163,
+      "text": "every page."
+    },
+    {
+      "start": 185.73948979591836,
+      "end": 189.02448979591836,
+      "text": "A tiny project might start with a README, a decisions"
+    },
+    {
+      "start": 189.07148979591835,
+      "end": 192.87948979591837,
+      "text": "section, a combined architecture and specification, a"
+    },
+    {
+      "start": 192.97248979591836,
+      "end": 194.48148979591835,
+      "text": "plan, and a handoff."
+    },
+    {
+      "start": 195.08548979591836,
+      "end": 198.04548979591837,
+      "text": "As the project grows, separate documents when readers need"
+    },
+    {
+      "start": 198.09248979591837,
+      "end": 199.92748979591838,
+      "text": "different levels of detail or authority."
+    },
+    {
+      "start": 200.36848979591835,
+      "end": 203.06148979591836,
+      "text": "The aim is not to create files for their own sake."
+    },
+    {
+      "start": 203.44548979591838,
+      "end": 205.70848979591835,
+      "text": "Ask whether a new contributor can find the current"
+    },
+    {
+      "start": 205.75548979591835,
+      "end": 209.29648979591838,
+      "text": "behavior, the reason behind a decision, what remains to"
+    },
+    {
+      "start": 209.36648979591837,
+      "end": 211.31648979591836,
+      "text": "build, and how to verify a change."
+    },
+    {
+      "start": 211.75748979591836,
+      "end": 214.56748979591836,
+      "text": "If those answers are clear, the structure is doing its"
+    },
+    {
+      "start": 214.61348979591835,
+      "end": 215.06648979591836,
+      "text": "job."
+    },
+    {
+      "start": 215.43759183673467,
+      "end": 218.07359183673466,
+      "text": "Suppose an older build spec says the owner can choose"
+    },
+    {
+      "start": 218.0965918367347,
+      "end": 219.69859183673466,
+      "text": "among three inquiry statuses."
+    },
+    {
+      "start": 220.08159183673467,
+      "end": 222.71759183673467,
+      "text": "A later approved narrow spec says to use only New and"
+    },
+    {
+      "start": 222.77559183673466,
+      "end": 223.2395918367347,
+      "text": "Handled."
+    },
+    {
+      "start": 223.68059183673466,
+      "end": 226.0255918367347,
+      "text": "The later decision controls that conflict."
+    },
+    {
+      "start": 226.40859183673467,
+      "end": 229.40459183673468,
+      "text": "An older privacy rule that does not conflict can still"
+    },
+    {
+      "start": 229.43959183673468,
+      "end": 229.96159183673467,
+      "text": "apply."
+    },
+    {
+      "start": 230.34459183673468,
+      "end": 233.15459183673468,
+      "text": "A helpful agent points to both documents and states"
+    },
+    {
+      "start": 233.21259183673467,
+      "end": 234.91959183673467,
+      "text": "exactly which clause changed."
+    },
+    {
+      "start": 235.36059183673467,
+      "end": 238.73859183673468,
+      "text": "It does not discard every older requirement merely because"
+    },
+    {
+      "start": 238.77359183673468,
+      "end": 240.12059183673466,
+      "text": "a newer document exists."
+    },
+    {
+      "start": 240.43989795918364,
+      "end": 244.17789795918364,
+      "text": "A progress log may say \"validation implementation is"
+    },
+    {
+      "start": 244.23589795918363,
+      "end": 248.41589795918364,
+      "text": "underway; failure-path test remains.\" A changelog may"
+    },
+    {
+      "start": 248.48589795918363,
+      "end": 251.63189795918365,
+      "text": "later say \"added validation and clear missing-field"
+    },
+    {
+      "start": 251.67789795918364,
+      "end": 255.91589795918364,
+      "text": "errors.\" Evidence records the actual check, revision, and"
+    },
+    {
+      "start": 255.98589795918363,
+      "end": 256.55389795918364,
+      "text": "result."
+    },
+    {
+      "start": 256.9948979591836,
+      "end": 259.82789795918364,
+      "text": "These entries answer different questions and can refer to"
+    },
+    {
+      "start": 259.90889795918366,
+      "end": 260.52489795918365,
+      "text": "one another."
+    },
+    {
+      "start": 260.90789795918363,
+      "end": 263.85689795918364,
+      "text": "They should not claim a deployment or live result until it"
+    },
+    {
+      "start": 263.90289795918363,
+      "end": 265.21489795918365,
+      "text": "has actually occurred."
+    },
+    {
+      "start": 265.91189795918365,
+      "end": 268.86089795918366,
+      "text": "Keeping these roles distinct lets a reviewer find the"
+    },
+    {
+      "start": 268.90689795918365,
+      "end": 271.7398979591836,
+      "text": "current blocker without reading the entire project"
+    },
+    {
+      "start": 271.78589795918367,
+      "end": 272.30889795918364,
+      "text": "history."
+    },
+    {
+      "start": 272.6227551020408,
+      "end": 275.2817551020408,
+      "text": "At the end of a session, tell the next reader the branch"
+    },
+    {
+      "start": 275.3977551020408,
+      "end": 279.36775510204075,
+      "text": "or revision, current work state, authoritative documents,"
+    },
+    {
+      "start": 279.57675510204075,
+      "end": 283.9767551020408,
+      "text": "tests run, unverified areas, running services if relevant,"
+    },
+    {
+      "start": 284.22075510204075,
+      "end": 286.21775510204077,
+      "text": "and exact next safe step."
+    },
+    {
+      "start": 286.9147551020408,
+      "end": 289.42275510204075,
+      "text": "Mention any uncertain external effect that needs"
+    },
+    {
+      "start": 289.46875510204075,
+      "end": 290.4097551020408,
+      "text": "reconciliation."
+    },
+    {
+      "start": 290.85075510204075,
+      "end": 293.63675510204075,
+      "text": "If the previous session ended after a provider request was"
+    },
+    {
+      "start": 293.6837551020408,
+      "end": 296.9807551020408,
+      "text": "sent, that uncertainty matters more than a long narrative"
+    },
+    {
+      "start": 297.01575510204077,
+      "end": 298.7797551020408,
+      "text": "about how hard the task was."
+    },
+    {
+      "start": 299.29075510204075,
+      "end": 302.0537551020408,
+      "text": "A handoff is a practical starting point, not a"
+    },
+    {
+      "start": 302.1237551020408,
+      "end": 303.5747551020408,
+      "text": "congratulatory summary."
+    },
+    {
+      "start": 303.81295918367346,
+      "end": 306.71495918367344,
+      "text": "Imagine the tracker owner changes the required contact"
+    },
+    {
+      "start": 306.7619591836734,
+      "end": 307.1679591836734,
+      "text": "method."
+    },
+    {
+      "start": 307.60895918367345,
+      "end": 309.9779591836734,
+      "text": "First record the decision and update the approved"
+    },
+    {
+      "start": 310.00095918367344,
+      "end": 310.94095918367344,
+      "text": "specification."
+    },
+    {
+      "start": 311.38295918367345,
+      "end": 314.00595918367344,
+      "text": "Then adapt the plan and implement within the granted"
+    },
+    {
+      "start": 314.0529591836734,
+      "end": 314.53995918367343,
+      "text": "scope."
+    },
+    {
+      "start": 314.98195918367344,
+      "end": 318.6969591836734,
+      "text": "Add or update tests for both accepted and rejected inputs."
+    },
+    {
+      "start": 319.20795918367344,
+      "end": 322.11095918367346,
+      "text": "Record the check and revision in evidence, update"
+    },
+    {
+      "start": 322.15695918367345,
+      "end": 325.3149591836734,
+      "text": "progress, and mention the material behavior change in the"
+    },
+    {
+      "start": 325.34995918367343,
+      "end": 326.0699591836734,
+      "text": "changelog."
+    },
+    {
+      "start": 326.6729591836734,
+      "end": 329.86595918367345,
+      "text": "If the change affects data flow or responsibilities,"
+    },
+    {
+      "start": 330.1099591836734,
+      "end": 331.72395918367346,
+      "text": "update the architecture too."
+    },
+    {
+      "start": 332.16495918367343,
+      "end": 334.9159591836734,
+      "text": "If it does not, leave unrelated sections alone."
+    },
+    {
+      "start": 335.18602040816324,
+      "end": 338.3900204081632,
+      "text": "If the README says a feature is live while the handoff"
+    },
+    {
+      "start": 338.44802040816325,
+      "end": 341.78002040816324,
+      "text": "says deployment is pending, do not pick one sentence"
+    },
+    {
+      "start": 341.8150204081632,
+      "end": 343.2550204081632,
+      "text": "because it sounds more confident."
+    },
+    {
+      "start": 343.69602040816324,
+      "end": 346.3660204081632,
+      "text": "Inspect dated evidence and current state where authorized."
+    },
+    {
+      "start": 346.8070204081632,
+      "end": 349.5820204081632,
+      "text": "Report the contradiction and correct the stale description"
+    },
+    {
+      "start": 349.6280204081632,
+      "end": 350.7550204081632,
+      "text": "when the task permits."
+    },
+    {
+      "start": 351.2650204081632,
+      "end": 355.0150204081632,
+      "text": "If the evidence is insufficient, label the status unknown."
+    },
+    {
+      "start": 355.61902040816324,
+      "end": 358.15002040816324,
+      "text": "Documents are useful because they make information"
+    },
+    {
+      "start": 358.20802040816324,
+      "end": 361.6210204081632,
+      "text": "inspectable; they cannot substitute for the observation"
+    },
+    {
+      "start": 361.6560204081632,
+      "end": 362.7590204081632,
+      "text": "they claim to represent."
+    },
+    {
+      "start": 363.05555102040813,
+      "end": 365.81855102040817,
+      "text": "Give a partner only your document map and a short project"
+    },
+    {
+      "start": 365.85355102040813,
+      "end": 366.32955102040813,
+      "text": "folder."
+    },
+    {
+      "start": 366.77055102040816,
+      "end": 369.96355102040815,
+      "text": "Ask where they would find the original goal, an approved"
+    },
+    {
+      "start": 369.9865510204081,
+      "end": 373.38855102040816,
+      "text": "decision, a failed check, and the next safe action."
+    },
+    {
+      "start": 373.99255102040814,
+      "end": 377.39355102040815,
+      "text": "If they cannot answer, the information may be missing,"
+    },
+    {
+      "start": 377.71855102040814,
+      "end": 380.2265510204081,
+      "text": "hidden, or duplicated inconsistently."
+    },
+    {
+      "start": 380.9235510204081,
+      "end": 382.57155102040815,
+      "text": "Revise the map and try again."
+    },
+    {
+      "start": 382.89655102040814,
+      "end": 386.37955102040814,
+      "text": "In a real project, a fresh agent can do a similar review,"
+    },
+    {
+      "start": 386.58855102040815,
+      "end": 389.79355102040813,
+      "text": "but label that as an agent review rather than claiming a"
+    },
+    {
+      "start": 389.86255102040815,
+      "end": 391.5225510204081,
+      "text": "human learner tested the material."
+    },
+    {
+      "start": 392.2195510204081,
+      "end": 394.9935510204081,
+      "text": "The goal is that a newcomer can navigate without your oral"
+    },
+    {
+      "start": 395.0635510204081,
+      "end": 395.79555102040814,
+      "text": "explanation."
+    }
+  ]
+}

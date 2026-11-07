@@ -1,0 +1,470 @@
+{
+  "lesson": "06",
+  "scenes": [
+    {
+      "id": "01",
+      "kind": "document",
+      "tone": "teal",
+      "title": "Make the agreement buildable",
+      "intro": "A specification turns settled decisions into a contract an agent can follow.",
+      "items": [
+        {
+          "label": "BUILD_SPEC.md",
+          "detail": "Describe what must happen.",
+          "anchor": "an agreement about what must happen"
+        },
+        {
+          "label": "Outcome and scope",
+          "detail": "Who is served; what this release includes.",
+          "anchor": "Begin with the outcome"
+        },
+        {
+          "label": "Behavior contract",
+          "detail": "Inputs → validation → outputs; include errors.",
+          "anchor": "Then describe behavior in terms of inputs"
+        },
+        {
+          "label": "Acceptance evidence",
+          "detail": "Each important requirement needs a way to prove it.",
+          "anchor": "Link each important requirement to acceptance evidence"
+        }
+      ],
+      "conclusion": {
+        "text": "Examples separate expected behavior from a plausible guess.",
+        "anchor": "distinguish expected behavior from a plausible guess"
+      }
+    },
+    {
+      "id": "02",
+      "kind": "comparison",
+      "tone": "paper",
+      "title": "“Validate the form” is not enough",
+      "intro": "Replace a vague instruction with an observable response.",
+      "items": [
+        {
+          "label": "Vague request",
+          "detail": "“Validate the form.”",
+          "anchor": "compare “validate the form”"
+        },
+        {
+          "label": "Required inputs",
+          "detail": "Contact name + one preferred contact method.",
+          "anchor": "Require a contact name"
+        },
+        {
+          "label": "Missing information",
+          "detail": "Name the missing field; retain entered values.",
+          "anchor": "If either is missing"
+        },
+        {
+          "label": "Rejected submission",
+          "detail": "An incomplete inquiry is not saved.",
+          "anchor": "Do not save an incomplete inquiry"
+        },
+        {
+          "label": "Owner decision",
+          "detail": "The example fields still need approval.",
+          "anchor": "the real owner must approve the fields"
+        }
+      ],
+      "conclusion": {
+        "text": "Define the behavior; leave room for implementation choices.",
+        "anchor": "without prescribing every line of code"
+      }
+    },
+    {
+      "id": "03",
+      "kind": "evidence",
+      "tone": "paper",
+      "title": "Give every claim a check",
+      "intro": "A stable acceptance ID connects the requirement to its evidence.",
+      "items": [
+        {
+          "label": "A-01 · requirement",
+          "detail": "A valid fictional inquiry appears once in the list.",
+          "anchor": "A-01 might say a valid fictional inquiry"
+        },
+        {
+          "label": "Check · synthetic submission",
+          "detail": "Submit a valid record, then retrieve it.",
+          "anchor": "A test could submit a valid synthetic record"
+        },
+        {
+          "label": "Evidence · local only",
+          "detail": "A local pass does not prove a live provider is configured.",
+          "anchor": "a local test demonstrates local behavior"
+        },
+        {
+          "label": "Negative cases",
+          "detail": "Missing fields, unauthorized access, and failed storage.",
+          "anchor": "Include negative paths"
+        }
+      ],
+      "conclusion": {
+        "text": "Name the environment and the failure cases the evidence covers.",
+        "anchor": "such as missing fields, unauthorized access"
+      }
+    },
+    {
+      "id": "04",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Protect what the work must preserve",
+      "intro": "A change contract includes boundaries and a way back.",
+      "items": [
+        {
+          "label": "Preserve the public site",
+          "detail": "Out-of-scope behavior stays intact.",
+          "anchor": "the existing public website is out of scope"
+        },
+        {
+          "label": "No automatic sending",
+          "detail": "Record status without sending messages.",
+          "anchor": "If sending email is not authorized"
+        },
+        {
+          "label": "External dependencies",
+          "detail": "Describe privacy and unavailable integrations.",
+          "anchor": "Name external dependencies"
+        },
+        {
+          "label": "Rollback plan",
+          "detail": "Return to a specific previous known state.",
+          "anchor": "Write a concrete rollback"
+        }
+      ],
+      "conclusion": {
+        "text": "An untested recovery procedure is still a plan.",
+        "anchor": "Do not pretend an untested rollback"
+      }
+    },
+    {
+      "id": "05",
+      "kind": "flow",
+      "tone": "paper",
+      "title": "Put dependencies before parallel work",
+      "intro": "One possible route from a shared record to verified behavior.",
+      "items": [
+        {
+          "label": "Agree the record",
+          "detail": "Set the data contract first.",
+          "anchor": "agree on the inquiry record"
+        },
+        {
+          "label": "Validation + storage",
+          "detail": "Build against that contract.",
+          "anchor": "build validation and storage"
+        },
+        {
+          "label": "Owner view",
+          "detail": "Use the same agreed record.",
+          "anchor": "build the owner view against the agreed contract"
+        },
+        {
+          "label": "Integrate → verify",
+          "detail": "Check the pieces together.",
+          "anchor": "integrate, then verify"
+        },
+        {
+          "label": "Owned work",
+          "detail": "Parallel workers need clear files and interfaces.",
+          "anchor": "their file ownership and interfaces are clear"
+        }
+      ],
+      "conclusion": {
+        "text": "Each phase needs prerequisites, checks, and a completion condition.",
+        "anchor": "For each phase, list its goal"
+      }
+    },
+    {
+      "id": "06",
+      "kind": "checkpoint",
+      "tone": "teal",
+      "title": "Ready for a fresh agent?",
+      "intro": "Test the handoff before execution begins.",
+      "items": [
+        {
+          "label": "Scope is clear",
+          "detail": "A new reader can explain what is included.",
+          "anchor": "what is in scope"
+        },
+        {
+          "label": "Decisions are settled",
+          "detail": "The plan identifies choices already made.",
+          "anchor": "which decisions are settled"
+        },
+        {
+          "label": "Success and stop conditions",
+          "detail": "The reader knows how to check and when to stop.",
+          "anchor": "how success will be checked"
+        },
+        {
+          "label": "Execution authority",
+          "detail": "An approved plan is not automatic permission to execute.",
+          "anchor": "Separate an approved plan from authorization"
+        },
+        {
+          "label": "KICKOFF.md",
+          "detail": "Baseline, reading, allowed actions, sequence, proof.",
+          "anchor": "The kickoff will identify the repository"
+        }
+      ],
+      "conclusion": {
+        "text": "Remove consequential guessing while preserving routine judgment.",
+        "anchor": "without making safe, routine implementation choices impossible"
+      },
+      "callouts": [
+        {
+          "text": "The kickoff connects the work sequence to proof and a restartable handoff.",
+          "anchor": "work sequence, proof, and handoff"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "kind": "example",
+      "tone": "paper",
+      "title": "Define the first release",
+      "intro": "Start with a small owner outcome, then draw its boundary.",
+      "items": [
+        {
+          "label": "Owner outcome",
+          "detail": "Find and manage inquiries from a web form.",
+          "anchor": "an owner can find and manage inquiries"
+        },
+        {
+          "label": "Still unspecified",
+          "detail": "Fields and validation rules need their own detail.",
+          "anchor": "does not yet specify every field"
+        },
+        {
+          "label": "Release scope",
+          "detail": "Public form submission + private status list.",
+          "anchor": "such as public form submission"
+        },
+        {
+          "label": "Non-goals",
+          "detail": "Email import, automatic replies, and payments may wait.",
+          "anchor": "Add non-goals such as email import"
+        }
+      ],
+      "conclusion": {
+        "text": "Explicit boundaries protect the owner and the implementation agent.",
+        "anchor": "These boundaries protect both the owner"
+      }
+    },
+    {
+      "id": "08",
+      "kind": "example",
+      "tone": "ink",
+      "title": "Show the failed form state",
+      "intro": "A useful specification says exactly what the visitor sees.",
+      "items": [
+        {
+          "label": "Field contract",
+          "detail": "List fields, required values, and invalid cases.",
+          "anchor": "Write down the fields"
+        },
+        {
+          "label": "Vague preference",
+          "detail": "“Friendly” does not define an empty-field response.",
+          "anchor": "“The form should be friendly”"
+        },
+        {
+          "label": "Clear feedback",
+          "detail": "Name the missing field and preserve entered values.",
+          "anchor": "A stronger criterion says the field"
+        },
+        {
+          "label": "Record behavior",
+          "detail": "Say whether the failed submission creates a record.",
+          "anchor": "Also say whether the failed submission"
+        }
+      ],
+      "conclusion": {
+        "text": "The interface can vary while the agreed behavior stays intact.",
+        "anchor": "while preserving the important behavior"
+      }
+    },
+    {
+      "id": "09",
+      "kind": "evidence",
+      "tone": "paper",
+      "title": "Trace A-02 all the way to proof",
+      "intro": "Use a requirement, a check, an environment, and an honest claim.",
+      "items": [
+        {
+          "label": "A-02 · no contact method",
+          "detail": "Reject the incomplete inquiry.",
+          "anchor": "A-02 could describe rejecting an inquiry"
+        },
+        {
+          "label": "Test · invalid input",
+          "detail": "Expect an error and no saved record.",
+          "anchor": "A test submits that invalid data"
+        },
+        {
+          "label": "Environment",
+          "detail": "Local, staging, or production must be named.",
+          "anchor": "Record whether the test runs locally"
+        },
+        {
+          "label": "Scope of proof",
+          "detail": "A local pass does not demonstrate live delivery.",
+          "anchor": "A green local check is useful evidence"
+        }
+      ],
+      "conclusion": {
+        "text": "Keep the claim within what was actually observed.",
+        "anchor": "or that a provider delivered anything"
+      }
+    },
+    {
+      "id": "10",
+      "kind": "checkpoint",
+      "tone": "paper",
+      "title": "Compatibility before recovery",
+      "intro": "Know what stays intact and which actions cannot be undone.",
+      "items": [
+        {
+          "label": "Existing inquiry",
+          "detail": "Preserve its stored status.",
+          "anchor": "If an older inquiry already has a status"
+        },
+        {
+          "label": "Deployment failure",
+          "detail": "Identify the earlier version and safe rollback point.",
+          "anchor": "If the deployment fails"
+        },
+        {
+          "label": "Irreversible action",
+          "detail": "A real message cannot be unsent.",
+          "anchor": "Some changes, such as sending a real message"
+        },
+        {
+          "label": "Recovery evidence",
+          "detail": "Label the plan, then rehearse when appropriate.",
+          "anchor": "Label an untested recovery plan as a plan"
+        }
+      ],
+      "conclusion": {
+        "text": "A proposed rollback becomes evidence only after an appropriate rehearsal.",
+        "anchor": "then rehearse it when appropriate and allowed"
+      }
+    },
+    {
+      "id": "11",
+      "kind": "routing",
+      "tone": "teal",
+      "title": "Parallel work needs a shared foundation",
+      "intro": "Coordinate dependencies, then let independent work proceed.",
+      "items": [
+        {
+          "label": "View dependency",
+          "detail": "An agreed inquiry record format.",
+          "anchor": "The view depends on an agreed record format"
+        },
+        {
+          "label": "Test dependency",
+          "detail": "Defined expected behavior.",
+          "anchor": "tests depend on defined expected behavior"
+        },
+        {
+          "label": "Workers",
+          "detail": "View and validation can proceed after format agreement.",
+          "anchor": "Workers may draft a view and validation logic"
+        },
+        {
+          "label": "File ownership",
+          "detail": "Coordinate edits to shared files.",
+          "anchor": "they should not edit the same files"
+        },
+        {
+          "label": "Conductor",
+          "detail": "Collect results and check integrated behavior.",
+          "anchor": "The conductor collects each result"
+        }
+      ],
+      "conclusion": {
+        "text": "Parallelism saves time when interfaces stop being a guessing game.",
+        "anchor": "without turning shared interfaces into a guessing game"
+      }
+    },
+    {
+      "id": "12",
+      "kind": "flow",
+      "tone": "paper",
+      "title": "Walk three cases through the contract",
+      "intro": "Use examples to expose the rules that are still missing.",
+      "items": [
+        {
+          "label": "Valid inquiry",
+          "detail": "Trace the successful path.",
+          "anchor": "one valid inquiry"
+        },
+        {
+          "label": "Invalid inquiry",
+          "detail": "Trace missing or invalid inputs.",
+          "anchor": "one invalid inquiry"
+        },
+        {
+          "label": "Storage failure",
+          "detail": "Trace the failure response.",
+          "anchor": "one storage failure against the spec"
+        },
+        {
+          "label": "Missing rule",
+          "detail": "Decide whether a gap is a rule or a routine choice.",
+          "anchor": "Where it has to guess"
+        },
+        {
+          "label": "Forbidden effect",
+          "detail": "Show that submitting does not trigger automatic email.",
+          "anchor": "if automatic email is forbidden"
+        }
+      ],
+      "conclusion": {
+        "text": "A complete contract makes unfinished work recognizable.",
+        "anchor": "recognize when work is still incomplete"
+      }
+    },
+    {
+      "id": "13",
+      "kind": "conversation",
+      "tone": "ink",
+      "title": "Give the plan to a new reader",
+      "intro": "The fresh-agent test exposes consequential ambiguity.",
+      "items": [
+        {
+          "label": "Fresh agent",
+          "detail": "Which document tells me what to build?",
+          "anchor": "Which document tells you what to build"
+        },
+        {
+          "label": "Fresh agent",
+          "detail": "Why was email import deferred?",
+          "anchor": "Which decision explains why email import was deferred"
+        },
+        {
+          "label": "Fresh agent",
+          "detail": "Which independent task can I complete and test?",
+          "anchor": "Can you identify a task"
+        },
+        {
+          "label": "Fresh agent",
+          "detail": "When should I stop if access is missing?",
+          "anchor": "Can you state when to stop"
+        },
+        {
+          "label": "Owner / conductor",
+          "detail": "Add the specific reference or boundary that is missing.",
+          "anchor": "add a specific reference or boundary"
+        }
+      ],
+      "conclusion": {
+        "text": "Clear boundaries leave room for reasonable implementation choices.",
+        "anchor": "while leaving room for reasonable implementation choices"
+      }
+    }
+  ]
+}

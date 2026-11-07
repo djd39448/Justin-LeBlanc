@@ -1,124 +1,124 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "10",
   "generatedFrom": "../../lessons/10.html#lecture-script",
   "scenes": [
     {
       "id": "01",
-      "title": "Your final project",
+      "title": "Turn your idea into a buildable agreement",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 23823,
+      "endMs": 23824,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "Use a manageable idea to demonstrate the complete process."
+      "accessibleDescription": "The capstone tests how you lead the process, not how quickly you ship an app."
     },
     {
       "id": "02",
-      "title": "Capture and align",
+      "title": "Capture the idea, then agree on the journey",
       "narrationSegmentId": "02",
-      "startMs": 23823,
-      "endMs": 53090,
+      "startMs": 23824,
+      "endMs": 53081,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "Turn a raw idea into an agreed journey with explicit unknowns."
+      "accessibleDescription": "A structured readback turns your raw context into observable behavior."
     },
     {
       "id": "03",
-      "title": "Research and decide",
+      "title": "Research reality and preserve decisions",
       "narrationSegmentId": "03",
-      "startMs": 53090,
-      "endMs": 82373,
+      "startMs": 53081,
+      "endMs": 82364,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Show what evidence exists and why consequential choices were made."
+      "accessibleDescription": "Your package should distinguish evidence, plans, and uncertainty."
     },
     {
       "id": "04",
-      "title": "Map and specify",
+      "title": "Map the system, then specify behavior",
       "narrationSegmentId": "04",
-      "startMs": 82373,
-      "endMs": 116439,
+      "startMs": 82364,
+      "endMs": 116402,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "A simple diagram and a precise contract explain how the system should work."
+      "accessibleDescription": "Trace success and failure before turning the design into a contract."
     },
     {
       "id": "05",
-      "title": "Plan the kickoff",
+      "title": "Prepare the kickoff and the long-run limits",
       "narrationSegmentId": "05",
-      "startMs": 116439,
-      "endMs": 150111,
+      "startMs": 116402,
+      "endMs": 150073,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Give a fresh agent an ordered, bounded assignment and clear checks."
+      "accessibleDescription": "Organize work before handing it to an execution agent."
     },
     {
       "id": "06",
-      "title": "Review it cold",
+      "title": "Let a cold reader challenge the package",
       "narrationSegmentId": "06",
-      "startMs": 150111,
-      "endMs": 179916,
+      "startMs": 150073,
+      "endMs": 179879,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "Test whether someone without the conversation can find the first safe action."
+      "accessibleDescription": "The reader should not need to reconstruct the original conversation."
     },
     {
       "id": "07",
-      "title": "Choose a small scope",
+      "title": "Choose a scope you can actually explain",
       "narrationSegmentId": "07",
-      "startMs": 179916,
-      "endMs": 208520,
+      "startMs": 179879,
+      "endMs": 208483,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "A focused first version is easier to specify and verify."
+      "accessibleDescription": "A small project gives the workflow enough substance without unnecessary breadth."
     },
     {
       "id": "08",
-      "title": "Assess the readback",
+      "title": "Assess the mirror, not the agent’s confidence",
       "narrationSegmentId": "08",
-      "startMs": 208520,
-      "endMs": 237254,
+      "startMs": 208483,
+      "endMs": 237218,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "A complete journey identifies the actor, trigger, actions, and result."
+      "accessibleDescription": "The agreed statement should preserve your intent and reveal suggestions."
     },
     {
       "id": "09",
-      "title": "Assess the design",
+      "title": "Trace the diagram with your finger",
       "narrationSegmentId": "09",
-      "startMs": 237254,
-      "endMs": 265988,
+      "startMs": 237218,
+      "endMs": 265953,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "Trace both a valid request and a storage failure across the map."
+      "accessibleDescription": "A simple diagram should make responsibilities and recovery visible."
     },
     {
       "id": "10",
-      "title": "Assess the contract",
+      "title": "Ask how three requirements will be proven",
       "narrationSegmentId": "10",
-      "startMs": 265988,
-      "endMs": 292455,
+      "startMs": 265953,
+      "endMs": 292415,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "A fresh reader should be able to say exactly how each requirement is proven."
+      "accessibleDescription": "Acceptance criteria should resolve differing interpretations."
     },
     {
       "id": "11",
-      "title": "Assess the handoff",
+      "title": "Make the next safe action obvious",
       "narrationSegmentId": "11",
-      "startMs": 292455,
-      "endMs": 320788,
+      "startMs": 292415,
+      "endMs": 320731,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "The next agent needs authority, baseline, evidence, and a safe next step."
+      "accessibleDescription": "The final kickoff and handoff must work for a reader who starts cold."
     },
     {
       "id": "12",
-      "title": "Use the feedback",
+      "title": "Use review to improve the package",
       "narrationSegmentId": "12",
-      "startMs": 320788,
-      "endMs": 350593,
+      "startMs": 320731,
+      "endMs": 350537,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "Record what a reader had to guess, then revise and check again."
+      "accessibleDescription": "Keep the useful lessons while distinguishing simulation from observation."
     },
     {
       "id": "13",
-      "title": "Transfer the work",
+      "title": "Leave the understanding with the work",
       "narrationSegmentId": "13",
-      "startMs": 350593,
-      "endMs": 380460,
+      "startMs": 350537,
+      "endMs": 380395,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Keep stable decisions and environment-specific assumptions visible."
+      "accessibleDescription": "A transfer note preserves the decisions and identifies what must be rechecked."
     }
   ]
 }

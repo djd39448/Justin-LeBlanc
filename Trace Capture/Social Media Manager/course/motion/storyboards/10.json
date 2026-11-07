@@ -1,0 +1,497 @@
+{
+  "lesson": "10",
+  "scenes": [
+    {
+      "id": "01",
+      "kind": "sequence",
+      "tone": "teal",
+      "title": "Turn your idea into a buildable agreement",
+      "intro": "The capstone tests how you lead the process, not how quickly you ship an app.",
+      "items": [
+        {
+          "label": "Choose the idea",
+          "detail": "Use your own small idea or the fictional tracker.",
+          "anchor": "Choose a small idea you care about"
+        },
+        {
+          "label": "Keep the goal bounded",
+          "detail": "A polished app in one sitting is not the target.",
+          "anchor": "not to produce a polished app"
+        },
+        {
+          "label": "Lead the process",
+          "detail": "Reach a bounded, testable plan from an unstructured idea.",
+          "anchor": "lead the process from an unstructured idea"
+        },
+        {
+          "label": "Explain verification",
+          "detail": "Say how execution would be checked.",
+          "anchor": "explain how execution would be verified"
+        },
+        {
+          "label": "Use synthetic examples",
+          "detail": "Keep real messages and outside systems out of the exercise.",
+          "anchor": "Use synthetic examples"
+        }
+      ],
+      "conclusion": {
+        "text": "The exercise builds a plan without creating real external effects.",
+        "anchor": "as part of this exercise"
+      }
+    },
+    {
+      "id": "02",
+      "kind": "conversation",
+      "tone": "paper",
+      "title": "Capture the idea, then agree on the journey",
+      "intro": "A structured readback turns your raw context into observable behavior.",
+      "items": [
+        {
+          "label": "Owner · brain dump",
+          "detail": "Problem, people, experience, constraints, uncertainty.",
+          "anchor": "Write a brief brain dump"
+        },
+        {
+          "label": "Agent · mirror",
+          "detail": "Return a structured readback for correction.",
+          "anchor": "Ask an agent for a structured readback"
+        },
+        {
+          "label": "Owner · journey",
+          "detail": "Name actor, trigger, actions, and result.",
+          "anchor": "Your final journey must name an actor"
+        },
+        {
+          "label": "Shared record",
+          "detail": "Separate agreement from what remains unknown.",
+          "anchor": "Record what you agreed"
+        },
+        {
+          "label": "Stay on behavior",
+          "detail": "Bring premature technology choices back to the readback.",
+          "anchor": "If the agent proposes technology"
+        }
+      ],
+      "conclusion": {
+        "text": "When the behavior is already agreed, continue from that point.",
+        "anchor": "If the behavior is already agreed"
+      }
+    },
+    {
+      "id": "03",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Research reality and preserve decisions",
+      "intro": "Your package should distinguish evidence, plans, and uncertainty.",
+      "items": [
+        {
+          "label": "Reality scan",
+          "detail": "What exists, what is verified, what is only planned.",
+          "anchor": "Create a small reality scan"
+        },
+        {
+          "label": "Evidence",
+          "detail": "Cite the actual observations you have.",
+          "anchor": "Cite actual evidence where available"
+        },
+        {
+          "label": "Decision ledger",
+          "detail": "Two material choices with reasons and reopen conditions.",
+          "anchor": "List two material decisions"
+        },
+        {
+          "label": "Tracker example",
+          "detail": "Existing form first; email import deferred.",
+          "anchor": "support the existing form first"
+        }
+      ],
+      "conclusion": {
+        "text": "A diagram or simulated response does not prove a real integration is live.",
+        "anchor": "based only on a planned diagram"
+      }
+    },
+    {
+      "id": "04",
+      "kind": "flow",
+      "tone": "paper",
+      "title": "Map the system, then specify behavior",
+      "intro": "Trace success and failure before turning the design into a contract.",
+      "items": [
+        {
+          "label": "Component diagram",
+          "detail": "Each component has a responsibility.",
+          "anchor": "Draw a component diagram"
+        },
+        {
+          "label": "Two workflows",
+          "detail": "Trace one success and one failure.",
+          "anchor": "trace one successful and one failed workflow"
+        },
+        {
+          "label": "Boundaries",
+          "detail": "Source of truth, access boundary, and recovery concern.",
+          "anchor": "Identify the source of truth"
+        },
+        {
+          "label": "Build specification",
+          "detail": "Inputs, outputs, errors, preservation, checks, rollback.",
+          "anchor": "Write a build specification"
+        },
+        {
+          "label": "Observable behavior",
+          "detail": "Translate broad claims into things you can check.",
+          "anchor": "Translate broad claims into observable behaviors"
+        }
+      ],
+      "conclusion": {
+        "text": "If automatic email is forbidden, preserve that boundary in the spec.",
+        "anchor": "the spec must preserve that boundary"
+      },
+      "callouts": [
+        {
+          "text": "Specify failures, preservation requirements, acceptance checks, and rollback.",
+          "anchor": "state changes, errors, security, preservation requirements"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "kind": "checkpoint",
+      "tone": "teal",
+      "title": "Prepare the kickoff and the long-run limits",
+      "intro": "Organize work before handing it to an execution agent.",
+      "items": [
+        {
+          "label": "Ordered phases",
+          "detail": "Break the work into an intentional sequence.",
+          "anchor": "Break the work into ordered phases"
+        },
+        {
+          "label": "Parallel ownership",
+          "detail": "Define shared interfaces and exclusive file ownership.",
+          "anchor": "Give parallel work exclusive ownership"
+        },
+        {
+          "label": "KICKOFF.md",
+          "detail": "Location, baseline, reading, decisions, checks, handoff.",
+          "anchor": "Write a kickoff with the project location"
+        },
+        {
+          "label": "Unavailable capability",
+          "detail": "Explain how to proceed with no model or usage visibility.",
+          "anchor": "Explain how the agent should proceed"
+        },
+        {
+          "label": "Long-run boundaries",
+          "detail": "Include a checkpoint and stop conditions.",
+          "anchor": "Include a checkpoint and stop conditions"
+        }
+      ],
+      "conclusion": {
+        "text": "A plan does not itself authorize deployment or unrelated external changes.",
+        "anchor": "Planning does not by itself authorize deployment"
+      },
+      "callouts": [
+        {
+          "text": "The kickoff carries the baseline, authority, and settled decisions forward.",
+          "anchor": "baseline, read order, authority, decisions"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "kind": "conversation",
+      "tone": "paper",
+      "title": "Let a cold reader challenge the package",
+      "intro": "The reader should not need to reconstruct the original conversation.",
+      "items": [
+        {
+          "label": "Fresh reader",
+          "detail": "Which documents govern this behavior?",
+          "anchor": "Can they tell which documents govern a behavior"
+        },
+        {
+          "label": "Fresh reader",
+          "detail": "What is the first safe action?",
+          "anchor": "Can they identify the first safe action"
+        },
+        {
+          "label": "Fresh reader",
+          "detail": "What evidence supports each important claim?",
+          "anchor": "Is each important claim paired with appropriate evidence"
+        },
+        {
+          "label": "Fresh reader",
+          "detail": "What stays unchanged, and how do failures recover?",
+          "anchor": "Does the plan say what stays unchanged"
+        },
+        {
+          "label": "Revision",
+          "detail": "Use the rubric and repair places where the reader guesses.",
+          "anchor": "the package where a fresh reader must guess"
+        }
+      ],
+      "conclusion": {
+        "text": "A successful package is clear, bounded, testable, and restartable.",
+        "anchor": "A successful capstone is clear"
+      }
+    },
+    {
+      "id": "07",
+      "kind": "example",
+      "tone": "ink",
+      "title": "Choose a scope you can actually explain",
+      "intro": "A small project gives the workflow enough substance without unnecessary breadth.",
+      "items": [
+        {
+          "label": "A few sentences",
+          "detail": "Keep the project small enough to describe clearly.",
+          "anchor": "Pick a project small enough to describe"
+        },
+        {
+          "label": "Tracker ingredients",
+          "detail": "Public input, private owner, one record, failure cases.",
+          "anchor": "it has a public input"
+        },
+        {
+          "label": "Your own idea",
+          "detail": "Name the real outcome and exclude a tempting future feature.",
+          "anchor": "If you choose your own idea"
+        },
+        {
+          "label": "Agent collaboration",
+          "detail": "Work with an agent throughout the exercise.",
+          "anchor": "You can work with an agent"
+        }
+      ],
+      "conclusion": {
+        "text": "Preserve your intentions in an actionable, testable starting package.",
+        "anchor": "an actionable, testable starting point"
+      }
+    },
+    {
+      "id": "08",
+      "kind": "conversation",
+      "tone": "paper",
+      "title": "Assess the mirror, not the agent’s confidence",
+      "intro": "The agreed statement should preserve your intent and reveal suggestions.",
+      "items": [
+        {
+          "label": "Owner",
+          "detail": "Give the raw idea and request a structured mirror.",
+          "anchor": "Give your raw idea to the agent"
+        },
+        {
+          "label": "Compare",
+          "detail": "Check people, trigger, actions, and final state.",
+          "anchor": "Check the people involved"
+        },
+        {
+          "label": "Correct",
+          "detail": "Fix an assumption or ambiguity.",
+          "anchor": "Correct an assumption or ambiguity"
+        },
+        {
+          "label": "Record",
+          "detail": "Save agreement and unresolved questions.",
+          "anchor": "Record the final agreed statement"
+        },
+        {
+          "label": "Provenance",
+          "detail": "Separate what you said from what the agent suggested.",
+          "anchor": "distinguish what you actually said"
+        }
+      ],
+      "conclusion": {
+        "text": "Include the source of settled decisions instead of reopening them.",
+        "anchor": "include its source rather than forcing"
+      }
+    },
+    {
+      "id": "09",
+      "kind": "flow",
+      "tone": "teal",
+      "title": "Trace the diagram with your finger",
+      "intro": "A simple diagram should make responsibilities and recovery visible.",
+      "items": [
+        {
+          "label": "Responsibilities",
+          "detail": "Each component needs a clear job.",
+          "anchor": "Does each component have a clear job"
+        },
+        {
+          "label": "Successful request",
+          "detail": "Trace the request from beginning to end.",
+          "anchor": "Can you trace a valid request"
+        },
+        {
+          "label": "Record + input",
+          "detail": "Locate the authoritative record and untrusted input.",
+          "anchor": "What is the authoritative record"
+        },
+        {
+          "label": "Private access",
+          "detail": "Identify who may view or change private data.",
+          "anchor": "Who may view or change private data"
+        },
+        {
+          "label": "Failure branch",
+          "detail": "Trace a storage outage and its recovery.",
+          "anchor": "Now trace a failure"
+        }
+      ],
+      "conclusion": {
+        "text": "Label any unverified facts the diagram depends on as assumptions.",
+        "anchor": "label them as assumptions"
+      }
+    },
+    {
+      "id": "10",
+      "kind": "evidence",
+      "tone": "paper",
+      "title": "Ask how three requirements will be proven",
+      "intro": "Acceptance criteria should resolve differing interpretations.",
+      "items": [
+        {
+          "label": "Fresh-reader proof",
+          "detail": "Choose three requirements and ask how to verify them.",
+          "anchor": "Choose three requirements"
+        },
+        {
+          "label": "Acceptance criteria",
+          "detail": "Add clarity wherever the answers differ.",
+          "anchor": "Add acceptance criteria where answers differ"
+        },
+        {
+          "label": "Representative cases",
+          "detail": "Success, invalid input, failure or unauthorized access.",
+          "anchor": "Include a success path"
+        },
+        {
+          "label": "Preservation + recovery",
+          "detail": "Name what stays intact, work order, and proposed rollback.",
+          "anchor": "List what the build must preserve"
+        }
+      ],
+      "conclusion": {
+        "text": "State provider or permission dependencies instead of assuming access.",
+        "anchor": "state that boundary explicitly"
+      }
+    },
+    {
+      "id": "11",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Make the next safe action obvious",
+      "intro": "The final kickoff and handoff must work for a reader who starts cold.",
+      "items": [
+        {
+          "label": "Locate authority",
+          "detail": "Point to governing documents and the baseline.",
+          "anchor": "find the governing documents"
+        },
+        {
+          "label": "Act within permission",
+          "detail": "Name allowed work and the first safe action.",
+          "anchor": "know what is allowed"
+        },
+        {
+          "label": "Find gaps",
+          "detail": "Ask the reader for contradictions or missing dependencies.",
+          "anchor": "Ask the fresh reader to identify any contradiction"
+        },
+        {
+          "label": "Label the evidence",
+          "detail": "Built, offline-tested, accepted, observed, and pending differ.",
+          "anchor": "A useful handoff also distinguishes built"
+        },
+        {
+          "label": "Plan-only outcome",
+          "detail": "If this capstone is a plan, say so.",
+          "anchor": "If your capstone is only a plan"
+        }
+      ],
+      "conclusion": {
+        "text": "A clearly labeled plan is a valid outcome for this exercise.",
+        "anchor": "That is a valid outcome for this exercise"
+      }
+    },
+    {
+      "id": "12",
+      "kind": "checkpoint",
+      "tone": "paper",
+      "title": "Use review to improve the package",
+      "intro": "Keep the useful lessons while distinguishing simulation from observation.",
+      "items": [
+        {
+          "label": "Score + note guesses",
+          "detail": "Record where the reader had to guess.",
+          "anchor": "Score each rubric item"
+        },
+        {
+          "label": "Revise + explain again",
+          "detail": "Ask the reader to explain the revised section.",
+          "anchor": "Revise your package"
+        },
+        {
+          "label": "Simulated review",
+          "detail": "An agent can find confusing language.",
+          "anchor": "A simulated agent review can find confusing language"
+        },
+        {
+          "label": "Real beginner",
+          "detail": "A simulation is not a real learner observation.",
+          "anchor": "not the same as observing a real beginner"
+        },
+        {
+          "label": "Carry learning forward",
+          "detail": "Save better prompts, clearer templates, and failure patterns.",
+          "anchor": "Keep the useful lessons for your next project"
+        }
+      ],
+      "conclusion": {
+        "text": "The package becomes a foundation for authorizing a safe build.",
+        "anchor": "a foundation for authorizing a safe build"
+      }
+    },
+    {
+      "id": "13",
+      "kind": "document",
+      "tone": "teal",
+      "title": "Leave the understanding with the work",
+      "intro": "A transfer note preserves the decisions and identifies what must be rechecked.",
+      "items": [
+        {
+          "label": "Stable decisions",
+          "detail": "Which choices should remain stable?",
+          "anchor": "Which decisions should remain stable"
+        },
+        {
+          "label": "Environment assumptions",
+          "detail": "Which assumptions belong to the current environment?",
+          "anchor": "Which assumptions are tied to the current environment"
+        },
+        {
+          "label": "Fresh confirmation",
+          "detail": "Which costs or permissions need another check?",
+          "anchor": "Which costs or permissions need fresh confirmation"
+        },
+        {
+          "label": "Transfer note",
+          "detail": "Answer the questions and point to the artifacts.",
+          "anchor": "Write a short note that answers these questions"
+        }
+      ],
+      "conclusion": {
+        "text": "Understanding, decisions, evidence, and next actions outlive the original chat.",
+        "anchor": "the original conversation is no longer in context"
+      },
+      "callouts": [
+        {
+          "text": "Keep the understanding and evidence available to the next team.",
+          "anchor": "understanding, decisions, evidence, and the next action"
+        }
+      ]
+    }
+  ]
+}

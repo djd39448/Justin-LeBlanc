@@ -1,124 +1,124 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "09",
   "generatedFrom": "../../lessons/09.html#lecture-script",
   "scenes": [
     {
       "id": "01",
-      "title": "Bounded autonomy",
+      "title": "Autonomy stays inside an agreement",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 29933,
+      "endMs": 29910,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "An authorized goal, scope, and stop conditions let work continue safely."
+      "accessibleDescription": "Permission to continue does not mean unlimited authority."
     },
     {
       "id": "02",
-      "title": "A durable loop",
+      "title": "Leave a checkpoint that survives the session",
       "narrationSegmentId": "02",
-      "startMs": 29933,
-      "endMs": 60339,
+      "startMs": 29910,
+      "endMs": 60317,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "Build, verify, and checkpoint in meaningful units of progress."
+      "accessibleDescription": "Each verified slice should make the next start easier."
     },
     {
       "id": "03",
-      "title": "Work around a blocker",
+      "title": "A blocker becomes a specific owner action",
       "narrationSegmentId": "03",
-      "startMs": 60339,
-      "endMs": 87139,
+      "startMs": 60317,
+      "endMs": 87092,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Record the owner action and continue independent authorized work."
+      "accessibleDescription": "Record the boundary, then continue authorized independent work."
     },
     {
       "id": "04",
-      "title": "Recover before retry",
+      "title": "Recover the state before retrying",
       "narrationSegmentId": "04",
-      "startMs": 87139,
-      "endMs": 114541,
+      "startMs": 87092,
+      "endMs": 114495,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "An interrupted request may already have changed an external system."
+      "accessibleDescription": "An interrupted request may already have taken effect."
     },
     {
       "id": "05",
-      "title": "Protect the reserve",
+      "title": "Keep capacity for the finish",
       "narrationSegmentId": "05",
-      "startMs": 114541,
-      "endMs": 151765,
+      "startMs": 114495,
+      "endMs": 151719,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Check shared usage at batch boundaries and preserve completion capacity."
+      "accessibleDescription": "Dave’s reserve example is configurable, and actual permissions still apply."
     },
     {
       "id": "06",
-      "title": "Morning proof report",
+      "title": "Report proof the owner can inspect",
       "narrationSegmentId": "06",
-      "startMs": 151765,
-      "endMs": 182699,
+      "startMs": 151719,
+      "endMs": 182648,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "Give the owner a clear account of outcomes, evidence, and remaining work."
+      "accessibleDescription": "The morning report names completed work and the remaining uncertainty."
     },
     {
       "id": "07",
-      "title": "Overnight contract",
+      "title": "Write the overnight contract",
       "narrationSegmentId": "07",
-      "startMs": 182699,
-      "endMs": 215848,
+      "startMs": 182648,
+      "endMs": 215798,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "Describe the approved goal and conditions before an unattended build."
+      "accessibleDescription": "A long run starts with a bounded definition of done."
     },
     {
       "id": "08",
-      "title": "Useful checkpoints",
+      "title": "Checkpoint before context disappears",
       "narrationSegmentId": "08",
-      "startMs": 215848,
-      "endMs": 246448,
+      "startMs": 215798,
+      "endMs": 246387,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "Each checkpoint gives the next session a dependable restart point."
+      "accessibleDescription": "Record enough reality for another session to continue safely."
     },
     {
       "id": "09",
-      "title": "Continue elsewhere",
+      "title": "Keep the blocked integration inactive",
       "narrationSegmentId": "09",
-      "startMs": 246448,
-      "endMs": 276781,
+      "startMs": 246387,
+      "endMs": 276715,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "A missing credential can block one integration without blocking all work."
+      "accessibleDescription": "A credential gap need not stop unrelated, authorized progress."
     },
     {
       "id": "10",
-      "title": "An uncertain request",
+      "title": "A timeout is not a clean slate",
       "narrationSegmentId": "10",
-      "startMs": 276781,
-      "endMs": 305855,
+      "startMs": 276715,
+      "endMs": 305789,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "A timeout can hide a successful external effect; investigate first."
+      "accessibleDescription": "Preserve uncertainty until the external effect can be reconciled."
     },
     {
       "id": "11",
-      "title": "Use the reserve",
+      "title": "Use the reserve deliberately",
       "narrationSegmentId": "11",
-      "startMs": 305855,
-      "endMs": 335922,
+      "startMs": 305789,
+      "endMs": 335830,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "Apply a configurable budget policy before and after each batch."
+      "accessibleDescription": "The policy protects the work needed to finish safely."
     },
     {
       "id": "12",
-      "title": "Make review easy",
+      "title": "Make the morning review easy",
       "narrationSegmentId": "12",
-      "startMs": 335922,
-      "endMs": 366198,
+      "startMs": 335830,
+      "endMs": 366106,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "Put the result and artifact links first for the person returning later."
+      "accessibleDescription": "Write for the person who was asleep while the work happened."
     },
     {
       "id": "13",
-      "title": "Resume from reality",
+      "title": "Resume from the actual workspace",
       "narrationSegmentId": "13",
-      "startMs": 366198,
-      "endMs": 396291,
+      "startMs": 366106,
+      "endMs": 396199,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Compare the handoff with the actual workspace before taking the next step."
+      "accessibleDescription": "Compare the handoff with reality before choosing the next action."
     }
   ]
 }

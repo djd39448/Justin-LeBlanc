@@ -1,124 +1,124 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "08",
   "generatedFrom": "../../lessons/08.html#lecture-script",
   "scenes": [
     {
       "id": "01",
-      "title": "The clean kickoff",
+      "title": "Brief the agent who missed every meeting",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 34067,
+      "endMs": 34038,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "A fresh agent gets the context, boundaries, and checks it needs."
+      "accessibleDescription": "A kickoff makes the next safe action findable."
     },
     {
       "id": "02",
-      "title": "Bound parallel work",
+      "title": "Give each worker a bounded job",
       "narrationSegmentId": "02",
-      "startMs": 34067,
-      "endMs": 63933,
+      "startMs": 34038,
+      "endMs": 63896,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "Independent workers need exclusive ownership and a shared interface."
+      "accessibleDescription": "Parallel work needs ownership and an agreed interface."
     },
     {
       "id": "03",
-      "title": "Route by capability",
+      "title": "Choose the cheapest capable route",
       "narrationSegmentId": "03",
-      "startMs": 63933,
-      "endMs": 100533,
+      "startMs": 63896,
+      "endMs": 100493,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Use the cheapest executor capable of each specific task."
+      "accessibleDescription": "Assign work according to its needs and the available capability."
     },
     {
       "id": "04",
-      "title": "Monitor shared usage",
+      "title": "Monitor the allowance you actually share",
       "narrationSegmentId": "04",
-      "startMs": 100533,
-      "endMs": 143200,
+      "startMs": 100493,
+      "endMs": 143151,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "Check the tightest exposed allowance before dispatch and after batches."
+      "accessibleDescription": "Dave’s example is a configurable policy, not a provider rule."
     },
     {
       "id": "05",
-      "title": "Avoid wasted work",
+      "title": "Spend effort once, then preserve it",
       "narrationSegmentId": "05",
-      "startMs": 143200,
-      "endMs": 170733,
+      "startMs": 143151,
+      "endMs": 170684,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Record results and reconcile interrupted work before retrying."
+      "accessibleDescription": "Track the actual route and reconcile interrupted work."
     },
     {
       "id": "06",
-      "title": "A worker brief",
+      "title": "A compact brief for one worker",
       "narrationSegmentId": "06",
-      "startMs": 170733,
-      "endMs": 200225,
+      "startMs": 170684,
+      "endMs": 200176,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "A compact brief names ownership, limits, acceptance, and the reply format."
+      "accessibleDescription": "A concrete assignment gives parallel work a useful boundary."
     },
     {
       "id": "07",
-      "title": "What goes in a kickoff",
+      "title": "Make the kickoff executable",
       "narrationSegmentId": "07",
-      "startMs": 200225,
-      "endMs": 234314,
+      "startMs": 200176,
+      "endMs": 234266,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "Give the new session its starting point and authoritative documents."
+      "accessibleDescription": "The briefing connects an exact starting point to a bounded outcome."
     },
     {
       "id": "08",
-      "title": "Parallel with boundaries",
+      "title": "Separate ownership; share one contract",
       "narrationSegmentId": "08",
-      "startMs": 234314,
-      "endMs": 265248,
+      "startMs": 234266,
+      "endMs": 265195,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "Two workers can proceed when their files and shared contract are clear."
+      "accessibleDescription": "Parallel workers should not silently invent different interfaces."
     },
     {
       "id": "09",
-      "title": "Choose the route",
+      "title": "Match judgment to the work",
       "narrationSegmentId": "09",
-      "startMs": 265248,
-      "endMs": 292650,
+      "startMs": 265195,
+      "endMs": 292598,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "Match the task's judgment and risk to the available executor."
+      "accessibleDescription": "Use the available executor that can reliably complete the task."
     },
     {
       "id": "10",
-      "title": "A quota example",
+      "title": "Watch the dispatch decision change",
       "narrationSegmentId": "10",
-      "startMs": 292650,
-      "endMs": 325277,
+      "startMs": 292598,
+      "endMs": 325224,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "Dave's configurable policy changes dispatch choices as usage rises."
+      "accessibleDescription": "Illustrative usage under Dave’s configurable reserve policy."
     },
     {
       "id": "11",
-      "title": "Reconcile the batch",
+      "title": "Reconcile before another dispatch",
       "narrationSegmentId": "11",
-      "startMs": 325277,
-      "endMs": 355210,
+      "startMs": 325224,
+      "endMs": 355135,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "A dispatched worker is not complete until its work and checks are inspected."
+      "accessibleDescription": "The worker’s actual state matters more than the chat’s silence."
     },
     {
       "id": "12",
-      "title": "A compact response",
+      "title": "Make worker reports easy to integrate",
       "narrationSegmentId": "12",
-      "startMs": 355210,
-      "endMs": 385410,
+      "startMs": 355135,
+      "endMs": 385306,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "A consistent worker report makes integration quicker and clearer."
+      "accessibleDescription": "A consistent reply format keeps attention on consequential work."
     },
     {
       "id": "13",
-      "title": "Unavailable route",
+      "title": "Requested is not the same as available",
       "narrationSegmentId": "13",
-      "startMs": 385410,
-      "endMs": 415816,
+      "startMs": 385306,
+      "endMs": 415713,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Report what is actually available and continue the safe independent work."
+      "accessibleDescription": "Describe actual capabilities and keep the reporting honest."
     }
   ]
 }

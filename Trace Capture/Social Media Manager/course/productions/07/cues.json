@@ -1,124 +1,124 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "07",
   "generatedFrom": "../../lessons/07.html#lecture-script",
   "scenes": [
     {
       "id": "01",
-      "title": "Standards for readers",
+      "title": "Standards are for the next reader",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 25933,
+      "endMs": 25913,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "Clear responsibilities and names help the next human or agent."
+      "accessibleDescription": "Judge whether another person can understand and change the software."
     },
     {
       "id": "02",
-      "title": "No silent failure",
+      "title": "A failed save must look like a failure",
       "narrationSegmentId": "02",
-      "startMs": 25933,
-      "endMs": 58867,
+      "startMs": 25913,
+      "endMs": 58828,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "A failed save should never appear to the visitor as success."
+      "accessibleDescription": "Compare the visitor’s impression with what actually happened."
     },
     {
       "id": "03",
-      "title": "Test the boundary",
+      "title": "Test the edges of the system",
       "narrationSegmentId": "03",
-      "startMs": 58867,
-      "endMs": 91285,
+      "startMs": 58828,
+      "endMs": 91246,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Check inputs, outputs, authorization, and important non-effects."
+      "accessibleDescription": "Check where information enters, leaves, and changes state."
     },
     {
       "id": "04",
-      "title": "Small verified slices",
+      "title": "A slice includes its proof",
       "narrationSegmentId": "04",
-      "startMs": 91285,
-      "endMs": 121485,
+      "startMs": 91246,
+      "endMs": 121417,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "A coherent change pairs implementation with checks and evidence."
+      "accessibleDescription": "A saved revision is useful, but it is not proof by itself."
     },
     {
       "id": "05",
-      "title": "Levels of proof",
+      "title": "Four observations, four different claims",
       "narrationSegmentId": "05",
-      "startMs": 121485,
-      "endMs": 152492,
+      "startMs": 121417,
+      "endMs": 152424,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Each evidence level says only what was actually observed."
+      "accessibleDescription": "Treat these as distinct evidence types, not an automatic ladder."
     },
     {
       "id": "06",
-      "title": "Evidence and recovery",
+      "title": "Keep evidence and recovery inspectable",
       "narrationSegmentId": "06",
-      "startMs": 152492,
-      "endMs": 181292,
+      "startMs": 152424,
+      "endMs": 181211,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "A result needs context; a failure needs a realistic recovery path."
+      "accessibleDescription": "A review record should reveal both confidence and gaps."
     },
     {
       "id": "07",
-      "title": "Readable code",
+      "title": "Make the code explain its purpose",
       "narrationSegmentId": "07",
-      "startMs": 181292,
-      "endMs": 213292,
+      "startMs": 181211,
+      "endMs": 213211,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "Purposeful names and narrow responsibilities make future diagnosis easier."
+      "accessibleDescription": "Future diagnosis starts with names and responsibilities."
     },
     {
       "id": "08",
-      "title": "A useful error",
+      "title": "Give the right person the right error",
       "narrationSegmentId": "08",
-      "startMs": 213292,
-      "endMs": 241492,
+      "startMs": 213211,
+      "endMs": 241398,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "Different readers need a clear remedy without exposing private data."
+      "accessibleDescription": "Visitor feedback and operator diagnostics serve different jobs."
     },
     {
       "id": "09",
-      "title": "Test what must not happen",
+      "title": "Prove the forbidden effects stay absent",
       "narrationSegmentId": "09",
-      "startMs": 241492,
-      "endMs": 266825,
+      "startMs": 241398,
+      "endMs": 266710,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "Negative tests prove important effects are prevented."
+      "accessibleDescription": "A successful example cannot cover every important boundary."
     },
     {
       "id": "10",
-      "title": "Where was it tested?",
+      "title": "Where was the claim tested?",
       "narrationSegmentId": "10",
-      "startMs": 266825,
-      "endMs": 293292,
+      "startMs": 266710,
+      "endMs": 293172,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "A fake provider and a live observation support different claims."
+      "accessibleDescription": "Match the environment to the observation."
     },
     {
       "id": "11",
-      "title": "Review the change",
+      "title": "Review one coherent change",
       "narrationSegmentId": "11",
-      "startMs": 293292,
-      "endMs": 323646,
+      "startMs": 293172,
+      "endMs": 323527,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "Connect the change to its requirement, checks, risks, and rollback."
+      "accessibleDescription": "Ask focused questions while the change is small enough to assess."
     },
     {
       "id": "12",
-      "title": "Follow the evidence",
+      "title": "Write a record someone else can inspect",
       "narrationSegmentId": "12",
-      "startMs": 323646,
-      "endMs": 348540,
+      "startMs": 323527,
+      "endMs": 348421,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "A useful record lets another person assess the proof level."
+      "accessibleDescription": "A useful evidence note contains context rather than confidence alone."
     },
     {
       "id": "13",
-      "title": "Show the proof",
+      "title": "Ask to see the observation",
       "narrationSegmentId": "13",
-      "startMs": 348540,
-      "endMs": 380566,
+      "startMs": 348421,
+      "endMs": 380447,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Ask for the specific observation behind a broad quality claim."
+      "accessibleDescription": "Replace broad quality claims with specific evidence."
     }
   ]
 }

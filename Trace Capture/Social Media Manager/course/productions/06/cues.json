@@ -1,124 +1,124 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "06",
   "generatedFrom": "../../lessons/06.html#lecture-script",
   "scenes": [
     {
       "id": "01",
-      "title": "A build contract",
+      "title": "Make the agreement buildable",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 35067,
+      "endMs": 35056,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "Turn an agreed design into behavior an agent can implement and test."
+      "accessibleDescription": "A specification turns settled decisions into a contract an agent can follow."
     },
     {
       "id": "02",
-      "title": "Make it concrete",
+      "title": "“Validate the form” is not enough",
       "narrationSegmentId": "02",
-      "startMs": 35067,
-      "endMs": 63566,
+      "startMs": 35056,
+      "endMs": 63556,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "A useful form requirement says what to accept, reject, and preserve."
+      "accessibleDescription": "Replace a vague instruction with an observable response."
     },
     {
       "id": "03",
-      "title": "Design acceptance",
+      "title": "Give every claim a check",
       "narrationSegmentId": "03",
-      "startMs": 63566,
-      "endMs": 93899,
+      "startMs": 63556,
+      "endMs": 93884,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Connect each observable requirement to a check and evidence."
+      "accessibleDescription": "A stable acceptance ID connects the requirement to its evidence."
     },
     {
       "id": "04",
-      "title": "Preserve boundaries",
+      "title": "Protect what the work must preserve",
       "narrationSegmentId": "04",
-      "startMs": 93899,
-      "endMs": 123966,
+      "startMs": 93884,
+      "endMs": 123925,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "Name existing behavior and external systems the change must protect."
+      "accessibleDescription": "A change contract includes boundaries and a way back."
     },
     {
       "id": "05",
-      "title": "Order the work",
+      "title": "Put dependencies before parallel work",
       "narrationSegmentId": "05",
-      "startMs": 123966,
-      "endMs": 154921,
+      "startMs": 123925,
+      "endMs": 154880,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Workers need agreed interfaces and exclusive ownership to work safely."
+      "accessibleDescription": "One possible route from a shared record to verified behavior."
     },
     {
       "id": "06",
-      "title": "Ready for kickoff?",
+      "title": "Ready for a fresh agent?",
       "narrationSegmentId": "06",
-      "startMs": 154921,
-      "endMs": 188787,
+      "startMs": 154880,
+      "endMs": 188735,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "A fresh agent needs a bounded plan, acceptance checks, and authority."
+      "accessibleDescription": "Test the handoff before execution begins."
     },
     {
       "id": "07",
-      "title": "Name the outcome",
+      "title": "Define the first release",
       "narrationSegmentId": "07",
-      "startMs": 188787,
-      "endMs": 217654,
+      "startMs": 188735,
+      "endMs": 217574,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "Describe what the owner can actually do at the end of the workflow."
+      "accessibleDescription": "Start with a small owner outcome, then draw its boundary."
     },
     {
       "id": "08",
-      "title": "Inputs and errors",
+      "title": "Show the failed form state",
       "narrationSegmentId": "08",
-      "startMs": 217654,
-      "endMs": 246258,
+      "startMs": 217574,
+      "endMs": 246178,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "Specify how valid and invalid requests behave at the form boundary."
+      "accessibleDescription": "A useful specification says exactly what the visitor sees."
     },
     {
       "id": "09",
-      "title": "Proof you can trace",
+      "title": "Trace A-02 all the way to proof",
       "narrationSegmentId": "09",
-      "startMs": 246258,
-      "endMs": 276191,
+      "startMs": 246178,
+      "endMs": 276088,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "Use a stable requirement ID to link behavior, test, and result."
+      "accessibleDescription": "Use a requirement, a check, an environment, and an honest claim."
     },
     {
       "id": "10",
-      "title": "Compatibility and undo",
+      "title": "Compatibility before recovery",
       "narrationSegmentId": "10",
-      "startMs": 276191,
-      "endMs": 304658,
+      "startMs": 276088,
+      "endMs": 304536,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "A change contract should explain what stays intact and how to recover."
+      "accessibleDescription": "Know what stays intact and which actions cannot be undone."
     },
     {
       "id": "11",
-      "title": "Dependency graph",
+      "title": "Parallel work needs a shared foundation",
       "narrationSegmentId": "11",
-      "startMs": 304658,
-      "endMs": 332191,
+      "startMs": 304536,
+      "endMs": 332069,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "Establish shared data before parallel components rely on it."
+      "accessibleDescription": "Coordinate dependencies, then let independent work proceed."
     },
     {
       "id": "12",
-      "title": "Walk three cases",
+      "title": "Walk three cases through the contract",
       "narrationSegmentId": "12",
-      "startMs": 332191,
-      "endMs": 358940,
+      "startMs": 332069,
+      "endMs": 358818,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "Use examples to reveal gaps in the specification before implementation."
+      "accessibleDescription": "Use examples to expose the rules that are still missing."
     },
     {
       "id": "13",
-      "title": "Fresh-agent check",
+      "title": "Give the plan to a new reader",
       "narrationSegmentId": "13",
-      "startMs": 358940,
-      "endMs": 389163,
+      "startMs": 358818,
+      "endMs": 389042,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Can a new reader find the contract, rationale, first task, and stop condition?"
+      "accessibleDescription": "The fresh-agent test exposes consequential ambiguity."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "03",
   "generatedFrom": "../../lessons/03.html#lecture-script",
   "scenes": [
@@ -8,117 +8,117 @@
       "title": "Research reality",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 29533,
+      "endMs": 29518,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "Check the existing form before choosing what to build around it."
+      "accessibleDescription": "Check the starting assumption before designing around it."
     },
     {
       "id": "02",
       "title": "Four evidence labels",
       "narrationSegmentId": "02",
-      "startMs": 29533,
-      "endMs": 62400,
+      "startMs": 29518,
+      "endMs": 62380,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "Different labels prevent a plan from being mistaken for current reality."
+      "accessibleDescription": "Use four labels that make the strength of each claim visible."
     },
     {
       "id": "03",
       "title": "Trace one inquiry",
       "narrationSegmentId": "03",
-      "startMs": 62400,
-      "endMs": 93146,
+      "startMs": 62380,
+      "endMs": 93127,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Follow a form submission through validation, storage, and its outcome."
+      "accessibleDescription": "Follow a fictional inquiry without contacting real organizers."
     },
     {
       "id": "04",
       "title": "Compare the options",
       "narrationSegmentId": "04",
-      "startMs": 93146,
-      "endMs": 123213,
+      "startMs": 93127,
+      "endMs": 123167,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "The form-only release and an email importer have different tradeoffs."
+      "accessibleDescription": "A recommendation should explain the tradeoff behind the choice."
     },
     {
       "id": "05",
       "title": "Decision ledger",
       "narrationSegmentId": "05",
-      "startMs": 123213,
-      "endMs": 161900,
+      "startMs": 123167,
+      "endMs": 161855,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Record the choice, rationale, status, and when it should be revisited."
+      "accessibleDescription": "A decision record carries the reason into the next session."
     },
     {
       "id": "06",
       "title": "Turn unknowns into work",
       "narrationSegmentId": "06",
-      "startMs": 161900,
-      "endMs": 190452,
+      "startMs": 161855,
+      "endMs": 190407,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "Keep planning possible while naming what still needs to be checked."
+      "accessibleDescription": "Turn uncertainty into a named decision or a bounded research task."
     },
     {
       "id": "07",
       "title": "Evidence walkthrough",
       "narrationSegmentId": "07",
-      "startMs": 190452,
-      "endMs": 223852,
+      "startMs": 190407,
+      "endMs": 223791,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "A local test can prove a source-level claim without proving the live site."
+      "accessibleDescription": "A code file, local test and live observation answer different questions."
     },
     {
       "id": "08",
       "title": "Ask a focused question",
       "narrationSegmentId": "08",
-      "startMs": 223852,
-      "endMs": 254807,
+      "startMs": 223791,
+      "endMs": 254746,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "Targeted research produces a useful answer and a traceable source."
+      "accessibleDescription": "Replace “research everything” with questions that can be answered."
     },
     {
       "id": "09",
       "title": "Fair comparison",
       "narrationSegmentId": "09",
-      "startMs": 254807,
-      "endMs": 285030,
+      "startMs": 254746,
+      "endMs": 284970,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "Give each choice its benefits, limits, dependencies, and risks."
+      "accessibleDescription": "Show both the benefit and the cost of each option."
     },
     {
       "id": "10",
       "title": "Owner decisions",
       "narrationSegmentId": "10",
-      "startMs": 285030,
-      "endMs": 313529,
+      "startMs": 284970,
+      "endMs": 313469,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "The owner decides material changes to scope, access, or real-world effects."
+      "accessibleDescription": "Reserve owner attention for choices that materially change the product."
     },
     {
       "id": "11",
       "title": "A reusable decision",
       "narrationSegmentId": "11",
-      "startMs": 313529,
-      "endMs": 348063,
+      "startMs": 313469,
+      "endMs": 348003,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "A future teammate should understand what was chosen and why."
+      "accessibleDescription": "A decision becomes reusable when its context survives the session."
     },
     {
       "id": "12",
       "title": "New facts, new plan",
       "narrationSegmentId": "12",
-      "startMs": 348063,
-      "endMs": 376996,
+      "startMs": 348003,
+      "endMs": 376921,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "A changed observation can overturn an assumption and alter the design."
+      "accessibleDescription": "A decision ledger supports learning; it prevents silent changes."
     },
     {
       "id": "13",
       "title": "Decide with uncertainty",
       "narrationSegmentId": "13",
-      "startMs": 376996,
-      "endMs": 414796,
+      "startMs": 376921,
+      "endMs": 414720,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Label a provisional choice and explain what would change it."
+      "accessibleDescription": "A provisional choice preserves momentum without pretending certainty."
     }
   ]
 }

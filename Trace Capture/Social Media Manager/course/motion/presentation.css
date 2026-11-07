@@ -1,0 +1,516 @@
+/* Course motion compositions. Extends the accepted preview palette and player shell.
+   Used by all ten HTML presentations and deterministic MP4 rendering. No timed CSS animation. */
+#approved-opening {
+  position: absolute;
+  inset: 0;
+}
+#board {
+  position: absolute;
+  inset: 0;
+  padding: 58px 72px;
+  overflow: hidden;
+}
+.board {
+  --fg: #153d3b;
+  --quiet: #52625a;
+  --accent: #b74e38;
+  --surface: #fffdf8;
+  --line: #c7d1c3;
+  color: var(--fg);
+}
+.board.teal,
+.board.ink {
+  --fg: #f5f0e6;
+  --quiet: #d3e0d3;
+  --accent: #f0cd83;
+  --surface: #234d48;
+  --line: #78a195;
+}
+.board-eyebrow {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 23px;
+}
+#board-title {
+  font-size: 58px;
+  line-height: 1.08;
+  max-width: 1120px;
+  letter-spacing: -2px;
+  color: var(--fg);
+}
+#board-intro {
+  position: absolute;
+  left: 100px;
+  top: 290px;
+  width: 1060px;
+  font:
+    38px/1.3 Georgia,
+    serif;
+  color: var(--quiet);
+  margin: 0;
+  max-width: 44ch;
+}
+#board-content {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 248px;
+  height: 302px;
+}
+#board-conclusion {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  top: 565px;
+  margin: 0;
+  font:
+    italic 27px/1.18 Georgia,
+    serif;
+  color: var(--accent);
+  letter-spacing: -0.4px;
+}
+.board-item {
+  position: relative;
+  opacity: 0;
+}
+.board-label {
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 1.15;
+  display: block;
+  margin: 0 0 9px;
+}
+.board-detail {
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--quiet);
+  margin: 0;
+}
+.board-index {
+  font:
+    27px Georgia,
+    serif;
+  color: var(--accent);
+  flex: none;
+}
+.board-sequence {
+  display: grid;
+  grid-template-rows: repeat(var(--count), 1fr);
+  gap: 5px;
+}
+.board-sequence .board-item {
+  display: grid;
+  grid-template-columns: 44px 290px 1fr;
+  gap: 20px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 5px 0;
+}
+.board-sequence .board-label {
+  font-size: 21px;
+  margin: 0;
+}
+.board-sequence .board-detail {
+  font-size: 20px;
+}
+.board-sequence .board-index {
+  font-size: 25px;
+}
+.board-flow {
+  display: flex;
+  gap: 34px;
+  align-items: flex-start;
+  padding-top: 48px;
+}
+.board-flow .board-item {
+  flex: 1;
+  min-width: 0;
+  z-index: 2;
+}
+.board-flow .board-label {
+  font-size: 24px;
+  margin-top: 27px;
+}
+.board-flow .board-detail {
+  font-size: 20px;
+}
+.flow-number {
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 53px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--surface);
+  font:
+    24px Georgia,
+    serif;
+}
+.flow-line {
+  position: absolute;
+  top: 74px;
+  left: 25px;
+  right: 150px;
+  height: 2px;
+  background: var(--line);
+  transform-origin: left;
+}
+.flow-token {
+  position: absolute;
+  top: 41px;
+  width: 68px;
+  height: 68px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  z-index: 4;
+}
+.board-comparison,
+.board-evidence {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(var(--rows), 1fr);
+  gap: 20px 46px;
+}
+.board-comparison .board-item {
+  padding: 7px 20px 7px 24px;
+  border-left: 4px solid var(--accent);
+}
+.board-comparison .board-label {
+  font-size: 23px;
+}
+.board-comparison .board-detail {
+  font-size: 20px;
+}
+.board-evidence .board-item {
+  background: var(--surface);
+  border-top: 4px solid var(--accent);
+  padding: 22px 26px;
+}
+.board-evidence .board-index {
+  position: absolute;
+  right: 23px;
+  top: 17px;
+  font-size: 19px;
+}
+.board-evidence .board-label {
+  font-size: 24px;
+  padding-right: 35px;
+}
+.board-evidence .board-detail {
+  font-family: Georgia, serif;
+  font-size: 23px;
+}
+.board-conversation .board-item {
+  position: absolute;
+  width: 900px;
+  min-height: 86px;
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  padding: 13px 23px;
+}
+.board-conversation .board-label {
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+  color: var(--accent);
+}
+.board-conversation .board-detail {
+  font-size: 23px;
+  color: var(--fg);
+}
+.board-document .doc-list {
+  width: 345px;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(var(--count), 1fr);
+  gap: 6px;
+}
+.board-document .board-item {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.board-document .board-label {
+  font-size: 21px;
+  margin: 0;
+}
+.board-document .board-index {
+  font-size: 20px;
+}
+.document-sheet {
+  position: absolute;
+  left: 395px;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: var(--surface);
+  border-top: 5px solid var(--accent);
+  padding: 27px 32px;
+}
+.document-sheet small {
+  font-size: 12px;
+  letter-spacing: 1.7px;
+  color: var(--accent);
+}
+.document-title {
+  font:
+    35px/1.15 Georgia,
+    serif;
+  margin: 22px 0;
+  color: var(--fg);
+}
+.document-detail {
+  font-size: 27px;
+  line-height: 1.4;
+  max-width: 40ch;
+  margin: 0;
+  color: var(--quiet);
+}
+.document-rule {
+  height: 2px;
+  background: var(--line);
+  margin-top: 25px;
+  transform-origin: left;
+}
+.board-example {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 48px 25px 10px;
+  display: grid;
+  grid-template-rows: repeat(var(--count), 1fr);
+}
+.example-top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  color: var(--accent);
+}
+.board-example .board-item {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 7px 0;
+}
+.board-example .board-item:last-child {
+  border: 0;
+}
+.board-example .board-label {
+  font-size: 20px;
+  margin: 0;
+}
+.board-example .board-detail {
+  font-size: 20px;
+}
+.board-checkpoint {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding-top: 105px;
+}
+.board-checkpoint .board-item {
+  flex: 1;
+  min-width: 0;
+  z-index: 2;
+}
+.board-checkpoint .flow-number {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+}
+.board-checkpoint .board-label {
+  position: absolute;
+  top: -76px;
+  bottom: auto;
+  left: 0;
+  font-size: 21px;
+}
+.board-checkpoint .board-detail {
+  margin-top: 23px;
+  font-size: 19px;
+}
+.board-checkpoint .flow-line {
+  top: 125px;
+}
+.board-checkpoint .flow-token {
+  top: 91px;
+}
+.board-routing .route-list {
+  position: absolute;
+  left: 560px;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(var(--count), 1fr);
+  gap: 3px;
+}
+.board-routing .board-item {
+  border-bottom: 1px solid var(--line);
+  padding: 6px 0 6px 25px;
+}
+.board-routing .board-label {
+  font-size: 21px;
+  margin: 0 0 4px;
+}
+.board-routing .board-detail {
+  /* The moving task shows this detail; lanes retain only destination labels. */
+  display: none;
+}
+.route-task {
+  position: absolute;
+  left: 0;
+  top: 62px;
+  width: 420px;
+  padding: 26px 30px;
+  background: var(--surface);
+  border-left: 5px solid var(--accent);
+}
+.route-task small {
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
+}
+.route-task strong {
+  display: block;
+  font:
+    31px/1.25 Georgia,
+    serif;
+  margin-top: 20px;
+}
+.route-arrow {
+  position: absolute;
+  left: 445px;
+  top: 135px;
+  font-size: 50px;
+  color: var(--accent);
+}
+.board-meter .meter-number {
+  font:
+    100px/0.9 Georgia,
+    serif;
+  letter-spacing: -4px;
+}
+.meter-number span {
+  font:
+    23px Arial,
+    sans-serif;
+  letter-spacing: 0;
+  margin-left: 16px;
+  color: var(--quiet);
+}
+.meter-track {
+  position: absolute;
+  top: 125px;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: var(--line);
+  overflow: hidden;
+}
+.meter-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+}
+.meter-reserve {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  background: repeating-linear-gradient(135deg, #ffffff35 0 6px, #ffffff00 6px 12px);
+}
+.meter-threshold {
+  position: absolute;
+  top: 110px;
+  bottom: 120px;
+  left: 75%;
+  width: 2px;
+  background: var(--fg);
+}
+.meter-labels {
+  position: absolute;
+  top: 171px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: var(--quiet);
+}
+.meter-current {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 218px;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+.meter-current strong {
+  font-size: 25px;
+  color: var(--accent);
+  max-width: 350px;
+}
+.meter-current span {
+  font-size: 23px;
+  color: var(--quiet);
+  max-width: 700px;
+}
+.meter-policy {
+  white-space: pre-line;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  font-size: 18px;
+  max-width: 390px;
+  color: var(--quiet);
+  line-height: 1.4;
+}
+#chapters {
+  font: inherit;
+  max-width: 420px;
+  border: 1px solid #a3b2a3;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink);
+  padding: 10px 12px;
+  margin-left: 8px;
+}
+.review-note ol {
+  padding-left: 22px;
+}
+.review-note li {
+  margin-bottom: 12px;
+}
+body.capture .stage-progress {
+  display: none;
+}
+body.capture .board-eyebrow {
+  display: block;
+}
+@media (max-width: 700px) {
+  #chapters {
+    max-width: 260px;
+    margin-left: 0;
+  }
+  .transport-bottom > label:first-child {
+    display: grid;
+    gap: 8px;
+  }
+  .transport-bottom {
+    gap: 14px;
+  }
+}

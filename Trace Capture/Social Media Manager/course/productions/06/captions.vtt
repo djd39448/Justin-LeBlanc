@@ -33,377 +33,377 @@ Include examples so a fresh reader can distinguish
 00:00:31.962 --> 00:00:34.783
 expected behavior from a plausible guess.
 
-00:00:35.102 --> 00:00:39.026
+00:00:35.091 --> 00:00:39.015
 For the tracker, compare "validate the form" with:
 
-00:00:39.305 --> 00:00:43.240
+00:00:39.294 --> 00:00:43.229
 "Require a contact name and one preferred contact method.
 
-00:00:43.751 --> 00:00:46.944
+00:00:43.740 --> 00:00:46.933
 If either is missing, explain the missing field and keep
 
-00:00:46.990 --> 00:00:48.001
+00:00:46.979 --> 00:00:47.990
 the entered values.
 
-00:00:48.442 --> 00:00:51.786
+00:00:48.431 --> 00:00:51.775
 Do not save an incomplete inquiry." This is a proposed
 
-00:00:51.832 --> 00:00:54.642
+00:00:51.821 --> 00:00:54.631
 example; the real owner must approve the fields.
 
-00:00:55.083 --> 00:00:58.253
+00:00:55.072 --> 00:00:58.242
 It tells the agent what to accept, reject, and show the
 
-00:00:58.287 --> 00:00:58.787
+00:00:58.276 --> 00:00:58.776
 visitor.
 
-00:00:59.390 --> 00:01:02.223
+00:00:59.379 --> 00:01:02.212
 It also creates several test cases without prescribing
 
-00:01:02.316 --> 00:01:03.303
+00:01:02.305 --> 00:01:03.292
 every line of code.
 
-00:01:03.601 --> 00:01:06.306
+00:01:03.591 --> 00:01:06.296
 Acceptance criteria are conditions that can be observed.
 
-00:01:06.747 --> 00:01:10.451
+00:01:06.737 --> 00:01:10.441
 Assign stable identifiers such as A-01, and connect each
 
-00:01:10.497 --> 00:01:11.681
+00:01:10.487 --> 00:01:11.671
 to one or more checks.
 
-00:01:12.192 --> 00:01:15.594
+00:01:12.182 --> 00:01:15.584
 A-01 might say a valid fictional inquiry appears once in
 
-00:01:15.629 --> 00:01:16.383
+00:01:15.619 --> 00:01:16.373
 the owner list.
 
-00:01:16.825 --> 00:01:19.577
+00:01:16.815 --> 00:01:19.567
 A test could submit a valid synthetic record and retrieve
 
-00:01:19.600 --> 00:01:19.800
+00:01:19.590 --> 00:01:19.790
 it.
 
-00:01:20.296 --> 00:01:23.048
+00:01:20.286 --> 00:01:23.038
 Record the scope of the evidence: a local test
 
-00:01:23.106 --> 00:01:26.334
+00:01:23.096 --> 00:01:26.324
 demonstrates local behavior; it does not prove that a live
 
-00:01:26.368 --> 00:01:27.529
+00:01:26.358 --> 00:01:27.519
 provider is configured.
 
-00:01:27.913 --> 00:01:30.885
+00:01:27.903 --> 00:01:30.875
 Include negative paths, such as missing fields,
 
-00:01:31.163 --> 00:01:33.625
+00:01:31.153 --> 00:01:33.615
 unauthorized access, and a storage failure.
 
-00:01:33.934 --> 00:01:36.465
+00:01:33.919 --> 00:01:36.450
 A spec must say what remains unchanged.
 
-00:01:36.906 --> 00:01:40.598
+00:01:36.891 --> 00:01:40.583
 If the existing public website is out of scope, explicitly
 
-00:01:40.656 --> 00:01:41.271
+00:01:40.641 --> 00:01:41.256
 preserve it.
 
-00:01:41.596 --> 00:01:44.673
+00:01:41.581 --> 00:01:44.658
 If sending email is not authorized, say that the tracker
 
-00:01:44.766 --> 00:01:46.937
+00:01:44.751 --> 00:01:46.922
 records status without sending messages.
 
-00:01:47.378 --> 00:01:51.569
+00:01:47.363 --> 00:01:51.554
 Name external dependencies, privacy expectations, and what
 
-00:01:51.651 --> 00:01:53.984
+00:01:51.636 --> 00:01:53.969
 happens when an integration cannot be reached.
 
-00:01:54.425 --> 00:01:57.281
+00:01:54.410 --> 00:01:57.266
 Write a concrete rollback: the way to return to the
 
-00:01:57.339 --> 00:02:00.021
+00:01:57.324 --> 00:02:00.006
 previous known state if the change fails.
 
-00:02:00.463 --> 00:02:03.644
+00:02:00.448 --> 00:02:03.629
 Do not pretend an untested rollback has already worked.
 
-00:02:04.012 --> 00:02:05.371
+00:02:03.971 --> 00:02:05.330
 A plan orders the work.
 
-00:02:05.754 --> 00:02:08.540
+00:02:05.713 --> 00:02:08.499
 One possible sequence is to agree on the inquiry record,
 
-00:02:08.982 --> 00:02:12.116
+00:02:08.941 --> 00:02:12.075
 build validation and storage, build the owner view against
 
-00:02:12.151 --> 00:02:15.193
+00:02:12.110 --> 00:02:15.152
 the agreed contract, integrate, then verify.
 
-00:02:15.634 --> 00:02:18.606
+00:02:15.593 --> 00:02:18.565
 Parallel workers can work safely when their file ownership
 
-00:02:18.652 --> 00:02:19.848
+00:02:18.611 --> 00:02:19.807
 and interfaces are clear.
 
-00:02:20.231 --> 00:02:23.668
+00:02:20.190 --> 00:02:23.627
 If two people change the same shared contract at once,
 
-00:02:24.109 --> 00:02:25.630
+00:02:24.068 --> 00:02:25.589
 integration becomes harder.
 
-00:02:26.013 --> 00:02:30.541
+00:02:25.972 --> 00:02:30.500
 For each phase, list its goal, prerequisites, owned files
 
-00:02:30.587 --> 00:02:34.697
+00:02:30.546 --> 00:02:34.656
 or subsystem, checks, evidence, and completion condition.
 
-00:02:34.967 --> 00:02:37.835
+00:02:34.926 --> 00:02:37.794
 Before handing the plan to an agent, ask whether a fresh
 
-00:02:37.905 --> 00:02:41.388
+00:02:37.864 --> 00:02:41.347
 person could explain what is in scope, which decisions are
 
-00:02:41.423 --> 00:02:44.673
+00:02:41.382 --> 00:02:44.632
 settled, how success will be checked, and when to stop.
 
-00:02:45.370 --> 00:02:48.319
+00:02:45.329 --> 00:02:48.278
 Separate an approved plan from authorization to execute
 
-00:02:48.342 --> 00:02:48.542
+00:02:48.301 --> 00:02:48.501
 it.
 
-00:02:48.958 --> 00:02:53.393
+00:02:48.917 --> 00:02:53.352
 The kickoff will identify the repository, baseline, read
 
-00:02:53.462 --> 00:02:57.979
+00:02:53.421 --> 00:02:57.938
 order, allowed actions, forbidden actions, work sequence,
 
-00:02:58.304 --> 00:02:59.697
+00:02:58.263 --> 00:02:59.656
 proof, and handoff.
 
-00:03:00.301 --> 00:03:02.019
+00:03:00.260 --> 00:03:01.978
 We will build that briefing in Lesson 8.
 
-00:03:02.623 --> 00:03:06.512
+00:03:02.582 --> 00:03:06.471
 A good spec reduces guessing without making safe, routine
 
-00:03:06.547 --> 00:03:08.509
+00:03:06.506 --> 00:03:08.468
 implementation choices impossible.
 
-00:03:08.822 --> 00:03:11.213
+00:03:08.770 --> 00:03:11.161
 For the tracker, the overall outcome might be that an
 
-00:03:11.272 --> 00:03:13.930
+00:03:11.220 --> 00:03:13.878
 owner can find and manage inquiries received through a web
 
-00:03:14.000 --> 00:03:14.371
+00:03:13.948 --> 00:03:14.319
 form.
 
-00:03:14.813 --> 00:03:17.413
+00:03:14.761 --> 00:03:17.361
 That sentence does not yet specify every field or
 
-00:03:17.460 --> 00:03:18.330
+00:03:17.408 --> 00:03:18.278
 validation rule.
 
-00:03:18.841 --> 00:03:22.301
+00:03:18.789 --> 00:03:22.249
 Add a scope section identifying the first release, such as
 
-00:03:22.382 --> 00:03:24.936
+00:03:22.330 --> 00:03:24.884
 public form submission and a private status list.
 
-00:03:25.447 --> 00:03:29.731
+00:03:25.395 --> 00:03:29.679
 Add non-goals such as email import, automatic replies, or
 
-00:03:29.801 --> 00:03:32.483
+00:03:29.749 --> 00:03:32.431
 payments if those are not part of the approved work.
 
-00:03:33.180 --> 00:03:35.316
+00:03:33.128 --> 00:03:35.264
 These boundaries protect both the owner and the
 
-00:03:35.397 --> 00:03:37.406
+00:03:35.345 --> 00:03:37.354
 implementation agent from assumptions.
 
-00:03:37.689 --> 00:03:40.626
+00:03:37.609 --> 00:03:40.546
 Write down the fields, which are required, how invalid
 
-00:03:40.684 --> 00:03:43.378
+00:03:40.604 --> 00:03:43.298
 values are identified, and what the person sees.
 
-00:03:43.703 --> 00:03:47.221
+00:03:43.623 --> 00:03:47.141
 "The form should be friendly" is a preference, but it does
 
-00:03:47.337 --> 00:03:50.228
+00:03:47.257 --> 00:03:50.148
 not define how an empty required field behaves.
 
-00:03:50.831 --> 00:03:53.652
+00:03:50.751 --> 00:03:53.572
 A stronger criterion says the field is named in a clear
 
-00:03:53.710 --> 00:03:56.473
+00:03:53.630 --> 00:03:56.393
 message and the previously entered values remain
 
-00:03:56.520 --> 00:03:57.100
+00:03:56.440 --> 00:03:57.020
 available.
 
-00:03:57.542 --> 00:04:00.363
+00:03:57.462 --> 00:04:00.283
 Also say whether the failed submission creates a record.
 
-00:04:00.804 --> 00:04:03.254
+00:04:00.724 --> 00:04:03.174
 These details give the developer room to choose the
 
-00:04:03.312 --> 00:04:06.005
+00:04:03.232 --> 00:04:05.925
 interface while preserving the important behavior.
 
-00:04:06.328 --> 00:04:09.683
+00:04:06.248 --> 00:04:09.603
 Connect each requirement to an acceptance ID and a check.
 
-00:04:10.124 --> 00:04:14.118
+00:04:10.044 --> 00:04:14.038
 For example, A-02 could describe rejecting an inquiry with
 
-00:04:14.211 --> 00:04:15.372
+00:04:14.131 --> 00:04:15.292
 no contact method.
 
-00:04:15.755 --> 00:04:19.041
+00:04:15.675 --> 00:04:18.961
 A test submits that invalid data and checks for both an
 
-00:04:19.110 --> 00:04:20.979
+00:04:19.030 --> 00:04:20.899
 error and absence of a saved record.
 
-00:04:21.676 --> 00:04:24.822
+00:04:21.596 --> 00:04:24.742
 Record whether the test runs locally, against a staging
 
-00:04:24.892 --> 00:04:26.726
+00:04:24.812 --> 00:04:26.646
 service, or in production.
 
-00:04:27.109 --> 00:04:30.464
+00:04:27.029 --> 00:04:30.384
 A green local check is useful evidence for local behavior,
 
-00:04:30.847 --> 00:04:34.249
+00:04:30.767 --> 00:04:34.169
 but it does not prove a live deployment is configured or
 
-00:04:34.319 --> 00:04:35.875
+00:04:34.239 --> 00:04:35.795
 that a provider delivered anything.
 
-00:04:36.226 --> 00:04:39.384
+00:04:36.123 --> 00:04:39.281
 What existing data and behavior must remain intact?
 
-00:04:39.825 --> 00:04:43.401
+00:04:39.722 --> 00:04:43.298
 If an older inquiry already has a status, a new view
 
-00:04:43.447 --> 00:04:44.364
+00:04:43.344 --> 00:04:44.261
 should not erase it.
 
-00:04:44.690 --> 00:04:47.662
+00:04:44.587 --> 00:04:47.559
 If the deployment fails, the plan should identify the
 
-00:04:47.743 --> 00:04:50.762
+00:04:47.640 --> 00:04:50.659
 earlier version or reversal procedure and the point at
 
-00:04:50.796 --> 00:04:51.969
+00:04:50.693 --> 00:04:51.866
 which rollback is safe.
 
-00:04:52.410 --> 00:04:55.208
+00:04:52.307 --> 00:04:55.105
 Some changes, such as sending a real message, cannot be
 
-00:04:55.266 --> 00:04:58.738
+00:04:55.163 --> 00:04:58.635
 unsent; they need special care and explicit authorization.
 
-00:04:59.434 --> 00:05:02.836
+00:04:59.331 --> 00:05:02.733
 Label an untested recovery plan as a plan, then rehearse
 
-00:05:02.882 --> 00:05:04.426
+00:05:02.779 --> 00:05:04.323
 it when appropriate and allowed.
 
-00:05:04.716 --> 00:05:07.793
+00:05:04.594 --> 00:05:07.671
 Before implementation, list what must exist before
 
-00:05:07.828 --> 00:05:09.197
+00:05:07.706 --> 00:05:09.075
 something else can be completed.
 
-00:05:09.523 --> 00:05:12.901
+00:05:09.401 --> 00:05:12.779
 The view depends on an agreed record format; tests depend
 
-00:05:12.959 --> 00:05:14.480
+00:05:12.837 --> 00:05:14.358
 on defined expected behavior.
 
-00:05:15.084 --> 00:05:18.172
+00:05:14.962 --> 00:05:18.050
 Workers may draft a view and validation logic in parallel
 
-00:05:18.323 --> 00:05:21.295
+00:05:18.201 --> 00:05:21.173
 after the shared format is agreed, but they should not
 
-00:05:21.353 --> 00:05:23.292
+00:05:21.231 --> 00:05:23.170
 edit the same files without coordination.
 
-00:05:23.675 --> 00:05:25.962
+00:05:23.553 --> 00:05:25.840
 The conductor collects each result and checks the
 
-00:05:26.009 --> 00:05:27.007
+00:05:25.887 --> 00:05:26.885
 integrated behavior.
 
-00:05:27.390 --> 00:05:29.782
+00:05:27.268 --> 00:05:29.660
 This is how parallel work saves time without turning
 
-00:05:29.863 --> 00:05:31.895
+00:05:29.741 --> 00:05:31.773
 shared interfaces into a guessing game.
 
-00:05:32.226 --> 00:05:34.873
+00:05:32.104 --> 00:05:34.751
 Ask the agent to walk through one valid inquiry, one
 
-00:05:34.908 --> 00:05:38.240
+00:05:34.786 --> 00:05:38.118
 invalid inquiry, and one storage failure against the spec.
 
-00:05:38.751 --> 00:05:41.897
+00:05:38.629 --> 00:05:41.775
 Where it has to guess, add the missing rule or label it as
 
-00:05:41.943 --> 00:05:43.824
+00:05:41.821 --> 00:05:43.702
 an intentional implementation choice.
 
-00:05:44.265 --> 00:05:47.284
+00:05:44.143 --> 00:05:47.162
 Check that acceptance covers the non-goals too: if
 
-00:05:47.353 --> 00:05:50.476
+00:05:47.231 --> 00:05:50.354
 automatic email is forbidden, a test or inspection should
 
-00:05:50.523 --> 00:05:52.891
+00:05:50.401 --> 00:05:52.769
 show that submitting an inquiry does not trigger it.
 
-00:05:53.332 --> 00:05:56.177
+00:05:53.210 --> 00:05:56.055
 A good contract helps the team build the agreed outcome
 
-00:05:56.351 --> 00:05:58.673
+00:05:56.229 --> 00:05:58.551
 and recognize when work is still incomplete.
 
-00:05:58.998 --> 00:06:01.773
+00:05:58.876 --> 00:06:01.651
 Imagine you are the agent seeing the project for the first
 
-00:06:01.808 --> 00:06:02.249
+00:06:01.686 --> 00:06:02.127
 time.
 
-00:06:02.690 --> 00:06:04.652
+00:06:02.568 --> 00:06:04.530
 Which document tells you what to build?
 
-00:06:05.093 --> 00:06:08.193
+00:06:04.971 --> 00:06:08.071
 Which decision explains why email import was deferred?
 
-00:06:08.634 --> 00:06:11.606
+00:06:08.512 --> 00:06:11.484
 Can you identify a task that can be completed and tested
 
-00:06:11.885 --> 00:06:13.917
+00:06:11.763 --> 00:06:13.795
 without waiting for an unrelated task?
 
-00:06:14.358 --> 00:06:16.959
+00:06:14.236 --> 00:06:16.837
 Can you state when to stop if access is missing?
 
-00:06:17.400 --> 00:06:20.744
+00:06:17.278 --> 00:06:20.622
 If the answer to any of these is unclear, add a specific
 
-00:06:20.825 --> 00:06:22.462
+00:06:20.703 --> 00:06:22.340
 reference or boundary to the plan.
 
-00:06:22.903 --> 00:06:26.084
+00:06:22.781 --> 00:06:25.962
 The goal is to remove consequential ambiguity while
 
-00:06:26.119 --> 00:06:28.952
+00:06:25.997 --> 00:06:28.830
 leaving room for reasonable implementation choices.

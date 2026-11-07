@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "lesson": "05",
   "generatedFrom": "../../lessons/05.html#lecture-script",
   "scenes": [
@@ -8,117 +8,117 @@
       "title": "One file, one job",
       "narrationSegmentId": "01",
       "startMs": 0,
-      "endMs": 31267,
+      "endMs": 31242,
       "audio": "audio/01.mp3",
-      "accessibleDescription": "Different documents answer different questions about the project."
+      "accessibleDescription": "Open the document that answers the question you actually have."
     },
     {
       "id": "02",
       "title": "Three design documents",
       "narrationSegmentId": "02",
-      "startMs": 31267,
-      "endMs": 62561,
+      "startMs": 31242,
+      "endMs": 62537,
       "audio": "audio/02.mp3",
-      "accessibleDescription": "A map, a contract, and a sequence each serve a different reader need."
+      "accessibleDescription": "Three related documents answer three different design questions."
     },
     {
       "id": "03",
       "title": "Execution memory",
       "narrationSegmentId": "03",
-      "startMs": 62561,
-      "endMs": 95579,
+      "startMs": 62537,
+      "endMs": 95556,
       "audio": "audio/03.mp3",
-      "accessibleDescription": "Keep work state, change history, proof, operations, and handoff distinct."
+      "accessibleDescription": "Execution documents let another person resume and assess the work."
     },
     {
       "id": "04",
       "title": "Document authority",
       "narrationSegmentId": "04",
-      "startMs": 95579,
-      "endMs": 129779,
+      "startMs": 95556,
+      "endMs": 129724,
       "audio": "audio/04.mp3",
-      "accessibleDescription": "An approved newer narrow requirement changes only its actual conflict."
+      "accessibleDescription": "Authority comes from the instruction and its scope, not its confident wording."
     },
     {
       "id": "05",
       "title": "Avoid a paper maze",
       "narrationSegmentId": "05",
-      "startMs": 129779,
-      "endMs": 157390,
+      "startMs": 129724,
+      "endMs": 157336,
       "audio": "audio/05.mp3",
-      "accessibleDescription": "Choose only the documents needed to keep decisions and state findable."
+      "accessibleDescription": "The smallest clear structure is better than a maze of unnecessary files."
     },
     {
       "id": "06",
       "title": "Trace a change",
       "narrationSegmentId": "06",
-      "startMs": 157390,
-      "endMs": 185790,
+      "startMs": 157336,
+      "endMs": 185704,
       "audio": "audio/06.mp3",
-      "accessibleDescription": "A status change may touch the spec, tests, evidence, and history."
+      "accessibleDescription": "Trace one changed truth through the documents that depend on it."
     },
     {
       "id": "07",
       "title": "The smallest useful set",
       "narrationSegmentId": "07",
-      "startMs": 185790,
-      "endMs": 215465,
+      "startMs": 185704,
+      "endMs": 215380,
       "audio": "audio/07.mp3",
-      "accessibleDescription": "A concise project can group related information without losing clarity."
+      "accessibleDescription": "A small project can keep the full workflow in a compact set of documents."
     },
     {
       "id": "08",
       "title": "Which rule controls?",
       "narrationSegmentId": "08",
-      "startMs": 215465,
-      "endMs": 240490,
+      "startMs": 215380,
+      "endMs": 240405,
       "audio": "audio/08.mp3",
-      "accessibleDescription": "A newer status rule supersedes its conflict; an older privacy rule can remain."
+      "accessibleDescription": "Apply supersession to the actual conflict, not to the entire history."
     },
     {
       "id": "09",
       "title": "State vs. history",
       "narrationSegmentId": "09",
-      "startMs": 240490,
-      "endMs": 272690,
+      "startMs": 240405,
+      "endMs": 272588,
       "audio": "audio/09.mp3",
-      "accessibleDescription": "Progress, changelog, and evidence describe different aspects of work."
+      "accessibleDescription": "Current state, historical change and proof answer different questions."
     },
     {
       "id": "10",
       "title": "A restartable handoff",
       "narrationSegmentId": "10",
-      "startMs": 272690,
-      "endMs": 303890,
+      "startMs": 272588,
+      "endMs": 303778,
       "audio": "audio/10.mp3",
-      "accessibleDescription": "A new agent needs current state and the next safe action."
+      "accessibleDescription": "Make the next safe action easier to find than the story of the session."
     },
     {
       "id": "11",
       "title": "Follow a requirement",
       "narrationSegmentId": "11",
-      "startMs": 303890,
-      "endMs": 335290,
+      "startMs": 303778,
+      "endMs": 335151,
       "audio": "audio/11.mp3",
-      "accessibleDescription": "Trace a contact-method change through decisions, code, and evidence."
+      "accessibleDescription": "Follow one requirement from approval to implementation and proof."
     },
     {
       "id": "12",
       "title": "Conflicting documents",
       "narrationSegmentId": "12",
-      "startMs": 335290,
-      "endMs": 363156,
+      "startMs": 335151,
+      "endMs": 362998,
       "audio": "audio/12.mp3",
-      "accessibleDescription": "Investigate whether a feature is live before resolving contradictory claims."
+      "accessibleDescription": "Resolve contradictory claims with evidence, not confident wording."
     },
     {
       "id": "13",
       "title": "The handoff test",
       "narrationSegmentId": "13",
-      "startMs": 363156,
-      "endMs": 396223,
+      "startMs": 362998,
+      "endMs": 396042,
       "audio": "audio/13.mp3",
-      "accessibleDescription": "Give a fresh reader the project and see whether they can find the next step."
+      "accessibleDescription": "Test the document structure with someone who was not in the conversation."
     }
   ]
 }

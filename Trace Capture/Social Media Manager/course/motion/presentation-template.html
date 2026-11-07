@@ -1,0 +1,93 @@
+<!doctype html>
+<!-- Generated lesson player. Sources: motion/build-presentations.cjs and its template;
+     dependencies are local course assets. Browser playback and video use the same timeline. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{TITLE}} · Cloud to Code</title>
+    <link rel="stylesheet" href="{{BASE}}style-preview/preview.css" />
+    <link rel="stylesheet" href="{{BASE}}motion/presentation.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <a href="{{BASE}}index.html">Cloud → Contract → Code</a
+      ><span>Lesson {{LESSON}} · {{TITLE}}</span>
+    </header>
+    <main>
+      <div id="viewport">
+        <div
+          id="stage"
+          role="img"
+          aria-label="Animated visual explanation. The transcript and visual outline follow the player."
+        >
+          <div id="approved-opening">{{OPENING}}</div>
+          <section id="board" class="board paper">
+            <div class="board-eyebrow" id="board-eyebrow"></div>
+            <h1 id="board-title"></h1>
+            <p id="board-intro"></p>
+            <div id="board-content"></div>
+            <p id="board-conclusion"></p>
+          </section>
+          <div id="caption" aria-hidden="true"></div>
+          <div class="stage-footer">
+            <span>CLOUD → CONTRACT → CODE</span><span id="scene-label"></span>
+          </div>
+          <div class="stage-progress"><span id="stage-progress"></span></div>
+        </div>
+        <div class="fullscreen-controls">
+          <button id="full-play">Play lesson</button><button id="full-back">Back 5s</button
+          ><button id="full-forward">Forward 5s</button
+          ><button id="full-exit">Exit full screen</button>
+        </div>
+      </div>
+      <div id="mobile-caption" aria-hidden="true"></div>
+      <div class="transport">
+        <div class="transport-top">
+          <button id="play">Play lesson</button><output id="clock"></output
+          ><input
+            id="seek"
+            type="range"
+            min="0"
+            step="0.05"
+            value="0"
+            aria-label="Seek lesson"
+          /><button id="cc" aria-pressed="true">Captions</button
+          ><button id="fullscreen">Full screen</button>
+        </div>
+        <div class="transport-bottom">
+          <label
+            >Chapter
+            <select id="chapters" aria-label="Choose chapter"></select></label
+          ><label><input id="motion" type="checkbox" /> Reduce motion</label
+          ><a href="{{BASE}}lessons/{{LESSON}}.html">Lesson and exercise</a>
+        </div>
+        <p id="status" role="status">Brian’s approved narration · Press play to begin</p>
+      </div>
+      <audio id="audio" src="narration.m4a" preload="metadata"></audio>
+      <section class="review-note">
+        <div>
+          <p class="overline">LESSON {{LESSON}}</p>
+          <h2>{{TITLE}}</h2>
+        </div>
+        <div>
+          <p>{{OBJECTIVE}}</p>
+          <p>
+            <a href="lesson-{{LESSON}}.mp4">Video</a> · <a href="transcript.md">Transcript</a> ·
+            <a href="captions.vtt">Captions</a>
+          </p>
+          <details>
+            <summary>Visual outline</summary>
+            <ol>
+              {{OUTLINE}}
+            </ol>
+          </details>
+        </div>
+      </section>
+    </main>
+    <script src="presentation-data.js"></script>
+    <script src="{{BASE}}motion/approved-opening.js"></script>
+    <script src="{{BASE}}motion/visuals.js"></script>
+    <script src="{{BASE}}motion/player.js"></script>
+  </body>
+</html>

@@ -1,0 +1,474 @@
+{
+  "lesson": "09",
+  "scenes": [
+    {
+      "id": "01",
+      "kind": "comparison",
+      "tone": "teal",
+      "title": "Autonomy stays inside an agreement",
+      "intro": "Permission to continue does not mean unlimited authority.",
+      "items": [
+        {
+          "label": "Authorized sequence",
+          "detail": "Continue without routine confirmation at every step.",
+          "anchor": "continue through an authorized sequence"
+        },
+        {
+          "label": "Scope contract",
+          "detail": "Goal, scope, done condition, deadline, allowed actions.",
+          "anchor": "Define the goal, the approved scope"
+        },
+        {
+          "label": "Local tracker work",
+          "detail": "Implement and test an authorized local feature.",
+          "anchor": "autonomous work might include implementing"
+        },
+        {
+          "label": "Separate authority",
+          "detail": "Real messages, purchases, credentials, unrelated systems.",
+          "anchor": "It does not automatically authorize sending real messages"
+        }
+      ],
+      "conclusion": {
+        "text": "Continuing autonomously does not expand the scope.",
+        "anchor": "or changing an unrelated system"
+      }
+    },
+    {
+      "id": "02",
+      "kind": "checkpoint",
+      "tone": "paper",
+      "title": "Leave a checkpoint that survives the session",
+      "intro": "Each verified slice should make the next start easier.",
+      "items": [
+        {
+          "label": "Work loop",
+          "detail": "Plan → build → review → fix → verify → record.",
+          "anchor": "A useful loop is plan"
+        },
+        {
+          "label": "Milestone",
+          "detail": "Persist a checkpoint after meaningful progress.",
+          "anchor": "persist a checkpoint at meaningful milestones"
+        },
+        {
+          "label": "Current reality",
+          "detail": "Revision, completed work, checks, and active processes.",
+          "anchor": "current revision, completed work, checks"
+        },
+        {
+          "label": "Recovery context",
+          "detail": "Uncertain effects, usage, rollback, next safe action.",
+          "anchor": "uncertain effects, usage where visible"
+        }
+      ],
+      "conclusion": {
+        "text": "A fresh agent should resume without treating the workspace as empty.",
+        "anchor": "without treating the workspace as empty"
+      }
+    },
+    {
+      "id": "03",
+      "kind": "document",
+      "tone": "ink",
+      "title": "A blocker becomes a specific owner action",
+      "intro": "Record the boundary, then continue authorized independent work.",
+      "items": [
+        {
+          "label": "Morning Unblock",
+          "detail": "Name the exact blocker.",
+          "anchor": "Write a Morning Unblock item"
+        },
+        {
+          "label": "Completed work",
+          "detail": "Say what reached the boundary.",
+          "anchor": "what was completed up to the boundary"
+        },
+        {
+          "label": "Owner action",
+          "detail": "Specify one action the owner must take.",
+          "anchor": "one action the owner must take"
+        },
+        {
+          "label": "Independent work",
+          "detail": "Keep the blocked feature inactive; proceed elsewhere.",
+          "anchor": "Keep that feature inactive if necessary"
+        },
+        {
+          "label": "Stop condition",
+          "detail": "Stop when all remaining work crosses a boundary.",
+          "anchor": "If all remaining work requires approval"
+        }
+      ],
+      "conclusion": {
+        "text": "Never invent access or label a mock integration live.",
+        "anchor": "Do not invent credentials"
+      }
+    },
+    {
+      "id": "04",
+      "kind": "checkpoint",
+      "tone": "paper",
+      "title": "Recover the state before retrying",
+      "intro": "An interrupted request may already have taken effect.",
+      "items": [
+        {
+          "label": "Request submitted",
+          "detail": "A provider request was sent before interruption.",
+          "anchor": "interrupted after submitting a request to a provider"
+        },
+        {
+          "label": "Outcome unknown",
+          "detail": "The provider may have accepted it.",
+          "anchor": "may not know whether the provider accepted it"
+        },
+        {
+          "label": "Duplicate risk",
+          "detail": "Blind resending can repeat the effect.",
+          "anchor": "Blindly resending can duplicate the effect"
+        },
+        {
+          "label": "Reconcile",
+          "detail": "Inspect jobs, logs, and durable records.",
+          "anchor": "First inspect the job, logs, and durable records"
+        },
+        {
+          "label": "Resume safely",
+          "detail": "Preserve valid work; find the first unproven step.",
+          "anchor": "Preserve valid work, identify the first unproven step"
+        }
+      ],
+      "conclusion": {
+        "text": "Retry only when the operation is safe to repeat.",
+        "anchor": "retry when the operation is safe to repeat"
+      }
+    },
+    {
+      "id": "05",
+      "kind": "routing",
+      "tone": "teal",
+      "title": "Keep capacity for the finish",
+      "intro": "Dave’s reserve example is configurable, and actual permissions still apply.",
+      "items": [
+        {
+          "label": "Inspect usage",
+          "detail": "Check before substantial dispatch and after batches.",
+          "anchor": "Check visible shared usage before substantial dispatch"
+        },
+        {
+          "label": "Reserve policy",
+          "detail": "25% reserve; 75%-used discretionary cutoff.",
+          "anchor": "Dave's example reserves 25 percent"
+        },
+        {
+          "label": "At the threshold",
+          "detail": "Use safe deterministic or qualified local routes.",
+          "anchor": "At the threshold, continue safe independent work"
+        },
+        {
+          "label": "Unknown usage",
+          "detail": "Avoid discretionary cloud dispatch.",
+          "anchor": "If usage is unknown"
+        },
+        {
+          "label": "Essential work",
+          "detail": "Retain only authorized completion and handoff capacity.",
+          "anchor": "minimum authorized cloud work needed for safe completion"
+        }
+      ],
+      "conclusion": {
+        "text": "Platform reality and owner permissions govern the exact behavior.",
+        "anchor": "the actual platform and the owner's permissions"
+      }
+    },
+    {
+      "id": "06",
+      "kind": "document",
+      "tone": "paper",
+      "title": "Report proof the owner can inspect",
+      "intro": "The morning report names completed work and the remaining uncertainty.",
+      "items": [
+        {
+          "label": "Outcome + links",
+          "detail": "Lead with the result and artifacts.",
+          "anchor": "At the end, report the outcome and links"
+        },
+        {
+          "label": "Work + evidence",
+          "detail": "Revision, completed work, pending work, checks.",
+          "anchor": "revision, completed and pending work"
+        },
+        {
+          "label": "Actual route + uncertainty",
+          "detail": "Usage, assumptions, blockers, effects, rollback.",
+          "anchor": "actual model routes and exposed usage"
+        },
+        {
+          "label": "Evidence labels",
+          "detail": "Separate offline checks from live observations.",
+          "anchor": "Label offline and live evidence correctly"
+        },
+        {
+          "label": "First inspection",
+          "detail": "Show the owner what to inspect first.",
+          "anchor": "the first few things the owner should inspect"
+        }
+      ],
+      "conclusion": {
+        "text": "Completion is a proven state, not a confident sentence.",
+        "anchor": "Completion is a proven state"
+      }
+    },
+    {
+      "id": "07",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Write the overnight contract",
+      "intro": "A long run starts with a bounded definition of done.",
+      "items": [
+        {
+          "label": "Definition of done",
+          "detail": "Local tracker, agreed cases, restartable handoff.",
+          "anchor": "Start with the approved definition of done"
+        },
+        {
+          "label": "Workspace + reading",
+          "detail": "Name the authorized location, docs, and deadline.",
+          "anchor": "State the authorized workspace"
+        },
+        {
+          "label": "Routine decisions",
+          "detail": "Make reasonable reversible choices and record them.",
+          "anchor": "Tell the agent to make reasonable reversible decisions"
+        },
+        {
+          "label": "Owner decisions",
+          "detail": "Identify which decisions require the owner.",
+          "anchor": "Also state which decisions require the owner"
+        }
+      ],
+      "conclusion": {
+        "text": "“Do not stop” cannot authorize purchases or unrelated changes.",
+        "anchor": "cannot authorize buying services or altering unrelated systems"
+      }
+    },
+    {
+      "id": "08",
+      "kind": "checkpoint",
+      "tone": "paper",
+      "title": "Checkpoint before context disappears",
+      "intro": "Record enough reality for another session to continue safely.",
+      "items": [
+        {
+          "label": "Verified slice",
+          "detail": "Revision, changed behavior, tests, and outcomes.",
+          "anchor": "After a verified slice, record the revision"
+        },
+        {
+          "label": "Current status",
+          "detail": "Next task and exposed usage.",
+          "anchor": "current status, next task, and relevant usage"
+        },
+        {
+          "label": "External operation",
+          "detail": "Record known or uncertain state without secrets.",
+          "anchor": "If an external operation occurred"
+        },
+        {
+          "label": "Durable record",
+          "detail": "Use the project’s progress file or another suitable record.",
+          "anchor": "A checkpoint can be a progress file"
+        },
+        {
+          "label": "Before context loss",
+          "detail": "Do not wait until the end to update it.",
+          "anchor": "It should be updated before context is lost"
+        }
+      ],
+      "conclusion": {
+        "text": "Verified commits can supplement the checkpoint when the workflow allows.",
+        "anchor": "Small verified commits can supplement the checkpoint"
+      }
+    },
+    {
+      "id": "09",
+      "kind": "routing",
+      "tone": "teal",
+      "title": "Keep the blocked integration inactive",
+      "intro": "A credential gap need not stop unrelated, authorized progress.",
+      "items": [
+        {
+          "label": "Local owner view",
+          "detail": "The private view can be built locally.",
+          "anchor": "the private view can be built locally"
+        },
+        {
+          "label": "Credential boundary",
+          "detail": "The identity provider needs owner-granted access.",
+          "anchor": "the chosen identity provider requires a credential"
+        },
+        {
+          "label": "Owner action",
+          "detail": "Provide or approve the named access.",
+          "anchor": "Owner action: provide or approve the named access"
+        },
+        {
+          "label": "Independent route",
+          "detail": "Continue docs, synthetic tests, and interface work.",
+          "anchor": "Continue documentation, synthetic tests"
+        },
+        {
+          "label": "Exact stopping point",
+          "detail": "Stop when useful in-scope work is exhausted.",
+          "anchor": "When nothing useful remains within scope"
+        }
+      ],
+      "conclusion": {
+        "text": "A fake test does not complete the real identity integration.",
+        "anchor": "because a fake test passed"
+      }
+    },
+    {
+      "id": "10",
+      "kind": "checkpoint",
+      "tone": "paper",
+      "title": "A timeout is not a clean slate",
+      "intro": "Preserve uncertainty until the external effect can be reconciled.",
+      "items": [
+        {
+          "label": "Timeout",
+          "detail": "The request may still have succeeded.",
+          "anchor": "A timeout does not always mean nothing happened"
+        },
+        {
+          "label": "Read-only evidence",
+          "detail": "Inspect the provider record or durable operation log.",
+          "anchor": "inspect the provider's record"
+        },
+        {
+          "label": "Still uncertain",
+          "detail": "Report the state and the exact resolution action.",
+          "anchor": "If the outcome remains uncertain"
+        },
+        {
+          "label": "Idempotency",
+          "detail": "A supported and used key can make retries safer.",
+          "anchor": "An idempotency key or similar design"
+        }
+      ],
+      "conclusion": {
+        "text": "A label alone does not make an operation safe to repeat.",
+        "anchor": "based on a name alone"
+      }
+    },
+    {
+      "id": "11",
+      "kind": "document",
+      "tone": "ink",
+      "title": "Use the reserve deliberately",
+      "intro": "The policy protects the work needed to finish safely.",
+      "items": [
+        {
+          "label": "Before the batch",
+          "detail": "Inspect exposed account usage.",
+          "anchor": "Before a batch, inspect exposed account usage"
+        },
+        {
+          "label": "After the batch",
+          "detail": "Record outcomes and current visible usage.",
+          "anchor": "After the batch, record its outcomes"
+        },
+        {
+          "label": "Dave’s example",
+          "detail": "25% reserve; stop discretionary dispatch at 75% used.",
+          "anchor": "Dave's default reserves 25 percent"
+        },
+        {
+          "label": "Reset credits",
+          "detail": "Do not consume them automatically.",
+          "anchor": "Do not consume reset credits automatically"
+        },
+        {
+          "label": "Unknown usage",
+          "detail": "Keep it unknown and choose conservative routes.",
+          "anchor": "If usage cannot be checked"
+        }
+      ],
+      "conclusion": {
+        "text": "Protect integration, review, recovery, and handoff from being stranded.",
+        "anchor": "A reserve exists so integration"
+      }
+    },
+    {
+      "id": "12",
+      "kind": "document",
+      "tone": "paper",
+      "title": "Make the morning review easy",
+      "intro": "Write for the person who was asleep while the work happened.",
+      "items": [
+        {
+          "label": "Outcome + artifacts",
+          "detail": "Put the result and links first.",
+          "anchor": "Put the outcome and artifact links first"
+        },
+        {
+          "label": "Honest status",
+          "detail": "Built, verified, unverified, or blocked.",
+          "anchor": "what is built, verified, unverified, or blocked"
+        },
+        {
+          "label": "Supporting record",
+          "detail": "Checks, evidence, actual route, usage, decisions, recovery.",
+          "anchor": "Include checks and evidence"
+        },
+        {
+          "label": "Inspect first",
+          "detail": "Make the first few review actions easy to find.",
+          "anchor": "Make the first few things to inspect"
+        },
+        {
+          "label": "Deadline reached",
+          "detail": "Report partial completion accurately.",
+          "anchor": "If the job ran out of time"
+        }
+      ],
+      "conclusion": {
+        "text": "Do not stretch the definition of done to hide unfinished work.",
+        "anchor": "rather than stretching the definition of done"
+      }
+    },
+    {
+      "id": "13",
+      "kind": "checkpoint",
+      "tone": "teal",
+      "title": "Resume from the actual workspace",
+      "intro": "Compare the handoff with reality before choosing the next action.",
+      "items": [
+        {
+          "label": "Readback versus reality",
+          "detail": "Compare the handoff with the workspace.",
+          "anchor": "compare the handoff with the actual workspace"
+        },
+        {
+          "label": "Current state",
+          "detail": "Check revision, changes, jobs, and evidence.",
+          "anchor": "Check the revision, working changes"
+        },
+        {
+          "label": "Stale result",
+          "detail": "Later code changes can invalidate an earlier test.",
+          "anchor": "If the handoff says a test passed"
+        },
+        {
+          "label": "Uncertain operation",
+          "detail": "Reconcile the external effect first.",
+          "anchor": "If an external operation is uncertain"
+        }
+      ],
+      "conclusion": {
+        "text": "Preserve valid progress without repeating work or external effects.",
+        "anchor": "preventing duplicate work or duplicate effects"
+      }
+    }
+  ]
+}

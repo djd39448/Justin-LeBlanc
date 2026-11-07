@@ -1,0 +1,467 @@
+{
+  "lesson": "03",
+  "scenes": [
+    {
+      "kind": "checkpoint",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Belief",
+          "detail": "The existing form saves submissions.",
+          "anchor": "believes an existing form saves submissions"
+        },
+        {
+          "label": "Design risk",
+          "detail": "A new database may overlook existing records.",
+          "anchor": "designs a new database around that assumption"
+        },
+        {
+          "label": "Inspect reality",
+          "detail": "Repository, documents and permitted workflow",
+          "anchor": "A reality scan looks at"
+        },
+        {
+          "label": "Report access",
+          "detail": "What was examined? What was inaccessible?",
+          "anchor": "Ask the agent to report"
+        }
+      ],
+      "conclusion": {
+        "text": "Ground the design in the current world.",
+        "anchor": "The goal is to ground"
+      },
+      "intro": "Check the starting assumption before designing around it.",
+      "id": "01",
+      "title": "Research reality"
+    },
+    {
+      "kind": "evidence",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Verified",
+          "detail": "A form component exists; live saving needs its own evidence.",
+          "anchor": "The repository contains a form component"
+        },
+        {
+          "label": "Planned",
+          "detail": "A roadmap item describes future work.",
+          "anchor": "A roadmap item is planned"
+        },
+        {
+          "label": "Assumed",
+          "detail": "A belief has not yet been checked.",
+          "anchor": "A belief that has not been checked"
+        },
+        {
+          "label": "Unknown",
+          "detail": "Missing access leaves an unanswered question.",
+          "anchor": "If access is missing"
+        }
+      ],
+      "conclusion": {
+        "text": "A polished plan is still not a live-system observation.",
+        "anchor": "A clean-looking document does not"
+      },
+      "intro": "Use four labels that make the strength of each claim visible.",
+      "id": "02",
+      "title": "Four evidence labels"
+    },
+    {
+      "kind": "flow",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Form",
+          "detail": "Where do submitted fields go?",
+          "anchor": "inspect the form, follow where its data goes"
+        },
+        {
+          "label": "Failed save",
+          "detail": "Does the visitor see an error?",
+          "anchor": "Does it show an error"
+        },
+        {
+          "label": "Sending",
+          "detail": "Does any component send a message?",
+          "anchor": "Does anything send a message"
+        },
+        {
+          "label": "Record",
+          "detail": "One authoritative inquiry, or several copies?",
+          "anchor": "Is there one record"
+        },
+        {
+          "label": "Observed boundary",
+          "detail": "Saved inquiries may exist; import may remain a proposal.",
+          "anchor": "A repository inspection might reveal"
+        }
+      ],
+      "conclusion": {
+        "text": "Attach the source and limits to every claim.",
+        "anchor": "Record the exact source"
+      },
+      "intro": "Follow a fictional inquiry without contacting real organizers.",
+      "id": "03",
+      "title": "Trace one inquiry"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Option A",
+          "detail": "Use the existing form only.",
+          "anchor": "either use the existing form only"
+        },
+        {
+          "label": "Option B",
+          "detail": "Add an email importer.",
+          "anchor": "or add an email importer"
+        },
+        {
+          "label": "Compare fairly",
+          "detail": "Benefits, effort, dependencies and risks",
+          "anchor": "each option's benefits, effort, dependencies"
+        },
+        {
+          "label": "Bound version one",
+          "detail": "Start with the form and defer import.",
+          "anchor": "use the form first and defer import"
+        }
+      ],
+      "conclusion": {
+        "text": "Ask about choices that change scope, architecture, risk or cost.",
+        "anchor": "Ask the owner questions that genuinely"
+      },
+      "intro": "A recommendation should explain the tradeoff behind the choice.",
+      "id": "04",
+      "title": "Compare the options"
+    },
+    {
+      "kind": "document",
+      "tone": "ink",
+      "items": [
+        {
+          "label": "Context and rationale",
+          "detail": "What choice is being made, and why?",
+          "anchor": "A decision ledger records context"
+        },
+        {
+          "label": "Provisional choice",
+          "detail": "Use the form only after confirming it works.",
+          "anchor": "Provisionally use the website form"
+        },
+        {
+          "label": "Reopen condition",
+          "detail": "Tested export plus owner approval",
+          "anchor": "Revisit when the owner has"
+        },
+        {
+          "label": "Status",
+          "detail": "Accepted · provisional · deferred · rejected",
+          "anchor": "Mark a choice as accepted"
+        },
+        {
+          "label": "Supersession",
+          "detail": "Date and link the replacement decision.",
+          "anchor": "If a decision changes later"
+        }
+      ],
+      "conclusion": {
+        "text": "Preserve the earlier decision instead of erasing its history.",
+        "anchor": "rather than silently pretending"
+      },
+      "intro": "A decision record carries the reason into the next session.",
+      "id": "05",
+      "title": "Decision ledger",
+      "callouts": [
+        {
+          "text": "Record the consequences and what would justify reopening the choice.",
+          "anchor": "consequences, status, and a condition"
+        }
+      ]
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Material facts",
+          "detail": "Which facts affect the architecture?",
+          "anchor": "review the facts that materially affect"
+        },
+        {
+          "label": "Evidence check",
+          "detail": "Verified, safe planning assumption, or owner decision?",
+          "anchor": "Which are verified"
+        },
+        {
+          "label": "Access gap",
+          "detail": "An inaccessible live form remains unproven.",
+          "anchor": "If you cannot access the live form"
+        },
+        {
+          "label": "Research result",
+          "detail": "Evidence, contradictions, options and remaining decisions",
+          "anchor": "A useful research report ends"
+        }
+      ],
+      "conclusion": {
+        "text": "Continue planning without overstating what is proven.",
+        "anchor": "the decisions that remain with the owner"
+      },
+      "intro": "Turn uncertainty into a named decision or a bounded research task.",
+      "id": "06",
+      "title": "Turn unknowns into work"
+    },
+    {
+      "kind": "evidence",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Form source",
+          "detail": "A component exists at this revision.",
+          "anchor": "open the form source"
+        },
+        {
+          "label": "Submission handler",
+          "detail": "Trace where the form sends information.",
+          "anchor": "identify the handler that receives submissions"
+        },
+        {
+          "label": "Local test",
+          "detail": "Required-field behavior has a controlled check.",
+          "anchor": "inspect any existing test"
+        },
+        {
+          "label": "Deployment gap",
+          "detail": "The live site may run a different revision.",
+          "anchor": "That does not prove the deployed site"
+        }
+      ],
+      "conclusion": {
+        "text": "Tell the reader which observation supports the claim.",
+        "anchor": "The reader should never have to guess"
+      },
+      "intro": "A code file, local test and live observation answer different questions.",
+      "id": "07",
+      "title": "Evidence walkthrough",
+      "callouts": [
+        {
+          "text": "Source files, screenshots, tests and live observations prove different things.",
+          "anchor": "A screenshot, a source file"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Data destination",
+          "detail": "Where does the form send data?",
+          "anchor": "Where does the form send data"
+        },
+        {
+          "label": "Source of truth",
+          "detail": "Which inquiry record is authoritative?",
+          "anchor": "Where is the authoritative inquiry record"
+        },
+        {
+          "label": "Failure path",
+          "detail": "What happens if saving fails?",
+          "anchor": "What happens when saving fails"
+        },
+        {
+          "label": "Existing scope",
+          "detail": "Is email import actually implemented?",
+          "anchor": "Is email import actually implemented"
+        },
+        {
+          "label": "Access limit",
+          "detail": "Name the exact system that could not be inspected.",
+          "anchor": "If it cannot access a necessary system"
+        }
+      ],
+      "conclusion": {
+        "text": "Keep research proportional to the decision at hand.",
+        "anchor": "This keeps the research proportional"
+      },
+      "intro": "Replace “research everything” with questions that can be answered.",
+      "id": "08",
+      "title": "Ask a focused question"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Form only · benefit",
+          "detail": "Narrower scope; no email integration.",
+          "anchor": "It is narrower and avoids"
+        },
+        {
+          "label": "Form only · cost",
+          "detail": "The owner still handles email inquiries separately.",
+          "anchor": "the owner must handle email inquiries separately"
+        },
+        {
+          "label": "Importer · benefit",
+          "detail": "May reduce manual work.",
+          "anchor": "It may reduce manual work"
+        },
+        {
+          "label": "Importer · cost",
+          "detail": "Access, matching, privacy and failure handling",
+          "anchor": "requires access, a matching strategy"
+        }
+      ],
+      "conclusion": {
+        "text": "Recommend what fits this outcome, not what is best for everyone.",
+        "anchor": "A recommendation should say why"
+      },
+      "intro": "Show both the benefit and the cost of each option.",
+      "id": "09",
+      "title": "Fair comparison"
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Routine choice",
+          "detail": "Use ordinary conventions when appropriate.",
+          "anchor": "ordinary project conventions"
+        },
+        {
+          "label": "Product boundary",
+          "detail": "Some choices change behavior or required access.",
+          "anchor": "Others change what the product does"
+        },
+        {
+          "label": "Owner decision",
+          "detail": "Import an inbox, send messages, or handle real data?",
+          "anchor": "The owner should decide whether"
+        },
+        {
+          "label": "Keep useful work moving",
+          "detail": "Recommend a default and continue independent work.",
+          "anchor": "The agent can recommend a safe default"
+        }
+      ],
+      "conclusion": {
+        "text": "Ask only the question that changes the design.",
+        "anchor": "Ask only the question that changes"
+      },
+      "intro": "Reserve owner attention for choices that materially change the product.",
+      "id": "10",
+      "title": "Owner decisions"
+    },
+    {
+      "kind": "document",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Decision entry",
+          "detail": "Title, date, context and accepted choice",
+          "anchor": "A useful ledger entry has"
+        },
+        {
+          "label": "Reopen condition",
+          "detail": "Approved inbox access and synthetic export examples",
+          "anchor": "A reopen condition might be"
+        },
+        {
+          "label": "Replacement decision",
+          "detail": "Preserve the earlier entry and link the new one.",
+          "anchor": "If a later decision replaces it"
+        },
+        {
+          "label": "Why it matters",
+          "detail": "Future contributors can understand deferred alternatives.",
+          "anchor": "This history is useful because"
+        }
+      ],
+      "conclusion": {
+        "text": "Keep the reason beside the decision.",
+        "anchor": "why a seemingly attractive alternative was deferred"
+      },
+      "intro": "A decision becomes reusable when its context survives the session.",
+      "id": "11",
+      "title": "A reusable decision"
+    },
+    {
+      "kind": "comparison",
+      "tone": "paper",
+      "items": [
+        {
+          "label": "Earlier assumption",
+          "detail": "The old form saves inquiries.",
+          "anchor": "New evidence can overturn an assumption"
+        },
+        {
+          "label": "New observation",
+          "detail": "Live inspection finds no saved inquiries.",
+          "anchor": "the old form does not save inquiries"
+        },
+        {
+          "label": "Architecture change",
+          "detail": "Revise the dependency and explain the impact.",
+          "anchor": "Record the new observation"
+        },
+        {
+          "label": "Reconcile the record",
+          "detail": "Correct stale statements and label remaining gaps.",
+          "anchor": "An agent should correct stale statements"
+        }
+      ],
+      "conclusion": {
+        "text": "New evidence can change the plan openly.",
+        "anchor": "which claims remain unverified"
+      },
+      "intro": "A decision ledger supports learning; it prevents silent changes.",
+      "id": "12",
+      "title": "New facts, new plan",
+      "callouts": [
+        {
+          "text": "Keep learning; record changes instead of silently rewriting the plan.",
+          "anchor": "The decision ledger is not a rule"
+        }
+      ]
+    },
+    {
+      "kind": "checkpoint",
+      "tone": "teal",
+      "items": [
+        {
+          "label": "Unverified fact",
+          "detail": "Write uncertainty beside the affected decision.",
+          "anchor": "If an important fact cannot be verified"
+        },
+        {
+          "label": "Provisional design",
+          "detail": "Plan a form-only workflow while access is pending.",
+          "anchor": "provisionally design a form-only workflow"
+        },
+        {
+          "label": "Resolution owner",
+          "detail": "Who can check it? What changes if it is false?",
+          "anchor": "State the assumption, who can resolve it"
+        },
+        {
+          "label": "Evidence arrives",
+          "detail": "Confirm the choice or record a dated change.",
+          "anchor": "When evidence arrives, compare it"
+        }
+      ],
+      "conclusion": {
+        "text": "Independent thinking can continue while the question stays open.",
+        "anchor": "This approach is particularly valuable"
+      },
+      "intro": "A provisional choice preserves momentum without pretending certainty.",
+      "id": "13",
+      "title": "Decide with uncertainty"
+    }
+  ]
+}

@@ -1,0 +1,6805 @@
+{
+  "version": 2,
+  "lesson": "04",
+  "voice": "ElevenLabs Brian (unchanged retained recordings)",
+  "sampleRate": 44100,
+  "channels": 1,
+  "duration": 391.00081632653064,
+  "samples": 17243136,
+  "decodedPcmSha256": "156242f5ed04b967505a165797987981f04bc9300dbabd45beed6ec45cdf6036",
+  "narrationM4aSha256": "d18091cc94f9a9acb20a5b59999c417b01a9aeb1f5360f1574f516dc0134188b",
+  "segments": [
+    {
+      "id": "01",
+      "source": "productions/04/audio/01.mp3",
+      "sha256": "1d9b74f08174f351b5c6d408b98b8543d9e07be4e7b802272f5c4cac67c38217",
+      "sourceTextSha256": "954547be7af7e695d1f96c794cc03e1a63ae845158483ab8898ac738e04e3f49",
+      "start": 0,
+      "end": 27.76816326530612,
+      "duration": 27.76816326530612,
+      "samples": 1224576,
+      "words": [
+        {
+          "text": "Architecture",
+          "start": 0.035,
+          "end": 0.789
+        },
+        {
+          "text": "describes",
+          "start": 0.848,
+          "end": 1.37
+        },
+        {
+          "text": "how",
+          "start": 1.416,
+          "end": 1.509
+        },
+        {
+          "text": "parts",
+          "start": 1.591,
+          "end": 1.846
+        },
+        {
+          "text": "of",
+          "start": 1.881,
+          "end": 1.939
+        },
+        {
+          "text": "a",
+          "start": 1.985,
+          "end": 2.009
+        },
+        {
+          "text": "system",
+          "start": 2.078,
+          "end": 2.45
+        },
+        {
+          "text": "fit",
+          "start": 2.566,
+          "end": 2.786
+        },
+        {
+          "text": "together",
+          "start": 2.833,
+          "end": 3.286
+        },
+        {
+          "text": "and",
+          "start": 3.611,
+          "end": 3.843
+        },
+        {
+          "text": "what",
+          "start": 3.889,
+          "end": 4.052
+        },
+        {
+          "text": "each",
+          "start": 4.145,
+          "end": 4.377
+        },
+        {
+          "text": "part",
+          "start": 4.447,
+          "end": 4.667
+        },
+        {
+          "text": "is",
+          "start": 4.714,
+          "end": 4.795
+        },
+        {
+          "text": "responsible",
+          "start": 4.853,
+          "end": 5.433
+        },
+        {
+          "text": "for.",
+          "start": 5.468,
+          "end": 5.851
+        },
+        {
+          "text": "You",
+          "start": 6.455,
+          "end": 6.583
+        },
+        {
+          "text": "can",
+          "start": 6.629,
+          "end": 6.734
+        },
+        {
+          "text": "think",
+          "start": 6.78,
+          "end": 6.954
+        },
+        {
+          "text": "of",
+          "start": 7.001,
+          "end": 7.059
+        },
+        {
+          "text": "it",
+          "start": 7.105,
+          "end": 7.175
+        },
+        {
+          "text": "as",
+          "start": 7.221,
+          "end": 7.314
+        },
+        {
+          "text": "a",
+          "start": 7.361,
+          "end": 7.396
+        },
+        {
+          "text": "map",
+          "start": 7.477,
+          "end": 7.732
+        },
+        {
+          "text": "of",
+          "start": 7.79,
+          "end": 7.86
+        },
+        {
+          "text": "rooms",
+          "start": 7.976,
+          "end": 8.278
+        },
+        {
+          "text": "and",
+          "start": 8.313,
+          "end": 8.406
+        },
+        {
+          "text": "doors,",
+          "start": 8.452,
+          "end": 9.067
+        },
+        {
+          "text": "not",
+          "start": 9.346,
+          "end": 9.532
+        },
+        {
+          "text": "a",
+          "start": 9.578,
+          "end": 9.601
+        },
+        {
+          "text": "shopping",
+          "start": 9.671,
+          "end": 10.054
+        },
+        {
+          "text": "list",
+          "start": 10.112,
+          "end": 10.298
+        },
+        {
+          "text": "of",
+          "start": 10.344,
+          "end": 10.403
+        },
+        {
+          "text": "software",
+          "start": 10.449,
+          "end": 10.902
+        },
+        {
+          "text": "brands.",
+          "start": 10.937,
+          "end": 11.494
+        },
+        {
+          "text": "For",
+          "start": 12.005,
+          "end": 12.144
+        },
+        {
+          "text": "the",
+          "start": 12.179,
+          "end": 12.249
+        },
+        {
+          "text": "inquiry",
+          "start": 12.307,
+          "end": 12.841
+        },
+        {
+          "text": "tracker,",
+          "start": 12.887,
+          "end": 13.433
+        },
+        {
+          "text": "a",
+          "start": 13.491,
+          "end": 13.56
+        },
+        {
+          "text": "form",
+          "start": 13.688,
+          "end": 13.978
+        },
+        {
+          "text": "collects",
+          "start": 14.036,
+          "end": 14.385
+        },
+        {
+          "text": "details,",
+          "start": 14.431,
+          "end": 15.209
+        },
+        {
+          "text": "a",
+          "start": 15.418,
+          "end": 15.488
+        },
+        {
+          "text": "service",
+          "start": 15.604,
+          "end": 15.975
+        },
+        {
+          "text": "validates",
+          "start": 16.009999999999998,
+          "end": 16.544
+        },
+        {
+          "text": "them,",
+          "start": 16.591,
+          "end": 16.997
+        },
+        {
+          "text": "storage",
+          "start": 17.322,
+          "end": 17.81
+        },
+        {
+          "text": "keeps",
+          "start": 17.855999999999998,
+          "end": 18.1
+        },
+        {
+          "text": "an",
+          "start": 18.134999999999998,
+          "end": 18.205
+        },
+        {
+          "text": "inquiry",
+          "start": 18.239,
+          "end": 18.576
+        },
+        {
+          "text": "record,",
+          "start": 18.646,
+          "end": 19.133
+        },
+        {
+          "text": "and",
+          "start": 19.458,
+          "end": 19.609
+        },
+        {
+          "text": "a",
+          "start": 19.656,
+          "end": 19.679
+        },
+        {
+          "text": "private",
+          "start": 19.749,
+          "end": 20.119999999999997
+        },
+        {
+          "text": "view",
+          "start": 20.155,
+          "end": 20.329
+        },
+        {
+          "text": "shows",
+          "start": 20.399,
+          "end": 20.643
+        },
+        {
+          "text": "the",
+          "start": 20.689,
+          "end": 20.759
+        },
+        {
+          "text": "owner",
+          "start": 20.828,
+          "end": 21.026
+        },
+        {
+          "text": "what",
+          "start": 21.061,
+          "end": 21.188
+        },
+        {
+          "text": "needs",
+          "start": 21.235,
+          "end": 21.42
+        },
+        {
+          "text": "attention.",
+          "start": 21.455,
+          "end": 22.070999999999998
+        },
+        {
+          "text": "A",
+          "start": 22.454,
+          "end": 22.57
+        },
+        {
+          "text": "useful",
+          "start": 22.686,
+          "end": 23.046
+        },
+        {
+          "text": "map",
+          "start": 23.116,
+          "end": 23.348
+        },
+        {
+          "text": "says",
+          "start": 23.429000000000002,
+          "end": 23.615000000000002
+        },
+        {
+          "text": "which",
+          "start": 23.683999999999997,
+          "end": 23.881999999999998
+        },
+        {
+          "text": "part",
+          "start": 23.939999999999998,
+          "end": 24.137
+        },
+        {
+          "text": "can",
+          "start": 24.171999999999997,
+          "end": 24.288
+        },
+        {
+          "text": "change",
+          "start": 24.335,
+          "end": 24.578
+        },
+        {
+          "text": "a",
+          "start": 24.613,
+          "end": 24.636
+        },
+        {
+          "text": "record",
+          "start": 24.706,
+          "end": 25.066
+        },
+        {
+          "text": "and",
+          "start": 25.240000000000002,
+          "end": 25.496000000000002
+        },
+        {
+          "text": "how",
+          "start": 25.564999999999998,
+          "end": 25.705
+        },
+        {
+          "text": "information",
+          "start": 25.820999999999998,
+          "end": 26.413
+        },
+        {
+          "text": "moves",
+          "start": 26.482,
+          "end": 26.715
+        },
+        {
+          "text": "among",
+          "start": 26.749,
+          "end": 26.947
+        },
+        {
+          "text": "parts.",
+          "start": 27.016,
+          "end": 27.539
+        }
+      ],
+      "spoken": "Architecture describes how parts of a system fit together and what each part is responsible for. You can think of it as a map of rooms and doors, not a shopping list of software brands. For the inquiry tracker, a form collects details, a service validates them, storage keeps an inquiry record, and a private view shows the owner what needs attention. A useful map says which part can change a record and how information moves among parts.",
+      "captions": [
+        {
+          "start": 0.035,
+          "end": 3.286,
+          "text": "Architecture describes how parts of a system fit together"
+        },
+        {
+          "start": 3.611,
+          "end": 5.851,
+          "text": "and what each part is responsible for."
+        },
+        {
+          "start": 6.455,
+          "end": 9.601,
+          "text": "You can think of it as a map of rooms and doors, not a"
+        },
+        {
+          "start": 9.671,
+          "end": 11.494,
+          "text": "shopping list of software brands."
+        },
+        {
+          "start": 12.005,
+          "end": 15.488,
+          "text": "For the inquiry tracker, a form collects details, a"
+        },
+        {
+          "start": 15.604,
+          "end": 19.133,
+          "text": "service validates them, storage keeps an inquiry record,"
+        },
+        {
+          "start": 19.458,
+          "end": 22.071,
+          "text": "and a private view shows the owner what needs attention."
+        },
+        {
+          "start": 22.454,
+          "end": 25.705,
+          "text": "A useful map says which part can change a record and how"
+        },
+        {
+          "start": 25.821,
+          "end": 27.539,
+          "text": "information moves among parts."
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source": "productions/04/audio/02.mp3",
+      "sha256": "5bb2b19e174aa6cf995d56bb733768a0e474adc4a57db67a8bb2d552938829dd",
+      "sourceTextSha256": "13724e9b8313b8195f5a75a415bdf75f7dcbec39847089ac0f42676c0272bc84",
+      "start": 27.76816326530612,
+      "end": 56.267755102040816,
+      "duration": 28.499591836734695,
+      "samples": 1256832,
+      "words": [
+        {
+          "text": "Start",
+          "start": 0.035,
+          "end": 0.348
+        },
+        {
+          "text": "with",
+          "start": 0.383,
+          "end": 0.511
+        },
+        {
+          "text": "the",
+          "start": 0.546,
+          "end": 0.615
+        },
+        {
+          "text": "organizer",
+          "start": 0.685,
+          "end": 1.231
+        },
+        {
+          "text": "submitting",
+          "start": 1.289,
+          "end": 1.707
+        },
+        {
+          "text": "a",
+          "start": 1.741,
+          "end": 1.765
+        },
+        {
+          "text": "fictional",
+          "start": 1.823,
+          "end": 2.171
+        },
+        {
+          "text": "request.",
+          "start": 2.218,
+          "end": 2.844
+        },
+        {
+          "text": "The",
+          "start": 3.17,
+          "end": 3.286
+        },
+        {
+          "text": "form",
+          "start": 3.344,
+          "end": 3.576
+        },
+        {
+          "text": "sends",
+          "start": 3.657,
+          "end": 3.982
+        },
+        {
+          "text": "the",
+          "start": 4.04,
+          "end": 4.11
+        },
+        {
+          "text": "fields",
+          "start": 4.156,
+          "end": 4.389
+        },
+        {
+          "text": "to",
+          "start": 4.423,
+          "end": 4.481
+        },
+        {
+          "text": "a",
+          "start": 4.551,
+          "end": 4.574
+        },
+        {
+          "text": "service.",
+          "start": 4.632,
+          "end": 5.155
+        },
+        {
+          "text": "The",
+          "start": 5.538,
+          "end": 5.666
+        },
+        {
+          "text": "service",
+          "start": 5.735,
+          "end": 6.084
+        },
+        {
+          "text": "checks",
+          "start": 6.118,
+          "end": 6.432
+        },
+        {
+          "text": "required",
+          "start": 6.49,
+          "end": 6.85
+        },
+        {
+          "text": "information",
+          "start": 6.885,
+          "end": 7.5
+        },
+        {
+          "text": "and",
+          "start": 7.616,
+          "end": 7.814
+        },
+        {
+          "text": "either",
+          "start": 7.872,
+          "end": 8.081
+        },
+        {
+          "text": "rejects",
+          "start": 8.139,
+          "end": 8.557
+        },
+        {
+          "text": "it",
+          "start": 8.603,
+          "end": 8.684
+        },
+        {
+          "text": "with",
+          "start": 8.731,
+          "end": 8.858
+        },
+        {
+          "text": "a",
+          "start": 8.893,
+          "end": 8.916
+        },
+        {
+          "text": "useful",
+          "start": 8.986,
+          "end": 9.288
+        },
+        {
+          "text": "explanation",
+          "start": 9.358,
+          "end": 10.031
+        },
+        {
+          "text": "or",
+          "start": 10.356,
+          "end": 10.519
+        },
+        {
+          "text": "saves",
+          "start": 10.588,
+          "end": 10.82
+        },
+        {
+          "text": "one",
+          "start": 10.879,
+          "end": 11.029
+        },
+        {
+          "text": "record.",
+          "start": 11.076,
+          "end": 11.494
+        },
+        {
+          "text": "The",
+          "start": 11.935,
+          "end": 12.074
+        },
+        {
+          "text": "owner",
+          "start": 12.167,
+          "end": 12.446
+        },
+        {
+          "text": "then",
+          "start": 12.504,
+          "end": 12.655
+        },
+        {
+          "text": "opens",
+          "start": 12.736,
+          "end": 13.084
+        },
+        {
+          "text": "the",
+          "start": 13.129999999999999,
+          "end": 13.2
+        },
+        {
+          "text": "private",
+          "start": 13.258,
+          "end": 13.641
+        },
+        {
+          "text": "list",
+          "start": 13.688,
+          "end": 14.036
+        },
+        {
+          "text": "and",
+          "start": 14.152,
+          "end": 14.338
+        },
+        {
+          "text": "marks",
+          "start": 14.408,
+          "end": 14.64
+        },
+        {
+          "text": "that",
+          "start": 14.663,
+          "end": 14.767
+        },
+        {
+          "text": "record",
+          "start": 14.814,
+          "end": 15.058
+        },
+        {
+          "text": "handled.",
+          "start": 15.104,
+          "end": 15.557
+        },
+        {
+          "text": "Draw",
+          "start": 15.998,
+          "end": 16.3
+        },
+        {
+          "text": "arrows",
+          "start": 16.393,
+          "end": 16.718
+        },
+        {
+          "text": "for",
+          "start": 16.764,
+          "end": 16.869
+        },
+        {
+          "text": "these",
+          "start": 16.904,
+          "end": 17.066
+        },
+        {
+          "text": "moves.",
+          "start": 17.124,
+          "end": 17.624
+        },
+        {
+          "text": "Identify",
+          "start": 17.798000000000002,
+          "end": 18.413
+        },
+        {
+          "text": "the",
+          "start": 18.483,
+          "end": 18.552
+        },
+        {
+          "text": "source",
+          "start": 18.599,
+          "end": 18.831
+        },
+        {
+          "text": "of",
+          "start": 18.866,
+          "end": 18.924
+        },
+        {
+          "text": "truth:",
+          "start": 18.97,
+          "end": 19.445999999999998
+        },
+        {
+          "text": "the",
+          "start": 19.887,
+          "end": 19.992
+        },
+        {
+          "text": "authoritative",
+          "start": 20.05,
+          "end": 20.654
+        },
+        {
+          "text": "record",
+          "start": 20.712,
+          "end": 20.990000000000002
+        },
+        {
+          "text": "that",
+          "start": 21.025,
+          "end": 21.141
+        },
+        {
+          "text": "determines",
+          "start": 21.188000000000002,
+          "end": 21.628999999999998
+        },
+        {
+          "text": "current",
+          "start": 21.686999999999998,
+          "end": 21.942
+        },
+        {
+          "text": "status.",
+          "start": 21.977,
+          "end": 22.569
+        },
+        {
+          "text": "If",
+          "start": 23.011,
+          "end": 23.162
+        },
+        {
+          "text": "a",
+          "start": 23.22,
+          "end": 23.243000000000002
+        },
+        {
+          "text": "copy",
+          "start": 23.323999999999998,
+          "end": 23.672
+        },
+        {
+          "text": "or",
+          "start": 23.719,
+          "end": 23.788
+        },
+        {
+          "text": "summary",
+          "start": 23.846,
+          "end": 24.206
+        },
+        {
+          "text": "exists",
+          "start": 24.264,
+          "end": 24.578
+        },
+        {
+          "text": "elsewhere,",
+          "start": 24.624000000000002,
+          "end": 25.286
+        },
+        {
+          "text": "say",
+          "start": 25.727,
+          "end": 25.948
+        },
+        {
+          "text": "how",
+          "start": 26.006,
+          "end": 26.122
+        },
+        {
+          "text": "it",
+          "start": 26.18,
+          "end": 26.25
+        },
+        {
+          "text": "stays",
+          "start": 26.296,
+          "end": 26.61
+        },
+        {
+          "text": "consistent",
+          "start": 26.668,
+          "end": 27.353
+        },
+        {
+          "text": "with",
+          "start": 27.411,
+          "end": 27.573
+        },
+        {
+          "text": "that",
+          "start": 27.608,
+          "end": 27.736
+        },
+        {
+          "text": "record.",
+          "start": 27.805,
+          "end": 28.212
+        }
+      ],
+      "spoken": "Start with the organizer submitting a fictional request. The form sends the fields to a service. The service checks required information and either rejects it with a useful explanation or saves one record. The owner then opens the private list and marks that record handled. Draw arrows for these moves. Identify the source of truth: the authoritative record that determines current status. If a copy or summary exists elsewhere, say how it stays consistent with that record.",
+      "captions": [
+        {
+          "start": 27.80316326530612,
+          "end": 30.612163265306123,
+          "text": "Start with the organizer submitting a fictional request."
+        },
+        {
+          "start": 30.938163265306123,
+          "end": 32.92316326530612,
+          "text": "The form sends the fields to a service."
+        },
+        {
+          "start": 33.306163265306125,
+          "end": 36.325163265306124,
+          "text": "The service checks required information and either rejects"
+        },
+        {
+          "start": 36.37116326530612,
+          "end": 39.26216326530612,
+          "text": "it with a useful explanation or saves one record."
+        },
+        {
+          "start": 39.703163265306124,
+          "end": 42.535163265306124,
+          "text": "The owner then opens the private list and marks that"
+        },
+        {
+          "start": 42.58216326530612,
+          "end": 43.325163265306124,
+          "text": "record handled."
+        },
+        {
+          "start": 43.76616326530612,
+          "end": 45.392163265306124,
+          "text": "Draw arrows for these moves."
+        },
+        {
+          "start": 45.566163265306116,
+          "end": 48.75816326530612,
+          "text": "Identify the source of truth: the authoritative record"
+        },
+        {
+          "start": 48.79316326530612,
+          "end": 50.33716326530612,
+          "text": "that determines current status."
+        },
+        {
+          "start": 50.779163265306124,
+          "end": 54.37816326530612,
+          "text": "If a copy or summary exists elsewhere, say how it stays"
+        },
+        {
+          "start": 54.43616326530612,
+          "end": 55.98016326530612,
+          "text": "consistent with that record."
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source": "productions/04/audio/03.mp3",
+      "sha256": "589fb70625ff155ed46dc2fa34d4c84ef11461678880bc3c713ddc95222060f4",
+      "sourceTextSha256": "81df113c64ca671b31c08362c823c8a53cb22e620bb2ea8f2991424b123e9afb",
+      "start": 56.267755102040816,
+      "end": 87.27510204081632,
+      "duration": 31.00734693877551,
+      "samples": 1367424,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.093
+        },
+        {
+          "text": "workflow",
+          "start": 0.209,
+          "end": 0.755
+        },
+        {
+          "text": "is",
+          "start": 0.824,
+          "end": 0.906
+        },
+        {
+          "text": "a",
+          "start": 0.964,
+          "end": 0.998
+        },
+        {
+          "text": "sequence",
+          "start": 1.08,
+          "end": 1.498
+        },
+        {
+          "text": "of",
+          "start": 1.533,
+          "end": 1.591
+        },
+        {
+          "text": "states",
+          "start": 1.66,
+          "end": 2.009
+        },
+        {
+          "text": "and",
+          "start": 2.043,
+          "end": 2.125
+        },
+        {
+          "text": "transitions.",
+          "start": 2.159,
+          "end": 3.088
+        },
+        {
+          "text": "A",
+          "start": 3.471,
+          "end": 3.553
+        },
+        {
+          "text": "state",
+          "start": 3.634,
+          "end": 3.947
+        },
+        {
+          "text": "is",
+          "start": 4.005,
+          "end": 4.098
+        },
+        {
+          "text": "a",
+          "start": 4.145,
+          "end": 4.18
+        },
+        {
+          "text": "condition,",
+          "start": 4.238,
+          "end": 5.004
+        },
+        {
+          "text": "such",
+          "start": 5.178,
+          "end": 5.41
+        },
+        {
+          "text": "as",
+          "start": 5.457,
+          "end": 5.55
+        },
+        {
+          "text": "new",
+          "start": 5.666,
+          "end": 5.944
+        },
+        {
+          "text": "or",
+          "start": 6.118,
+          "end": 6.293
+        },
+        {
+          "text": "handled.",
+          "start": 6.385,
+          "end": 6.966
+        },
+        {
+          "text": "A",
+          "start": 7.291,
+          "end": 7.384
+        },
+        {
+          "text": "transition",
+          "start": 7.454,
+          "end": 8.208
+        },
+        {
+          "text": "is",
+          "start": 8.29,
+          "end": 8.394
+        },
+        {
+          "text": "the",
+          "start": 8.44,
+          "end": 8.522
+        },
+        {
+          "text": "action",
+          "start": 8.603,
+          "end": 8.963
+        },
+        {
+          "text": "that",
+          "start": 9.009,
+          "end": 9.137
+        },
+        {
+          "text": "changes",
+          "start": 9.195,
+          "end": 9.625
+        },
+        {
+          "text": "it.",
+          "start": 9.683,
+          "end": 9.927
+        },
+        {
+          "text": "List",
+          "start": 10.53,
+          "end": 10.855
+        },
+        {
+          "text": "who",
+          "start": 10.913,
+          "end": 11.088
+        },
+        {
+          "text": "can",
+          "start": 11.146,
+          "end": 11.273
+        },
+        {
+          "text": "perform",
+          "start": 11.343,
+          "end": 11.738
+        },
+        {
+          "text": "each",
+          "start": 11.831,
+          "end": 12.04
+        },
+        {
+          "text": "transition",
+          "start": 12.098,
+          "end": 12.887
+        },
+        {
+          "text": "and",
+          "start": 13.131,
+          "end": 13.386
+        },
+        {
+          "text": "what",
+          "start": 13.444,
+          "end": 13.595
+        },
+        {
+          "text": "happens",
+          "start": 13.653,
+          "end": 14.025
+        },
+        {
+          "text": "if",
+          "start": 14.071,
+          "end": 14.141
+        },
+        {
+          "text": "it",
+          "start": 14.199,
+          "end": 14.257
+        },
+        {
+          "text": "fails.",
+          "start": 14.315,
+          "end": 14.838
+        },
+        {
+          "text": "For",
+          "start": 15.279,
+          "end": 15.441
+        },
+        {
+          "text": "example,",
+          "start": 15.511,
+          "end": 16.103
+        },
+        {
+          "text": "if",
+          "start": 16.254,
+          "end": 16.393
+        },
+        {
+          "text": "saving",
+          "start": 16.474,
+          "end": 16.823
+        },
+        {
+          "text": "a",
+          "start": 16.869,
+          "end": 16.892
+        },
+        {
+          "text": "submitted",
+          "start": 16.973,
+          "end": 17.403000000000002
+        },
+        {
+          "text": "form",
+          "start": 17.461000000000002,
+          "end": 17.717000000000002
+        },
+        {
+          "text": "fails,",
+          "start": 17.833000000000002,
+          "end": 18.471
+        },
+        {
+          "text": "do",
+          "start": 18.796,
+          "end": 18.912
+        },
+        {
+          "text": "not",
+          "start": 19.028,
+          "end": 19.214000000000002
+        },
+        {
+          "text": "show",
+          "start": 19.261,
+          "end": 19.446
+        },
+        {
+          "text": "a",
+          "start": 19.504,
+          "end": 19.528
+        },
+        {
+          "text": "false",
+          "start": 19.597,
+          "end": 19.864
+        },
+        {
+          "text": "success",
+          "start": 19.888,
+          "end": 20.271
+        },
+        {
+          "text": "message.",
+          "start": 20.329,
+          "end": 20.805
+        },
+        {
+          "text": "Show",
+          "start": 21.316000000000003,
+          "end": 21.548000000000002
+        },
+        {
+          "text": "a",
+          "start": 21.606,
+          "end": 21.641000000000002
+        },
+        {
+          "text": "useful",
+          "start": 21.722,
+          "end": 22.07
+        },
+        {
+          "text": "error",
+          "start": 22.14,
+          "end": 22.407
+        },
+        {
+          "text": "and",
+          "start": 22.477,
+          "end": 22.57
+        },
+        {
+          "text": "preserve",
+          "start": 22.628,
+          "end": 23.046
+        },
+        {
+          "text": "the",
+          "start": 23.080000000000002,
+          "end": 23.15
+        },
+        {
+          "text": "user's",
+          "start": 23.208000000000002,
+          "end": 23.51
+        },
+        {
+          "text": "input",
+          "start": 23.568,
+          "end": 23.881
+        },
+        {
+          "text": "where",
+          "start": 23.916,
+          "end": 24.079
+        },
+        {
+          "text": "possible.",
+          "start": 24.114,
+          "end": 24.729
+        },
+        {
+          "text": "A",
+          "start": 25.17,
+          "end": 25.262999999999998
+        },
+        {
+          "text": "clear",
+          "start": 25.356,
+          "end": 25.611
+        },
+        {
+          "text": "workflow",
+          "start": 25.681,
+          "end": 26.169
+        },
+        {
+          "text": "helps",
+          "start": 26.238,
+          "end": 26.47
+        },
+        {
+          "text": "test",
+          "start": 26.529,
+          "end": 26.807000000000002
+        },
+        {
+          "text": "more",
+          "start": 26.887999999999998,
+          "end": 27.26
+        },
+        {
+          "text": "than",
+          "start": 27.33,
+          "end": 27.515
+        },
+        {
+          "text": "the",
+          "start": 27.55,
+          "end": 27.62
+        },
+        {
+          "text": "happy",
+          "start": 27.689,
+          "end": 27.98
+        },
+        {
+          "text": "path,",
+          "start": 28.038,
+          "end": 28.502000000000002
+        },
+        {
+          "text": "the",
+          "start": 28.826999999999998,
+          "end": 28.932000000000002
+        },
+        {
+          "text": "sequence",
+          "start": 29.025,
+          "end": 29.489
+        },
+        {
+          "text": "where",
+          "start": 29.524,
+          "end": 29.698
+        },
+        {
+          "text": "nothing",
+          "start": 29.768,
+          "end": 30.035
+        },
+        {
+          "text": "goes",
+          "start": 30.081000000000003,
+          "end": 30.267000000000003
+        },
+        {
+          "text": "wrong.",
+          "start": 30.313000000000002,
+          "end": 30.755000000000003
+        }
+      ],
+      "spoken": "A workflow is a sequence of states and transitions. A state is a condition, such as new or handled. A transition is the action that changes it. List who can perform each transition and what happens if it fails. For example, if saving a submitted form fails, do not show a false success message. Show a useful error and preserve the user's input where possible. A clear workflow helps test more than the happy path, the sequence where nothing goes wrong.",
+      "captions": [
+        {
+          "start": 56.30275510204081,
+          "end": 59.35575510204082,
+          "text": "A workflow is a sequence of states and transitions."
+        },
+        {
+          "start": 59.73875510204081,
+          "end": 63.23375510204082,
+          "text": "A state is a condition, such as new or handled."
+        },
+        {
+          "start": 63.55875510204082,
+          "end": 66.19475510204082,
+          "text": "A transition is the action that changes it."
+        },
+        {
+          "start": 66.79775510204081,
+          "end": 70.40875510204081,
+          "text": "List who can perform each transition and what happens if"
+        },
+        {
+          "start": 70.46675510204082,
+          "end": 71.10575510204082,
+          "text": "it fails."
+        },
+        {
+          "start": 71.54675510204082,
+          "end": 75.71375510204082,
+          "text": "For example, if saving a submitted form fails, do not show"
+        },
+        {
+          "start": 75.77175510204081,
+          "end": 77.07275510204082,
+          "text": "a false success message."
+        },
+        {
+          "start": 77.58375510204081,
+          "end": 80.34675510204082,
+          "text": "Show a useful error and preserve the user's input where"
+        },
+        {
+          "start": 80.38175510204081,
+          "end": 80.99675510204082,
+          "text": "possible."
+        },
+        {
+          "start": 81.43775510204082,
+          "end": 85.19975510204081,
+          "text": "A clear workflow helps test more than the happy path, the"
+        },
+        {
+          "start": 85.29275510204081,
+          "end": 87.02275510204082,
+          "text": "sequence where nothing goes wrong."
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source": "productions/04/audio/04.mp3",
+      "sha256": "380b846531e62b491c38e6ef86038cd162f0fd39ae4d2e17c355daf6fd8a5bd5",
+      "sourceTextSha256": "32f78f9e69157284326de67aae0d09d1be20e3d71ca87bd274a7c0267feb2118",
+      "start": 87.27510204081632,
+      "end": 120.65959183673469,
+      "duration": 33.38448979591837,
+      "samples": 1472256,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.104
+        },
+        {
+          "text": "trust",
+          "start": 0.174,
+          "end": 0.43
+        },
+        {
+          "text": "boundary",
+          "start": 0.488,
+          "end": 0.813
+        },
+        {
+          "text": "is",
+          "start": 0.859,
+          "end": 0.929
+        },
+        {
+          "text": "a",
+          "start": 0.975,
+          "end": 1.01
+        },
+        {
+          "text": "point",
+          "start": 1.068,
+          "end": 1.277
+        },
+        {
+          "text": "where",
+          "start": 1.3,
+          "end": 1.451
+        },
+        {
+          "text": "information",
+          "start": 1.509,
+          "end": 2.078
+        },
+        {
+          "text": "crosses",
+          "start": 2.136,
+          "end": 2.543
+        },
+        {
+          "text": "from",
+          "start": 2.577,
+          "end": 2.717
+        },
+        {
+          "text": "a",
+          "start": 2.763,
+          "end": 2.786
+        },
+        {
+          "text": "less",
+          "start": 2.856,
+          "end": 3.053
+        },
+        {
+          "text": "trusted",
+          "start": 3.088,
+          "end": 3.448
+        },
+        {
+          "text": "place",
+          "start": 3.506,
+          "end": 4.017
+        },
+        {
+          "text": "to",
+          "start": 4.342,
+          "end": 4.47
+        },
+        {
+          "text": "a",
+          "start": 4.54,
+          "end": 4.574
+        },
+        {
+          "text": "more",
+          "start": 4.632,
+          "end": 4.807
+        },
+        {
+          "text": "trusted",
+          "start": 4.853,
+          "end": 5.224
+        },
+        {
+          "text": "one.",
+          "start": 5.294,
+          "end": 5.642
+        },
+        {
+          "text": "A",
+          "start": 6.026,
+          "end": 6.107
+        },
+        {
+          "text": "public",
+          "start": 6.2,
+          "end": 6.49
+        },
+        {
+          "text": "visitor",
+          "start": 6.536,
+          "end": 6.85
+        },
+        {
+          "text": "can",
+          "start": 6.896,
+          "end": 7.024
+        },
+        {
+          "text": "enter",
+          "start": 7.07,
+          "end": 7.268
+        },
+        {
+          "text": "text;",
+          "start": 7.326,
+          "end": 7.86
+        },
+        {
+          "text": "the",
+          "start": 8.185,
+          "end": 8.29
+        },
+        {
+          "text": "system",
+          "start": 8.359,
+          "end": 8.719
+        },
+        {
+          "text": "must",
+          "start": 8.812,
+          "end": 9.033
+        },
+        {
+          "text": "validate",
+          "start": 9.091,
+          "end": 9.555
+        },
+        {
+          "text": "that",
+          "start": 9.59,
+          "end": 9.729
+        },
+        {
+          "text": "text",
+          "start": 9.787,
+          "end": 10.077
+        },
+        {
+          "text": "before",
+          "start": 10.112,
+          "end": 10.368
+        },
+        {
+          "text": "relying",
+          "start": 10.414,
+          "end": 10.751
+        },
+        {
+          "text": "on",
+          "start": 10.809,
+          "end": 10.89
+        },
+        {
+          "text": "it.",
+          "start": 10.937,
+          "end": 11.134
+        },
+        {
+          "text": "A",
+          "start": 11.517,
+          "end": 11.598
+        },
+        {
+          "text": "private",
+          "start": 11.714,
+          "end": 12.098
+        },
+        {
+          "text": "owner",
+          "start": 12.144,
+          "end": 12.365
+        },
+        {
+          "text": "view",
+          "start": 12.423,
+          "end": 12.62
+        },
+        {
+          "text": "should",
+          "start": 12.69,
+          "end": 12.875
+        },
+        {
+          "text": "require",
+          "start": 12.91,
+          "end": 13.363
+        },
+        {
+          "text": "appropriate",
+          "start": 13.408999999999999,
+          "end": 13.943999999999999
+        },
+        {
+          "text": "access.",
+          "start": 13.978,
+          "end": 14.559
+        },
+        {
+          "text": "Describe",
+          "start": 15,
+          "end": 15.463999999999999
+        },
+        {
+          "text": "who",
+          "start": 15.488,
+          "end": 15.581
+        },
+        {
+          "text": "may",
+          "start": 15.639,
+          "end": 15.766
+        },
+        {
+          "text": "read",
+          "start": 15.882,
+          "end": 16.173
+        },
+        {
+          "text": "or",
+          "start": 16.231,
+          "end": 16.323999999999998
+        },
+        {
+          "text": "change",
+          "start": 16.381999999999998,
+          "end": 16.742
+        },
+        {
+          "text": "each",
+          "start": 16.823,
+          "end": 17.043
+        },
+        {
+          "text": "record",
+          "start": 17.136,
+          "end": 17.508
+        },
+        {
+          "text": "and",
+          "start": 17.554,
+          "end": 17.636
+        },
+        {
+          "text": "whether",
+          "start": 17.682,
+          "end": 17.914
+        },
+        {
+          "text": "any",
+          "start": 17.995,
+          "end": 18.216
+        },
+        {
+          "text": "information",
+          "start": 18.262,
+          "end": 18.808
+        },
+        {
+          "text": "leaves",
+          "start": 18.878,
+          "end": 19.087
+        },
+        {
+          "text": "the",
+          "start": 19.11,
+          "end": 19.18
+        },
+        {
+          "text": "system.",
+          "start": 19.226,
+          "end": 19.714
+        },
+        {
+          "text": "Do",
+          "start": 20.317,
+          "end": 20.468
+        },
+        {
+          "text": "not",
+          "start": 20.55,
+          "end": 20.701
+        },
+        {
+          "text": "allow",
+          "start": 20.747,
+          "end": 21.014
+        },
+        {
+          "text": "an",
+          "start": 21.084,
+          "end": 21.153
+        },
+        {
+          "text": "AI-generated",
+          "start": 21.235,
+          "end": 22.116999999999997
+        },
+        {
+          "text": "guess",
+          "start": 22.163,
+          "end": 22.396
+        },
+        {
+          "text": "to",
+          "start": 22.442,
+          "end": 22.5
+        },
+        {
+          "text": "decide",
+          "start": 22.57,
+          "end": 22.976
+        },
+        {
+          "text": "who",
+          "start": 22.999000000000002,
+          "end": 23.092
+        },
+        {
+          "text": "is",
+          "start": 23.15,
+          "end": 23.232
+        },
+        {
+          "text": "authorized",
+          "start": 23.323999999999998,
+          "end": 23.975
+        },
+        {
+          "text": "or",
+          "start": 24.009,
+          "end": 24.079
+        },
+        {
+          "text": "where",
+          "start": 24.125,
+          "end": 24.288
+        },
+        {
+          "text": "money",
+          "start": 24.323,
+          "end": 24.497
+        },
+        {
+          "text": "and",
+          "start": 24.52,
+          "end": 24.59
+        },
+        {
+          "text": "messages",
+          "start": 24.625,
+          "end": 24.996000000000002
+        },
+        {
+          "text": "go.",
+          "start": 25.054000000000002,
+          "end": 25.448999999999998
+        },
+        {
+          "text": "Those",
+          "start": 26.052999999999997,
+          "end": 26.331
+        },
+        {
+          "text": "important",
+          "start": 26.366,
+          "end": 26.831
+        },
+        {
+          "text": "rules",
+          "start": 26.877,
+          "end": 27.144000000000002
+        },
+        {
+          "text": "need",
+          "start": 27.202,
+          "end": 27.353
+        },
+        {
+          "text": "deterministic",
+          "start": 27.388,
+          "end": 28.038
+        },
+        {
+          "text": "checks:",
+          "start": 28.084000000000003,
+          "end": 28.630000000000003
+        },
+        {
+          "text": "rules",
+          "start": 29.013,
+          "end": 29.327
+        },
+        {
+          "text": "implemented",
+          "start": 29.408,
+          "end": 30.011000000000003
+        },
+        {
+          "text": "so",
+          "start": 30.186,
+          "end": 30.337000000000003
+        },
+        {
+          "text": "the",
+          "start": 30.395000000000003,
+          "end": 30.464000000000002
+        },
+        {
+          "text": "same",
+          "start": 30.511000000000003,
+          "end": 30.731
+        },
+        {
+          "text": "permitted",
+          "start": 30.766000000000002,
+          "end": 31.138
+        },
+        {
+          "text": "input",
+          "start": 31.196,
+          "end": 31.544
+        },
+        {
+          "text": "produces",
+          "start": 31.590000000000003,
+          "end": 31.997
+        },
+        {
+          "text": "the",
+          "start": 32.043,
+          "end": 32.113
+        },
+        {
+          "text": "expected",
+          "start": 32.159,
+          "end": 32.566
+        },
+        {
+          "text": "result.",
+          "start": 32.624,
+          "end": 33.111000000000004
+        }
+      ],
+      "spoken": "A trust boundary is a point where information crosses from a less trusted place to a more trusted one. A public visitor can enter text; the system must validate that text before relying on it. A private owner view should require appropriate access. Describe who may read or change each record and whether any information leaves the system. Do not allow an AI-generated guess to decide who is authorized or where money and messages go. Those important rules need deterministic checks: rules implemented so the same permitted input produces the expected result.",
+      "captions": [
+        {
+          "start": 87.31010204081632,
+          "end": 89.99210204081632,
+          "text": "A trust boundary is a point where information crosses from"
+        },
+        {
+          "start": 90.03810204081633,
+          "end": 92.91710204081632,
+          "text": "a less trusted place to a more trusted one."
+        },
+        {
+          "start": 93.30110204081632,
+          "end": 96.83010204081631,
+          "text": "A public visitor can enter text; the system must validate"
+        },
+        {
+          "start": 96.86510204081632,
+          "end": 98.40910204081632,
+          "text": "that text before relying on it."
+        },
+        {
+          "start": 98.79210204081632,
+          "end": 101.83410204081632,
+          "text": "A private owner view should require appropriate access."
+        },
+        {
+          "start": 102.27510204081632,
+          "end": 105.18910204081632,
+          "text": "Describe who may read or change each record and whether"
+        },
+        {
+          "start": 105.27010204081633,
+          "end": 106.98910204081632,
+          "text": "any information leaves the system."
+        },
+        {
+          "start": 107.59210204081631,
+          "end": 110.50710204081632,
+          "text": "Do not allow an AI-generated guess to decide who is"
+        },
+        {
+          "start": 110.59910204081632,
+          "end": 112.72410204081632,
+          "text": "authorized or where money and messages go."
+        },
+        {
+          "start": 113.32810204081632,
+          "end": 116.60210204081632,
+          "text": "Those important rules need deterministic checks: rules"
+        },
+        {
+          "start": 116.68310204081632,
+          "end": 119.38810204081632,
+          "text": "implemented so the same permitted input produces the"
+        },
+        {
+          "start": 119.43410204081633,
+          "end": 120.38610204081633,
+          "text": "expected result."
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source": "productions/04/audio/05.mp3",
+      "sha256": "ba733768a5c59634645d5fbfab596dfbf4a753dff5f424f33c20141f5d9c5a1b",
+      "sourceTextSha256": "415c3dfe51bd2bb58bedf20ba714cb3c511a07200849980a8069df37fc6b0c6a",
+      "start": 120.65959183673469,
+      "end": 149.62938775510204,
+      "duration": 28.969795918367346,
+      "samples": 1277568,
+      "words": [
+        {
+          "text": "Suppose",
+          "start": 0.035,
+          "end": 0.499
+        },
+        {
+          "text": "the",
+          "start": 0.546,
+          "end": 0.615
+        },
+        {
+          "text": "visitor",
+          "start": 0.685,
+          "end": 1.045
+        },
+        {
+          "text": "presses",
+          "start": 1.103,
+          "end": 1.451
+        },
+        {
+          "text": "submit",
+          "start": 1.486,
+          "end": 1.834
+        },
+        {
+          "text": "twice",
+          "start": 1.881,
+          "end": 2.438
+        },
+        {
+          "text": "because",
+          "start": 2.763,
+          "end": 3.053
+        },
+        {
+          "text": "the",
+          "start": 3.077,
+          "end": 3.146
+        },
+        {
+          "text": "network",
+          "start": 3.204,
+          "end": 3.518
+        },
+        {
+          "text": "was",
+          "start": 3.553,
+          "end": 3.657
+        },
+        {
+          "text": "slow.",
+          "start": 3.692,
+          "end": 4.191
+        },
+        {
+          "text": "Without",
+          "start": 4.574,
+          "end": 4.923
+        },
+        {
+          "text": "a",
+          "start": 4.969,
+          "end": 4.992
+        },
+        {
+          "text": "design",
+          "start": 5.062,
+          "end": 5.48
+        },
+        {
+          "text": "for",
+          "start": 5.538,
+          "end": 5.631
+        },
+        {
+          "text": "duplicates,",
+          "start": 5.689,
+          "end": 6.397
+        },
+        {
+          "text": "the",
+          "start": 6.525,
+          "end": 6.641
+        },
+        {
+          "text": "owner",
+          "start": 6.734,
+          "end": 6.978
+        },
+        {
+          "text": "may",
+          "start": 7.036,
+          "end": 7.152
+        },
+        {
+          "text": "receive",
+          "start": 7.221,
+          "end": 7.651
+        },
+        {
+          "text": "two",
+          "start": 7.697,
+          "end": 7.872
+        },
+        {
+          "text": "records.",
+          "start": 7.964,
+          "end": 8.522
+        },
+        {
+          "text": "Idempotency",
+          "start": 8.963,
+          "end": 9.903
+        },
+        {
+          "text": "means",
+          "start": 9.985,
+          "end": 10.182
+        },
+        {
+          "text": "repeating",
+          "start": 10.263,
+          "end": 10.658
+        },
+        {
+          "text": "the",
+          "start": 10.716,
+          "end": 10.786
+        },
+        {
+          "text": "same",
+          "start": 10.867,
+          "end": 11.146
+        },
+        {
+          "text": "operation",
+          "start": 11.192,
+          "end": 11.714
+        },
+        {
+          "text": "safely",
+          "start": 11.796,
+          "end": 12.283
+        },
+        {
+          "text": "without",
+          "start": 12.608,
+          "end": 12.968
+        },
+        {
+          "text": "duplicating",
+          "start": 13.015,
+          "end": 13.63
+        },
+        {
+          "text": "its",
+          "start": 13.688,
+          "end": 13.804
+        },
+        {
+          "text": "intended",
+          "start": 13.851,
+          "end": 14.234
+        },
+        {
+          "text": "effect.",
+          "start": 14.269,
+          "end": 14.780000000000001
+        },
+        {
+          "text": "There",
+          "start": 15.221,
+          "end": 15.384
+        },
+        {
+          "text": "are",
+          "start": 15.418000000000001,
+          "end": 15.511000000000001
+        },
+        {
+          "text": "different",
+          "start": 15.546,
+          "end": 15.836
+        },
+        {
+          "text": "ways",
+          "start": 15.871,
+          "end": 16.069
+        },
+        {
+          "text": "to",
+          "start": 16.115000000000002,
+          "end": 16.173000000000002
+        },
+        {
+          "text": "achieve",
+          "start": 16.243000000000002,
+          "end": 16.579
+        },
+        {
+          "text": "it,",
+          "start": 16.614,
+          "end": 16.777
+        },
+        {
+          "text": "and",
+          "start": 16.846,
+          "end": 16.986
+        },
+        {
+          "text": "the",
+          "start": 17.021,
+          "end": 17.09
+        },
+        {
+          "text": "right",
+          "start": 17.16,
+          "end": 17.334
+        },
+        {
+          "text": "approach",
+          "start": 17.357,
+          "end": 17.694
+        },
+        {
+          "text": "depends",
+          "start": 17.752,
+          "end": 18.077
+        },
+        {
+          "text": "on",
+          "start": 18.124,
+          "end": 18.182000000000002
+        },
+        {
+          "text": "the",
+          "start": 18.216,
+          "end": 18.286
+        },
+        {
+          "text": "system.",
+          "start": 18.321,
+          "end": 18.809
+        },
+        {
+          "text": "The",
+          "start": 19.192,
+          "end": 19.319
+        },
+        {
+          "text": "architecture",
+          "start": 19.389,
+          "end": 20.039
+        },
+        {
+          "text": "should",
+          "start": 20.074,
+          "end": 20.26
+        },
+        {
+          "text": "name",
+          "start": 20.295,
+          "end": 20.469
+        },
+        {
+          "text": "the",
+          "start": 20.504,
+          "end": 20.573
+        },
+        {
+          "text": "problem,",
+          "start": 20.62,
+          "end": 21.328
+        },
+        {
+          "text": "the",
+          "start": 21.607,
+          "end": 21.699
+        },
+        {
+          "text": "proposed",
+          "start": 21.746000000000002,
+          "end": 22.152
+        },
+        {
+          "text": "identity",
+          "start": 22.199,
+          "end": 22.651
+        },
+        {
+          "text": "or",
+          "start": 22.71,
+          "end": 22.768
+        },
+        {
+          "text": "retry",
+          "start": 22.837,
+          "end": 23.174
+        },
+        {
+          "text": "rule,",
+          "start": 23.244,
+          "end": 23.637999999999998
+        },
+        {
+          "text": "and",
+          "start": 23.963,
+          "end": 24.114
+        },
+        {
+          "text": "how",
+          "start": 24.172,
+          "end": 24.288
+        },
+        {
+          "text": "the",
+          "start": 24.347,
+          "end": 24.416
+        },
+        {
+          "text": "system",
+          "start": 24.497,
+          "end": 24.857
+        },
+        {
+          "text": "reconciles",
+          "start": 24.950000000000003,
+          "end": 25.6
+        },
+        {
+          "text": "an",
+          "start": 25.647,
+          "end": 25.716
+        },
+        {
+          "text": "uncertain",
+          "start": 25.833,
+          "end": 26.285
+        },
+        {
+          "text": "result",
+          "start": 26.32,
+          "end": 26.761000000000003
+        },
+        {
+          "text": "before",
+          "start": 27.086,
+          "end": 27.377000000000002
+        },
+        {
+          "text": "doing",
+          "start": 27.423000000000002,
+          "end": 27.609
+        },
+        {
+          "text": "the",
+          "start": 27.644,
+          "end": 27.713
+        },
+        {
+          "text": "operation",
+          "start": 27.771,
+          "end": 28.247
+        },
+        {
+          "text": "again.",
+          "start": 28.282,
+          "end": 28.689
+        }
+      ],
+      "spoken": "Suppose the visitor presses submit twice because the network was slow. Without a design for duplicates, the owner may receive two records. Idempotency means repeating the same operation safely without duplicating its intended effect. There are different ways to achieve it, and the right approach depends on the system. The architecture should name the problem, the proposed identity or retry rule, and how the system reconciles an uncertain result before doing the operation again.",
+      "captions": [
+        {
+          "start": 120.69459183673469,
+          "end": 123.80559183673469,
+          "text": "Suppose the visitor presses submit twice because the"
+        },
+        {
+          "start": 123.86359183673468,
+          "end": 124.8505918367347,
+          "text": "network was slow."
+        },
+        {
+          "start": 125.23359183673469,
+          "end": 128.5315918367347,
+          "text": "Without a design for duplicates, the owner may receive two"
+        },
+        {
+          "start": 128.6235918367347,
+          "end": 129.1815918367347,
+          "text": "records."
+        },
+        {
+          "start": 129.6225918367347,
+          "end": 132.9425918367347,
+          "text": "Idempotency means repeating the same operation safely"
+        },
+        {
+          "start": 133.26759183673468,
+          "end": 135.43959183673468,
+          "text": "without duplicating its intended effect."
+        },
+        {
+          "start": 135.88059183673468,
+          "end": 137.99359183673468,
+          "text": "There are different ways to achieve it, and the right"
+        },
+        {
+          "start": 138.01659183673468,
+          "end": 139.4685918367347,
+          "text": "approach depends on the system."
+        },
+        {
+          "start": 139.85159183673468,
+          "end": 142.8115918367347,
+          "text": "The architecture should name the problem, the proposed"
+        },
+        {
+          "start": 142.8585918367347,
+          "end": 146.37559183673469,
+          "text": "identity or retry rule, and how the system reconciles an"
+        },
+        {
+          "start": 146.49259183673468,
+          "end": 149.3485918367347,
+          "text": "uncertain result before doing the operation again."
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source": "productions/04/audio/06.mp3",
+      "sha256": "5d74bdc90b7f87bd1066365df4a990eeb2e490b4c8b2ed6345ea588ad6823129",
+      "sourceTextSha256": "54f241ac7c59fc89a1d47d05efc0639a12ca33e2dd2ff6ad10119f2a1e6056c9",
+      "start": 149.62938775510204,
+      "end": 184.55510204081634,
+      "duration": 34.925714285714285,
+      "samples": 1540224,
+      "words": [
+        {
+          "text": "A",
+          "start": 0.035,
+          "end": 0.104
+        },
+        {
+          "text": "useful",
+          "start": 0.221,
+          "end": 0.522
+        },
+        {
+          "text": "beginner",
+          "start": 0.58,
+          "end": 0.906
+        },
+        {
+          "text": "architecture",
+          "start": 0.964,
+          "end": 1.695
+        },
+        {
+          "text": "includes",
+          "start": 1.741,
+          "end": 2.276
+        },
+        {
+          "text": "a",
+          "start": 2.31,
+          "end": 2.345
+        },
+        {
+          "text": "simple",
+          "start": 2.426,
+          "end": 2.728
+        },
+        {
+          "text": "diagram,",
+          "start": 2.763,
+          "end": 3.471
+        },
+        {
+          "text": "component",
+          "start": 3.796,
+          "end": 4.214
+        },
+        {
+          "text": "responsibilities,",
+          "start": 4.261,
+          "end": 5.317
+        },
+        {
+          "text": "data",
+          "start": 5.7,
+          "end": 5.968
+        },
+        {
+          "text": "flow,",
+          "start": 6.014,
+          "end": 6.478
+        },
+        {
+          "text": "source",
+          "start": 6.861,
+          "end": 7.175
+        },
+        {
+          "text": "of",
+          "start": 7.21,
+          "end": 7.268
+        },
+        {
+          "text": "truth,",
+          "start": 7.326,
+          "end": 7.918
+        },
+        {
+          "text": "user",
+          "start": 8.092,
+          "end": 8.382
+        },
+        {
+          "text": "permissions,",
+          "start": 8.44,
+          "end": 9.172
+        },
+        {
+          "text": "external",
+          "start": 9.555,
+          "end": 10.019
+        },
+        {
+          "text": "integrations,",
+          "start": 10.066,
+          "end": 10.867
+        },
+        {
+          "text": "failure",
+          "start": 11.192,
+          "end": 11.575
+        },
+        {
+          "text": "behavior,",
+          "start": 11.61,
+          "end": 12.225
+        },
+        {
+          "text": "and",
+          "start": 12.318,
+          "end": 12.481
+        },
+        {
+          "text": "an",
+          "start": 12.539,
+          "end": 12.608
+        },
+        {
+          "text": "operator",
+          "start": 12.678,
+          "end": 13.108
+        },
+        {
+          "text": "recovery",
+          "start": 13.177,
+          "end": 13.549
+        },
+        {
+          "text": "path.",
+          "start": 13.607,
+          "end": 14.013
+        },
+        {
+          "text": "It",
+          "start": 14.524,
+          "end": 14.652
+        },
+        {
+          "text": "also",
+          "start": 14.698,
+          "end": 14.942
+        },
+        {
+          "text": "notes",
+          "start": 15.035,
+          "end": 15.279
+        },
+        {
+          "text": "important",
+          "start": 15.337,
+          "end": 15.778
+        },
+        {
+          "text": "alternatives.",
+          "start": 15.801,
+          "end": 16.509
+        },
+        {
+          "text": "You",
+          "start": 16.95,
+          "end": 17.078
+        },
+        {
+          "text": "do",
+          "start": 17.136,
+          "end": 17.206
+        },
+        {
+          "text": "not",
+          "start": 17.322,
+          "end": 17.508
+        },
+        {
+          "text": "need",
+          "start": 17.554000000000002,
+          "end": 17.728
+        },
+        {
+          "text": "to",
+          "start": 17.763,
+          "end": 17.810000000000002
+        },
+        {
+          "text": "select",
+          "start": 17.856,
+          "end": 18.204
+        },
+        {
+          "text": "every",
+          "start": 18.286,
+          "end": 18.576
+        },
+        {
+          "text": "framework",
+          "start": 18.657,
+          "end": 19.168
+        },
+        {
+          "text": "to",
+          "start": 19.214,
+          "end": 19.272
+        },
+        {
+          "text": "understand",
+          "start": 19.354,
+          "end": 19.806
+        },
+        {
+          "text": "the",
+          "start": 19.853,
+          "end": 19.923000000000002
+        },
+        {
+          "text": "design.",
+          "start": 19.969,
+          "end": 20.596
+        },
+        {
+          "text": "Ask",
+          "start": 21.107,
+          "end": 21.409
+        },
+        {
+          "text": "the",
+          "start": 21.467,
+          "end": 21.548000000000002
+        },
+        {
+          "text": "agent",
+          "start": 21.618000000000002,
+          "end": 21.896
+        },
+        {
+          "text": "to",
+          "start": 21.931,
+          "end": 21.989
+        },
+        {
+          "text": "explain",
+          "start": 22.07,
+          "end": 22.419
+        },
+        {
+          "text": "the",
+          "start": 22.465,
+          "end": 22.535
+        },
+        {
+          "text": "diagram",
+          "start": 22.581,
+          "end": 23.092
+        },
+        {
+          "text": "in",
+          "start": 23.139,
+          "end": 23.197
+        },
+        {
+          "text": "everyday",
+          "start": 23.255,
+          "end": 23.557000000000002
+        },
+        {
+          "text": "language,",
+          "start": 23.615000000000002,
+          "end": 24.125
+        },
+        {
+          "text": "then",
+          "start": 24.450000000000003,
+          "end": 24.625
+        },
+        {
+          "text": "trace",
+          "start": 24.683,
+          "end": 25.008000000000003
+        },
+        {
+          "text": "one",
+          "start": 25.054000000000002,
+          "end": 25.252000000000002
+        },
+        {
+          "text": "successful",
+          "start": 25.286,
+          "end": 25.82
+        },
+        {
+          "text": "inquiry",
+          "start": 25.89,
+          "end": 26.482
+        },
+        {
+          "text": "and",
+          "start": 26.691000000000003,
+          "end": 26.947000000000003
+        },
+        {
+          "text": "one",
+          "start": 27.04,
+          "end": 27.237000000000002
+        },
+        {
+          "text": "failed",
+          "start": 27.295,
+          "end": 27.562
+        },
+        {
+          "text": "inquiry",
+          "start": 27.597,
+          "end": 28.026
+        },
+        {
+          "text": "through",
+          "start": 28.073,
+          "end": 28.317
+        },
+        {
+          "text": "it.",
+          "start": 28.351,
+          "end": 28.549
+        },
+        {
+          "text": "If",
+          "start": 29.060000000000002,
+          "end": 29.198999999999998
+        },
+        {
+          "text": "the",
+          "start": 29.245,
+          "end": 29.326999999999998
+        },
+        {
+          "text": "explanation",
+          "start": 29.442999999999998,
+          "end": 30.162
+        },
+        {
+          "text": "contradicts",
+          "start": 30.232,
+          "end": 30.836
+        },
+        {
+          "text": "the",
+          "start": 30.871,
+          "end": 30.951999999999998
+        },
+        {
+          "text": "agreed",
+          "start": 30.998,
+          "end": 31.312
+        },
+        {
+          "text": "journey,",
+          "start": 31.347,
+          "end": 31.834
+        },
+        {
+          "text": "fix",
+          "start": 32.008,
+          "end": 32.229
+        },
+        {
+          "text": "the",
+          "start": 32.287,
+          "end": 32.357
+        },
+        {
+          "text": "design",
+          "start": 32.415,
+          "end": 32.798
+        },
+        {
+          "text": "before",
+          "start": 32.844,
+          "end": 33.1
+        },
+        {
+          "text": "turning",
+          "start": 33.135,
+          "end": 33.413
+        },
+        {
+          "text": "it",
+          "start": 33.46,
+          "end": 33.518
+        },
+        {
+          "text": "into",
+          "start": 33.553,
+          "end": 33.703
+        },
+        {
+          "text": "a",
+          "start": 33.762,
+          "end": 33.796
+        },
+        {
+          "text": "build",
+          "start": 33.842999999999996,
+          "end": 34.016999999999996
+        },
+        {
+          "text": "contract.",
+          "start": 34.063,
+          "end": 34.632
+        }
+      ],
+      "spoken": "A useful beginner architecture includes a simple diagram, component responsibilities, data flow, source of truth, user permissions, external integrations, failure behavior, and an operator recovery path. It also notes important alternatives. You do not need to select every framework to understand the design. Ask the agent to explain the diagram in everyday language, then trace one successful inquiry and one failed inquiry through it. If the explanation contradicts the agreed journey, fix the design before turning it into a build contract.",
+      "captions": [
+        {
+          "start": 149.66438775510204,
+          "end": 153.10038775510205,
+          "text": "A useful beginner architecture includes a simple diagram,"
+        },
+        {
+          "start": 153.42538775510204,
+          "end": 157.54738775510205,
+          "text": "component responsibilities, data flow, source of truth,"
+        },
+        {
+          "start": 157.72138775510206,
+          "end": 161.85438775510204,
+          "text": "user permissions, external integrations, failure behavior,"
+        },
+        {
+          "start": 161.94738775510206,
+          "end": 163.64238775510205,
+          "text": "and an operator recovery path."
+        },
+        {
+          "start": 164.15338775510205,
+          "end": 166.13838775510203,
+          "text": "It also notes important alternatives."
+        },
+        {
+          "start": 166.57938775510203,
+          "end": 169.43538775510206,
+          "text": "You do not need to select every framework to understand"
+        },
+        {
+          "start": 169.48238775510205,
+          "end": 170.22538775510205,
+          "text": "the design."
+        },
+        {
+          "start": 170.73638775510204,
+          "end": 173.75438775510204,
+          "text": "Ask the agent to explain the diagram in everyday language,"
+        },
+        {
+          "start": 174.07938775510203,
+          "end": 177.65538775510205,
+          "text": "then trace one successful inquiry and one failed inquiry"
+        },
+        {
+          "start": 177.70238775510205,
+          "end": 178.17838775510205,
+          "text": "through it."
+        },
+        {
+          "start": 178.68938775510205,
+          "end": 181.98638775510204,
+          "text": "If the explanation contradicts the agreed journey, fix the"
+        },
+        {
+          "start": 182.04438775510204,
+          "end": 184.26138775510205,
+          "text": "design before turning it into a build contract."
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source": "productions/04/audio/07.mp3",
+      "sha256": "dfffea6622e09a6a5e672ee99f9391ec2bac838673706cc1540cbb524e54779b",
+      "sourceTextSha256": "13ecfd1ab81b1c53bce55fcbfc4aba8e2768df904cda0e3617155e95728db39a",
+      "start": 184.55510204081634,
+      "end": 216.55510204081634,
+      "duration": 32,
+      "samples": 1411200,
+      "words": [
+        {
+          "text": "Draw",
+          "start": 0.035,
+          "end": 0.279
+        },
+        {
+          "text": "the",
+          "start": 0.337,
+          "end": 0.418
+        },
+        {
+          "text": "organizer",
+          "start": 0.499,
+          "end": 1.068
+        },
+        {
+          "text": "and",
+          "start": 1.103,
+          "end": 1.173
+        },
+        {
+          "text": "owner",
+          "start": 1.219,
+          "end": 1.428
+        },
+        {
+          "text": "outside",
+          "start": 1.486,
+          "end": 1.846
+        },
+        {
+          "text": "the",
+          "start": 1.869,
+          "end": 1.939
+        },
+        {
+          "text": "system",
+          "start": 1.974,
+          "end": 2.241
+        },
+        {
+          "text": "boundary.",
+          "start": 2.287,
+          "end": 2.786
+        },
+        {
+          "text": "Inside",
+          "start": 3.111,
+          "end": 3.669
+        },
+        {
+          "text": "it,",
+          "start": 3.704,
+          "end": 3.901
+        },
+        {
+          "text": "draw",
+          "start": 4.017,
+          "end": 4.272
+        },
+        {
+          "text": "a",
+          "start": 4.319,
+          "end": 4.354
+        },
+        {
+          "text": "public",
+          "start": 4.412,
+          "end": 4.702
+        },
+        {
+          "text": "form,",
+          "start": 4.76,
+          "end": 5.283
+        },
+        {
+          "text": "validation",
+          "start": 5.492,
+          "end": 6.107
+        },
+        {
+          "text": "service,",
+          "start": 6.188,
+          "end": 6.722
+        },
+        {
+          "text": "inquiry",
+          "start": 6.931,
+          "end": 7.372
+        },
+        {
+          "text": "store,",
+          "start": 7.43,
+          "end": 7.941
+        },
+        {
+          "text": "and",
+          "start": 8.092,
+          "end": 8.255
+        },
+        {
+          "text": "private",
+          "start": 8.324,
+          "end": 8.707
+        },
+        {
+          "text": "owner",
+          "start": 8.742,
+          "end": 8.94
+        },
+        {
+          "text": "view.",
+          "start": 8.998,
+          "end": 9.404
+        },
+        {
+          "text": "Label",
+          "start": 10.008,
+          "end": 10.403
+        },
+        {
+          "text": "an",
+          "start": 10.472,
+          "end": 10.542
+        },
+        {
+          "text": "arrow",
+          "start": 10.623,
+          "end": 10.867
+        },
+        {
+          "text": "from",
+          "start": 10.925,
+          "end": 11.053
+        },
+        {
+          "text": "the",
+          "start": 11.099,
+          "end": 11.169
+        },
+        {
+          "text": "form",
+          "start": 11.227,
+          "end": 11.587
+        },
+        {
+          "text": "to",
+          "start": 11.703,
+          "end": 11.819
+        },
+        {
+          "text": "validation",
+          "start": 11.889,
+          "end": 12.504
+        },
+        {
+          "text": "\"submitted",
+          "start": 12.55,
+          "end": 13.015
+        },
+        {
+          "text": "fields,\"",
+          "start": 13.061,
+          "end": 13.642
+        },
+        {
+          "text": "and",
+          "start": 13.967,
+          "end": 14.118
+        },
+        {
+          "text": "an",
+          "start": 14.176,
+          "end": 14.245
+        },
+        {
+          "text": "arrow",
+          "start": 14.303,
+          "end": 14.512
+        },
+        {
+          "text": "to",
+          "start": 14.571,
+          "end": 14.64
+        },
+        {
+          "text": "the",
+          "start": 14.698,
+          "end": 14.768
+        },
+        {
+          "text": "store",
+          "start": 14.802,
+          "end": 15.22
+        },
+        {
+          "text": "\"validated",
+          "start": 15.290000000000001,
+          "end": 16.01
+        },
+        {
+          "text": "inquiry.\"",
+          "start": 16.056,
+          "end": 16.648
+        },
+        {
+          "text": "The",
+          "start": 17.09,
+          "end": 17.229
+        },
+        {
+          "text": "store",
+          "start": 17.275,
+          "end": 17.542
+        },
+        {
+          "text": "returns",
+          "start": 17.6,
+          "end": 18.042
+        },
+        {
+          "text": "a",
+          "start": 18.111,
+          "end": 18.146
+        },
+        {
+          "text": "saved",
+          "start": 18.262,
+          "end": 18.576
+        },
+        {
+          "text": "identifier,",
+          "start": 18.61,
+          "end": 19.4
+        },
+        {
+          "text": "which",
+          "start": 19.528,
+          "end": 19.737000000000002
+        },
+        {
+          "text": "lets",
+          "start": 19.818,
+          "end": 20.027
+        },
+        {
+          "text": "the",
+          "start": 20.073,
+          "end": 20.143
+        },
+        {
+          "text": "form",
+          "start": 20.201,
+          "end": 20.456
+        },
+        {
+          "text": "show",
+          "start": 20.526,
+          "end": 20.689
+        },
+        {
+          "text": "a",
+          "start": 20.747,
+          "end": 20.77
+        },
+        {
+          "text": "real",
+          "start": 20.828,
+          "end": 20.990000000000002
+        },
+        {
+          "text": "confirmation.",
+          "start": 21.049,
+          "end": 21.838
+        },
+        {
+          "text": "The",
+          "start": 22.163,
+          "end": 22.279
+        },
+        {
+          "text": "private",
+          "start": 22.349,
+          "end": 22.72
+        },
+        {
+          "text": "view",
+          "start": 22.755000000000003,
+          "end": 22.918
+        },
+        {
+          "text": "reads",
+          "start": 23.011000000000003,
+          "end": 23.22
+        },
+        {
+          "text": "that",
+          "start": 23.243000000000002,
+          "end": 23.359
+        },
+        {
+          "text": "record",
+          "start": 23.475,
+          "end": 23.847
+        },
+        {
+          "text": "and",
+          "start": 23.905,
+          "end": 24.009
+        },
+        {
+          "text": "can",
+          "start": 24.056,
+          "end": 24.172
+        },
+        {
+          "text": "request",
+          "start": 24.241,
+          "end": 24.682000000000002
+        },
+        {
+          "text": "an",
+          "start": 24.741,
+          "end": 24.810000000000002
+        },
+        {
+          "text": "allowed",
+          "start": 24.857,
+          "end": 25.158
+        },
+        {
+          "text": "status",
+          "start": 25.205,
+          "end": 25.553
+        },
+        {
+          "text": "change.",
+          "start": 25.6,
+          "end": 26.029
+        },
+        {
+          "text": "A",
+          "start": 26.47,
+          "end": 26.563000000000002
+        },
+        {
+          "text": "text",
+          "start": 26.656,
+          "end": 26.97
+        },
+        {
+          "text": "description",
+          "start": 27.016,
+          "end": 27.539
+        },
+        {
+          "text": "alongside",
+          "start": 27.608,
+          "end": 28.142000000000003
+        },
+        {
+          "text": "the",
+          "start": 28.165,
+          "end": 28.235
+        },
+        {
+          "text": "diagram",
+          "start": 28.27,
+          "end": 28.897
+        },
+        {
+          "text": "makes",
+          "start": 29.222,
+          "end": 29.466
+        },
+        {
+          "text": "the",
+          "start": 29.501,
+          "end": 29.57
+        },
+        {
+          "text": "same",
+          "start": 29.652,
+          "end": 29.919
+        },
+        {
+          "text": "information",
+          "start": 29.953000000000003,
+          "end": 30.441000000000003
+        },
+        {
+          "text": "available",
+          "start": 30.476,
+          "end": 30.882
+        },
+        {
+          "text": "to",
+          "start": 30.917,
+          "end": 30.987000000000002
+        },
+        {
+          "text": "a",
+          "start": 31.045,
+          "end": 31.068
+        },
+        {
+          "text": "screen",
+          "start": 31.103,
+          "end": 31.347
+        },
+        {
+          "text": "reader.",
+          "start": 31.405,
+          "end": 31.765
+        }
+      ],
+      "spoken": "Draw the organizer and owner outside the system boundary. Inside it, draw a public form, validation service, inquiry store, and private owner view. Label an arrow from the form to validation “submitted fields,” and an arrow to the store “validated inquiry.” The store returns a saved identifier, which lets the form show a real confirmation. The private view reads that record and can request an allowed status change. A text description alongside the diagram makes the same information available to a screen reader.",
+      "captions": [
+        {
+          "start": 184.59010204081633,
+          "end": 187.34110204081634,
+          "text": "Draw the organizer and owner outside the system boundary."
+        },
+        {
+          "start": 187.66610204081633,
+          "end": 191.92710204081635,
+          "text": "Inside it, draw a public form, validation service, inquiry"
+        },
+        {
+          "start": 191.98510204081634,
+          "end": 193.95910204081633,
+          "text": "store, and private owner view."
+        },
+        {
+          "start": 194.56310204081635,
+          "end": 197.57010204081632,
+          "text": "Label an arrow from the form to validation \"submitted"
+        },
+        {
+          "start": 197.61610204081634,
+          "end": 201.20310204081633,
+          "text": "fields,\" and an arrow to the store \"validated inquiry.\""
+        },
+        {
+          "start": 201.64510204081634,
+          "end": 205.01110204081633,
+          "text": "The store returns a saved identifier, which lets the form"
+        },
+        {
+          "start": 205.08110204081635,
+          "end": 206.39310204081633,
+          "text": "show a real confirmation."
+        },
+        {
+          "start": 206.71810204081635,
+          "end": 209.36510204081634,
+          "text": "The private view reads that record and can request an"
+        },
+        {
+          "start": 209.41210204081634,
+          "end": 210.58410204081633,
+          "text": "allowed status change."
+        },
+        {
+          "start": 211.02510204081634,
+          "end": 214.47410204081635,
+          "text": "A text description alongside the diagram makes the same"
+        },
+        {
+          "start": 214.50810204081634,
+          "end": 216.32010204081632,
+          "text": "information available to a screen reader."
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source": "productions/04/audio/08.mp3",
+      "sha256": "4d0e1500917a330f61d74ffb35c6cc1ee51fda24737bc1b13e6b87e4a0cf6cca",
+      "sourceTextSha256": "690459e9468481429e35e32c0d2896800149f4ac1123d971540d7499fca4cf24",
+      "start": 216.55510204081634,
+      "end": 244.4538775510204,
+      "duration": 27.898775510204082,
+      "samples": 1230336,
+      "words": [
+        {
+          "text": "Now",
+          "start": 0.046,
+          "end": 0.197
+        },
+        {
+          "text": "imagine",
+          "start": 0.267,
+          "end": 0.627
+        },
+        {
+          "text": "the",
+          "start": 0.662,
+          "end": 0.731
+        },
+        {
+          "text": "store",
+          "start": 0.766,
+          "end": 0.987
+        },
+        {
+          "text": "is",
+          "start": 1.022,
+          "end": 1.068
+        },
+        {
+          "text": "unavailable.",
+          "start": 1.115,
+          "end": 1.753
+        },
+        {
+          "text": "The",
+          "start": 2.136,
+          "end": 2.252
+        },
+        {
+          "text": "validation",
+          "start": 2.31,
+          "end": 2.868
+        },
+        {
+          "text": "service",
+          "start": 2.926,
+          "end": 3.239
+        },
+        {
+          "text": "cannot",
+          "start": 3.274,
+          "end": 3.541
+        },
+        {
+          "text": "truthfully",
+          "start": 3.587,
+          "end": 4.052
+        },
+        {
+          "text": "report",
+          "start": 4.133,
+          "end": 4.47
+        },
+        {
+          "text": "a",
+          "start": 4.505,
+          "end": 4.54
+        },
+        {
+          "text": "successful",
+          "start": 4.598,
+          "end": 5.05
+        },
+        {
+          "text": "save.",
+          "start": 5.108,
+          "end": 5.596
+        },
+        {
+          "text": "It",
+          "start": 6.037,
+          "end": 6.153
+        },
+        {
+          "text": "returns",
+          "start": 6.211,
+          "end": 6.571
+        },
+        {
+          "text": "a",
+          "start": 6.629,
+          "end": 6.653
+        },
+        {
+          "text": "failure",
+          "start": 6.745,
+          "end": 7.117
+        },
+        {
+          "text": "the",
+          "start": 7.152,
+          "end": 7.221
+        },
+        {
+          "text": "form",
+          "start": 7.268,
+          "end": 7.465
+        },
+        {
+          "text": "can",
+          "start": 7.512,
+          "end": 7.616
+        },
+        {
+          "text": "display.",
+          "start": 7.663,
+          "end": 8.255
+        },
+        {
+          "text": "The",
+          "start": 8.696,
+          "end": 8.824
+        },
+        {
+          "text": "visitor",
+          "start": 8.893,
+          "end": 9.242
+        },
+        {
+          "text": "sees",
+          "start": 9.3,
+          "end": 9.509
+        },
+        {
+          "text": "an",
+          "start": 9.555,
+          "end": 9.613
+        },
+        {
+          "text": "explanation",
+          "start": 9.659,
+          "end": 10.31
+        },
+        {
+          "text": "and",
+          "start": 10.391,
+          "end": 10.519
+        },
+        {
+          "text": "an",
+          "start": 10.577,
+          "end": 10.646
+        },
+        {
+          "text": "appropriate",
+          "start": 10.681,
+          "end": 11.204
+        },
+        {
+          "text": "next",
+          "start": 11.25,
+          "end": 11.424
+        },
+        {
+          "text": "step;",
+          "start": 11.447,
+          "end": 11.889
+        },
+        {
+          "text": "the",
+          "start": 12.33,
+          "end": 12.434
+        },
+        {
+          "text": "owner",
+          "start": 12.527,
+          "end": 12.817
+        },
+        {
+          "text": "sees",
+          "start": 12.887,
+          "end": 13.084
+        },
+        {
+          "text": "an",
+          "start": 13.131,
+          "end": 13.201
+        },
+        {
+          "text": "operator",
+          "start": 13.27,
+          "end": 13.723
+        },
+        {
+          "text": "diagnostic",
+          "start": 13.793000000000001,
+          "end": 14.536000000000001
+        },
+        {
+          "text": "that",
+          "start": 14.582,
+          "end": 14.687000000000001
+        },
+        {
+          "text": "avoids",
+          "start": 14.722000000000001,
+          "end": 15.024000000000001
+        },
+        {
+          "text": "exposing",
+          "start": 15.058,
+          "end": 15.453
+        },
+        {
+          "text": "the",
+          "start": 15.488,
+          "end": 15.558
+        },
+        {
+          "text": "visitor's",
+          "start": 15.592,
+          "end": 15.964
+        },
+        {
+          "text": "private",
+          "start": 16.022,
+          "end": 16.324
+        },
+        {
+          "text": "details.",
+          "start": 16.347,
+          "end": 16.951
+        },
+        {
+          "text": "Once",
+          "start": 17.392,
+          "end": 17.647
+        },
+        {
+          "text": "storage",
+          "start": 17.671,
+          "end": 18.007
+        },
+        {
+          "text": "returns,",
+          "start": 18.042,
+          "end": 18.692
+        },
+        {
+          "text": "the",
+          "start": 18.971,
+          "end": 19.075
+        },
+        {
+          "text": "visitor",
+          "start": 19.134,
+          "end": 19.47
+        },
+        {
+          "text": "can",
+          "start": 19.517,
+          "end": 19.656
+        },
+        {
+          "text": "retry",
+          "start": 19.737000000000002,
+          "end": 20.236
+        },
+        {
+          "text": "under",
+          "start": 20.306,
+          "end": 20.469
+        },
+        {
+          "text": "the",
+          "start": 20.504,
+          "end": 20.573
+        },
+        {
+          "text": "agreed",
+          "start": 20.631,
+          "end": 20.956
+        },
+        {
+          "text": "duplicate-handling",
+          "start": 21.014,
+          "end": 21.839
+        },
+        {
+          "text": "rule.",
+          "start": 21.897,
+          "end": 22.28
+        },
+        {
+          "text": "Drawing",
+          "start": 22.884,
+          "end": 23.22
+        },
+        {
+          "text": "this",
+          "start": 23.267000000000003,
+          "end": 23.394
+        },
+        {
+          "text": "path",
+          "start": 23.464,
+          "end": 23.778
+        },
+        {
+          "text": "reveals",
+          "start": 23.847,
+          "end": 24.184
+        },
+        {
+          "text": "a",
+          "start": 24.23,
+          "end": 24.265
+        },
+        {
+          "text": "design",
+          "start": 24.323,
+          "end": 24.73
+        },
+        {
+          "text": "need",
+          "start": 24.788,
+          "end": 25.008000000000003
+        },
+        {
+          "text": "that",
+          "start": 25.066000000000003,
+          "end": 25.182000000000002
+        },
+        {
+          "text": "a",
+          "start": 25.217,
+          "end": 25.252000000000002
+        },
+        {
+          "text": "diagram",
+          "start": 25.310000000000002,
+          "end": 25.786
+        },
+        {
+          "text": "of",
+          "start": 25.844,
+          "end": 25.891
+        },
+        {
+          "text": "only",
+          "start": 25.96,
+          "end": 26.134
+        },
+        {
+          "text": "successful",
+          "start": 26.192,
+          "end": 26.692
+        },
+        {
+          "text": "arrows",
+          "start": 26.761000000000003,
+          "end": 27.005000000000003
+        },
+        {
+          "text": "would",
+          "start": 27.04,
+          "end": 27.191000000000003
+        },
+        {
+          "text": "miss.",
+          "start": 27.226,
+          "end": 27.631999999999998
+        }
+      ],
+      "spoken": "Now imagine the store is unavailable. The validation service cannot truthfully report a successful save. It returns a failure the form can display. The visitor sees an explanation and an appropriate next step; the owner sees an operator diagnostic that avoids exposing the visitor's private details. Once storage returns, the visitor can retry under the agreed duplicate-handling rule. Drawing this path reveals a design need that a diagram of only successful arrows would miss.",
+      "captions": [
+        {
+          "start": 216.60110204081633,
+          "end": 218.30810204081632,
+          "text": "Now imagine the store is unavailable."
+        },
+        {
+          "start": 218.69110204081633,
+          "end": 221.09510204081633,
+          "text": "The validation service cannot truthfully report a"
+        },
+        {
+          "start": 221.15310204081635,
+          "end": 222.15110204081634,
+          "text": "successful save."
+        },
+        {
+          "start": 222.59210204081634,
+          "end": 224.81010204081633,
+          "text": "It returns a failure the form can display."
+        },
+        {
+          "start": 225.25110204081633,
+          "end": 227.97910204081634,
+          "text": "The visitor sees an explanation and an appropriate next"
+        },
+        {
+          "start": 228.00210204081634,
+          "end": 231.57910204081634,
+          "text": "step; the owner sees an operator diagnostic that avoids"
+        },
+        {
+          "start": 231.61310204081633,
+          "end": 233.50610204081633,
+          "text": "exposing the visitor's private details."
+        },
+        {
+          "start": 233.94710204081633,
+          "end": 237.12810204081634,
+          "text": "Once storage returns, the visitor can retry under the"
+        },
+        {
+          "start": 237.18610204081634,
+          "end": 238.83510204081634,
+          "text": "agreed duplicate-handling rule."
+        },
+        {
+          "start": 239.43910204081635,
+          "end": 242.44610204081633,
+          "text": "Drawing this path reveals a design need that a diagram of"
+        },
+        {
+          "start": 242.51510204081634,
+          "end": 244.18710204081634,
+          "text": "only successful arrows would miss."
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "source": "productions/04/audio/09.mp3",
+      "sha256": "8eca1ef859f40ca09a51893e1c1a9dd322bf19d97e5c96633754d401a71fc296",
+      "sourceTextSha256": "3694db8d67754565b399ad9107499a02cdf57f1f28e12ca142fdfab574b9d555",
+      "start": 244.4538775510204,
+      "end": 271.6995918367347,
+      "duration": 27.245714285714286,
+      "samples": 1201536,
+      "words": [
+        {
+          "text": "Who",
+          "start": 0.058,
+          "end": 0.197
+        },
+        {
+          "text": "is",
+          "start": 0.255,
+          "end": 0.348
+        },
+        {
+          "text": "allowed",
+          "start": 0.395,
+          "end": 0.72
+        },
+        {
+          "text": "to",
+          "start": 0.755,
+          "end": 0.813
+        },
+        {
+          "text": "mark",
+          "start": 0.894,
+          "end": 1.103
+        },
+        {
+          "text": "an",
+          "start": 1.161,
+          "end": 1.231
+        },
+        {
+          "text": "inquiry",
+          "start": 1.277,
+          "end": 1.625
+        },
+        {
+          "text": "handled?",
+          "start": 1.683,
+          "end": 2.125
+        },
+        {
+          "text": "The",
+          "start": 2.566,
+          "end": 2.682
+        },
+        {
+          "text": "private",
+          "start": 2.752,
+          "end": 3.123
+        },
+        {
+          "text": "view",
+          "start": 3.158,
+          "end": 3.332
+        },
+        {
+          "text": "should",
+          "start": 3.39,
+          "end": 3.576
+        },
+        {
+          "text": "not",
+          "start": 3.622,
+          "end": 3.762
+        },
+        {
+          "text": "infer",
+          "start": 3.82,
+          "end": 4.087
+        },
+        {
+          "text": "permission",
+          "start": 4.18,
+          "end": 4.725
+        },
+        {
+          "text": "merely",
+          "start": 4.899,
+          "end": 5.201
+        },
+        {
+          "text": "because",
+          "start": 5.248,
+          "end": 5.573
+        },
+        {
+          "text": "someone",
+          "start": 5.608,
+          "end": 5.921
+        },
+        {
+          "text": "knows",
+          "start": 5.944,
+          "end": 6.142
+        },
+        {
+          "text": "a",
+          "start": 6.188,
+          "end": 6.223
+        },
+        {
+          "text": "record",
+          "start": 6.293,
+          "end": 6.548
+        },
+        {
+          "text": "identifier.",
+          "start": 6.583,
+          "end": 7.291
+        },
+        {
+          "text": "An",
+          "start": 7.674,
+          "end": 7.825
+        },
+        {
+          "text": "access",
+          "start": 7.895,
+          "end": 8.29
+        },
+        {
+          "text": "mechanism",
+          "start": 8.359,
+          "end": 8.893
+        },
+        {
+          "text": "should",
+          "start": 9.067,
+          "end": 9.311
+        },
+        {
+          "text": "verify",
+          "start": 9.358,
+          "end": 9.752
+        },
+        {
+          "text": "the",
+          "start": 9.81,
+          "end": 9.88
+        },
+        {
+          "text": "user's",
+          "start": 9.95,
+          "end": 10.24
+        },
+        {
+          "text": "identity",
+          "start": 10.286,
+          "end": 10.809
+        },
+        {
+          "text": "and",
+          "start": 11.018,
+          "end": 11.285
+        },
+        {
+          "text": "check",
+          "start": 11.343,
+          "end": 11.552
+        },
+        {
+          "text": "the",
+          "start": 11.61,
+          "end": 11.68
+        },
+        {
+          "text": "operation",
+          "start": 11.749,
+          "end": 12.283
+        },
+        {
+          "text": "against",
+          "start": 12.341,
+          "end": 12.609
+        },
+        {
+          "text": "trusted",
+          "start": 12.632,
+          "end": 12.98
+        },
+        {
+          "text": "rules.",
+          "start": 13.027,
+          "end": 13.48
+        },
+        {
+          "text": "Keep",
+          "start": 13.99,
+          "end": 14.211
+        },
+        {
+          "text": "the",
+          "start": 14.257,
+          "end": 14.327
+        },
+        {
+          "text": "decision",
+          "start": 14.385,
+          "end": 14.85
+        },
+        {
+          "text": "as",
+          "start": 14.908,
+          "end": 15
+        },
+        {
+          "text": "a",
+          "start": 15.047,
+          "end": 15.082
+        },
+        {
+          "text": "concrete",
+          "start": 15.14,
+          "end": 15.651
+        },
+        {
+          "text": "responsibility",
+          "start": 15.685,
+          "end": 16.509999999999998
+        },
+        {
+          "text": "in",
+          "start": 16.545,
+          "end": 16.591
+        },
+        {
+          "text": "the",
+          "start": 16.625999999999998,
+          "end": 16.695999999999998
+        },
+        {
+          "text": "architecture.",
+          "start": 16.742,
+          "end": 17.462
+        },
+        {
+          "text": "The",
+          "start": 17.903,
+          "end": 18.031
+        },
+        {
+          "text": "exact",
+          "start": 18.1,
+          "end": 18.518
+        },
+        {
+          "text": "identity",
+          "start": 18.576,
+          "end": 19.006
+        },
+        {
+          "text": "provider",
+          "start": 19.076,
+          "end": 19.459
+        },
+        {
+          "text": "can",
+          "start": 19.517,
+          "end": 19.633
+        },
+        {
+          "text": "remain",
+          "start": 19.691,
+          "end": 19.97
+        },
+        {
+          "text": "undecided",
+          "start": 20.086,
+          "end": 20.829
+        },
+        {
+          "text": "until",
+          "start": 21.003,
+          "end": 21.27
+        },
+        {
+          "text": "the",
+          "start": 21.305,
+          "end": 21.374000000000002
+        },
+        {
+          "text": "project",
+          "start": 21.421,
+          "end": 21.85
+        },
+        {
+          "text": "is",
+          "start": 21.897,
+          "end": 21.978
+        },
+        {
+          "text": "ready",
+          "start": 22.036,
+          "end": 22.222
+        },
+        {
+          "text": "to",
+          "start": 22.268,
+          "end": 22.314999999999998
+        },
+        {
+          "text": "choose",
+          "start": 22.384,
+          "end": 22.675
+        },
+        {
+          "text": "it;",
+          "start": 22.71,
+          "end": 22.918
+        },
+        {
+          "text": "the",
+          "start": 23.36,
+          "end": 23.476
+        },
+        {
+          "text": "need",
+          "start": 23.545,
+          "end": 23.743000000000002
+        },
+        {
+          "text": "for",
+          "start": 23.801000000000002,
+          "end": 23.905
+        },
+        {
+          "text": "an",
+          "start": 23.951999999999998,
+          "end": 24.009999999999998
+        },
+        {
+          "text": "authorization",
+          "start": 24.079,
+          "end": 24.788
+        },
+        {
+          "text": "boundary",
+          "start": 24.857,
+          "end": 25.206
+        },
+        {
+          "text": "does",
+          "start": 25.252000000000002,
+          "end": 25.391
+        },
+        {
+          "text": "not",
+          "start": 25.426000000000002,
+          "end": 25.554000000000002
+        },
+        {
+          "text": "have",
+          "start": 25.612000000000002,
+          "end": 25.786
+        },
+        {
+          "text": "to",
+          "start": 25.820999999999998,
+          "end": 25.878999999999998
+        },
+        {
+          "text": "wait",
+          "start": 25.948999999999998,
+          "end": 26.111
+        },
+        {
+          "text": "for",
+          "start": 26.146,
+          "end": 26.250999999999998
+        },
+        {
+          "text": "a",
+          "start": 26.285,
+          "end": 26.308999999999997
+        },
+        {
+          "text": "brand",
+          "start": 26.343,
+          "end": 26.564
+        },
+        {
+          "text": "name.",
+          "start": 26.622,
+          "end": 26.994
+        }
+      ],
+      "spoken": "Who is allowed to mark an inquiry handled? The private view should not infer permission merely because someone knows a record identifier. An access mechanism should verify the user's identity and check the operation against trusted rules. Keep the decision as a concrete responsibility in the architecture. The exact identity provider can remain undecided until the project is ready to choose it; the need for an authorization boundary does not have to wait for a brand name.",
+      "captions": [
+        {
+          "start": 244.5118775510204,
+          "end": 246.5788775510204,
+          "text": "Who is allowed to mark an inquiry handled?"
+        },
+        {
+          "start": 247.01987755102041,
+          "end": 249.6548775510204,
+          "text": "The private view should not infer permission merely"
+        },
+        {
+          "start": 249.7018775510204,
+          "end": 251.7448775510204,
+          "text": "because someone knows a record identifier."
+        },
+        {
+          "start": 252.12787755102042,
+          "end": 255.7388775510204,
+          "text": "An access mechanism should verify the user's identity and"
+        },
+        {
+          "start": 255.7968775510204,
+          "end": 257.93387755102043,
+          "text": "check the operation against trusted rules."
+        },
+        {
+          "start": 258.4438775510204,
+          "end": 261.14987755102044,
+          "text": "Keep the decision as a concrete responsibility in the"
+        },
+        {
+          "start": 261.19587755102043,
+          "end": 261.9158775510204,
+          "text": "architecture."
+        },
+        {
+          "start": 262.35687755102043,
+          "end": 265.82787755102044,
+          "text": "The exact identity provider can remain undecided until the"
+        },
+        {
+          "start": 265.8748775510204,
+          "end": 268.4638775510204,
+          "text": "project is ready to choose it; the need for an"
+        },
+        {
+          "start": 268.5328775510204,
+          "end": 271.01787755102043,
+          "text": "authorization boundary does not have to wait for a brand"
+        },
+        {
+          "start": 271.0758775510204,
+          "end": 271.4478775510204,
+          "text": "name."
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "source": "productions/04/audio/10.mp3",
+      "sha256": "f020ff858384f0037c0ac04317da202973e813858528e7ab3ba29df089ca298f",
+      "sourceTextSha256": "90251c27d6ffa69fa7293f59cc13ac6bcee74e2221a307e7b72ddd9ab0aadb66",
+      "start": 271.6995918367347,
+      "end": 298.3967346938776,
+      "duration": 26.697142857142858,
+      "samples": 1177344,
+      "words": [
+        {
+          "text": "The",
+          "start": 0.058,
+          "end": 0.163
+        },
+        {
+          "text": "owner",
+          "start": 0.244,
+          "end": 0.441
+        },
+        {
+          "text": "may",
+          "start": 0.511,
+          "end": 0.662
+        },
+        {
+          "text": "want",
+          "start": 0.731,
+          "end": 1.033
+        },
+        {
+          "text": "a",
+          "start": 1.091,
+          "end": 1.138
+        },
+        {
+          "text": "count",
+          "start": 1.231,
+          "end": 1.451
+        },
+        {
+          "text": "of",
+          "start": 1.486,
+          "end": 1.533
+        },
+        {
+          "text": "new",
+          "start": 1.602,
+          "end": 1.707
+        },
+        {
+          "text": "inquiries",
+          "start": 1.753,
+          "end": 2.345
+        },
+        {
+          "text": "and",
+          "start": 2.38,
+          "end": 2.461
+        },
+        {
+          "text": "a",
+          "start": 2.496,
+          "end": 2.519
+        },
+        {
+          "text": "detail",
+          "start": 2.577,
+          "end": 2.891
+        },
+        {
+          "text": "view.",
+          "start": 2.937,
+          "end": 3.297
+        },
+        {
+          "text": "These",
+          "start": 3.808,
+          "end": 4.029
+        },
+        {
+          "text": "are",
+          "start": 4.063,
+          "end": 4.18
+        },
+        {
+          "text": "two",
+          "start": 4.226,
+          "end": 4.4
+        },
+        {
+          "text": "views",
+          "start": 4.47,
+          "end": 4.748
+        },
+        {
+          "text": "of",
+          "start": 4.795,
+          "end": 4.865
+        },
+        {
+          "text": "one",
+          "start": 4.981,
+          "end": 5.259
+        },
+        {
+          "text": "authoritative",
+          "start": 5.317,
+          "end": 5.991
+        },
+        {
+          "text": "record,",
+          "start": 6.049,
+          "end": 6.502
+        },
+        {
+          "text": "not",
+          "start": 6.745,
+          "end": 6.954
+        },
+        {
+          "text": "independent",
+          "start": 7.001,
+          "end": 7.512
+        },
+        {
+          "text": "systems",
+          "start": 7.558,
+          "end": 7.941
+        },
+        {
+          "text": "that",
+          "start": 7.964,
+          "end": 8.081
+        },
+        {
+          "text": "each",
+          "start": 8.115,
+          "end": 8.266
+        },
+        {
+          "text": "decide",
+          "start": 8.313,
+          "end": 8.615
+        },
+        {
+          "text": "the",
+          "start": 8.638,
+          "end": 8.707
+        },
+        {
+          "text": "status.",
+          "start": 8.731,
+          "end": 9.334
+        },
+        {
+          "text": "If",
+          "start": 9.776,
+          "end": 9.915
+        },
+        {
+          "text": "a",
+          "start": 9.973,
+          "end": 9.996
+        },
+        {
+          "text": "count",
+          "start": 10.077,
+          "end": 10.298
+        },
+        {
+          "text": "is",
+          "start": 10.344,
+          "end": 10.426
+        },
+        {
+          "text": "cached,",
+          "start": 10.495,
+          "end": 11.088
+        },
+        {
+          "text": "explain",
+          "start": 11.297,
+          "end": 11.773
+        },
+        {
+          "text": "how",
+          "start": 11.854,
+          "end": 11.97
+        },
+        {
+          "text": "it",
+          "start": 12.028,
+          "end": 12.086
+        },
+        {
+          "text": "is",
+          "start": 12.132,
+          "end": 12.202
+        },
+        {
+          "text": "refreshed",
+          "start": 12.272,
+          "end": 12.783
+        },
+        {
+          "text": "and",
+          "start": 12.992,
+          "end": 13.224
+        },
+        {
+          "text": "what",
+          "start": 13.27,
+          "end": 13.421
+        },
+        {
+          "text": "happens",
+          "start": 13.479,
+          "end": 13.850999999999999
+        },
+        {
+          "text": "if",
+          "start": 13.908999999999999,
+          "end": 13.978
+        },
+        {
+          "text": "it",
+          "start": 14.024999999999999,
+          "end": 14.083
+        },
+        {
+          "text": "is",
+          "start": 14.129,
+          "end": 14.187
+        },
+        {
+          "text": "stale.",
+          "start": 14.222,
+          "end": 14.732999999999999
+        },
+        {
+          "text": "A",
+          "start": 15.174,
+          "end": 15.244
+        },
+        {
+          "text": "source",
+          "start": 15.36,
+          "end": 15.639
+        },
+        {
+          "text": "of",
+          "start": 15.672999999999998,
+          "end": 15.731
+        },
+        {
+          "text": "truth",
+          "start": 15.789,
+          "end": 16.055999999999997
+        },
+        {
+          "text": "simplifies",
+          "start": 16.102999999999998,
+          "end": 16.672
+        },
+        {
+          "text": "disagreements:",
+          "start": 16.718,
+          "end": 17.461
+        },
+        {
+          "text": "when",
+          "start": 17.786,
+          "end": 17.948999999999998
+        },
+        {
+          "text": "the",
+          "start": 17.972,
+          "end": 18.042
+        },
+        {
+          "text": "count",
+          "start": 18.1,
+          "end": 18.355
+        },
+        {
+          "text": "and",
+          "start": 18.413,
+          "end": 18.506
+        },
+        {
+          "text": "detail",
+          "start": 18.576,
+          "end": 18.936
+        },
+        {
+          "text": "view",
+          "start": 19.005,
+          "end": 19.18
+        },
+        {
+          "text": "differ,",
+          "start": 19.261,
+          "end": 19.772
+        },
+        {
+          "text": "the",
+          "start": 19.923,
+          "end": 20.027
+        },
+        {
+          "text": "design",
+          "start": 20.085,
+          "end": 20.526
+        },
+        {
+          "text": "says",
+          "start": 20.608,
+          "end": 20.84
+        },
+        {
+          "text": "which",
+          "start": 20.933,
+          "end": 21.176
+        },
+        {
+          "text": "record",
+          "start": 21.269,
+          "end": 21.56
+        },
+        {
+          "text": "governs",
+          "start": 21.606,
+          "end": 22.024
+        },
+        {
+          "text": "and",
+          "start": 22.082,
+          "end": 22.232999999999997
+        },
+        {
+          "text": "how",
+          "start": 22.290999999999997,
+          "end": 22.396
+        },
+        {
+          "text": "to",
+          "start": 22.442,
+          "end": 22.488
+        },
+        {
+          "text": "repair",
+          "start": 22.57,
+          "end": 22.872
+        },
+        {
+          "text": "the",
+          "start": 22.93,
+          "end": 22.999
+        },
+        {
+          "text": "summary.",
+          "start": 23.046,
+          "end": 23.58
+        },
+        {
+          "text": "It",
+          "start": 24.021,
+          "end": 24.16
+        },
+        {
+          "text": "also",
+          "start": 24.207,
+          "end": 24.462
+        },
+        {
+          "text": "helps",
+          "start": 24.543,
+          "end": 24.752
+        },
+        {
+          "text": "tests",
+          "start": 24.81,
+          "end": 25.101
+        },
+        {
+          "text": "target",
+          "start": 25.147,
+          "end": 25.484
+        },
+        {
+          "text": "the",
+          "start": 25.519,
+          "end": 25.588
+        },
+        {
+          "text": "right",
+          "start": 25.634999999999998,
+          "end": 25.796999999999997
+        },
+        {
+          "text": "behavior.",
+          "start": 25.832,
+          "end": 26.413
+        }
+      ],
+      "spoken": "The owner may want a count of new inquiries and a detail view. These are two views of one authoritative record, not independent systems that each decide the status. If a count is cached, explain how it is refreshed and what happens if it is stale. A source of truth simplifies disagreements: when the count and detail view differ, the design says which record governs and how to repair the summary. It also helps tests target the right behavior.",
+      "captions": [
+        {
+          "start": 271.7575918367347,
+          "end": 274.59059183673475,
+          "text": "The owner may want a count of new inquiries and a detail"
+        },
+        {
+          "start": 274.63659183673474,
+          "end": 274.99659183673475,
+          "text": "view."
+        },
+        {
+          "start": 275.5075918367347,
+          "end": 278.65359183673473,
+          "text": "These are two views of one authoritative record, not"
+        },
+        {
+          "start": 278.7005918367347,
+          "end": 281.03359183673473,
+          "text": "independent systems that each decide the status."
+        },
+        {
+          "start": 281.47559183673474,
+          "end": 285.1205918367347,
+          "text": "If a count is cached, explain how it is refreshed and what"
+        },
+        {
+          "start": 285.1785918367347,
+          "end": 286.43259183673473,
+          "text": "happens if it is stale."
+        },
+        {
+          "start": 286.8735918367347,
+          "end": 290.05459183673474,
+          "text": "A source of truth simplifies disagreements: when the count"
+        },
+        {
+          "start": 290.11259183673474,
+          "end": 293.2595918367347,
+          "text": "and detail view differ, the design says which record"
+        },
+        {
+          "start": 293.3055918367347,
+          "end": 295.2795918367347,
+          "text": "governs and how to repair the summary."
+        },
+        {
+          "start": 295.72059183673474,
+          "end": 298.11259183673474,
+          "text": "It also helps tests target the right behavior."
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "source": "productions/04/audio/11.mp3",
+      "sha256": "c4aea2a045eb700b40248d3141bd99f7e65214d560d7ca22b085cba596f1d542",
+      "sourceTextSha256": "a898240d85a95d8cc21f15f8729292f211468b813b60f3b0c6eb2810e36ef81d",
+      "start": 298.3967346938776,
+      "end": 329.8220408163266,
+      "duration": 31.42530612244898,
+      "samples": 1385856,
+      "words": [
+        {
+          "text": "Imagine",
+          "start": 0.035,
+          "end": 0.639
+        },
+        {
+          "text": "a",
+          "start": 0.673,
+          "end": 0.72
+        },
+        {
+          "text": "user",
+          "start": 0.801,
+          "end": 1.057
+        },
+        {
+          "text": "clicks",
+          "start": 1.103,
+          "end": 1.416
+        },
+        {
+          "text": "submit",
+          "start": 1.533,
+          "end": 1.904
+        },
+        {
+          "text": "twice",
+          "start": 1.95,
+          "end": 2.67
+        },
+        {
+          "text": "or",
+          "start": 2.914,
+          "end": 3.077
+        },
+        {
+          "text": "a",
+          "start": 3.135,
+          "end": 3.158
+        },
+        {
+          "text": "response",
+          "start": 3.239,
+          "end": 3.692
+        },
+        {
+          "text": "is",
+          "start": 3.727,
+          "end": 3.808
+        },
+        {
+          "text": "lost",
+          "start": 3.878,
+          "end": 4.191
+        },
+        {
+          "text": "after",
+          "start": 4.249,
+          "end": 4.435
+        },
+        {
+          "text": "the",
+          "start": 4.481,
+          "end": 4.551
+        },
+        {
+          "text": "server",
+          "start": 4.586,
+          "end": 4.865
+        },
+        {
+          "text": "saves",
+          "start": 4.923,
+          "end": 5.143
+        },
+        {
+          "text": "the",
+          "start": 5.166,
+          "end": 5.236
+        },
+        {
+          "text": "record.",
+          "start": 5.294,
+          "end": 5.689
+        },
+        {
+          "text": "The",
+          "start": 6.072,
+          "end": 6.188
+        },
+        {
+          "text": "client",
+          "start": 6.246,
+          "end": 6.594
+        },
+        {
+          "text": "may",
+          "start": 6.641,
+          "end": 6.757
+        },
+        {
+          "text": "not",
+          "start": 6.827,
+          "end": 6.989
+        },
+        {
+          "text": "know",
+          "start": 7.036,
+          "end": 7.187
+        },
+        {
+          "text": "whether",
+          "start": 7.233,
+          "end": 7.465
+        },
+        {
+          "text": "a",
+          "start": 7.535,
+          "end": 7.57
+        },
+        {
+          "text": "retry",
+          "start": 7.663,
+          "end": 8.104
+        },
+        {
+          "text": "will",
+          "start": 8.162,
+          "end": 8.301
+        },
+        {
+          "text": "create",
+          "start": 8.348,
+          "end": 8.58
+        },
+        {
+          "text": "a",
+          "start": 8.603,
+          "end": 8.626
+        },
+        {
+          "text": "duplicate.",
+          "start": 8.673,
+          "end": 9.23
+        },
+        {
+          "text": "The",
+          "start": 9.671,
+          "end": 9.799
+        },
+        {
+          "text": "design",
+          "start": 9.868,
+          "end": 10.368
+        },
+        {
+          "text": "can",
+          "start": 10.426,
+          "end": 10.565
+        },
+        {
+          "text": "use",
+          "start": 10.635,
+          "end": 10.809
+        },
+        {
+          "text": "an",
+          "start": 10.832,
+          "end": 10.902
+        },
+        {
+          "text": "operation",
+          "start": 10.983,
+          "end": 11.54
+        },
+        {
+          "text": "identifier,",
+          "start": 11.598,
+          "end": 12.388
+        },
+        {
+          "text": "a",
+          "start": 12.562,
+          "end": 12.643
+        },
+        {
+          "text": "uniqueness",
+          "start": 12.759,
+          "end": 13.375
+        },
+        {
+          "text": "rule,",
+          "start": 13.444,
+          "end": 13.944
+        },
+        {
+          "text": "or",
+          "start": 14.222,
+          "end": 14.383999999999999
+        },
+        {
+          "text": "another",
+          "start": 14.441999999999998,
+          "end": 14.732999999999999
+        },
+        {
+          "text": "suitable",
+          "start": 14.790999999999999,
+          "end": 15.151
+        },
+        {
+          "text": "method;",
+          "start": 15.197,
+          "end": 15.649999999999999
+        },
+        {
+          "text": "the",
+          "start": 16.032999999999998,
+          "end": 16.125999999999998
+        },
+        {
+          "text": "correct",
+          "start": 16.195999999999998,
+          "end": 16.497
+        },
+        {
+          "text": "choice",
+          "start": 16.555999999999997,
+          "end": 16.869
+        },
+        {
+          "text": "depends",
+          "start": 16.904,
+          "end": 17.275
+        },
+        {
+          "text": "on",
+          "start": 17.322,
+          "end": 17.391
+        },
+        {
+          "text": "the",
+          "start": 17.426,
+          "end": 17.496
+        },
+        {
+          "text": "existing",
+          "start": 17.566,
+          "end": 18.076
+        },
+        {
+          "text": "system.",
+          "start": 18.157999999999998,
+          "end": 18.692
+        },
+        {
+          "text": "Document",
+          "start": 19.203,
+          "end": 19.747999999999998
+        },
+        {
+          "text": "the",
+          "start": 19.783,
+          "end": 19.852999999999998
+        },
+        {
+          "text": "intended",
+          "start": 19.899,
+          "end": 20.329
+        },
+        {
+          "text": "effect",
+          "start": 20.375,
+          "end": 20.805
+        },
+        {
+          "text": "and",
+          "start": 20.956,
+          "end": 21.246
+        },
+        {
+          "text": "how",
+          "start": 21.304,
+          "end": 21.419999999999998
+        },
+        {
+          "text": "an",
+          "start": 21.49,
+          "end": 21.548
+        },
+        {
+          "text": "uncertain",
+          "start": 21.663999999999998,
+          "end": 22.163
+        },
+        {
+          "text": "outcome",
+          "start": 22.21,
+          "end": 22.546
+        },
+        {
+          "text": "will",
+          "start": 22.569,
+          "end": 22.697
+        },
+        {
+          "text": "be",
+          "start": 22.744,
+          "end": 22.813
+        },
+        {
+          "text": "reconciled.",
+          "start": 22.86,
+          "end": 23.555999999999997
+        },
+        {
+          "text": "\"Just",
+          "start": 24.067,
+          "end": 24.555
+        },
+        {
+          "text": "retry\"",
+          "start": 24.636,
+          "end": 25.46
+        },
+        {
+          "text": "is",
+          "start": 25.484,
+          "end": 25.646
+        },
+        {
+          "text": "not",
+          "start": 25.738999999999997,
+          "end": 25.936
+        },
+        {
+          "text": "enough",
+          "start": 25.994,
+          "end": 26.273
+        },
+        {
+          "text": "when",
+          "start": 26.319,
+          "end": 26.482
+        },
+        {
+          "text": "an",
+          "start": 26.528,
+          "end": 26.587
+        },
+        {
+          "text": "operation",
+          "start": 26.703,
+          "end": 27.259999999999998
+        },
+        {
+          "text": "can",
+          "start": 27.317999999999998,
+          "end": 27.433999999999997
+        },
+        {
+          "text": "send",
+          "start": 27.491999999999997,
+          "end": 27.655
+        },
+        {
+          "text": "a",
+          "start": 27.701,
+          "end": 27.735999999999997
+        },
+        {
+          "text": "message,",
+          "start": 27.805999999999997,
+          "end": 28.351
+        },
+        {
+          "text": "charge",
+          "start": 28.676,
+          "end": 29.025
+        },
+        {
+          "text": "money,",
+          "start": 29.083,
+          "end": 29.524
+        },
+        {
+          "text": "or",
+          "start": 29.698,
+          "end": 29.837
+        },
+        {
+          "text": "create",
+          "start": 29.907,
+          "end": 30.209
+        },
+        {
+          "text": "a",
+          "start": 30.232,
+          "end": 30.255
+        },
+        {
+          "text": "duplicate",
+          "start": 30.302,
+          "end": 30.731
+        },
+        {
+          "text": "record.",
+          "start": 30.766,
+          "end": 31.219
+        }
+      ],
+      "spoken": "Imagine a user clicks submit twice or a response is lost after the server saves the record. The client may not know whether a retry will create a duplicate. The design can use an operation identifier, a uniqueness rule, or another suitable method; the correct choice depends on the existing system. Document the intended effect and how an uncertain outcome will be reconciled. “Just retry” is not enough when an operation can send a message, charge money, or create a duplicate record.",
+      "captions": [
+        {
+          "start": 298.4317346938776,
+          "end": 302.58773469387756,
+          "text": "Imagine a user clicks submit twice or a response is lost"
+        },
+        {
+          "start": 302.6457346938776,
+          "end": 304.0857346938776,
+          "text": "after the server saves the record."
+        },
+        {
+          "start": 304.4687346938776,
+          "end": 307.02273469387757,
+          "text": "The client may not know whether a retry will create a"
+        },
+        {
+          "start": 307.0697346938776,
+          "end": 307.6267346938776,
+          "text": "duplicate."
+        },
+        {
+          "start": 308.0677346938776,
+          "end": 311.7717346938776,
+          "text": "The design can use an operation identifier, a uniqueness"
+        },
+        {
+          "start": 311.8407346938776,
+          "end": 315.26573469387756,
+          "text": "rule, or another suitable method; the correct choice"
+        },
+        {
+          "start": 315.3007346938776,
+          "end": 317.0887346938776,
+          "text": "depends on the existing system."
+        },
+        {
+          "start": 317.59973469387756,
+          "end": 320.9427346938776,
+          "text": "Document the intended effect and how an uncertain outcome"
+        },
+        {
+          "start": 320.9657346938776,
+          "end": 321.9527346938776,
+          "text": "will be reconciled."
+        },
+        {
+          "start": 322.4637346938776,
+          "end": 326.1327346938776,
+          "text": "\"Just retry\" is not enough when an operation can send a"
+        },
+        {
+          "start": 326.2027346938776,
+          "end": 329.6157346938776,
+          "text": "message, charge money, or create a duplicate record."
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "source": "productions/04/audio/12.mp3",
+      "sha256": "9d648595f2eccdeeb5d0deaac78284f2616abe89ae4e9f996a608c39b3293ef1",
+      "sourceTextSha256": "613e9b0794efc0ebf5256037a9c93289cd3d1bb0a023a6692bc6048b9629c036",
+      "start": 329.8220408163266,
+      "end": 356.8848979591837,
+      "duration": 27.062857142857144,
+      "samples": 1193472,
+      "words": [
+        {
+          "text": "Ask",
+          "start": 0.035,
+          "end": 0.29
+        },
+        {
+          "text": "a",
+          "start": 0.325,
+          "end": 0.348
+        },
+        {
+          "text": "beginner",
+          "start": 0.43,
+          "end": 0.766
+        },
+        {
+          "text": "to",
+          "start": 0.836,
+          "end": 0.894
+        },
+        {
+          "text": "follow",
+          "start": 0.975,
+          "end": 1.242
+        },
+        {
+          "text": "the",
+          "start": 1.289,
+          "end": 1.358
+        },
+        {
+          "text": "arrows",
+          "start": 1.428,
+          "end": 1.718
+        },
+        {
+          "text": "and",
+          "start": 1.753,
+          "end": 1.823
+        },
+        {
+          "text": "explain",
+          "start": 1.869,
+          "end": 2.171
+        },
+        {
+          "text": "what",
+          "start": 2.206,
+          "end": 2.322
+        },
+        {
+          "text": "happens",
+          "start": 2.368,
+          "end": 2.694
+        },
+        {
+          "text": "from",
+          "start": 2.728,
+          "end": 2.868
+        },
+        {
+          "text": "submission",
+          "start": 2.961,
+          "end": 3.46
+        },
+        {
+          "text": "to",
+          "start": 3.518,
+          "end": 3.564
+        },
+        {
+          "text": "confirmation.",
+          "start": 3.634,
+          "end": 4.412
+        },
+        {
+          "text": "Then",
+          "start": 4.853,
+          "end": 5.05
+        },
+        {
+          "text": "ask",
+          "start": 5.12,
+          "end": 5.329
+        },
+        {
+          "text": "where",
+          "start": 5.375,
+          "end": 5.538
+        },
+        {
+          "text": "access",
+          "start": 5.596,
+          "end": 6.026
+        },
+        {
+          "text": "is",
+          "start": 6.072,
+          "end": 6.142
+        },
+        {
+          "text": "checked",
+          "start": 6.2,
+          "end": 6.583
+        },
+        {
+          "text": "and",
+          "start": 6.757,
+          "end": 6.989
+        },
+        {
+          "text": "what",
+          "start": 7.047,
+          "end": 7.21
+        },
+        {
+          "text": "happens",
+          "start": 7.268,
+          "end": 7.616
+        },
+        {
+          "text": "if",
+          "start": 7.663,
+          "end": 7.732
+        },
+        {
+          "text": "storage",
+          "start": 7.779,
+          "end": 8.104
+        },
+        {
+          "text": "fails.",
+          "start": 8.15,
+          "end": 8.661
+        },
+        {
+          "text": "If",
+          "start": 9.102,
+          "end": 9.23
+        },
+        {
+          "text": "the",
+          "start": 9.276,
+          "end": 9.346
+        },
+        {
+          "text": "answers",
+          "start": 9.404,
+          "end": 9.718
+        },
+        {
+          "text": "cannot",
+          "start": 9.752,
+          "end": 9.985
+        },
+        {
+          "text": "be",
+          "start": 10.031,
+          "end": 10.112
+        },
+        {
+          "text": "found,",
+          "start": 10.159,
+          "end": 10.565
+        },
+        {
+          "text": "add",
+          "start": 10.716,
+          "end": 10.902
+        },
+        {
+          "text": "a",
+          "start": 10.925,
+          "end": 10.96
+        },
+        {
+          "text": "clear",
+          "start": 11.018,
+          "end": 11.238
+        },
+        {
+          "text": "label",
+          "start": 11.308,
+          "end": 11.564
+        },
+        {
+          "text": "or",
+          "start": 11.61,
+          "end": 11.68
+        },
+        {
+          "text": "note.",
+          "start": 11.749,
+          "end": 12.121
+        },
+        {
+          "text": "The",
+          "start": 12.504,
+          "end": 12.632
+        },
+        {
+          "text": "exercise",
+          "start": 12.725,
+          "end": 13.363
+        },
+        {
+          "text": "does",
+          "start": 13.398,
+          "end": 13.561
+        },
+        {
+          "text": "not",
+          "start": 13.654,
+          "end": 13.850999999999999
+        },
+        {
+          "text": "require",
+          "start": 13.921,
+          "end": 14.339
+        },
+        {
+          "text": "complex",
+          "start": 14.397,
+          "end": 14.895999999999999
+        },
+        {
+          "text": "diagrams",
+          "start": 14.966,
+          "end": 15.697
+        },
+        {
+          "text": "or",
+          "start": 15.847999999999999,
+          "end": 16.011
+        },
+        {
+          "text": "a",
+          "start": 16.057,
+          "end": 16.08
+        },
+        {
+          "text": "particular",
+          "start": 16.137999999999998,
+          "end": 16.614
+        },
+        {
+          "text": "drawing",
+          "start": 16.661,
+          "end": 16.928
+        },
+        {
+          "text": "application.",
+          "start": 16.974,
+          "end": 17.636
+        },
+        {
+          "text": "A",
+          "start": 18.076999999999998,
+          "end": 18.158
+        },
+        {
+          "text": "few",
+          "start": 18.24,
+          "end": 18.402
+        },
+        {
+          "text": "boxes,",
+          "start": 18.472,
+          "end": 19.157
+        },
+        {
+          "text": "arrows,",
+          "start": 19.226,
+          "end": 19.679
+        },
+        {
+          "text": "and",
+          "start": 19.701999999999998,
+          "end": 19.784
+        },
+        {
+          "text": "a",
+          "start": 19.83,
+          "end": 19.865
+        },
+        {
+          "text": "plain-language",
+          "start": 19.923000000000002,
+          "end": 20.608
+        },
+        {
+          "text": "description",
+          "start": 20.643,
+          "end": 21.235
+        },
+        {
+          "text": "can",
+          "start": 21.560000000000002,
+          "end": 21.723
+        },
+        {
+          "text": "be",
+          "start": 21.769,
+          "end": 21.862000000000002
+        },
+        {
+          "text": "a",
+          "start": 21.908,
+          "end": 21.942999999999998
+        },
+        {
+          "text": "better",
+          "start": 22.000999999999998,
+          "end": 22.222
+        },
+        {
+          "text": "design",
+          "start": 22.268,
+          "end": 22.605
+        },
+        {
+          "text": "conversation",
+          "start": 22.674999999999997,
+          "end": 23.451999999999998
+        },
+        {
+          "text": "than",
+          "start": 23.731,
+          "end": 23.905
+        },
+        {
+          "text": "a",
+          "start": 23.939999999999998,
+          "end": 23.975
+        },
+        {
+          "text": "crowded",
+          "start": 24.033,
+          "end": 24.405
+        },
+        {
+          "text": "chart",
+          "start": 24.451,
+          "end": 24.741
+        },
+        {
+          "text": "full",
+          "start": 24.799,
+          "end": 24.95
+        },
+        {
+          "text": "of",
+          "start": 24.997,
+          "end": 25.055
+        },
+        {
+          "text": "unexplained",
+          "start": 25.148,
+          "end": 25.692999999999998
+        },
+        {
+          "text": "technology",
+          "start": 25.716,
+          "end": 26.308999999999997
+        },
+        {
+          "text": "names.",
+          "start": 26.366999999999997,
+          "end": 26.808
+        }
+      ],
+      "spoken": "Ask a beginner to follow the arrows and explain what happens from submission to confirmation. Then ask where access is checked and what happens if storage fails. If the answers cannot be found, add a clear label or note. The exercise does not require complex diagrams or a particular drawing application. A few boxes, arrows, and a plain-language description can be a better design conversation than a crowded chart full of unexplained technology names.",
+      "captions": [
+        {
+          "start": 329.8570408163266,
+          "end": 332.1440408163266,
+          "text": "Ask a beginner to follow the arrows and explain what"
+        },
+        {
+          "start": 332.1900408163266,
+          "end": 334.23404081632657,
+          "text": "happens from submission to confirmation."
+        },
+        {
+          "start": 334.6750408163266,
+          "end": 337.5540408163266,
+          "text": "Then ask where access is checked and what happens if"
+        },
+        {
+          "start": 337.6010408163266,
+          "end": 338.4830408163266,
+          "text": "storage fails."
+        },
+        {
+          "start": 338.92404081632657,
+          "end": 341.9430408163266,
+          "text": "If the answers cannot be found, add a clear label or note."
+        },
+        {
+          "start": 342.3260408163266,
+          "end": 345.9020408163266,
+          "text": "The exercise does not require complex diagrams or a"
+        },
+        {
+          "start": 345.96004081632657,
+          "end": 347.4580408163266,
+          "text": "particular drawing application."
+        },
+        {
+          "start": 347.8990408163266,
+          "end": 351.5450408163266,
+          "text": "A few boxes, arrows, and a plain-language description can"
+        },
+        {
+          "start": 351.5910408163266,
+          "end": 354.7720408163266,
+          "text": "be a better design conversation than a crowded chart full"
+        },
+        {
+          "start": 354.8190408163266,
+          "end": 356.6300408163266,
+          "text": "of unexplained technology names."
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "source": "productions/04/audio/13.mp3",
+      "sha256": "2979f9773b6760f70379f9b8715b0e410e852f719d38a3c052030f5b8838a0d9",
+      "sourceTextSha256": "094b49193eaf8f0d35105ce23e9d3f15574778d7e0ea6761789af20baa105e7b",
+      "start": 356.8848979591837,
+      "end": 391.00081632653064,
+      "duration": 34.115918367346936,
+      "samples": 1504512,
+      "words": [
+        {
+          "text": "Once",
+          "start": 0.023,
+          "end": 0.267
+        },
+        {
+          "text": "the",
+          "start": 0.313,
+          "end": 0.383
+        },
+        {
+          "text": "responsibilities",
+          "start": 0.464,
+          "end": 1.347
+        },
+        {
+          "text": "and",
+          "start": 1.382,
+          "end": 1.451
+        },
+        {
+          "text": "paths",
+          "start": 1.498,
+          "end": 1.788
+        },
+        {
+          "text": "are",
+          "start": 1.823,
+          "end": 1.927
+        },
+        {
+          "text": "understandable,",
+          "start": 1.962,
+          "end": 2.752
+        },
+        {
+          "text": "the",
+          "start": 3.193,
+          "end": 3.297
+        },
+        {
+          "text": "build",
+          "start": 3.355,
+          "end": 3.564
+        },
+        {
+          "text": "specification",
+          "start": 3.599,
+          "end": 4.435
+        },
+        {
+          "text": "can",
+          "start": 4.493,
+          "end": 4.632
+        },
+        {
+          "text": "define",
+          "start": 4.667,
+          "end": 5.039
+        },
+        {
+          "text": "the",
+          "start": 5.074,
+          "end": 5.143
+        },
+        {
+          "text": "exact",
+          "start": 5.201,
+          "end": 5.677
+        },
+        {
+          "text": "behavior",
+          "start": 5.724,
+          "end": 6.211
+        },
+        {
+          "text": "at",
+          "start": 6.293,
+          "end": 6.409
+        },
+        {
+          "text": "each",
+          "start": 6.455,
+          "end": 6.606
+        },
+        {
+          "text": "point.",
+          "start": 6.676,
+          "end": 7.094
+        },
+        {
+          "text": "The",
+          "start": 7.477,
+          "end": 7.605
+        },
+        {
+          "text": "diagram",
+          "start": 7.674,
+          "end": 8.208
+        },
+        {
+          "text": "may",
+          "start": 8.266,
+          "end": 8.394
+        },
+        {
+          "text": "say",
+          "start": 8.464,
+          "end": 8.707
+        },
+        {
+          "text": "\"validate",
+          "start": 8.916,
+          "end": 9.648
+        },
+        {
+          "text": "inquiry\";",
+          "start": 9.706,
+          "end": 10.403
+        },
+        {
+          "text": "the",
+          "start": 10.786,
+          "end": 10.89
+        },
+        {
+          "text": "spec",
+          "start": 10.948,
+          "end": 11.238
+        },
+        {
+          "text": "explains",
+          "start": 11.308,
+          "end": 11.865
+        },
+        {
+          "text": "which",
+          "start": 11.993,
+          "end": 12.225
+        },
+        {
+          "text": "fields",
+          "start": 12.272,
+          "end": 12.539
+        },
+        {
+          "text": "are",
+          "start": 12.562,
+          "end": 12.666
+        },
+        {
+          "text": "required,",
+          "start": 12.713,
+          "end": 13.421
+        },
+        {
+          "text": "what",
+          "start": 13.746,
+          "end": 13.967
+        },
+        {
+          "text": "error",
+          "start": 14.048,
+          "end": 14.360999999999999
+        },
+        {
+          "text": "appears,",
+          "start": 14.418999999999999,
+          "end": 15.07
+        },
+        {
+          "text": "and",
+          "start": 15.279,
+          "end": 15.43
+        },
+        {
+          "text": "whether",
+          "start": 15.488,
+          "end": 15.719999999999999
+        },
+        {
+          "text": "a",
+          "start": 15.777999999999999,
+          "end": 15.801
+        },
+        {
+          "text": "failed",
+          "start": 15.859,
+          "end": 16.115
+        },
+        {
+          "text": "submission",
+          "start": 16.149,
+          "end": 16.591
+        },
+        {
+          "text": "creates",
+          "start": 16.66,
+          "end": 16.962
+        },
+        {
+          "text": "a",
+          "start": 16.997,
+          "end": 17.02
+        },
+        {
+          "text": "record.",
+          "start": 17.09,
+          "end": 17.543
+        },
+        {
+          "text": "Keep",
+          "start": 18.146,
+          "end": 18.378
+        },
+        {
+          "text": "the",
+          "start": 18.436999999999998,
+          "end": 18.506
+        },
+        {
+          "text": "two",
+          "start": 18.553,
+          "end": 18.704
+        },
+        {
+          "text": "consistent.",
+          "start": 18.773,
+          "end": 19.412
+        },
+        {
+          "text": "If",
+          "start": 19.795,
+          "end": 19.933999999999997
+        },
+        {
+          "text": "the",
+          "start": 19.981,
+          "end": 20.05
+        },
+        {
+          "text": "specification",
+          "start": 20.108,
+          "end": 20.968
+        },
+        {
+          "text": "reveals",
+          "start": 21.049,
+          "end": 21.455
+        },
+        {
+          "text": "an",
+          "start": 21.512999999999998,
+          "end": 21.583
+        },
+        {
+          "text": "unaddressed",
+          "start": 21.698999999999998,
+          "end": 22.21
+        },
+        {
+          "text": "failure",
+          "start": 22.256,
+          "end": 22.593
+        },
+        {
+          "text": "path,",
+          "start": 22.628,
+          "end": 23.092
+        },
+        {
+          "text": "revise",
+          "start": 23.789,
+          "end": 24.265
+        },
+        {
+          "text": "the",
+          "start": 24.299999999999997,
+          "end": 24.369
+        },
+        {
+          "text": "architecture.",
+          "start": 24.427,
+          "end": 25.182000000000002
+        },
+        {
+          "text": "Architecture",
+          "start": 25.878999999999998,
+          "end": 26.587
+        },
+        {
+          "text": "is",
+          "start": 26.645,
+          "end": 26.738
+        },
+        {
+          "text": "a",
+          "start": 26.796,
+          "end": 26.831
+        },
+        {
+          "text": "working",
+          "start": 26.923000000000002,
+          "end": 27.259999999999998
+        },
+        {
+          "text": "model",
+          "start": 27.317999999999998,
+          "end": 27.585
+        },
+        {
+          "text": "that",
+          "start": 27.631999999999998,
+          "end": 27.759
+        },
+        {
+          "text": "helps",
+          "start": 27.817,
+          "end": 28.038
+        },
+        {
+          "text": "people",
+          "start": 28.084,
+          "end": 28.34
+        },
+        {
+          "text": "make",
+          "start": 28.375,
+          "end": 28.526
+        },
+        {
+          "text": "decisions,",
+          "start": 28.561,
+          "end": 29.246
+        },
+        {
+          "text": "and",
+          "start": 29.570999999999998,
+          "end": 29.722
+        },
+        {
+          "text": "it",
+          "start": 29.78,
+          "end": 29.849
+        },
+        {
+          "text": "can",
+          "start": 29.896,
+          "end": 30.093
+        },
+        {
+          "text": "evolve",
+          "start": 30.151,
+          "end": 30.569
+        },
+        {
+          "text": "as",
+          "start": 30.616,
+          "end": 30.697
+        },
+        {
+          "text": "long",
+          "start": 30.767,
+          "end": 30.976
+        },
+        {
+          "text": "as",
+          "start": 31.022,
+          "end": 31.092
+        },
+        {
+          "text": "changes",
+          "start": 31.161,
+          "end": 31.579
+        },
+        {
+          "text": "are",
+          "start": 31.625999999999998,
+          "end": 31.73
+        },
+        {
+          "text": "recorded",
+          "start": 31.777,
+          "end": 32.264
+        },
+        {
+          "text": "and",
+          "start": 32.334,
+          "end": 32.427
+        },
+        {
+          "text": "agreed",
+          "start": 32.473,
+          "end": 32.787
+        },
+        {
+          "text": "at",
+          "start": 32.81,
+          "end": 32.868
+        },
+        {
+          "text": "the",
+          "start": 32.903,
+          "end": 32.972
+        },
+        {
+          "text": "appropriate",
+          "start": 33.007,
+          "end": 33.46
+        },
+        {
+          "text": "level.",
+          "start": 33.483,
+          "end": 33.866
+        }
+      ],
+      "spoken": "Once the responsibilities and paths are understandable, the build specification can define the exact behavior at each point. The diagram may say “validate inquiry”; the spec explains which fields are required, what error appears, and whether a failed submission creates a record. Keep the two consistent. If the specification reveals an unaddressed failure path, revise the architecture. Architecture is a working model that helps people make decisions, and it can evolve as long as changes are recorded and agreed at the appropriate level.",
+      "captions": [
+        {
+          "start": 356.90789795918374,
+          "end": 359.6368979591837,
+          "text": "Once the responsibilities and paths are understandable,"
+        },
+        {
+          "start": 360.0778979591837,
+          "end": 363.2938979591837,
+          "text": "the build specification can define the exact behavior at"
+        },
+        {
+          "start": 363.3398979591837,
+          "end": 363.9788979591837,
+          "text": "each point."
+        },
+        {
+          "start": 364.3618979591837,
+          "end": 368.7498979591837,
+          "text": "The diagram may say \"validate inquiry\"; the spec explains"
+        },
+        {
+          "start": 368.8778979591837,
+          "end": 372.60489795918375,
+          "text": "which fields are required, what error appears, and whether"
+        },
+        {
+          "start": 372.66289795918374,
+          "end": 374.4278979591837,
+          "text": "a failed submission creates a record."
+        },
+        {
+          "start": 375.03089795918373,
+          "end": 376.2968979591837,
+          "text": "Keep the two consistent."
+        },
+        {
+          "start": 376.67989795918373,
+          "end": 379.9768979591837,
+          "text": "If the specification reveals an unaddressed failure path,"
+        },
+        {
+          "start": 380.6738979591837,
+          "end": 382.06689795918373,
+          "text": "revise the architecture."
+        },
+        {
+          "start": 382.76389795918374,
+          "end": 385.4108979591837,
+          "text": "Architecture is a working model that helps people make"
+        },
+        {
+          "start": 385.4458979591837,
+          "end": 388.61489795918374,
+          "text": "decisions, and it can evolve as long as changes are"
+        },
+        {
+          "start": 388.6618979591837,
+          "end": 390.7508979591837,
+          "text": "recorded and agreed at the appropriate level."
+        }
+      ]
+    }
+  ],
+  "captions": [
+    {
+      "start": 0.035,
+      "end": 3.286,
+      "text": "Architecture describes how parts of a system fit together"
+    },
+    {
+      "start": 3.611,
+      "end": 5.851,
+      "text": "and what each part is responsible for."
+    },
+    {
+      "start": 6.455,
+      "end": 9.601,
+      "text": "You can think of it as a map of rooms and doors, not a"
+    },
+    {
+      "start": 9.671,
+      "end": 11.494,
+      "text": "shopping list of software brands."
+    },
+    {
+      "start": 12.005,
+      "end": 15.488,
+      "text": "For the inquiry tracker, a form collects details, a"
+    },
+    {
+      "start": 15.604,
+      "end": 19.133,
+      "text": "service validates them, storage keeps an inquiry record,"
+    },
+    {
+      "start": 19.458,
+      "end": 22.071,
+      "text": "and a private view shows the owner what needs attention."
+    },
+    {
+      "start": 22.454,
+      "end": 25.705,
+      "text": "A useful map says which part can change a record and how"
+    },
+    {
+      "start": 25.821,
+      "end": 27.539,
+      "text": "information moves among parts."
+    },
+    {
+      "start": 27.80316326530612,
+      "end": 30.612163265306123,
+      "text": "Start with the organizer submitting a fictional request."
+    },
+    {
+      "start": 30.938163265306123,
+      "end": 32.92316326530612,
+      "text": "The form sends the fields to a service."
+    },
+    {
+      "start": 33.306163265306125,
+      "end": 36.325163265306124,
+      "text": "The service checks required information and either rejects"
+    },
+    {
+      "start": 36.37116326530612,
+      "end": 39.26216326530612,
+      "text": "it with a useful explanation or saves one record."
+    },
+    {
+      "start": 39.703163265306124,
+      "end": 42.535163265306124,
+      "text": "The owner then opens the private list and marks that"
+    },
+    {
+      "start": 42.58216326530612,
+      "end": 43.325163265306124,
+      "text": "record handled."
+    },
+    {
+      "start": 43.76616326530612,
+      "end": 45.392163265306124,
+      "text": "Draw arrows for these moves."
+    },
+    {
+      "start": 45.566163265306116,
+      "end": 48.75816326530612,
+      "text": "Identify the source of truth: the authoritative record"
+    },
+    {
+      "start": 48.79316326530612,
+      "end": 50.33716326530612,
+      "text": "that determines current status."
+    },
+    {
+      "start": 50.779163265306124,
+      "end": 54.37816326530612,
+      "text": "If a copy or summary exists elsewhere, say how it stays"
+    },
+    {
+      "start": 54.43616326530612,
+      "end": 55.98016326530612,
+      "text": "consistent with that record."
+    },
+    {
+      "start": 56.30275510204081,
+      "end": 59.35575510204082,
+      "text": "A workflow is a sequence of states and transitions."
+    },
+    {
+      "start": 59.73875510204081,
+      "end": 63.23375510204082,
+      "text": "A state is a condition, such as new or handled."
+    },
+    {
+      "start": 63.55875510204082,
+      "end": 66.19475510204082,
+      "text": "A transition is the action that changes it."
+    },
+    {
+      "start": 66.79775510204081,
+      "end": 70.40875510204081,
+      "text": "List who can perform each transition and what happens if"
+    },
+    {
+      "start": 70.46675510204082,
+      "end": 71.10575510204082,
+      "text": "it fails."
+    },
+    {
+      "start": 71.54675510204082,
+      "end": 75.71375510204082,
+      "text": "For example, if saving a submitted form fails, do not show"
+    },
+    {
+      "start": 75.77175510204081,
+      "end": 77.07275510204082,
+      "text": "a false success message."
+    },
+    {
+      "start": 77.58375510204081,
+      "end": 80.34675510204082,
+      "text": "Show a useful error and preserve the user's input where"
+    },
+    {
+      "start": 80.38175510204081,
+      "end": 80.99675510204082,
+      "text": "possible."
+    },
+    {
+      "start": 81.43775510204082,
+      "end": 85.19975510204081,
+      "text": "A clear workflow helps test more than the happy path, the"
+    },
+    {
+      "start": 85.29275510204081,
+      "end": 87.02275510204082,
+      "text": "sequence where nothing goes wrong."
+    },
+    {
+      "start": 87.31010204081632,
+      "end": 89.99210204081632,
+      "text": "A trust boundary is a point where information crosses from"
+    },
+    {
+      "start": 90.03810204081633,
+      "end": 92.91710204081632,
+      "text": "a less trusted place to a more trusted one."
+    },
+    {
+      "start": 93.30110204081632,
+      "end": 96.83010204081631,
+      "text": "A public visitor can enter text; the system must validate"
+    },
+    {
+      "start": 96.86510204081632,
+      "end": 98.40910204081632,
+      "text": "that text before relying on it."
+    },
+    {
+      "start": 98.79210204081632,
+      "end": 101.83410204081632,
+      "text": "A private owner view should require appropriate access."
+    },
+    {
+      "start": 102.27510204081632,
+      "end": 105.18910204081632,
+      "text": "Describe who may read or change each record and whether"
+    },
+    {
+      "start": 105.27010204081633,
+      "end": 106.98910204081632,
+      "text": "any information leaves the system."
+    },
+    {
+      "start": 107.59210204081631,
+      "end": 110.50710204081632,
+      "text": "Do not allow an AI-generated guess to decide who is"
+    },
+    {
+      "start": 110.59910204081632,
+      "end": 112.72410204081632,
+      "text": "authorized or where money and messages go."
+    },
+    {
+      "start": 113.32810204081632,
+      "end": 116.60210204081632,
+      "text": "Those important rules need deterministic checks: rules"
+    },
+    {
+      "start": 116.68310204081632,
+      "end": 119.38810204081632,
+      "text": "implemented so the same permitted input produces the"
+    },
+    {
+      "start": 119.43410204081633,
+      "end": 120.38610204081633,
+      "text": "expected result."
+    },
+    {
+      "start": 120.69459183673469,
+      "end": 123.80559183673469,
+      "text": "Suppose the visitor presses submit twice because the"
+    },
+    {
+      "start": 123.86359183673468,
+      "end": 124.8505918367347,
+      "text": "network was slow."
+    },
+    {
+      "start": 125.23359183673469,
+      "end": 128.5315918367347,
+      "text": "Without a design for duplicates, the owner may receive two"
+    },
+    {
+      "start": 128.6235918367347,
+      "end": 129.1815918367347,
+      "text": "records."
+    },
+    {
+      "start": 129.6225918367347,
+      "end": 132.9425918367347,
+      "text": "Idempotency means repeating the same operation safely"
+    },
+    {
+      "start": 133.26759183673468,
+      "end": 135.43959183673468,
+      "text": "without duplicating its intended effect."
+    },
+    {
+      "start": 135.88059183673468,
+      "end": 137.99359183673468,
+      "text": "There are different ways to achieve it, and the right"
+    },
+    {
+      "start": 138.01659183673468,
+      "end": 139.4685918367347,
+      "text": "approach depends on the system."
+    },
+    {
+      "start": 139.85159183673468,
+      "end": 142.8115918367347,
+      "text": "The architecture should name the problem, the proposed"
+    },
+    {
+      "start": 142.8585918367347,
+      "end": 146.37559183673469,
+      "text": "identity or retry rule, and how the system reconciles an"
+    },
+    {
+      "start": 146.49259183673468,
+      "end": 149.3485918367347,
+      "text": "uncertain result before doing the operation again."
+    },
+    {
+      "start": 149.66438775510204,
+      "end": 153.10038775510205,
+      "text": "A useful beginner architecture includes a simple diagram,"
+    },
+    {
+      "start": 153.42538775510204,
+      "end": 157.54738775510205,
+      "text": "component responsibilities, data flow, source of truth,"
+    },
+    {
+      "start": 157.72138775510206,
+      "end": 161.85438775510204,
+      "text": "user permissions, external integrations, failure behavior,"
+    },
+    {
+      "start": 161.94738775510206,
+      "end": 163.64238775510205,
+      "text": "and an operator recovery path."
+    },
+    {
+      "start": 164.15338775510205,
+      "end": 166.13838775510203,
+      "text": "It also notes important alternatives."
+    },
+    {
+      "start": 166.57938775510203,
+      "end": 169.43538775510206,
+      "text": "You do not need to select every framework to understand"
+    },
+    {
+      "start": 169.48238775510205,
+      "end": 170.22538775510205,
+      "text": "the design."
+    },
+    {
+      "start": 170.73638775510204,
+      "end": 173.75438775510204,
+      "text": "Ask the agent to explain the diagram in everyday language,"
+    },
+    {
+      "start": 174.07938775510203,
+      "end": 177.65538775510205,
+      "text": "then trace one successful inquiry and one failed inquiry"
+    },
+    {
+      "start": 177.70238775510205,
+      "end": 178.17838775510205,
+      "text": "through it."
+    },
+    {
+      "start": 178.68938775510205,
+      "end": 181.98638775510204,
+      "text": "If the explanation contradicts the agreed journey, fix the"
+    },
+    {
+      "start": 182.04438775510204,
+      "end": 184.26138775510205,
+      "text": "design before turning it into a build contract."
+    },
+    {
+      "start": 184.59010204081633,
+      "end": 187.34110204081634,
+      "text": "Draw the organizer and owner outside the system boundary."
+    },
+    {
+      "start": 187.66610204081633,
+      "end": 191.92710204081635,
+      "text": "Inside it, draw a public form, validation service, inquiry"
+    },
+    {
+      "start": 191.98510204081634,
+      "end": 193.95910204081633,
+      "text": "store, and private owner view."
+    },
+    {
+      "start": 194.56310204081635,
+      "end": 197.57010204081632,
+      "text": "Label an arrow from the form to validation \"submitted"
+    },
+    {
+      "start": 197.61610204081634,
+      "end": 201.20310204081633,
+      "text": "fields,\" and an arrow to the store \"validated inquiry.\""
+    },
+    {
+      "start": 201.64510204081634,
+      "end": 205.01110204081633,
+      "text": "The store returns a saved identifier, which lets the form"
+    },
+    {
+      "start": 205.08110204081635,
+      "end": 206.39310204081633,
+      "text": "show a real confirmation."
+    },
+    {
+      "start": 206.71810204081635,
+      "end": 209.36510204081634,
+      "text": "The private view reads that record and can request an"
+    },
+    {
+      "start": 209.41210204081634,
+      "end": 210.58410204081633,
+      "text": "allowed status change."
+    },
+    {
+      "start": 211.02510204081634,
+      "end": 214.47410204081635,
+      "text": "A text description alongside the diagram makes the same"
+    },
+    {
+      "start": 214.50810204081634,
+      "end": 216.32010204081632,
+      "text": "information available to a screen reader."
+    },
+    {
+      "start": 216.60110204081633,
+      "end": 218.30810204081632,
+      "text": "Now imagine the store is unavailable."
+    },
+    {
+      "start": 218.69110204081633,
+      "end": 221.09510204081633,
+      "text": "The validation service cannot truthfully report a"
+    },
+    {
+      "start": 221.15310204081635,
+      "end": 222.15110204081634,
+      "text": "successful save."
+    },
+    {
+      "start": 222.59210204081634,
+      "end": 224.81010204081633,
+      "text": "It returns a failure the form can display."
+    },
+    {
+      "start": 225.25110204081633,
+      "end": 227.97910204081634,
+      "text": "The visitor sees an explanation and an appropriate next"
+    },
+    {
+      "start": 228.00210204081634,
+      "end": 231.57910204081634,
+      "text": "step; the owner sees an operator diagnostic that avoids"
+    },
+    {
+      "start": 231.61310204081633,
+      "end": 233.50610204081633,
+      "text": "exposing the visitor's private details."
+    },
+    {
+      "start": 233.94710204081633,
+      "end": 237.12810204081634,
+      "text": "Once storage returns, the visitor can retry under the"
+    },
+    {
+      "start": 237.18610204081634,
+      "end": 238.83510204081634,
+      "text": "agreed duplicate-handling rule."
+    },
+    {
+      "start": 239.43910204081635,
+      "end": 242.44610204081633,
+      "text": "Drawing this path reveals a design need that a diagram of"
+    },
+    {
+      "start": 242.51510204081634,
+      "end": 244.18710204081634,
+      "text": "only successful arrows would miss."
+    },
+    {
+      "start": 244.5118775510204,
+      "end": 246.5788775510204,
+      "text": "Who is allowed to mark an inquiry handled?"
+    },
+    {
+      "start": 247.01987755102041,
+      "end": 249.6548775510204,
+      "text": "The private view should not infer permission merely"
+    },
+    {
+      "start": 249.7018775510204,
+      "end": 251.7448775510204,
+      "text": "because someone knows a record identifier."
+    },
+    {
+      "start": 252.12787755102042,
+      "end": 255.7388775510204,
+      "text": "An access mechanism should verify the user's identity and"
+    },
+    {
+      "start": 255.7968775510204,
+      "end": 257.93387755102043,
+      "text": "check the operation against trusted rules."
+    },
+    {
+      "start": 258.4438775510204,
+      "end": 261.14987755102044,
+      "text": "Keep the decision as a concrete responsibility in the"
+    },
+    {
+      "start": 261.19587755102043,
+      "end": 261.9158775510204,
+      "text": "architecture."
+    },
+    {
+      "start": 262.35687755102043,
+      "end": 265.82787755102044,
+      "text": "The exact identity provider can remain undecided until the"
+    },
+    {
+      "start": 265.8748775510204,
+      "end": 268.4638775510204,
+      "text": "project is ready to choose it; the need for an"
+    },
+    {
+      "start": 268.5328775510204,
+      "end": 271.01787755102043,
+      "text": "authorization boundary does not have to wait for a brand"
+    },
+    {
+      "start": 271.0758775510204,
+      "end": 271.4478775510204,
+      "text": "name."
+    },
+    {
+      "start": 271.7575918367347,
+      "end": 274.59059183673475,
+      "text": "The owner may want a count of new inquiries and a detail"
+    },
+    {
+      "start": 274.63659183673474,
+      "end": 274.99659183673475,
+      "text": "view."
+    },
+    {
+      "start": 275.5075918367347,
+      "end": 278.65359183673473,
+      "text": "These are two views of one authoritative record, not"
+    },
+    {
+      "start": 278.7005918367347,
+      "end": 281.03359183673473,
+      "text": "independent systems that each decide the status."
+    },
+    {
+      "start": 281.47559183673474,
+      "end": 285.1205918367347,
+      "text": "If a count is cached, explain how it is refreshed and what"
+    },
+    {
+      "start": 285.1785918367347,
+      "end": 286.43259183673473,
+      "text": "happens if it is stale."
+    },
+    {
+      "start": 286.8735918367347,
+      "end": 290.05459183673474,
+      "text": "A source of truth simplifies disagreements: when the count"
+    },
+    {
+      "start": 290.11259183673474,
+      "end": 293.2595918367347,
+      "text": "and detail view differ, the design says which record"
+    },
+    {
+      "start": 293.3055918367347,
+      "end": 295.2795918367347,
+      "text": "governs and how to repair the summary."
+    },
+    {
+      "start": 295.72059183673474,
+      "end": 298.11259183673474,
+      "text": "It also helps tests target the right behavior."
+    },
+    {
+      "start": 298.4317346938776,
+      "end": 302.58773469387756,
+      "text": "Imagine a user clicks submit twice or a response is lost"
+    },
+    {
+      "start": 302.6457346938776,
+      "end": 304.0857346938776,
+      "text": "after the server saves the record."
+    },
+    {
+      "start": 304.4687346938776,
+      "end": 307.02273469387757,
+      "text": "The client may not know whether a retry will create a"
+    },
+    {
+      "start": 307.0697346938776,
+      "end": 307.6267346938776,
+      "text": "duplicate."
+    },
+    {
+      "start": 308.0677346938776,
+      "end": 311.7717346938776,
+      "text": "The design can use an operation identifier, a uniqueness"
+    },
+    {
+      "start": 311.8407346938776,
+      "end": 315.26573469387756,
+      "text": "rule, or another suitable method; the correct choice"
+    },
+    {
+      "start": 315.3007346938776,
+      "end": 317.0887346938776,
+      "text": "depends on the existing system."
+    },
+    {
+      "start": 317.59973469387756,
+      "end": 320.9427346938776,
+      "text": "Document the intended effect and how an uncertain outcome"
+    },
+    {
+      "start": 320.9657346938776,
+      "end": 321.9527346938776,
+      "text": "will be reconciled."
+    },
+    {
+      "start": 322.4637346938776,
+      "end": 326.1327346938776,
+      "text": "\"Just retry\" is not enough when an operation can send a"
+    },
+    {
+      "start": 326.2027346938776,
+      "end": 329.6157346938776,
+      "text": "message, charge money, or create a duplicate record."
+    },
+    {
+      "start": 329.8570408163266,
+      "end": 332.1440408163266,
+      "text": "Ask a beginner to follow the arrows and explain what"
+    },
+    {
+      "start": 332.1900408163266,
+      "end": 334.23404081632657,
+      "text": "happens from submission to confirmation."
+    },
+    {
+      "start": 334.6750408163266,
+      "end": 337.5540408163266,
+      "text": "Then ask where access is checked and what happens if"
+    },
+    {
+      "start": 337.6010408163266,
+      "end": 338.4830408163266,
+      "text": "storage fails."
+    },
+    {
+      "start": 338.92404081632657,
+      "end": 341.9430408163266,
+      "text": "If the answers cannot be found, add a clear label or note."
+    },
+    {
+      "start": 342.3260408163266,
+      "end": 345.9020408163266,
+      "text": "The exercise does not require complex diagrams or a"
+    },
+    {
+      "start": 345.96004081632657,
+      "end": 347.4580408163266,
+      "text": "particular drawing application."
+    },
+    {
+      "start": 347.8990408163266,
+      "end": 351.5450408163266,
+      "text": "A few boxes, arrows, and a plain-language description can"
+    },
+    {
+      "start": 351.5910408163266,
+      "end": 354.7720408163266,
+      "text": "be a better design conversation than a crowded chart full"
+    },
+    {
+      "start": 354.8190408163266,
+      "end": 356.6300408163266,
+      "text": "of unexplained technology names."
+    },
+    {
+      "start": 356.90789795918374,
+      "end": 359.6368979591837,
+      "text": "Once the responsibilities and paths are understandable,"
+    },
+    {
+      "start": 360.0778979591837,
+      "end": 363.2938979591837,
+      "text": "the build specification can define the exact behavior at"
+    },
+    {
+      "start": 363.3398979591837,
+      "end": 363.9788979591837,
+      "text": "each point."
+    },
+    {
+      "start": 364.3618979591837,
+      "end": 368.7498979591837,
+      "text": "The diagram may say \"validate inquiry\"; the spec explains"
+    },
+    {
+      "start": 368.8778979591837,
+      "end": 372.60489795918375,
+      "text": "which fields are required, what error appears, and whether"
+    },
+    {
+      "start": 372.66289795918374,
+      "end": 374.4278979591837,
+      "text": "a failed submission creates a record."
+    },
+    {
+      "start": 375.03089795918373,
+      "end": 376.2968979591837,
+      "text": "Keep the two consistent."
+    },
+    {
+      "start": 376.67989795918373,
+      "end": 379.9768979591837,
+      "text": "If the specification reveals an unaddressed failure path,"
+    },
+    {
+      "start": 380.6738979591837,
+      "end": 382.06689795918373,
+      "text": "revise the architecture."
+    },
+    {
+      "start": 382.76389795918374,
+      "end": 385.4108979591837,
+      "text": "Architecture is a working model that helps people make"
+    },
+    {
+      "start": 385.4458979591837,
+      "end": 388.61489795918374,
+      "text": "decisions, and it can evolve as long as changes are"
+    },
+    {
+      "start": 388.6618979591837,
+      "end": 390.7508979591837,
+      "text": "recorded and agreed at the appropriate level."
+    }
+  ]
+}
