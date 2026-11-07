@@ -1,38 +1,322 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>05 · Documents with distinct jobs | Cloud to Code</title><style>:root{color-scheme:dark;--bg:#08121d;--panel:#102330;--text:#eef4f4;--muted:#b5c6c9;--cyan:#6be4d6;--amber:#ffc779}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#183339 0,transparent 33rem),var(--bg);color:var(--text);font:17px/1.75 system-ui,-apple-system,sans-serif}main{width:min(850px,calc(100% - 40px));margin:0 auto;padding:54px 0 90px}a{color:var(--cyan)}a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:4px}h1,h2,h3{line-height:1.16}h1{font:500 clamp(3rem,8vw,5rem)/1.02 Georgia,serif;letter-spacing:-.04em;margin:15px 0 25px}h2{font:500 2.2rem/1.1 Georgia,serif;margin:54px 0 18px}h3{font-size:1.15rem;margin:28px 0 10px}.eyebrow{color:var(--cyan);font:700 .75rem/1.4 monospace;letter-spacing:.13em;text-transform:uppercase}.lede{font-size:1.2rem;color:var(--muted)}.card,aside,details{border:1px solid #34505a;border-radius:18px;padding:22px 25px;background:#102330;margin:22px 0}aside{border-color:#805f37;background:#2b241b}p,li{max-width:72ch}li+li{margin-top:.45em}strong{color:#fff}summary{cursor:pointer;font-weight:700;color:var(--cyan)}.meta{color:var(--muted)}.script p{margin:0 0 1.1em}footer{border-top:1px solid #34505a;margin-top:60px;padding-top:20px;color:var(--muted)}</style></head><body><main>
-<nav aria-label="Course navigation"><a href="../index.html">← Course overview</a></nav>
-<p class="eyebrow">Lesson 05 · Cloud to Code</p><h1>Documents with distinct jobs.</h1><p class="lede">Choose the right document for decisions, design, work, proof, and continuity.</p>
-<section class="card" aria-labelledby="watch"><h2 id="watch">Watch the lesson</h2><video controls playsinline preload="metadata" style="display:block;width:100%;height:auto;border-radius:10px"><source src="../productions/05/lesson-05.mp4" type="video/mp4"><track src="../productions/05/captions.vtt" kind="captions" srclang="en" label="English" default>Your browser cannot play this video. <a href="../productions/05/lesson-05.mp4">Download the video</a>.</video><p><a href="../productions/05/presentation.html">Open the interactive HTML presentation →</a> &nbsp;·&nbsp; <a href="../productions/05/transcript.md">Read the transcript</a></p></section>
-<section class="card" aria-labelledby="objectives"><h2 id="objectives">What you’ll learn</h2><p>Choose the right document for decisions, design, work, proof, and continuity.</p><p class="meta">Prerequisite: previous lessons. Practice: 15–20 minutes.</p></section>
-<section aria-labelledby="plan"><h2 id="plan">Lesson plan</h2><ol><li>One project, several questions</li><li>Architecture, specification, and plan</li><li>Execution memory</li><li>Understand authority</li><li>Avoid a paper maze</li><li>Walk the example</li></ol></section>
-<article class="script" id="lecture-script" aria-labelledby="lecture"><h2 id="lecture">Lecture script</h2><h3>One project, several questions</h3>
-<p>Documentation works best when each document answers a clear question. A README is the front door: what is this project and where do I start? Session instructions, often named AGENTS.md, explain applicable working rules. A decision ledger says which important choices were made and why. An architecture document explains how parts fit together. A workflow document explains behavior over time, including failure. These documents serve different readers and should not silently contradict one another.</p>
-<h3>Architecture, specification, and plan</h3>
-<p>The architecture shows responsibility and structure. The build specification states exactly what behavior must be delivered, including validation, boundaries, and acceptance criteria. The build plan arranges work into an order: what depends on what, who owns each part, and how completion will be checked. For our tracker, the architecture says a service validates and stores an inquiry. The spec defines the required fields and what the user sees on error. The plan says which part to implement and verify first.</p>
-<h3>Execution memory</h3>
-<p>A progress log tells us what happened recently, what is underway, and what comes next. A changelog records meaningful changes over time. An evidence record captures what was actually checked, with the version and result. A runbook explains how to operate, inspect, and recover the system. A handoff is a concise restart point: the current state, known gaps, important decisions, exact blockers, and next safe action. A log is not proof by itself unless it points to appropriate evidence.</p>
-<h3>Understand authority</h3>
-<p>Documents have different authority. A more recent, explicitly approved narrow specification can supersede an older requirement where they conflict; other older requirements may still apply. A progress report can describe what someone believes is done, but it cannot turn an untested feature into verified behavior. A kickoff can authorize an agent to act within its stated scope. When instructions conflict, ask the agent to identify the actual source and the precise conflict rather than quietly choose whichever text is convenient.</p>
-<h3>Avoid a paper maze</h3>
-<p>Not every tiny project needs a separate file for every concept. The important part is that an agent can find the decisions, scope, tests, operational steps, and current state. A small project might combine sections; a larger one may separate them. Use the simplest organization that keeps responsibilities clear. A naming convention helps, but a filename does not guarantee that a document is current or authoritative. Read its content and date.</p>
-<h3>Walk the example</h3>
-<p>Imagine the tracker changes from three statuses to two. Update the relevant decision and spec, implement the change when authorized, record what changed in the changelog, record test results in evidence, and refresh progress and handoff. The architecture may not need to change if component responsibilities remain the same. This is why each document has one job: we can update the places whose truth actually changed without rewriting every page.</p>
-<h3>The smallest useful set</h3>
-<p>A tiny project might start with a README, a decisions section, a combined architecture and specification, a plan, and a handoff. As the project grows, separate documents when readers need different levels of detail or authority. The aim is not to create files for their own sake. Ask whether a new contributor can find the current behavior, the reason behind a decision, what remains to build, and how to verify a change. If those answers are clear, the structure is doing its job.</p>
-<h3>An example of authority</h3>
-<p>Suppose an older build spec says the owner can choose among three inquiry statuses. A later approved narrow spec says to use only New and Handled. The later decision controls that conflict. An older privacy rule that does not conflict can still apply. A helpful agent points to both documents and states exactly which clause changed. It does not discard every older requirement merely because a newer document exists.</p>
-<h3>Progress is not history</h3>
-<p>A progress log may say “validation implementation is underway; failure-path test remains.” A changelog may later say “added validation and clear missing-field errors.” Evidence records the actual check, revision, and result. These entries answer different questions and can refer to one another. They should not claim a deployment or live result until it has actually occurred. Keeping these roles distinct lets a reviewer find the current blocker without reading the entire project history.</p>
-<h3>Use a handoff for continuity</h3>
-<p>At the end of a session, tell the next reader the branch or revision, current work state, authoritative documents, tests run, unverified areas, running services if relevant, and exact next safe step. Mention any uncertain external effect that needs reconciliation. If the previous session ended after a provider request was sent, that uncertainty matters more than a long narrative about how hard the task was. A handoff is a practical starting point, not a congratulatory summary.</p>
-<h3>Trace a changed requirement</h3>
-<p>Imagine the tracker owner changes the required contact method. First record the decision and update the approved specification. Then adapt the plan and implement within the granted scope. Add or update tests for both accepted and rejected inputs. Record the check and revision in evidence, update progress, and mention the material behavior change in the changelog. If the change affects data flow or responsibilities, update the architecture too. If it does not, leave unrelated sections alone.</p>
-<h3>Spot a contradiction</h3>
-<p>If the README says a feature is live while the handoff says deployment is pending, do not pick one sentence because it sounds more confident. Inspect dated evidence and current state where authorized. Report the contradiction and correct the stale description when the task permits. If the evidence is insufficient, label the status unknown. Documents are useful because they make information inspectable; they cannot substitute for the observation they claim to represent.</p>
-<h3>Practice the handoff test</h3>
-<p>Give a partner only your document map and a short project folder. Ask where they would find the original goal, an approved decision, a failed check, and the next safe action. If they cannot answer, the information may be missing, hidden, or duplicated inconsistently. Revise the map and try again. In a real project, a fresh agent can do a similar review, but label that as an agent review rather than claiming a human learner tested the material. The goal is that a newcomer can navigate without your oral explanation.</p></article>
-<section aria-labelledby="exercise"><h2 id="exercise">Try it yourself</h2><p>Create a map with eight entries: README, decisions, architecture, specification, plan, progress, evidence, and handoff. Write one question each answers. Then say where you would record a newly passed test and where you would explain a changed product decision. Finish with a two-sentence handoff that states the current project state and one specific next safe action.</p></section>
-<details><summary>See a completed fictional example</summary><p>Sample map: README: “Where do I start?” Decisions: “Why did we choose form-only?” Architecture: “How do the parts fit?” Spec: “What behavior is required?” Plan: “What happens first?” Progress: “What is underway?” Evidence: “What was checked?” Handoff: “Where can the next person safely continue?” Put a passed test’s command and result in evidence; put the reason for a product change in decisions. Sample handoff: “The form-only spec is agreed; implementation has not started. Next, inspect the current form and record where its submissions go.”</p></details>
-<details><summary>Self-check rubric</summary><p>Check each item and revise anything a fresh reader would have to guess.</p><ul><li>Each document answers a distinct question.</li><li>A decision and its proof are placed in appropriate locations.</li><li>The map distinguishes current progress from history.</li><li>The reader can identify which document governs a proposed behavior.</li><li>The handoff includes a next safe action.</li></ul></details>
-<footer><p><a href="06.html">Next lesson →</a></p><p>Use synthetic examples; actual external actions require appropriate authorization.</p></footer>
-</main></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>05 · Documents with distinct jobs | Cloud to Code</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #08121d;
+        --panel: #102330;
+        --text: #eef4f4;
+        --muted: #b5c6c9;
+        --cyan: #6be4d6;
+        --amber: #ffc779;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top left, #183339 0, transparent 33rem), var(--bg);
+        color: var(--text);
+        font:
+          17px/1.75 system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      main {
+        width: min(850px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 54px 0 90px;
+      }
+      a {
+        color: var(--cyan);
+      }
+      a:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid var(--amber);
+        outline-offset: 4px;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.16;
+      }
+      h1 {
+        font:
+          500 clamp(3rem, 8vw, 5rem)/1.02 Georgia,
+          serif;
+        letter-spacing: -0.04em;
+        margin: 15px 0 25px;
+      }
+      h2 {
+        font:
+          500 2.2rem/1.1 Georgia,
+          serif;
+        margin: 54px 0 18px;
+      }
+      h3 {
+        font-size: 1.15rem;
+        margin: 28px 0 10px;
+      }
+      .eyebrow {
+        color: var(--cyan);
+        font: 700 0.75rem/1.4 monospace;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .lede {
+        font-size: 1.2rem;
+        color: var(--muted);
+      }
+      .card,
+      aside,
+      details {
+        border: 1px solid #34505a;
+        border-radius: 18px;
+        padding: 22px 25px;
+        background: #102330;
+        margin: 22px 0;
+      }
+      aside {
+        border-color: #805f37;
+        background: #2b241b;
+      }
+      p,
+      li {
+        max-width: 72ch;
+      }
+      li + li {
+        margin-top: 0.45em;
+      }
+      strong {
+        color: #fff;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--cyan);
+      }
+      .meta {
+        color: var(--muted);
+      }
+      .script p {
+        margin: 0 0 1.1em;
+      }
+      footer {
+        border-top: 1px solid #34505a;
+        margin-top: 60px;
+        padding-top: 20px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav aria-label="Course navigation"><a href="../index.html">← Course overview</a></nav>
+      <p class="eyebrow">Lesson 05 · Cloud to Code</p>
+      <h1>Documents with distinct jobs.</h1>
+      <p class="lede">
+        Choose the right document for decisions, design, work, proof, and continuity.
+      </p>
+      <section class="card" aria-labelledby="watch">
+        <h2 id="watch">Watch the lesson</h2>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="../productions/05/poster.png"
+          style="display: block; width: 100%; height: auto; border-radius: 10px"
+        >
+          <source src="../productions/05/lesson-05.mp4" type="video/mp4" />
+          <track
+            src="../productions/05/captions.vtt"
+            kind="captions"
+            srclang="en"
+            label="English"
+            default
+          />
+          Your browser cannot play this video.
+          <a href="../productions/05/lesson-05.mp4">Download the video</a>.
+        </video>
+        <p>
+          <a href="../productions/05/presentation.html">Open the interactive HTML presentation →</a>
+          &nbsp;·&nbsp; <a href="../productions/05/transcript.md">Read the transcript</a>
+        </p>
+      </section>
+      <section class="card" aria-labelledby="objectives">
+        <h2 id="objectives">What you’ll learn</h2>
+        <p>Choose the right document for decisions, design, work, proof, and continuity.</p>
+        <p class="meta">Prerequisite: previous lessons. Practice: 15–20 minutes.</p>
+      </section>
+      <section aria-labelledby="plan">
+        <h2 id="plan">Lesson plan</h2>
+        <ol>
+          <li>One project, several questions</li>
+          <li>Architecture, specification, and plan</li>
+          <li>Execution memory</li>
+          <li>Understand authority</li>
+          <li>Avoid a paper maze</li>
+          <li>Walk the example</li>
+        </ol>
+      </section>
+      <article class="script" id="lecture-script" aria-labelledby="lecture">
+        <h2 id="lecture">Lecture script</h2>
+        <h3>One project, several questions</h3>
+        <p>
+          Documentation works best when each document answers a clear question. A README is the
+          front door: what is this project and where do I start? Session instructions, often named
+          AGENTS.md, explain applicable working rules. A decision ledger says which important
+          choices were made and why. An architecture document explains how parts fit together. A
+          workflow document explains behavior over time, including failure. These documents serve
+          different readers and should not silently contradict one another.
+        </p>
+        <h3>Architecture, specification, and plan</h3>
+        <p>
+          The architecture shows responsibility and structure. The build specification states
+          exactly what behavior must be delivered, including validation, boundaries, and acceptance
+          criteria. The build plan arranges work into an order: what depends on what, who owns each
+          part, and how completion will be checked. For our tracker, the architecture says a service
+          validates and stores an inquiry. The spec defines the required fields and what the user
+          sees on error. The plan says which part to implement and verify first.
+        </p>
+        <h3>Execution memory</h3>
+        <p>
+          A progress log tells us what happened recently, what is underway, and what comes next. A
+          changelog records meaningful changes over time. An evidence record captures what was
+          actually checked, with the version and result. A runbook explains how to operate, inspect,
+          and recover the system. A handoff is a concise restart point: the current state, known
+          gaps, important decisions, exact blockers, and next safe action. A log is not proof by
+          itself unless it points to appropriate evidence.
+        </p>
+        <h3>Understand authority</h3>
+        <p>
+          Documents have different authority. A more recent, explicitly approved narrow
+          specification can supersede an older requirement where they conflict; other older
+          requirements may still apply. A progress report can describe what someone believes is
+          done, but it cannot turn an untested feature into verified behavior. A kickoff can
+          authorize an agent to act within its stated scope. When instructions conflict, ask the
+          agent to identify the actual source and the precise conflict rather than quietly choose
+          whichever text is convenient.
+        </p>
+        <h3>Avoid a paper maze</h3>
+        <p>
+          Not every tiny project needs a separate file for every concept. The important part is that
+          an agent can find the decisions, scope, tests, operational steps, and current state. A
+          small project might combine sections; a larger one may separate them. Use the simplest
+          organization that keeps responsibilities clear. A naming convention helps, but a filename
+          does not guarantee that a document is current or authoritative. Read its content and date.
+        </p>
+        <h3>Walk the example</h3>
+        <p>
+          Imagine the tracker changes from three statuses to two. Update the relevant decision and
+          spec, implement the change when authorized, record what changed in the changelog, record
+          test results in evidence, and refresh progress and handoff. The architecture may not need
+          to change if component responsibilities remain the same. This is why each document has one
+          job: we can update the places whose truth actually changed without rewriting every page.
+        </p>
+        <h3>The smallest useful set</h3>
+        <p>
+          A tiny project might start with a README, a decisions section, a combined architecture and
+          specification, a plan, and a handoff. As the project grows, separate documents when
+          readers need different levels of detail or authority. The aim is not to create files for
+          their own sake. Ask whether a new contributor can find the current behavior, the reason
+          behind a decision, what remains to build, and how to verify a change. If those answers are
+          clear, the structure is doing its job.
+        </p>
+        <h3>An example of authority</h3>
+        <p>
+          Suppose an older build spec says the owner can choose among three inquiry statuses. A
+          later approved narrow spec says to use only New and Handled. The later decision controls
+          that conflict. An older privacy rule that does not conflict can still apply. A helpful
+          agent points to both documents and states exactly which clause changed. It does not
+          discard every older requirement merely because a newer document exists.
+        </p>
+        <h3>Progress is not history</h3>
+        <p>
+          A progress log may say “validation implementation is underway; failure-path test remains.”
+          A changelog may later say “added validation and clear missing-field errors.” Evidence
+          records the actual check, revision, and result. These entries answer different questions
+          and can refer to one another. They should not claim a deployment or live result until it
+          has actually occurred. Keeping these roles distinct lets a reviewer find the current
+          blocker without reading the entire project history.
+        </p>
+        <h3>Use a handoff for continuity</h3>
+        <p>
+          At the end of a session, tell the next reader the branch or revision, current work state,
+          authoritative documents, tests run, unverified areas, running services if relevant, and
+          exact next safe step. Mention any uncertain external effect that needs reconciliation. If
+          the previous session ended after a provider request was sent, that uncertainty matters
+          more than a long narrative about how hard the task was. A handoff is a practical starting
+          point, not a congratulatory summary.
+        </p>
+        <h3>Trace a changed requirement</h3>
+        <p>
+          Imagine the tracker owner changes the required contact method. First record the decision
+          and update the approved specification. Then adapt the plan and implement within the
+          granted scope. Add or update tests for both accepted and rejected inputs. Record the check
+          and revision in evidence, update progress, and mention the material behavior change in the
+          changelog. If the change affects data flow or responsibilities, update the architecture
+          too. If it does not, leave unrelated sections alone.
+        </p>
+        <h3>Spot a contradiction</h3>
+        <p>
+          If the README says a feature is live while the handoff says deployment is pending, do not
+          pick one sentence because it sounds more confident. Inspect dated evidence and current
+          state where authorized. Report the contradiction and correct the stale description when
+          the task permits. If the evidence is insufficient, label the status unknown. Documents are
+          useful because they make information inspectable; they cannot substitute for the
+          observation they claim to represent.
+        </p>
+        <h3>Practice the handoff test</h3>
+        <p>
+          Give a partner only your document map and a short project folder. Ask where they would
+          find the original goal, an approved decision, a failed check, and the next safe action. If
+          they cannot answer, the information may be missing, hidden, or duplicated inconsistently.
+          Revise the map and try again. In a real project, a fresh agent can do a similar review,
+          but label that as an agent review rather than claiming a human learner tested the
+          material. The goal is that a newcomer can navigate without your oral explanation.
+        </p>
+      </article>
+      <section aria-labelledby="exercise">
+        <h2 id="exercise">Try it yourself</h2>
+        <p>
+          Create a map with eight entries: README, decisions, architecture, specification, plan,
+          progress, evidence, and handoff. Write one question each answers. Then say where you would
+          record a newly passed test and where you would explain a changed product decision. Finish
+          with a two-sentence handoff that states the current project state and one specific next
+          safe action.
+        </p>
+      </section>
+      <details>
+        <summary>See a completed fictional example</summary>
+        <p>
+          Sample map: README: “Where do I start?” Decisions: “Why did we choose form-only?”
+          Architecture: “How do the parts fit?” Spec: “What behavior is required?” Plan: “What
+          happens first?” Progress: “What is underway?” Evidence: “What was checked?” Handoff:
+          “Where can the next person safely continue?” Put a passed test’s command and result in
+          evidence; put the reason for a product change in decisions. Sample handoff: “The form-only
+          spec is agreed; implementation has not started. Next, inspect the current form and record
+          where its submissions go.”
+        </p>
+      </details>
+      <details>
+        <summary>Self-check rubric</summary>
+        <p>Check each item and revise anything a fresh reader would have to guess.</p>
+        <ul>
+          <li>Each document answers a distinct question.</li>
+          <li>A decision and its proof are placed in appropriate locations.</li>
+          <li>The map distinguishes current progress from history.</li>
+          <li>The reader can identify which document governs a proposed behavior.</li>
+          <li>The handoff includes a next safe action.</li>
+        </ul>
+      </details>
+      <footer>
+        <p><a href="06.html">Next lesson →</a></p>
+        <p>Use synthetic examples; actual external actions require appropriate authorization.</p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -17,6 +17,7 @@ The approved visual style is implemented as one deterministic HTML timeline for 
 Run from the Social Media Manager directory with the existing Node/Playwright/Chromium installation and local FFmpeg/FFprobe:
 
 ```sh
+node ../../node_modules/vitest/vitest.mjs run course/motion/lib/pipeline.test.mjs
 node course/motion/build-course.cjs --help
 node course/motion/build-course.cjs prepare --all --json
 node course/motion/build-presentations.cjs --all --json

@@ -4,6 +4,7 @@
  * Rendering uses retained audio, HTML scene source, FFmpeg, and the project's Playwright installation.
  */
 'use strict';
+/* eslint @typescript-eslint/no-require-imports: "off" -- This retained production CLI is CommonJS, matching its .cjs extension and Node runtime. */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -56,7 +57,7 @@ function prepare(scenes) {
     .replaceAll('THE WHOLE SYSTEM', lessonTitle.toUpperCase())
     .replaceAll('../lessons/01.html', `../../lessons/${lesson}.html`);
   fs.writeFileSync(file('presentation.html'), html);
-  fs.writeFileSync(file('scene-data.js'), `window.PILOT_SCENES = ${JSON.stringify(scenes.map(({ spoken, ...rest }) => rest), null, 2)};\n`);
+  fs.writeFileSync(file('scene-data.js'), `window.PILOT_SCENES = ${JSON.stringify(scenes.map(({ id, title, visual, points }) => ({ id, title, visual, points })), null, 2)};\n`);
   fs.writeFileSync(file('transcript.md'), `# Lesson ${Number(lesson)} transcript: ${lessonTitle}\n\n${scenes.map((s) => `## ${s.title}\n\n${s.spoken}`).join('\n\n')}\n`);
   console.log(`Prepared lesson ${lesson}: ${scenes.length} scenes, ${scenes.reduce((n, s) => n + s.spoken.length, 0)} narration characters.`);
 }

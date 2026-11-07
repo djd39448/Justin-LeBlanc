@@ -2,6 +2,7 @@
 /* Generate this pilot from the canonical Lesson 1 script and retained audio.
    Synthesis uses existing FAL_KEY. A failed/uncertain request is never retried automatically.
    Rendering is local and repeatable using retained audio and the HTML presentation. */
+/* eslint @typescript-eslint/no-require-imports: "off" -- This retained production CLI is CommonJS, matching its .cjs extension and Node runtime. */
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -61,7 +62,7 @@ function alignWords(chunks) {
 }
 function vttCues(words) { let result=[],group=[]; const flush=()=>{if(group.length){result.push({start:group[0].start,end:group[group.length-1].end,text:group.map(x=>x.text).join(' ')});group=[];}}; for(const w of words){if(group.length && (group.map(x=>x.text).join(' ').length+w.text.length+1>58 || w.end-group[0].start>5)) flush();group.push(w);if(/[.!?]$/.test(w.text))flush();}flush();return result; }
 function asVtt(cues) { return `WEBVTT\n\n${cues.map(c=>`${timestamp(c.start)} --> ${timestamp(Math.max(c.end,c.start+.2))}\n${c.text}\n`).join('\n')}`; }
-function writePresentationData(scenes) { fs.writeFileSync(path.join(root,'scene-data.js'),`window.PILOT_SCENES = ${JSON.stringify(scenes.map(({spoken,...rest})=>rest),null,2)};\n`); fs.writeFileSync(path.join(root,'transcript.md'),`# Lesson 1 transcript: The whole system\n\n${scenes.map(s=>`## ${s.title}\n\n${s.spoken}`).join('\n\n')}\n`); }
+function writePresentationData(scenes) { fs.writeFileSync(path.join(root,'scene-data.js'),`window.PILOT_SCENES = ${JSON.stringify(scenes.map(({id,title,visual,points})=>({id,title,visual,points})),null,2)};\n`); fs.writeFileSync(path.join(root,'transcript.md'),`# Lesson 1 transcript: The whole system\n\n${scenes.map(s=>`## ${s.title}\n\n${s.spoken}`).join('\n\n')}\n`); }
 function getKey() {
   if(process.env.FAL_KEY) return process.env.FAL_KEY;
   const envPath=path.join(process.env.HOME,'ShortFactoryClaude','.env');

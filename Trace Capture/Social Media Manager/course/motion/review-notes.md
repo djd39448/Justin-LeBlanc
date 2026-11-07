@@ -27,3 +27,7 @@ The renderer checks stable reading holds and seeking back to the same timestamp.
 An independent source/file pass also checked 21 HTML pages, 217 local references, all 130 lecture-to-alignment hashes, cue bounds, and all 507 original source fingerprints; all passed. Source lint/format checks and the repository secret scan passed.
 
 See `rollout-evidence.json` and each lesson’s `render-report.json` for measured results. These checks do not claim a human watched every minute, verified every caption, or tested comprehension with beginners.
+
+## Repository-wide checks
+
+The course’s nine regression tests now run under the repository’s Vitest runner and pass. Older supporting-course lint issues were corrected without running synthesis or historical rendering. Repository-wide ESLint and TypeScript checks pass. The broader test run reports 164 passes and six failures in unchanged `tests/booking.test.ts`: its October 1/2, 2026 consultation fixtures are now in the past, so the booking service rejects them. This belongs to the separate Justin booking application and was not changed for the course rollout. Do not describe the full repository verification as green.

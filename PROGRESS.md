@@ -1,5 +1,15 @@
 # Progress
 
+## 2026-11-07 — local course animation rollout
+
+Dave approved the animated visual style and all ten course presentations/videos are updated,
+with all 130 Brian narration clips preserved. This is the separate local course in
+`Trace Capture/Social Media Manager/course/`; no Justin runtime, website deployment, or
+external integration was changed. See [course handoff](<Trace Capture/Social Media Manager/course/HANDOFF.md>)
+and [rollout evidence](<Trace Capture/Social Media Manager/course/motion/rollout-evidence.json>).
+Course regression tests and media checks pass. Repository lint, type checking, and build pass;
+six unchanged booking tests fail because their October 2026 consultation dates are now past.
+
 ## Round-three inquiry release — live
 
 Main/runtime SHA `5674a2fe63a384ff833db956d18a0db81d43f669` is live. Exact Windows `npm ci`,

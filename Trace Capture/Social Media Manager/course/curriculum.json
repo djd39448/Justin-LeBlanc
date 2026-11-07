@@ -18,9 +18,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/01.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "pilot approved 2026-11-07",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -29,13 +29,19 @@
         "exercise": "lessons/01.html#exercise",
         "workedExampleAndRubric": "lessons/01.html",
         "lessonTextSources": ["lessons/01.html"],
-        "sceneSource": "pilot/build-pilot.cjs",
+        "sceneSource": "motion/storyboards/01.json",
         "presentation": "pilot/presentation.html",
         "video": "pilot/lesson-01.mp4",
         "captions": "pilot/captions.vtt",
         "transcript": "pilot/transcript.md",
         "cues": "pilot/cues.json",
-        "durationSeconds": 433.365,
+        "storyboard": "motion/storyboards/01.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "pilot/timing.json",
+        "renderEvidence": "pilot/render-report.json",
+        "poster": "pilot/poster.png",
+        "durationSeconds": 433.167,
         "sceneCount": 13
       }
     },
@@ -49,9 +55,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/02.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -64,13 +70,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/02.json",
         "presentation": "productions/02/presentation.html",
         "video": "productions/02/lesson-02.mp4",
         "captions": "productions/02/captions.vtt",
         "transcript": "productions/02/transcript.md",
         "cues": "productions/02/cues.json",
-        "durationSeconds": 421.715,
+        "storyboard": "motion/storyboards/02.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/02/timing.json",
+        "renderEvidence": "productions/02/render-report.json",
+        "poster": "productions/02/poster.png",
+        "durationSeconds": 421.5,
         "sceneCount": 13
       }
     },
@@ -84,9 +96,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/03.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -99,13 +111,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/03.json",
         "presentation": "productions/03/presentation.html",
         "video": "productions/03/lesson-03.mp4",
         "captions": "productions/03/captions.vtt",
         "transcript": "productions/03/transcript.md",
         "cues": "productions/03/cues.json",
-        "durationSeconds": 414.818,
+        "storyboard": "motion/storyboards/03.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/03/timing.json",
+        "renderEvidence": "productions/03/render-report.json",
+        "poster": "productions/03/poster.png",
+        "durationSeconds": 414.733,
         "sceneCount": 13
       }
     },
@@ -119,9 +137,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/04.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -134,13 +152,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/04.json",
         "presentation": "productions/04/presentation.html",
         "video": "productions/04/lesson-04.mp4",
         "captions": "productions/04/captions.vtt",
         "transcript": "productions/04/transcript.md",
         "cues": "productions/04/cues.json",
-        "durationSeconds": 391.148,
+        "storyboard": "motion/storyboards/04.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/04/timing.json",
+        "renderEvidence": "productions/04/render-report.json",
+        "poster": "productions/04/poster.png",
+        "durationSeconds": 391.033,
         "sceneCount": 13
       }
     },
@@ -154,9 +178,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/05.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -169,13 +193,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/05.json",
         "presentation": "productions/05/presentation.html",
         "video": "productions/05/lesson-05.mp4",
         "captions": "productions/05/captions.vtt",
         "transcript": "productions/05/transcript.md",
         "cues": "productions/05/cues.json",
-        "durationSeconds": 396.245,
+        "storyboard": "motion/storyboards/05.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/05/timing.json",
+        "renderEvidence": "productions/05/render-report.json",
+        "poster": "productions/05/poster.png",
+        "durationSeconds": 396.067,
         "sceneCount": 13
       }
     },
@@ -189,9 +219,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/06.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -204,13 +234,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/06.json",
         "presentation": "productions/06/presentation.html",
         "video": "productions/06/lesson-06.mp4",
         "captions": "productions/06/captions.vtt",
         "transcript": "productions/06/transcript.md",
         "cues": "productions/06/cues.json",
-        "durationSeconds": 389.187,
+        "storyboard": "motion/storyboards/06.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/06/timing.json",
+        "renderEvidence": "productions/06/render-report.json",
+        "poster": "productions/06/poster.png",
+        "durationSeconds": 389.067,
         "sceneCount": 13
       }
     },
@@ -224,9 +260,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/07.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -239,13 +275,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/07.json",
         "presentation": "productions/07/presentation.html",
         "video": "productions/07/lesson-07.mp4",
         "captions": "productions/07/captions.vtt",
         "transcript": "productions/07/transcript.md",
         "cues": "productions/07/cues.json",
-        "durationSeconds": 380.589,
+        "storyboard": "motion/storyboards/07.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/07/timing.json",
+        "renderEvidence": "productions/07/render-report.json",
+        "poster": "productions/07/poster.png",
+        "durationSeconds": 380.467,
         "sceneCount": 13
       }
     },
@@ -259,9 +301,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/08.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -274,13 +316,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/08.json",
         "presentation": "productions/08/presentation.html",
         "video": "productions/08/lesson-08.mp4",
         "captions": "productions/08/captions.vtt",
         "transcript": "productions/08/transcript.md",
         "cues": "productions/08/cues.json",
-        "durationSeconds": 415.84,
+        "storyboard": "motion/storyboards/08.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/08/timing.json",
+        "renderEvidence": "productions/08/render-report.json",
+        "poster": "productions/08/poster.png",
+        "durationSeconds": 415.733,
         "sceneCount": 13
       }
     },
@@ -294,9 +342,9 @@
       "estimatedPractice": "15–20 minutes",
       "source": "lessons/09.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -309,13 +357,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/09.json",
         "presentation": "productions/09/presentation.html",
         "video": "productions/09/lesson-09.mp4",
         "captions": "productions/09/captions.vtt",
         "transcript": "productions/09/transcript.md",
         "cues": "productions/09/cues.json",
-        "durationSeconds": 396.314,
+        "storyboard": "motion/storyboards/09.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/09/timing.json",
+        "renderEvidence": "productions/09/render-report.json",
+        "poster": "productions/09/poster.png",
+        "durationSeconds": 396.2,
         "sceneCount": 13
       }
     },
@@ -329,9 +383,9 @@
       "estimatedPractice": "2–4 hours, depending on project and prior work",
       "source": "lessons/10.html",
       "status": {
-        "lesson": "draft; human beginner validation pending",
-        "media": "produced locally; human caption and audio review pending",
-        "ownerReview": "individual lesson review not recorded",
+        "lesson": "course content accepted; human beginner validation pending",
+        "media": "animated HTML and video produced locally; detailed caption review pending",
+        "ownerReview": "course and narration accepted; animated visual style approved 2026-11-07",
         "access": "not protected; host access integration not configured"
       },
       "materials": {
@@ -344,13 +398,19 @@
           "lessons/deep-dives.mjs",
           "lessons/sample-answers.mjs"
         ],
-        "sceneSource": "scene-design/scenes.json",
+        "sceneSource": "motion/storyboards/10.json",
         "presentation": "productions/10/presentation.html",
         "video": "productions/10/lesson-10.mp4",
         "captions": "productions/10/captions.vtt",
         "transcript": "productions/10/transcript.md",
         "cues": "productions/10/cues.json",
-        "durationSeconds": 380.482,
+        "storyboard": "motion/storyboards/10.json",
+        "visualRuntime": "motion/visuals.js",
+        "productionTool": "motion/build-course.cjs",
+        "timing": "productions/10/timing.json",
+        "renderEvidence": "productions/10/render-report.json",
+        "poster": "productions/10/poster.png",
+        "durationSeconds": 380.4,
         "sceneCount": 13
       }
     }

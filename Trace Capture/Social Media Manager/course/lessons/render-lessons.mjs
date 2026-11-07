@@ -1,26 +1,41 @@
 /** Render standalone lesson HTML from the canonical lesson-source.mjs records. */
-import { writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
-import { lessons } from './lesson-source.mjs';
+import { fileURLToPath } from 'node:url';
+
 import { deepDives } from './deep-dives.mjs';
+import { lessons } from './lesson-source.mjs';
 import { sampleAnswers } from './sample-answers.mjs';
 
 const directory = dirname(fileURLToPath(import.meta.url));
-const escape = (value) => String(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+const escape = (value) =>
+  String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
 const css = `:root{color-scheme:dark;--bg:#08121d;--panel:#102330;--text:#eef4f4;--muted:#b5c6c9;--cyan:#6be4d6;--amber:#ffc779}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#183339 0,transparent 33rem),var(--bg);color:var(--text);font:17px/1.75 system-ui,-apple-system,sans-serif}main{width:min(850px,calc(100% - 40px));margin:0 auto;padding:54px 0 90px}a{color:var(--cyan)}a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:4px}h1,h2,h3{line-height:1.16}h1{font:500 clamp(3rem,8vw,5rem)/1.02 Georgia,serif;letter-spacing:-.04em;margin:15px 0 25px}h2{font:500 2.2rem/1.1 Georgia,serif;margin:54px 0 18px}h3{font-size:1.15rem;margin:28px 0 10px}.eyebrow{color:var(--cyan);font:700 .75rem/1.4 monospace;letter-spacing:.13em;text-transform:uppercase}.lede{font-size:1.2rem;color:var(--muted)}.card,aside,details{border:1px solid #34505a;border-radius:18px;padding:22px 25px;background:#102330;margin:22px 0}aside{border-color:#805f37;background:#2b241b}p,li{max-width:72ch}li+li{margin-top:.45em}strong{color:#fff}summary{cursor:pointer;font-weight:700;color:var(--cyan)}.meta{color:var(--muted)}.script p{margin:0 0 1.1em}footer{border-top:1px solid #34505a;margin-top:60px;padding-top:20px;color:var(--muted)}`;
 
 for (const lesson of lessons) {
   const sections = [...lesson.sections, ...(deepDives[lesson.id] || [])];
-  const script = sections.map(([heading, text]) => `<h3>${escape(heading)}</h3>\n<p>${escape(text)}</p>`).join('\n');
+  const script = sections
+    .map(([heading, text]) => `<h3>${escape(heading)}</h3>\n<p>${escape(text)}</p>`)
+    .join('\n');
   const plan = lesson.sections.map(([heading]) => `<li>${escape(heading)}</li>`).join('');
   const rubric = lesson.rubric.map((item) => `<li>${escape(item)}</li>`).join('');
-  const next = lesson.next ? `<a href="${lesson.next}.html">Next lesson →</a>` : '<a href="../index.html">Return to course overview →</a>';
+  const next = lesson.next
+    ? `<a href="${lesson.next}.html">Next lesson →</a>`
+    : '<a href="../index.html">Return to course overview →</a>';
   const production = join(directory, '..', 'productions', lesson.id);
-  const hasVideo = ['presentation.html', `lesson-${lesson.id}.mp4`, 'captions.vtt', 'transcript.md'].every((asset) => existsSync(join(production, asset)));
+  const hasVideo = [
+    'presentation.html',
+    `lesson-${lesson.id}.mp4`,
+    'captions.vtt',
+    'transcript.md',
+  ].every((asset) => existsSync(join(production, asset)));
   const media = hasVideo
-    ? `<section class="card" aria-labelledby="watch"><h2 id="watch">Watch the lesson</h2><video controls playsinline preload="metadata" style="display:block;width:100%;height:auto;border-radius:10px"><source src="../productions/${lesson.id}/lesson-${lesson.id}.mp4" type="video/mp4"><track src="../productions/${lesson.id}/captions.vtt" kind="captions" srclang="en" label="English" default>Your browser cannot play this video. <a href="../productions/${lesson.id}/lesson-${lesson.id}.mp4">Download the video</a>.</video><p><a href="../productions/${lesson.id}/presentation.html">Open the interactive HTML presentation →</a> &nbsp;·&nbsp; <a href="../productions/${lesson.id}/transcript.md">Read the transcript</a></p></section>`
+    ? `<section class="card" aria-labelledby="watch"><h2 id="watch">Watch the lesson</h2><video controls playsinline preload="metadata" poster="../productions/${lesson.id}/poster.png" style="display:block;width:100%;height:auto;border-radius:10px"><source src="../productions/${lesson.id}/lesson-${lesson.id}.mp4" type="video/mp4"><track src="../productions/${lesson.id}/captions.vtt" kind="captions" srclang="en" label="English" default>Your browser cannot play this video. <a href="../productions/${lesson.id}/lesson-${lesson.id}.mp4">Download the video</a>.</video><p><a href="../productions/${lesson.id}/presentation.html">Open the interactive HTML presentation →</a> &nbsp;·&nbsp; <a href="../productions/${lesson.id}/transcript.md">Read the transcript</a></p></section>`
     : '<aside><strong>Production in progress:</strong> The narrated video and animated presentation are not yet available. The lecture and exercise are ready to read.</aside>';
   const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${lesson.id} · ${escape(lesson.title)} | Cloud to Code</title><style>${css}</style></head><body><main>
@@ -36,5 +51,7 @@ ${media}
 <footer><p>${next}</p><p>Use synthetic examples; actual external actions require appropriate authorization.</p></footer>
 </main></body></html>\n`;
   await writeFile(join(directory, `${lesson.id}.html`), html, 'utf8');
-  console.log(`${lesson.id}: ${sections.reduce((sum, [, text]) => sum + text.split(/\s+/).length, 0)} lecture words`);
+  process.stdout.write(
+    `${lesson.id}: ${sections.reduce((sum, [, text]) => sum + text.split(/\s+/).length, 0)} lecture words\n`,
+  );
 }

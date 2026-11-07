@@ -1,38 +1,23 @@
-# Lesson 1 pilot: The whole system
+# Lesson 1: The whole system
 
-Status: Dave approved the pilot on 2026-11-07 and authorized production of the remaining lessons. This is not evidence of a published course or completed paywall.
+Dave approved the course and Brian narration, then approved the animated visual preview on 2026-11-07. This lesson now uses that style throughout its 13 narration chapters; the first approximately 69 seconds preserve the approved opening.
 
-## Open the lesson
+- [Interactive presentation](presentation.html): synchronized progressive visuals, captions, seeking, chapter selection, reduced motion, and fullscreen controls.
+- [Narrated video](lesson-01.mp4): 1280 × 720, 30 fps H.264/AAC with an optional English subtitle track.
+- [Captions](captions.vtt), [transcript](transcript.md), [timing](timing.json), and [export evidence](render-report.json).
+- [Lesson plan, lecture, and exercise](../lessons/01.html).
 
-- [Interactive HTML presentation](presentation.html): 13 scenes, keyboard-accessible controls, individual Brian narration clips and captions, reduced-motion support, no autoplay.
-- [Video: Lesson 1](lesson-01.mp4): continuous narrated video, 7:13, 1280 × 720 H.264/AAC with an embedded English subtitle track.
-- [Separate English captions](captions.vtt) and [text transcript](transcript.md).
-- [Lesson plan, canonical lecture, exercise, and self-check](../lessons/01.html).
-- [Scene timing and descriptions](cues.json).
+The HTML and MP4 share the same deterministic visual timeline. All 13 original ElevenLabs Brian MP3s, returned character alignments, and per-clip captions are retained unchanged. The continuous `narration.m4a` joins decoded samples without modifying speech; the video copies those AAC packets. No new narration or provider request was made for this visual revision.
 
-The presentation is editable HTML/CSS/JavaScript. Its live browser view animates entry of the cards and connector. The video uses still captures of those same HTML scenes, a continuous gentle camera zoom for each scene, and cuts between scenes; it does not reproduce the HTML entry animation. Captions are optional in the video player and are also provided as a separate WebVTT track.
+The fictional performer illustration was generated for the approved style preview; its prompt is in `../style-preview/assets/performer-prompt.txt`. Diagrams and example UI are editable HTML/CSS with fictional data. Typography uses local system fonts; playback requires no external runtime services.
 
-## Narration and rights
-
-The voice is ElevenLabs Brian via fal.ai's multilingual-v2 TTS endpoint. It was generated from 13 consecutive paragraphs (6,921 characters) in the canonical Lesson 1 lecture, using the user's existing configured service. No raw service response or credentials are included. The provider returned character alignment, retained under `alignment/`, from which captions were constructed; the normalized alignment text matches all 13 source paragraphs. Actual service charges were not exposed by the generation response. [fal states](https://fal.ai/elevenlabs) that ElevenLabs content generated through its API may be used commercially; the account's applicable terms and any voice-specific restrictions should still be confirmed before selling or publishing.
-
-The diagram illustrations are original inline SVG/CSS created for this pilot; no third-party image or music assets were used. A listener still needs to review pronunciation, voice quality, script-to-audio parity, caption wording/timing, and the overall pacing. The measured 7:13 duration is shorter than the proposed 8–15 minute range and should be reviewed for fit, not silently called compliant.
-
-## Reproduce
-
-`../lessons/01.html` is the canonical lecture. `build-pilot.cjs` reads the 13 paragraphs in `#lecture-script` and maps them to presentation scenes. It expects Node.js, FFmpeg with `h264_videotoolbox`, FFprobe, and Playwright/Chromium available in the parent project. It retains the approved audio, so rendering does not invoke the paid service:
+Use the [current production instructions](../motion/README.md). For this lesson only:
 
 ```sh
-node course/pilot/build-pilot.cjs render
+node course/motion/build-course.cjs prepare --lesson 01 --json
+node course/motion/build-presentations.cjs --lesson 01 --json
+node course/motion/build-course.cjs render --lesson 01 --json
+node course/motion/build-course.cjs verify --lesson 01 --json
 ```
 
-Run from the Social Media Manager directory. This regenerates scene data, transcript, scene screenshots, timed cues, WebVTT captions, intermediate video segments, and the final captioned MP4 from retained source audio. `frames/` and `segments/` are generated intermediates and need not be distributed.
-
-Generating new speech is a paid external action. The optional `synthesize` command reads an existing `FAL_KEY` from the environment or the configured local ShortFactory account. It skips already-complete audio/alignment pairs. If a request fails or times out, determine whether it was charged or completed before trying again; the provider call has no automatic retry or idempotency guarantee. Never include keys in the output or repository.
-
-## Local verification
-
-- FFprobe reports H.264 1280 × 720 video, AAC audio, and an English `mov_text` subtitle stream; duration is 433.365 seconds and size 38,785,530 bytes.
-- All 13 provider alignment records contain timing data; their text matches the canonical lecture after Unicode/case/punctuation normalization.
-- Source frame 01 was visually inspected for layout and readable text. Full human voice, caption, and continuous-playback review remains outstanding; browser/device coverage and exact provider billing are not yet established.
-- Rendering uses 15 fps and approximately 650 kb/s video with 96 kb/s AAC to keep the sample shareable. The cues and captions are generated from retained clip durations and alignment; review actual synchronization in a player.
+Run from the Social Media Manager directory. `build-pilot.cjs` is historical and renders the superseded static style; do not use it for current production. See the export report for measured duration and file hashes. Detailed caption review and real beginner validation remain outstanding; this local build does not provide hosting or a paywall.

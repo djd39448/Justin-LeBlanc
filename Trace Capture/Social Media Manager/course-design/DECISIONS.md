@@ -30,3 +30,9 @@ Status: planning record · 2026-11-07
 - Final delivery location, exact skill installation destination, and any non-Codex compatibility requirement.
 
 Record future decisions with date, rationale, consequences, and supersession rather than silently changing this history.
+
+## 2026-11-07 — approved animated rollout
+
+Dave accepted the course and Brian narration, approved the approximately 69-second animated style preview, and authorized applying it to all ten HTML presentations and videos. Preserve all 130 original narration clips. Use the accepted paper/teal/ink visual direction, phrase-timed progressive diagrams and explanations, varied teaching compositions, and a deterministic HTML timeline shared by the browser and 30 fps video export. This supersedes the earlier static scene/zoom implementation and proposed navy/cyan visual palette.
+
+The full-course implementation lives in `../course/motion/`. It reuses the existing voice without provider calls, retains generated-source fingerprints and export evidence, and atomically replaces videos only after local verification. Accepted course length is about 67 minutes total, with lessons around 6–7 minutes. Hosting/paywall choices remain open and are outside this visual revision.

@@ -1,12 +1,23 @@
 # Progress
 
+## 2026-11-07 — approved animated rollout
+
+- Dave approved the animated style preview and authorized applying it to all ten HTML presentations and videos, preserving Brian’s existing narration.
+- Completed 130 curated narration sections with 563 phrase-timed item reveals and 19 teaching callouts. Ten visual treatments include staged conversations, progressive workflows, document construction, comparisons, routing, usage gauges, evidence, and checkpoints. Lesson 1 retains the approved opening.
+- All ten HTML presentations and MP4s are complete: 66 minutes 58 seconds, 143.45 MB, 1280 × 720 at 30 fps. Every export passed full decoding, stream/timing checks, original-source checks, exact AAC packet comparison, meaningful within-scene motion verification, and current-source/output fingerprint checks.
+- All 507 retained source files, including 130 original MP3s, remain byte-for-byte unchanged. No narration rewrite, new speech generation, or voice-provider request.
+- Independent composition review covered all 130 sections. The layout audit passed 838 states; a separate integration review passed 21 pages, 217 local references, lecture/alignment hashes, and cue bounds. Representative browser checks covered chapter seeking, playback/pause, captions, reduced motion, fullscreen, and a 390 × 844 viewport.
+- Offline pipeline regression tests, targeted lint/format checks, and the secret scan passed. `motion/review-notes.md` records coverage and the tightly bounded Chromium pixel-rasterization tolerance. Final batch measurements are retained in `motion/rollout-evidence.json`. Repository-wide lint, type checking, and build pass; the broader test run reports 164 passes and six unrelated failures from expired October consultation fixtures in unchanged `tests/booking.test.ts`. The nine course regression tests pass under the repository Vitest runner.
+- Three scoped Codex workers handled storyboards and offline production. Shared allowance was 47% used at the opening check and 51% at the latest checkpoint; exact per-worker model/token use was not exposed. All media rendering ran locally. No reset credits were redeemed.
+- Detailed human caption review, real beginner comprehension, physical-device testing, and hosting/paywall integration remain separate from this completed visual design and export work.
+
 ## 2026-11-07 — animated style preview
 
 - Dave accepted the course and Brian narration, then requested more engaging visual teaching and authorized a 60–90-second style preview before a course-wide rollout.
 - Created `style-preview/` from the first two retained narration clips: approximately 69 seconds, seven varied compositions, an original fictional performer illustration, phrase-timed reveals, moving inquiry examples, and a progressively explained diagram.
 - A deterministic HTML timeline drives both the browser presentation and the 30 fps MP4 export. The package includes captions, transcript, source timing and fingerprints, a range-capable local server, reproduction commands, and review evidence.
 - Browser checks covered playback, seeking, captions, reduced motion, fullscreen controls, and an emulated phone viewport. Independent review led to fixes for duplicate-example ambiguity, caption clearance, contrast, and controls. See `style-preview/review-notes.md` and `render-report.json` for details.
-- The revised visual style is awaiting Dave's review. Original course lessons/videos remain in place; the new style has not been applied to the full course.
+- At this earlier milestone the preview awaited review. Dave subsequently approved it and authorized the full rollout recorded above.
 
 ## 2026-11-07 — pilot accepted
 

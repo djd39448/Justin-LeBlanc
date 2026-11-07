@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-07T17:33:03.182Z",
+  "approval": "Dave approved the animated style preview and full ten-lesson rollout; preserve existing Brian narration.",
+  "status": "verified",
+  "lessons": 10,
+  "originalSourcesMatched": 507,
+  "originalAudioClips": 130,
+  "sourceFingerprintMatchCount": 10,
+  "finalMp4HashMatchCount": 10,
+  "fullDecodePassCount": 10,
+  "aacParityPassCount": 10,
+  "browserErrorCount": 0,
+  "scenes": 130,
+  "phraseTimedItems": 563,
+  "teachingCallouts": 19,
+  "narrationSeconds": 4018.2073469387756,
+  "videoSeconds": 4018.3663420000003,
+  "bytes": 143449792,
+  "encodedFrames": 120551,
+  "browserCaptures": 31284,
+  "heldFrames": 89267,
+  "renderSeconds": 959.2220000000001,
+  "stableHoldChecks": 20,
+  "sameTimeSeekChecks": 10,
+  "withinSceneMotionSamples": 60,
+  "minimumDistinctMotionCrops": 6,
+  "lessonsSummary": [
+    {
+      "lesson": "01",
+      "duration": 433.166667,
+      "bytes": 14891179,
+      "renderSeconds": 115.865,
+      "sha256": "16f6104d6499950c65ddb5b54448e4237e23e30adc8846a659f977f075ff3fb1",
+      "sourceFingerprint": "f5d626d51cf8544d6d93b1e22875831e2174345a043c2a11d1bde961a6128631",
+      "report": "pilot/render-report.json"
+    },
+    {
+      "lesson": "02",
+      "duration": 421.5,
+      "bytes": 14021269,
+      "renderSeconds": 94.609,
+      "sha256": "fa29a623194a75ebe3fca6744c35a837e507f11e17ad5ec7ded84183622bb83c",
+      "sourceFingerprint": "71e76aa77b2f3f80f81455e69a1038e237389d2c5089bb2f510163ae3efdfa3c",
+      "report": "productions/02/render-report.json"
+    },
+    {
+      "lesson": "03",
+      "duration": 414.733333,
+      "bytes": 13986200,
+      "renderSeconds": 95.646,
+      "sha256": "4835df2c09553c42d929a445083efe54b764af4a33916b70ba354b99a0784db7",
+      "sourceFingerprint": "16b2299de8c831f553848e6021db56480f4b47b67c65f59a0ef4654d4ac2d23a",
+      "report": "productions/03/render-report.json"
+    },
+    {
+      "lesson": "04",
+      "duration": 391.033333,
+      "bytes": 13228831,
+      "renderSeconds": 85.481,
+      "sha256": "7943197c2e62c781bd71d67f903391987b1299431653f49a3c44d4c877d851e6",
+      "sourceFingerprint": "6493495e4f6d32dbc6cf8f300a411ae33505937d09dc641cdfdb10d0b48e01f8",
+      "report": "productions/04/render-report.json"
+    },
+    {
+      "lesson": "05",
+      "duration": 396.066667,
+      "bytes": 13909149,
+      "renderSeconds": 91.619,
+      "sha256": "85408adbcb761af9c08d771929e39f4c0ebad0d2292b42585a9ec80b614864e4",
+      "sourceFingerprint": "23ba395bcdd6a66cd57632ab520fe8970b580613723d0a4b4e756d7c5dcd0902",
+      "report": "productions/05/render-report.json"
+    },
+    {
+      "lesson": "06",
+      "duration": 389.066667,
+      "bytes": 14182196,
+      "renderSeconds": 97.633,
+      "sha256": "c205c686573b9275ccb819a5530fbbcc24738336cc2478bb3ef9bd63527e105a",
+      "sourceFingerprint": "12e3e2774b85d3381d4d7a14ab8d2da1cc5e57699d8bc4d587a6a82950f0b01f",
+      "report": "productions/06/render-report.json"
+    },
+    {
+      "lesson": "07",
+      "duration": 380.466667,
+      "bytes": 13613136,
+      "renderSeconds": 86.958,
+      "sha256": "7e6ce328a866e023f2e437bf10ee5f144f6f371d4f922da2146747bdc91cb2c7",
+      "sourceFingerprint": "43dbbe21ca5d918a81ed1d211a360dba2b12737aa955709d9ff784847e612322",
+      "report": "productions/07/render-report.json"
+    },
+    {
+      "lesson": "08",
+      "duration": 415.733008,
+      "bytes": 16122986,
+      "renderSeconds": 96.716,
+      "sha256": "4c9864f3a513e8ae8bb7865b110e7f91a96b63d8c4afb5f5c5dbd49c4df4cd3e",
+      "sourceFingerprint": "8fa3e779542ca7837dc76db6b13514ed761b2af04207a61ff7573117eb7a5c5b",
+      "report": "productions/08/render-report.json"
+    },
+    {
+      "lesson": "09",
+      "duration": 396.2,
+      "bytes": 14948862,
+      "renderSeconds": 96.162,
+      "sha256": "6f29b6e3c0528a4560d1338deaa7ba6ed263e68191a716c0e27a02ec51b39241",
+      "sourceFingerprint": "a57812b6e52bbd32c79a112ee1da87796397cfc13e7cfa649a63f87122b664b2",
+      "report": "productions/09/render-report.json"
+    },
+    {
+      "lesson": "10",
+      "duration": 380.4,
+      "bytes": 14545984,
+      "renderSeconds": 98.533,
+      "sha256": "cca8e46ebaa5a1492bfb9c19ba62939a47cfa7f079b84d087cff04936c0db95a",
+      "sourceFingerprint": "56c90f1970d9d8d0f3d78ab0c58bdee527e5ea7cfe05cfabd2e59868ac8a6802",
+      "report": "productions/10/render-report.json"
+    }
+  ],
+  "visualTreatments": {
+    "approved-opening": 2,
+    "comparison": 16,
+    "conversation": 12,
+    "checkpoint": 25,
+    "evidence": 12,
+    "document": 30,
+    "sequence": 6,
+    "flow": 16,
+    "example": 3,
+    "routing": 7,
+    "meter": 1
+  },
+  "layoutAudit": {
+    "status": "passed",
+    "inspectedStates": 838,
+    "defects": 0,
+    "perLesson": [
+      {
+        "lesson": "01",
+        "status": "passed",
+        "inspectedStates": 71,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "02",
+        "status": "passed",
+        "inspectedStates": 83,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "03",
+        "status": "passed",
+        "inspectedStates": 84,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "04",
+        "status": "passed",
+        "inspectedStates": 83,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "05",
+        "status": "passed",
+        "inspectedStates": 83,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "06",
+        "status": "passed",
+        "inspectedStates": 85,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "07",
+        "status": "passed",
+        "inspectedStates": 82,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "08",
+        "status": "passed",
+        "inspectedStates": 91,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "09",
+        "status": "passed",
+        "inspectedStates": 86,
+        "defects": [],
+        "browserErrors": []
+      },
+      {
+        "lesson": "10",
+        "status": "passed",
+        "inspectedStates": 90,
+        "defects": [],
+        "browserErrors": []
+      }
+    ]
+  },
+  "sourceIntegrationReview": {
+    "status": "passed",
+    "htmlPages": 21,
+    "localReferences": 217,
+    "lectureAlignmentHashes": 130,
+    "originalSourceHashes": 507
+  },
+  "playerReview": {
+    "status": "passed",
+    "lesson": "04",
+    "checks": [
+      "chapter navigation",
+      "play/pause and status",
+      "seeking",
+      "captions toggle",
+      "reduced motion",
+      "fullscreen play/seek/exit",
+      "390x844 emulated phone layout"
+    ],
+    "directFilePlayback": "not tested: browser automation URL policy blocks file protocol"
+  },
+  "tests": {
+    "course": {
+      "runner": "Vitest",
+      "passed": 9,
+      "failed": 0
+    },
+    "repository": {
+      "lint": "passed",
+      "typecheck": "passed",
+      "unitTestsPassed": 164,
+      "unitTestsFailed": 6,
+      "failureScope": "Unchanged tests/booking.test.ts uses October 1/2, 2026 consultations which are past at execution time.",
+      "build": "passed: 23 Astro files, no diagnostics; 10 pages built"
+    },
+    "targetedFormatting": "passed",
+    "secretScan": "clean"
+  },
+  "routing": {
+    "workers": 3,
+    "route": "Inherited Codex subagents for bounded storyboards, review and offline media pipeline; local deterministic scripts for all rendering.",
+    "modelAndPerWorkerUsage": "not exposed",
+    "sharedAllowancePercentUsed": {
+      "opening": 47,
+      "latest": 51
+    },
+    "newVoiceProviderRequests": 0,
+    "resetCreditsRedeemed": 0
+  },
+  "limitations": [
+    "No full human watch-through of all new visuals claimed",
+    "Detailed human caption review and real beginner validation remain",
+    "Phone viewport was emulated, not a physical-device test",
+    "Hosting and paywall not configured"
+  ],
+  "rollback": {
+    "priorCourseCommit": "53c76c5",
+    "instruction": "Restore only intended course files; preserve unrelated work and original narration."
+  }
+}

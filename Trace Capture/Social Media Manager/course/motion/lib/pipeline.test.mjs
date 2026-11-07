@@ -1,17 +1,18 @@
 /**
  * Tests narration-anchor matching and HTTP byte-range boundaries offline.
- * Dependencies: Node's test/assert modules and the production anchor/range helpers.
+ * Dependencies: repository Vitest, Node assertions and production anchor/range helpers.
  * Consumed by: maintainers before course production changes.
  * Why: a wrong anchor or broken media range silently damages synchronization or seeking.
  */
-'use strict';
-/* eslint @typescript-eslint/no-require-imports: "off" -- Tests exercise CommonJS production helpers. */
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const { anchorTime, compileScene } = require('./audio.cjs');
-const { byteRange } = require('./server.cjs');
-const { parsePresentation } = require('./common.cjs');
-const { comparePixels } = require('./frame-comparison.cjs');
+import assert from 'node:assert/strict';
+
+import { test } from 'vitest';
+
+import { anchorTime, compileScene } from './audio.cjs';
+import { parsePresentation } from './common.cjs';
+import { comparePixels } from './frame-comparison.cjs';
+import { byteRange } from './server.cjs';
+
 const words = [
   { text: 'An', start: 0, end: 0.2 },
   { text: 'agent-ready', start: 0.3, end: 0.7 },

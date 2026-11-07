@@ -1,38 +1,321 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>06 · Build specification and plan | Cloud to Code</title><style>:root{color-scheme:dark;--bg:#08121d;--panel:#102330;--text:#eef4f4;--muted:#b5c6c9;--cyan:#6be4d6;--amber:#ffc779}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#183339 0,transparent 33rem),var(--bg);color:var(--text);font:17px/1.75 system-ui,-apple-system,sans-serif}main{width:min(850px,calc(100% - 40px));margin:0 auto;padding:54px 0 90px}a{color:var(--cyan)}a:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:4px}h1,h2,h3{line-height:1.16}h1{font:500 clamp(3rem,8vw,5rem)/1.02 Georgia,serif;letter-spacing:-.04em;margin:15px 0 25px}h2{font:500 2.2rem/1.1 Georgia,serif;margin:54px 0 18px}h3{font-size:1.15rem;margin:28px 0 10px}.eyebrow{color:var(--cyan);font:700 .75rem/1.4 monospace;letter-spacing:.13em;text-transform:uppercase}.lede{font-size:1.2rem;color:var(--muted)}.card,aside,details{border:1px solid #34505a;border-radius:18px;padding:22px 25px;background:#102330;margin:22px 0}aside{border-color:#805f37;background:#2b241b}p,li{max-width:72ch}li+li{margin-top:.45em}strong{color:#fff}summary{cursor:pointer;font-weight:700;color:var(--cyan)}.meta{color:var(--muted)}.script p{margin:0 0 1.1em}footer{border-top:1px solid #34505a;margin-top:60px;padding-top:20px;color:var(--muted)}</style></head><body><main>
-<nav aria-label="Course navigation"><a href="../index.html">← Course overview</a></nav>
-<p class="eyebrow">Lesson 06 · Cloud to Code</p><h1>Build specification and plan.</h1><p class="lede">Convert an agreed architecture into precise, testable, ordered work.</p>
-<section class="card" aria-labelledby="watch"><h2 id="watch">Watch the lesson</h2><video controls playsinline preload="metadata" style="display:block;width:100%;height:auto;border-radius:10px"><source src="../productions/06/lesson-06.mp4" type="video/mp4"><track src="../productions/06/captions.vtt" kind="captions" srclang="en" label="English" default>Your browser cannot play this video. <a href="../productions/06/lesson-06.mp4">Download the video</a>.</video><p><a href="../productions/06/presentation.html">Open the interactive HTML presentation →</a> &nbsp;·&nbsp; <a href="../productions/06/transcript.md">Read the transcript</a></p></section>
-<section class="card" aria-labelledby="objectives"><h2 id="objectives">What you’ll learn</h2><p>Convert an agreed architecture into precise, testable, ordered work.</p><p class="meta">Prerequisite: previous lessons. Practice: 15–20 minutes.</p></section>
-<section aria-labelledby="plan"><h2 id="plan">Lesson plan</h2><ol><li>From design to contract</li><li>Write a concrete requirement</li><li>Design acceptance</li><li>Preservation and boundaries</li><li>Plan dependencies and ownership</li><li>Kickoff readiness</li></ol></section>
-<article class="script" id="lecture-script" aria-labelledby="lecture"><h2 id="lecture">Lecture script</h2><h3>From design to contract</h3>
-<p>A build specification is an agreement about what must happen. It lets an implementation agent make the right small decisions while leaving the important ones settled. Begin with the outcome, users, scope, and non-goals. Then describe behavior in terms of inputs, outputs, validation, state changes, errors, security, and the things the work must preserve. Link each important requirement to acceptance evidence. Include examples so a fresh reader can distinguish expected behavior from a plausible guess.</p>
-<h3>Write a concrete requirement</h3>
-<p>For the tracker, compare “validate the form” with: “Require a contact name and one preferred contact method. If either is missing, explain the missing field and keep the entered values. Do not save an incomplete inquiry.” This is a proposed example; the real owner must approve the fields. It tells the agent what to accept, reject, and show the visitor. It also creates several test cases without prescribing every line of code.</p>
-<h3>Design acceptance</h3>
-<p>Acceptance criteria are conditions that can be observed. Assign stable identifiers such as A-01, and connect each to one or more checks. A-01 might say a valid fictional inquiry appears once in the owner list. A test could submit a valid synthetic record and retrieve it. Record the scope of the evidence: a local test demonstrates local behavior; it does not prove that a live provider is configured. Include negative paths, such as missing fields, unauthorized access, and a storage failure.</p>
-<h3>Preservation and boundaries</h3>
-<p>A spec must say what remains unchanged. If the existing public website is out of scope, explicitly preserve it. If sending email is not authorized, say that the tracker records status without sending messages. Name external dependencies, privacy expectations, and what happens when an integration cannot be reached. Write a concrete rollback: the way to return to the previous known state if the change fails. Do not pretend an untested rollback has already worked.</p>
-<h3>Plan dependencies and ownership</h3>
-<p>A plan orders the work. One possible sequence is to agree on the inquiry record, build validation and storage, build the owner view against the agreed contract, integrate, then verify. Parallel workers can work safely when their file ownership and interfaces are clear. If two people change the same shared contract at once, integration becomes harder. For each phase, list its goal, prerequisites, owned files or subsystem, checks, evidence, and completion condition.</p>
-<h3>Kickoff readiness</h3>
-<p>Before handing the plan to an agent, ask whether a fresh person could explain what is in scope, which decisions are settled, how success will be checked, and when to stop. Separate an approved plan from authorization to execute it. The kickoff will identify the repository, baseline, read order, allowed actions, forbidden actions, work sequence, proof, and handoff. We will build that briefing in Lesson 8. A good spec reduces guessing without making safe, routine implementation choices impossible.</p>
-<h3>Define the real-world result</h3>
-<p>For the tracker, the overall outcome might be that an owner can find and manage inquiries received through a web form. That sentence does not yet specify every field or validation rule. Add a scope section identifying the first release, such as public form submission and a private status list. Add non-goals such as email import, automatic replies, or payments if those are not part of the approved work. These boundaries protect both the owner and the implementation agent from assumptions.</p>
-<h3>Describe inputs and errors</h3>
-<p>Write down the fields, which are required, how invalid values are identified, and what the person sees. “The form should be friendly” is a preference, but it does not define how an empty required field behaves. A stronger criterion says the field is named in a clear message and the previously entered values remain available. Also say whether the failed submission creates a record. These details give the developer room to choose the interface while preserving the important behavior.</p>
-<h3>Make proof traceable</h3>
-<p>Connect each requirement to an acceptance ID and a check. For example, A-02 could describe rejecting an inquiry with no contact method. A test submits that invalid data and checks for both an error and absence of a saved record. Record whether the test runs locally, against a staging service, or in production. A green local check is useful evidence for local behavior, but it does not prove a live deployment is configured or that a provider delivered anything.</p>
-<h3>Include compatibility and recovery</h3>
-<p>What existing data and behavior must remain intact? If an older inquiry already has a status, a new view should not erase it. If the deployment fails, the plan should identify the earlier version or reversal procedure and the point at which rollback is safe. Some changes, such as sending a real message, cannot be unsent; they need special care and explicit authorization. Label an untested recovery plan as a plan, then rehearse it when appropriate and allowed.</p>
-<h3>Build a dependency graph</h3>
-<p>Before implementation, list what must exist before something else can be completed. The view depends on an agreed record format; tests depend on defined expected behavior. Workers may draft a view and validation logic in parallel after the shared format is agreed, but they should not edit the same files without coordination. The conductor collects each result and checks the integrated behavior. This is how parallel work saves time without turning shared interfaces into a guessing game.</p>
-<h3>Check the contract with examples</h3>
-<p>Ask the agent to walk through one valid inquiry, one invalid inquiry, and one storage failure against the spec. Where it has to guess, add the missing rule or label it as an intentional implementation choice. Check that acceptance covers the non-goals too: if automatic email is forbidden, a test or inspection should show that submitting an inquiry does not trigger it. A good contract helps the team build the agreed outcome and recognize when work is still incomplete.</p>
-<h3>Review the sequence as a learner</h3>
-<p>Imagine you are the agent seeing the project for the first time. Which document tells you what to build? Which decision explains why email import was deferred? Can you identify a task that can be completed and tested without waiting for an unrelated task? Can you state when to stop if access is missing? If the answer to any of these is unclear, add a specific reference or boundary to the plan. The goal is to remove consequential ambiguity while leaving room for reasonable implementation choices.</p></article>
-<section aria-labelledby="exercise"><h2 id="exercise">Try it yourself</h2><p>Write three tracker requirements: one successful submission, one invalid submission, and one unauthorized access attempt. Give each an acceptance ID and check. Identify one existing behavior or data set the change must preserve and propose how to roll back if the new behavior fails. Arrange three implementation phases with dependencies and distinct ownership.</p></section>
-<details><summary>See a completed fictional example</summary><p>Sample A-01: Given valid synthetic contact and event details, when the organizer submits, one inquiry appears in the private list. Check with a local submission and retrieval test; label the result offline-tested. A-02: missing contact method produces an error and creates no record. A-03: an unauthorized request cannot read the private list. Preserve existing submitted records; if the new view fails, restore the previous known revision according to the documented rollback procedure. Order: agree the record contract, build validation/storage, then integrate the view and run boundary checks.</p></details>
-<details><summary>Self-check rubric</summary><p>Check each item and revise anything a fresh reader would have to guess.</p><ul><li>Each requirement describes observable behavior.</li><li>Negative behavior and preservation are explicit.</li><li>Every acceptance ID has a relevant check and honest proof level.</li><li>The plan names dependencies and ownership.</li><li>The work has a clear completion condition and rollback idea.</li></ul></details>
-<footer><p><a href="07.html">Next lesson →</a></p><p>Use synthetic examples; actual external actions require appropriate authorization.</p></footer>
-</main></body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>06 · Build specification and plan | Cloud to Code</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #08121d;
+        --panel: #102330;
+        --text: #eef4f4;
+        --muted: #b5c6c9;
+        --cyan: #6be4d6;
+        --amber: #ffc779;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: radial-gradient(circle at top left, #183339 0, transparent 33rem), var(--bg);
+        color: var(--text);
+        font:
+          17px/1.75 system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      main {
+        width: min(850px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 54px 0 90px;
+      }
+      a {
+        color: var(--cyan);
+      }
+      a:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid var(--amber);
+        outline-offset: 4px;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.16;
+      }
+      h1 {
+        font:
+          500 clamp(3rem, 8vw, 5rem)/1.02 Georgia,
+          serif;
+        letter-spacing: -0.04em;
+        margin: 15px 0 25px;
+      }
+      h2 {
+        font:
+          500 2.2rem/1.1 Georgia,
+          serif;
+        margin: 54px 0 18px;
+      }
+      h3 {
+        font-size: 1.15rem;
+        margin: 28px 0 10px;
+      }
+      .eyebrow {
+        color: var(--cyan);
+        font: 700 0.75rem/1.4 monospace;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+      .lede {
+        font-size: 1.2rem;
+        color: var(--muted);
+      }
+      .card,
+      aside,
+      details {
+        border: 1px solid #34505a;
+        border-radius: 18px;
+        padding: 22px 25px;
+        background: #102330;
+        margin: 22px 0;
+      }
+      aside {
+        border-color: #805f37;
+        background: #2b241b;
+      }
+      p,
+      li {
+        max-width: 72ch;
+      }
+      li + li {
+        margin-top: 0.45em;
+      }
+      strong {
+        color: #fff;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: var(--cyan);
+      }
+      .meta {
+        color: var(--muted);
+      }
+      .script p {
+        margin: 0 0 1.1em;
+      }
+      footer {
+        border-top: 1px solid #34505a;
+        margin-top: 60px;
+        padding-top: 20px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav aria-label="Course navigation"><a href="../index.html">← Course overview</a></nav>
+      <p class="eyebrow">Lesson 06 · Cloud to Code</p>
+      <h1>Build specification and plan.</h1>
+      <p class="lede">Convert an agreed architecture into precise, testable, ordered work.</p>
+      <section class="card" aria-labelledby="watch">
+        <h2 id="watch">Watch the lesson</h2>
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          poster="../productions/06/poster.png"
+          style="display: block; width: 100%; height: auto; border-radius: 10px"
+        >
+          <source src="../productions/06/lesson-06.mp4" type="video/mp4" />
+          <track
+            src="../productions/06/captions.vtt"
+            kind="captions"
+            srclang="en"
+            label="English"
+            default
+          />
+          Your browser cannot play this video.
+          <a href="../productions/06/lesson-06.mp4">Download the video</a>.
+        </video>
+        <p>
+          <a href="../productions/06/presentation.html">Open the interactive HTML presentation →</a>
+          &nbsp;·&nbsp; <a href="../productions/06/transcript.md">Read the transcript</a>
+        </p>
+      </section>
+      <section class="card" aria-labelledby="objectives">
+        <h2 id="objectives">What you’ll learn</h2>
+        <p>Convert an agreed architecture into precise, testable, ordered work.</p>
+        <p class="meta">Prerequisite: previous lessons. Practice: 15–20 minutes.</p>
+      </section>
+      <section aria-labelledby="plan">
+        <h2 id="plan">Lesson plan</h2>
+        <ol>
+          <li>From design to contract</li>
+          <li>Write a concrete requirement</li>
+          <li>Design acceptance</li>
+          <li>Preservation and boundaries</li>
+          <li>Plan dependencies and ownership</li>
+          <li>Kickoff readiness</li>
+        </ol>
+      </section>
+      <article class="script" id="lecture-script" aria-labelledby="lecture">
+        <h2 id="lecture">Lecture script</h2>
+        <h3>From design to contract</h3>
+        <p>
+          A build specification is an agreement about what must happen. It lets an implementation
+          agent make the right small decisions while leaving the important ones settled. Begin with
+          the outcome, users, scope, and non-goals. Then describe behavior in terms of inputs,
+          outputs, validation, state changes, errors, security, and the things the work must
+          preserve. Link each important requirement to acceptance evidence. Include examples so a
+          fresh reader can distinguish expected behavior from a plausible guess.
+        </p>
+        <h3>Write a concrete requirement</h3>
+        <p>
+          For the tracker, compare “validate the form” with: “Require a contact name and one
+          preferred contact method. If either is missing, explain the missing field and keep the
+          entered values. Do not save an incomplete inquiry.” This is a proposed example; the real
+          owner must approve the fields. It tells the agent what to accept, reject, and show the
+          visitor. It also creates several test cases without prescribing every line of code.
+        </p>
+        <h3>Design acceptance</h3>
+        <p>
+          Acceptance criteria are conditions that can be observed. Assign stable identifiers such as
+          A-01, and connect each to one or more checks. A-01 might say a valid fictional inquiry
+          appears once in the owner list. A test could submit a valid synthetic record and retrieve
+          it. Record the scope of the evidence: a local test demonstrates local behavior; it does
+          not prove that a live provider is configured. Include negative paths, such as missing
+          fields, unauthorized access, and a storage failure.
+        </p>
+        <h3>Preservation and boundaries</h3>
+        <p>
+          A spec must say what remains unchanged. If the existing public website is out of scope,
+          explicitly preserve it. If sending email is not authorized, say that the tracker records
+          status without sending messages. Name external dependencies, privacy expectations, and
+          what happens when an integration cannot be reached. Write a concrete rollback: the way to
+          return to the previous known state if the change fails. Do not pretend an untested
+          rollback has already worked.
+        </p>
+        <h3>Plan dependencies and ownership</h3>
+        <p>
+          A plan orders the work. One possible sequence is to agree on the inquiry record, build
+          validation and storage, build the owner view against the agreed contract, integrate, then
+          verify. Parallel workers can work safely when their file ownership and interfaces are
+          clear. If two people change the same shared contract at once, integration becomes harder.
+          For each phase, list its goal, prerequisites, owned files or subsystem, checks, evidence,
+          and completion condition.
+        </p>
+        <h3>Kickoff readiness</h3>
+        <p>
+          Before handing the plan to an agent, ask whether a fresh person could explain what is in
+          scope, which decisions are settled, how success will be checked, and when to stop.
+          Separate an approved plan from authorization to execute it. The kickoff will identify the
+          repository, baseline, read order, allowed actions, forbidden actions, work sequence,
+          proof, and handoff. We will build that briefing in Lesson 8. A good spec reduces guessing
+          without making safe, routine implementation choices impossible.
+        </p>
+        <h3>Define the real-world result</h3>
+        <p>
+          For the tracker, the overall outcome might be that an owner can find and manage inquiries
+          received through a web form. That sentence does not yet specify every field or validation
+          rule. Add a scope section identifying the first release, such as public form submission
+          and a private status list. Add non-goals such as email import, automatic replies, or
+          payments if those are not part of the approved work. These boundaries protect both the
+          owner and the implementation agent from assumptions.
+        </p>
+        <h3>Describe inputs and errors</h3>
+        <p>
+          Write down the fields, which are required, how invalid values are identified, and what the
+          person sees. “The form should be friendly” is a preference, but it does not define how an
+          empty required field behaves. A stronger criterion says the field is named in a clear
+          message and the previously entered values remain available. Also say whether the failed
+          submission creates a record. These details give the developer room to choose the interface
+          while preserving the important behavior.
+        </p>
+        <h3>Make proof traceable</h3>
+        <p>
+          Connect each requirement to an acceptance ID and a check. For example, A-02 could describe
+          rejecting an inquiry with no contact method. A test submits that invalid data and checks
+          for both an error and absence of a saved record. Record whether the test runs locally,
+          against a staging service, or in production. A green local check is useful evidence for
+          local behavior, but it does not prove a live deployment is configured or that a provider
+          delivered anything.
+        </p>
+        <h3>Include compatibility and recovery</h3>
+        <p>
+          What existing data and behavior must remain intact? If an older inquiry already has a
+          status, a new view should not erase it. If the deployment fails, the plan should identify
+          the earlier version or reversal procedure and the point at which rollback is safe. Some
+          changes, such as sending a real message, cannot be unsent; they need special care and
+          explicit authorization. Label an untested recovery plan as a plan, then rehearse it when
+          appropriate and allowed.
+        </p>
+        <h3>Build a dependency graph</h3>
+        <p>
+          Before implementation, list what must exist before something else can be completed. The
+          view depends on an agreed record format; tests depend on defined expected behavior.
+          Workers may draft a view and validation logic in parallel after the shared format is
+          agreed, but they should not edit the same files without coordination. The conductor
+          collects each result and checks the integrated behavior. This is how parallel work saves
+          time without turning shared interfaces into a guessing game.
+        </p>
+        <h3>Check the contract with examples</h3>
+        <p>
+          Ask the agent to walk through one valid inquiry, one invalid inquiry, and one storage
+          failure against the spec. Where it has to guess, add the missing rule or label it as an
+          intentional implementation choice. Check that acceptance covers the non-goals too: if
+          automatic email is forbidden, a test or inspection should show that submitting an inquiry
+          does not trigger it. A good contract helps the team build the agreed outcome and recognize
+          when work is still incomplete.
+        </p>
+        <h3>Review the sequence as a learner</h3>
+        <p>
+          Imagine you are the agent seeing the project for the first time. Which document tells you
+          what to build? Which decision explains why email import was deferred? Can you identify a
+          task that can be completed and tested without waiting for an unrelated task? Can you state
+          when to stop if access is missing? If the answer to any of these is unclear, add a
+          specific reference or boundary to the plan. The goal is to remove consequential ambiguity
+          while leaving room for reasonable implementation choices.
+        </p>
+      </article>
+      <section aria-labelledby="exercise">
+        <h2 id="exercise">Try it yourself</h2>
+        <p>
+          Write three tracker requirements: one successful submission, one invalid submission, and
+          one unauthorized access attempt. Give each an acceptance ID and check. Identify one
+          existing behavior or data set the change must preserve and propose how to roll back if the
+          new behavior fails. Arrange three implementation phases with dependencies and distinct
+          ownership.
+        </p>
+      </section>
+      <details>
+        <summary>See a completed fictional example</summary>
+        <p>
+          Sample A-01: Given valid synthetic contact and event details, when the organizer submits,
+          one inquiry appears in the private list. Check with a local submission and retrieval test;
+          label the result offline-tested. A-02: missing contact method produces an error and
+          creates no record. A-03: an unauthorized request cannot read the private list. Preserve
+          existing submitted records; if the new view fails, restore the previous known revision
+          according to the documented rollback procedure. Order: agree the record contract, build
+          validation/storage, then integrate the view and run boundary checks.
+        </p>
+      </details>
+      <details>
+        <summary>Self-check rubric</summary>
+        <p>Check each item and revise anything a fresh reader would have to guess.</p>
+        <ul>
+          <li>Each requirement describes observable behavior.</li>
+          <li>Negative behavior and preservation are explicit.</li>
+          <li>Every acceptance ID has a relevant check and honest proof level.</li>
+          <li>The plan names dependencies and ownership.</li>
+          <li>The work has a clear completion condition and rollback idea.</li>
+        </ul>
+      </details>
+      <footer>
+        <p><a href="07.html">Next lesson →</a></p>
+        <p>Use synthetic examples; actual external actions require appropriate authorization.</p>
+      </footer>
+    </main>
+  </body>
+</html>

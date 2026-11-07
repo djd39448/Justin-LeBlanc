@@ -39,7 +39,7 @@
   try {
     const value = JSON.parse(localStorage.getItem(key) || '[]');
     if (Array.isArray(value)) saved = value;
-  } catch (_) {
+  } catch {
     // Progress is optional when local storage is blocked.
   }
   function update() {
@@ -50,7 +50,7 @@
     bar.setAttribute('aria-valuenow', String(done));
     try {
       localStorage.setItem(key, JSON.stringify(state));
-    } catch (_) {
+    } catch {
       /* Optional persistence. */
     }
   }
