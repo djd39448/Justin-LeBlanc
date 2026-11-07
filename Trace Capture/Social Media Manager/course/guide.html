@@ -1,0 +1,3496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Dave's idea-to-implementation playbook: a shareable, interactive guide to turning a brain dump into architecture, build specs, verified software, and a restartable handoff."
+    />
+    <meta name="theme-color" content="#07111c" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307111c'/%3E%3Cpath d='M16 32h28m-9-9 9 9-9 9' fill='none' stroke='%2366e5d6' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+    />
+    <title>Cloud → Contract → Code | Dave's Build System</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #ecf2f4;
+        --ink-soft: #a8b6bc;
+        --paper: #07111c;
+        --paper-soft: #0b1925;
+        --panel: rgba(13, 28, 40, 0.88);
+        --panel-strong: #102332;
+        --line: rgba(208, 229, 235, 0.16);
+        --line-strong: rgba(208, 229, 235, 0.3);
+        --cyan: #66e5d6;
+        --cyan-dark: #123c3d;
+        --amber: #ffc66d;
+        --amber-dark: #4e3512;
+        --coral: #ff8d78;
+        --violet: #b7a3ff;
+        --white: #ffffff;
+        --max: 1180px;
+        --radius: 24px;
+        --radius-sm: 14px;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 92px;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          radial-gradient(circle at 8% 4%, rgba(102, 229, 214, 0.12), transparent 28rem),
+          radial-gradient(circle at 91% 16%, rgba(255, 198, 109, 0.1), transparent 24rem),
+          var(--paper);
+        color: var(--ink);
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          'Segoe UI',
+          sans-serif;
+        line-height: 1.55;
+        text-rendering: optimizeLegibility;
+      }
+
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+        background-size: 36px 36px;
+        content: '';
+        mask-image: linear-gradient(to bottom, black, transparent 92%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button,
+      textarea,
+      select,
+      input {
+        font: inherit;
+      }
+
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--amber);
+        outline-offset: 3px;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 100;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: var(--white);
+        color: #07111c;
+        font-weight: 800;
+        transform: translateY(-160%);
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      .shell {
+        width: min(calc(100% - 40px), var(--max));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        border-bottom: 1px solid var(--line);
+        background: rgba(7, 17, 28, 0.86);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        gap: 11px;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 1px solid rgba(102, 229, 214, 0.48);
+        border-radius: 11px;
+        background: rgba(102, 229, 214, 0.1);
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .brand-copy {
+        display: grid;
+        line-height: 1.05;
+      }
+
+      .brand-copy strong {
+        font-size: 14px;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-copy span {
+        margin-top: 4px;
+        color: var(--ink-soft);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .nav a,
+      .top-action {
+        min-height: 44px;
+        padding: 11px 13px;
+        border: 0;
+        border-radius: 10px;
+        background: transparent;
+        color: var(--ink-soft);
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 750;
+        text-decoration: none;
+      }
+
+      .nav a:hover,
+      .top-action:hover {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--ink);
+      }
+
+      .top-action {
+        border: 1px solid var(--line);
+      }
+
+      .hero {
+        display: grid;
+        min-height: calc(100svh - 72px);
+        align-items: center;
+        padding: 78px 0 64px;
+      }
+
+      .hero-grid {
+        display: grid;
+        align-items: center;
+        gap: clamp(40px, 7vw, 88px);
+        grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        margin: 0 0 20px;
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 30px;
+        height: 1px;
+        background: currentColor;
+        content: '';
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 24px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(52px, 7.8vw, 104px);
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 0.92;
+      }
+
+      h1 .accent {
+        color: var(--cyan);
+        font-style: italic;
+      }
+
+      .hero-lede {
+        max-width: 700px;
+        margin-bottom: 30px;
+        color: #c4d0d4;
+        font-size: clamp(18px, 2vw, 22px);
+        line-height: 1.52;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 50px;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 13px 17px;
+        border: 1px solid var(--line-strong);
+        border-radius: 13px;
+        background: rgba(255, 255, 255, 0.035);
+        color: var(--ink);
+        cursor: pointer;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .button:hover {
+        border-color: rgba(255, 255, 255, 0.48);
+        transform: translateY(-1px);
+      }
+
+      .button.primary {
+        border-color: var(--cyan);
+        background: var(--cyan);
+        color: #061419;
+      }
+
+      .button.small {
+        min-height: 44px;
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+
+      .hero-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        max-width: 680px;
+        margin-top: 26px;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .hero-note .dot {
+        width: 8px;
+        height: 8px;
+        flex: 0 0 auto;
+        margin-top: 6px;
+        border-radius: 999px;
+        background: var(--amber);
+        box-shadow: 0 0 0 5px rgba(255, 198, 109, 0.12);
+      }
+
+      .loop-card {
+        position: relative;
+        overflow: hidden;
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 32px;
+        background:
+          linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 48%), rgba(9, 23, 34, 0.84);
+        box-shadow: var(--shadow);
+      }
+
+      .loop-card::after {
+        position: absolute;
+        right: -90px;
+        bottom: -100px;
+        width: 250px;
+        height: 250px;
+        border: 1px solid rgba(102, 229, 214, 0.16);
+        border-radius: 999px;
+        content: '';
+      }
+
+      .loop-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+        color: var(--ink-soft);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .loop-label span:last-child {
+        color: var(--amber);
+      }
+
+      .loop {
+        display: grid;
+        gap: 10px;
+      }
+
+      .loop-step {
+        position: relative;
+        display: grid;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 16px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: rgba(5, 14, 23, 0.48);
+        grid-template-columns: 34px 1fr auto;
+      }
+
+      .loop-step strong {
+        font-size: 14px;
+      }
+
+      .loop-step small {
+        color: var(--ink-soft);
+        font-size: 11px;
+      }
+
+      .loop-number {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(102, 229, 214, 0.1);
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .loop-step:nth-child(n + 5) .loop-number {
+        background: rgba(255, 198, 109, 0.11);
+        color: var(--amber);
+      }
+
+      .gate {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 14px 0;
+        padding: 12px 15px;
+        border: 1px dashed rgba(255, 198, 109, 0.48);
+        border-radius: 13px;
+        background: rgba(78, 53, 18, 0.28);
+        color: #ffe0a6;
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .gate b {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .proof-row {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .proof-chip {
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        color: var(--ink-soft);
+        font-size: 11px;
+        text-align: center;
+      }
+
+      .proof-chip strong {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--ink);
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 104px 0;
+      }
+
+      .section.compact {
+        padding: 74px 0;
+      }
+
+      .section + .section {
+        border-top: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: grid;
+        align-items: end;
+        gap: 28px;
+        margin-bottom: 44px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.7fr);
+      }
+
+      .section-index {
+        display: inline-block;
+        margin-bottom: 14px;
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(38px, 5vw, 66px);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1.02;
+      }
+
+      .section-lede {
+        margin-bottom: 0;
+        color: var(--ink-soft);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .flow-layout {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+      }
+
+      .stage-nav {
+        display: grid;
+        align-content: start;
+        gap: 8px;
+      }
+
+      .stage-button {
+        display: grid;
+        min-height: 58px;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border: 1px solid transparent;
+        border-radius: 13px;
+        background: transparent;
+        color: var(--ink-soft);
+        cursor: pointer;
+        text-align: left;
+        grid-template-columns: 28px 1fr;
+      }
+
+      .stage-button:hover {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--ink);
+      }
+
+      .stage-button[aria-selected='true'] {
+        border-color: rgba(102, 229, 214, 0.36);
+        background: rgba(102, 229, 214, 0.08);
+        color: var(--ink);
+      }
+
+      .stage-button .num {
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .stage-detail {
+        min-height: 460px;
+        padding: clamp(24px, 4vw, 44px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .stage-kicker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 26px;
+      }
+
+      .stage-kicker span {
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .stage-kicker strong {
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(255, 198, 109, 0.1);
+        color: var(--amber);
+        font-size: 11px;
+      }
+
+      .stage-detail h3 {
+        max-width: 700px;
+        margin-bottom: 16px;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(32px, 4vw, 50px);
+        font-weight: 500;
+        letter-spacing: -0.035em;
+        line-height: 1.05;
+      }
+
+      .stage-detail > p {
+        max-width: 780px;
+        margin-bottom: 30px;
+        color: #c0cdd1;
+        font-size: 17px;
+      }
+
+      .stage-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stage-box {
+        min-height: 158px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: rgba(4, 13, 22, 0.38);
+      }
+
+      .stage-box b {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--ink-soft);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .stage-box p,
+      .stage-box ul {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .stage-box ul {
+        padding-left: 18px;
+      }
+
+      .stage-box li + li {
+        margin-top: 6px;
+      }
+
+      .rule-banner {
+        display: grid;
+        gap: 18px;
+        margin-top: 20px;
+        padding: 20px 22px;
+        border: 1px solid rgba(255, 198, 109, 0.32);
+        border-radius: 16px;
+        background: rgba(78, 53, 18, 0.18);
+        grid-template-columns: auto 1fr;
+      }
+
+      .rule-banner .icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 11px;
+        background: rgba(255, 198, 109, 0.12);
+        color: var(--amber);
+        font-weight: 900;
+      }
+
+      .rule-banner strong {
+        display: block;
+        margin-bottom: 3px;
+      }
+
+      .rule-banner p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .rule-banner + .prompt-filters {
+        margin-top: 24px;
+      }
+
+      .operating-strip {
+        display: grid;
+        gap: 12px;
+        margin: 24px 0;
+        scroll-margin-top: 96px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .operating-card {
+        display: grid;
+        min-height: 154px;
+        align-content: start;
+        gap: 7px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: rgba(255, 255, 255, 0.025);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .operating-card:hover,
+      .operating-card:focus-visible {
+        border-color: rgba(102, 229, 214, 0.42);
+        background: rgba(102, 229, 214, 0.065);
+      }
+
+      .operating-card-code,
+      .operating-card-action {
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .operating-card strong {
+        font-size: 17px;
+      }
+
+      .operating-card small {
+        color: var(--ink-soft);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .operating-card-action {
+        align-self: end;
+        margin-top: 8px;
+        color: var(--amber);
+      }
+
+      .two-loop {
+        display: grid;
+        gap: 18px;
+        margin-top: 36px;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .loop-panel {
+        padding: 25px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .loop-panel:first-child {
+        border-top: 3px solid var(--cyan);
+      }
+
+      .loop-panel:last-child {
+        border-top: 3px solid var(--amber);
+      }
+
+      .loop-panel h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+
+      .loop-panel p {
+        margin-bottom: 18px;
+        color: var(--ink-soft);
+        font-size: 14px;
+      }
+
+      .loop-chain {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+      }
+
+      .loop-chain span {
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.035);
+      }
+
+      .loop-chain i {
+        color: var(--ink-soft);
+        font-style: normal;
+      }
+
+      .doc-toolbar,
+      .prompt-filters,
+      .standards-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+      }
+
+      .filter-button,
+      .tab-button {
+        min-height: 44px;
+        padding: 9px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink-soft);
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .filter-button:hover,
+      .tab-button:hover,
+      .filter-button[aria-pressed='true'],
+      .tab-button[aria-selected='true'] {
+        border-color: rgba(102, 229, 214, 0.42);
+        background: rgba(102, 229, 214, 0.09);
+        color: var(--ink);
+      }
+
+      .docs-layout {
+        display: grid;
+        align-items: start;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1fr) 310px;
+      }
+
+      .docs-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .doc-card {
+        min-height: 210px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .doc-card[hidden] {
+        display: none;
+      }
+
+      .doc-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .doc-file {
+        padding: 6px 8px;
+        border-radius: 8px;
+        background: rgba(183, 163, 255, 0.09);
+        color: var(--violet);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .doc-phase {
+        color: var(--ink-soft);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .doc-card h3 {
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .doc-question {
+        margin-bottom: 13px;
+        color: var(--cyan);
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 16px;
+        font-style: italic;
+      }
+
+      .doc-card p:last-child {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .authority {
+        position: sticky;
+        top: 96px;
+        padding: 24px;
+        border: 1px solid rgba(255, 198, 109, 0.26);
+        border-radius: 20px;
+        background: linear-gradient(160deg, rgba(255, 198, 109, 0.08), rgba(255, 255, 255, 0.02));
+      }
+
+      .authority h3 {
+        margin-bottom: 8px;
+        font-size: 19px;
+      }
+
+      .authority > p {
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .authority-list {
+        display: grid;
+        gap: 10px;
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: authority;
+      }
+
+      .authority-list li {
+        position: relative;
+        padding: 12px 12px 12px 43px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(4, 13, 22, 0.36);
+        counter-increment: authority;
+        font-size: 12px;
+      }
+
+      .authority-list li::before {
+        position: absolute;
+        top: 10px;
+        left: 11px;
+        display: grid;
+        width: 22px;
+        height: 22px;
+        place-items: center;
+        border-radius: 7px;
+        background: rgba(255, 198, 109, 0.12);
+        color: var(--amber);
+        content: counter(authority);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        font-weight: 900;
+      }
+
+      .authority-callout {
+        margin-top: 16px;
+        padding: 13px;
+        border-left: 3px solid var(--amber);
+        background: rgba(255, 198, 109, 0.07);
+        color: #f2d8aa;
+        font-size: 12px;
+      }
+
+      .standards-wrap {
+        display: grid;
+        gap: 22px;
+        grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+      }
+
+      .standards-intro {
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .standards-intro blockquote {
+        margin: 0;
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: clamp(25px, 3vw, 36px);
+        line-height: 1.22;
+      }
+
+      .standards-intro blockquote em {
+        color: var(--cyan);
+      }
+
+      .standards-intro p {
+        margin: 24px 0 0;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .standard-detail {
+        min-height: 390px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+      }
+
+      .standard-detail h3 {
+        margin-bottom: 10px;
+        font-size: 26px;
+      }
+
+      .standard-detail > p {
+        color: var(--ink-soft);
+      }
+
+      .standard-rules {
+        display: grid;
+        gap: 10px;
+        margin: 22px 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .standard-rules li {
+        display: grid;
+        gap: 12px;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--line);
+        grid-template-columns: 24px 1fr;
+        font-size: 14px;
+      }
+
+      .standard-rules li::before {
+        color: var(--cyan);
+        content: '✓';
+        font-weight: 900;
+      }
+
+      .exit-gate {
+        padding: 15px;
+        border: 1px solid rgba(102, 229, 214, 0.24);
+        border-radius: 13px;
+        background: rgba(102, 229, 214, 0.065);
+        font-size: 13px;
+      }
+
+      .exit-gate b {
+        color: var(--cyan);
+      }
+
+      .error-strip {
+        display: grid;
+        gap: 10px;
+        margin-top: 24px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .error-strip div {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .error-strip strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--coral);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+      }
+
+      .error-strip span {
+        color: var(--ink-soft);
+        font-size: 12px;
+      }
+
+      .prompt-layout {
+        display: grid;
+        align-items: start;
+        gap: 20px;
+        grid-template-columns: 340px minmax(0, 1fr);
+      }
+
+      .prompt-list {
+        display: grid;
+        max-height: 610px;
+        gap: 8px;
+        overflow-y: auto;
+        padding-right: 6px;
+        scrollbar-color: var(--line-strong) transparent;
+      }
+
+      .prompt-item {
+        display: grid;
+        min-height: 70px;
+        gap: 4px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: rgba(255, 255, 255, 0.02);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .prompt-item:hover,
+      .prompt-item[aria-selected='true'] {
+        border-color: rgba(102, 229, 214, 0.4);
+        background: rgba(102, 229, 214, 0.08);
+      }
+
+      .prompt-item[hidden] {
+        display: none;
+      }
+
+      .prompt-item span {
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 9px;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .prompt-item strong {
+        font-size: 13px;
+      }
+
+      .prompt-display {
+        min-height: 430px;
+        padding: clamp(24px, 4vw, 40px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .prompt-display-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .prompt-display-top p {
+        margin-bottom: 6px;
+        color: var(--cyan);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .prompt-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+      }
+
+      .prompt-source {
+        margin-bottom: 6px;
+        padding: 4px 7px;
+        border: 1px solid rgba(255, 198, 109, 0.25);
+        border-radius: 999px;
+        background: rgba(255, 198, 109, 0.07);
+        color: var(--amber);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .prompt-display h3 {
+        margin-bottom: 24px;
+        font-size: 25px;
+      }
+
+      .prompt-text {
+        min-height: 180px;
+        margin: 0 0 22px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: #06101a;
+        color: #d9e5e8;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 14px;
+        line-height: 1.75;
+        white-space: pre-wrap;
+      }
+
+      .prompt-why {
+        display: grid;
+        gap: 12px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+        grid-template-columns: 90px 1fr;
+      }
+
+      .prompt-why strong {
+        color: var(--ink-soft);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .prompt-why p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .composer {
+        display: grid;
+        gap: 22px;
+        margin-top: 48px;
+        padding: clamp(24px, 4vw, 42px);
+        border: 1px solid rgba(183, 163, 255, 0.26);
+        border-radius: 24px;
+        background: linear-gradient(145deg, rgba(183, 163, 255, 0.07), rgba(255, 255, 255, 0.018));
+        grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      }
+
+      .composer h3 {
+        margin-bottom: 8px;
+        font-size: 26px;
+      }
+
+      .composer-intro > p {
+        color: var(--ink-soft);
+        font-size: 14px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+        margin-top: 15px;
+      }
+
+      .field label,
+      .field legend {
+        color: var(--ink-soft);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .field textarea,
+      .field select {
+        width: 100%;
+        border: 1px solid var(--line-strong);
+        border-radius: 12px;
+        background: rgba(4, 13, 22, 0.62);
+        color: var(--ink);
+      }
+
+      .field textarea {
+        min-height: 124px;
+        resize: vertical;
+        padding: 13px;
+      }
+
+      .field select {
+        min-height: 46px;
+        padding: 8px 12px;
+      }
+
+      .options {
+        display: grid;
+        gap: 8px;
+        margin: 16px 0 20px;
+        padding: 0;
+        border: 0;
+      }
+
+      .option {
+        display: grid;
+        min-height: 44px;
+        align-items: start;
+        gap: 10px;
+        color: #c1cdd0;
+        font-size: 13px;
+        grid-template-columns: 18px 1fr;
+      }
+
+      .option input {
+        width: 17px;
+        height: 17px;
+        margin: 3px 0 0;
+        accent-color: var(--cyan);
+      }
+
+      .composed-output {
+        display: grid;
+        align-content: start;
+      }
+
+      .composed-output pre {
+        min-height: 330px;
+        max-height: 520px;
+        overflow: auto;
+      }
+
+      .output-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .ready-layout {
+        display: grid;
+        align-items: start;
+        gap: 34px;
+        grid-template-columns: 300px minmax(0, 1fr);
+      }
+
+      .readiness-meter {
+        position: sticky;
+        top: 100px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+        text-align: center;
+      }
+
+      .meter-ring {
+        position: relative;
+        display: grid;
+        width: 154px;
+        height: 154px;
+        margin: 0 auto 20px;
+        place-items: center;
+        border-radius: 999px;
+        background: conic-gradient(var(--cyan) var(--progress, 0%), rgba(255, 255, 255, 0.08) 0);
+      }
+
+      .meter-ring::before {
+        position: absolute;
+        inset: 10px;
+        border-radius: inherit;
+        background: var(--panel-strong);
+        content: '';
+      }
+
+      .meter-ring strong,
+      .meter-ring span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .meter-ring strong {
+        display: block;
+        font-size: 34px;
+        line-height: 1;
+      }
+
+      .meter-ring span {
+        display: block;
+        margin-top: -38px;
+        color: var(--ink-soft);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .readiness-meter h3 {
+        margin-bottom: 8px;
+      }
+
+      .readiness-meter p {
+        color: var(--ink-soft);
+        font-size: 12px;
+      }
+
+      .ready-state {
+        margin: 18px 0;
+        padding: 12px;
+        border-radius: 12px;
+        background: rgba(255, 198, 109, 0.09);
+        color: #f6dcae;
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 10px;
+      }
+
+      .check-item {
+        display: grid;
+        align-items: start;
+        gap: 14px;
+        min-height: 72px;
+        padding: 17px 18px;
+        border: 1px solid var(--line);
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.025);
+        cursor: pointer;
+        grid-template-columns: 22px 1fr auto;
+      }
+
+      .check-item:hover {
+        border-color: var(--line-strong);
+      }
+
+      .check-item input {
+        width: 19px;
+        height: 19px;
+        margin: 2px 0 0;
+        accent-color: var(--cyan);
+      }
+
+      .check-item strong {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 14px;
+      }
+
+      .check-item span {
+        color: var(--ink-soft);
+        font-size: 12px;
+      }
+
+      .check-item code {
+        color: var(--violet);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 10px;
+      }
+
+      .evidence-note {
+        display: grid;
+        gap: 18px;
+        margin-top: 40px;
+        padding: 24px;
+        border: 1px solid rgba(255, 141, 120, 0.24);
+        border-radius: 18px;
+        background: rgba(255, 141, 120, 0.05);
+        grid-template-columns: auto 1fr;
+      }
+
+      .evidence-note .badge {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(255, 141, 120, 0.12);
+        color: var(--coral);
+        font-weight: 900;
+      }
+
+      .evidence-note h3 {
+        margin-bottom: 7px;
+        font-size: 16px;
+      }
+
+      .evidence-note p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 13px;
+      }
+
+      .closing {
+        position: relative;
+        overflow: hidden;
+        padding: clamp(36px, 6vw, 72px);
+        border: 1px solid var(--line);
+        border-radius: 30px;
+        background:
+          radial-gradient(circle at 88% 50%, rgba(102, 229, 214, 0.14), transparent 26rem),
+          var(--panel);
+      }
+
+      .closing::after {
+        position: absolute;
+        right: -70px;
+        bottom: -120px;
+        color: rgba(255, 255, 255, 0.025);
+        content: '→';
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 360px;
+        line-height: 0.6;
+      }
+
+      .closing > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .closing h2 {
+        max-width: 820px;
+      }
+
+      .closing p {
+        max-width: 660px;
+        margin: 22px 0 28px;
+        color: var(--ink-soft);
+        font-size: 17px;
+      }
+
+      footer {
+        padding: 44px 0 56px;
+        color: var(--ink-soft);
+        font-size: 12px;
+      }
+
+      .footer-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: 1fr auto;
+      }
+
+      .source-note {
+        max-width: 820px;
+      }
+
+      .source-note strong {
+        color: var(--ink);
+      }
+
+      .file-note {
+        text-align: right;
+      }
+
+      .toast {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        z-index: 50;
+        max-width: min(360px, calc(100% - 44px));
+        padding: 13px 16px;
+        border: 1px solid rgba(102, 229, 214, 0.44);
+        border-radius: 13px;
+        background: #102b31;
+        color: #dffdfa;
+        box-shadow: var(--shadow);
+        font-size: 13px;
+        font-weight: 750;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(14px);
+        transition:
+          opacity 160ms ease,
+          transform 160ms ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .print-prompts {
+        display: none;
+      }
+
+      @media (max-width: 960px) {
+        .nav a {
+          display: none;
+        }
+
+        .hero-grid,
+        .section-head,
+        .flow-layout,
+        .docs-layout,
+        .standards-wrap,
+        .prompt-layout,
+        .composer,
+        .ready-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: 0;
+        }
+
+        .loop-card {
+          max-width: 680px;
+        }
+
+        .stage-nav {
+          display: flex;
+          overflow-x: auto;
+          padding-bottom: 6px;
+        }
+
+        .stage-button {
+          min-width: 168px;
+        }
+
+        .authority,
+        .readiness-meter {
+          position: static;
+        }
+
+        .prompt-list {
+          display: flex;
+          max-height: none;
+          overflow-x: auto;
+          padding: 0 0 7px;
+        }
+
+        .prompt-item {
+          min-width: 220px;
+        }
+
+        .readiness-meter {
+          display: grid;
+          align-items: center;
+          gap: 20px;
+          grid-template-columns: 154px 1fr;
+          text-align: left;
+        }
+
+        .meter-ring {
+          margin: 0;
+        }
+
+        .readiness-meter .button {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .shell {
+          width: min(calc(100% - 24px), var(--max));
+        }
+
+        .topbar-inner {
+          min-height: 64px;
+        }
+
+        .brand-copy span {
+          display: none;
+        }
+
+        .top-action {
+          padding-inline: 10px;
+          font-size: 11px;
+        }
+
+        .hero {
+          padding: 56px 0 52px;
+        }
+
+        h1 {
+          font-size: clamp(48px, 16vw, 72px);
+        }
+
+        .hero-lede {
+          font-size: 17px;
+        }
+
+        .proof-row,
+        .stage-grid,
+        .two-loop,
+        .docs-grid,
+        .error-strip,
+        .operating-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 76px 0;
+        }
+
+        .section-head {
+          gap: 18px;
+          margin-bottom: 32px;
+        }
+
+        .stage-detail {
+          min-height: 0;
+        }
+
+        .prompt-display-top {
+          display: grid;
+        }
+
+        .prompt-why {
+          grid-template-columns: 1fr;
+        }
+
+        .readiness-meter {
+          display: block;
+          text-align: center;
+        }
+
+        .meter-ring {
+          margin: 0 auto 20px;
+        }
+
+        .check-item {
+          grid-template-columns: 22px 1fr;
+        }
+
+        .check-item code {
+          grid-column: 2;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .file-note {
+          text-align: left;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media print {
+        :root {
+          color-scheme: light;
+          --ink: #172229;
+          --ink-soft: #4d5a60;
+          --paper: #ffffff;
+          --panel: #ffffff;
+          --panel-strong: #ffffff;
+          --line: rgba(23, 34, 41, 0.18);
+          --line-strong: rgba(23, 34, 41, 0.32);
+          --cyan: #087f77;
+          --amber: #9b5d00;
+          --violet: #5d45a6;
+        }
+
+        body {
+          background: #fff;
+          font-size: 10pt;
+        }
+
+        body::before,
+        .topbar,
+        .hero-actions,
+        .doc-toolbar,
+        .prompt-filters,
+        .composer,
+        .readiness-meter .button,
+        .toast {
+          display: none !important;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 25px 0;
+        }
+
+        .hero-grid,
+        .section-head,
+        .docs-layout,
+        .standards-wrap,
+        .ready-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .loop-card,
+        .stage-detail,
+        .prompt-display,
+        .standard-detail,
+        .doc-card,
+        .closing {
+          box-shadow: none;
+        }
+
+        .section {
+          padding: 32px 0;
+        }
+
+        .flow-layout,
+        .prompt-layout {
+          display: block;
+        }
+
+        .stage-nav,
+        .prompt-list {
+          display: none;
+        }
+
+        .docs-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .doc-card[hidden] {
+          display: block;
+        }
+
+        .authority,
+        .readiness-meter {
+          position: static;
+        }
+
+        .print-prompts {
+          display: block;
+          margin-top: 24px;
+        }
+
+        .print-prompt {
+          break-inside: avoid;
+          margin-bottom: 12px;
+          padding: 12px;
+          border: 1px solid var(--line);
+        }
+
+        a {
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the guide</a>
+
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a class="brand" href="#top" aria-label="Dave's Build System — back to top">
+          <span class="brand-mark" aria-hidden="true">D→</span>
+          <span class="brand-copy">
+            <strong>Dave's Build System</strong>
+            <span>Idea → evidence</span>
+          </span>
+        </a>
+        <nav class="nav" aria-label="Guide sections">
+          <a href="#flow">Flow</a>
+          <a href="#docs">Docs</a>
+          <a href="#standards">Standards</a>
+          <a href="#prompts">Prompts</a>
+          <a href="#run">Run</a>
+          <a href="#ready">Ready?</a>
+          <button class="top-action" id="print-button" type="button">Print / PDF</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">The build before the build</p>
+            <h1>
+              Cloud <span aria-hidden="true">→</span> contract <span aria-hidden="true">→</span>
+              <span class="accent">code.</span>
+            </h1>
+            <p class="hero-lede">
+              A practical system for turning a rambling idea into architecture, a build contract,
+              verified software, and a handoff another agent can resume without oral history.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#flow"
+                >Walk the system <span aria-hidden="true">↓</span></a
+              >
+              <a class="button" href="#prompts">Open the prompt library</a>
+            </div>
+            <p class="hero-note">
+              <span class="dot" aria-hidden="true"></span>
+              <span>
+                Grounded in the actual coding standards, repository docs, and decision-heavy Claude
+                and Codex sessions. Prompt examples are paraphrased and anonymized.
+              </span>
+            </p>
+          </div>
+
+          <aside class="loop-card" aria-label="The idea-to-evidence loop">
+            <div class="loop-label">
+              <span>Operating sequence</span>
+              <span>Two gates</span>
+            </div>
+            <div class="loop">
+              <div class="loop-step">
+                <span class="loop-number">01</span>
+                <div>
+                  <strong>Spill the idea</strong><br /><small>Context before compression</small>
+                </div>
+                <span aria-hidden="true">↘</span>
+              </div>
+              <div class="loop-step">
+                <span class="loop-number">02</span>
+                <div>
+                  <strong>Mirror the intent</strong><br /><small
+                    >Goal, people, constraints, unknowns</small
+                  >
+                </div>
+                <span aria-hidden="true">↘</span>
+              </div>
+              <div class="gate"><span>Alignment gate</span><b>“Yes — that's right.”</b></div>
+              <div class="loop-step">
+                <span class="loop-number">03</span>
+                <div>
+                  <strong>Architect + specify</strong><br /><small
+                    >Boundaries, flows, acceptance</small
+                  >
+                </div>
+                <span aria-hidden="true">↘</span>
+              </div>
+              <div class="loop-step">
+                <span class="loop-number">04</span>
+                <div>
+                  <strong>Authorize + build</strong><br /><small
+                    >Kickoff, baseline, small slices</small
+                  >
+                </div>
+                <span aria-hidden="true">↘</span>
+              </div>
+              <div class="loop-step">
+                <span class="loop-number">05</span>
+                <div>
+                  <strong>Prove + compound</strong><br /><small
+                    >Evidence, rollback, handoff, lessons</small
+                  >
+                </div>
+                <span aria-hidden="true">↺</span>
+              </div>
+            </div>
+            <div class="proof-row" aria-label="Three levels of proof">
+              <div class="proof-chip"><strong>Built</strong>exists in code</div>
+              <div class="proof-chip"><strong>Verified</strong>passes boundaries</div>
+              <div class="proof-chip"><strong>Observed</strong>works live</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="flow">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <span class="section-index">01 / Workflow</span>
+              <h2>Slow down once. Move fast after.</h2>
+            </div>
+            <p class="section-lede">
+              The workflow spends attention at the moment when misunderstandings are cheap. Once
+              intent, architecture, and proof are agreed, the implementation agent gets a precise
+              path instead of an invitation to improvise.
+            </p>
+          </div>
+
+          <div class="flow-layout">
+            <div class="stage-nav" id="stage-nav" role="tablist" aria-label="Workflow stages"></div>
+            <article class="stage-detail" id="stage-detail" role="tabpanel" tabindex="0"></article>
+          </div>
+
+          <div class="two-loop">
+            <article class="loop-panel">
+              <h3>Conversation loop</h3>
+              <p>Ends when the behavior and tradeoffs are mutually understood.</p>
+              <div class="loop-chain" aria-label="Conversation loop steps">
+                <span>Spill</span><i>→</i><span>Mirror</span><i>→</i><span>Research</span><i>→</i
+                ><span>Decide</span><i>→</i><span>Agree</span>
+              </div>
+            </article>
+            <article class="loop-panel">
+              <h3>Delivery loop</h3>
+              <p>Ends when the change is provable, recoverable, and restartable.</p>
+              <div class="loop-chain" aria-label="Delivery loop steps">
+                <span>Baseline</span><i>→</i><span>Build</span><i>→</i><span>Verify</span><i>→</i
+                ><span>Prove</span><i>→</i><span>Compound</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="docs">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <span class="section-index">02 / Documentation system</span>
+              <h2>Every document gets one job.</h2>
+            </div>
+            <p class="section-lede">
+              The power is not “lots of docs.” It is a clean separation between authority, design,
+              execution, proof, operations, and history. Click a phase to see the files that carry
+              it.
+            </p>
+          </div>
+
+          <div class="doc-toolbar" aria-label="Filter documents by phase">
+            <button class="filter-button" type="button" data-doc-filter="all" aria-pressed="true">
+              All
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-doc-filter="align"
+              aria-pressed="false"
+            >
+              Align
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-doc-filter="design"
+              aria-pressed="false"
+            >
+              Design
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-doc-filter="execute"
+              aria-pressed="false"
+            >
+              Execute
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-doc-filter="prove"
+              aria-pressed="false"
+            >
+              Prove
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-doc-filter="operate"
+              aria-pressed="false"
+            >
+              Operate
+            </button>
+          </div>
+
+          <div class="docs-layout">
+            <div class="docs-grid" id="docs-grid">
+              <article class="doc-card" data-doc-phase="align execute">
+                <div class="doc-top">
+                  <span class="doc-file">AGENTS.md</span><span class="doc-phase">Constitution</span>
+                </div>
+                <h3>Session rules</h3>
+                <p class="doc-question">“What authority and guardrails apply?”</p>
+                <p>
+                  Read order, scope, resource boundaries, cost controls, engineering invariants, and
+                  what a session may not infer.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="align operate">
+                <div class="doc-top">
+                  <span class="doc-file">README.md</span><span class="doc-phase">Front door</span>
+                </div>
+                <h3>Current-state index</h3>
+                <p class="doc-question">“What is true right now?”</p>
+                <p>
+                  A concise map of what is live, what is pending, how to run it, and where deeper
+                  authority and evidence live.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="align design">
+                <div class="doc-top">
+                  <span class="doc-file">DECISIONS.md</span><span class="doc-phase">Memory</span>
+                </div>
+                <h3>Decision ledger</h3>
+                <p class="doc-question">“What is settled—and why?”</p>
+                <p>
+                  Accepted, provisional, deferred, and rejected choices with rationale and the
+                  condition that would reopen them.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="design">
+                <div class="doc-top">
+                  <span class="doc-file">ARCHITECTURE.md</span
+                  ><span class="doc-phase">Structure</span>
+                </div>
+                <h3>System model</h3>
+                <p class="doc-question">“How does the system fit together?”</p>
+                <p>
+                  Boundaries, modules, sources of truth, contracts, dependencies, data flow,
+                  permissions, reliability, and security.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="design prove">
+                <div class="doc-top">
+                  <span class="doc-file">WORKFLOWS.md</span><span class="doc-phase">Behavior</span>
+                </div>
+                <h3>State over time</h3>
+                <p class="doc-question">“What happens next—and when it fails?”</p>
+                <p>
+                  Happy paths, state transitions, retries, idempotency, reconciliation, time rules,
+                  side effects, and recovery.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="design execute">
+                <div class="doc-top">
+                  <span class="doc-file">BUILD_SPEC.md</span><span class="doc-phase">Contract</span>
+                </div>
+                <h3>Requirements contract</h3>
+                <p class="doc-question">“Exactly what must be built?”</p>
+                <p>
+                  Outcome, users, behavior, validations, compatibility, non-goals, preservation
+                  rules, acceptance, and deployment boundaries.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="prove design">
+                <div class="doc-top">
+                  <span class="doc-file">ACCEPTANCE.md</span
+                  ><span class="doc-phase">Proof design</span>
+                </div>
+                <h3>Acceptance matrix</h3>
+                <p class="doc-question">“What observation makes this true?”</p>
+                <p>
+                  Stable IDs, scenarios, test layers, live-vs-mocked labels, rehearsals, artifacts,
+                  and explicit pending gaps.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="execute">
+                <div class="doc-top">
+                  <span class="doc-file">KICKOFF.md</span
+                  ><span class="doc-phase">Authorization</span>
+                </div>
+                <h3>Executable brief</h3>
+                <p class="doc-question">“What may this clean session do?”</p>
+                <p>
+                  Repo, base revision, branch, read order, baseline, locked decisions, permissions,
+                  forbidden actions, gates, rollback, and deliverables.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="execute">
+                <div class="doc-top">
+                  <span class="doc-file">plans/</span><span class="doc-phase">Sequence</span>
+                </div>
+                <h3>Dependency-aware plan</h3>
+                <p class="doc-question">“In what order should we build?”</p>
+                <p>
+                  Preflight, contracts, owned parallel work, integration, verification, review, and
+                  explicit completion checkpoints.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="execute prove">
+                <div class="doc-top">
+                  <span class="doc-file">PROGRESS.md / BUILD_LOG.md</span
+                  ><span class="doc-phase">Ledger</span>
+                </div>
+                <h3>Work state</h3>
+                <p class="doc-question">“What happened, and what is next?”</p>
+                <p>
+                  Chronological implementation facts, current checklist, exact checks, blockers, and
+                  next slice. It is not product history.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="prove operate">
+                <div class="doc-top">
+                  <span class="doc-file">CHANGELOG.md</span><span class="doc-phase">History</span>
+                </div>
+                <h3>Material change record</h3>
+                <p class="doc-question">“What changed across versions?”</p>
+                <p>
+                  Dated material changes and pivots. Concise history—not a live-status claim and not
+                  a dump of every command.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="prove">
+                <div class="doc-top">
+                  <span class="doc-file">docs/evidence/</span><span class="doc-phase">Record</span>
+                </div>
+                <h3>Immutable proof</h3>
+                <p class="doc-question">“What actually passed?”</p>
+                <p>
+                  Dated, sanitized commands, SHAs, counts, screenshots, provider observations,
+                  failures, and exact unverified gaps.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="operate">
+                <div class="doc-top">
+                  <span class="doc-file">RUNBOOK.md</span><span class="doc-phase">Operations</span>
+                </div>
+                <h3>Operate and recover</h3>
+                <p class="doc-question">“How do we run this safely?”</p>
+                <p>
+                  Start, inspect, stop, retry, reconcile, back up, restore, contain incidents, roll
+                  back, and interpret failure states.
+                </p>
+              </article>
+              <article class="doc-card" data-doc-phase="operate prove">
+                <div class="doc-top">
+                  <span class="doc-file">HANDOFF.md</span><span class="doc-phase">Continuity</span>
+                </div>
+                <h3>Restartable context</h3>
+                <p class="doc-question">“Can a new agent continue cold?”</p>
+                <p>
+                  Exact revision, current truth, verified vs unverified, running state, blockers,
+                  rollback, evidence locations, and next safe action.
+                </p>
+              </article>
+            </div>
+
+            <aside class="authority">
+              <h3>The authority ladder</h3>
+              <p>Documents can describe, authorize, report, or prove. Those are different jobs.</p>
+              <ol class="authority-list">
+                <li>
+                  <strong>Newest approved narrow spec</strong><br />controls only explicit
+                  conflicts.
+                </li>
+                <li>
+                  <strong>Older specs remain active</strong><br />for every non-conflicting rule.
+                </li>
+                <li>
+                  <strong>Kickoff grants action</strong><br />planning alone does not launch a
+                  build.
+                </li>
+                <li>
+                  <strong>README / progress report state</strong><br />they do not manufacture
+                  proof.
+                </li>
+                <li>
+                  <strong>Dated evidence proves results</strong><br />and preserves failures
+                  honestly.
+                </li>
+              </ol>
+              <p class="authority-callout">
+                New direction is not deployed state. Provider acceptance is not delivery. A mock is
+                not a live integration. Historical evidence is never rewritten.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="standards">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <span class="section-index">03 / Coding standards</span>
+              <h2>Make the repository explain itself.</h2>
+            </div>
+            <p class="section-lede">
+              The standard is designed for the next human or agent arriving with zero tribal
+              knowledge. Select a discipline to see the working rules and its exit gate.
+            </p>
+          </div>
+
+          <div class="standards-wrap">
+            <article class="standards-intro">
+              <blockquote>
+                No dark code. No silent failures. <em>No oral history required.</em>
+              </blockquote>
+              <p>
+                Every module states what it does, what it depends on, who depends on it, and why it
+                exists. The code, tests, CLI, evidence, and commit history form one explainable
+                system.
+              </p>
+              <div class="error-strip" aria-label="Actionable error anatomy">
+                <div><strong>WHAT</strong><span>The exact failure</span></div>
+                <div><strong>WHERE</strong><span>Module + context</span></div>
+                <div><strong>HOW</strong><span>The next remedy</span></div>
+              </div>
+            </article>
+
+            <div>
+              <div
+                class="standards-tabs"
+                id="standards-tabs"
+                role="tablist"
+                aria-label="Coding standard disciplines"
+              ></div>
+              <article
+                class="standard-detail"
+                id="standard-detail"
+                role="tabpanel"
+                tabindex="0"
+              ></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="prompts">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <span class="section-index">04 / Prompt library</span>
+              <h2>Ask for the artifact you need next.</h2>
+            </div>
+            <p class="section-lede">
+              These are reusable prompt archetypes distilled from decision-intensive sessions.
+              Choose a stage, click a prompt, then copy it or load it into the composer.
+            </p>
+          </div>
+
+          <aside class="rule-banner">
+            <span class="icon" aria-hidden="true">↩</span>
+            <div>
+              <strong>Use reverse prompting when the idea is still amorphous.</strong>
+              <p>
+                You do not need a perfect opening prompt. Ask the agent to hold the context,
+                interview for decision-changing gaps, recommend defaults, mirror the design, and
+                compile the persistent artifacts only after you agree.
+              </p>
+            </div>
+          </aside>
+
+          <div class="operating-strip" id="run" aria-label="Build operating controls">
+            <button class="operating-card" type="button" data-open-prompt="cost-routing">
+              <span class="operating-card-code">Route</span>
+              <strong>Thin orchestrator, cheapest capable executor</strong>
+              <small>Tools → local → low-cost worker → strongest available conductor.</small>
+              <span class="operating-card-action">Open routing prompt →</span>
+            </button>
+            <button class="operating-card" type="button" data-open-prompt="usage-checkpoint">
+              <span class="operating-card-code">Guard</span>
+              <strong>25% reserve · 75% stop</strong>
+              <small>Check before dispatch and after each batch. Shared means shared.</small>
+              <span class="operating-card-action">Open usage prompt →</span>
+            </button>
+            <button class="operating-card" type="button" data-open-prompt="overnight-kickoff">
+              <span class="operating-card-code">Persist</span>
+              <strong>Autonomous, not unbounded</strong>
+              <small>Keep moving on safe work; checkpoint, reconcile, and stop at authority.</small>
+              <span class="operating-card-action">Open overnight prompt →</span>
+            </button>
+          </div>
+
+          <div class="prompt-filters" aria-label="Filter prompts by stage">
+            <button
+              class="filter-button"
+              type="button"
+              data-prompt-filter="all"
+              aria-pressed="true"
+            >
+              All prompts
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-prompt-filter="align"
+              aria-pressed="false"
+            >
+              Align
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-prompt-filter="design"
+              aria-pressed="false"
+            >
+              Design
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-prompt-filter="execute"
+              aria-pressed="false"
+            >
+              Execute
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-prompt-filter="operate"
+              aria-pressed="false"
+            >
+              Operate
+            </button>
+            <button
+              class="filter-button"
+              type="button"
+              data-prompt-filter="prove"
+              aria-pressed="false"
+            >
+              Prove
+            </button>
+          </div>
+
+          <div class="prompt-layout">
+            <div
+              class="prompt-list"
+              id="prompt-list"
+              role="tablist"
+              aria-label="Example prompts"
+            ></div>
+            <article class="prompt-display" id="prompt-display" role="tabpanel" tabindex="0">
+              <div class="prompt-display-top">
+                <div>
+                  <div class="prompt-meta">
+                    <p id="prompt-category">Align</p>
+                    <span class="prompt-source" id="prompt-source" hidden></span>
+                  </div>
+                  <h3 id="prompt-title">Brain-dump mirror</h3>
+                </div>
+                <button class="button small" id="copy-prompt" type="button">Copy prompt</button>
+              </div>
+              <pre class="prompt-text" id="prompt-text"></pre>
+              <div class="prompt-why">
+                <strong>Why it works</strong>
+                <p id="prompt-why"></p>
+              </div>
+            </article>
+          </div>
+
+          <section class="composer" aria-labelledby="composer-title">
+            <div class="composer-intro">
+              <span class="section-index">Prompt composer</span>
+              <h3 id="composer-title">Turn your cloud into a focused next turn.</h3>
+              <p>
+                Paste the messy version, choose the artifact you want, and keep the guardrails that
+                prevent premature implementation.
+              </p>
+              <div class="field">
+                <label for="brain-dump">Your brain dump</label>
+                <textarea
+                  id="brain-dump"
+                  placeholder="Paste the rambling version here. Context, frustrations, half-formed ideas—all of it."
+                ></textarea>
+              </div>
+              <div class="field">
+                <label for="artifact-select">Next artifact</label>
+                <select id="artifact-select">
+                  <option value="mirror">Structured readback</option>
+                  <option value="architecture">Architecture brief</option>
+                  <option value="spec">Build specification</option>
+                  <option value="kickoff">Agent kickoff</option>
+                  <option value="routing">Cost-aware routing plan</option>
+                  <option value="usage">Usage checkpoint</option>
+                  <option value="overnight">Autonomous overnight kickoff</option>
+                </select>
+              </div>
+              <fieldset class="options">
+                <legend>Guardrails</legend>
+                <label class="option"
+                  ><input type="checkbox" data-guardrail="no-code" checked /><span
+                    >Do not write code yet</span
+                  ></label
+                >
+                <label class="option"
+                  ><input type="checkbox" data-guardrail="facts" checked /><span
+                    >Separate verified facts, assumptions, and decisions</span
+                  ></label
+                >
+                <label class="option"
+                  ><input type="checkbox" data-guardrail="questions" checked /><span
+                    >Ask only decision-changing questions</span
+                  ></label
+                >
+                <label class="option"
+                  ><input type="checkbox" data-guardrail="proof" /><span
+                    >Include acceptance evidence and rollback</span
+                  ></label
+                >
+              </fieldset>
+              <button class="button primary" id="compose-button" type="button">
+                Compose prompt
+              </button>
+            </div>
+            <div class="composed-output">
+              <pre class="prompt-text" id="composed-text" aria-live="polite">
+Your composed prompt will appear here.</pre>
+              <div class="output-actions">
+                <button class="button small" id="copy-composed" type="button">
+                  Copy composed prompt
+                </button>
+                <button class="button small" id="clear-composer" type="button">Clear</button>
+              </div>
+            </div>
+          </section>
+
+          <div class="print-prompts" id="print-prompts" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section class="section" id="ready">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <span class="section-index">05 / Agent-ready gate</span>
+              <h2>Is the idea ready to become a kickoff?</h2>
+            </div>
+            <p class="section-lede">
+              An agent-ready plan is not merely detailed. It is bounded, testable, authorized,
+              recoverable, and explicit about what remains unknown.
+            </p>
+          </div>
+
+          <div class="ready-layout">
+            <aside class="readiness-meter">
+              <div class="meter-ring" id="meter-ring" style="--progress: 0%">
+                <strong id="meter-count">0/12</strong>
+                <span>defined</span>
+              </div>
+              <div>
+                <h3>Kickoff readiness</h3>
+                <p>Check what is genuinely settled. Unknowns are fine; hidden unknowns are not.</p>
+                <div class="ready-state" id="ready-state" aria-live="polite">
+                  Start with the outcome and user journey.
+                </div>
+              </div>
+              <button class="button small" id="reset-checklist" type="button">
+                Reset checklist
+              </button>
+            </aside>
+
+            <div class="checklist" id="checklist">
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Outcome</strong
+                  ><span>The result fits in one plain-language sentence.</span></span
+                ><code>WHY</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Observable journey</strong
+                  ><span>Actors, triggers, actions, and end states are concrete.</span></span
+                ><code>UX</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Current truth</strong
+                  ><span
+                    >Verified reality is separated from assumptions and target state.</span
+                  ></span
+                ><code>NOW</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Locked decisions</strong
+                  ><span
+                    >Rationale, rejected options, and reopen conditions are recorded.</span
+                  ></span
+                ><code>ADR</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Scope + non-goals</strong
+                  ><span>The build says what it changes, preserves, and refuses to do.</span></span
+                ><code>BOUND</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Architecture</strong
+                  ><span
+                    >Components, dependencies, trust boundaries, and integrations are mapped.</span
+                  ></span
+                ><code>MAP</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Canonical state</strong
+                  ><span
+                    >Sources of truth, contracts, state transitions, and money rules are
+                    explicit.</span
+                  ></span
+                ><code>DATA</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Failure behavior</strong
+                  ><span
+                    >Retries, idempotency, partial failure, reconciliation, and recovery are
+                    designed.</span
+                  ></span
+                ><code>FAIL</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Authority + safety</strong
+                  ><span
+                    >Credentials, external writes, privacy, cost ceiling, and human approval
+                    boundaries are named.</span
+                  ></span
+                ><code>SAFE</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Acceptance</strong
+                  ><span
+                    >Each consequential requirement has an observable proof and evidence type.</span
+                  ></span
+                ><code>PROVE</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Delivery + rollback</strong
+                  ><span
+                    >Baseline, sequence, gates, deployment order, and reversal are documented.</span
+                  ></span
+                ><code>SHIP</code></label
+              >
+              <label class="check-item"
+                ><input type="checkbox" /><span
+                  ><strong>Continuity</strong
+                  ><span
+                    >Docs, progress, changelog, runbook, evidence, and handoff updates are
+                    assigned.</span
+                  ></span
+                ><code>NEXT</code></label
+              >
+            </div>
+          </div>
+
+          <aside class="evidence-note">
+            <div class="badge" aria-hidden="true">!</div>
+            <div>
+              <h3>Completion is a proof state, not a confident sentence.</h3>
+              <p>
+                Keep <strong>implemented</strong>, <strong>offline-tested</strong>,
+                <strong>provider-accepted</strong>, <strong>live-observed</strong>, and
+                <strong>pending</strong> separate. Record exact commands, revision, timestamp,
+                counts, sanitized artifacts, rollback targets, and the remaining gap.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="shell closing">
+          <span class="section-index">The test</span>
+          <h2>Could a fresh agent build the right thing without calling you?</h2>
+          <p>
+            If the repository explains purpose, boundaries, decisions, proof, operations, and the
+            next safe action, the idea has made the full trip from cloud to contract to code.
+          </p>
+          <a class="button primary" href="#prompts">Start with the brain-dump prompt</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell footer-grid">
+        <p class="source-note">
+          <strong>Source basis:</strong> coding standards; AGENTS, README, decisions, architecture,
+          workflows, build specs, acceptance/evidence, plans, progress, changelog, runbooks, and
+          handoffs; plus anonymized decision-intensive Claude/Codex session patterns sampled across
+          Mac, Windows, and indexed memory. No credentials, client records, or proprietary prompt
+          text are reproduced.
+        </p>
+        <p class="file-note">One HTML file · no tracking · no network calls · works offline</p>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      /**
+       * Powers the workflow tabs, document filters, prompt library, prompt composer, and checklist.
+       *
+       * Dependencies:
+       *   - Browser DOM, Clipboard API when available, and a local fallback for file:// sharing.
+       *
+       * Depended on by:
+       *   - The interactive controls in this standalone page.
+       *
+       * Why this exists:
+       *   The guide remains a single portable file while still supporting exploration and reuse.
+       */
+      (() => {
+        'use strict';
+
+        const stages = [
+          {
+            short: 'Spill',
+            label: '01 · Explore',
+            status: 'Planning mode',
+            title: 'Let the idea arrive before you compress it.',
+            description:
+              'Start with the messy version: desired experience, frustrations, context, examples, half-decisions, and contradictions. The first job is capture—not architecture.',
+            input:
+              'A spoken or written brain dump, reference material, and the real reason the idea matters.',
+            move: [
+              'Hold context until the owner says ‘done’',
+              'Listen for outcomes, not feature names',
+              'Do not code or prematurely choose tools',
+            ],
+            artifact: 'Raw intent + an explicit no-code planning boundary.',
+            ruleTitle: "Do not clean up the owner's meaning too early.",
+            ruleText: 'Compression before understanding creates a tidy version of the wrong idea.',
+          },
+          {
+            short: 'Mirror',
+            label: '02 · Align',
+            status: 'Hard gate',
+            title: 'Repeat it back as observable behavior.',
+            description:
+              'Reorganize the cloud into goal, people, desired experience, constraints, assumptions, unknowns, and non-goals. Name contradictions. Then stop and wait for correction.',
+            input: 'The brain dump, without added implementation detail.',
+            move: [
+              'Separate fact from inference',
+              "Use the owner's language",
+              'Ask: ‘Is this what you mean?’',
+            ],
+            artifact: 'An agreed problem statement and user journey.',
+            ruleTitle: "No architecture before ‘yes, that's right.’",
+            ruleText:
+              'This alignment gate appears repeatedly in the sampled decision-heavy sessions.',
+          },
+          {
+            short: 'Research',
+            label: '03 · Ground',
+            status: 'Read-only',
+            title: 'Inspect current truth before choosing a future.',
+            description:
+              'Read the repo, current workflows, existing integrations, historical evidence, and relevant references. Distinguish what exists, what is verified, what is assumed, and what is merely planned.',
+            input: 'Agreed intent plus the actual system and source material.',
+            move: [
+              'Read before proposing replacement',
+              'Find real runtime consumers',
+              'Surface gaps and feasible approaches',
+            ],
+            artifact: 'Reality map: verified / assumed / missing / constrained.',
+            ruleTitle: 'Target state is not current state.',
+            ruleText: 'Labels like ‘legacy’ or ‘deprecated’ never substitute for runtime evidence.',
+          },
+          {
+            short: 'Decide',
+            label: '04 · Resolve',
+            status: 'Owner choices',
+            title: 'Ask only questions that change the design.',
+            description:
+              'Turn unresolved issues into options, tradeoffs, and a recommendation. Capture decisions with rationale, consequences, rejected alternatives, and the condition that would reopen them.',
+            input: 'Reality map and the smallest set of material open questions.',
+            move: [
+              'Prefer numbered, mutually exclusive choices',
+              'Recommend a default',
+              'Mark settled, provisional, deferred, forbidden',
+            ],
+            artifact: 'DECISIONS.md or equivalent decision ledger.',
+            ruleTitle: 'A pivot is logged, never silently rewritten.',
+            ruleText:
+              'Settled questions stop consuming future sessions unless a named condition changes.',
+          },
+          {
+            short: 'Architect',
+            label: '05 · Model',
+            status: 'No code yet',
+            title: 'Design boundaries, flows, and sources of truth.',
+            description:
+              'Architecture is more than a tool list. Define components, dependency direction, canonical records, contracts, state transitions, trust boundaries, integrations, failure modes, security, and observability.',
+            input: 'Agreed behavior and locked decisions.',
+            move: [
+              'Map data and authority',
+              'Keep side effects explicit',
+              'Design retries, idempotency, and recovery',
+            ],
+            artifact: 'ARCHITECTURE.md + WORKFLOWS.md.',
+            ruleTitle: 'Deterministic core, isolated adapters.',
+            ruleText:
+              'Money, auth, recipients, business state, and idempotency never depend on model improvisation.',
+          },
+          {
+            short: 'Specify',
+            label: '06 · Contract',
+            status: 'Testable',
+            title: 'Translate architecture into a falsifiable build contract.',
+            description:
+              'For each feature, specify inputs, exact behavior, validations, edge cases, compatibility, preservation rules, non-goals, test boundaries, deployment order, rollback, and measurable acceptance.',
+            input: 'Architecture, workflows, decisions, and current constraints.',
+            move: [
+              'Name what must not change',
+              'Design acceptance with the feature',
+              'Resolve ambiguity before implementation',
+            ],
+            artifact: 'BUILD_SPEC.md + ACCEPTANCE.md.',
+            ruleTitle: 'If a requirement has no proof, it is still ambiguous.',
+            ruleText:
+              'The spec describes the target; it does not by itself authorize or prove a release.',
+          },
+          {
+            short: 'Authorize',
+            label: '07 · Launch',
+            status: 'Clean session',
+            title: 'Write the one-shot kickoff an agent can execute cold.',
+            description:
+              'Pin the repository, base revision, branch, read order, baseline commands, authority hierarchy, locked decisions, safe defaults, allowed and forbidden actions, implementation sequence, verification gates, deliverables, and stop conditions.',
+            input: 'Approved spec and acceptance contract.',
+            move: [
+              'Make permissions explicit',
+              'Capture rollback before mutation',
+              'Name exact external blockers',
+            ],
+            artifact: 'KICKOFF.md + dependency-aware plan.',
+            ruleTitle: 'Planning is information. Kickoff is authorization.',
+            ruleText: 'A fresh agent should not need to reopen settled product decisions.',
+          },
+          {
+            short: 'Build',
+            label: '08 · Deliver',
+            status: 'Small slices',
+            title: 'Implement one complete, reversible slice at a time.',
+            description:
+              'Baseline first. Then use explicit ownership, pure contracts, affected tests, a standards sweep, evidence, and a small commit. Integrate only after each slice is coherent and verified.',
+            input: 'Kickoff, plan, clean baseline, and assigned ownership.',
+            move: [
+              'One logical change + tests',
+              'Run relevant checks once',
+              'Commit and push verified batches',
+            ],
+            artifact: 'Code + tests + progress/build log + rollbackable commits.',
+            ruleTitle: 'Prefer obvious over clever.',
+            ruleText: 'Every error says WHAT failed, WHERE it failed, and HOW to remedy it.',
+          },
+          {
+            short: 'Prove',
+            label: '09 · Compound',
+            status: 'Restartable',
+            title: 'Close with evidence, operations, and continuity.',
+            description:
+              'Walk the acceptance matrix, separate offline from live proof, preserve dated evidence, update current-state docs, record material changes, document recovery, and write a handoff with the exact next safe action.',
+            input: 'Verified implementation and observed integration results.',
+            move: [
+              'Do not upgrade a partial result into a pass',
+              'Keep evidence immutable',
+              'Turn hard-won lessons into reusable guidance',
+            ],
+            artifact: 'Evidence + README/PROGRESS + CHANGELOG + RUNBOOK + HANDOFF.',
+            ruleTitle: 'Finish with restartability.',
+            ruleText:
+              'The next session resumes from the record instead of rediscovering the project.',
+          },
+        ];
+
+        const standards = [
+          {
+            id: 'code',
+            label: 'Code',
+            title: 'Pristine, obvious code',
+            description:
+              'Small responsibilities, visible side effects, and a dependency flow a new reader can follow.',
+            rules: [
+              'No mystery functions, dead code, unnamed constants, god-modules, circular dependencies, or unowned TODOs.',
+              'Prefer guard clauses and plain control flow; name things by intent, not implementation.',
+              'Every source module states what it does, dependencies, consumers, and why it exists.',
+              'Public interfaces are typed; external inputs, provider responses, database rows, and subprocess output are validated at boundaries.',
+            ],
+            gate: 'A reader can explain the module without running the code in their head.',
+          },
+          {
+            id: 'failure',
+            label: 'Failures',
+            title: 'No silent failure',
+            description:
+              'An error is an operational instruction, not a vague apology or swallowed exception.',
+            rules: [
+              'Never swallow exceptions or use nullish shortcuts to hide a failure path that matters.',
+              'State WHAT failed, WHERE it failed, and HOW the next person can diagnose or fix it.',
+              'Use typed errors or explicit results; do not return null to mean ‘something went wrong.’',
+              'Log useful context without credentials, customer payloads, or secrets.',
+            ],
+            gate: 'A fresh session can act on the message without asking what happened.',
+          },
+          {
+            id: 'tests',
+            label: 'Tests',
+            title: 'Transparent, reusable proof',
+            description:
+              'Tests are organized by behavior and make the boundary being proven obvious.',
+            rules: [
+              'Every public business function has coverage; every bug fix adds a regression test.',
+              'Test one behavior at a time, including empty, null, zero, one, max, and missing-key boundaries.',
+              'Use synthetic data; keep the unit suite offline and fast; separate opt-in integration and provider tests.',
+              'Use real local transactions when persistence, races, or state transitions matter.',
+            ],
+            gate: 'The test name explains the behavior, and a failure points to one boundary.',
+          },
+          {
+            id: 'git',
+            label: 'Git',
+            title: 'Small, reversible history',
+            description:
+              'Commits are debugging tools and rollback units—not end-of-session storage bins.',
+            rules: [
+              'One logical change per commit; a module and its tests belong together.',
+              "Stage explicit paths and never mix another person's or a prior session's changes.",
+              'Use ‘Verb + what — why/impact’ with a short body explaining the meaningful details.',
+              'Lint, typecheck, and run affected tests before each code commit; never force-push published history.',
+            ],
+            gate: 'The commit can be reverted without collateral damage.',
+          },
+          {
+            id: 'ops',
+            label: 'Operations',
+            title: 'Agent-readable operations',
+            description:
+              'If an operator can do it, an agent should have a documented, bounded interface too.',
+            rules: [
+              'Every operator capability has a CLI with useful --help, examples, explicit target IDs, and auth.',
+              'Data commands support --json; structured data goes to stdout and operational logs go to stderr.',
+              'Use dry-run for consequential actions and stable exit codes for automation.',
+              'Runbooks include inspect, retry, reconcile, backup, restore, incident containment, and rollback.',
+            ],
+            gate: 'A new agent can operate and diagnose the system without clicking through hidden UI state.',
+          },
+          {
+            id: 'removal',
+            label: 'Removal',
+            title: 'Runtime proof before deletion',
+            description: 'A source label never proves that a path is unused in production.',
+            rules: [
+              'Read the path being removed; source imports alone do not reveal runtime behavior.',
+              'Identify actual consumers using configuration, live processes, logs, or database evidence.',
+              'Smoke-test equivalent-or-better replacement behavior against the real boundary.',
+              'Document a concrete rollback; auth-bearing removals require explicit operator approval.',
+            ],
+            gate: 'Replacement parity and recovery are evidenced before the old capability disappears.',
+          },
+          {
+            id: 'safety',
+            label: 'Safety',
+            title: 'Boundaries at the last responsible moment',
+            description:
+              'Safety is enforced by deterministic code and trusted configuration, not by a polite prompt.',
+            rules: [
+              'No secrets, real customer exports, transcripts, invoices, or private provider payloads in Git.',
+              'Derive tenants, recipients, money, and provider targets from trusted records or configuration.',
+              'Enforce allowlists and authorization again at the final external-write boundary.',
+              'Use synthetic evidence and redact identifiers while preserving diagnostic value.',
+            ],
+            gate: 'A copied record or model-generated value cannot bypass the final provider boundary.',
+          },
+        ];
+
+        const prompts = [
+          {
+            id: 'brain-dump',
+            category: 'align',
+            categoryLabel: 'Align · Explore',
+            title: 'Brain-dump mirror',
+            text: "I'm going to unload context in pieces. Hold it without planning or acting until I say ‘done.’ Once I do, organize what I said into: Goal, People, Desired experience, Constraints, Verified facts, Assumptions, Unknowns, and Non-goals. Repeat it back in plain language, name contradictions, then wait for my correction.",
+            why: "It preserves the owner's raw intent while forcing the agent to expose its interpretation before that interpretation hardens into design.",
+          },
+          {
+            id: 'alignment',
+            category: 'align',
+            categoryLabel: 'Align · Gate',
+            title: 'Observable alignment gate',
+            text: 'Describe the experience back to me as observable user behavior from trigger to end state. Call out anything ambiguous or internally inconsistent. Do not propose architecture or implementation until I explicitly say we are aligned.',
+            why: 'It replaces vague agreement with a behavior-level checkpoint and creates a clean no-code boundary.',
+          },
+          {
+            id: 'reality-scan',
+            category: 'align',
+            categoryLabel: 'Align · Research',
+            title: 'Reality scan',
+            text: 'Inspect the current repository, documentation, running workflow, and relevant source material. Return five sections: What exists, What is verified, What is only planned, Gaps or contradictions, and 2–3 feasible approaches. Make no code or external changes.',
+            why: 'It prevents target architecture, stale docs, and labels such as ‘legacy’ from being mistaken for live reality.',
+          },
+          {
+            id: 'decision-workshop',
+            category: 'align',
+            categoryLabel: 'Align · Decide',
+            title: 'Decision workshop',
+            text: 'For each unresolved question, give 2–3 mutually exclusive options, the tradeoffs, and your recommendation. Ask me only questions whose answers would materially change the architecture, scope, risk, or cost. Record my choices as settled, provisional, deferred, or forbidden.',
+            why: 'It reduces clarification chatter and turns open questions into a durable decision ledger.',
+          },
+          {
+            id: 'architecture',
+            category: 'design',
+            categoryLabel: 'Design · Architecture',
+            title: 'Architecture brief',
+            text: 'Now that we agree on behavior, define the architecture: components, dependency direction, data flow, canonical sources of truth, public and private contracts, state transitions, trust boundaries, integrations, failure modes, retries, idempotency, security, observability, and operator recovery. Include rejected alternatives and why. No implementation yet.',
+            why: 'It makes architecture a model of responsibility and change over time—not a shopping list of technologies.',
+          },
+          {
+            id: 'decision-lock',
+            category: 'design',
+            categoryLabel: 'Design · Memory',
+            title: 'Decision lock',
+            text: 'Record each accepted decision with: context, choice, rationale, consequences, rejected alternatives, status, and the exact condition that would justify reopening it. If a later decision conflicts, add a dated supersession note; do not silently rewrite history.',
+            why: 'It prevents future agents from relitigating settled choices and keeps pivots auditable.',
+          },
+          {
+            id: 'build-spec',
+            category: 'design',
+            categoryLabel: 'Design · Contract',
+            title: 'Build specification',
+            text: 'Turn the agreed architecture into a build contract. Include outcome, users, scope, exact behavior, inputs and outputs, validation, state changes, compatibility, edge cases, failure behavior, preservation rules, non-goals, security boundaries, tests, evidence, deployment order, rollback, and measurable acceptance. Resolve ambiguity before implementation.',
+            why: 'It converts architectural intent into a falsifiable contract an implementation agent can follow.',
+          },
+          {
+            id: 'agent-plan',
+            category: 'execute',
+            categoryLabel: 'Execute · Plan',
+            title: 'Dependency-aware plan',
+            text: 'Convert the spec into ordered implementation phases. For each phase list: objective, dependencies, explicit file or subsystem ownership, steps, contracts touched, tests, evidence, rollback, documentation updates, and the exact completion gate. Separate work that can run in parallel from work that must serialize.',
+            why: 'It gives parallel workers bounded ownership while keeping shared contracts and integration order explicit.',
+          },
+          {
+            id: 'kickoff',
+            category: 'execute',
+            categoryLabel: 'Execute · Authorize',
+            title: 'One-shot kickoff',
+            text: 'Write a clean-session kickoff with: repository and working directory, expected base revision, branch, mandatory read order, document authority, locked decisions, current verified baseline, safety and permission boundaries, allowed and forbidden external actions, implementation sequence, verification commands, evidence protocol, documentation updates, rollback, deliverables, and when to stop for human input.',
+            why: 'It separates planning from authorization and lets a fresh agent execute without reopening the design conversation.',
+          },
+          {
+            id: 'build-loop',
+            category: 'execute',
+            categoryLabel: 'Execute · Build',
+            title: 'Small-slice build loop',
+            text: 'Implement the smallest complete slice. State ownership, make the change, add or update boundary tests, run the affected checks once, perform a coding-standards sweep, capture evidence, update progress/build log and changelog where appropriate, make one small rollbackable commit, push it, then report what changed, what passed, and the next slice.',
+            why: 'It makes the unit of progress a coherent, verified, reversible behavior rather than a pile of edited files.',
+          },
+          {
+            id: 'cost-routing',
+            category: 'operate',
+            categoryLabel: 'Operate · Route',
+            source: 'Current rule + session pattern',
+            title: 'Cheapest-capable routing charter',
+            text: 'Act as a thin, cost-aware conductor: plan, dispatch, reconcile structured results, synthesize, and sign off. First map the task graph and confirm which tools, hosts, and models are actually available; never pretend a requested route exists. Every worker call must name its route and reasoning effort rather than relying on an accidental default. Send deterministic search, transforms, formatting, and repeatable checks to scripts or repo tools. Send extraction and drafting to a qualified local model. Send bounded ordinary implementation to the lowest-cost capable cloud worker. Keep architecture, shared contracts, ambiguous failures, security, money, auth, integration, adversarial review, release judgment, and final acceptance with the strongest available conductor. Default cheap; escalate only when risk, failure, or ambiguity justifies it. Give each worker a compact context pack, exclusive ownership, acceptance test, output path, and stop condition. Parallelize only independent work. Inspect every diff and rerun only the decisive integration gates before work counts. Do not duplicate reviews or rerun a passed check without a change, failure, or new concern. Record the route actually used, exposed usage, and any work omitted to stay inside the budget.',
+            why: 'It spends reasoning where judgment changes the outcome, keeps mechanical work cheap, and makes the real route auditable instead of aspirational.',
+          },
+          {
+            id: 'token-tight-worker',
+            category: 'operate',
+            categoryLabel: 'Operate · Route',
+            source: 'Current rule',
+            title: 'Token-tight worker brief',
+            text: 'Complete this bounded task only: [TASK]. You exclusively own [FILES OR SUBSYSTEM]. Read [NAMED SOURCES] directly; do not request repeated context. Preserve [SHARED CONTRACTS] and do not edit out-of-scope files. Produce [EXACT OUTPUT] and prove [ACCEPTANCE TEST]. Run only the affected checks once, repeating only after a change or failure. If blocked, return the exact blocker after completing every independent step. Reply compactly with: outcome, changed files, checks and evidence, unresolved risk, and the next integration action. Do not create filler work, duplicate another worker, or ask a question unless its answer materially changes scope, safety, or the contract.',
+            why: 'A small context window, exclusive ownership, and a fixed reply contract reduce both token waste and integration collisions.',
+          },
+          {
+            id: 'usage-checkpoint',
+            category: 'operate',
+            categoryLabel: 'Operate · Budget',
+            source: 'Current rule',
+            title: 'Shared-usage checkpoint',
+            text: 'Before substantial dispatch—and again after this worker batch—inspect every exposed shared cloud allowance and identify the tightest one. Report the allowance and window, percent used, remaining headroom, protected reserve, active routes, batch usage or cost when exposed, and the routing decision. Preserve at least 25% of the tightest shared allowance. At 75% used, stop discretionary cloud dispatch; reconcile in-flight work and continue only with deterministic tools, qualified local capacity, or the minimum work required for safe completion, review, recovery, and handoff. Treat unknown usage as constrained, not unlimited. Do not redeem reset credits automatically, assume another computer has a separate allowance, use paid polling, or invent filler work. Reconcile interrupted jobs before retrying and record the actual route and usage.',
+            why: 'It turns quota from a surprise into a dispatch gate while protecting enough capacity for integration, verification, and a clean handoff.',
+          },
+          {
+            id: 'batch-closeout',
+            category: 'operate',
+            categoryLabel: 'Operate · Budget',
+            source: 'Operational pattern',
+            title: 'Batch closeout ledger',
+            text: 'Close this batch with one compact ledger. For each worker or tool record: assigned scope, actual route, outcome, evidence, exposed usage, interrupted or uncertain work, retries avoided, and remaining budget. Reconcile every interrupted job before proposing a retry. State whether the 25% reserve remains intact, whether the 75%-used stop rule applies, and the next cheapest capable route. Do not poll completed work, repeat passed checks, or launch a follow-on batch until shared contracts and integration results are reconciled.',
+            why: 'It makes usage monitoring part of delivery and prevents an interrupted or merely quiet job from being paid for twice.',
+          },
+          {
+            id: 'overnight-kickoff',
+            category: 'operate',
+            categoryLabel: 'Operate · Autonomy',
+            source: 'Historical session pattern',
+            title: 'Autonomous overnight kickoff',
+            text: 'Treat the approved plan as one continuous unsupervised assignment. Read the authoritative architecture, build spec, decisions, progress, and handoff first; do not reopen settled choices. Work through the Definition of Done in priority order: build → verify with real artifacts → adversarial review → fix → re-verify → document → hand off. Do not stop at a plan, scaffold, mock-only demo, or partial frontend. Choose reasonable reversible defaults for routine in-scope ambiguity and record them. Give parallel workers bounded exclusive ownership, launch long workers nonblocking, react to completion instead of paid polling, and reconcile failures or uncertain effects before retrying. Commit each verified rollback-safe unit and persist progress, evidence, changelog, and handoff at meaningful milestones. Check usage before substantial dispatch and after each batch; preserve 25%, stop discretionary cloud work at 75% used, and never consume reset credits automatically. If something truly needs the owner, add a Morning Unblock entry with the item, exact blocker, work completed up to the boundary, and one required owner action; leave that mechanism inert, then continue every independent item. Stop only when every reachable Definition of Done item is proven and a fresh-context reviewer cannot refute it, the stated deadline passes, the quota gate fires, or a genuine safety, authority, spend, credential, destructive-action, or scope-changing blocker prevents all useful work. Finish with a loop-until-dry audit, save final checkpoints, write the morning report, and explicitly end the loop. Overnight autonomy does not broaden permission. Never fabricate success or call offline proof live.',
+            why: 'It gives a long-running agent persistence, memory, and clear stop conditions without turning “keep going” into unlimited authority.',
+          },
+          {
+            id: 'crash-safe-checkpoint',
+            category: 'operate',
+            categoryLabel: 'Operate · Autonomy',
+            source: 'Operational playbook',
+            title: 'Crash-safe milestone checkpoint',
+            text: 'At every meaningful milestone, persist a restartable checkpoint with: goal and governing spec, branch and revision, completed scope, current process or deployment state, commands and results, proof level, pending or uncertain external effects, worker routes and usage, assumptions, exact blocker, rollback target, and the next safe command. Save durable remote session IDs and result paths when coordination crosses sessions or machines. Make the repository—not chat memory—the source a successor can resume from.',
+            why: 'It lets an overnight run survive a crash, compaction, handoff, or sleeping owner without rediscovery or unsafe repetition.',
+          },
+          {
+            id: 'resume-reconcile',
+            category: 'operate',
+            categoryLabel: 'Operate · Recover',
+            source: 'Current rule + handoff pattern',
+            title: 'Resume without repeating',
+            text: 'Resume from the existing checkout and handoff. Before acting, reconcile Git status, running processes, deployments, durable records, accepted or uncertain external effects, active workers, usage, and previously passed evidence. Preserve valid work. Do not rebuild, reprovision, rerun passed suites, reset accepted effects, or resend an uncertain operation blindly. Continue from the first unproven step, correct any stale claim you find, and record the exact state that justified the next action.',
+            why: 'It prevents duplicate cost, duplicate side effects, and the common mistake of treating an interrupted session as an empty workspace.',
+          },
+          {
+            id: 'morning-report',
+            category: 'operate',
+            categoryLabel: 'Operate · Report',
+            source: 'Historical session pattern',
+            title: 'Morning proof report',
+            text: 'Write an operator-grade MORNING report with: executive outcome; artifact or demo links; branch, revision, commits, pushes, and deployments; what is implemented, offline-tested, provider-accepted, live-observed, blocked, or pending; exact checks and sanitized evidence; worker and model routes; usage and reserve status; assumptions and defaults; external actions deliberately not taken; unresolved or uncertain effects; rollback; owner-required actions; and the first three things I should inspect. Do not call partial work complete or upgrade a mock, local result, provider acceptance, or confident narrative into live proof.',
+            why: 'It makes the overnight result inspectable in minutes and preserves the distinction between progress, proof, and production reality.',
+          },
+          {
+            id: 'acceptance',
+            category: 'prove',
+            categoryLabel: 'Prove · Acceptance',
+            title: 'Acceptance pass',
+            text: 'Walk every workflow, edge case, and external boundary against the acceptance matrix. Produce exact commands, revision, timestamp, result counts, and sanitized artifacts. List failures with WHAT / WHERE / HOW. Label every claim implemented, offline-tested, provider-accepted, live-observed, or blocked; missing access is not a pass.',
+            why: 'It prevents green unit tests, provider acceptance, or a polished narrative from being upgraded into stronger evidence than they provide.',
+          },
+          {
+            id: 'handoff',
+            category: 'prove',
+            categoryLabel: 'Prove · Continue',
+            title: 'Handoff and resume',
+            text: 'Write a restartable handoff with: current revision and deployment, governing decisions, what is live, what is historical, what is verified vs unverified, running services, unresolved effects, exact blockers, evidence locations, rollback targets, exact commands, and the next safe actions. A new agent should continue without asking what was already answered.',
+            why: 'It turns the end of one session into the beginning of the next and makes continuity a deliverable.',
+          },
+          {
+            id: 'compound',
+            category: 'prove',
+            categoryLabel: 'Prove · Learn',
+            title: 'Review and compound',
+            text: 'Review the result against the architecture, build spec, acceptance criteria, and runtime evidence—not against intention. Identify reusable lessons, environment gotchas, and incident patterns. Update the coding standard, runbook, solution note, or template only where the lesson will prevent a real future failure.',
+            why: 'It converts expensive project-specific learning into cheaper future work without bloating every document.',
+          },
+        ];
+
+        const artifactInstructions = {
+          mirror:
+            'Produce a structured readback with Goal, People, Desired experience, Constraints, Verified facts, Assumptions, Unknowns, Contradictions, and Non-goals. End with a concise alignment question and wait.',
+          architecture:
+            'Produce an architecture brief covering components, boundaries, data flow, source of truth, contracts, state transitions, integrations, failure behavior, security, observability, alternatives, and open decisions.',
+          spec: 'Produce a build specification covering scope, requirements, contracts, workflows, validation, compatibility, edge cases, preservation rules, non-goals, test boundaries, acceptance, deployment order, and rollback.',
+          kickoff:
+            'Produce a clean-session kickoff covering repo/base/branch, mandatory read order, authority, locked decisions, baseline, allowed and forbidden actions, build sequence, verification commands, evidence, documentation updates, rollback, deliverables, and stop conditions.',
+          routing:
+            'Produce a cost-aware routing plan. Decompose the work, map each subtask to the cheapest capable tool or model, name the required reasoning effort, bound ownership and output, identify decisive conductor checks, protect the usage reserve, and explain every premium escalation.',
+          usage:
+            'Produce a usage checkpoint covering the tightest shared allowance, percent used, protected reserve, active and completed routes, batch usage where exposed, interrupted work, retries avoided, the 75%-used dispatch gate, and the next allowed actions.',
+          overnight:
+            'Produce an autonomous overnight kickoff covering source-of-truth read order, Definition of Done, continuous work loop, bounded delegation, usage controls, restartable milestones, routine defaults, exact stop boundaries, Morning Unblock entries, final audit, and morning proof report.',
+        };
+
+        const guardrailText = {
+          'no-code': 'Do not write code or mutate external state in this turn.',
+          facts: 'Separate verified facts, assumptions, proposed decisions, and unknowns.',
+          questions:
+            'Ask only questions whose answers would materially change scope, architecture, risk, or cost.',
+          proof:
+            'Include measurable acceptance evidence, deployment gates, and a concrete rollback path.',
+        };
+
+        const stageNav = document.querySelector('#stage-nav');
+        const stageDetail = document.querySelector('#stage-detail');
+        const standardsTabs = document.querySelector('#standards-tabs');
+        const standardDetail = document.querySelector('#standard-detail');
+        const promptList = document.querySelector('#prompt-list');
+        const promptCategory = document.querySelector('#prompt-category');
+        const promptSource = document.querySelector('#prompt-source');
+        const promptTitle = document.querySelector('#prompt-title');
+        const promptText = document.querySelector('#prompt-text');
+        const promptWhy = document.querySelector('#prompt-why');
+        const toast = document.querySelector('#toast');
+        let activePrompt = prompts[0];
+        let toastTimer;
+
+        function createTextElement(tag, className, text) {
+          const element = document.createElement(tag);
+          if (className) element.className = className;
+          element.textContent = text;
+          return element;
+        }
+
+        function renderStage(index) {
+          const stage = stages[index];
+          stageDetail.setAttribute('aria-labelledby', `stage-tab-${index}`);
+          document.querySelectorAll('.stage-button').forEach((button, buttonIndex) => {
+            const selected = buttonIndex === index;
+            button.setAttribute('aria-selected', String(selected));
+            button.tabIndex = selected ? 0 : -1;
+          });
+
+          stageDetail.replaceChildren();
+          const kicker = createTextElement('div', 'stage-kicker', '');
+          kicker.append(
+            createTextElement('span', '', stage.label),
+            createTextElement('strong', '', stage.status),
+          );
+          const title = createTextElement('h3', '', stage.title);
+          const description = createTextElement('p', '', stage.description);
+          const grid = createTextElement('div', 'stage-grid', '');
+
+          const inputBox = createTextElement('div', 'stage-box', '');
+          inputBox.append(
+            createTextElement('b', '', 'Input'),
+            createTextElement('p', '', stage.input),
+          );
+
+          const moveBox = createTextElement('div', 'stage-box', '');
+          moveBox.append(createTextElement('b', '', 'Key moves'));
+          const list = document.createElement('ul');
+          stage.move.forEach((item) => list.append(createTextElement('li', '', item)));
+          moveBox.append(list);
+
+          const artifactBox = createTextElement('div', 'stage-box', '');
+          artifactBox.append(
+            createTextElement('b', '', 'Output'),
+            createTextElement('p', '', stage.artifact),
+          );
+          grid.append(inputBox, moveBox, artifactBox);
+
+          const banner = createTextElement('div', 'rule-banner', '');
+          banner.append(createTextElement('span', 'icon', '→'));
+          const bannerCopy = document.createElement('div');
+          bannerCopy.append(
+            createTextElement('strong', '', stage.ruleTitle),
+            createTextElement('p', '', stage.ruleText),
+          );
+          banner.append(bannerCopy);
+          stageDetail.append(kicker, title, description, grid, banner);
+        }
+
+        stages.forEach((stage, index) => {
+          const button = createTextElement('button', 'stage-button', '');
+          button.type = 'button';
+          button.role = 'tab';
+          button.id = `stage-tab-${index}`;
+          button.setAttribute('aria-controls', 'stage-detail');
+          button.setAttribute('aria-selected', String(index === 0));
+          button.tabIndex = index === 0 ? 0 : -1;
+          button.append(
+            createTextElement('span', 'num', String(index + 1).padStart(2, '0')),
+            createTextElement('strong', '', stage.short),
+          );
+          button.addEventListener('click', () => renderStage(index));
+          button.addEventListener('keydown', (event) => {
+            if (!['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].includes(event.key)) return;
+            event.preventDefault();
+            const forward = event.key === 'ArrowDown' || event.key === 'ArrowRight';
+            const next = (index + (forward ? 1 : -1) + stages.length) % stages.length;
+            renderStage(next);
+            stageNav.children[next].focus();
+          });
+          stageNav.append(button);
+        });
+        renderStage(0);
+
+        function renderStandard(index) {
+          const standard = standards[index];
+          standardDetail.setAttribute('aria-labelledby', `standard-tab-${index}`);
+          document.querySelectorAll('.tab-button').forEach((button, buttonIndex) => {
+            const selected = buttonIndex === index;
+            button.setAttribute('aria-selected', String(selected));
+            button.tabIndex = selected ? 0 : -1;
+          });
+          standardDetail.replaceChildren();
+          standardDetail.append(
+            createTextElement('h3', '', standard.title),
+            createTextElement('p', '', standard.description),
+          );
+          const rules = createTextElement('ul', 'standard-rules', '');
+          standard.rules.forEach((rule) => rules.append(createTextElement('li', '', rule)));
+          const gate = createTextElement('div', 'exit-gate', '');
+          const gateLabel = createTextElement('b', '', 'EXIT GATE · ');
+          gate.append(gateLabel, document.createTextNode(standard.gate));
+          standardDetail.append(rules, gate);
+        }
+
+        standards.forEach((standard, index) => {
+          const button = createTextElement('button', 'tab-button', standard.label);
+          button.type = 'button';
+          button.role = 'tab';
+          button.id = `standard-tab-${index}`;
+          button.setAttribute('aria-controls', 'standard-detail');
+          button.setAttribute('aria-selected', String(index === 0));
+          button.tabIndex = index === 0 ? 0 : -1;
+          button.addEventListener('click', () => renderStandard(index));
+          standardsTabs.append(button);
+        });
+        renderStandard(0);
+
+        document.querySelectorAll('[data-doc-filter]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const filter = button.dataset.docFilter;
+            document
+              .querySelectorAll('[data-doc-filter]')
+              .forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+            document.querySelectorAll('.doc-card').forEach((card) => {
+              card.hidden = filter !== 'all' && !card.dataset.docPhase.split(' ').includes(filter);
+            });
+          });
+        });
+
+        function renderPrompt(prompt) {
+          activePrompt = prompt;
+          document
+            .querySelector('#prompt-display')
+            .setAttribute('aria-labelledby', `prompt-tab-${prompt.id}`);
+          document.querySelectorAll('.prompt-item').forEach((button) => {
+            const selected = button.dataset.promptId === prompt.id;
+            button.setAttribute('aria-selected', String(selected));
+            button.tabIndex = selected ? 0 : -1;
+          });
+          promptCategory.textContent = prompt.categoryLabel;
+          promptSource.textContent = prompt.source || '';
+          promptSource.hidden = !prompt.source;
+          promptTitle.textContent = prompt.title;
+          promptText.textContent = prompt.text;
+          promptWhy.textContent = prompt.why;
+        }
+
+        prompts.forEach((prompt) => {
+          const button = createTextElement('button', 'prompt-item', '');
+          button.type = 'button';
+          button.role = 'tab';
+          button.id = `prompt-tab-${prompt.id}`;
+          button.dataset.promptId = prompt.id;
+          button.dataset.promptCategory = prompt.category;
+          button.setAttribute('aria-selected', String(prompt === prompts[0]));
+          button.tabIndex = prompt === prompts[0] ? 0 : -1;
+          button.append(
+            createTextElement('span', '', prompt.categoryLabel),
+            createTextElement('strong', '', prompt.title),
+          );
+          button.addEventListener('click', () => renderPrompt(prompt));
+          promptList.append(button);
+        });
+        renderPrompt(prompts[0]);
+
+        document.querySelectorAll('[data-prompt-filter]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const filter = button.dataset.promptFilter;
+            document
+              .querySelectorAll('[data-prompt-filter]')
+              .forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+            let firstVisible = null;
+            document.querySelectorAll('.prompt-item').forEach((item) => {
+              item.hidden = filter !== 'all' && item.dataset.promptCategory !== filter;
+              if (!item.hidden && !firstVisible) firstVisible = item;
+            });
+            if (firstVisible) {
+              const nextPrompt = prompts.find(
+                (prompt) => prompt.id === firstVisible.dataset.promptId,
+              );
+              if (nextPrompt) renderPrompt(nextPrompt);
+            }
+          });
+        });
+
+        document.querySelectorAll('[data-open-prompt]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const targetPrompt = prompts.find((prompt) => prompt.id === button.dataset.openPrompt);
+            const operateFilter = document.querySelector('[data-prompt-filter="operate"]');
+            if (!targetPrompt || !operateFilter) return;
+            operateFilter.click();
+            renderPrompt(targetPrompt);
+            const promptDisplay = document.querySelector('#prompt-display');
+            promptDisplay.scrollIntoView({
+              behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                ? 'auto'
+                : 'smooth',
+              block: 'center',
+            });
+            promptDisplay.focus({ preventScroll: true });
+          });
+        });
+
+        function showToast(message) {
+          toast.textContent = message;
+          toast.classList.add('show');
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        async function copyTextToClipboard(text, message) {
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              const helper = document.createElement('textarea');
+              helper.value = text;
+              helper.setAttribute('readonly', '');
+              helper.style.position = 'fixed';
+              helper.style.opacity = '0';
+              document.body.append(helper);
+              helper.select();
+              const copied = document.execCommand('copy');
+              helper.remove();
+              if (!copied) throw new Error('Browser rejected the local clipboard fallback.');
+            }
+            showToast(message);
+          } catch (error) {
+            showToast('Copy was blocked. Select the prompt text and copy it manually.');
+          }
+        }
+
+        document.querySelector('#copy-prompt').addEventListener('click', () => {
+          copyTextToClipboard(activePrompt.text, `Copied: ${activePrompt.title}`);
+        });
+
+        const brainDump = document.querySelector('#brain-dump');
+        const artifactSelect = document.querySelector('#artifact-select');
+        const composedText = document.querySelector('#composed-text');
+        const noCodeGuardrail = document.querySelector('[data-guardrail="no-code"]');
+        const proofGuardrail = document.querySelector('[data-guardrail="proof"]');
+
+        artifactSelect.addEventListener('change', () => {
+          if (artifactSelect.value !== 'overnight') return;
+          noCodeGuardrail.checked = false;
+          proofGuardrail.checked = true;
+          showToast('Execution guardrails set for the overnight kickoff.');
+        });
+
+        function composePrompt() {
+          const dump = brainDump.value.trim() || '[Paste the idea or project context here.]';
+          const guards = Array.from(document.querySelectorAll('[data-guardrail]:checked'))
+            .map((input) => guardrailText[input.dataset.guardrail])
+            .filter(Boolean);
+          const sections = [
+            'CONTEXT / BRAIN DUMP',
+            dump,
+            '',
+            'YOUR TASK',
+            artifactInstructions[artifactSelect.value],
+          ];
+          if (guards.length) {
+            sections.push(
+              '',
+              'GUARDRAILS',
+              ...guards.map((guard, index) => `${index + 1}. ${guard}`),
+            );
+          }
+          sections.push(
+            '',
+            'End with the exact open decisions or next approval gate. Do not imply that planned, implemented, verified, or live are the same state.',
+          );
+          composedText.textContent = sections.join('\n');
+          showToast('Prompt composed.');
+        }
+
+        document.querySelector('#compose-button').addEventListener('click', composePrompt);
+        document.querySelector('#copy-composed').addEventListener('click', () => {
+          copyTextToClipboard(composedText.textContent, 'Composed prompt copied.');
+        });
+        document.querySelector('#clear-composer').addEventListener('click', () => {
+          brainDump.value = '';
+          artifactSelect.value = 'mirror';
+          document.querySelectorAll('[data-guardrail]').forEach((input) => {
+            input.checked = input.dataset.guardrail !== 'proof';
+          });
+          composedText.textContent = 'Your composed prompt will appear here.';
+          showToast('Composer cleared.');
+          brainDump.focus();
+        });
+
+        const printPrompts = document.querySelector('#print-prompts');
+        printPrompts.append(createTextElement('h3', '', 'Prompt library'));
+        prompts.forEach((prompt) => {
+          const card = createTextElement('div', 'print-prompt', '');
+          card.append(
+            createTextElement('strong', '', `${prompt.title} — ${prompt.categoryLabel}`),
+            createTextElement('p', '', prompt.text),
+          );
+          printPrompts.append(card);
+        });
+
+        const checklistInputs = Array.from(
+          document.querySelectorAll("#checklist input[type='checkbox']"),
+        );
+        const meterRing = document.querySelector('#meter-ring');
+        const meterCount = document.querySelector('#meter-count');
+        const readyState = document.querySelector('#ready-state');
+        const readinessMessages = [
+          'Start with the outcome and user journey.',
+          'Good start. Separate current truth from the target.',
+          'Now lock material decisions and non-goals.',
+          'The idea has shape. Map the boundaries and state.',
+          'Design failure behavior before happy-path polish.',
+          'Add authority, safety, and external-write limits.',
+          'Turn every requirement into observable proof.',
+          'Define delivery order, rollback, and continuity.',
+          'Ready for a clean-session kickoff.',
+        ];
+
+        function updateReadiness() {
+          const checked = checklistInputs.filter((input) => input.checked).length;
+          const percent = Math.round((checked / checklistInputs.length) * 100);
+          meterRing.style.setProperty('--progress', `${percent}%`);
+          meterCount.textContent = `${checked}/${checklistInputs.length}`;
+          const bucket = Math.min(
+            readinessMessages.length - 1,
+            Math.floor((checked / checklistInputs.length) * readinessMessages.length),
+          );
+          readyState.textContent = readinessMessages[bucket];
+          try {
+            localStorage.setItem(
+              'dave-build-system-checklist',
+              JSON.stringify(checklistInputs.map((input) => input.checked)),
+            );
+          } catch (error) {
+            // Local persistence is optional; file:// privacy settings may block it.
+          }
+        }
+
+        checklistInputs.forEach((input) => input.addEventListener('change', updateReadiness));
+        try {
+          const saved = JSON.parse(localStorage.getItem('dave-build-system-checklist') || '[]');
+          if (Array.isArray(saved))
+            checklistInputs.forEach((input, index) => {
+              input.checked = Boolean(saved[index]);
+            });
+        } catch (error) {
+          // Start from an empty checklist when stored state is unavailable or malformed.
+        }
+        updateReadiness();
+
+        document.querySelector('#reset-checklist').addEventListener('click', () => {
+          checklistInputs.forEach((input) => {
+            input.checked = false;
+          });
+          updateReadiness();
+          showToast('Checklist reset.');
+        });
+
+        document.querySelector('#print-button').addEventListener('click', () => window.print());
+      })();
+    </script>
+  </body>
+</html>

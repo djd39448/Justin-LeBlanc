@@ -6,7 +6,35 @@
   const label = document.querySelector('#progress-label');
   const fill = document.querySelector('#progress-fill');
   const bar = document.querySelector('[role="progressbar"]');
+  const manifestLessons = window.COURSE_CURRICULUM?.lessons;
+  if (
+    Array.isArray(manifestLessons) &&
+    manifestLessons.length > 0 &&
+    manifestLessons.every(
+      (lesson) =>
+        typeof lesson.id === 'string' &&
+        typeof lesson.title === 'string' &&
+        typeof lesson.source === 'string' &&
+        typeof lesson.summary === 'string',
+    )
+  ) {
+    const ordered = [...manifestLessons].sort((a, b) => a.order - b.order);
+    const rows = ordered.map((lesson) => {
+      const row = document.createElement('li');
+      const number = document.createElement('span');
+      number.textContent = lesson.id;
+      const link = document.createElement('a');
+      link.href = lesson.source;
+      link.textContent = lesson.title;
+      const summary = document.createElement('span');
+      summary.textContent = lesson.summary;
+      row.append(number, link, summary);
+      return row;
+    });
+    list.replaceChildren(...rows);
+  }
   const items = [...list.querySelectorAll('li')];
+  bar.setAttribute('aria-valuemax', String(items.length));
   let saved = [];
   try {
     const value = JSON.parse(localStorage.getItem(key) || '[]');

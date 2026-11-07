@@ -1,12 +1,10 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "title": "From Idea to Build",
   "audience": "Beginners directing AI-assisted software projects",
   "caseStudy": "Fictional inquiry tracker",
   "lessonDefaults": {
-    "lectureStatus": "draft for review",
-    "videoStatus": "production pending",
-    "presentationStatus": "production pending",
+    "rightsStatus": "fal states commercial use is permitted; applicable account and voice terms remain to be confirmed before launch",
     "accessStatus": "not protected; host access integration not configured"
   },
   "lessons": [
@@ -15,71 +13,346 @@
       "order": 1,
       "title": "The whole system",
       "objective": "Explain the conversation and delivery loops and identify alignment and proof.",
+      "summary": "Understand the two loops",
+      "prerequisites": [],
+      "estimatedPractice": "15–20 minutes",
       "source": "lessons/01.html",
-      "pilot": "pilot/presentation.html"
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "pilot approved 2026-11-07",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/01.html#plan",
+        "lectureScript": "lessons/01.html#lecture-script",
+        "exercise": "lessons/01.html#exercise",
+        "workedExampleAndRubric": "lessons/01.html",
+        "lessonTextSources": ["lessons/01.html"],
+        "sceneSource": "pilot/build-pilot.cjs",
+        "presentation": "pilot/presentation.html",
+        "video": "pilot/lesson-01.mp4",
+        "captions": "pilot/captions.vtt",
+        "transcript": "pilot/transcript.md",
+        "cues": "pilot/cues.json",
+        "durationSeconds": 433.365,
+        "sceneCount": 13
+      }
     },
     {
       "id": "02",
       "order": 2,
       "title": "Brain dump to alignment",
       "objective": "Capture an idea and confirm an observable readback.",
-      "source": "lessons/02.html"
+      "summary": "Get to “yes, that’s what I mean”",
+      "prerequisites": ["01"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/02.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/02.html#plan",
+        "lectureScript": "lessons/02.html#lecture-script",
+        "exercise": "lessons/02.html#exercise",
+        "workedExampleAndRubric": "lessons/02.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/02/presentation.html",
+        "video": "productions/02/lesson-02.mp4",
+        "captions": "productions/02/captions.vtt",
+        "transcript": "productions/02/transcript.md",
+        "cues": "productions/02/cues.json",
+        "durationSeconds": 421.715,
+        "sceneCount": 13
+      }
     },
     {
       "id": "03",
       "order": 3,
       "title": "Research and decisions",
       "objective": "Separate current reality from assumptions and record choices.",
-      "source": "lessons/03.html"
+      "summary": "Separate truth from assumptions",
+      "prerequisites": ["02"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/03.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/03.html#plan",
+        "lectureScript": "lessons/03.html#lecture-script",
+        "exercise": "lessons/03.html#exercise",
+        "workedExampleAndRubric": "lessons/03.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/03/presentation.html",
+        "video": "productions/03/lesson-03.mp4",
+        "captions": "productions/03/captions.vtt",
+        "transcript": "productions/03/transcript.md",
+        "cues": "productions/03/cues.json",
+        "durationSeconds": 414.818,
+        "sceneCount": 13
+      }
     },
     {
       "id": "04",
       "order": 4,
       "title": "Architecture and workflows",
       "objective": "Map components, information, boundaries, and failure paths.",
-      "source": "lessons/04.html"
+      "summary": "Make the invisible system visible",
+      "prerequisites": ["03"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/04.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/04.html#plan",
+        "lectureScript": "lessons/04.html#lecture-script",
+        "exercise": "lessons/04.html#exercise",
+        "workedExampleAndRubric": "lessons/04.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/04/presentation.html",
+        "video": "productions/04/lesson-04.mp4",
+        "captions": "productions/04/captions.vtt",
+        "transcript": "productions/04/transcript.md",
+        "cues": "productions/04/cues.json",
+        "durationSeconds": 391.148,
+        "sceneCount": 13
+      }
     },
     {
       "id": "05",
       "order": 5,
       "title": "Documents with distinct jobs",
       "objective": "Choose the right document for authority, design, history, and handoff.",
-      "source": "lessons/05.html"
+      "summary": "Give your project a memory",
+      "prerequisites": ["04"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/05.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/05.html#plan",
+        "lectureScript": "lessons/05.html#lecture-script",
+        "exercise": "lessons/05.html#exercise",
+        "workedExampleAndRubric": "lessons/05.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/05/presentation.html",
+        "video": "productions/05/lesson-05.mp4",
+        "captions": "productions/05/captions.vtt",
+        "transcript": "productions/05/transcript.md",
+        "cues": "productions/05/cues.json",
+        "durationSeconds": 396.245,
+        "sceneCount": 13
+      }
     },
     {
       "id": "06",
       "order": 6,
       "title": "Build specification and plan",
       "objective": "Turn the architecture into a testable build contract and plan.",
-      "source": "lessons/06.html"
+      "summary": "Turn a design into a contract",
+      "prerequisites": ["05"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/06.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/06.html#plan",
+        "lectureScript": "lessons/06.html#lecture-script",
+        "exercise": "lessons/06.html#exercise",
+        "workedExampleAndRubric": "lessons/06.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/06/presentation.html",
+        "video": "productions/06/lesson-06.mp4",
+        "captions": "productions/06/captions.vtt",
+        "transcript": "productions/06/transcript.md",
+        "cues": "productions/06/cues.json",
+        "durationSeconds": 389.187,
+        "sceneCount": 13
+      }
     },
     {
       "id": "07",
       "order": 7,
       "title": "Coding standards and evidence",
       "objective": "Evaluate code quality, verification, and proof claims.",
-      "source": "lessons/07.html"
+      "summary": "Know what “done” really means",
+      "prerequisites": ["06"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/07.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/07.html#plan",
+        "lectureScript": "lessons/07.html#lecture-script",
+        "exercise": "lessons/07.html#exercise",
+        "workedExampleAndRubric": "lessons/07.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/07/presentation.html",
+        "video": "productions/07/lesson-07.mp4",
+        "captions": "productions/07/captions.vtt",
+        "transcript": "productions/07/transcript.md",
+        "cues": "productions/07/cues.json",
+        "durationSeconds": 380.589,
+        "sceneCount": 13
+      }
     },
     {
       "id": "08",
       "order": 8,
       "title": "Kickoff, routing, and usage",
       "objective": "Direct bounded work and manage model routing and shared usage.",
-      "source": "lessons/08.html"
+      "summary": "Direct agents deliberately",
+      "prerequisites": ["07"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/08.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/08.html#plan",
+        "lectureScript": "lessons/08.html#lecture-script",
+        "exercise": "lessons/08.html#exercise",
+        "workedExampleAndRubric": "lessons/08.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/08/presentation.html",
+        "video": "productions/08/lesson-08.mp4",
+        "captions": "productions/08/captions.vtt",
+        "transcript": "productions/08/transcript.md",
+        "cues": "productions/08/cues.json",
+        "durationSeconds": 415.84,
+        "sceneCount": 13
+      }
     },
     {
       "id": "09",
       "order": 9,
       "title": "Autonomous builds and recovery",
       "objective": "Plan checkpoints, boundaries, recovery, and a morning report.",
-      "source": "lessons/09.html"
+      "summary": "Keep long work restartable",
+      "prerequisites": ["08"],
+      "estimatedPractice": "15–20 minutes",
+      "source": "lessons/09.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/09.html#plan",
+        "lectureScript": "lessons/09.html#lecture-script",
+        "exercise": "lessons/09.html#exercise",
+        "workedExampleAndRubric": "lessons/09.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/09/presentation.html",
+        "video": "productions/09/lesson-09.mp4",
+        "captions": "productions/09/captions.vtt",
+        "transcript": "productions/09/transcript.md",
+        "cues": "productions/09/cues.json",
+        "durationSeconds": 396.314,
+        "sceneCount": 13
+      }
     },
     {
       "id": "10",
       "order": 10,
       "title": "Capstone: cloud to contract",
       "objective": "Assemble and evaluate an agent-ready project package.",
-      "source": "lessons/10.html"
+      "summary": "Put the whole system to work",
+      "prerequisites": ["09"],
+      "estimatedPractice": "2–4 hours, depending on project and prior work",
+      "source": "lessons/10.html",
+      "status": {
+        "lesson": "draft; human beginner validation pending",
+        "media": "produced locally; human caption and audio review pending",
+        "ownerReview": "individual lesson review not recorded",
+        "access": "not protected; host access integration not configured"
+      },
+      "materials": {
+        "lessonPlan": "lessons/10.html#plan",
+        "lectureScript": "lessons/10.html#lecture-script",
+        "exercise": "lessons/10.html#exercise",
+        "workedExampleAndRubric": "lessons/10.html",
+        "lessonTextSources": [
+          "lessons/lesson-source.mjs",
+          "lessons/deep-dives.mjs",
+          "lessons/sample-answers.mjs"
+        ],
+        "sceneSource": "scene-design/scenes.json",
+        "presentation": "productions/10/presentation.html",
+        "video": "productions/10/lesson-10.mp4",
+        "captions": "productions/10/captions.vtt",
+        "transcript": "productions/10/transcript.md",
+        "cues": "productions/10/cues.json",
+        "durationSeconds": 380.482,
+        "sceneCount": 13
+      }
     }
   ]
 }
