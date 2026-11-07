@@ -1,0 +1,40 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:02.833
+The delivery loop starts by establishing the baseline:
+
+00:00:03.274 --> 00:00:06.653
+what files, version, and running behavior exist now.
+
+00:00:07.094 --> 00:00:09.044
+We then authorize the relevant work.
+
+00:00:09.369 --> 00:00:12.330
+Agreement on a design is not automatically permission to
+
+00:00:12.388 --> 00:00:16.416
+deploy it, spend money, send messages, or change outside
+
+00:00:16.451 --> 00:00:17.032
+systems.
+
+00:00:17.473 --> 00:00:20.503
+A kickoff is the concise instruction a new agent can
+
+00:00:20.561 --> 00:00:24.183
+follow: where the work lives, which decisions govern it,
+
+00:00:24.427 --> 00:00:27.910
+what is allowed, which steps come first, and how to verify
+
+00:00:27.957 --> 00:00:28.595
+the result.
+
+00:00:29.036 --> 00:00:32.450
+If you already authorized a particular action, the agent
+
+00:00:32.485 --> 00:00:34.981
+should honor that authorization rather than ask for it
+
+00:00:35.016 --> 00:00:35.469
+again.

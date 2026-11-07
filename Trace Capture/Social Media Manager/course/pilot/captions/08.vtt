@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.229
+Then we make the decisions that change the design.
+
+00:00:02.612 --> 00:00:05.433
+For the tracker, should the first version accept inquiries
+
+00:00:05.584 --> 00:00:09.474
+only from the existing form, or also import old emails?
+
+00:00:09.985 --> 00:00:11.343
+What happens to duplicates?
+
+00:00:11.668 --> 00:00:14.431
+The agent can describe options, tradeoffs, and a
+
+00:00:14.489 --> 00:00:15.313
+recommendation.
+
+00:00:15.755 --> 00:00:18.088
+You decide the questions that change the outcome.
+
+00:00:18.413 --> 00:00:21.954
+A decision ledger is a simple record of the choice, why it
+
+00:00:21.989 --> 00:00:25.310
+was made, and what could justify revisiting it later.
+
+00:00:25.693 --> 00:00:28.921
+It keeps a future agent from reopening a settled question
+
+00:00:29.246 --> 00:00:31.788
+because the original conversation is no longer in its
+
+00:00:31.835 --> 00:00:32.462
+context.

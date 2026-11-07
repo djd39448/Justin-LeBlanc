@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "lesson": "01",
+  "generatedFrom": "../lessons/01.html#lecture-script",
+  "scenes": [
+    {
+      "id": "01",
+      "title": "One messy idea",
+      "narrationSegmentId": "01",
+      "startMs": 0,
+      "endMs": 36000,
+      "audio": "audio/01.mp3",
+      "accessibleDescription": "A performer wants every inquiry in one reliable place."
+    },
+    {
+      "id": "02",
+      "title": "Cloud → contract → code",
+      "narrationSegmentId": "02",
+      "startMs": 36000,
+      "endMs": 68679,
+      "audio": "audio/02.mp3",
+      "accessibleDescription": "Turn a raw idea into a shared agreement and a system you can evaluate."
+    },
+    {
+      "id": "03",
+      "title": "Two loops",
+      "narrationSegmentId": "03",
+      "startMs": 68679,
+      "endMs": 99216,
+      "audio": "audio/03.mp3",
+      "accessibleDescription": "Conversations create alignment. Delivery turns an agreement into evidence."
+    },
+    {
+      "id": "04",
+      "title": "Start with a brain dump",
+      "narrationSegmentId": "04",
+      "startMs": 99216,
+      "endMs": 129883,
+      "audio": "audio/04.mp3",
+      "accessibleDescription": "Put the context and uncertainty on the table, in your own words."
+    },
+    {
+      "id": "05",
+      "title": "Mirror the idea",
+      "narrationSegmentId": "05",
+      "startMs": 129883,
+      "endMs": 164349,
+      "audio": "audio/05.mp3",
+      "accessibleDescription": "Ask the agent to describe the goal, people, actions, and expected result."
+    },
+    {
+      "id": "06",
+      "title": "The alignment gate",
+      "narrationSegmentId": "06",
+      "startMs": 164349,
+      "endMs": 197315,
+      "audio": "audio/06.mp3",
+      "accessibleDescription": "The owner confirms the experience before the architecture rests on it."
+    },
+    {
+      "id": "07",
+      "title": "Research reality",
+      "narrationSegmentId": "07",
+      "startMs": 197315,
+      "endMs": 227182,
+      "audio": "audio/07.mp3",
+      "accessibleDescription": "Distinguish what exists, what is planned, and what is still unknown."
+    },
+    {
+      "id": "08",
+      "title": "Make decisions visible",
+      "narrationSegmentId": "08",
+      "startMs": 227182,
+      "endMs": 259982,
+      "audio": "audio/08.mp3",
+      "accessibleDescription": "Compare choices that change the design, then preserve why a choice was made."
+    },
+    {
+      "id": "09",
+      "title": "Architecture → specification",
+      "narrationSegmentId": "09",
+      "startMs": 259982,
+      "endMs": 301649,
+      "audio": "audio/09.mp3",
+      "accessibleDescription": "Describe how the pieces fit, then define the behavior that can be tested."
+    },
+    {
+      "id": "10",
+      "title": "Authorize the build",
+      "narrationSegmentId": "10",
+      "startMs": 301649,
+      "endMs": 337410,
+      "audio": "audio/10.mp3",
+      "accessibleDescription": "A kickoff tells a fresh agent what to do, what is allowed, and how to verify."
+    },
+    {
+      "id": "11",
+      "title": "Build in small slices",
+      "narrationSegmentId": "11",
+      "startMs": 337410,
+      "endMs": 369076,
+      "audio": "audio/11.mp3",
+      "accessibleDescription": "Deliver one complete, verifiable behavior at a time and document the result."
+    },
+    {
+      "id": "12",
+      "title": "Evidence has levels",
+      "narrationSegmentId": "12",
+      "startMs": 369076,
+      "endMs": 406543,
+      "audio": "audio/12.mp3",
+      "accessibleDescription": "Match the claim to the observation that actually supports it."
+    },
+    {
+      "id": "13",
+      "title": "Your turn",
+      "narrationSegmentId": "13",
+      "startMs": 406543,
+      "endMs": 433343,
+      "audio": "audio/13.mp3",
+      "accessibleDescription": "Carry one small idea through the stages and make the next action clear."
+    }
+  ]
+}

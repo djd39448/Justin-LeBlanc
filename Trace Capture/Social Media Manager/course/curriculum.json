@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "title": "From Idea to Build",
+  "audience": "Beginners directing AI-assisted software projects",
+  "caseStudy": "Fictional inquiry tracker",
+  "lessonDefaults": {
+    "lectureStatus": "draft for review",
+    "videoStatus": "pending pilot approval and production",
+    "presentationStatus": "pending pilot approval and production",
+    "accessStatus": "not protected; host access integration not configured"
+  },
+  "lessons": [
+    {
+      "id": "01",
+      "order": 1,
+      "title": "The whole system",
+      "objective": "Explain the conversation and delivery loops and identify alignment and proof.",
+      "source": "lessons/01.html",
+      "pilot": "pilot/presentation.html"
+    },
+    {
+      "id": "02",
+      "order": 2,
+      "title": "Brain dump to alignment",
+      "objective": "Capture an idea and confirm an observable readback.",
+      "source": "lessons/02.html"
+    },
+    {
+      "id": "03",
+      "order": 3,
+      "title": "Research and decisions",
+      "objective": "Separate current reality from assumptions and record choices.",
+      "source": "lessons/03.html"
+    },
+    {
+      "id": "04",
+      "order": 4,
+      "title": "Architecture and workflows",
+      "objective": "Map components, information, boundaries, and failure paths.",
+      "source": "lessons/04.html"
+    },
+    {
+      "id": "05",
+      "order": 5,
+      "title": "Documents with distinct jobs",
+      "objective": "Choose the right document for authority, design, history, and handoff.",
+      "source": "lessons/05.html"
+    },
+    {
+      "id": "06",
+      "order": 6,
+      "title": "Build specification and plan",
+      "objective": "Turn the architecture into a testable build contract and plan.",
+      "source": "lessons/06.html"
+    },
+    {
+      "id": "07",
+      "order": 7,
+      "title": "Coding standards and evidence",
+      "objective": "Evaluate code quality, verification, and proof claims.",
+      "source": "lessons/07.html"
+    },
+    {
+      "id": "08",
+      "order": 8,
+      "title": "Kickoff, routing, and usage",
+      "objective": "Direct bounded work and manage model routing and shared usage.",
+      "source": "lessons/08.html"
+    },
+    {
+      "id": "09",
+      "order": 9,
+      "title": "Autonomous builds and recovery",
+      "objective": "Plan checkpoints, boundaries, recovery, and a morning report.",
+      "source": "lessons/09.html"
+    },
+    {
+      "id": "10",
+      "order": 10,
+      "title": "Capstone: cloud to contract",
+      "objective": "Assemble and evaluate an agent-ready project package.",
+      "source": "lessons/10.html"
+    }
+  ]
+}

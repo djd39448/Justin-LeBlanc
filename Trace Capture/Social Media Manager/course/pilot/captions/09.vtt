@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.035 --> 00:00:02.496
+Only then do we describe the architecture and write the
+
+00:00:02.531 --> 00:00:03.634
+build specification.
+
+00:00:04.145 --> 00:00:07.488
+Architecture maps responsibilities and relationships: a
+
+00:00:07.581 --> 00:00:10.728
+form collects information, a record stores it, and a
+
+00:00:10.786 --> 00:00:12.109
+private view displays it.
+
+00:00:12.713 --> 00:00:15.604
+A workflow describes what happens over time, including
+
+00:00:15.673 --> 00:00:16.312
+failures.
+
+00:00:16.637 --> 00:00:19.481
+A build specification turns that design into precise
+
+00:00:19.528 --> 00:00:23.905
+behavior: required inputs, outputs, validation, edge
+
+00:00:23.951 --> 00:00:26.111
+cases, and acceptance criteria.
+
+00:00:26.714 --> 00:00:30.256
+Acceptance criteria are observable conditions that tell us
+
+00:00:30.291 --> 00:00:31.916
+when a requirement has been met.
+
+00:00:32.299 --> 00:00:34.830
+"The tracker is easy to use" is hard to prove.
+
+00:00:35.155 --> 00:00:38.859
+"A user can find a submitted inquiry and mark it handled"
+
+00:00:39.033 --> 00:00:41.366
+gives us a specific behavior to test.

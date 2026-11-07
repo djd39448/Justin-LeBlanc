@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.058 --> 00:00:02.450
+Imagine you have an idea for a small tool.
+
+00:00:02.775 --> 00:00:06.095
+You are a performer, and event organizers contact you by
+
+00:00:06.177 --> 00:00:08.150
+email, text, and web form.
+
+00:00:08.661 --> 00:00:11.738
+You want one place where you can see each inquiry and what
+
+00:00:11.784 --> 00:00:12.690
+needs a reply.
+
+00:00:13.201 --> 00:00:16.312
+You tell an AI agent, "Build me something that keeps track
+
+00:00:16.370 --> 00:00:19.725
+of my inquiries." The agent may immediately write code.
+
+00:00:20.050 --> 00:00:21.339
+That feels like progress.
+
+00:00:21.943 --> 00:00:23.777
+But what exactly is an inquiry?
+
+00:00:24.056 --> 00:00:25.402
+Who uses the tool?
+
+00:00:25.646 --> 00:00:26.947
+Should it send messages?
+
+00:00:27.330 --> 00:00:30.372
+What happens when two messages describe the same event?
+
+00:00:31.068 --> 00:00:33.715
+Until those questions are settled, a fast build can make
+
+00:00:33.739 --> 00:00:35.735
+the wrong assumptions very efficiently.

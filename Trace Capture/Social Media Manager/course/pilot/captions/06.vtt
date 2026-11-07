@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:00.046 --> 00:00:01.881
+That creates an alignment gate.
+
+00:00:02.264 --> 00:00:04.621
+A gate is simply a point where we check whether a
+
+00:00:04.690 --> 00:00:06.687
+condition is true before going on.
+
+00:00:07.198 --> 00:00:10.043
+Here, the condition is that the owner recognizes the
+
+00:00:10.159 --> 00:00:12.214
+readback as the intended experience.
+
+00:00:12.655 --> 00:00:16.346
+You can say, "Yes, that is right," or keep correcting it.
+
+00:00:16.788 --> 00:00:19.911
+This gate matters because architecture--the plan for how
+
+00:00:19.969 --> 00:00:22.906
+the pieces fit together--rests on the behavior we are
+
+00:00:22.929 --> 00:00:23.835
+trying to create.
+
+00:00:24.276 --> 00:00:27.085
+When a task is already agreed and authorized, the agent
+
+00:00:27.120 --> 00:00:30.127
+should recognize that and continue from the current stage
+
+00:00:30.173 --> 00:00:32.681
+rather than force you to repeat the whole conversation.
